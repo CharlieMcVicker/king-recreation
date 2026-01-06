@@ -13,6 +13,11 @@ def clean_row(row):
     definition = row.get("definition", "").strip()
     
     present = clean_string(row.get("3rd present", ""))
+    # README: "3rd present column with final i or a rstripped; for ia only a is dropped"
+    if present.endswith("ia"):
+        present = present[:-1]
+    elif present.endswith("i") or present.endswith("a"):
+        present = present[:-1]
     
     imperfective_raw = row.get("3rd incompletive habitual", "")
     imperfective = clean_string(imperfective_raw)

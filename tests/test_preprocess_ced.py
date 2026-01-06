@@ -21,7 +21,7 @@ class TestPreprocessCed(unittest.TestCase):
         }
         cleaned = clean_row(row)
         self.assertEqual(cleaned["definition"], "he's putting on his socks")
-        self.assertEqual(cleaned["present"], "daliyohia")
+        self.assertEqual(cleaned["present"], "daliyohi") # daliyohia -> daliyohi
         self.assertEqual(cleaned["imperfective"], "daliyohih") # daliyohihoi -> daliyohih
         self.assertEqual(cleaned["perfective"], "duliyohl") # duliyohlvi -> duliyohl
         self.assertEqual(cleaned["imperative"], "taliyoga")
@@ -39,6 +39,24 @@ class TestPreprocessCed(unittest.TestCase):
         cleaned = clean_row(row)
         self.assertEqual(cleaned["imperative"], "")
         self.assertEqual(cleaned["perfective"], "ulsgwad") # ulsgwadv(i) -> ulsgwad after stripping vi
+
+    def test_present_vowel_stripping(self):
+        # Case: ends in 'a'
+        row_a = {"3rd present": "ga1lo1e.2ga"} # galoega -> galoeg
+        self.assertEqual(clean_row(row_a)["present"], "galoeg")
+        
+        # Case: ends in 'i'
+        row_i = {"3rd present": "a1ki1?a"} # akia -> aki (ends in ia)
+        # Wait, 'akia' ends in 'ia' -> should be 'aki'
+        self.assertEqual(clean_row(row_i)["present"], "aki")
+
+        # Case: ends in 'i' but not 'ia'
+        row_single_i = {"3rd present": "u1wa1si"} # uwasi -> uwas
+        self.assertEqual(clean_row(row_single_i)["present"], "uwas")
+
+        # Case: ends in 'ia'
+        row_ia = {"3rd present": "da1li23yo3hi.2a"} # daliyohia -> daliyohi
+        self.assertEqual(clean_row(row_ia)["present"], "daliyohi")
 
 if __name__ == '__main__':
     unittest.main()
