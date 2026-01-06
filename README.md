@@ -6,7 +6,7 @@ This project will apply Duane King's 1975 classification scheme of aspect inflec
 
 ### CED pre-processing
 
-To deal with differences in orthography as well as what information is recoreded, the corpus will be pre-processed. The data from the Cherokee-English Dictionary, in `ced_data_original.csv` will be read into memory. All tone markings `/[1234\.]/` and glottal stops `/\?/` will be dropped. The reference forms considered for this study will be:
+To deal with differences in orthography as well as what information is recoreded, the corpus will be pre-processed. The data from the Cherokee-English Dictionary, in `data/ced_data_original.csv` will be read into memory. All tone markings `/[1234\.]/` and glottal stops `/\?/` will be dropped. The reference forms considered for this study will be:
 
 1. "Present" (`3rd present` column)
 2. "Imperfective" (`3rd incompletive habitual` column with `oi` rstripped)
@@ -14,4 +14,4 @@ To deal with differences in orthography as well as what information is recoreded
 4. "Imperative" (`2nd imperative` column)
 5. "Infinitive" (`3rd infinitive` column with `i` rstripped)
 
-This file is then written to disk as `corpus.csv`
+This file is then written to disk as `artifacts/corpus.csv`
