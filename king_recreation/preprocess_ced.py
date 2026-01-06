@@ -2,12 +2,26 @@ import csv
 import re
 import os
 
+def respell_consonants(s):
+    # Rewrite rules for aspiration marking
+    # Order matters: t->th before d->t, k->kh before g->k
+    rules = [
+        ("t", "th"),
+        ("d", "t"),
+        ("k", "kh"),
+        ("g", "k"),
+    ]
+    for old, new in rules:
+        s = s.replace(old, new)
+    return s
+
 def clean_string(s):
     if not s or s == "-----":
         return ""
     # Remove tones [1234] and glottal stops [?] and periods [.]
     # README says tone markings /[1234\.]/ and glottal stops /\?/
-    return re.sub(r'[1234\.\?]', '', s)
+    s = re.sub(r'[1234\.\?]', '', s)
+    return respell_consonants(s)
 
 def clean_row(row):
     definition = row.get("definition", "").strip()

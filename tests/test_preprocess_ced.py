@@ -4,28 +4,43 @@ from king_recreation.preprocess_ced import clean_string, clean_row
 class TestPreprocessCed(unittest.TestCase):
 
     def test_clean_string(self):
-        self.assertEqual(clean_string("da1li23yo3hi.2a"), "daliyohia")
+        # da1li23yo3hi.2a -> daliyohia -> taliyohia
+        self.assertEqual(clean_string("da1li23yo3hi.2a"), "taliyohia")
+        # u1ja.3?i1sv23?i -> ujaisvi -> ujaisvi (no changes)
         self.assertEqual(clean_string("u1ja.3?i1sv23?i"), "ujaisvi")
         self.assertEqual(clean_string("-----"), "")
         self.assertEqual(clean_string(""), "")
         self.assertEqual(clean_string(None), "")
 
+    def test_respell_consonants(self):
+        from king_recreation.preprocess_ced import respell_consonants
+        # t -> th
+        self.assertEqual(respell_consonants("ta"), "tha")
+        # d -> t
+        self.assertEqual(respell_consonants("da"), "ta")
+        # k -> kh
+        self.assertEqual(respell_consonants("ka"), "kha")
+        # g -> k
+        self.assertEqual(respell_consonants("ga"), "ka")
+        # complex
+        self.assertEqual(respell_consonants("tadig"), "thatik")
+
     def test_clean_row_basic(self):
         row = {
             "definition": "he's putting on his socks",
-            "3rd present": "da1li23yo3hi.2a",
-            "3rd incompletive habitual": "da1li23yo3hi.2ho3?i",
-            "3rd completive past": "du1li23yo3hlv23?i",
-            "2nd imperative": "ta2li3yo2ga",
-            "3rd infinitive": "ju2li23yo3sdi"
+            "3rd present": "da1li23yo3hi.2a", # taliyohia -> taliyohi
+            "3rd incompletive habitual": "da1li23yo3hi.2ho3?i", # taliyohihoi -> taliyohih
+            "3rd completive past": "du1li23yo3hlv23?i", # tuliyohlvi -> tuliyohl
+            "2nd imperative": "ta2li3yo2ga", # thaliyoka
+            "3rd infinitive": "ju2li23yo3sdi" # juliyosti -> juliyost
         }
         cleaned = clean_row(row)
         self.assertEqual(cleaned["definition"], "he's putting on his socks")
-        self.assertEqual(cleaned["present"], "daliyohi") # daliyohia -> daliyohi
-        self.assertEqual(cleaned["imperfective"], "daliyohih") # daliyohihoi -> daliyohih
-        self.assertEqual(cleaned["perfective"], "duliyohl") # duliyohlvi -> duliyohl
-        self.assertEqual(cleaned["imperative"], "taliyoga")
-        self.assertEqual(cleaned["infinitive"], "juliyosd") # juliyosdi -> juliyosd
+        self.assertEqual(cleaned["present"], "taliyohi")
+        self.assertEqual(cleaned["imperfective"], "taliyohih")
+        self.assertEqual(cleaned["perfective"], "tuliyohl")
+        self.assertEqual(cleaned["imperative"], "thaliyoka")
+        self.assertEqual(cleaned["infinitive"], "juliyost")
 
     def test_clean_row_missing(self):
         row = {
@@ -38,25 +53,24 @@ class TestPreprocessCed(unittest.TestCase):
         }
         cleaned = clean_row(row)
         self.assertEqual(cleaned["imperative"], "")
-        self.assertEqual(cleaned["perfective"], "ulsgwad") # ulsgwadv(i) -> ulsgwad after stripping vi
+        self.assertEqual(cleaned["perfective"], "ulskwat") # ulskwadvi -> ulskwat
 
     def test_present_vowel_stripping(self):
         # Case: ends in 'a'
-        row_a = {"3rd present": "ga1lo1e.2ga"} # galoega -> galoeg
-        self.assertEqual(clean_row(row_a)["present"], "galoeg")
+        row_a = {"3rd present": "ga1lo1e.2ga"} # galoega -> kaloeka -> kaloek
+        self.assertEqual(clean_row(row_a)["present"], "kaloek")
         
         # Case: ends in 'i'
-        row_i = {"3rd present": "a1ki1?a"} # akia -> aki (ends in ia)
-        # Wait, 'akia' ends in 'ia' -> should be 'aki'
-        self.assertEqual(clean_row(row_i)["present"], "aki")
+        row_i = {"3rd present": "a1ki1?a"} # akia -> akhia -> akhi (ends in ia)
+        self.assertEqual(clean_row(row_i)["present"], "akhi")
 
         # Case: ends in 'i' but not 'ia'
         row_single_i = {"3rd present": "u1wa1si"} # uwasi -> uwas
         self.assertEqual(clean_row(row_single_i)["present"], "uwas")
 
         # Case: ends in 'ia'
-        row_ia = {"3rd present": "da1li23yo3hi.2a"} # daliyohia -> daliyohi
-        self.assertEqual(clean_row(row_ia)["present"], "daliyohi")
+        row_ia = {"3rd present": "da1li23yo3hi.2a"} # daliyohia -> taliyohia -> taliyohi
+        self.assertEqual(clean_row(row_ia)["present"], "taliyohi")
 
 if __name__ == '__main__':
     unittest.main()
