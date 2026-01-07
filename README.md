@@ -57,7 +57,7 @@ We define two strictness levels and two scopes, creating a matrix of 4 possible 
 #### Output
 For each verb in the corpus, if a match is found, append a row to `artifacts/matches.csv` with:
 1.  `definition`: From corpus.
-2.  `class`: The matched class ID (e.g., `1a`, `IIb`).
+2.  `class`: The matched class ID (e.g., `Ia`, `IIb`).
 3.  `strictness`: `strict` or `loose`.
 4.  `scope`: `ending` or `full`.
 5.  `stem_final_match_present`: Boolean.
