@@ -50,6 +50,8 @@ he's taking a step,Ia,strict,ending,False,False,False,False,False
 he's taking a step,Ia,loose,ending,False,False,False,False,False
 he's taking a step,Ic,strict,ending,True,True,False,True,True
 he's taking a step,Ic,loose,ending,True,True,False,True,True
+he's taking a step,Ic*,strict,full,True,True,True,True,True
+he's taking a step,Ic*,loose,full,True,True,True,True,True
 he's taking a step,Id,strict,ending,False,False,False,True,False
 he's taking a step,Id,loose,ending,False,False,False,True,False
 he's taking a step,IIa,loose,ending,False,False,False,False,False
@@ -57,6 +59,8 @@ he's replying,Ia,strict,ending,False,False,False,False,False
 he's replying,Ia,loose,ending,False,False,False,False,False
 he's replying,Ic,strict,ending,True,True,False,True,True
 he's replying,Ic,loose,ending,True,True,False,True,True
+he's replying,Ic*,strict,full,True,True,True,True,True
+he's replying,Ic*,loose,full,True,True,True,True,True
 he's replying,Id,strict,ending,False,False,False,True,False
 he's replying,Id,loose,ending,False,False,False,True,False
 he's replying,IIa,loose,ending,False,False,False,False,False
@@ -64,6 +68,8 @@ he's replying,IIa,loose,ending,False,False,False,False,False
 "he, it's changing",Ia,loose,ending,False,False,False,False,False
 "he, it's changing",Ic,strict,ending,True,True,False,True,True
 "he, it's changing",Ic,loose,ending,True,True,False,True,True
+"he, it's changing",Ic*,strict,full,True,True,True,True,True
+"he, it's changing",Ic*,loose,full,True,True,True,True,True
 "he, it's changing",Id,strict,ending,False,False,False,True,False
 "he, it's changing",Id,loose,ending,False,False,False,True,False
 "he, it's changing",IIa,loose,ending,False,False,False,False,False
@@ -71,6 +77,8 @@ he's changing it,Ia,strict,ending,False,False,False,False,False
 he's changing it,Ia,loose,ending,False,False,False,False,False
 he's changing it,Ic,strict,ending,True,True,False,True,True
 he's changing it,Ic,loose,ending,True,True,False,True,True
+he's changing it,Ic*,strict,full,True,True,True,True,True
+he's changing it,Ic*,loose,full,True,True,True,True,True
 he's changing it,Id,strict,ending,False,False,False,True,False
 he's changing it,Id,loose,ending,False,False,False,True,False
 he's changing it,IIa,loose,ending,False,False,False,False,False
@@ -81,6 +89,8 @@ he's erasing it,IIa,loose,ending,False,False,False,False,False
 "he, it's moving from one place to another",Ia,loose,ending,False,False,False,False,False
 "he, it's moving from one place to another",Ic,strict,ending,True,True,False,True,True
 "he, it's moving from one place to another",Ic,loose,ending,True,True,False,True,True
+"he, it's moving from one place to another",Ic*,strict,full,True,True,True,True,True
+"he, it's moving from one place to another",Ic*,loose,full,True,True,True,True,True
 "he, it's moving from one place to another",Id,strict,ending,False,False,False,True,False
 "he, it's moving from one place to another",Id,loose,ending,False,False,False,True,False
 "he, it's moving from one place to another",IIa,loose,ending,False,False,False,False,False
@@ -420,6 +430,8 @@ he's moving it from one place to another,Ia,strict,ending,False,False,False,Fals
 he's moving it from one place to another,Ia,loose,ending,False,False,False,False,False
 he's moving it from one place to another,Ic,strict,ending,True,True,False,True,True
 he's moving it from one place to another,Ic,loose,ending,True,True,False,True,True
+he's moving it from one place to another,Ic*,strict,full,True,True,True,True,True
+he's moving it from one place to another,Ic*,loose,full,True,True,True,True,True
 he's moving it from one place to another,Id,strict,ending,False,False,False,True,False
 he's moving it from one place to another,Id,loose,ending,False,False,False,True,False
 he's moving it from one place to another,IIa,loose,ending,False,False,False,False,False
@@ -427,6 +439,8 @@ he's moving it from one place to another,IIa,loose,ending,False,False,False,Fals
 1. he's turning back 2. he's turning (his head or body),Ia,loose,ending,False,False,False,False,False
 1. he's turning back 2. he's turning (his head or body),Ic,strict,ending,True,True,False,True,True
 1. he's turning back 2. he's turning (his head or body),Ic,loose,ending,True,True,False,True,True
+1. he's turning back 2. he's turning (his head or body),Ic*,strict,full,True,True,True,True,True
+1. he's turning back 2. he's turning (his head or body),Ic*,loose,full,True,True,True,True,True
 1. he's turning back 2. he's turning (his head or body),Id,strict,ending,False,False,False,True,False
 1. he's turning back 2. he's turning (his head or body),Id,loose,ending,False,False,False,True,False
 1. he's turning back 2. he's turning (his head or body),IIa,loose,ending,False,False,False,False,False
@@ -434,6 +448,8 @@ he's changing shoes,Ia,strict,ending,False,False,False,False,False
 he's changing shoes,Ia,loose,ending,False,False,False,False,False
 he's changing shoes,Ic,strict,ending,True,True,False,True,True
 he's changing shoes,Ic,loose,ending,True,True,False,True,True
+he's changing shoes,Ic*,strict,full,True,True,True,True,True
+he's changing shoes,Ic*,loose,full,True,True,True,True,True
 he's changing shoes,Id,strict,ending,False,False,False,True,False
 he's changing shoes,Id,loose,ending,False,False,False,True,False
 he's changing shoes,IIa,loose,ending,False,False,False,False,False
@@ -441,6 +457,8 @@ he's changing his pants,Ia,strict,ending,False,False,False,False,False
 he's changing his pants,Ia,loose,ending,False,False,False,False,False
 he's changing his pants,Ic,strict,ending,True,True,False,True,True
 he's changing his pants,Ic,loose,ending,True,True,False,True,True
+he's changing his pants,Ic*,strict,full,True,True,True,True,True
+he's changing his pants,Ic*,loose,full,True,True,True,True,True
 he's changing his pants,Id,strict,ending,False,False,False,True,False
 he's changing his pants,Id,loose,ending,False,False,False,True,False
 he's changing his pants,IIa,loose,ending,False,False,False,False,False
@@ -448,6 +466,8 @@ he's changing his shirt,Ia,strict,ending,False,False,False,False,False
 he's changing his shirt,Ia,loose,ending,False,False,False,False,False
 he's changing his shirt,Ic,strict,ending,True,True,False,True,True
 he's changing his shirt,Ic,loose,ending,True,True,False,True,True
+he's changing his shirt,Ic*,strict,full,True,True,True,True,True
+he's changing his shirt,Ic*,loose,full,True,True,True,True,True
 he's changing his shirt,Id,strict,ending,False,False,False,True,False
 he's changing his shirt,Id,loose,ending,False,False,False,True,False
 he's changing his shirt,IIa,loose,ending,False,False,False,False,False
@@ -455,6 +475,8 @@ he's changing clothes,Ia,strict,ending,False,False,False,False,False
 he's changing clothes,Ia,loose,ending,False,False,False,False,False
 he's changing clothes,Ic,strict,ending,True,True,False,True,True
 he's changing clothes,Ic,loose,ending,True,True,False,True,True
+he's changing clothes,Ic*,strict,full,True,True,True,True,True
+he's changing clothes,Ic*,loose,full,True,True,True,True,True
 he's changing clothes,Id,strict,ending,False,False,False,True,False
 he's changing clothes,Id,loose,ending,False,False,False,True,False
 he's changing clothes,IIa,loose,ending,False,False,False,False,False

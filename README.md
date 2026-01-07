@@ -6,6 +6,16 @@ A companion [Frontend Match Explorer](file:///Users/charlesmcvicker/code/king-re
 
 ## Process
 
+### Running the Pipeline
+
+The entire analysis pipeline (preprocessing -> classification -> analysis -> visualization) can be run with a single command:
+
+```bash
+python -m king_recreation
+```
+
+Individual steps can also be run separately as described below.
+
 ### CED pre-processing
 
 To deal with differences in orthography as well as what information is recoreded, the corpus will be pre-processed. The data from the Cherokee-English Dictionary, in `data/ced_data_original.csv` will be read into memory. All tone markings `/[1234\.]/` and glottal stops `/\?/` will be dropped.
