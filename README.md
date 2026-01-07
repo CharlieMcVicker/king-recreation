@@ -107,16 +107,15 @@ For verbs that achieve an `ending` match but fail a `full` match for a given cla
 
 ### Visualization
 
-To help interpret the results, a separate script `king_recreation/visualize_analysis.py` generates charts using `matplotlib`.
+To help interpret the results, a separate script `king_recreation/visualize_analysis.py` generates charts using `matplotlib` and `seaborn`.
 
-**Usage:** `python3 -m king_recreation.visualize_analysis [--hide-clutter]`
--   `--hide-clutter`: If set, excludes items with zero or near-zero values from complex charts (like the heatmap).
+**Usage:** `python3 -m king_recreation.visualize_analysis`
+-   The script generates both "full" and "filtered" versions of charts automatically to handle clutter.
 
 **Generated Plots:**
-1.  **Class Distribution** (`artifacts/class_distribution.png`): A bar chart showing the number of verbs matched by each class, clustered by strictness/scope.
-2.  **Coverage Overlap** (`artifacts/verb_coverage.png`): A visualization (e.g., bar chart or pie chart) of the "Verb Coverage Summary."
-3.  **Near-Miss Heatmap** (`artifacts/near_miss_heatmap.png`): A heatmap showing which forms are the most frequent blockers.
-    *   *Implementation Note*: During development, generate both "cluttered" and "cleaned" versions for comparison.
+1.  **Class Distribution** (`artifacts/class_distribution_full.png`, `artifacts/class_distribution_filtered.png`): A bar chart showing the number of verbs matched by each class, clustered by strictness/scope.
+2.  **Coverage Overlap** (`artifacts/verb_coverage.png`): A visualization of the "Verb Coverage Summary."
+3.  **Near-Miss Heatmap** (`artifacts/near_miss_heatmap_full.png`, `artifacts/near_miss_heatmap_filtered.png`): A heatmap showing which forms are the most frequent blockers.
 
 ## Ongoing Work & Side-Quests
 
