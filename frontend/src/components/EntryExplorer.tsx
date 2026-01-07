@@ -1,12 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
 import { 
   CheckCircle, 
   XCircle, 
   ArrowRight,
-  Info
+  Info,
+  BookOpen
 } from "lucide-react";
 
 interface Match {
@@ -21,20 +21,27 @@ interface Match {
   stem_final_match_infinitive: string;
 }
 
-interface MatchExplorerProps {
+interface EntryExplorerProps {
   matches: Match[];
-  classPattern: any;
-  corpus?: Record<string, any>;
+  classes: any[];
+  corpusEntry: any;
 }
 
-export default function MatchExplorer({ matches, classPattern, corpus }: MatchExplorerProps) {
+export default function EntryExplorer({ matches, classes, corpusEntry }: EntryExplorerProps) {
   const [selectedMatch, setSelectedMatch] = useState<Match | null>(matches[0] || null);
-  const [scopeFilter, setScopeFilter] = useState<'all' | 'full' | 'ending'>('all');
 
-  const filteredMatches = matches.filter(m => {
-    if (scopeFilter === 'all') return true;
-    return m.scope === scopeFilter;
+  // Group matches by strictness or just list them? 
+  // Let's just list them all, maybe sorted by Class Name.
+  const sortedMatches = [...matches].sort((a, b) => {
+    // Sort by Strictness (strict first) then Scope (full first) then Class
+    if (a.strictness !== b.strictness) return a.strictness === 'strict' ? -1 : 1;
+    if (a.scope !== b.scope) return a.scope === 'full' ? -1 : 1;
+    return a.class.localeCompare(b.class);
   });
+
+  const selectedClassData = selectedMatch 
+    ? classes.find(c => c.class === selectedMatch.class) 
+    : null;
 
   const forms = [
     { key: 'present', label: 'Present' },
@@ -46,45 +53,48 @@ export default function MatchExplorer({ matches, classPattern, corpus }: MatchEx
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-[600px]">
-      {/* Scrollable List */}
+      {/* Scrollable List of Matches */}
       <div className="bg-white dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800 shadow-sm flex flex-col h-full overflow-hidden">
         <div className="p-4 border-b border-gray-200 dark:border-zinc-800 bg-gray-50/50 dark:bg-zinc-800/20 flex items-center justify-between">
-          <h3 className="font-semibold text-sm">Verbs ({filteredMatches.length})</h3>
-          <select 
-            value={scopeFilter}
-            onChange={(e) => setScopeFilter(e.target.value as any)}
-            className="text-xs bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-md px-2 py-1 focus:outline-none focus:ring-1 focus:ring-indigo-500"
-          >
-            <option value="all">All Scopes</option>
-            <option value="full">Full Match</option>
-            <option value="ending">Near Miss</option>
-          </select>
+          <h3 className="font-semibold text-sm">Matched Classes ({matches.length})</h3>
         </div>
         <div className="flex-1 overflow-y-auto divide-y divide-gray-100 dark:divide-zinc-800">
-          {filteredMatches.map((match, i) => (
+          {sortedMatches.map((match, i) => (
             <button
-              key={`${match.definition}-${i}`}
+              key={`${match.class}-${match.strictness}-${i}`}
               onClick={() => setSelectedMatch(match)}
               className={`w-full text-left px-4 py-3 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-zinc-800/50 transition-colors ${
-                selectedMatch?.definition === match.definition ? 'bg-indigo-50/50 dark:bg-indigo-900/10 border-r-2 border-indigo-500' : ''
+                selectedMatch === match ? 'bg-indigo-50/50 dark:bg-indigo-900/10 border-r-2 border-indigo-500' : ''
               }`}
             >
               <div className="flex items-center gap-3">
-                <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${match.scope === 'full' ? 'bg-emerald-500' : 'bg-amber-500'}`} />
-                <span className="text-sm font-medium line-clamp-1">{match.definition}</span>
+                <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${
+                   match.scope === 'full' && match.strictness === 'strict' ? 'bg-indigo-500' :
+                   match.scope === 'full' ? 'bg-emerald-500' : 
+                   'bg-amber-500'
+                }`} />
+                <div className="flex flex-col gap-0.5">
+                   <span className="text-sm font-bold font-mono">{match.class}</span>
+                </div>
               </div>
               
               <div className="flex items-center gap-2">
-                {match.scope === 'ending' && (
-                  <span className="text-[10px] uppercase font-bold text-amber-600 bg-amber-50 dark:bg-amber-900/20 px-1.5 py-0.5 rounded">Near Miss</span>
-                )}
-                <ArrowRight className={`w-4 h-4 transition-transform ${selectedMatch?.definition === match.definition ? 'translate-x-1 text-indigo-500' : 'text-gray-300'}`} />
+                 <div className="flex flex-col items-end gap-1">
+                    <span className="text-[10px] uppercase font-bold text-gray-500">{match.strictness}</span>
+                    {match.scope === 'ending' && (
+                        <span className="text-[10px] uppercase font-bold text-amber-600 bg-amber-50 dark:bg-amber-900/20 px-1.5 py-0.5 rounded">Near Miss</span>
+                    )}
+                    {match.scope === 'full' && (
+                        <span className="text-[10px] uppercase font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20 px-1.5 py-0.5 rounded">Full Match</span>
+                    )}
+                 </div>
+                <ArrowRight className={`w-4 h-4 transition-transform ${selectedMatch === match ? 'translate-x-1 text-indigo-500' : 'text-gray-300'}`} />
               </div>
             </button>
           ))}
-          {filteredMatches.length === 0 && (
+          {matches.length === 0 && (
             <div className="p-8 text-center text-gray-400 text-sm italic">
-              No matches found for this filter.
+              No matches found for this verb.
             </div>
           )}
         </div>
@@ -96,18 +106,14 @@ export default function MatchExplorer({ matches, classPattern, corpus }: MatchEx
           <h3 className="font-semibold text-sm">Match Details</h3>
         </div>
         
-        {selectedMatch ? (
+        {selectedMatch && selectedClassData ? (
           <div className="p-6 space-y-8 flex-1 overflow-y-auto">
             <div>
-              <div className="flex items-start justify-between gap-4 mb-2">
-                <h4 className="text-lg font-bold leading-tight">{selectedMatch.definition}</h4>
-                <Link 
-                  href={`/explorer/entry/${encodeURIComponent(selectedMatch.definition)}`}
-                  className="shrink-0 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 flex items-center gap-1 bg-indigo-50 dark:bg-indigo-900/20 px-2 py-1 rounded transition-colors"
-                >
-                  View Entry <ArrowRight className="w-3 h-3" />
-                </Link>
+              <div className="flex items-center gap-2 mb-2">
+                 <BookOpen className="w-4 h-4 text-indigo-500" />
+                 <h4 className="text-lg font-bold font-mono text-indigo-600 dark:text-indigo-400">{selectedMatch.class}</h4>
               </div>
+              
               <div className="flex gap-2">
                 <span className="text-[10px] bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
                   {selectedMatch.strictness}
@@ -123,29 +129,34 @@ export default function MatchExplorer({ matches, classPattern, corpus }: MatchEx
             </div>
 
             <div className="space-y-4">
-              <h5 className="text-[10px] font-bold uppercase text-gray-400 tracking-wider">Form-level Match Results</h5>
+              <h5 className="text-[10px] font-bold uppercase text-gray-400 tracking-wider">Form Verification vs Class Pattern</h5>
               <div className="space-y-3">
                 {forms.map(form => {
                   const rawValue = selectedMatch[`stem_final_match_${form.key}` as keyof Match];
                   const isMatch = String(rawValue || '').trim().toLowerCase() === 'true';
-                  const actualForm = corpus?.[selectedMatch.definition]?.[form.key];
+                  const actualForm = corpusEntry?.[form.key];
+                  const pattern = selectedClassData?.[form.key];
 
                   return (
                     <div key={form.key} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-zinc-950 rounded border border-gray-100 dark:border-zinc-800">
-                      <div className="flex flex-col gap-1">
-                        <span className="text-xs font-semibold capitalize">{form.label}</span>
-                        {actualForm && (
-                          <span className="text-lg font-serif text-gray-800 dark:text-zinc-200 leading-none py-1">
-                            {actualForm}
-                          </span>
-                        )}
-                        <span className="text-[10px] font-mono text-gray-400">Pattern: {classPattern[form.key] || '-'}</span>
+                      <div className="flex flex-col gap-1 w-full mr-4">
+                        <span className="text-xs font-semibold capitalize text-gray-500">{form.label}</span>
+                        <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-3">
+                           <span className="text-lg font-serif text-gray-800 dark:text-zinc-200 leading-none">
+                             {actualForm || '-'}
+                           </span>
+                           <span className="text-xs text-gray-400 font-mono">
+                             (Pattern: <span className="text-indigo-500">{pattern || '-'}</span>)
+                           </span>
+                        </div>
                       </div>
-                      {isMatch ? (
-                        <CheckCircle className="w-5 h-5 text-emerald-500" />
-                      ) : (
-                        <XCircle className="w-5 h-5 text-red-500" />
-                      )}
+                      <div className="shrink-0">
+                        {isMatch ? (
+                            <CheckCircle className="w-6 h-6 text-emerald-500" />
+                        ) : (
+                            <XCircle className="w-6 h-6 text-red-500" />
+                        )}
+                      </div>
                     </div>
                   );
                 })}
@@ -156,7 +167,7 @@ export default function MatchExplorer({ matches, classPattern, corpus }: MatchEx
               <div className="flex gap-3">
                 <Info className="w-5 h-5 text-amber-500 shrink-0" />
                 <div className="text-xs text-amber-800 dark:text-amber-200 leading-relaxed">
-                  <strong>Stem Final Rule:</strong> For a "full" match, all five forms must match the class pattern at the stem-final boundary. If any form shows an <XCircle className="w-3 h-3 inline pb-0.5" />, the match scope is limited to "ending" (Near Miss).
+                  <strong>Verification Info:</strong> This view compares the actual forms of <em>{corpusEntry.definition}</em> against the patterns defined in Class <strong>{selectedMatch.class}</strong>.
                 </div>
               </div>
             </div>
@@ -164,7 +175,7 @@ export default function MatchExplorer({ matches, classPattern, corpus }: MatchEx
         ) : (
           <div className="flex-1 flex flex-col items-center justify-center p-12 text-center text-gray-400">
             <Info className="w-12 h-12 mb-4 opacity-20" />
-            <p className="text-sm italic">Select a verb to see detailed matching results.</p>
+            <p className="text-sm italic">Select a matched class to inspect details.</p>
           </div>
         )}
       </div>

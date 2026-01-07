@@ -1,4 +1,4 @@
-import { getClasses, getMatches, getNearMisses } from "@/lib/data";
+import { getClasses, getMatches, getNearMisses, getCorpus } from "@/lib/data";
 import { 
   Search, 
   BookOpen, 
@@ -25,6 +25,12 @@ export default async function ExplorerPage({
   const classes = await getClasses();
   const allMatches = await getMatches();
   const nearMisses = await getNearMisses();
+  const corpus = await getCorpus();
+
+  const corpusMap = corpus.reduce((acc: any, row: any) => {
+    acc[row.definition] = row;
+    return acc;
+  }, {});
 
   const classData = selectedClass ? classes.find((c: any) => c.class === selectedClass) : null;
   
@@ -32,7 +38,7 @@ export default async function ExplorerPage({
     ? allMatches.filter((m: any) => 
         m.class === selectedClass && 
         m.strictness === selectedStrictness &&
-        m.scope === "full"
+        (m.scope === "full" || m.scope === "ending")
       ) 
     : [];
   
@@ -113,7 +119,7 @@ export default async function ExplorerPage({
               </div>
             </section>
 
-            <MatchExplorer matches={matches} classPattern={classData} />
+            <MatchExplorer matches={matches} classPattern={classData} corpus={corpusMap} />
           </div>
 
           {/* Near-Miss Diagnosis */}
@@ -132,19 +138,20 @@ export default async function ExplorerPage({
                     </div>
                     <div className="space-y-4">
                       {['present', 'imperfective', 'perfective', 'imperative', 'infinitive'].map(form => {
-                        const rate = parseFloat(nm[`${form}_rate`]);
+                        const successRate = parseFloat(nm[`${form}_rate`]);
+                        const failureRate = 1 - successRate;
                         return (
                           <div key={form} className="space-y-1">
                             <div className="flex justify-between text-[10px]">
                               <span className="capitalize">{form}</span>
-                              <span className={rate > 0.3 ? "text-red-500 font-bold" : "text-gray-500"}>
-                                {Math.round(rate * 100)}% failure
+                              <span className={failureRate > 0.3 ? "text-red-500 font-bold" : "text-gray-500"}>
+                                {Math.round(failureRate * 100)}% failure
                               </span>
                             </div>
                             <div className="h-1.5 w-full bg-gray-100 dark:bg-zinc-800 rounded-full overflow-hidden">
                               <div 
-                                className={`h-full rounded-full transition-all duration-500 ${rate > 0.5 ? 'bg-red-500' : rate > 0.2 ? 'bg-amber-500' : 'bg-emerald-500'}`} 
-                                style={{ width: `${rate * 100}%` }}
+                                className={`h-full rounded-full transition-all duration-500 ${failureRate > 0.5 ? 'bg-red-500' : failureRate > 0.2 ? 'bg-amber-500' : 'bg-emerald-500'}`} 
+                                style={{ width: `${failureRate * 100}%` }}
                               />
                             </div>
                           </div>

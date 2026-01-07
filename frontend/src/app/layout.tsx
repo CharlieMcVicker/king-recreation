@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { LayoutDashboard, Search, GitCompare, Menu } from "lucide-react";
+import { LayoutDashboard, Search, GitCompare, Menu, BookA } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,6 +40,10 @@ export default function RootLayout({
               <Link href="/compare" className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">
                 <GitCompare className="w-4 h-4" />
                 Comparison Tool
+              </Link>
+              <Link href="/search" className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">
+                <BookA className="w-4 h-4" />
+                Dictionary Search
               </Link>
             </nav>
             <div className="p-4 border-t border-gray-200 dark:border-zinc-800">

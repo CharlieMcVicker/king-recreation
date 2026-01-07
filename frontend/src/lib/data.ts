@@ -28,6 +28,10 @@ export async function getClasses() {
   return readCsv<any>(DATA_DIR, 'king_classes.csv');
 }
 
+export async function getCorpus() {
+  return readCsv<any>(ARTIFACTS_DIR, 'corpus.csv');
+}
+
 export async function getMatches() {
   // matches.csv is large, might need optimization later
   return readCsv<any>(ARTIFACTS_DIR, 'matches.csv');

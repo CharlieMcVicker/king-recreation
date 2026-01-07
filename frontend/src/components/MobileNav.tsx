@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { LayoutDashboard, Search, GitCompare, Menu, X } from "lucide-react";
+import { LayoutDashboard, Search, GitCompare, Menu, X, BookA } from "lucide-react";
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,6 +49,10 @@ export default function MobileNav() {
           <Link href="/compare" onClick={toggle} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">
             <GitCompare className="w-4 h-4" />
             Comparison Tool
+          </Link>
+          <Link href="/search" onClick={toggle} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors">
+            <BookA className="w-4 h-4" />
+            Dictionary Search
           </Link>
         </nav>
         <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-gray-200 dark:border-zinc-800">
