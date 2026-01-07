@@ -69,3 +69,59 @@ For each verb in the corpus, if a match is found, append a row to `artifacts/mat
 > **Important:** Even if a "Full Match" fails (resulting in a scope of "Ending"), the `stem_final_match_*` columns **must** still be calculated and populated. This is crucial for debugging near-matches and identifying data quality issues.
 
 Note: A single verb may have multiple matches (e.g., one Strict/Full and one Loose/Ending).
+
+### Match data analysis
+
+The data in `artifacts/matches.csv` contains rich information about how well the King classification scheme accounts for the CED corpus. A script `king_recreation/analyze_matches.py` processes this data to generate three distinct metrics.
+
+**Usage:** `python3 -m king_recreation.analyze_matches [--visualize]`
+-   `--visualize`: If set, automatically runs the visualization script after analysis is complete.
+
+**Technical Note on `matches.csv`:**
+A single verb (`definition`) can match multiple classes and strictnesses. However, for a given `(verb, class, strictness)`, only the *largest* achieved scope is recorded as a single row. If a "Full" match is achieved, there should not be a separate "Ending" row for that specific combination. 
+
+**1. Class-wise Match Counts**
+Calculate the total number of unique verbs matched by each class, broken down by all four strictness/scope combinations. 
+-   **Output**: `artifacts/class_match_counts.csv`
+-   **Columns**: `class`, `strict_ending`, `strict_full`, `loose_ending`, `loose_full`
+-   **Logic**: `strict_ending` counts verbs that matched *only* at the ending level for that class, while `strict_full` counts those that passed the full stem-final check. (Note: Scripts should implement a safety check to ensure they are counting the largest scope per verb/class).
+
+**2. Verb Coverage Summary**
+Analyze how well the King classification explains the total corpus.
+-   **Denominator**: Total number of unique verbs (definitions) in `artifacts/corpus.csv`.
+-   **Output**: `artifacts/verb_coverage.json`
+-   **Structure**: For each strictness/scope combination, count how many verbs are matched by zero, one, or multiple classes.
+    ```json
+    {
+      "strict_full": { "0": 1200, "1": 300, "2+": 50 },
+      "loose_full": { ... },
+      ...
+    }
+    ```
+
+**3. Class Near-Miss Analysis**
+For verbs that achieve an `ending` match but fail a `full` match for a given class, identify which functional forms are the primary "blockers."
+-   **Output**: `artifacts/class_near_misses.csv`
+-   **Metric**: For each `(class, strictness)` pair, filter for rows where `scope == "ending"`. Calculate the "Pass Rate" (0.0 to 1.0) for each of the 5 stem-final columns.
+-   **Columns**: `class`, `strictness`, `match_count`, `present_rate`, `imperfective_rate`, `perfective_rate`, `imperative_rate`, `infinitive_rate`.
+
+### Visualization
+
+To help interpret the results, a separate script `king_recreation/visualize_analysis.py` generates charts using `matplotlib`.
+
+**Usage:** `python3 -m king_recreation.visualize_analysis [--hide-clutter]`
+-   `--hide-clutter`: If set, excludes items with zero or near-zero values from complex charts (like the heatmap).
+
+**Generated Plots:**
+1.  **Class Distribution** (`artifacts/class_distribution.png`): A bar chart showing the number of verbs matched by each class, clustered by strictness/scope.
+2.  **Coverage Overlap** (`artifacts/verb_coverage.png`): A visualization (e.g., bar chart or pie chart) of the "Verb Coverage Summary."
+3.  **Near-Miss Heatmap** (`artifacts/near_miss_heatmap.png`): A heatmap showing which forms are the most frequent blockers.
+    *   *Implementation Note*: During development, generate both "cluttered" and "cleaned" versions for comparison.
+
+## Ongoing Work & Side-Quests
+
+This section tracks items for verification and refinement following the initial implementation:
+
+-   **Data Integrity Check**: Verify that `king_recreation/classify_verbs.py` strictly enforces the "largest scope only" rule when writing `matches.csv`. If redundant "Ending" rows exist for verbs that also have "Full" rows, update the script to suppress them.
+-   **Visual Review**: Evaluate the readability of the Near-Miss Heatmap with and without the clutter-avoidance flag.
+-   **Style Consistency**: Confirm preference for `matplotlib` styling (default vs. `seaborn` or `ggplot`) after reviewing initial plots.
