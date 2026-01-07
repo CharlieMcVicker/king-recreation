@@ -1711,6 +1711,8 @@ he's spitting,IIa,loose,ending,False,False,False,False,False
 "he's putting him inside, (somewhere large enough to move around)",IVa,loose,full,True,True,True,True,True
 He's mingling with a group,IXa,strict,full,True,True,True,True,True
 He's mingling with a group,IXa,loose,full,True,True,True,True,True
+he has time,XI*,strict,full,True,True,True,True,True
+he has time,XI*,loose,full,True,True,True,True,True
 he's yawning,Id,strict,ending,False,True,False,True,False
 he's yawning,Id,loose,full,True,True,True,True,True
 he's yawning,IIa,strict,ending,False,False,False,True,False
@@ -1719,6 +1721,26 @@ he's building a house,Id,strict,ending,False,True,False,True,False
 he's building a house,Id,loose,full,True,True,True,True,True
 he's building a house,IIa,strict,ending,False,False,False,True,False
 he's building a house,IIa,loose,ending,False,False,False,True,False
+he's thanking him,XI*,strict,full,True,True,True,True,True
+he's thanking him,XI*,loose,full,True,True,True,True,True
+he's taking revenge against him,XI*,strict,full,True,True,True,True,True
+he's taking revenge against him,XI*,loose,full,True,True,True,True,True
+he's working,XI*,strict,full,True,True,True,True,True
+he's working,XI*,loose,full,True,True,True,True,True
+1. he's agreeing with him 2. he's vouching for him,XI*,strict,full,True,True,True,True,True
+1. he's agreeing with him 2. he's vouching for him,XI*,loose,full,True,True,True,True,True
+he's permitting him,XI*,strict,full,True,True,True,True,True
+he's permitting him,XI*,loose,full,True,True,True,True,True
+"he's aching, hurting",XI*,strict,full,True,True,True,True,True
+"he's aching, hurting",XI*,loose,full,True,True,True,True,True
+he's giving him a living thing,XI*,strict,full,True,True,True,True,True
+he's giving him a living thing,XI*,loose,full,True,True,True,True,True
+he's giving him a flexible object,XI*,strict,full,True,True,True,True,True
+he's giving him a flexible object,XI*,loose,full,True,True,True,True,True
+he's giving it to him,XI*,strict,full,True,True,True,True,True
+he's giving it to him,XI*,loose,full,True,True,True,True,True
+it's happening to him,XI*,strict,full,True,True,True,True,True
+it's happening to him,XI*,loose,full,True,True,True,True,True
 "he's fanning him, it",Id,strict,ending,False,True,False,True,False
 "he's fanning him, it",Id,loose,full,True,True,True,True,True
 "he's fanning him, it",IIa,strict,full,True,True,True,True,True
@@ -1970,6 +1992,12 @@ he's agitating liquid,Id,strict,ending,False,True,False,True,False
 he's agitating liquid,Id,loose,full,True,True,True,True,True
 he's agitating liquid,IIa,strict,ending,False,False,False,True,False
 he's agitating liquid,IIa,loose,ending,False,False,False,True,False
+"1. he's taking liquid from him, it  2. he's milking it (when used with unvdi)",XI*,strict,full,True,True,True,True,True
+"1. he's taking liquid from him, it  2. he's milking it (when used with unvdi)",XI*,loose,full,True,True,True,True,True
+he's disbelieving,XI*,strict,full,True,True,True,True,True
+he's disbelieving,XI*,loose,full,True,True,True,True,True
+he's paying him,XI*,strict,full,True,True,True,True,True
+he's paying him,XI*,loose,full,True,True,True,True,True
 he's moaning,Id,strict,ending,False,False,False,True,False
 he's moaning,Id,loose,ending,False,False,False,True,False
 he's moaning,IIa,loose,ending,False,False,False,False,False
@@ -2004,6 +2032,12 @@ he's looking at himself in a mirror,Id,strict,ending,False,True,False,True,False
 he's looking at himself in a mirror,Id,loose,full,True,True,True,True,True
 he's looking at himself in a mirror,IIa,strict,ending,False,False,False,True,False
 he's looking at himself in a mirror,IIa,loose,ending,False,False,False,True,False
+he's saying to him,XI*,strict,full,True,True,True,True,True
+he's saying to him,XI*,loose,full,True,True,True,True,True
+"he's over-taking him, it",XI*,strict,full,True,True,True,True,True
+"he's over-taking him, it",XI*,loose,full,True,True,True,True,True
+he's losing it,XI*,strict,full,True,True,True,True,True
+he's losing it,XI*,loose,full,True,True,True,True,True
 he's thinking,Id,strict,ending,False,True,False,True,False
 he's thinking,Id,loose,ending,True,True,False,True,True
 he's thinking,IIa,loose,ending,False,False,False,True,False
@@ -2557,9 +2591,14 @@ he's drawing a liquid out of a container,IIa,loose,ending,False,False,False,True
 he's drawing a liquid out of a container,IVb,strict,ending,True,True,True,True,False
 he's drawing a liquid out of a container,IVb,loose,ending,True,True,True,True,False
 he's drawing a liquid out of a container,Va,loose,full,True,True,True,True,True
+he's giving him a long  object,XI*,strict,full,True,True,True,True,True
+he's giving him a long  object,XI*,loose,full,True,True,True,True,True
+he's showing him,XI*,strict,full,True,True,True,True,True
+he's showing him,XI*,loose,full,True,True,True,True,True
 he's washing his hair,Id,strict,ending,False,True,False,True,False
 he's washing his hair,Id,loose,ending,True,True,True,True,False
 he's washing his hair,IIa,loose,ending,True,True,True,True,False
+he's giving him some liquid,XI*,loose,full,True,True,True,True,True
 he's taking it somewhere,Id,strict,ending,False,False,False,True,False
 he's taking it somewhere,Id,loose,ending,False,False,False,True,False
 he's taking it somewhere,IIa,strict,ending,False,False,False,False,False
