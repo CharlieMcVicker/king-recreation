@@ -16,6 +16,7 @@ trigger: always_on
 - **README.md**: The `README.md` (and component-specific READMEs like `frontend/README.md`) are the source of truth for the project's state and interfaces.
 - **Updating**:
     - Update documentation when adding wholly new features, scripts, or components.
+    - **New Entry Points**: Explicitly verify that `README.md` documents any new CLI commands or entry points (e.g., `__main__.py`).
     - Update documentation when clarifying important pre- or post-conditions.
     - **Avoid Bloat**: Fixing implementation to follow established contracts does not require documentation changes.
 
