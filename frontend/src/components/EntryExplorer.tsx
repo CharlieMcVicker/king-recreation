@@ -173,9 +173,47 @@ export default function EntryExplorer({ matches, classes, corpusEntry }: EntryEx
             </div>
           </div>
         ) : (
-          <div className="flex-1 flex flex-col items-center justify-center p-12 text-center text-gray-400">
-            <Info className="w-12 h-12 mb-4 opacity-20" />
-            <p className="text-sm italic">Select a matched class to inspect details.</p>
+          <div className="p-6 space-y-8 flex-1 overflow-y-auto">
+             <div>
+               <div className="flex items-center gap-2 mb-2">
+                 <h4 className="text-lg font-bold font-serif text-gray-900 dark:text-white">Corpus Forms</h4>
+               </div>
+               <p className="text-xs text-gray-500 dark:text-zinc-400 leading-relaxed">
+                 {matches.length === 0 
+                    ? "No matches found for this verb. Showing raw corpus forms below."
+                    : "Select a matched class from the list to see comparison details."}
+               </p>
+             </div>
+
+             <div className="space-y-4">
+               <h5 className="text-[10px] font-bold uppercase text-gray-400 tracking-wider">Forms</h5>
+               <div className="space-y-3">
+                 {forms.map(form => {
+                   const actualForm = corpusEntry?.[form.key];
+                   return (
+                     <div key={form.key} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-zinc-950 rounded border border-gray-100 dark:border-zinc-800">
+                       <div className="flex flex-col gap-1 w-full">
+                         <span className="text-xs font-semibold capitalize text-gray-500">{form.label}</span>
+                         <span className="text-lg font-serif text-gray-800 dark:text-zinc-200 leading-none">
+                           {actualForm || '-'}
+                         </span>
+                       </div>
+                     </div>
+                   );
+                 })}
+               </div>
+             </div>
+             
+             {matches.length > 0 && (
+                <div className="p-4 bg-indigo-50 dark:bg-indigo-900/10 border border-indigo-100 dark:border-indigo-900/20 rounded-lg">
+                  <div className="flex gap-3">
+                    <Info className="w-5 h-5 text-indigo-500 shrink-0" />
+                    <div className="text-xs text-indigo-800 dark:text-indigo-200 leading-relaxed">
+                      Select a match from the left sidebar to compare these forms against a specific class pattern.
+                    </div>
+                  </div>
+                </div>
+             )}
           </div>
         )}
       </div>

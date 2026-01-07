@@ -24,19 +24,61 @@ export default async function ComparePage({
   const classA = params.classA;
   const classB = params.classB;
 
-  const matchesA = classA 
-    ? allMatches.filter((m: any) => m.class === classA && m.scope === "full" && m.strictness === "strict")
-    : [];
-  const matchesB = classB 
-    ? allMatches.filter((m: any) => m.class === classB && m.scope === "full" && m.strictness === "strict")
-    : [];
+  // Helper to get Best Match Scope (Full > Ending > None)
+  const getBestScope = (className: string, definition: string) => {
+    const classMatches = allMatches.filter((m: any) => 
+      m.class === className && 
+      m.strictness === "strict" && 
+      m.definition === definition &&
+      (m.scope === "full" || m.scope === "ending")
+    );
+    
+    if (classMatches.some((m: any) => m.scope === "full")) return "full";
+    if (classMatches.some((m: any) => m.scope === "ending")) return "ending";
+    return "none";
+  };
 
-  const defsA = new Set(matchesA.map((m: any) => m.definition));
-  const defsB = new Set(matchesB.map((m: any) => m.definition));
+  // Get all unique definitions involved in either class
+  const definitions = new Set<string>();
+  if (classA) {
+    allMatches
+      .filter((m: any) => m.class === classA && m.strictness === "strict" && (m.scope === "full" || m.scope === "ending"))
+      .forEach((m: any) => definitions.add(m.definition));
+  }
+  if (classB) {
+    allMatches
+      .filter((m: any) => m.class === classB && m.strictness === "strict" && (m.scope === "full" || m.scope === "ending"))
+      .forEach((m: any) => definitions.add(m.definition));
+  }
 
-  const onlyA = matchesA.filter(m => !defsB.has(m.definition));
-  const both = matchesA.filter(m => defsB.has(m.definition));
-  const onlyB = matchesB.filter(m => !defsA.has(m.definition));
+  // Buckets
+  const fullyShared: string[] = [];
+  const fullA: string[] = [];      // Col 1
+  const endingA: string[] = [];    // Col 2
+  const sharedEnding: string[] = []; // Col 3
+  const endingB: string[] = [];    // Col 4
+  const fullB: string[] = [];      // Col 5
+
+  definitions.forEach(def => {
+    const scopeA = classA ? getBestScope(classA, def) : "none";
+    const scopeB = classB ? getBestScope(classB, def) : "none";
+
+    if (scopeA === "full" && scopeB === "full") {
+      fullyShared.push(def);
+    } else if (scopeA === "full") {
+      // Matches A Full, B is Ending or None (but not Full)
+      fullA.push(def);
+    } else if (scopeB === "full") {
+      // Matches B Full, A is Ending or None (but not Full)
+      fullB.push(def); 
+    } else if (scopeA === "ending" && scopeB === "ending") {
+      sharedEnding.push(def);
+    } else if (scopeA === "ending") {
+      endingA.push(def);
+    } else if (scopeB === "ending") {
+      endingB.push(def);
+    }
+  });
 
   return (
     <div className="flex flex-col h-full gap-8">
@@ -82,85 +124,128 @@ export default async function ComparePage({
           </p>
         </div>
       ) : (
-        <div className="space-y-8">
-          {/* Summary Stats */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-white dark:bg-zinc-900 p-6 rounded-xl border border-gray-200 dark:border-zinc-800 shadow-sm transition-all hover:shadow-md border-l-4 border-l-blue-500">
-               <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Only {classA}</span>
-                  <MinusCircle className="w-4 h-4 text-blue-500" />
+        <div className="space-y-12">
+          
+          {/* Main 5-Column Grid */}
+          <div className="space-y-4">
+             <div className="flex items-center gap-2">
+                <ArrowRightLeft className="w-5 h-5 text-gray-400" />
+                <h3 className="text-lg font-bold">Detailed Comparison</h3>
+             </div>
+             
+             <div className="overflow-x-auto pb-4">
+               <div className="min-w-[1200px] grid grid-cols-5 gap-4">
+                 
+                 {/* 1. Full A */}
+                 <div className="space-y-3">
+                   <div className="px-2 py-1 border-b-2 border-blue-500">
+                     <h4 className="font-bold text-sm text-blue-600 dark:text-blue-400 truncate">Full {classA}</h4>
+                     <span className="text-xs text-gray-400">{fullA.length} unique</span>
+                   </div>
+                   <div className="bg-white dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800 h-[600px] overflow-auto divide-y divide-gray-100 dark:divide-zinc-800">
+                      {fullA.map((def, i) => (
+                        <div key={i} className="px-3 py-2 text-xs hover:bg-blue-50 dark:hover:bg-blue-900/10 transition-colors">
+                          {def}
+                        </div>
+                      ))}
+                   </div>
+                 </div>
+
+                 {/* 2. Ending A Only */}
+                 <div className="space-y-3">
+                    <div className="px-2 py-1 border-b-2 border-sky-400 border-dashed">
+                     <h4 className="font-bold text-sm text-sky-500 dark:text-sky-400 truncate text-opacity-80">Ending {classA}</h4>
+                     <span className="text-xs text-gray-400">{endingA.length} unique</span>
+                   </div>
+                   <div className="bg-white dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800 h-[600px] overflow-auto divide-y divide-gray-100 dark:divide-zinc-800">
+                      {endingA.map((def, i) => (
+                        <div key={i} className="px-3 py-2 text-xs hover:bg-sky-50 dark:hover:bg-sky-900/10 transition-colors">
+                          {def}
+                        </div>
+                      ))}
+                   </div>
+                 </div>
+
+                 {/* 3. Ending Shared */}
+                 <div className="space-y-3">
+                   <div className="px-2 py-1 border-b-2 border-purple-500 border-dotted">
+                     <h4 className="font-bold text-sm text-purple-600 dark:text-purple-400 truncate text-center">Shared Ending</h4>
+                     <div className="text-center"><span className="text-xs text-gray-400">{sharedEnding.length} shared</span></div>
+                   </div>
+                   <div className="bg-white dark:bg-zinc-900 rounded-xl border border-purple-200 dark:border-purple-800 border-dashed h-[600px] overflow-auto divide-y divide-gray-100 dark:divide-zinc-800 bg-purple-50/30 dark:bg-purple-900/10">
+                      {sharedEnding.map((def, i) => (
+                        <div key={i} className="px-3 py-2 text-xs hover:bg-purple-50 dark:hover:bg-purple-900/20 transition-colors font-medium text-purple-700 dark:text-purple-300">
+                          {def}
+                        </div>
+                      ))}
+                   </div>
+                 </div>
+
+                 {/* 4. Ending B Only */}
+                 <div className="space-y-3">
+                    <div className="px-2 py-1 border-b-2 border-emerald-400 border-dashed text-right">
+                     <h4 className="font-bold text-sm text-emerald-500 dark:text-emerald-400 truncate text-opacity-80">Ending {classB}</h4>
+                     <span className="text-xs text-gray-400">{endingB.length} unique</span>
+                   </div>
+                   <div className="bg-white dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800 h-[600px] overflow-auto divide-y divide-gray-100 dark:divide-zinc-800">
+                      {endingB.map((def, i) => (
+                        <div key={i} className="px-3 py-2 text-xs hover:bg-emerald-50 dark:hover:bg-emerald-900/10 transition-colors text-right">
+                          {def}
+                        </div>
+                      ))}
+                   </div>
+                 </div>
+
+                 {/* 5. Full B */}
+                 <div className="space-y-3">
+                   <div className="px-2 py-1 border-b-2 border-emerald-500 text-right">
+                     <h4 className="font-bold text-sm text-emerald-600 dark:text-emerald-400 truncate">Full {classB}</h4>
+                     <span className="text-xs text-gray-400">{fullB.length} unique</span>
+                   </div>
+                   <div className="bg-white dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800 h-[600px] overflow-auto divide-y divide-gray-100 dark:divide-zinc-800">
+                      {fullB.map((def, i) => (
+                        <div key={i} className="px-3 py-2 text-xs hover:bg-emerald-50 dark:hover:bg-emerald-900/10 transition-colors text-right">
+                          {def}
+                        </div>
+                      ))}
+                   </div>
+                 </div>
+
                </div>
-               <div className="text-2xl font-bold">{onlyA.length}</div>
-               <p className="text-[10px] text-gray-400 mt-1">Verbs unique to Class A</p>
-            </div>
-            <div className="bg-white dark:bg-zinc-900 p-6 rounded-xl border border-gray-200 dark:border-zinc-800 shadow-sm transition-all hover:shadow-md border-l-4 border-l-purple-500">
-               <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Intersection</span>
-                  <CheckCircle className="w-4 h-4 text-purple-500" />
-               </div>
-               <div className="text-2xl font-bold">{both.length}</div>
-               <p className="text-[10px] text-gray-400 mt-1">Verbs matched by BOTH</p>
-            </div>
-            <div className="bg-white dark:bg-zinc-900 p-6 rounded-xl border border-gray-200 dark:border-zinc-800 shadow-sm transition-all hover:shadow-md border-l-4 border-l-emerald-500">
-               <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">Only {classB}</span>
-                  <PlusCircle className="w-4 h-4 text-emerald-500" />
-               </div>
-               <div className="text-2xl font-bold">{onlyB.length}</div>
-               <p className="text-[10px] text-gray-400 mt-1">Verbs unique to Class B</p>
-            </div>
+             </div>
           </div>
 
-          {/* Comparison Lists */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Column A */}
-            <div className="space-y-4">
-              <h3 className="text-sm font-bold flex items-center gap-2 px-2">
-                <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-                Unique to {classA}
-              </h3>
-              <div className="bg-white dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800 h-[500px] overflow-auto divide-y divide-gray-100 dark:divide-zinc-800">
-                {onlyA.map((m, i) => (
-                  <div key={i} className="px-4 py-3 text-sm hover:bg-gray-50 dark:hover:bg-zinc-800/50 transition-colors">
-                    {m.definition}
-                  </div>
-                ))}
-                {onlyA.length === 0 && <div className="p-8 text-center text-gray-400 italic text-xs">No unique results.</div>}
+          {/* Fully Shared Section */}
+          <div className="bg-white dark:bg-zinc-900 p-8 rounded-xl border border-gray-200 dark:border-zinc-800 shadow-sm">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-3">
+                <div className="p-2 bg-purple-100 dark:bg-purple-900/30 rounded-lg text-purple-600 dark:text-purple-400">
+                  <CheckCircle className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold">Fully Shared Verbs</h3>
+                  <p className="text-sm text-gray-500">Matched completely by both {classA} and {classB}</p>
+                </div>
+              </div>
+              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">
+                {fullyShared.length}
               </div>
             </div>
 
-            {/* Column Both */}
-            <div className="space-y-4">
-              <h3 className="text-sm font-bold flex items-center gap-2 px-2">
-                <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-                Shared Verbs
-              </h3>
-              <div className="bg-white dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800 h-[500px] overflow-auto divide-y divide-gray-100 dark:divide-zinc-800">
-                {both.map((m, i) => (
-                  <div key={i} className="px-4 py-3 text-sm hover:bg-gray-50 dark:hover:bg-zinc-800/50 transition-colors">
-                    {m.definition}
-                  </div>
-                ))}
-                {both.length === 0 && <div className="p-8 text-center text-gray-400 italic text-xs">No shared results.</div>}
-              </div>
-            </div>
-
-            {/* Column B */}
-            <div className="space-y-4">
-              <h3 className="text-sm font-bold flex items-center gap-2 px-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-                Unique to {classB}
-              </h3>
-              <div className="bg-white dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800 h-[500px] overflow-auto divide-y divide-gray-100 dark:divide-zinc-800">
-                {onlyB.map((m, i) => (
-                  <div key={i} className="px-4 py-3 text-sm hover:bg-gray-50 dark:hover:bg-zinc-800/50 transition-colors">
-                    {m.definition}
-                  </div>
-                ))}
-                {onlyB.length === 0 && <div className="p-8 text-center text-gray-400 italic text-xs">No unique results.</div>}
-              </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+              {fullyShared.map((def, i) => (
+                 <div key={i} className="px-3 py-2 text-sm bg-gray-50 dark:bg-zinc-800/50 rounded border border-gray-100 dark:border-zinc-800">
+                   {def}
+                 </div>
+              ))}
+              {fullyShared.length === 0 && (
+                <div className="col-span-full py-8 text-center text-gray-400 italic">
+                  No fully shared verbs found.
+                </div>
+              )}
             </div>
           </div>
+          
         </div>
       )}
     </div>

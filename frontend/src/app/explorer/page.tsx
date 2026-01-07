@@ -41,6 +41,16 @@ export default async function ExplorerPage({
         (m.scope === "full" || m.scope === "ending")
       ) 
     : [];
+
+  const coveredVerbs = selectedClass 
+    ? allMatches
+        .filter((m: any) => 
+          m.class !== selectedClass && 
+          m.strictness === selectedStrictness && 
+          m.scope === "full"
+        )
+        .map((m: any) => m.definition)
+    : [];
   
   const nearMissData = selectedClass
     ? nearMisses.filter((nm: any) => nm.class === selectedClass)
@@ -119,7 +129,12 @@ export default async function ExplorerPage({
               </div>
             </section>
 
-            <MatchExplorer matches={matches} classPattern={classData} corpus={corpusMap} />
+            <MatchExplorer 
+              matches={matches} 
+              classPattern={classData} 
+              corpus={corpusMap} 
+              coveredVerbs={coveredVerbs}
+            />
           </div>
 
           {/* Near-Miss Diagnosis */}

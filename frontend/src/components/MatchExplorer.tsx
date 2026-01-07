@@ -25,13 +25,18 @@ interface MatchExplorerProps {
   matches: Match[];
   classPattern: any;
   corpus?: Record<string, any>;
+  coveredVerbs?: string[];
 }
 
-export default function MatchExplorer({ matches, classPattern, corpus }: MatchExplorerProps) {
+export default function MatchExplorer({ matches, classPattern, corpus, coveredVerbs = [] }: MatchExplorerProps) {
   const [selectedMatch, setSelectedMatch] = useState<Match | null>(matches[0] || null);
   const [scopeFilter, setScopeFilter] = useState<'all' | 'full' | 'ending'>('all');
+  const [hideCovered, setHideCovered] = useState(false);
+
+  const coveredSet = new Set(coveredVerbs);
 
   const filteredMatches = matches.filter(m => {
+    if (hideCovered && coveredSet.has(m.definition)) return false;
     if (scopeFilter === 'all') return true;
     return m.scope === scopeFilter;
   });
@@ -59,6 +64,18 @@ export default function MatchExplorer({ matches, classPattern, corpus }: MatchEx
             <option value="full">Full Match</option>
             <option value="ending">Near Miss</option>
           </select>
+          <div className="flex items-center gap-1.5 ml-3">
+             <input 
+               type="checkbox" 
+               id="hideCovered" 
+               checked={hideCovered} 
+               onChange={(e) => setHideCovered(e.target.checked)}
+               className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500 w-3.5 h-3.5"
+             />
+             <label htmlFor="hideCovered" className="text-[10px] text-gray-500 select-none cursor-pointer font-medium uppercase tracking-wide">
+               Hide Covered
+             </label>
+          </div>
         </div>
         <div className="flex-1 overflow-y-auto divide-y divide-gray-100 dark:divide-zinc-800">
           {filteredMatches.map((match, i) => (
