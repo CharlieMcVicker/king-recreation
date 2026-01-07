@@ -73,13 +73,17 @@ def plot_near_miss_heatmap(csv_path, output_prefix):
     if df.empty:
         return
 
-    # We want to plot the rates. Columns: present_rate, imperfective_rate, etc.
     rate_cols = [c for c in df.columns if c.endswith('_rate')]
     
-    def create_heatmap(data, suffix):
-        # Set index to class + strictness for better labeling
-        plot_df = data.copy()
-        plot_df['label'] = plot_df['class'] + " (" + plot_df['strictness'] + ")"
+    def create_heatmap(data, strictness_level):
+        # Filter for the specific strictness and at least one match
+        plot_df = data[(data['strictness'] == strictness_level) & (data['match_count'] > 0)].copy()
+        if plot_df.empty:
+            print(f"No match data for {strictness_level} heatmap. Skipping.")
+            return
+
+        # Set index to class + count for labeling
+        plot_df['label'] = plot_df['class'] + " (" + plot_df['match_count'].astype(str) + ")"
         plot_df = plot_df.set_index('label')[rate_cols]
         
         # Shorten column names for the plot
@@ -87,34 +91,30 @@ def plot_near_miss_heatmap(csv_path, output_prefix):
 
         plt.figure(figsize=(12, min(20, len(plot_df) * 0.4 + 2)))
         sns.heatmap(plot_df, annot=True, cmap="YlGnBu", vmin=0, vmax=1)
-        plt.title(f'Stem-Final Pass Rates ({suffix})')
+        plt.title(f'Stem-Final Pass Rates ({strictness_level.capitalize()} Matches)')
         plt.tight_layout()
-        plt.savefig(f'{output_prefix}_{suffix.lower()}.png')
+        plt.savefig(f'{output_prefix}_{strictness_level}.png')
         plt.close()
 
-    # Full version
-    create_heatmap(df, 'Full')
-
-    # Filtered version: classes with at least one match (match_count > 0)
-    # Actually near_misses.csv only includes those with ending matches, 
-    # but some might have 0 pass rates across the board.
-    # The user said "excludes items with zero or near-zero values".
-    # Let's exclude rows where the sum of rates is very small or match_count is 0.
-    df_filtered = df[df['match_count'] > 0]
-    if not df_filtered.empty:
-        create_heatmap(df_filtered, 'Filtered')
+    # Generate separate maps for strict and loose
+    create_heatmap(df, 'strict')
+    create_heatmap(df, 'loose')
 
 def run_all_visualizations():
-    os.makedirs('artifacts', exist_ok=True)
+    output_dir = 'artifacts/analysis'
+    os.makedirs(output_dir, exist_ok=True)
     
     print("Generating Class Distribution plots...")
-    plot_class_distribution('artifacts/class_match_counts.csv', 'artifacts/class_distribution')
+    plot_class_distribution(os.path.join(output_dir, 'class_match_counts.csv'), 
+                            os.path.join(output_dir, 'class_distribution'))
     
     print("Generating Verb Coverage plot...")
-    plot_verb_coverage('artifacts/verb_coverage.json', 'artifacts/verb_coverage.png')
+    plot_verb_coverage(os.path.join(output_dir, 'verb_coverage.json'), 
+                       os.path.join(output_dir, 'verb_coverage.png'))
     
     print("Generating Near-Miss Heatmap plots...")
-    plot_near_miss_heatmap('artifacts/class_near_misses.csv', 'artifacts/near_miss_heatmap')
+    plot_near_miss_heatmap(os.path.join(output_dir, 'class_near_misses.csv'), 
+                           os.path.join(output_dir, 'near_miss_heatmap'))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Generate visualizations for match data.")
@@ -123,4 +123,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     run_all_visualizations()
-    print("Visualizations saved to artifacts/")
+    print("Visualizations saved to artifacts/analysis/")

@@ -4,6 +4,7 @@ import os
 import argparse
 from collections import defaultdict
 from king_recreation.visualize_analysis import run_all_visualizations
+from king_recreation.utils import get_class_sort_key
 
 def load_csv(path):
     with open(path, mode='r', encoding='utf-8') as f:
@@ -22,6 +23,7 @@ def save_json(path, data):
 def analyze_matches():
     matches_path = 'artifacts/matches.csv'
     corpus_path = 'artifacts/corpus.csv'
+    classes_path = 'data/king_classes.csv'
     
     if not os.path.exists(matches_path):
         print(f"Error: {matches_path} not found.")
@@ -29,9 +31,15 @@ def analyze_matches():
     if not os.path.exists(corpus_path):
         print(f"Error: {corpus_path} not found.")
         return
+    if not os.path.exists(classes_path):
+        print(f"Error: {classes_path} not found.")
+        return
 
     matches = load_csv(matches_path)
     corpus = load_csv(corpus_path)
+    king_classes_data = load_csv(classes_path)
+    all_classes = sorted([row['class'] for row in king_classes_data if row['class']], key=get_class_sort_key)
+    
     all_verbs = set(row['definition'] for row in corpus)
     total_verb_count = len(all_verbs)
 
@@ -51,13 +59,11 @@ def analyze_matches():
                 filtered_matches[key] = row
 
     class_counts = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
-    classes = sorted(list(set(row['class'] for row in matches)))
-    
     for row in filtered_matches.values():
         class_counts[row['class']][row['strictness']][row['scope']] += 1
 
     class_match_data = []
-    for cls in classes:
+    for cls in all_classes:
         class_match_data.append({
             'class': cls,
             'strict_ending': class_counts[cls]['strict']['ending'],
@@ -66,7 +72,10 @@ def analyze_matches():
             'loose_full': class_counts[cls]['loose']['full']
         })
     
-    save_csv('artifacts/class_match_counts.csv', class_match_data, 
+    output_dir = 'artifacts/analysis'
+    os.makedirs(output_dir, exist_ok=True)
+
+    save_csv(os.path.join(output_dir, 'class_match_counts.csv'), class_match_data, 
              ['class', 'strict_ending', 'strict_full', 'loose_ending', 'loose_full'])
 
     # 2. Verb Coverage Summary
@@ -103,10 +112,22 @@ def analyze_matches():
         coverage_summary[f"{strictness}_{scope_target}"] = {
             "0": zero,
             "1": one,
-            "2+": multiple
+            "2+": multiple,
+            "coverage_pct": round((total_verb_count - zero) / total_verb_count * 100, 1) if total_verb_count > 0 else 0.0
         }
 
-    save_json('artifacts/verb_coverage.json', coverage_summary)
+    save_json(os.path.join(output_dir, 'verb_coverage.json'), coverage_summary)
+
+    # Print summary to console
+    print("\nVerb Class Coverage Summary:")
+    print(f"{'Match Configuration':<20} | {'Count (>=1)':<12} | {'Percentage':<10}")
+    print("-" * 48)
+    for key in sorted(coverage_summary.keys()):
+        stats = coverage_summary[key]
+        matched = total_verb_count - stats['0']
+        pct = stats['coverage_pct']
+        print(f"{key:<20} | {matched:<12} | {pct:>9}%")
+    print("")
 
     # 3. Class Near-Miss Analysis
     near_miss_data = []
@@ -117,26 +138,36 @@ def analyze_matches():
         if row['scope'] == 'ending':
             near_miss_groups[(row['class'], row['strictness'])].append(row)
             
-    for (cls, s), group in sorted(near_miss_groups.items()):
-        match_count = len(group)
-        rates = {}
-        for form in forms:
-            col = f'stem_final_match_{form}'
-            passed = sum(1 for r in group if r[col].lower() == 'true')
-            rates[f'{form}_rate'] = round(passed / match_count, 3) if match_count > 0 else 0.0
-            
-        data_row = {
-            'class': cls,
-            'strictness': s,
-            'match_count': match_count,
-            **rates
-        }
-        near_miss_data.append(data_row)
+    # Include all classes and both strictness levels
+    for cls in all_classes:
+        for s in ['strict', 'loose']:
+            group = near_miss_groups[(cls, s)]
+            match_count = len(group)
+            rates = {}
+            for form in forms:
+                if match_count > 0:
+                    col = f'stem_final_match_{form}'
+                    passed = sum(1 for r in group if r[col].lower() == 'true')
+                    rate = round(passed / match_count, 3)
+                else:
+                    rate = 0.0
+                rates[f'{form}_rate'] = rate
+                
+            data_row = {
+                'class': cls,
+                'strictness': s,
+                'match_count': match_count,
+                **rates
+            }
+            near_miss_data.append(data_row)
 
-    save_csv('artifacts/class_near_misses.csv', near_miss_data,
+    # Sort near_miss_data by class (custom key) then strictness
+    near_miss_data.sort(key=lambda x: (get_class_sort_key(x['class']), x['strictness']))
+
+    save_csv(os.path.join(output_dir, 'class_near_misses.csv'), near_miss_data,
              ['class', 'strictness', 'match_count'] + [f'{f}_rate' for f in forms])
 
-    print("Analysis complete. Artifacts generated in artifacts/")
+    print(f"Analysis complete. Artifacts generated in {output_dir}/")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Analyze match data.")

@@ -90,10 +90,15 @@ Calculate the total number of unique verbs matched by each class, broken down by
 Analyze how well the King classification explains the total corpus.
 -   **Denominator**: Total number of unique verbs (definitions) in `artifacts/corpus.csv`.
 -   **Output**: `artifacts/verb_coverage.json`
--   **Structure**: For each strictness/scope combination, count how many verbs are matched by zero, one, or multiple classes.
+-   **Structure**: For each strictness/scope combination, count how many verbs are matched by zero, one, or multiple classes, and include the overall coverage percentage.
     ```json
     {
-      "strict_full": { "0": 1200, "1": 300, "2+": 50 },
+      "strict_full": { 
+        "0": 367, 
+        "1": 249, 
+        "2+": 5,
+        "coverage_pct": 40.9
+      },
       "loose_full": { ... },
       ...
     }
