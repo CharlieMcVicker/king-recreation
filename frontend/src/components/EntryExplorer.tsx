@@ -32,11 +32,18 @@ export default function EntryExplorer({ matches, classes, corpusEntry }: EntryEx
 
   // Group matches by strictness or just list them? 
   // Let's just list them all, maybe sorted by Class Name.
+  // Create a map of class -> index for sorting
+  const classOrder = new Map(classes.map((c, i) => [c.class, i]));
+
   const sortedMatches = [...matches].sort((a, b) => {
-    // Sort by Strictness (strict first) then Scope (full first) then Class
+    // Sort by Strictness (strict first) then Scope (full first) then Class Order
     if (a.strictness !== b.strictness) return a.strictness === 'strict' ? -1 : 1;
     if (a.scope !== b.scope) return a.scope === 'full' ? -1 : 1;
-    return a.class.localeCompare(b.class);
+    
+    // Use the index from the classes array
+    const orderA = classOrder.get(a.class) ?? 9999;
+    const orderB = classOrder.get(b.class) ?? 9999;
+    return orderA - orderB;
   });
 
   const selectedClassData = selectedMatch 

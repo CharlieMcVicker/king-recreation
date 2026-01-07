@@ -1,32 +1,49 @@
-import re
+import os
+import csv
+import functools
+
+@functools.lru_cache()
+def _get_class_order():
+    """
+    Loads the class order from data/king_classes.csv.
+    Returns a dict mapping class_name -> index.
+    """
+    class_order = {}
+    
+    # Try to locate data/king_classes.csv relative to this file
+    # utils.py is in <root>/king_recreation/utils.py
+    # data is in <root>/data/king_classes.csv
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    csv_path = os.path.join(base_dir, 'data', 'king_classes.csv')
+    
+    if os.path.exists(csv_path):
+        try:
+            with open(csv_path, 'r', encoding='utf-8') as f:
+                reader = csv.DictReader(f)
+                for idx, row in enumerate(reader):
+                    cls_name = row.get('class', '').strip()
+                    if cls_name:
+                        class_order[cls_name] = idx
+        except Exception as e:
+            # Fallback: log error if possible, or just proceed empty
+            print(f"Warning: Could not load class order from {csv_path}: {e}")
+            pass
+            
+    return class_order
 
 def get_class_sort_key(class_name):
     """
     Returns a sort key for King's verb classes.
-    Regex handles partial classes (like 'Ia' or 'X') by making letter and number optional.
-    
-    Classes are sorted by:
-    1. Roman numeral (I-X)
-    2. Lowercase letter (a-d)
-    3. Number (1-3)
-    
-    Example: Ia, Ib, IIa, IIa1, IIa2, X
+    Sorts based on the exact order in data/king_classes.csv.
+    Classes not found in the CSV are sorted to the end.
     """
     if not class_name:
-        return (99, '', 0)
+        return 9999
         
-    match = re.match(r'^([IVX]+)([a-z]?)(\d*)$', class_name)
-    if not match:
-        return (99, class_name, 0)
-        
-    roman, letter, number = match.groups()
+    order_map = _get_class_order()
     
-    roman_map = {
-        'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5,
-        'VI': 6, 'VII': 7, 'VIII': 8, 'IX': 9, 'X': 10
-    }
+    # If found, return index. If not, return a large number + lexical backup
+    if class_name in order_map:
+        return order_map[class_name]
     
-    roman_val = roman_map.get(roman, 99)
-    number_val = int(number) if number else 0
-    
-    return (roman_val, letter, number_val)
+    return 9999
