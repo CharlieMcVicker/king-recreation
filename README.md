@@ -2,6 +2,8 @@
 
 This project will apply Duane King's 1975 classification scheme of aspect inflection in Cherokee verbs to the Cherokee-English Dictionary (Pulte and Feeling 1975) corpus. Because tonal and vowel length marking systems are not consistent between King 1975 and Feeling 1975, vowel length is not considered for matching. In addition, glottal stops are not considered for matching, since their marking and surface realization is not comparable between the two dialects and dictionaries.
 
+A companion [Frontend Match Explorer](file:///Users/charlesmcvicker/code/king-recreation/frontend) is available to visualize and interact with the analysis results.
+
 ## Process
 
 ### CED pre-processing
