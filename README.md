@@ -16,6 +16,8 @@ Consonants will be respelled to mark aspiration explicitly:
 - `d` -> `t`
 - `k` -> `kh`
 - `g` -> `k`
+- `j` -> `ts`
+- `ch` -> `tsh`
 
 The reference forms considered for this study will be:
 

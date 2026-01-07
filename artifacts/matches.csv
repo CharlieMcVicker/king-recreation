@@ -36,9 +36,13 @@ it's burning (flames),Id,loose,ending,False,False,False,True,False
 it's burning (flames),IIa,loose,ending,False,False,False,False,False
 he's taking off his socks,Ia,strict,full,True,True,True,True,True
 he's taking off his socks,Ia,loose,full,True,True,True,True,True
+he's chewing it,Ib,strict,full,True,True,True,True,True
+he's chewing it,Ib,loose,full,True,True,True,True,True
 he's chewing it,Id,strict,ending,False,False,False,True,False
 he's chewing it,Id,loose,ending,False,False,False,True,False
 he's chewing it,IIa,loose,ending,False,False,False,False,False
+1. he's pondering it  2. he's considering,Ib,strict,full,True,True,True,True,True
+1. he's pondering it  2. he's considering,Ib,loose,full,True,True,True,True,True
 1. he's pondering it  2. he's considering,Id,strict,ending,False,False,False,True,False
 1. he's pondering it  2. he's considering,Id,loose,ending,False,False,False,True,False
 1. he's pondering it  2. he's considering,IIa,loose,ending,False,False,False,False,False
@@ -325,56 +329,90 @@ he's writing it,IIa,loose,ending,False,False,False,False,False
 he's writing it,IVa,loose,ending,False,False,False,False,False
 "he's running away, he's escaping",Ia,strict,full,True,True,True,True,True
 "he's running away, he's escaping",Ia,loose,full,True,True,True,True,True
+he's crushing it,Ib,strict,full,True,True,True,True,True
+he's crushing it,Ib,loose,full,True,True,True,True,True
 he's crushing it,Id,strict,ending,False,False,False,True,False
 he's crushing it,Id,loose,ending,False,False,False,True,False
 he's crushing it,IIa,loose,ending,False,False,False,False,False
+he's hammering it,Ib,strict,full,True,True,True,True,True
+he's hammering it,Ib,loose,full,True,True,True,True,True
 he's hammering it,Id,strict,ending,False,False,False,True,False
 he's hammering it,Id,loose,ending,False,False,False,True,False
 he's hammering it,IIa,loose,ending,False,False,False,False,False
+stubbing his toe,Ib,strict,full,True,True,True,True,True
+stubbing his toe,Ib,loose,full,True,True,True,True,True
 stubbing his toe,Id,strict,ending,False,False,False,True,False
 stubbing his toe,Id,loose,ending,False,False,False,True,False
 stubbing his toe,IIa,loose,ending,False,False,False,False,False
+he's cracking it,Ib,strict,full,True,True,True,True,True
+he's cracking it,Ib,loose,full,True,True,True,True,True
 he's cracking it,Id,strict,ending,False,False,False,True,False
 he's cracking it,Id,loose,ending,False,False,False,True,False
 he's cracking it,IIa,loose,ending,False,False,False,False,False
+he's washing flexible objects (including clothes),Ib,strict,full,True,True,True,True,True
+he's washing flexible objects (including clothes),Ib,loose,full,True,True,True,True,True
 he's washing flexible objects (including clothes),Id,strict,ending,False,False,False,True,False
 he's washing flexible objects (including clothes),Id,loose,ending,False,False,False,True,False
 he's washing flexible objects (including clothes),IIa,loose,ending,False,False,False,False,False
+he's washing it,Ib,strict,full,True,True,True,True,True
+he's washing it,Ib,loose,full,True,True,True,True,True
 he's washing it,Id,strict,ending,False,False,False,True,False
 he's washing it,Id,loose,ending,False,False,False,True,False
 he's washing it,IIa,loose,ending,False,False,False,False,False
+he's measuring it,Ib,strict,full,True,True,True,True,True
+he's measuring it,Ib,loose,full,True,True,True,True,True
 he's measuring it,Id,strict,ending,False,False,False,True,False
 he's measuring it,Id,loose,ending,False,False,False,True,False
 he's measuring it,IIa,loose,ending,False,False,False,False,False
+1. he's bathing  2. he's swimming,Ib,strict,full,True,True,True,True,True
+1. he's bathing  2. he's swimming,Ib,loose,full,True,True,True,True,True
 1. he's bathing  2. he's swimming,Id,strict,ending,False,False,False,True,False
 1. he's bathing  2. he's swimming,Id,loose,ending,False,False,False,True,False
 1. he's bathing  2. he's swimming,IIa,loose,ending,False,False,False,False,False
+1. he's bathing him 2. he's baptizing him,Ib,strict,full,True,True,True,True,True
+1. he's bathing him 2. he's baptizing him,Ib,loose,full,True,True,True,True,True
 1. he's bathing him 2. he's baptizing him,Id,strict,ending,False,False,False,True,False
 1. he's bathing him 2. he's baptizing him,Id,loose,ending,False,False,False,True,False
 1. he's bathing him 2. he's baptizing him,IIa,loose,ending,False,False,False,False,False
+he's putting on a shirt,Ib,strict,full,True,True,True,True,True
+he's putting on a shirt,Ib,loose,full,True,True,True,True,True
 he's putting on a shirt,Id,strict,ending,False,False,False,True,False
 he's putting on a shirt,Id,loose,ending,False,False,False,True,False
 he's putting on a shirt,IIa,loose,ending,False,False,False,False,False
+he's putting on clothes,Ib,strict,full,True,True,True,True,True
+he's putting on clothes,Ib,loose,full,True,True,True,True,True
 he's putting on clothes,Id,strict,ending,False,False,False,True,False
 he's putting on clothes,Id,loose,ending,False,False,False,True,False
 he's putting on clothes,IIa,loose,ending,False,False,False,False,False
+he's combing someone's hair,Ib,strict,full,True,True,True,True,True
+he's combing someone's hair,Ib,loose,full,True,True,True,True,True
 he's combing someone's hair,Id,strict,ending,False,False,False,True,False
 he's combing someone's hair,Id,loose,ending,False,False,False,True,False
 he's combing someone's hair,IIa,loose,ending,False,False,False,False,False
+he's combing his hair,Ib,strict,full,True,True,True,True,True
+he's combing his hair,Ib,loose,full,True,True,True,True,True
 he's combing his hair,Id,strict,ending,False,False,False,True,False
 he's combing his hair,Id,loose,ending,False,False,False,True,False
 he's combing his hair,IIa,loose,ending,False,False,False,False,False
+he's performing a baptism,Ib,strict,full,True,True,True,True,True
+he's performing a baptism,Ib,loose,full,True,True,True,True,True
 he's performing a baptism,Id,strict,ending,False,False,False,True,False
 he's performing a baptism,Id,loose,ending,False,False,False,True,False
 he's performing a baptism,IIa,loose,ending,False,False,False,False,False
+"he's accumulating it, he's increasing it",Ib,strict,full,True,True,True,True,True
+"he's accumulating it, he's increasing it",Ib,loose,full,True,True,True,True,True
 "he's accumulating it, he's increasing it",Id,strict,ending,False,False,False,True,False
 "he's accumulating it, he's increasing it",Id,loose,ending,False,False,False,True,False
 "he's accumulating it, he's increasing it",IIa,loose,ending,False,False,False,False,False
+he's washing his face,Ib,strict,full,True,True,True,True,True
+he's washing his face,Ib,loose,full,True,True,True,True,True
 he's washing his face,Id,strict,ending,False,False,False,True,False
 he's washing his face,Id,loose,ending,False,False,False,True,False
 he's washing his face,IIa,loose,ending,False,False,False,False,False
 he's sopping it,Ia,strict,ending,False,False,False,False,False
 he's sopping it,Ia,loose,ending,False,False,False,False,False
+he's sopping it,Ib,strict,ending,False,False,False,False,False
+he's sopping it,Ib,loose,ending,False,False,False,False,False
 he's sopping it,Id,strict,ending,False,False,False,True,False
 he's sopping it,Id,loose,ending,False,False,False,True,False
 he's sopping it,IIa,loose,ending,False,False,False,False,False
@@ -420,9 +458,27 @@ he's changing clothes,Ic,loose,ending,True,True,False,True,True
 he's changing clothes,Id,strict,ending,False,False,False,True,False
 he's changing clothes,Id,loose,ending,False,False,False,True,False
 he's changing clothes,IIa,loose,ending,False,False,False,False,False
+"he, it's going out of sight",VIIIa,loose,full,True,True,True,True,True
+they're having church services,VIIIa,loose,full,True,True,True,True,True
+he's becoming blind,VIIIa,loose,full,True,True,True,True,True
+"he's belching, burping",VIIIa,loose,full,True,True,True,True,True
+he's happy/thankful,VIIIa,loose,full,True,True,True,True,True
+he's pitying him,VIIIa,loose,full,True,True,True,True,True
+he's becoming angry,VIIIa,loose,full,True,True,True,True,True
+"1. he, it's sinking  2. he, it is being buried",VIIIa,loose,full,True,True,True,True,True
+he's arriving,VIIIa,loose,full,True,True,True,True,True
+he's returning,VIIIa,loose,full,True,True,True,True,True
+he's recognizing him,VIIIa,loose,full,True,True,True,True,True
+he understands it,VIIIa,loose,full,True,True,True,True,True
 he's putting his hat on,Id,strict,ending,False,False,False,True,False
 he's putting his hat on,Id,loose,ending,False,False,False,True,False
 he's putting his hat on,IIa,loose,ending,False,False,False,False,False
+he's parting with him (in death),VIIIa,loose,full,True,True,True,True,True
+he's taking revenge,VIIIa,loose,full,True,True,True,True,True
+he's waking up,VIIIa,loose,full,True,True,True,True,True
+he's crossing it (a body of water),VIIIa,loose,full,True,True,True,True,True
+"it's accumulating, it's increasing",VIIIa,loose,full,True,True,True,True,True
+he's falling from an upright  position,VIIIa,loose,full,True,True,True,True,True
 "he's blowing, he's blowing on it",Id,strict,ending,False,False,False,True,False
 "he's blowing, he's blowing on it",Id,loose,ending,False,False,False,True,False
 "he's blowing, he's blowing on it",IIa,loose,ending,False,False,False,False,False

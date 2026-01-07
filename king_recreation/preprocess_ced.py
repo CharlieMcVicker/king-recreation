@@ -10,6 +10,8 @@ def respell_consonants(s):
         ("d", "t"),
         ("k", "kh"),
         ("g", "k"),
+        ("j", "ts"),
+        ("ch", "tsh"),
     ]
     for old, new in rules:
         s = s.replace(old, new)
