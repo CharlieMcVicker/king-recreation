@@ -10,6 +10,8 @@ he thinks so,Id,loose,ending,False,False,False,True,False
 he thinks so,IIa,loose,ending,False,False,False,True,False
 "he's catching a falling person, object",Ia,strict,ending,False,False,False,True,False
 "he's catching a falling person, object",Ia,loose,ending,False,False,False,True,False
+"he's catching a falling person, object",Ia*,strict,full,True,True,True,True,True
+"he's catching a falling person, object",Ia*,loose,full,True,True,True,True,True
 "1. he's saying it  2. it's barking, meowing, whinnying, cooing, etc",Ia,strict,ending,False,False,False,True,False
 "1. he's saying it  2. it's barking, meowing, whinnying, cooing, etc",Ia,loose,ending,False,False,False,True,False
 it's hatching,Ia,strict,full,True,True,True,True,True
@@ -117,8 +119,12 @@ he's scattering it,IIa,loose,ending,False,False,False,True,False
 1. he's racing 2. he's running for office,IIa,loose,ending,False,False,False,True,False
 he's shoveling it,Ia,strict,ending,False,False,False,True,False
 he's shoveling it,Ia,loose,ending,False,False,False,True,False
+he's shoveling it,Ia*,strict,full,True,True,True,True,True
+he's shoveling it,Ia*,loose,full,True,True,True,True,True
 "he's taking off, removing a cap",Ia,strict,ending,False,False,False,True,False
 "he's taking off, removing a cap",Ia,loose,ending,False,False,False,True,False
+"he's taking off, removing a cap",Ia*,strict,full,True,True,True,True,True
+"he's taking off, removing a cap",Ia*,loose,full,True,True,True,True,True
 he's oiling it,Id,strict,full,True,True,True,True,True
 he's oiling it,Id,loose,full,True,True,True,True,True
 he's oiling it,IIa,loose,ending,False,False,False,False,False
@@ -247,48 +253,86 @@ he's leaving some liquid,Id,loose,ending,False,False,False,True,False
 he's leaving some liquid,IIa,loose,ending,False,False,False,True,False
 he's removing it (solid or flexible object) from a hanging position,Ia,strict,ending,False,False,False,True,False
 he's removing it (solid or flexible object) from a hanging position,Ia,loose,ending,False,False,False,True,False
+he's removing it (solid or flexible object) from a hanging position,Ia*,strict,full,True,True,True,True,True
+he's removing it (solid or flexible object) from a hanging position,Ia*,loose,full,True,True,True,True,True
 he's breathing,Ia,strict,ending,False,False,False,True,False
 he's breathing,Ia,loose,ending,False,False,False,True,False
+he's breathing,Ia*,strict,full,True,True,True,True,True
+he's breathing,Ia*,loose,full,True,True,True,True,True
 he's taking off his glasses,Ia,strict,ending,False,False,False,True,False
 he's taking off his glasses,Ia,loose,ending,False,False,False,True,False
+he's taking off his glasses,Ia*,strict,full,True,True,True,True,True
+he's taking off his glasses,Ia*,loose,full,True,True,True,True,True
 he's taking it off,Ia,strict,ending,False,False,False,True,False
 he's taking it off,Ia,loose,ending,False,False,False,True,False
+he's taking it off,Ia*,strict,full,True,True,True,True,True
+he's taking it off,Ia*,loose,full,True,True,True,True,True
 He's getting drunk,Id,strict,ending,True,True,False,True,False
 He's getting drunk,Id,loose,ending,True,True,False,True,False
 He's getting drunk,IIa,loose,ending,False,False,False,False,False
 he's taking a bite,Ia,strict,ending,False,False,False,True,False
 he's taking a bite,Ia,loose,ending,False,False,False,True,False
+he's taking a bite,Ia*,strict,full,True,True,True,True,True
+he's taking a bite,Ia*,loose,full,True,True,True,True,True
 "1. he's unhitching him, it 2. he's unhooking it 3. he's unplugging it",Ia,strict,ending,False,False,False,True,False
 "1. he's unhitching him, it 2. he's unhooking it 3. he's unplugging it",Ia,loose,ending,False,False,False,True,False
+"1. he's unhitching him, it 2. he's unhooking it 3. he's unplugging it",Ia*,strict,full,True,True,True,True,True
+"1. he's unhitching him, it 2. he's unhooking it 3. he's unplugging it",Ia*,loose,full,True,True,True,True,True
 he's taking it (solid or flexible object) out of a container,Ia,strict,ending,False,False,False,True,False
 he's taking it (solid or flexible object) out of a container,Ia,loose,ending,False,False,False,True,False
+he's taking it (solid or flexible object) out of a container,Ia*,strict,full,True,True,True,True,True
+he's taking it (solid or flexible object) out of a container,Ia*,loose,full,True,True,True,True,True
 he's taking off his shoes,Ia,strict,ending,False,False,False,True,False
 he's taking off his shoes,Ia,loose,ending,False,False,False,True,False
+he's taking off his shoes,Ia*,strict,full,True,True,True,True,True
+he's taking off his shoes,Ia*,loose,full,True,True,True,True,True
 he's taking off his gloves,Ia,strict,ending,False,False,False,True,False
 he's taking off his gloves,Ia,loose,ending,False,False,False,True,False
+he's taking off his gloves,Ia*,strict,full,True,True,True,True,True
+he's taking off his gloves,Ia*,loose,full,True,True,True,True,True
 he's taking his pants off,Ia,strict,ending,False,False,False,True,False
 he's taking his pants off,Ia,loose,ending,False,False,False,True,False
+he's taking his pants off,Ia*,strict,full,True,True,True,True,True
+he's taking his pants off,Ia*,loose,full,True,True,True,True,True
 he's turning off the road,Ia,strict,ending,False,False,False,True,False
 he's turning off the road,Ia,loose,ending,False,False,False,True,False
+he's turning off the road,Ia*,strict,full,True,True,True,True,True
+he's turning off the road,Ia*,loose,full,True,True,True,True,True
 1. he's getting a flexible object  2. he's picking up a flexible object,Ia,strict,ending,False,False,False,True,False
 1. he's getting a flexible object  2. he's picking up a flexible object,Ia,loose,ending,False,False,False,True,False
+1. he's getting a flexible object  2. he's picking up a flexible object,Ia*,strict,full,True,True,True,True,True
+1. he's getting a flexible object  2. he's picking up a flexible object,Ia*,loose,full,True,True,True,True,True
 he's pulling a trigger,Ia,strict,ending,False,False,False,True,False
 he's pulling a trigger,Ia,loose,ending,False,False,False,True,False
+he's pulling a trigger,Ia*,strict,full,True,True,True,True,True
+he's pulling a trigger,Ia*,loose,full,True,True,True,True,True
 "he's pulling him, it",Ia,strict,ending,False,False,False,True,False
 "he's pulling him, it",Ia,loose,ending,False,False,False,True,False
+"he's pulling him, it",Ia*,strict,full,True,True,True,True,True
+"he's pulling him, it",Ia*,loose,full,True,True,True,True,True
 he's conjuring,Id,strict,ending,True,True,False,True,False
 he's conjuring,Id,loose,ending,True,True,False,True,False
 he's conjuring,IIa,loose,ending,False,False,False,False,False
 "he's kicking him, it",Ia,strict,ending,False,False,False,True,False
 "he's kicking him, it",Ia,loose,ending,False,False,False,True,False
+"he's kicking him, it",Ia*,strict,full,True,True,True,True,True
+"he's kicking him, it",Ia*,loose,full,True,True,True,True,True
 "he's picking him, it up",Ia,strict,ending,False,False,False,True,False
 "he's picking him, it up",Ia,loose,ending,False,False,False,True,False
+"he's picking him, it up",Ia*,strict,full,True,True,True,True,True
+"he's picking him, it up",Ia*,loose,full,True,True,True,True,True
 "he's taking his shirt, coat off",Ia,strict,ending,False,False,False,True,False
 "he's taking his shirt, coat off",Ia,loose,ending,False,False,False,True,False
+"he's taking his shirt, coat off",Ia*,strict,full,True,True,True,True,True
+"he's taking his shirt, coat off",Ia*,loose,full,True,True,True,True,True
 he's undressing,Ia,strict,ending,False,False,False,True,False
 he's undressing,Ia,loose,ending,False,False,False,True,False
+he's undressing,Ia*,strict,full,True,True,True,True,True
+he's undressing,Ia*,loose,full,True,True,True,True,True
 "he's choosing him, it",Ia,strict,ending,False,False,False,True,False
 "he's choosing him, it",Ia,loose,ending,False,False,False,True,False
+"he's choosing him, it",Ia*,strict,full,True,True,True,True,True
+"he's choosing him, it",Ia*,loose,full,True,True,True,True,True
 he's eating a flexible object,Id,strict,ending,True,True,False,True,False
 he's eating a flexible object,Id,loose,ending,True,True,False,True,False
 he's eating a flexible object,IIa,loose,ending,True,True,False,False,False
@@ -296,10 +340,14 @@ he's eating a flexible object,IIa,loose,ending,True,True,False,False,False
 1. he's picking it up  2. he's getting it,Ia,loose,full,True,True,True,True,True
 he's waving his hand,Ia,strict,full,True,True,True,True,True
 he's waving his hand,Ia,loose,full,True,True,True,True,True
+he's waving his hand,Ia*,strict,ending,False,False,False,True,False
+he's waving his hand,Ia*,loose,ending,False,False,False,True,False
 he's having a nightmare,Ia,strict,full,True,True,True,True,True
 he's having a nightmare,Ia,loose,full,True,True,True,True,True
 he's snoring,Ia,strict,full,True,True,True,True,True
 he's snoring,Ia,loose,full,True,True,True,True,True
+he's snoring,Ia*,strict,ending,False,False,False,True,False
+he's snoring,Ia*,loose,ending,False,False,False,True,False
 he's thirsty,Id,strict,ending,False,False,False,True,False
 he's thirsty,Id,loose,ending,False,False,False,True,False
 he's thirsty,IIa,loose,ending,False,False,False,False,False
@@ -480,10 +528,24 @@ he's changing clothes,Ic*,loose,full,True,True,True,True,True
 he's changing clothes,Id,strict,ending,False,False,False,True,False
 he's changing clothes,Id,loose,ending,False,False,False,True,False
 he's changing clothes,IIa,loose,ending,False,False,False,False,False
+he's climbing it,X*,strict,full,True,True,True,True,True
+he's climbing it,X*,loose,full,True,True,True,True,True
 "he, it's going out of sight",VIIIa,loose,full,True,True,True,True,True
 they're having church services,VIIIa,loose,full,True,True,True,True,True
 he's becoming blind,VIIIa,loose,full,True,True,True,True,True
+"he's chasing him, it",X*,strict,full,True,True,True,True,True
+"he's chasing him, it",X*,loose,full,True,True,True,True,True
+"he's attacking him, it",X*,strict,full,True,True,True,True,True
+"he's attacking him, it",X*,loose,full,True,True,True,True,True
+he's not having any luck hunting,X*,strict,full,True,True,True,True,True
+he's not having any luck hunting,X*,loose,full,True,True,True,True,True
 "he's belching, burping",VIIIa,loose,full,True,True,True,True,True
+he's leading him by the hand,X*,strict,full,True,True,True,True,True
+he's leading him by the hand,X*,loose,full,True,True,True,True,True
+he's carrying a long object on his shoulder,X*,strict,full,True,True,True,True,True
+he's carrying a long object on his shoulder,X*,loose,full,True,True,True,True,True
+"1. he's dragging him, it 2. he's towing it",X*,strict,full,True,True,True,True,True
+"1. he's dragging him, it 2. he's towing it",X*,loose,full,True,True,True,True,True
 he's happy/thankful,VIIIa,loose,full,True,True,True,True,True
 he's pitying him,VIIIa,loose,full,True,True,True,True,True
 he's becoming angry,VIIIa,loose,full,True,True,True,True,True
@@ -495,9 +557,23 @@ he understands it,VIIIa,loose,full,True,True,True,True,True
 he's putting his hat on,Id,strict,ending,False,False,False,True,False
 he's putting his hat on,Id,loose,ending,False,False,False,True,False
 he's putting his hat on,IIa,loose,ending,False,False,False,False,False
+"he's following him, it",X*,strict,full,True,True,True,True,True
+"he's following him, it",X*,loose,full,True,True,True,True,True
 he's parting with him (in death),VIIIa,loose,full,True,True,True,True,True
+he's taking a liquid somewhere by hand,X*,strict,full,True,True,True,True,True
+he's taking a liquid somewhere by hand,X*,loose,full,True,True,True,True,True
 he's taking revenge,VIIIa,loose,full,True,True,True,True,True
+he's taking a long object somewhere by hand,X*,strict,full,True,True,True,True,True
+he's taking a long object somewhere by hand,X*,loose,full,True,True,True,True,True
+he's swimming (propelling himself through water),X*,strict,full,True,True,True,True,True
+he's swimming (propelling himself through water),X*,loose,full,True,True,True,True,True
+he's backing up,X*,strict,full,True,True,True,True,True
+he's backing up,X*,loose,full,True,True,True,True,True
+he's taking a flexible object somewhere by hand,X*,strict,full,True,True,True,True,True
+he's taking a flexible object somewhere by hand,X*,loose,full,True,True,True,True,True
 he's waking up,VIIIa,loose,full,True,True,True,True,True
+he's taking it somewhere by hand,X*,strict,full,True,True,True,True,True
+he's taking it somewhere by hand,X*,loose,full,True,True,True,True,True
 he's crossing it (a body of water),VIIIa,loose,full,True,True,True,True,True
 "it's accumulating, it's increasing",VIIIa,loose,full,True,True,True,True,True
 he's falling from an upright  position,VIIIa,loose,full,True,True,True,True,True
@@ -508,34 +584,45 @@ he's buying it,Ia,strict,ending,False,False,False,True,True
 he's buying it,Ia,loose,ending,False,False,False,True,True
 he's buying it,IIIc1,strict,full,True,True,True,True,True
 he's buying it,IIIc1,loose,full,True,True,True,True,True
+he's buying it,IIIc1*,strict,ending,False,False,False,False,False
+he's buying it,IIIc1*,loose,ending,False,False,False,False,False
 he's buying it,IIIc2,strict,ending,False,False,False,False,True
 he's buying it,IIIc2,loose,ending,False,False,False,False,True
 he's swallowing it,Ia,strict,ending,False,True,True,True,True
 he's swallowing it,Ia,loose,ending,False,True,True,True,True
 he's swallowing it,IIIc1,strict,ending,False,False,False,False,False
 he's swallowing it,IIIc1,loose,ending,False,False,False,False,False
+he's swallowing it,IIIc1*,strict,ending,False,False,False,False,False
+he's swallowing it,IIIc1*,loose,ending,False,False,False,False,False
 he's swallowing it,IIIc2,strict,full,True,True,True,True,True
 he's swallowing it,IIIc2,loose,full,True,True,True,True,True
 it's swelling,Ia,strict,ending,False,True,True,True,True
 it's swelling,Ia,loose,ending,False,True,True,True,True
 it's swelling,IIIc1,strict,ending,False,False,False,False,False
 it's swelling,IIIc1,loose,ending,False,False,False,False,False
+it's swelling,IIIc1*,strict,ending,False,False,False,False,False
+it's swelling,IIIc1*,loose,ending,False,False,False,False,False
 it's swelling,IIIc2,strict,full,True,True,True,True,True
 it's swelling,IIIc2,loose,full,True,True,True,True,True
 he's getting a rash,Ia,strict,ending,False,True,True,True,True
 he's getting a rash,Ia,loose,ending,False,True,True,True,True
 he's getting a rash,IIIc1,strict,ending,False,False,False,False,False
 he's getting a rash,IIIc1,loose,ending,False,False,False,False,False
+he's getting a rash,IIIc1*,strict,ending,False,False,False,False,False
+he's getting a rash,IIIc1*,loose,ending,False,False,False,False,False
 he's getting a rash,IIIc2,strict,full,True,True,True,True,True
 he's getting a rash,IIIc2,loose,full,True,True,True,True,True
 he's planting it,Ia,strict,ending,False,True,True,True,True
 he's planting it,Ia,loose,ending,False,True,True,True,True
 he's planting it,IIIc1,loose,ending,False,False,False,False,False
+he's planting it,IIIc1*,loose,ending,False,False,False,False,False
 he's planting it,IIIc2,loose,full,True,True,True,True,True
 "it's (round, long) falling",Ia,strict,ending,False,False,False,True,True
 "it's (round, long) falling",Ia,loose,ending,False,False,False,True,True
 "it's (round, long) falling",IIIc1,strict,full,True,True,True,True,True
 "it's (round, long) falling",IIIc1,loose,full,True,True,True,True,True
+"it's (round, long) falling",IIIc1*,strict,ending,False,False,False,False,False
+"it's (round, long) falling",IIIc1*,loose,ending,False,False,False,False,False
 "it's (round, long) falling",IIIc2,strict,ending,False,False,False,False,True
 "it's (round, long) falling",IIIc2,loose,ending,False,False,False,False,True
 he's piling it up,Id,strict,ending,False,False,False,True,False
@@ -622,6 +709,8 @@ he's becoming wise,Ia,strict,ending,False,False,False,True,True
 he's becoming wise,Ia,loose,ending,False,False,False,True,True
 he's becoming wise,IIIc1,strict,ending,False,False,False,False,False
 he's becoming wise,IIIc1,loose,ending,False,False,False,False,False
+he's becoming wise,IIIc1*,strict,full,True,True,True,True,True
+he's becoming wise,IIIc1*,loose,full,True,True,True,True,True
 he's becoming wise,IIIc2,strict,ending,False,False,False,False,True
 he's becoming wise,IIIc2,loose,ending,False,False,False,False,True
 1. he's closing it  2. he's jailing him,Id,strict,ending,False,False,False,True,False
@@ -711,6 +800,8 @@ he's sandwiching it,IIIb,loose,ending,False,False,True,False,True
 "he, it's growing",Ia,loose,ending,False,False,False,True,True
 "he, it's growing",IIIc1,strict,ending,False,False,False,False,False
 "he, it's growing",IIIc1,loose,ending,False,False,False,False,False
+"he, it's growing",IIIc1*,strict,full,True,True,True,True,True
+"he, it's growing",IIIc1*,loose,full,True,True,True,True,True
 "he, it's growing",IIIc2,strict,ending,False,False,False,False,True
 "he, it's growing",IIIc2,loose,ending,False,False,False,False,True
 he's enduring it (idiom),Id,strict,ending,False,False,False,True,False
@@ -735,11 +826,15 @@ he's enduring it (idiom),IIIb,loose,ending,False,False,False,False,True
 "1.  he's breaking a flexible object, 2. He's cutting a flexible object",Id,strict,ending,False,False,False,True,False
 "1.  he's breaking a flexible object, 2. He's cutting a flexible object",Id,loose,ending,False,False,False,True,False
 "1.  he's breaking a flexible object, 2. He's cutting a flexible object",IIa,loose,ending,False,False,False,True,False
+"1.  he's breaking a flexible object, 2. He's cutting a flexible object",IIId*,strict,full,True,True,True,True,True
+"1.  he's breaking a flexible object, 2. He's cutting a flexible object",IIId*,loose,full,True,True,True,True,True
 he's breaking a long object,Ia,strict,ending,False,False,False,False,False
 he's breaking a long object,Ia,loose,ending,False,False,False,False,False
 he's breaking a long object,Id,strict,ending,False,False,False,True,False
 he's breaking a long object,Id,loose,ending,False,False,False,True,False
 he's breaking a long object,IIa,loose,ending,False,False,False,True,False
+he's breaking a long object,IIId*,strict,full,True,True,True,True,True
+he's breaking a long object,IIId*,loose,full,True,True,True,True,True
 "he's pushing him, it",Id,strict,ending,False,False,False,True,False
 "he's pushing him, it",Id,loose,ending,False,False,False,True,False
 "he's pushing him, it",IIa,loose,ending,False,False,False,True,False
@@ -747,6 +842,8 @@ he's falling from an elevated position,Ia,strict,ending,False,False,False,True,T
 he's falling from an elevated position,Ia,loose,ending,False,False,False,True,True
 he's falling from an elevated position,IIIc1,strict,full,True,True,True,True,True
 he's falling from an elevated position,IIIc1,loose,full,True,True,True,True,True
+he's falling from an elevated position,IIIc1*,strict,ending,False,False,False,False,False
+he's falling from an elevated position,IIIc1*,loose,ending,False,False,False,False,False
 he's falling from an elevated position,IIIc2,strict,ending,False,False,False,False,True
 he's falling from an elevated position,IIIc2,loose,ending,False,False,False,False,True
 he's nodding his head,Id,strict,ending,False,False,False,True,False
@@ -792,11 +889,14 @@ he's blinking,Ia,loose,ending,False,False,False,False,False
 he's blinking,Id,strict,ending,False,False,False,True,False
 he's blinking,Id,loose,ending,False,False,False,True,False
 he's blinking,IIa,loose,ending,False,False,False,False,False
+he's blinking,IIId*,strict,full,True,True,True,True,True
+he's blinking,IIId*,loose,full,True,True,True,True,True
 it's flashing (reflected light),Ia,strict,ending,False,False,False,False,False
 it's flashing (reflected light),Ia,loose,ending,False,False,False,False,False
 he's getting well,Ia,strict,ending,False,False,False,True,True
 he's getting well,Ia,loose,ending,False,False,False,True,True
 he's getting well,IIIc1,loose,ending,False,False,False,False,False
+he's getting well,IIIc1*,loose,ending,False,False,False,False,False
 he's getting well,IIIc2,loose,full,True,True,True,True,True
 he's sneezing,Id,strict,ending,False,False,False,True,False
 he's sneezing,Id,loose,ending,False,False,False,True,False
@@ -812,22 +912,30 @@ he's drilling a hole,Ia,loose,ending,False,False,False,False,False
 he's drilling a hole,Id,strict,ending,False,True,False,True,False
 he's drilling a hole,Id,loose,ending,False,True,False,True,False
 he's drilling a hole,IIa,loose,ending,False,True,False,False,False
+he's drilling a hole,IIId*,strict,full,True,True,True,True,True
+he's drilling a hole,IIId*,loose,full,True,True,True,True,True
 he/it is going through it,Ia,strict,ending,False,False,False,True,True
 he/it is going through it,Ia,loose,ending,False,False,False,True,True
 he/it is going through it,IIIc1,strict,ending,False,False,False,False,False
 he/it is going through it,IIIc1,loose,ending,False,False,False,False,False
+he/it is going through it,IIIc1*,strict,full,True,True,True,True,True
+he/it is going through it,IIIc1*,loose,full,True,True,True,True,True
 he/it is going through it,IIIc2,strict,ending,False,False,False,False,True
 he/it is going through it,IIIc2,loose,ending,False,False,False,False,True
 he's getting exhausted,Ia,strict,ending,False,False,False,True,True
 he's getting exhausted,Ia,loose,ending,False,False,False,True,True
 he's getting exhausted,IIIc1,strict,ending,False,False,False,False,False
 he's getting exhausted,IIIc1,loose,ending,False,False,False,False,False
+he's getting exhausted,IIIc1*,strict,full,True,True,True,True,True
+he's getting exhausted,IIIc1*,loose,full,True,True,True,True,True
 he's getting exhausted,IIIc2,strict,ending,False,False,False,False,True
 he's getting exhausted,IIIc2,loose,ending,False,False,False,False,True
 they are adjourning,Ia,strict,ending,False,True,True,True,True
 they are adjourning,Ia,loose,ending,False,True,True,True,True
 they are adjourning,IIIc1,strict,ending,False,False,False,False,False
 they are adjourning,IIIc1,loose,ending,False,False,False,False,False
+they are adjourning,IIIc1*,strict,ending,False,False,False,False,False
+they are adjourning,IIIc1*,loose,ending,False,False,False,False,False
 they are adjourning,IIIc2,strict,full,True,True,True,True,True
 they are adjourning,IIIc2,loose,full,True,True,True,True,True
 "he's borrowing him, it",Ia,strict,ending,False,False,False,False,True
@@ -835,50 +943,67 @@ they are adjourning,IIIc2,loose,full,True,True,True,True,True
 "he's borrowing him, it",Id,strict,ending,False,False,False,True,False
 "he's borrowing him, it",Id,loose,ending,False,False,False,True,False
 "he's borrowing him, it",IIa,loose,ending,False,False,False,True,False
+"he's borrowing him, it",IIId*,strict,full,True,True,True,True,True
+"he's borrowing him, it",IIId*,loose,full,True,True,True,True,True
 1. it's becoming done (by cooking) 2. it's ripening,Ia,strict,ending,False,False,False,True,True
 1. it's becoming done (by cooking) 2. it's ripening,Ia,loose,ending,False,False,False,True,True
 1. it's becoming done (by cooking) 2. it's ripening,IIIc1,loose,ending,False,False,False,False,False
+1. it's becoming done (by cooking) 2. it's ripening,IIIc1*,loose,ending,False,False,False,False,False
 1. it's becoming done (by cooking) 2. it's ripening,IIIc2,loose,ending,False,False,False,False,True
 1. it's decaying  2. it's spoiling,Ia,strict,ending,False,False,False,True,True
 1. it's decaying  2. it's spoiling,Ia,loose,ending,False,False,False,True,True
 1. it's decaying  2. it's spoiling,IIIc1,strict,full,True,True,True,True,True
 1. it's decaying  2. it's spoiling,IIIc1,loose,full,True,True,True,True,True
+1. it's decaying  2. it's spoiling,IIIc1*,strict,ending,False,False,False,False,False
+1. it's decaying  2. it's spoiling,IIIc1*,loose,ending,False,False,False,False,False
 1. it's decaying  2. it's spoiling,IIIc2,strict,ending,False,False,False,False,True
 1. it's decaying  2. it's spoiling,IIIc2,loose,ending,False,False,False,False,True
 he's finding it out,Ia,strict,ending,False,False,False,True,True
 he's finding it out,Ia,loose,ending,False,False,False,True,True
 he's finding it out,IIIc1,strict,full,True,True,True,True,True
 he's finding it out,IIIc1,loose,full,True,True,True,True,True
+he's finding it out,IIIc1*,strict,ending,False,False,False,False,False
+he's finding it out,IIIc1*,loose,ending,False,False,False,False,False
 he's finding it out,IIIc2,strict,ending,False,False,False,False,True
 he's finding it out,IIIc2,loose,ending,False,False,False,False,True
 he's confronted with it,Ia,strict,ending,False,False,False,True,True
 he's confronted with it,Ia,loose,ending,False,False,False,True,True
 he's confronted with it,IIIc1,strict,full,True,True,True,True,True
 he's confronted with it,IIIc1,loose,full,True,True,True,True,True
+he's confronted with it,IIIc1*,strict,ending,False,False,False,False,False
+he's confronted with it,IIIc1*,loose,ending,False,False,False,False,False
 he's confronted with it,IIIc2,strict,ending,False,False,False,False,True
 he's confronted with it,IIIc2,loose,ending,False,False,False,False,True
 1. they are meeting 2. they are meeting someone,Ia,strict,ending,False,False,False,True,True
 1. they are meeting 2. they are meeting someone,Ia,loose,ending,False,False,False,True,True
 1. they are meeting 2. they are meeting someone,IIIc1,strict,full,True,True,True,True,True
 1. they are meeting 2. they are meeting someone,IIIc1,loose,full,True,True,True,True,True
+1. they are meeting 2. they are meeting someone,IIIc1*,strict,ending,False,False,False,False,False
+1. they are meeting 2. they are meeting someone,IIIc1*,loose,ending,False,False,False,False,False
 1. they are meeting 2. they are meeting someone,IIIc2,strict,ending,False,False,False,False,True
 1. they are meeting 2. they are meeting someone,IIIc2,loose,ending,False,False,False,False,True
 "it (fire, light) is going out",Ia,strict,ending,False,False,False,True,True
 "it (fire, light) is going out",Ia,loose,ending,False,False,False,True,True
 "it (fire, light) is going out",IIIc1,strict,full,True,True,True,True,True
 "it (fire, light) is going out",IIIc1,loose,full,True,True,True,True,True
+"it (fire, light) is going out",IIIc1*,strict,ending,False,False,False,False,False
+"it (fire, light) is going out",IIIc1*,loose,ending,False,False,False,False,False
 "it (fire, light) is going out",IIIc2,strict,ending,False,False,False,False,True
 "it (fire, light) is going out",IIIc2,loose,ending,False,False,False,False,True
 he's beating him at a game,Ia,strict,ending,False,False,False,True,True
 he's beating him at a game,Ia,loose,ending,False,False,False,True,True
 he's beating him at a game,IIIc1,strict,full,True,True,True,True,True
 he's beating him at a game,IIIc1,loose,full,True,True,True,True,True
+he's beating him at a game,IIIc1*,strict,ending,False,False,False,False,False
+he's beating him at a game,IIIc1*,loose,ending,False,False,False,False,False
 he's beating him at a game,IIIc2,strict,ending,False,False,False,False,True
 he's beating him at a game,IIIc2,loose,ending,False,False,False,False,True
 he's becoming enraged,Ia,strict,ending,False,False,False,True,True
 he's becoming enraged,Ia,loose,ending,False,False,False,True,True
 he's becoming enraged,IIIc1,strict,full,True,True,True,True,True
 he's becoming enraged,IIIc1,loose,full,True,True,True,True,True
+he's becoming enraged,IIIc1*,strict,ending,False,False,False,False,False
+he's becoming enraged,IIIc1*,loose,ending,False,False,False,False,False
 he's becoming enraged,IIIc2,strict,ending,False,False,False,False,True
 he's becoming enraged,IIIc2,loose,ending,False,False,False,False,True
 it's getting warm,Ia,strict,ending,False,False,False,False,True
@@ -887,24 +1012,32 @@ it's getting warm,Ia,loose,ending,False,False,False,False,True
 1. he's becoming warm  2. he's warming himself,Ia,loose,ending,False,False,False,True,True
 1. he's becoming warm  2. he's warming himself,IIIc1,strict,full,True,True,True,True,True
 1. he's becoming warm  2. he's warming himself,IIIc1,loose,full,True,True,True,True,True
+1. he's becoming warm  2. he's warming himself,IIIc1*,strict,ending,False,False,False,False,False
+1. he's becoming warm  2. he's warming himself,IIIc1*,loose,ending,False,False,False,False,False
 1. he's becoming warm  2. he's warming himself,IIIc2,strict,ending,False,False,False,False,True
 1. he's becoming warm  2. he's warming himself,IIIc2,loose,ending,False,False,False,False,True
 it's melting,Ia,strict,ending,False,False,False,True,True
 it's melting,Ia,loose,ending,False,False,False,True,True
 it's melting,IIIc1,strict,full,True,True,True,True,True
 it's melting,IIIc1,loose,full,True,True,True,True,True
+it's melting,IIIc1*,strict,ending,False,False,False,False,False
+it's melting,IIIc1*,loose,ending,False,False,False,False,False
 it's melting,IIIc2,strict,ending,False,False,False,False,True
 it's melting,IIIc2,loose,ending,False,False,False,False,True
 "he's dying, (human)",Ia,strict,ending,False,False,False,True,True
 "he's dying, (human)",Ia,loose,ending,False,False,False,True,True
 "he's dying, (human)",IIIc1,strict,full,True,True,True,True,True
 "he's dying, (human)",IIIc1,loose,full,True,True,True,True,True
+"he's dying, (human)",IIIc1*,strict,ending,False,False,False,False,False
+"he's dying, (human)",IIIc1*,loose,ending,False,False,False,False,False
 "he's dying, (human)",IIIc2,strict,ending,False,False,False,False,True
 "he's dying, (human)",IIIc2,loose,ending,False,False,False,False,True
 he's ascending an incline,Ia,strict,ending,False,False,False,True,True
 he's ascending an incline,Ia,loose,ending,False,False,False,True,True
 he's ascending an incline,IIIc1,strict,full,True,True,True,True,True
 he's ascending an incline,IIIc1,loose,full,True,True,True,True,True
+he's ascending an incline,IIIc1*,strict,ending,False,False,False,False,False
+he's ascending an incline,IIIc1*,loose,ending,False,False,False,False,False
 he's ascending an incline,IIIc2,strict,ending,False,False,False,False,True
 he's ascending an incline,IIIc2,loose,ending,False,False,False,False,True
 he's acting like him,Id,strict,ending,False,False,False,True,False
@@ -931,6 +1064,8 @@ he's burning,Ia,strict,ending,False,False,False,True,True
 he's burning,Ia,loose,ending,False,False,False,True,True
 he's burning,IIIc1,strict,ending,False,False,False,False,False
 he's burning,IIIc1,loose,ending,False,False,False,False,False
+he's burning,IIIc1*,strict,full,True,True,True,True,True
+he's burning,IIIc1*,loose,full,True,True,True,True,True
 he's burning,IIIc2,strict,ending,False,False,False,False,True
 he's burning,IIIc2,loose,ending,False,False,False,False,True
 he's forgetting,Ia,strict,ending,False,False,False,False,True
@@ -938,15 +1073,21 @@ he's forgetting,Ia,loose,ending,False,False,False,False,True
 he's forgetting,Id,strict,ending,False,False,False,True,False
 he's forgetting,Id,loose,ending,False,False,False,True,False
 he's forgetting,IIa,loose,ending,False,False,False,False,False
+he's forgetting,IIId*,strict,full,True,True,True,True,True
+he's forgetting,IIId*,loose,full,True,True,True,True,True
 he's sewing it,Ia,strict,ending,False,False,False,False,False
 he's sewing it,Ia,loose,ending,False,False,False,False,False
 he's sewing it,Id,strict,ending,False,False,False,True,False
 he's sewing it,Id,loose,ending,False,False,False,True,False
 he's sewing it,IIa,loose,ending,False,False,False,False,False
+he's sewing it,IIId*,strict,full,True,True,True,True,True
+he's sewing it,IIId*,loose,full,True,True,True,True,True
 he's getting off,Ia,strict,ending,False,False,False,True,True
 he's getting off,Ia,loose,ending,False,False,False,True,True
 he's getting off,IIIc1,strict,ending,False,False,False,True,True
 he's getting off,IIIc1,loose,ending,False,False,False,True,True
+he's getting off,IIIc1*,strict,ending,False,False,False,False,False
+he's getting off,IIIc1*,loose,ending,False,False,False,False,False
 he's getting off,IIIc2,strict,ending,False,False,False,False,True
 he's getting off,IIIc2,loose,ending,False,False,False,False,True
 he's drinking it,Id,strict,ending,False,False,False,True,False
@@ -960,15 +1101,21 @@ it's barking,Ia,loose,ending,False,True,True,False,True
 it's barking,Id,strict,ending,False,False,False,True,False
 it's barking,Id,loose,ending,False,False,False,True,False
 it's barking,IIa,loose,ending,False,False,False,False,False
+it's barking,IIId*,strict,full,True,True,True,True,True
+it's barking,IIId*,loose,full,True,True,True,True,True
 he's painting it,Ia,strict,ending,False,True,True,False,True
 he's painting it,Ia,loose,ending,False,True,True,False,True
 he's painting it,Id,strict,ending,False,False,False,True,False
 he's painting it,Id,loose,ending,False,False,False,True,False
 he's painting it,IIa,loose,ending,False,False,False,False,False
+he's painting it,IIId*,strict,full,True,True,True,True,True
+he's painting it,IIId*,loose,full,True,True,True,True,True
 it (a flexible object) is falling from a hanging position,Ia,strict,ending,False,False,False,True,True
 it (a flexible object) is falling from a hanging position,Ia,loose,ending,False,False,False,True,True
 it (a flexible object) is falling from a hanging position,IIIc1,strict,full,True,True,True,True,True
 it (a flexible object) is falling from a hanging position,IIIc1,loose,full,True,True,True,True,True
+it (a flexible object) is falling from a hanging position,IIIc1*,strict,ending,False,False,False,False,False
+it (a flexible object) is falling from a hanging position,IIIc1*,loose,ending,False,False,False,False,False
 it (a flexible object) is falling from a hanging position,IIIc2,strict,ending,False,False,False,False,True
 it (a flexible object) is falling from a hanging position,IIIc2,loose,ending,False,False,False,False,True
 he's frolicking,Id,strict,ending,False,False,False,True,False
@@ -984,24 +1131,32 @@ he's going down hill,Ia,strict,ending,False,False,False,True,True
 he's going down hill,Ia,loose,ending,False,False,False,True,True
 he's going down hill,IIIc1,strict,full,True,True,True,True,True
 he's going down hill,IIIc1,loose,full,True,True,True,True,True
+he's going down hill,IIIc1*,strict,ending,False,False,False,False,False
+he's going down hill,IIIc1*,loose,ending,False,False,False,False,False
 he's going down hill,IIIc2,strict,ending,False,False,False,False,True
 he's going down hill,IIIc2,loose,ending,False,False,False,False,True
 he's releasing him,Ia,strict,ending,False,False,False,True,True
 he's releasing him,Ia,loose,ending,False,False,False,True,True
 he's releasing him,IIIc1,strict,full,True,True,True,True,True
 he's releasing him,IIIc1,loose,full,True,True,True,True,True
+he's releasing him,IIIc1*,strict,ending,False,False,False,False,False
+he's releasing him,IIIc1*,loose,ending,False,False,False,False,False
 he's releasing him,IIIc2,strict,ending,False,False,False,False,True
 he's releasing him,IIIc2,loose,ending,False,False,False,False,True
 "He's releasing it, (voluntarily)",Ia,strict,ending,False,False,False,True,True
 "He's releasing it, (voluntarily)",Ia,loose,ending,False,False,False,True,True
 "He's releasing it, (voluntarily)",IIIc1,strict,full,True,True,True,True,True
 "He's releasing it, (voluntarily)",IIIc1,loose,full,True,True,True,True,True
+"He's releasing it, (voluntarily)",IIIc1*,strict,ending,False,False,False,False,False
+"He's releasing it, (voluntarily)",IIIc1*,loose,ending,False,False,False,False,False
 "He's releasing it, (voluntarily)",IIIc2,strict,ending,False,False,False,False,True
 "He's releasing it, (voluntarily)",IIIc2,loose,ending,False,False,False,False,True
 he's giving up,Ia,strict,ending,False,False,False,True,True
 he's giving up,Ia,loose,ending,False,False,False,True,True
 he's giving up,IIIc1,strict,full,True,True,True,True,True
 he's giving up,IIIc1,loose,full,True,True,True,True,True
+he's giving up,IIIc1*,strict,ending,False,False,False,False,False
+he's giving up,IIIc1*,loose,ending,False,False,False,False,False
 he's giving up,IIIc2,strict,ending,False,False,False,False,True
 he's giving up,IIIc2,loose,ending,False,False,False,False,True
 he's squatting,Id,strict,ending,False,False,False,True,False
@@ -1271,6 +1426,8 @@ he's getting full,Ia,strict,ending,False,False,False,True,True
 he's getting full,Ia,loose,ending,False,False,False,True,True
 he's getting full,IIIc1,strict,ending,False,False,False,False,False
 he's getting full,IIIc1,loose,ending,False,False,False,False,False
+he's getting full,IIIc1*,strict,full,True,True,True,True,True
+he's getting full,IIIc1*,loose,full,True,True,True,True,True
 he's getting full,IIIc2,strict,ending,False,False,False,False,True
 he's getting full,IIIc2,loose,ending,False,False,False,False,True
 "1. he's whittling it., 2. he's carving it., 3. he's hewing it",Id,strict,ending,False,False,False,True,False
@@ -1399,6 +1556,8 @@ he's ironing,Ia,loose,ending,False,False,False,False,False
 he's ironing,Id,strict,ending,False,True,False,True,False
 he's ironing,Id,loose,ending,False,True,False,True,False
 he's ironing,IIa,loose,ending,False,False,False,True,False
+he's ironing,IIId*,strict,full,True,True,True,True,True
+he's ironing,IIId*,loose,full,True,True,True,True,True
 "he's rowing, paddling",Ia,strict,ending,False,False,False,True,False
 "he's rowing, paddling",Ia,loose,ending,False,False,False,True,False
 "he's rowing, paddling",IIIc2,strict,ending,False,False,False,False,False
@@ -1408,15 +1567,21 @@ he's scratching,Ia,loose,ending,False,False,False,False,False
 he's scratching,Id,strict,ending,False,False,False,True,False
 he's scratching,Id,loose,ending,False,False,False,True,False
 he's scratching,IIa,loose,ending,False,False,False,True,False
+he's scratching,IIId*,strict,full,True,True,True,True,True
+he's scratching,IIId*,loose,full,True,True,True,True,True
 "he's scratching him, it",Ia,strict,ending,False,False,False,False,False
 "he's scratching him, it",Ia,loose,ending,False,False,False,False,False
 "he's scratching him, it",Id,strict,ending,False,False,False,True,False
 "he's scratching him, it",Id,loose,ending,False,False,False,True,False
 "he's scratching him, it",IIa,loose,ending,False,False,False,True,False
+"he's scratching him, it",IIId*,strict,full,True,True,True,True,True
+"he's scratching him, it",IIId*,loose,full,True,True,True,True,True
 he's amazed,Ia,strict,ending,False,False,False,True,True
 he's amazed,Ia,loose,ending,False,False,False,True,True
 he's amazed,IIIc1,strict,full,True,True,True,True,True
 he's amazed,IIIc1,loose,full,True,True,True,True,True
+he's amazed,IIIc1*,strict,ending,False,False,False,False,False
+he's amazed,IIIc1*,loose,ending,False,False,False,False,False
 he's amazed,IIIc2,strict,ending,False,False,False,False,True
 he's amazed,IIIc2,loose,ending,False,False,False,False,True
 he's digging it,Ia,strict,ending,False,False,False,False,False
@@ -1424,10 +1589,14 @@ he's digging it,Ia,loose,ending,False,False,False,False,False
 he's digging it,Id,strict,ending,False,False,False,True,False
 he's digging it,Id,loose,ending,False,False,False,True,False
 he's digging it,IIa,loose,ending,False,False,False,True,False
+he's digging it,IIId*,strict,full,True,True,True,True,True
+he's digging it,IIId*,loose,full,True,True,True,True,True
 he's embarrassed,Ia,strict,ending,False,False,False,True,True
 he's embarrassed,Ia,loose,ending,False,False,False,True,True
 he's embarrassed,IIIc1,strict,full,True,True,True,True,True
 he's embarrassed,IIIc1,loose,full,True,True,True,True,True
+he's embarrassed,IIIc1*,strict,ending,False,False,False,False,False
+he's embarrassed,IIIc1*,loose,ending,False,False,False,False,False
 he's embarrassed,IIIc2,strict,ending,False,False,False,False,True
 he's embarrassed,IIIc2,loose,ending,False,False,False,False,True
 it's leaking,Ia,strict,ending,False,False,False,False,False
@@ -1437,10 +1606,14 @@ he's ordering it,Ia,loose,ending,False,False,False,False,False
 he's ordering it,Id,strict,ending,False,False,False,True,False
 he's ordering it,Id,loose,ending,False,False,False,True,False
 he's ordering it,IIa,loose,ending,False,False,False,True,False
+he's ordering it,IIId*,strict,full,True,True,True,True,True
+he's ordering it,IIId*,loose,full,True,True,True,True,True
 a long object is falling from an upright position,Ia,strict,ending,False,False,False,True,True
 a long object is falling from an upright position,Ia,loose,ending,False,False,False,True,True
 a long object is falling from an upright position,IIIc1,strict,ending,False,False,False,False,False
 a long object is falling from an upright position,IIIc1,loose,ending,False,False,False,False,False
+a long object is falling from an upright position,IIIc1*,strict,full,True,True,True,True,True
+a long object is falling from an upright position,IIIc1*,loose,full,True,True,True,True,True
 a long object is falling from an upright position,IIIc2,strict,ending,False,False,False,False,True
 a long object is falling from an upright position,IIIc2,loose,ending,False,False,False,False,True
 he's sweeping it,Id,strict,ending,False,False,False,True,False
@@ -1474,6 +1647,7 @@ he's quilting it,IIIb,loose,ending,False,False,True,False,True
 "he's crossing (a road, bridge, etc.)",Ia,strict,ending,False,False,False,True,True
 "he's crossing (a road, bridge, etc.)",Ia,loose,ending,False,False,False,True,True
 "he's crossing (a road, bridge, etc.)",IIIc1,loose,ending,False,False,False,False,False
+"he's crossing (a road, bridge, etc.)",IIIc1*,loose,ending,False,False,False,False,False
 "he's crossing (a road, bridge, etc.)",IIIc2,loose,full,True,True,True,True,True
 he's stinging it,Id,strict,ending,False,False,False,True,False
 he's stinging it,Id,loose,ending,False,False,False,True,False
@@ -1486,35 +1660,47 @@ he's clawing him,Ia,loose,ending,False,False,False,False,False
 he's clawing him,Id,strict,ending,False,False,False,True,False
 he's clawing him,Id,loose,ending,False,False,False,True,False
 he's clawing him,IIa,loose,ending,False,False,False,True,False
+he's clawing him,IIId*,strict,full,True,True,True,True,True
+he's clawing him,IIId*,loose,full,True,True,True,True,True
 he's sucking it,Ia,strict,ending,False,False,False,False,False
 he's sucking it,Ia,loose,ending,False,False,False,False,False
 he's sucking it,Ib,loose,ending,False,False,False,False,False
 he's sucking it,Id,strict,ending,False,False,False,True,False
 he's sucking it,Id,loose,ending,False,False,False,True,False
 he's sucking it,IIa,loose,ending,False,False,False,False,False
+he's sucking it,IIId*,strict,full,True,True,True,True,True
+he's sucking it,IIId*,loose,full,True,True,True,True,True
 he's laughing,Ia,strict,ending,False,False,False,False,False
 he's laughing,Ia,loose,ending,False,False,False,False,False
 he's laughing,Ib,loose,ending,False,False,False,False,False
 he's laughing,Id,strict,ending,False,False,False,True,False
 he's laughing,Id,loose,ending,False,False,False,True,False
 he's laughing,IIa,loose,ending,False,False,False,False,False
+he's laughing,IIId*,strict,full,True,True,True,True,True
+he's laughing,IIId*,loose,full,True,True,True,True,True
 "he's dreaming about him, it",Ia,strict,ending,False,False,False,False,False
 "he's dreaming about him, it",Ia,loose,ending,False,False,False,False,False
 "he's dreaming about him, it",Ib,loose,ending,False,False,False,False,False
 "he's dreaming about him, it",Id,strict,ending,False,False,False,True,False
 "he's dreaming about him, it",Id,loose,ending,False,False,False,True,False
 "he's dreaming about him, it",IIa,loose,ending,False,False,False,False,False
+"he's dreaming about him, it",IIId*,strict,full,True,True,True,True,True
+"he's dreaming about him, it",IIId*,loose,full,True,True,True,True,True
 he's peeling it,Ia,strict,ending,False,False,False,False,False
 he's peeling it,Ia,loose,ending,False,False,False,False,False
 he's peeling it,Ib,loose,ending,False,False,False,False,False
 he's peeling it,Id,strict,ending,False,False,False,True,False
 he's peeling it,Id,loose,ending,False,False,False,True,False
 he's peeling it,IIa,loose,ending,False,False,False,False,False
+he's peeling it,IIId*,strict,full,True,True,True,True,True
+he's peeling it,IIId*,loose,full,True,True,True,True,True
 he's bragging,Ia,strict,ending,False,False,False,False,True
 he's bragging,Ia,loose,ending,False,False,False,False,True
 he's bragging,Id,strict,ending,False,False,False,True,False
 he's bragging,Id,loose,ending,False,False,False,True,False
 he's bragging,IIa,loose,ending,False,False,False,False,False
+he's bragging,IIId*,strict,full,True,True,True,True,True
+he's bragging,IIId*,loose,full,True,True,True,True,True
 he's spitting,Id,strict,ending,False,False,False,True,False
 he's spitting,Id,loose,ending,False,False,False,True,False
 he's spitting,IIa,loose,ending,False,False,False,False,False
