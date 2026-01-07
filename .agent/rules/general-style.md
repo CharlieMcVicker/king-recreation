@@ -1,3 +1,7 @@
+---
+trigger: always_on
+---
+
 # General Project Rules
 
 ## Data & Artifacts
@@ -17,3 +21,6 @@
 
 ## Meta Rules
 - **Agents and Rules**: Agents are NOT permitted to create, modify, or delete rule files within the `.agent/rules/` directory. All rule changes must be requested and approved by the USER, who will then handle the file operations.
+
+## Scope creep and follow up work
+- **Document and hand off** when problems are uncovered or new areas of the code need to be touched unexpectedly, write a follow up statement of work in the root directory. This can be handed off to a subagent down the line. Do not fall down rabbit holes. Dump context to disk and let the user decide how to proceed and if the problem is really what it seems.
