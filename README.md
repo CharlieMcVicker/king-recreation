@@ -110,6 +110,15 @@ For verbs that achieve an `ending` match but fail a `full` match for a given cla
 -   **Metric**: For each `(class, strictness)` pair, filter for rows where `scope == "ending"`. Calculate the "Pass Rate" (0.0 to 1.0) for each of the 5 stem-final columns.
 -   **Columns**: `class`, `strictness`, `match_count`, `present_rate`, `imperfective_rate`, `perfective_rate`, `imperative_rate`, `infinitive_rate`.
 
+### Near Miss Extraction
+
+For deep-dive analysis of specific classes, a diagnostic script allows extracting the full corpus data for "near miss" cases (where ending match passed but full match failed).
+
+**Usage:** `python3 -m king_recreation.extract_near_misses --class_id <ID> [--strictness <strict|loose>]`
+
+- **Output**: `artifacts/debug/near_misses_<ID>_<strictness>.csv`
+- **Result**: A CSV joining match metadata with the original corpus forms for all five function forms.
+
 ### Visualization
 
 To help interpret the results, a separate script `king_recreation/visualize_analysis.py` generates charts using `matplotlib` and `seaborn`.
