@@ -118,6 +118,28 @@ def analyze_matches():
 
     save_json(os.path.join(output_dir, 'verb_coverage.json'), coverage_summary)
 
+    # 2b. Export Unmatched Verbs
+    verb_forms_map = {row['definition']: row for row in corpus}
+    form_fields = ['present', 'imperfective', 'perfective', 'imperative', 'infinitive']
+
+    for strictness in ['strict', 'loose']:
+        target_set = set()
+        for key, row in filtered_matches.items():
+            verb, cls, s = key
+            if s == strictness and row['scope'] == 'full':
+                target_set.add(verb)
+        
+        unmatched = sorted(list(all_verbs - target_set))
+        unmatched_data = []
+        for v in unmatched:
+            data = {'verb': v}
+            if v in verb_forms_map:
+                for field in form_fields:
+                    data[field] = verb_forms_map[v].get(field, '')
+            unmatched_data.append(data)
+            
+        save_csv(os.path.join(output_dir, f'unmatched_verbs_{strictness}.csv'), unmatched_data, ['verb'] + form_fields)
+
     # Print summary to console
     print("\nVerb Class Coverage Summary:")
     print(f"{'Match Configuration':<20} | {'Count (>=1)':<12} | {'Percentage':<10}")
