@@ -15,13 +15,14 @@ export const dynamic = "force-dynamic";
 export default async function ComparePage({
   searchParams,
 }: {
-  searchParams: { classA?: string; classB?: string };
+  searchParams: Promise<{ classA?: string; classB?: string }>;
 }) {
+  const params = await searchParams;
   const classes = await getClasses();
   const allMatches = await getMatches();
 
-  const classA = searchParams.classA;
-  const classB = searchParams.classB;
+  const classA = params.classA;
+  const classB = params.classB;
 
   const matchesA = classA 
     ? allMatches.filter((m: any) => m.class === classA && m.scope === "full" && m.strictness === "strict")

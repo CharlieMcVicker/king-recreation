@@ -10,22 +10,30 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import NavSelect from "@/components/NavSelect";
+import MatchExplorer from "@/components/MatchExplorer";
 
 export const dynamic = "force-dynamic";
 
 export default async function ExplorerPage({
   searchParams,
 }: {
-  searchParams: { class?: string };
+  searchParams: Promise<{ class?: string; strictness?: string }>;
 }) {
-  const selectedClass = searchParams.class;
+  const params = await searchParams;
+  const selectedClass = params.class;
+  const selectedStrictness = params.strictness || "strict";
   const classes = await getClasses();
   const allMatches = await getMatches();
   const nearMisses = await getNearMisses();
 
   const classData = selectedClass ? classes.find((c: any) => c.class === selectedClass) : null;
+  
   const matches = selectedClass 
-    ? allMatches.filter((m: any) => m.class === selectedClass && m.scope === "full") 
+    ? allMatches.filter((m: any) => 
+        m.class === selectedClass && 
+        m.strictness === selectedStrictness &&
+        m.scope === "full"
+      ) 
     : [];
   
   const nearMissData = selectedClass
@@ -33,7 +41,11 @@ export default async function ExplorerPage({
     : [];
 
   const nearMissVerbs = selectedClass
-    ? allMatches.filter((m: any) => m.class === selectedClass && m.scope === "ending")
+    ? allMatches.filter((m: any) => 
+        m.class === selectedClass && 
+        m.strictness === selectedStrictness &&
+        m.scope === "ending"
+      )
     : [];
 
   return (
@@ -43,14 +55,28 @@ export default async function ExplorerPage({
           <h2 className="text-2xl font-bold tracking-tight">Class Explorer</h2>
           <p className="text-gray-500 dark:text-zinc-400">Deep dive into specific verb classes and their matching patterns.</p>
         </div>
-        <div className="relative w-64">
-           <NavSelect 
-             name="class" 
-             defaultValue={selectedClass || ""}
-             placeholder="Select a class..."
-             options={classes.map((c: any) => ({ label: c.class, value: c.class }))}
-             className="w-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-           />
+        <div className="flex items-center gap-4">
+           <div className="flex items-center gap-2">
+             <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Strictness:</span>
+             <NavSelect 
+               name="strictness" 
+               defaultValue={selectedStrictness}
+               options={[
+                 { label: "Strict", value: "strict" },
+                 { label: "Loose", value: "loose" }
+               ]}
+               className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+             />
+           </div>
+           <div className="relative w-64">
+              <NavSelect 
+                name="class" 
+                defaultValue={selectedClass || ""}
+                placeholder="Select a class..."
+                options={classes.map((c: any) => ({ label: c.class, value: c.class }))}
+                className="w-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              />
+           </div>
         </div>
       </div>
 
@@ -87,31 +113,7 @@ export default async function ExplorerPage({
               </div>
             </section>
 
-            <section className="bg-white dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800 shadow-sm overflow-hidden">
-              <div className="p-4 border-b border-gray-200 dark:border-zinc-800 bg-gray-50/50 dark:bg-zinc-800/20 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-emerald-600" />
-                  <h3 className="font-semibold text-sm">Full Match Gallery ({matches.length / 2} verbs)</h3>
-                </div>
-                <span className="text-[10px] text-gray-400 font-medium italic">Showing up to 50 results</span>
-              </div>
-              <div className="divide-y divide-gray-100 dark:divide-zinc-800 max-h-[400px] overflow-auto">
-                 {matches.slice(0, 100).filter((m: any) => m.strictness === "strict").map((match: any, i: number) => (
-                   <div key={i} className="px-6 py-4 flex items-center justify-between hover:bg-gray-50 dark:hover:bg-zinc-800/50 transition-colors">
-                      <div className="flex flex-col">
-                        <span className="text-sm font-medium">{match.definition}</span>
-                        <span className="text-xs text-gray-400">Strict Match</span>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-gray-300" />
-                   </div>
-                 ))}
-                 {matches.length === 0 && (
-                   <div className="p-8 text-center text-gray-400 text-sm italic">
-                      No full matches found for this class in strict or loose modes.
-                   </div>
-                 )}
-              </div>
-            </section>
+            <MatchExplorer matches={matches} classPattern={classData} />
           </div>
 
           {/* Near-Miss Diagnosis */}
@@ -122,7 +124,7 @@ export default async function ExplorerPage({
                 <h3 className="font-semibold text-sm">Near-Miss Diagnosis</h3>
               </div>
               <div className="p-6 space-y-6">
-                {nearMissData.map((nm: any) => (
+                {nearMissData.filter(nm => nm.strictness === selectedStrictness).map((nm: any) => (
                   <div key={nm.strictness} className="space-y-3">
                     <div className="flex items-center justify-between">
                       <span className="text-xs font-bold uppercase tracking-wider text-gray-500">{nm.strictness} Mode</span>
@@ -151,10 +153,10 @@ export default async function ExplorerPage({
                     </div>
                   </div>
                 ))}
-                {nearMissData.length === 0 && (
+                {nearMissData.filter(nm => nm.strictness === selectedStrictness).length === 0 && (
                   <div className="text-center py-6">
                     <Info className="w-8 h-8 text-gray-200 mx-auto mb-2" />
-                    <p className="text-xs text-gray-400 italic">No near-miss data available for this class.</p>
+                    <p className="text-xs text-gray-400 italic">No near-miss data available for this class in {selectedStrictness} mode.</p>
                   </div>
                 )}
               </div>
@@ -170,12 +172,12 @@ export default async function ExplorerPage({
                     Verbs that match the class ending but fail the stem final verification.
                   </p>
                   <div className="space-y-2 max-h-[300px] overflow-auto pr-2">
-                    {nearMissVerbs.filter((m: any) => m.scope === "ending").slice(0, 20).map((m: any, i: number) => (
+                    {nearMissVerbs.map((m: any, i: number) => (
                       <div key={i} className="p-2 border border-gray-100 dark:border-zinc-800 rounded text-xs hover:border-indigo-200 dark:hover:border-indigo-900/50 transition-colors">
                         {m.definition}
                       </div>
                     ))}
-                    {nearMissVerbs.filter((m: any) => m.scope === "ending").length === 0 && (
+                    {nearMissVerbs.length === 0 && (
                       <div className="text-center py-4 text-xs text-gray-400 italic">None found.</div>
                     )}
                   </div>
