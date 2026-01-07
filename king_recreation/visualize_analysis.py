@@ -75,30 +75,45 @@ def plot_near_miss_heatmap(csv_path, output_prefix):
 
     rate_cols = [c for c in df.columns if c.endswith('_rate')]
     
-    def create_heatmap(data, strictness_level):
-        # Filter for the specific strictness and at least one match
-        plot_df = data[(data['strictness'] == strictness_level) & (data['match_count'] > 0)].copy()
-        if plot_df.empty:
-            print(f"No match data for {strictness_level} heatmap. Skipping.")
+    def create_heatmap(data, strictness_level, filtered):
+        # Base filter for strictness
+        subset = data[data['strictness'] == strictness_level].copy()
+        
+        if filtered:
+            subset = subset[subset['match_count'] > 0]
+            filter_suffix = "filtered"
+            title_suffix = "(Filtered)"
+        else:
+            filter_suffix = "full"
+            title_suffix = "(Full)"
+
+        if subset.empty:
+            print(f"No match data for {strictness_level} ({filter_suffix}). Skipping.")
             return
 
         # Set index to class + count for labeling
-        plot_df['label'] = plot_df['class'] + " (" + plot_df['match_count'].astype(str) + ")"
-        plot_df = plot_df.set_index('label')[rate_cols]
+        subset['label'] = subset['class'] + " (" + subset['match_count'].astype(str) + ")"
+        subset = subset.set_index('label')[rate_cols]
         
         # Shorten column names for the plot
-        plot_df.columns = [c.replace('_rate', '') for c in plot_df.columns]
+        subset.columns = [c.replace('_rate', '') for c in subset.columns]
 
-        plt.figure(figsize=(12, min(20, len(plot_df) * 0.4 + 2)))
-        sns.heatmap(plot_df, annot=True, cmap="YlGnBu", vmin=0, vmax=1)
-        plt.title(f'Stem-Final Pass Rates ({strictness_level.capitalize()} Matches)')
+        # Calculate dynamic height
+        height = min(20, len(subset) * 0.4 + 2)
+        plt.figure(figsize=(12, height))
+        
+        sns.heatmap(subset, annot=True, cmap="YlGnBu", vmin=0, vmax=1)
+        plt.title(f'Stem-Final Pass Rates - {strictness_level.capitalize()} {title_suffix}')
         plt.tight_layout()
-        plt.savefig(f'{output_prefix}_{strictness_level}.png')
+        
+        output_filename = f'{output_prefix}_{strictness_level}_{filter_suffix}.png'
+        plt.savefig(output_filename)
         plt.close()
 
-    # Generate separate maps for strict and loose
-    create_heatmap(df, 'strict')
-    create_heatmap(df, 'loose')
+    # Generate 4 variations
+    for s in ['strict', 'loose']:
+        for f in [True, False]:
+            create_heatmap(df, s, f)
 
 def run_all_visualizations():
     output_dir = 'artifacts/analysis'

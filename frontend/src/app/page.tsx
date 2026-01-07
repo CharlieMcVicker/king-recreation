@@ -9,6 +9,8 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 
+import { HeatmapGallery } from "@/components/dashboard/HeatmapGallery";
+
 export default async function Dashboard() {
   const coverage = await getVerbCoverage();
   const matchCounts = await getMatchCounts();
@@ -55,7 +57,6 @@ export default async function Dashboard() {
   const charts = [
     { title: "Verb Coverage", src: "/artifacts/analysis/verb_coverage.png" },
     { title: "Class Distribution (Filtered)", src: "/artifacts/analysis/class_distribution_filtered.png" },
-    { title: "Near-Miss Heatmap (Filtered)", src: "/artifacts/analysis/near_miss_heatmap_filtered.png" },
     { title: "Class Distribution (Full)", src: "/artifacts/analysis/class_distribution_full.png" },
   ];
 
@@ -109,6 +110,7 @@ export default async function Dashboard() {
               </div>
             </div>
           ))}
+          <HeatmapGallery />
         </div>
       </div>
 
