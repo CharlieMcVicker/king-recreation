@@ -36,3 +36,10 @@ king-recreation/ (Repo Root)
 -   **Activation**: Always activate the virtual environment before running scripts (e.g., `source .venv/bin/activate`).
 -   **Dependencies**: Manage dependencies via `requirements.txt`.
 -   **Exclusion**: Do not commit `.venv` to version control.
+
+## Documentation
+-   **README.md**: The `README.md` is the source of truth for the project's process and script interfaces.
+-   **Updating**:
+    -   Update `README.md` when adding wholly new features or top-level scripts.
+    -   Update `README.md` when clarifying important pre- or post-conditions of processing steps.
+    -   **Avoid Bloat**: Fixing implementation to follow established contracts in `README.md` does not require documentation changes.
