@@ -1,5 +1,6 @@
 import csv
 import os
+from king_recreation.stem_analysis import check_root_consistency
 
 def normalize(s):
     if s is None:
@@ -30,15 +31,9 @@ def calculate_stem_final_match(corpus_form, pattern_suffix, stem_final_str, stri
     
     # 2. Strip literal ending (if possible)
     if not corpus_form.endswith(literal_suffix):
-        # Even if it's loose match, we use literal stripping for full match?
-        # Actually, if strictness is loose, we should check if normalized form matches
         if not strict and normalize(corpus_form).endswith(normalize(literal_suffix)):
-            # This is tricky. How to strip normalized suffix from non-normalized form?
-            # Let's find the split point by length of normalized suffix from the end of normalized form.
             norm_form = normalize(corpus_form)
             norm_suffix = normalize(literal_suffix)
-            # Find how many 'h' were removed in the suffix part? No.
-            # Easiest: reveal Candidate Stem in normalized space.
             candidate_stem_norm = norm_form[:-len(norm_suffix)] if len(norm_suffix) > 0 else norm_form
         else:
             return False
@@ -62,7 +57,6 @@ def calculate_stem_final_match(corpus_form, pattern_suffix, stem_final_str, stri
         # 4. Verify candidate stem
         sf_norm = normalize(sf_adjusted)
         if strict:
-            # Re-get candidate stem raw if strict
             candidate_stem_strict = corpus_form[:-len(literal_suffix)] if len(literal_suffix) > 0 else corpus_form
             if candidate_stem_strict.endswith(sf_adjusted):
                 match = True
@@ -90,12 +84,11 @@ def get_matches_for_verb(verb, classes):
             all_endings_match = True
             for form in forms:
                 form_val = verb.get(form)
-                # match_ending now handles empty form_val correctly
                 if not match_ending(form_val, cls[form], is_strict_bool):
                     all_endings_match = False
                     break
             
-            # Calculate Stem Final matches for ALL forms regardless of ending match
+            # Calculate Stem Final matches
             sf_matches = {}
             for form in forms:
                 form_val = verb.get(form)
@@ -103,12 +96,19 @@ def get_matches_for_verb(verb, classes):
                     form_val, cls[form], stem_final, is_strict_bool
                 )
             
-            # All 5 forms satisfy both Ending Match and Stem Final check for Full Match
             all_sf_match = all(sf_matches.values())
             
-            # If Ending Match passes, record the highest scope match
             if all_endings_match:
-                scope = "full" if all_sf_match else "ending"
+                scope = "ending"
+                if all_sf_match:
+                    scope = "full"
+                    
+                    # New: Check for Root Consistency -> 'reconstructs'
+                    if is_strict_bool:
+                        consistent, root, details = check_root_consistency(verb, cls)
+                        if consistent:
+                            scope = "reconstructs"
+
                 matches.append({
                     "definition": definition,
                     "class": class_id,
@@ -119,12 +119,13 @@ def get_matches_for_verb(verb, classes):
     return matches
 
 def classify_verbs():
-    classes_path = "data/king_classes.csv"
-    corpus_path = "artifacts/data/corpus.csv"
-    output_path = "artifacts/data/matches.csv"
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    classes_path = os.path.join(base_dir, "data", "king_classes.csv")
+    corpus_path = os.path.join(base_dir, "artifacts", "data", "stem_corpus.csv")
+    output_path = os.path.join(base_dir, "artifacts", "data", "matches.csv")
 
     if not os.path.exists(corpus_path):
-        print(f"Error: {corpus_path} not found.")
+        print(f"Error: {corpus_path} not found. Ensure stem derivation is run first.")
         return
 
     # Load classes
@@ -134,7 +135,7 @@ def classify_verbs():
         for row in reader:
             classes.append(row)
 
-    # Load corpus
+    # Load stem corpus
     verbs = []
     with open(corpus_path, mode='r', encoding='utf-8') as f:
         reader = csv.DictReader(f)

@@ -6,16 +6,13 @@ This document outlines the system for reconstructing full verb forms from a sing
 
 ### 1. Classification & Root Extraction
 
-The process begins by analyzing the `stem_corpus.csv` to identify verbs that can be reconstructed.
+The process begins by reading the `matches.csv` to identify verbs with the **`reconstructs`** scope.
 
 **Logic:**
 
-1.  **Input**: Iterate through each verb in the stem corpus.
-2.  **Match**: Apply classification logic to the _stem forms_ (present, imperfective, perfective, imperative, infinitive) against `king_classes.csv`.
-3.  **Strict Full Match Criteria**:
-    - All 5 forms must strictly match the class endings.
-    - The remaining stem (after stripping ending) must be consistent across all forms (this is the **Root**).
-    - _Note:_ `stem_corpus.csv` forms are stems (prefixes removed). Matching against class endings (suffixes) yields the naked Root.
+1.  **Input**: Iterate through verbs flagged as `reconstructs` in `matches.csv`.
+2.  **Shared Interface**: Use `king_recreation/stem_analysis.py` to extract the root from the `stem_corpus.csv` data.
+3.  **Validation Check**: The classification phase already performed the root consistency check; reconstruction consumes this result to ensure it works from a high-quality base.
 
 **Data Model**:
 A "Reconstructible Verb" consists of:

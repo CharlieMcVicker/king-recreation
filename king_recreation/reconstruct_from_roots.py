@@ -3,9 +3,9 @@ import csv
 import json
 from dataclasses import dataclass, field
 from typing import List, Dict, Set, Optional, Tuple
-from typing import List, Dict, Set, Optional, Tuple
 from king_recreation.classify_verbs import get_matches_for_verb
 from king_recreation.phonology_data import Condition, VOWEL_SET, PRONOMINAL_PREFIXES_MAP, get_pronominal_set_name
+from king_recreation.stem_analysis import get_root_candidate, check_root_consistency
 
 @dataclass
 class ReconstructibleVerb:
@@ -13,15 +13,11 @@ class ReconstructibleVerb:
     root: str
     class_name: str
     set_type: str # 'a' or 'b'
-    imp_type: str # 'normal' or 'to_3rd' (boolean in 2_to_3?)
+    imp_type: str # 'normal' or 'to_3rd'
     translocutive: bool
     partitive: bool
     distributive: bool
     original_stems: Dict[str, str] = field(default_factory=dict)
-
-# Constants
-# Constants
-# VOWEL_SET is imported from phonology_data
 
 def is_vowel(char):
     return char in VOWEL_SET
@@ -38,8 +34,6 @@ class ReconstructionEngine:
             for row in reader:
                 classes.append(row)
         return classes
-
-    # Removed get_pronominal_set_name as it is now imported
 
     def apply_mutation(self, stem, prefix, condition):
         clean_prefix = prefix.replace('-', '')
@@ -81,7 +75,6 @@ class ReconstructionEngine:
         
         stems_to_try = [stem]
         if set_name == '2nd to 3rd' and stem.startswith('h'):
-            # Handle /h/ alternation: consider stem with dropped /h/
             stems_to_try.append(stem[1:])
             
         for s in stems_to_try:
@@ -139,7 +132,51 @@ class ReconstructionEngine:
         
         for form_name in ['present', 'imperfective', 'perfective', 'imperative', 'infinitive']:
             ending_pattern = class_info.get(form_name, '')
-            modified_root = verb.root
+            root = verb.root
+            
+            literal_ending = ending_pattern.replace('*', '').replace('@', '')
+            
+            # Reconstruction is the inverse of stripping. 
+            # If get_root_candidate does:
+            #   1. Strip literal_ending
+            #   2. Strip * or @
+            # Then reconstruct_verb must:
+            #   1. Add * or @
+            #   2. Add literal_ending
+            
+            # NOTE: Reconstruction is inherently lossy if * or @ removed characters.
+            # We assume the root provided is the one AFTER stripping.
+            # But the stem used to generate prefixes needs the modifiers re-added?
+            # Actually, king_recreation/derive_stems.py + get_root_candidate define the "Stem"
+            # as the thing that prefixes attach to.
+            # So the "Stem" for form X is root + re-added characters + literal_ending.
+            
+            # However, looking at original code:
+            # it was calculating modified_root by stripping FROM THE END.
+            
+            # Let's stick to the established (though potentially lossy) logic:
+            # We need to re-add the "lost" characters if we want to perfectly match.
+            # But since we don't know what they were, we might just be reconstructing
+            # what we CAN reconstruct.
+            
+            # WAIT: If I use shared get_root_candidate, I am stripping.
+            # If I reconstruct, I need to know what was stripped.
+            
+            # For now, I will use a simple reconstruction that assumes root is the common base.
+            # If the original code did:
+            # modified_root = verb.root
+            # if '*' in ending_pattern: modified_root = modified_root[:-1]
+            # base_stems[form_name] = modified_root + literal_ending
+            
+            # This looks wrong if it's meant to be RECONSTRUCTION.
+            # If stem was "abcde" and ending was "*f", root became "abcd" -> "abc".
+            # Reconstructing it with root "abc" and ending "*f" should probably give "abc" + "?" + "f".
+            
+            # I will preserve the original logic for now to avoid regression, 
+            # just replacing the core pieces.
+            
+            modified_root = root
+            # Original logic (preserved):
             if '*' in ending_pattern:
                 if len(modified_root) >= 1:
                     modified_root = modified_root[:-1]
@@ -147,7 +184,6 @@ class ReconstructionEngine:
                 if len(modified_root) >= 2:
                     modified_root = modified_root[:-2]
             
-            literal_ending = ending_pattern.replace('*', '').replace('@', '')
             base_stems[form_name] = modified_root + literal_ending
             
         form_options = {}
@@ -166,112 +202,77 @@ class ReconstructionEngine:
         
         return [{fn: set(opts or []) for fn, opts in form_options.items()}]
 
-    def get_root_candidate(self, stem: str, ending: str) -> Optional[str]:
-        literal_ending = ending.replace("*", "").replace("@", "")
-        if not literal_ending:
-             return stem 
-        if stem.endswith(literal_ending):
-            return stem[:-len(literal_ending)]
-        return None
-
 def main():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     stem_corpus_path = os.path.join(base_dir, 'artifacts', 'data', 'stem_corpus.csv')
     corpus_path = os.path.join(base_dir, 'artifacts', 'data', 'corpus.csv')
     king_classes_path = os.path.join(base_dir, 'data', 'king_classes.csv')
+    matches_path = os.path.join(base_dir, 'artifacts', 'data', 'matches.csv')
     
     engine = ReconstructionEngine(king_classes_path)
     
     # Load Stem Corpus
-    stem_corpus = []
+    stem_corpus_map = {}
     with open(stem_corpus_path, 'r', encoding='utf-8') as f:
-        stem_corpus = list(csv.DictReader(f))
+        for row in csv.DictReader(f):
+            stem_corpus_map[row['definition']] = row
     
-    # Load raw Corpus (for matching)
+    # Load raw Corpus
     full_corpus_map = {}
     with open(corpus_path, 'r', encoding='utf-8') as f:
         for row in csv.DictReader(f):
             full_corpus_map[row['definition']] = row
 
+    # Load Matches
+    matches = []
+    if os.path.exists(matches_path):
+        with open(matches_path, 'r', encoding='utf-8') as f:
+            matches = list(csv.DictReader(f))
+
     reconstructible_verbs = []
     consistency_analysis = []
-    
     forms = ['present', 'imperfective', 'perfective', 'imperative', 'infinitive']
     
-    for stem_row in stem_corpus:
-        definition = stem_row['definition']
-        raw_row = full_corpus_map.get(definition)
-        if not raw_row: continue
-        
-        # 1. Use shared interface to find matches based on raw forms
-        # Filter classes_raw to find strict full matches
-        matches = get_matches_for_verb(raw_row, engine._classes_raw)
-        strict_full_matches = [m for m in matches if m['strictness'] == 'strict' and m['scope'] == 'full']
-        
-        if len(strict_full_matches) == 1:
-            match = strict_full_matches[0]
-            cls_name = match['class']
-            class_info = engine.king_classes[cls_name]
-            
-            # 2. Root Consistency Check
-            possible_roots = {}
-            is_consistent = True
-            mismatch_details = []
-            
-            for fn in forms:
-                stem = stem_row.get(fn)
-                class_pattern = class_info.get(fn)
-                if not stem:
-                    # Policy: Skip missing forms in consistency check
-                    continue
-                
-                root = engine.get_root_candidate(stem, class_pattern)
-                if root is None:
-                    is_consistent = False
-                    mismatch_details.append(f"{fn}: Suffix mismatch")
-                else:
-                    possible_roots[fn] = root
-            
-            # Root check only if we have at least one root
-            if is_consistent and possible_roots:
-                # Check if all roots are the same
-                roots_list = list(possible_roots.values())
-                first_root = roots_list[0]
-                if not all(r == first_root for r in roots_list):
-                    is_consistent = False
-                    # Find which ones differ
-                    diffs = [f"{fn}: '{r}'" for fn, r in possible_roots.items() if r != first_root]
-                    mismatch_details.append(f"Root mismatch: " + ", ".join(diffs))
-            elif is_consistent and not possible_roots:
-                is_consistent = False
-                mismatch_details.append("No forms available to extract root")
-            
-            # 3. Record for analysis
-            analysis_row = {
-                'definition': definition,
-                'assigned_class': cls_name,
-                'is_consistent': is_consistent,
-                'mismatch_details': "; ".join(mismatch_details)
-            }
-            for fn in forms:
-                analysis_row[f'root_{fn}'] = possible_roots.get(fn, '')
-            consistency_analysis.append(analysis_row)
-
-            if is_consistent:
-                verb = ReconstructibleVerb(
-                    definition=definition,
-                    root=first_root if possible_roots else "",
-                    class_name=cls_name,
-                    set_type=stem_row['set_a_b'],
-                    imp_type='to_3rd' if stem_row['2_to_3'] == 'True' else 'normal',
-                    translocutive=stem_row['translocutive'] == 'True',
-                    partitive=stem_row['partitive'] == 'True',
-                    distributive=stem_row['distributive'] == 'True',
-                    original_stems={fn: stem_row[fn] for fn in forms}
-                )
-                reconstructible_verbs.append(verb)
+    # Filter for 'reconstructs' scope matches (strictly)
+    reconstruct_matches = [m for m in matches if m['scope'] == 'reconstructs' and m['strictness'] == 'strict']
     
-    print(f"Found {len(reconstructible_verbs)} reconstructible verbs out of {len(consistency_analysis)} strict full matches.")
+    for match in reconstruct_matches:
+        definition = match['definition']
+        cls_name = match['class']
+        stem_row = stem_corpus_map.get(definition)
+        if not stem_row: continue
+        
+        class_info = engine.king_classes[cls_name]
+        
+        # Use shared logic to get the consistent root
+        consistent, root, details = check_root_consistency(stem_row, class_info)
+        
+        analysis_row = {
+            'definition': definition,
+            'assigned_class': cls_name,
+            'is_consistent': consistent,
+            'mismatch_details': "; ".join(details)
+        }
+        # Re-calculate individual roots for analysis artifact
+        for fn in forms:
+            analysis_row[f'root_{fn}'] = get_root_candidate(stem_row.get(fn, ''), class_info.get(fn, '')) or ''
+        consistency_analysis.append(analysis_row)
+
+        if consistent:
+            verb = ReconstructibleVerb(
+                definition=definition,
+                root=root,
+                class_name=cls_name,
+                set_type=stem_row['set_a_b'],
+                imp_type='to_3rd' if stem_row['2_to_3'] == 'True' else 'normal',
+                translocutive=stem_row['translocutive'] == 'True',
+                partitive=stem_row['partitive'] == 'True',
+                distributive=stem_row['distributive'] == 'True',
+                original_stems={fn: stem_row[fn] for fn in forms}
+            )
+            reconstructible_verbs.append(verb)
+    
+    print(f"Found {len(reconstructible_verbs)} reconstructible verbs.")
     
     # Validation Phase
     success_count = 0
@@ -290,7 +291,6 @@ def main():
             options = generated_sets[0]
             for fn in forms:
                 ref_word = ref.get(fn)
-                # Policy: Missing corpus form does NOT contradict theory
                 if not ref_word: continue 
                 if ref_word not in options.get(fn, set()):
                     matches_all = False
@@ -304,13 +304,12 @@ def main():
     print(f"Validation Success: {success_count}/{len(reconstructible_verbs)}")
     
     # Export Artifacts
-    artifacts_dir = os.path.join(base_dir, 'artifacts')
-    reports_dir = os.path.join(artifacts_dir, 'reports')
+    reports_dir = os.path.join(base_dir, 'artifacts', 'reports')
+    os.makedirs(reports_dir, exist_ok=True)
+
     analysis_path = os.path.join(reports_dir, 'consistency_analysis.csv')
     report_path = os.path.join(reports_dir, 'reconstruction_report.csv')
     validation_path = os.path.join(reports_dir, 'reconstruction_validation.json')
-    
-    os.makedirs(reports_dir, exist_ok=True)
     
     # Save Consistency Analysis
     analysis_fields = ['definition', 'assigned_class', 'is_consistent', 'mismatch_details'] + [f'root_{fn}' for fn in forms]
@@ -322,7 +321,6 @@ def main():
     # Save Reconstruction Report
     report_data = []
     for verb in reconstructible_verbs:
-        # Check generated sets again for ambiguity
         generated_sets = engine.reconstruct_verb(verb)
         options = generated_sets[0] if generated_sets else {fn: set() for fn in forms}
         ambiguous_forms = [fn for fn, opts in options.items() if len(opts) > 1]
@@ -331,7 +329,7 @@ def main():
             'definition': verb.definition,
             'class': verb.class_name,
             'root': verb.root,
-            'success': True, # All in reconstructible_verbs passed validation above or we can filter
+            'success': True,
             'ambiguous_forms': ";".join(ambiguous_forms),
             'notes': "Ambiguity implies lossy rule reversal" if ambiguous_forms else ""
         })
@@ -344,7 +342,7 @@ def main():
     with open(validation_path, 'w', encoding='utf-8') as f:
         json.dump({'summary': f"{success_count}/{len(reconstructible_verbs)}", 'failures': failures}, f, indent=4)
         
-    print(f"Artifacts saved to {artifacts_dir}")
+    print(f"Artifacts saved to {reports_dir}")
 
 if __name__ == "__main__":
     main()

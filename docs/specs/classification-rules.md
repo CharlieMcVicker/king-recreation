@@ -36,3 +36,12 @@ Checks if _every function form_ is valid according to the class's `stem final` c
      - `@`: Remove the last 2 characters of the `stem final` (or more, per rule).
   4. Verify that the "Candidate Stem" ends with the (adjusted) `stem final`.
 - **Pass Condition**: All 5 forms must satisfy both the Ending Match _and_ the per-form Stem Final check.
+
+#### C. Reconstructs Scope
+
+The highest tier of matching, indicating that a verb can be perfectly derived from a single root across all available forms.
+
+- **Logic**:
+  1. Must pass **Strict Full Match**.
+  2. Each form's stem must yield an identical "root" string when the class ending (including `*` and `@` modifiers) is stripped.
+- **Pass Condition**: Strictly consistent root across all non-null corpus forms.
