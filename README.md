@@ -181,11 +181,3 @@ To help interpret the results, a separate script `king_recreation/visualize_anal
 1.  **Class Distribution** (`artifacts/class_distribution_full.png`, `artifacts/class_distribution_filtered.png`): A bar chart showing the number of verbs matched by each class, clustered by strictness/scope.
 2.  **Coverage Overlap** (`artifacts/verb_coverage.png`): A visualization of the "Verb Coverage Summary."
 3.  **Near-Miss Heatmap** (`artifacts/near_miss_heatmap_strict_full.png`, `artifacts/near_miss_heatmap_strict_filtered.png`, `artifacts/near_miss_heatmap_loose_full.png`, `artifacts/near_miss_heatmap_loose_filtered.png`): Heatmaps showing which forms are the most frequent blockers, separated by match strictness.
-
-## Roadmap
-
-### Frontend
-
-- **Match Scope Filter**: Update `MatchExplorer.tsx` to include `reconstructs` in the `scopeFilter` dropdown.
-- **Visual Indicators**: Add a visual distinction (e.g., color) for the `reconstructs` scope.
-- **Root Consistency**: Add a row or indicator in the "Match Details" view to display "Root Consistency" status.
