@@ -3,7 +3,9 @@ import csv
 import json
 from dataclasses import dataclass, field
 from typing import List, Dict, Set, Optional, Tuple
+from typing import List, Dict, Set, Optional, Tuple
 from king_recreation.classify_verbs import get_matches_for_verb
+from king_recreation.phonology_data import Condition, VOWEL_SET, PRONOMINAL_PREFIXES_MAP, get_pronominal_set_name
 
 @dataclass
 class ReconstructibleVerb:
@@ -18,8 +20,8 @@ class ReconstructibleVerb:
     original_stems: Dict[str, str] = field(default_factory=dict)
 
 # Constants
-VOWELS = set('aeiouv') 
-VOWEL_SET = {'a', 'e', 'o', 'u', 'v', 'i'}
+# Constants
+# VOWEL_SET is imported from phonology_data
 
 def is_vowel(char):
     return char in VOWEL_SET
@@ -28,35 +30,6 @@ class ReconstructionEngine:
     def __init__(self, king_classes_path: str):
         self._classes_raw = self._load_king_classes_raw(king_classes_path)
         self.king_classes = {row['class']: row for row in self._classes_raw}
-        self.prefixes_pronominal_map = {
-            '3rd Set A': [
-                ('ø', 'vowel_ae'), # Condition: Stem starts with a/e
-                ('k-', 'vowel'),   # Condition: Stem starts with other vowel
-                ('a-', 'con'),     # Condition: Stem starts with consonant
-                ('ka-', 'con')     # Condition: Stem starts with consonant (Ambiguous with a-)
-            ],
-            '3rd Set B': [
-                ('u-', 'a_replace'), # Condition: Stem starts with a (replaces a)
-                ('uw-', 'vowel_no_a'), # Condition: Stem starts with vowel (not a)
-                ('uwa-', 'v'),         # Condition: Stem starts with v
-                ('u-', 'con'),         # Condition: Stem starts with consonant
-                ('uwa-', 'con')        # Condition: Stem starts with consonant (Ambiguous)
-            ],
-            '2nd Set B': [
-                ('ts-', 'vowel'),
-                ('tsa-', 'con'),
-                ('ts-', 'aspirated'),
-                ('t-', 's_stem')
-            ],
-            '2nd Set A': [
-                ('h-', 'vowel'),
-                ('hi-', 'con')
-            ],
-            '2nd to 3rd': [
-                ('hiy-', 'vowel'),
-                ('hi-', 'con')
-            ]
-        }
 
     def _load_king_classes_raw(self, path: str) -> List[Dict[str, str]]:
         classes = []
@@ -66,48 +39,37 @@ class ReconstructionEngine:
                 classes.append(row)
         return classes
 
-    def get_pronominal_set_name(self, form_name, set_type, imp_type):
-        if form_name == 'present':
-            return '3rd Set A' if set_type == 'a' else '3rd Set B'
-        if form_name == 'imperfective':
-            return '3rd Set A' if set_type == 'a' else '3rd Set B'
-        if form_name == 'perfective':
-            return '3rd Set B'
-        if form_name == 'imperative':
-            return '2nd to 3rd' if imp_type == 'to_3rd' else ('2nd Set A' if set_type == 'a' else '2nd Set B')
-        if form_name == 'infinitive':
-            return '3rd Set B'
-        return None
+    # Removed get_pronominal_set_name as it is now imported
 
     def apply_mutation(self, stem, prefix, condition):
         clean_prefix = prefix.replace('-', '')
         if clean_prefix == 'ø': clean_prefix = ''
         
-        if condition == 'vowel_ae':
+        if condition == Condition.VOWEL_AE:
             if stem and stem[0] in 'ae': return clean_prefix + stem
             return None
-        if condition == 'vowel': 
+        if condition == Condition.VOWEL: 
              if stem and is_vowel(stem[0]): return clean_prefix + stem
              return None
-        if condition == 'a_replace': 
+        if condition == Condition.A_REPLACE: 
             if stem.startswith('a'):
                 return clean_prefix + stem[1:] 
             return None
-        if condition == 'vowel_no_a': 
+        if condition == Condition.VOWEL_NO_A: 
             if stem and is_vowel(stem[0]) and stem[0] != 'a': return clean_prefix + stem
             return None
-        if condition == 'v':
+        if condition == Condition.V:
             if stem and stem[0] == 'v': return clean_prefix + stem[1:]
             return None
-        if condition == 'con':
+        if condition == Condition.CONSONANT:
             if stem and not is_vowel(stem[0]): 
                 return clean_prefix + stem
             return None
-        if condition == 'aspirated':
+        if condition == Condition.ASPIRATED:
             if stem and stem.startswith('th'):
                 return clean_prefix + stem
             return None
-        if condition == 's_stem':
+        if condition == Condition.S_STEM:
             if stem and stem.startswith('s'):
                 return clean_prefix + stem
             return None
@@ -115,7 +77,7 @@ class ReconstructionEngine:
 
     def generate_pronominal_forms(self, stem: str, set_name: str) -> List[str]:
         candidates = []
-        rules = self.prefixes_pronominal_map.get(set_name, [])
+        rules = PRONOMINAL_PREFIXES_MAP.get(set_name, [])
         
         stems_to_try = [stem]
         if set_name == '2nd to 3rd' and stem.startswith('h'):
@@ -190,7 +152,7 @@ class ReconstructionEngine:
             
         form_options = {}
         for fn, stem in base_stems.items():
-            set_name = self.get_pronominal_set_name(fn, verb.set_type, verb.imp_type)
+            set_name = get_pronominal_set_name(fn, verb.set_type, verb.imp_type)
             if not set_name: 
                 candidates = [stem]
             else:

@@ -1,0 +1,59 @@
+from enum import Enum
+
+class Condition(Enum):
+    VOWEL_AE = 'vowel_ae'
+    VOWEL = 'vowel'
+    CONSONANT = 'con'
+    A_REPLACE = 'a_replace'
+    VOWEL_NO_A = 'vowel_no_a'
+    V = 'v'
+    ASPIRATED = 'aspirated'
+    S_STEM = 's_stem'
+
+def get_vowel_set():
+    return {'a', 'e', 'o', 'u', 'v', 'i'}
+
+VOWEL_SET = get_vowel_set()
+
+PRONOMINAL_PREFIXES_MAP = {
+    '3rd Set A': [
+        ('ø', Condition.VOWEL_AE),
+        ('k-', Condition.VOWEL),
+        ('a-', Condition.CONSONANT),
+        ('ka-', Condition.CONSONANT)
+    ],
+    '3rd Set B': [
+        ('u-', Condition.A_REPLACE),
+        ('uw-', Condition.VOWEL_NO_A),
+        ('uwa-', Condition.V),
+        ('u-', Condition.CONSONANT),
+        ('uwa-', Condition.CONSONANT)
+    ],
+    '2nd Set B': [
+        ('ts-', Condition.VOWEL),
+        ('tsa-', Condition.CONSONANT),
+        ('ts-', Condition.ASPIRATED),
+        ('t-', Condition.S_STEM)
+    ],
+    '2nd Set A': [
+        ('h-', Condition.VOWEL),
+        ('hi-', Condition.CONSONANT)
+    ],
+    '2nd to 3rd': [
+        ('hiy-', Condition.VOWEL),
+        ('hi-', Condition.CONSONANT)
+    ]
+}
+
+def get_pronominal_set_name(form_name, set_type, imp_type):
+    if form_name == 'present':
+        return '3rd Set A' if set_type == 'Set A' or set_type == 'a' else '3rd Set B'
+    if form_name == 'imperfective':
+        return '3rd Set A' if set_type == 'Set A' or set_type == 'a' else '3rd Set B'
+    if form_name == 'perfective':
+        return '3rd Set B'
+    if form_name == 'imperative':
+        return '2nd to 3rd' if imp_type == 'to_3rd' else ('2nd Set A' if (set_type == 'Set A' or set_type == 'a') else '2nd Set B')
+    if form_name == 'infinitive':
+        return '3rd Set B'
+    return None

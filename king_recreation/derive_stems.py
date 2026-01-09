@@ -2,6 +2,7 @@ import os
 import csv
 from dataclasses import dataclass, asdict
 from typing import List, Dict, Set, Optional, Tuple
+from king_recreation.phonology_data import Condition, VOWEL_SET, PRONOMINAL_PREFIXES_MAP, get_pronominal_set_name
 
 @dataclass
 class Derivation:
@@ -13,35 +14,14 @@ class Derivation:
     stems: Dict[str, str]
     stem_initial: str
 
-def get_vowel_set():
-    return {'a', 'e', 'o', 'u', 'v', 'i'}
-
 class StemDeriver:
     def __init__(self):
-        self.vowels = get_vowel_set()
-        self.prefixes_pronominal = {
-            '3rd Set A': [('ø', 'vowel_ae'), ('k-', 'vowel'), ('a-', 'con'), ('ka-', 'con')],
-            '3rd Set B': [('u-', 'a_replace'), ('uw-', 'vowel_no_a'), ('uwa-', 'v'), ('u-', 'con'), ('uwa-', 'con')],
-            '2nd Set B': [('ts-', 'vowel'), ('tsa-', 'con'), ('ts-', 'aspirated'), ('t-', 's_stem')],
-            '2nd Set A': [('h-', 'vowel'), ('hi-', 'con')],
-            '2nd to 3rd': [('hiy-', 'vowel'), ('hi-', 'con')]
-        }
+        self.vowels = VOWEL_SET
 
     def is_vowel(self, char):
         return char in self.vowels
 
-    def get_pronominal_prefix(self, form_name, set_type, imp_type):
-        if form_name == 'present':
-            return '3rd Set A' if set_type == 'Set A' else '3rd Set B'
-        if form_name == 'imperfective':
-            return '3rd Set A' if set_type == 'Set A' else '3rd Set B'
-        if form_name == 'perfective':
-            return '3rd Set B'
-        if form_name == 'imperative':
-            return '2nd to 3rd' if imp_type == 'to_3rd' else ('2nd Set A' if set_type == 'Set A' else '2nd Set B')
-        if form_name == 'infinitive':
-            return '3rd Set B'
-        return None
+    # Removed get_pronominal_prefix as it is now imported
 
     def match_prepronominal(self, word, exists, p_type, form_name):
         if not exists:
@@ -120,24 +100,24 @@ class StemDeriver:
                 current_words = list(set(next_words)) # Unique versions
 
             # Step 2: Pronominal
-            pron_type = self.get_pronominal_prefix(fn, set_type, imp_type)
-            prefixes = self.prefixes_pronominal[pron_type]
+            pron_type = get_pronominal_set_name(fn, set_type, imp_type)
+            prefixes = PRONOMINAL_PREFIXES_MAP[pron_type]
             
             for _, w in current_words:
                 for pref, cond in prefixes:
                     if pref == 'ø':
-                        if w and cond == 'vowel_ae' and w[0] in 'ae':
+                        if w and cond == Condition.VOWEL_AE and w[0] in 'ae':
                             possible_stems[fn].append(w)
                     elif w.startswith(pref.replace('-', '')):
                         remainder = w[len(pref.replace('-', '')):]
                         # Special rules for Set B u- replaces a
-                        if cond == 'a_replace':
+                        if cond == Condition.A_REPLACE:
                             possible_stems[fn].append('a' + remainder)
-                        elif cond == 'v' and pref == 'uwa-':
+                        elif cond == Condition.V and pref == 'uwa-':
                             possible_stems[fn].append('v' + remainder)
-                        elif cond == 'aspirated' and remainder.startswith('th'):
+                        elif cond == Condition.ASPIRATED and remainder.startswith('th'):
                              possible_stems[fn].append(remainder)
-                        elif cond == 's_stem' and remainder.startswith('s'):
+                        elif cond == Condition.S_STEM and remainder.startswith('s'):
                              possible_stems[fn].append(remainder)
                         else:
                             possible_stems[fn].append(remainder)
