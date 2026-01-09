@@ -181,11 +181,3 @@ To help interpret the results, a separate script `king_recreation/visualize_anal
 1.  **Class Distribution** (`artifacts/class_distribution_full.png`, `artifacts/class_distribution_filtered.png`): A bar chart showing the number of verbs matched by each class, clustered by strictness/scope.
 2.  **Coverage Overlap** (`artifacts/verb_coverage.png`): A visualization of the "Verb Coverage Summary."
 3.  **Near-Miss Heatmap** (`artifacts/near_miss_heatmap_strict_full.png`, `artifacts/near_miss_heatmap_strict_filtered.png`, `artifacts/near_miss_heatmap_loose_full.png`, `artifacts/near_miss_heatmap_loose_filtered.png`): Heatmaps showing which forms are the most frequent blockers, separated by match strictness.
-
-## Ongoing Work & Side-Quests
-
-This section tracks items for verification and refinement following the initial implementation:
-
-- **Data Integrity Check**: Verify that `king_recreation/classify_verbs.py` strictly enforces the "largest scope only" rule when writing `matches.csv`. If redundant "Ending" rows exist for verbs that also have "Full" rows, update the script to suppress them.
-- **Visual Review**: Evaluate the readability of the Near-Miss Heatmap with and without the clutter-avoidance flag.
-- **Style Consistency**: Confirm preference for `matplotlib` styling (default vs. `seaborn` or `ggplot`) after reviewing initial plots.
