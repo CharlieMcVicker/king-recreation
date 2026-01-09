@@ -18,7 +18,7 @@ A single form doesn't have enough information to decide exactly all of these fea
 
 Also flag if multiple explanations of the data are possible for each row.
 
-Lastly, forms which cannot be accounted for should be dumped to a debug json in `artifacts/debug/derivation_failures.json`.
+Lastly, forms where stems could not be derived are saved to `artifacts/reports/stem_derivation_failures.csv`.
 Results should be saved to `artifacts/labeled_corpus.csv`.
 
 ## Pronominal prefixes

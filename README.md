@@ -52,7 +52,7 @@ Before classification, we derive pronominal-inflection patterns and extract the 
 **Outputs:**
 
 - `artifacts/labeled_corpus.csv`: The corpus updated with inflectional patterns, prefix flags, and the derived present stem.
-- `artifacts/debug/derivation_failures.json`: A list of verbs that could not be explained by the current rules.
+- `artifacts/reports/stem_derivation_failures.csv`: A list of verbs where stems could not be derived using the pronominal and prepronominal rules.
 
 **Usage:**
 

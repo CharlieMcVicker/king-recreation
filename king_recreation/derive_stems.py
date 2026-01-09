@@ -1,6 +1,5 @@
 import os
 import csv
-import json
 from dataclasses import dataclass, asdict
 from typing import List, Dict, Set, Optional, Tuple
 
@@ -196,10 +195,7 @@ def main():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     input_path = os.path.join(base_dir, 'artifacts', 'data', 'corpus.csv')
     output_path = os.path.join(base_dir, 'artifacts', 'data', 'stem_corpus.csv')
-    debug_path = os.path.join(base_dir, 'artifacts', 'debug', 'derivation_failures.json')
-    
-    if not os.path.exists(os.path.dirname(debug_path)):
-        os.makedirs(os.path.dirname(debug_path))
+    failures_path = os.path.join(base_dir, 'artifacts', 'reports', 'stem_derivation_failures.csv')
 
     deriver = StemDeriver()
     labeled_data = []
@@ -233,8 +229,12 @@ def main():
             writer.writeheader()
             writer.writerows(labeled_data)
 
-    with open(debug_path, 'w', encoding='utf-8') as f:
-        json.dump(failures, f, indent=4)
+    if failures:
+        keys = failures[0].keys()
+        with open(failures_path, 'w', encoding='utf-8') as f:
+            writer = csv.DictWriter(f, fieldnames=keys)
+            writer.writeheader()
+            writer.writerows(failures)
 
     print(f"Processed {len(labeled_data) + len(failures)} rows.")
     print(f"Success: {len(labeled_data)}")
