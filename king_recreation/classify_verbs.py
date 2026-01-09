@@ -64,6 +64,50 @@ def calculate_stem_final_match(corpus_form, pattern_suffix, stem_final_str, stri
                 break
     return match
 
+def get_matches_for_verb(verb, classes):
+    forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
+    matches = []
+    
+    definition = verb.get("definition", "unknown")
+    
+    for cls in classes:
+        class_id = cls["class"]
+        stem_final = cls["stem final"]
+        
+        for strictness in ["strict", "loose"]:
+            is_strict_bool = (strictness == "strict")
+            
+            # Check Ending Match
+            all_endings_match = True
+            for form in forms:
+                form_val = verb.get(form)
+                if not form_val or not match_ending(form_val, cls[form], is_strict_bool):
+                    all_endings_match = False
+                    break
+            
+            # Calculate Stem Final matches for ALL forms regardless of ending match
+            sf_matches = {}
+            for form in forms:
+                form_val = verb.get(form)
+                sf_matches[f"stem_final_match_{form}"] = calculate_stem_final_match(
+                    form_val, cls[form], stem_final, is_strict_bool
+                ) if form_val else False
+            
+            # All 5 forms satisfy both Ending Match and Stem Final check for Full Match
+            all_sf_match = all(sf_matches.values())
+            
+            # If Ending Match passes, record the highest scope match
+            if all_endings_match:
+                scope = "full" if all_sf_match else "ending"
+                matches.append({
+                    "definition": definition,
+                    "class": class_id,
+                    "strictness": strictness,
+                    "scope": scope,
+                    **sf_matches
+                })
+    return matches
+
 def classify_verbs():
     classes_path = "data/king_classes.csv"
     corpus_path = "artifacts/corpus.csv"
@@ -87,48 +131,10 @@ def classify_verbs():
         for row in reader:
             verbs.append(row)
 
-    forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
-    
     matches_data = []
 
     for verb in verbs:
-        definition = verb["definition"]
-        
-        for cls in classes:
-            class_id = cls["class"]
-            stem_final = cls["stem final"]
-            
-            for strictness in ["strict", "loose"]:
-                is_strict_bool = (strictness == "strict")
-                
-                # Check Ending Match
-                all_endings_match = True
-                for form in forms:
-                    if not match_ending(verb[form], cls[form], is_strict_bool):
-                        all_endings_match = False
-                        break
-                
-                # Calculate Stem Final matches for ALL forms regardless of ending match
-                # Output column labels: stem_final_match_present, etc.
-                sf_matches = {}
-                for form in forms:
-                    sf_matches[f"stem_final_match_{form}"] = calculate_stem_final_match(
-                        verb[form], cls[form], stem_final, is_strict_bool
-                    )
-                
-                # All 5 forms satisfy both Ending Match and Stem Final check for Full Match
-                all_sf_match = all(sf_matches.values())
-                
-                # If Ending Match passes, record the highest scope match
-                if all_endings_match:
-                    scope = "full" if all_sf_match else "ending"
-                    matches_data.append({
-                        "definition": definition,
-                        "class": class_id,
-                        "strictness": strictness,
-                        "scope": scope,
-                        **sf_matches
-                    })
+        matches_data.extend(get_matches_for_verb(verb, classes))
 
     fieldnames = [
         "definition", "class", "strictness", "scope",
