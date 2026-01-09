@@ -3,8 +3,8 @@ import json
 import os
 import argparse
 from collections import defaultdict
-from king_recreation.visualize_analysis import run_all_visualizations
 from king_recreation.utils import get_class_sort_key
+from king_recreation.stem_analysis import check_root_consistency
 
 def load_csv(path):
     with open(path, mode='r', encoding='utf-8') as f:
@@ -23,6 +23,7 @@ def save_json(path, data):
 def analyze_matches():
     matches_path = 'artifacts/data/matches.csv'
     corpus_path = 'artifacts/data/corpus.csv'
+    stem_corpus_path = 'artifacts/data/stem_corpus.csv'
     classes_path = 'data/king_classes.csv'
     
     if not os.path.exists(matches_path):
@@ -37,7 +38,12 @@ def analyze_matches():
 
     matches = load_csv(matches_path)
     corpus = load_csv(corpus_path)
+    stem_corpus = load_csv(stem_corpus_path) if os.path.exists(stem_corpus_path) else []
     king_classes_data = load_csv(classes_path)
+    
+    king_classes_map = {row['class']: row for row in king_classes_data}
+    stem_corpus_map = {row['definition']: row for row in stem_corpus}
+    
     all_classes = sorted([row['class'] for row in king_classes_data if row['class']], key=get_class_sort_key)
     
     all_verbs = set(row['definition'] for row in corpus)
@@ -201,6 +207,36 @@ def analyze_matches():
     save_csv(os.path.join(output_dir, 'class_near_misses.csv'), near_miss_data,
              ['class', 'strictness', 'match_count'] + [f'{f}_rate' for f in forms])
 
+    # 4. Reconstruction Near-Miss Analysis
+    # Identify verbs that are Strict Full but fail Reconstruction
+    reconstruction_miss_data = []
+    
+    for row in filtered_matches.values():
+        if row['strictness'] == 'strict' and row['scope'] == 'full':
+            # This verb passed strict ending & strict stem final, but failed reconstruction (otherwise scope would be 'reconstructs')
+            # Let's find out why
+            verb_def = row['definition']
+            cls = row['class']
+            
+            stem_row = stem_corpus_map.get(verb_def)
+            class_row = king_classes_map.get(cls)
+            
+            if stem_row and class_row:
+                consistent, root, details = check_root_consistency(stem_row, class_row)
+                
+                # Should be inconsistent, otherwise it would have been marked 'reconstructs'
+                if not consistent:
+                    reconstruction_miss_data.append({
+                        'definition': verb_def,
+                        'class': cls,
+                        'mismatch_details': "; ".join(details)
+                    })
+    
+    reconstruction_miss_data.sort(key=lambda x: (get_class_sort_key(x['class']), x['definition']))
+    
+    save_csv(os.path.join(output_dir, 'reconstruction_failures.csv'), reconstruction_miss_data,
+             ['definition', 'class', 'mismatch_details'])
+
     print(f"Analysis complete. Artifacts generated in {output_dir}/")
 
 if __name__ == "__main__":
@@ -211,4 +247,5 @@ if __name__ == "__main__":
     analyze_matches()
     
     if args.visualize:
+        from king_recreation.visualize_analysis import run_all_visualizations
         run_all_visualizations()
