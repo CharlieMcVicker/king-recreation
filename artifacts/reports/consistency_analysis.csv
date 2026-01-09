@@ -1,5 +1,6 @@
 definition,assigned_class,is_consistent,mismatch_details,root_present,root_imperfective,root_perfective,root_imperative,root_infinitive
 he's taking a drink (alcoholic beverage),Ia,True,,athuki,athuki,athuki,athuki,athuki
+"he's catching a falling person, object",Ia*,True,,skwahle,skwahle,skwahle,skwahl,skwahle
 it's hatching,Ia,True,,atsai,atsai,atsai,atsai,atsai
 he's opening it,Ia,True,,stui,stui,stui,stui,stui
 it's freezing,Vb*,True,,nestalat,nestalat,nestalat,nestalat,nestalat
@@ -17,6 +18,12 @@ he's replying,Ic*,True,,awohiliyv,awohiliyv,awohiliyv,awohiliyv,awohiliyv
 he's changing it,Ic*,True,,netliyv,netliyv,netliyv,netliyv,netliyv
 he's erasing it,Vb*,True,,skolvt,skolvt,skolvt,skolvt,skolvt
 "he, it's moving from one place to another",Ic*,True,,atanv,atanv,atanv,atanv,atanv
+he's shoveling it,Ia*,True,,khote,khote,khote,khot,khote
+"he's taking off, removing a cap",Ia*,True,,alstule,alstule,alstule,alstul,alstule
+he's oiling it,Id,True,,lone,lone,lone,lon,lone
+he's washing (dishes),Id,True,,vtiye,vtiye,vtiye,vtiy,vtiye
+"1. he's reading, 2. he's examining him, it",Id,True,,koliye,koliye,koliye,koliy,koliye
+"he's rubbing him, it",Id,True,,askoliye,askoliye,askoliye,askoliy,askoliye
 he's laying a long object down,Vb*,True,,t,t,t,t,t
 "he's lifting him, raising him, it",Vc*,True,,salat,salat,salat,salat,salat
 "he, it's ascending, raising",Vc*,True,,alsalat,alsalat,alsalat,alsalat,alsalat
@@ -48,7 +55,22 @@ he's plowing it,Vc*,True,,taluk,taluk,taluk,taluk,taluk
 he's putting his gloves on,Vc*,True,,aliyesul,aliyesul,aliyesul,aliyesul,aliyesul
 he's putting his pants on,Vc*,True,,asul,asul,asul,asul,asul
 he's putting on a cap,Vc*,True,,alstul,alstul,alstul,alstul,alstul
-it's thundering,Ib,True,,hyvtakwalo,hyvtakwalo,hyvtakwalo,,hyvtakwalo
+it's thundering,Ib,True,,ahyvtakwalo,ahyvtakwalo,ahyvtakwalo,,ahyvtakwalo
+he's removing it (solid or flexible object) from a hanging position,Ia*,True,,ate,ate,ate,at,ate
+he's taking off his glasses,Ia*,True,,akhthinvte,akhthinvte,akhthinvte,akhthinvt,akhthinvte
+he's taking it off,Ia*,True,,vnhte,vnhte,vnhte,vnht,vnhte
+he's taking a bite,Ia*,True,,atste,atste,atste,atst,atste
+"1. he's unhitching him, it 2. he's unhooking it 3. he's unplugging it",Ia*,True,,utale,utale,utale,utal,utale
+he's taking it (solid or flexible object) out of a container,Ia*,True,,le,le,le,l,le
+he's taking off his shoes,Ia*,True,,alasule,alasule,alasule,alasul,alasule
+he's taking off his gloves,Ia*,True,,aliyesule,aliyesule,aliyesule,aliyesul,aliyesule
+he's taking his pants off,Ia*,True,,asule,asule,asule,asul,asule
+he's turning off the road,Ia*,True,,atle,atle,atle,atl,atle
+1. he's getting a flexible object  2. he's picking up a flexible object,Ia*,True,,ne,ne,ne,n,ne
+he's pulling a trigger,Ia*,True,,otsane,otsane,otsane,otsan,otsane
+"he's taking his shirt, coat off",Ia*,True,,ahnawe,ahnawe,ahnawe,ahnaw,ahnawe
+he's undressing,Ia*,True,,ahnawe,ahnawe,ahnawe,ahnaw,ahnawe
+"he's choosing him, it",Ia*,True,,asuye,asuye,asuye,asuy,asuye
 1. he's picking it up  2. he's getting it,Ia,True,,ki,ki,ki,ki,ki
 he's waving his hand,Ia,True,,asolvtaki,asolvtaki,asolvtaki,asolvtaki,asolvtaki
 he's having a nightmare,Ia,True,,ahliki,ahliki,ahliki,ahliki,ahliki
@@ -95,10 +117,18 @@ he's swimming (propelling himself through water),X*,True,,ahyuin,ahyuin,ahyuin,a
 he's backing up,X*,True,,asin,asin,asin,asin,asin
 he's taking a flexible object somewhere by hand,X*,True,,hn,hn,hn,hn,hn
 he's taking it somewhere by hand,X*,True,,hy,hy,hy,hy,hy
-it (forest or grass) is burning,VIIIa,True,,li,li,li,,
+it (forest or grass) is burning,VIIIa,True,,ali,ali,ali,,
 he's getting a rash,IIIc2,True,,kwenothi,kwenothi,kwenothi,kwenothi,kwenothi
 "it's (round, long) falling",IIIc1,True,,oho,oho,oho,oho,oho
+"He is getting in a car, box, etc",IIIa1,True,,atsav,atsav,atsa,atsav,
+he's sending; taking it (flexible),IIIa1,True,,nvv,nvv,nv,nvv,nv
+he's lying,IIIa1,True,,atskov,atskov,atsko,atskov,atsko
+"he's sprinkling it (with a liquid, powder, salt, etc.)",IIIa1,True,,khwayov,khwayov,khwayo,khwayov,khwayo
+it (wind) is blowing,IIIa1,True,,anolvv,anolvv,anolv,,anolv
 "he's attaching it (flexible), behind it",IIIa1*,True,,sanenatv,sanenatv,sanenatv,sanenatv,sanenatv
+he's hitting him on the nose,IIIa1,True,,hyvsteluhv,hyvsteluhv,hyvsteluh,hyvsteluhv,hyvsteluh
+he's hitting him on the nose,IIIa2,True,,hyvsteluhv,hyvsteluhv,hyvsteluh,hyvsteluhv,hyvstelu
+"he's sending, taking it (liquid)",IIIa1,True,,nehv,nehv,neh,nehv,neh
 "he, it's growing",IIIc1*,True,,athv,athv,athv,athv,athv
 "1.  he's breaking a flexible object, 2. He's cutting a flexible object",IIId*,True,,kal,kal,kal,kal,kal
 he's breaking a long object,IIId*,True,,skwal,skwal,skwal,skwal,skwal
@@ -111,11 +141,10 @@ he's finding it out,IIIc1,True,,ateloho,ateloho,ateloho,ateloho,ateloho
 he's confronted with it,IIIc1,True,,atlo,atlo,atlo,atlo,atlo
 he's beating him at a game,IIIc1,True,,hlo,hlo,hlo,hlo,hlo
 he's becoming enraged,IIIc1,True,,thahlawo,thahlawo,thahlawo,thahlawo,thahlawo
-it's getting warm,IIIc1,True,,kanawo,kanawo,kanawo,,kanawo
+it's getting warm,IIIc1,True,,akanawo,akanawo,akanawo,,akanawo
 1. he's becoming warm  2. he's warming himself,IIIc1,True,,kanawo,kanawo,kanawo,kanawo,kanawo
 it's melting,IIIc1,True,,vnawo,vnawo,vnawo,vnawo,vnawo
 "he's dying, (human)",IIIc1,True,,yohu,yohu,yohu,yohu,yohu
-it's shattering,IIIa1,True,,hlkhotv,hlkhotv,hlkhotv,,
 he's burning,IIIc1*,True,,leyv,leyv,leyv,leyv,leyv
 he's sewing it,IIId*,True,,yew,yew,yew,yew,yew
 it (a flexible object) is falling from a hanging position,IIIc1,True,,ato,ato,ato,ato,ato
@@ -123,14 +152,26 @@ he's going down hill,IIIc1,True,,khso,khso,khso,khso,khso
 he's releasing him,IIIc1,True,,yo,yo,yo,yo,yo
 "He's releasing it, (voluntarily)",IIIc1,True,,yo,yo,yo,yo,yo
 he's giving up,IIIc1,True,,atayo,atayo,atayo,atayo,atayo
+he's setting it down,IIIa1,True,,hv,hv,h,hv,h
+he's sending it (solid),IIIa1,True,,hv,hv,h,hv,h
+he's being born,IIIa1,True,,atehv,atehv,ateh,atehv,ateh
+he's standing in a certain spot,IIIa1,True,,alehv,alehv,aleh,alehv,aleh
+he's getting up (from sitting or from involuntarily assumed prone position),IIIa1,True,,alehv,alehv,aleh,alehv,aleh
+he's putting it in water,IIIa1,True,,uhv,uhv,uh,uhv,uh
+he's putting it in water,IIIa2,True,,uhv,uhv,uh,uhv,u
+he's fishing,IIIa1,True,,asuhv,asuhv,asuh,asuhv,asuh
+he's fishing,IIIa2,True,,asuhv,asuhv,asuh,asuhv,asu
 he's getting full,IIIc1*,True,,ohlv,ohlv,ohlv,ohlv,ohlv
 he's amazed,IIIc1,True,,skwaniko,skwaniko,skwaniko,skwaniko,skwaniko
 he's embarrassed,IIIc1,True,,ateho,ateho,ateho,ateho,ateho
 it's leaking,IIId*,True,,vku,vku,vku,,vku
 a long object is falling from an upright position,IIIc1*,True,,leyv,leyv,leyv,leyv,leyv
 it's bending,IIIa1*,True,,ahliyvhkwitv,ahliyvhkwitv,ahliyvhkwitv,,ahliyvhkwitv
-he has time,XIa*,True,,atlanvtat,atlanvtat,atlanvtat,atlanvtat,atlanvtat
-he's taking revenge against him,XIa*,True,,atletsh,atletsh,atletsh,atletsh,atletsh
+he's working,XIa*,True,,lvhwistan,lvhwistan,lvhwistan,lvhwista,lvhwistan
+1. he's lonesome  2. he's homesick,XIa*,True,,hisohtan,hisohtan,hisohtan,hisohta,
+"he's aching, hurting",XIa*,True,,ehistan,ehistan,ehistan,ehista,ehistan
+he's giving him a living thing,XIa*,True,,akhan,akhan,akhan,akha,akhan
+he's giving him a flexible object,XIa*,True,,nvn,nvn,nvn,nv,nvn
 he's riding it (anything that can be straddled),IVa,True,,akhilvt,akhilvt,akhilvt,akhilvt,akhilvt
 "he's running over him, it",IVa,True,,atinvt,atinvt,atinvt,atinvt,atinvt
 he's bouncing it,IVa,True,,atatinvt,atatinvt,atatinvt,atatinvt,atatinvt
@@ -155,10 +196,19 @@ he's spinning it,IVa,True,,tikwalvteyst,tikwalvteyst,tikwalvteyst,tikwalvteyst,t
 he's holding his breath,IVa,True,,athahwost,athahwost,athahwost,athahwost,athahwost
 "1. he's breaking it., 2. he's spoiling him",IVa,True,,yost,yost,yost,yost,yost
 he's vomiting,IVa,True,,khst,khst,khst,khst,khst
+"he's handling it, he has it in his hand",IXa,True,,hito,hito,hito,hit,hit
+he's visiting him,IXa,True,,hwahthvhito,hwahthvhito,hwahthvhito,hwahthvhit,hwahthvhit
+he's visiting,IXa,True,,atahwahthvhito,atahwahthvhito,atahwahthvhito,atahwahthvhit,atahwahthvhit
+he's handling some liquid,IXa,True,,nhtsito,nhtsito,nhtsito,nhtsit,nhtsit
+he's hunting,IXa,True,,nohalito,nohalito,nohalito,nohalit,nohalit
+its taking time,IXa,True,,ahliilito,ahliilito,ahliilito,,ahliilit
+he's handling a flexible object,IXa,True,,hnito,hnito,hnito,hnit,hnit
 "1. he's taking liquid from him, it  2. he's milking it (when used with unvdi)",XIb*,True,,neki,neki,neki,neki,neki
 he's disbelieving,XIb*,True,,atlasithv,atlasithv,atlasithv,atlasithv,atlasithv
 he's moaning,IVa,True,,liyet,liyet,liyet,liyet,liyet
 he's making a mistake,IVa,True,,litast,litast,litast,litast,litast
+he's saying to him,XIa*,True,,os,os,os,o,os
+he's losing it,XIa*,True,,yohus,yohus,yohus,yohu,yohus
 he's placing a long object in an upright position,IVa,True,,aleht,aleht,aleht,aleht,aleht
 "he's making it (round, long) fall",IVa,True,,ohonht,ohonht,ohonht,ohonht,ohonht
 he's showing it to him,IVa,True,,kowhthvht,kowhthvht,kowhthvht,kowhthvht,kowhthvht
@@ -204,15 +254,15 @@ he's shattering it,IVa,True,,ahlkhotht,ahlkhotht,ahlkhotht,ahlkhotht,ahlkhotht
 it's becoming crisp,VIa2,True,,astakayvh,astakayvh,astakayvh,,
 it's becoming crisp,VIIa2,True,,astakayv,astakayv,astakayv,,
 it's lightning,IVb,True,,anakal,anakal,anakal,,
-"1. he's calling him, inviting him. 2. he's receiving, getting him",IVb,True,,hyan,hyan,hyan,hyan,hyan
 he's starting/beginning,IVb,True,,alen,alen,alen,alen,alen
-it's beginning,IVb,True,,talen,talen,talen,,talen
+it's beginning,IVb,True,,atalen,atalen,atalen,,atalen
 he's target practicing,IVb,True,,akon,akon,akon,akon,akon
 "1. he's getting a long object., 2. he's picking up a long object",IVb,True,,y,y,y,y,y
 he's having a birthday,IVb,True,,atethiy,atethiy,atethiy,atethiy,atethiy
 he's paying,IVb,True,,akhwiy,akhwiy,akhwiy,akhwiy,akhwiy
 1. he's catching him 2. he's arresting him 3. he's playing catcher,IVb,True,,niy,niy,niy,niy,niy
-he's giving him a long  object,XIa*,True,,t,t,t,t,t
-he's showing him,XIa*,True,,aseh,aseh,aseh,aseh,aseh
 he's taking it somewhere,IVb,True,,hwit,hwit,hwit,hwit,hwit
 he's choking him,IVb,True,,hyvskiy,hyvskiy,hyvskiy,hyvskiy,hyvskiy
+"1. he's walking around., 2. he's here",IXa,True,,eto,eto,eto,et,et
+he's tossing about,IXa,True,,nvtsito,nvtsito,nvtsito,nvtsit,nvtsit
+he's climbing around,IXa,True,,lito,lito,lito,lit,lit
