@@ -14,14 +14,14 @@ The `ced_data_original.csv` is processed with the following rules:
 
 Consonants are respelled to mark aspiration explicitly:
 
-| Original | Respelled |
-| :------- | :-------- |
-| `t`      | `th`      |
-| `d`      | `t`       |
-| `k`      | `kh`      |
-| `g`      | `k`       |
-| `j`      | `ts`      |
-| `ch`     | `tsh`     |
+| Original | Respelled                |
+| :------- | :----------------------- |
+| `t`      | `th` (except before `s`) |
+| `d`      | `t`                      |
+| `k`      | `kh`                     |
+| `g`      | `k`                      |
+| `j`      | `ts`                     |
+| `ch`     | `tsh`                    |
 
 ## Reference Forms
 

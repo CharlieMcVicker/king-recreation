@@ -5,8 +5,13 @@ import os
 def respell_consonants(s):
     # Rewrite rules for aspiration marking
     # Order matters: t->th before d->t, k->kh before g->k
+    # Exception: ts should stay ts (not become ths)
+    
+    # We want to replace 't' with 'th' only if it's not followed by 's'
+    s = re.sub(r't(?!s)', 'th', s)
+    
     rules = [
-        ("t", "th"),
+        # ("t", "th"), # Handled by regex above to allow for ts exception
         ("d", "t"),
         ("k", "kh"),
         ("g", "k"),

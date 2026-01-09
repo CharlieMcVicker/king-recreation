@@ -6,8 +6,8 @@ class TestPreprocessCed(unittest.TestCase):
     def test_clean_string(self):
         # da1li23yo3hi.2a -> daliyohia -> taliyohia
         self.assertEqual(clean_string("da1li23yo3hi.2a"), "taliyohia")
-        # u1ja.3?i1sv23?i -> ujaisvi -> ujaisvi (no changes)
-        self.assertEqual(clean_string("u1ja.3?i1sv23?i"), "ujaisvi")
+        # u1ja.3?i1sv23?i -> ujaisvi -> utsaisvi
+        self.assertEqual(clean_string("u1ja.3?i1sv23?i"), "utsaisvi")
         self.assertEqual(clean_string("-----"), "")
         self.assertEqual(clean_string(""), "")
         self.assertEqual(clean_string(None), "")
@@ -24,6 +24,9 @@ class TestPreprocessCed(unittest.TestCase):
         self.assertEqual(respell_consonants("ga"), "ka")
         # complex
         self.assertEqual(respell_consonants("tadig"), "thatik")
+        # ts exception
+        self.assertEqual(respell_consonants("atsa"), "atsa")
+        self.assertEqual(respell_consonants("tsa"), "tsa")
 
     def test_clean_row_basic(self):
         row = {
@@ -40,7 +43,7 @@ class TestPreprocessCed(unittest.TestCase):
         self.assertEqual(cleaned["imperfective"], "taliyohih")
         self.assertEqual(cleaned["perfective"], "tuliyohl")
         self.assertEqual(cleaned["imperative"], "thaliyoka")
-        self.assertEqual(cleaned["infinitive"], "juliyost")
+        self.assertEqual(cleaned["infinitive"], "tsuliyost")
 
     def test_clean_row_missing(self):
         row = {
