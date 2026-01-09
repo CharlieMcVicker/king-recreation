@@ -8,7 +8,7 @@ A companion [Frontend Match Explorer](file:///Users/charlesmcvicker/code/king-re
 
 ### Running the Pipeline
 
-The entire analysis pipeline (preprocessing -> classification -> analysis -> visualization) can be run with a single command:
+The entire analysis pipeline (preprocessing -> stem extraction -> classification -> analysis -> visualization) can be run with a single command:
 
 ```bash
 python -m king_recreation
@@ -37,7 +37,29 @@ The reference forms considered for this study will be:
 4. "Imperative" (`2nd imperative` column)
 5. "Infinitive" (`3rd infinitive` column with `i` rstripped)
 
-This file is then written to disk as `artifacts/corpus.csv`
+This file is then written to disk as `artifacts/corpus.csv`.
+
+### Pronominal and Prepronominal Stem Extraction
+
+Before classification, we derive pronominal-inflection patterns and extract the present stem for all verbs. This process uses the logic defined in `pronouns-stems.md`.
+
+**Logic:**
+
+- Tests all combinations of **Prepronominal prefixes** (Translocutive, Partitive, Distributive).
+- Tests both **Set A** and **Set B** pronominal patterns.
+- Ensures **Stem Consistency**: A consistent stem-initial sound must be shared across all 5 forms for a derivation to be valid.
+- Extracts the **Present Stem** from the present tense form.
+
+**Outputs:**
+
+- `artifacts/labeled_corpus.csv`: The corpus updated with inflectional patterns, prefix flags, and the derived present stem.
+- `artifacts/debug/derivation_failures.json`: A list of verbs that could not be explained by the current rules.
+
+**Usage:**
+
+```bash
+python -m king_recreation.derive_stems
+```
 
 ### King's classes
 
@@ -50,26 +72,30 @@ King's classes are stored in `data/king_classes.csv` (note: filename corrected f
 We define two strictness levels and two scopes, creating a matrix of 4 possible match types.
 
 **1. Strictness Levels**
-*   **Strict:** The form from the corpus must match the class pattern exactly (after rule application).
-*   **Loose:** Both the corpus form and the class pattern are normalized by removing all `h` characters before comparison.
+
+- **Strict:** The form from the corpus must match the class pattern exactly (after rule application).
+- **Loose:** Both the corpus form and the class pattern are normalized by removing all `h` characters before comparison.
 
 **2. Match Scopes**
-*   **Ending Match:** Checks if the *ends* of the corpus forms match the literal ending characters specified in the class pattern.
-    *   For patterns with special symbols (e.g., `*a`), only the literal characters are matched (e.g., must end in `a`). The stem modification implied by `*` is ignored in this scope.
-    *   Empty cells in the class CSV imply an empty ending (the form matches the bare stem).
-    *   *Pass condition:* All 5 forms (Present, Imperfective, Perfective, Imperative, Infinitive) must end with their respective pattern suffixes.
-*   **Full Match:** Checks if *every function form* is valid according to the class's `stem final` constraints.
-    *   **Logic (Per Form):** for each of the 5 forms:
-        1.  Identify the literal ending in the class pattern (ignoring `*` or `@`).
-        2.  Strip this ending from the corpus form to reveal a "Candidate Stem".
-        3.  Adjust the class's `stem final` based on the pattern's modifier:
-            *   `*`: Remove the last character of the `stem final`.
-            *   `@`: Remove the last 2 characters of the `stem final` (or more, per rule).
-        4.  Verify that the "Candidate Stem" ends with the (adjusted) `stem final`.
-    *   *Pass condition:* All 5 forms must satisfy both the Ending Match and the per-form Stem Final check.
+
+- **Ending Match:** Checks if the _ends_ of the corpus forms match the literal ending characters specified in the class pattern.
+  - For patterns with special symbols (e.g., `*a`), only the literal characters are matched (e.g., must end in `a`). The stem modification implied by `*` is ignored in this scope.
+  - Empty cells in the class CSV imply an empty ending (the form matches the bare stem).
+  - _Pass condition:_ All 5 forms (Present, Imperfective, Perfective, Imperative, Infinitive) must end with their respective pattern suffixes.
+- **Full Match:** Checks if _every function form_ is valid according to the class's `stem final` constraints.
+  - **Logic (Per Form):** for each of the 5 forms:
+    1.  Identify the literal ending in the class pattern (ignoring `*` or `@`).
+    2.  Strip this ending from the corpus form to reveal a "Candidate Stem".
+    3.  Adjust the class's `stem final` based on the pattern's modifier:
+        - `*`: Remove the last character of the `stem final`.
+        - `@`: Remove the last 2 characters of the `stem final` (or more, per rule).
+    4.  Verify that the "Candidate Stem" ends with the (adjusted) `stem final`.
+  - _Pass condition:_ All 5 forms must satisfy both the Ending Match and the per-form Stem Final check.
 
 #### Output
+
 For each verb in the corpus, if a match is found, append a row to `artifacts/matches.csv` with:
+
 1.  `definition`: From corpus.
 2.  `class`: The matched class ID (e.g., `Ia`, `IIb`).
 3.  `strictness`: `strict` or `loose`.
@@ -89,40 +115,67 @@ Note: A single verb may have multiple matches (e.g., one Strict/Full and one Loo
 The data in `artifacts/matches.csv` contains rich information about how well the King classification scheme accounts for the CED corpus. A script `king_recreation/analyze_matches.py` processes this data to generate three distinct metrics.
 
 **Usage:** `python3 -m king_recreation.analyze_matches [--visualize]`
--   `--visualize`: If set, automatically runs the visualization script after analysis is complete.
+
+- `--visualize`: If set, automatically runs the visualization script after analysis is complete.
 
 **Technical Note on `matches.csv`:**
-A single verb (`definition`) can match multiple classes and strictnesses. However, for a given `(verb, class, strictness)`, only the *largest* achieved scope is recorded as a single row. If a "Full" match is achieved, there should not be a separate "Ending" row for that specific combination. 
+A single verb (`definition`) can match multiple classes and strictnesses. However, for a given `(verb, class, strictness)`, only the _largest_ achieved scope is recorded as a single row. If a "Full" match is achieved, there should not be a separate "Ending" row for that specific combination.
 
 **1. Class-wise Match Counts**
-Calculate the total number of unique verbs matched by each class, broken down by all four strictness/scope combinations. 
--   **Output**: `artifacts/class_match_counts.csv`
--   **Columns**: `class`, `strict_ending`, `strict_full`, `loose_ending`, `loose_full`
--   **Logic**: `strict_ending` counts verbs that matched *only* at the ending level for that class, while `strict_full` counts those that passed the full stem-final check. (Note: Scripts should implement a safety check to ensure they are counting the largest scope per verb/class).
+Calculate the total number of unique verbs matched by each class, broken down by all four strictness/scope combinations.
+
+- **Output**: `artifacts/class_match_counts.csv`
+- **Columns**: `class`, `strict_ending`, `strict_full`, `loose_ending`, `loose_full`
+- **Logic**: `strict_ending` counts verbs that matched _only_ at the ending level for that class, while `strict_full` counts those that passed the full stem-final check. (Note: Scripts should implement a safety check to ensure they are counting the largest scope per verb/class).
 
 **2. Verb Coverage Summary**
 Analyze how well the King classification explains the total corpus.
--   **Denominator**: Total number of unique verbs (definitions) in `artifacts/corpus.csv`.
--   **Output**: `artifacts/verb_coverage.json`
--   **Structure**: For each strictness/scope combination, count how many verbs are matched by zero, one, or multiple classes, and include the overall coverage percentage.
-    ```json
-    {
-      "strict_full": { 
-        "0": 367, 
-        "1": 249, 
-        "2+": 5,
-        "coverage_pct": 40.9
-      },
-      "loose_full": { ... },
-      ...
-    }
-    ```
+
+- **Denominator**: Total number of unique verbs (definitions) in `artifacts/corpus.csv`.
+- **Output**: `artifacts/verb_coverage.json`
+- **Structure**: For each strictness/scope combination, count how many verbs are matched by zero, one, or multiple classes, and include the overall coverage percentage.
+  ```json
+  {
+    "strict_full": {
+      "0": 367,
+      "1": 249,
+      "2+": 5,
+      "coverage_pct": 40.9
+    },
+    "loose_full": { ... },
+    ...
+  }
+  ```
 
 **3. Class Near-Miss Analysis**
 For verbs that achieve an `ending` match but fail a `full` match for a given class, identify which functional forms are the primary "blockers."
--   **Output**: `artifacts/class_near_misses.csv`
--   **Metric**: For each `(class, strictness)` pair, filter for rows where `scope == "ending"`. Calculate the "Pass Rate" (0.0 to 1.0) for each of the 5 stem-final columns.
--   **Columns**: `class`, `strictness`, `match_count`, `present_rate`, `imperfective_rate`, `perfective_rate`, `imperative_rate`, `infinitive_rate`.
+
+- **Output**: `artifacts/class_near_misses.csv`
+- **Metric**: For each `(class, strictness)` pair, filter for rows where `scope == "ending"`. Calculate the "Pass Rate" (0.0 to 1.0) for each of the 5 stem-final columns.
+- **Columns**: `class`, `strictness`, `match_count`, `present_rate`, `imperfective_rate`, `perfective_rate`, `imperative_rate`, `infinitive_rate`.
+
+### Reconstruction and Root Consistency
+
+The final stage of the analysis validates that the classified verbs are not only "Suffix Matches" but are fully "Reconstructible" from a single, consistent root.
+
+**Logic:**
+
+1.  **Classification Integration**: Uses the shared matching interface from `classify_verbs.py` to identify unique **Strict Full Matches** for each verb in the corpus.
+2.  **Root Extraction**: For each strict match, strips the class suffixes from the _derived stems_ found in `artifacts/stem_corpus.csv`.
+3.  **Consistency Check**: Enforces that the remains of all 5 forms are **identical**. If the root changes (e.g. `u-` in perfective vs `a-` in present), the verb is flagged as inconsistent.
+4.  **Reconstruction**: For consistent roots, applies the reverse of the prefix rules to regenerate the full forms and validates them against `artifacts/corpus.csv`.
+
+**Outputs:**
+
+- `artifacts/consistency_analysis.csv`: A comprehensive report of all strict full matches, indicating whether they have consistent roots and detailing any mismatches found (e.g., specific forms where the root deviated).
+- `artifacts/reconstruction_report.csv`: Summary of successful reconstructions.
+- `artifacts/reconstruction_validation.json`: Detailed validation logs and error counts.
+
+**Usage:**
+
+```bash
+python3 -m king_recreation.reconstruct_from_roots
+```
 
 ### Near Miss Extraction
 
@@ -138,9 +191,11 @@ For deep-dive analysis of specific classes, a diagnostic script allows extractin
 To help interpret the results, a separate script `king_recreation/visualize_analysis.py` generates charts using `matplotlib` and `seaborn`.
 
 **Usage:** `python3 -m king_recreation.visualize_analysis`
--   The script generates both "full" and "filtered" versions of charts automatically to handle clutter.
+
+- The script generates both "full" and "filtered" versions of charts automatically to handle clutter.
 
 **Generated Plots:**
+
 1.  **Class Distribution** (`artifacts/class_distribution_full.png`, `artifacts/class_distribution_filtered.png`): A bar chart showing the number of verbs matched by each class, clustered by strictness/scope.
 2.  **Coverage Overlap** (`artifacts/verb_coverage.png`): A visualization of the "Verb Coverage Summary."
 3.  **Near-Miss Heatmap** (`artifacts/near_miss_heatmap_strict_full.png`, `artifacts/near_miss_heatmap_strict_filtered.png`, `artifacts/near_miss_heatmap_loose_full.png`, `artifacts/near_miss_heatmap_loose_filtered.png`): Heatmaps showing which forms are the most frequent blockers, separated by match strictness.
@@ -149,6 +204,6 @@ To help interpret the results, a separate script `king_recreation/visualize_anal
 
 This section tracks items for verification and refinement following the initial implementation:
 
--   **Data Integrity Check**: Verify that `king_recreation/classify_verbs.py` strictly enforces the "largest scope only" rule when writing `matches.csv`. If redundant "Ending" rows exist for verbs that also have "Full" rows, update the script to suppress them.
--   **Visual Review**: Evaluate the readability of the Near-Miss Heatmap with and without the clutter-avoidance flag.
--   **Style Consistency**: Confirm preference for `matplotlib` styling (default vs. `seaborn` or `ggplot`) after reviewing initial plots.
+- **Data Integrity Check**: Verify that `king_recreation/classify_verbs.py` strictly enforces the "largest scope only" rule when writing `matches.csv`. If redundant "Ending" rows exist for verbs that also have "Full" rows, update the script to suppress them.
+- **Visual Review**: Evaluate the readability of the Near-Miss Heatmap with and without the clutter-avoidance flag.
+- **Style Consistency**: Confirm preference for `matplotlib` styling (default vs. `seaborn` or `ggplot`) after reviewing initial plots.
