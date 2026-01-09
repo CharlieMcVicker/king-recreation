@@ -116,19 +116,23 @@ def plot_near_miss_heatmap(csv_path, output_prefix):
             create_heatmap(df, s, f)
 
 def run_all_visualizations():
-    output_dir = 'artifacts/analysis'
+    # Plots (images) go to visualizations
+    output_dir = 'artifacts/visualizations'
     os.makedirs(output_dir, exist_ok=True)
     
+    # Data comes from reports
+    input_dir = 'artifacts/reports'
+    
     print("Generating Class Distribution plots...")
-    plot_class_distribution(os.path.join(output_dir, 'class_match_counts.csv'), 
+    plot_class_distribution(os.path.join(input_dir, 'class_match_counts.csv'), 
                             os.path.join(output_dir, 'class_distribution'))
     
     print("Generating Verb Coverage plot...")
-    plot_verb_coverage(os.path.join(output_dir, 'verb_coverage.json'), 
+    plot_verb_coverage(os.path.join(input_dir, 'verb_coverage.json'), 
                        os.path.join(output_dir, 'verb_coverage.png'))
     
     print("Generating Near-Miss Heatmap plots...")
-    plot_near_miss_heatmap(os.path.join(output_dir, 'class_near_misses.csv'), 
+    plot_near_miss_heatmap(os.path.join(input_dir, 'class_near_misses.csv'), 
                            os.path.join(output_dir, 'near_miss_heatmap'))
 
 if __name__ == "__main__":
@@ -138,4 +142,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     run_all_visualizations()
-    print("Visualizations saved to artifacts/analysis/")
+    print("Visualizations saved to artifacts/visualizations/")

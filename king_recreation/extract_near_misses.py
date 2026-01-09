@@ -13,8 +13,8 @@ def save_csv(path, data, fieldnames):
         writer.writerows(data)
 
 def extract_near_misses(class_id, strictness):
-    matches_path = 'artifacts/matches.csv'
-    corpus_path = 'artifacts/corpus.csv'
+    matches_path = 'artifacts/data/matches.csv'
+    corpus_path = 'artifacts/data/corpus.csv'
     output_dir = 'artifacts/debug'
     os.makedirs(output_dir, exist_ok=True)
     

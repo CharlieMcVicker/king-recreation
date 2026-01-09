@@ -110,8 +110,8 @@ def get_matches_for_verb(verb, classes):
 
 def classify_verbs():
     classes_path = "data/king_classes.csv"
-    corpus_path = "artifacts/corpus.csv"
-    output_path = "artifacts/matches.csv"
+    corpus_path = "artifacts/data/corpus.csv"
+    output_path = "artifacts/data/matches.csv"
 
     if not os.path.exists(corpus_path):
         print(f"Error: {corpus_path} not found.")

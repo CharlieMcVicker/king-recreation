@@ -68,10 +68,14 @@ def clean_row(row):
 def process_ced():
     input_path = "data/ced_data_original.csv"
     output_dir = "artifacts"
-    output_path = os.path.join(output_dir, "corpus.csv")
+    # The instruction implies a base_dir, but it's not defined.
+    # Assuming the intent is to place it within 'artifacts/data/' relative to the script.
+    output_path = os.path.join(output_dir, 'data', 'corpus.csv')
 
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+    # Ensure the full directory path exists for the output file
+    output_data_dir = os.path.dirname(output_path)
+    if not os.path.exists(output_data_dir):
+        os.makedirs(output_data_dir)
 
     processed_data = []
 

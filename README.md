@@ -37,7 +37,16 @@ The reference forms considered for this study will be:
 4. "Imperative" (`2nd imperative` column)
 5. "Infinitive" (`3rd infinitive` column with `i` rstripped)
 
-This file is then written to disk as `artifacts/corpus.csv`.
+This file is then written to disk as `artifacts/data/corpus.csv`.
+
+### Artifacts Structure
+
+The `artifacts/` directory is organized into the following subdirectories:
+
+- `data/`: Contains CSV data files used as inputs/outputs between pipeline steps (e.g., `corpus.csv`, `matches.csv`, `stem_corpus.csv`).
+- `reports/`: Contains analysis summaries, validation reports, and data exports suitable for review (e.g., `consistency_analysis.csv`, `reconstruction_report.csv`).
+- `visualizations/`: Contains generated plots and charts (e.g., `class_distribution.png`, `near_miss_heatmap.png`).
+- `debug/`: Contains error logs and debug information (e.g., `derivation_failures.json`).
 
 ### Pronominal and Prepronominal Stem Extraction
 

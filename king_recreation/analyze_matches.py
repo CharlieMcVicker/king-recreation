@@ -21,8 +21,8 @@ def save_json(path, data):
         json.dump(data, f, indent=4, sort_keys=True)
 
 def analyze_matches():
-    matches_path = 'artifacts/matches.csv'
-    corpus_path = 'artifacts/corpus.csv'
+    matches_path = 'artifacts/data/matches.csv'
+    corpus_path = 'artifacts/data/corpus.csv'
     classes_path = 'data/king_classes.csv'
     
     if not os.path.exists(matches_path):
@@ -72,7 +72,7 @@ def analyze_matches():
             'loose_full': class_counts[cls]['loose']['full']
         })
     
-    output_dir = 'artifacts/analysis'
+    output_dir = 'artifacts/reports'
     os.makedirs(output_dir, exist_ok=True)
 
     save_csv(os.path.join(output_dir, 'class_match_counts.csv'), class_match_data, 

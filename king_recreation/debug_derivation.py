@@ -7,7 +7,7 @@ def debug_derivation(target_definition):
     row = None
     
     # Find the row in corpus.csv
-    with open('artifacts/corpus.csv', 'r', encoding='utf-8') as f:
+    with open('artifacts/data/corpus.csv', 'r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         for r in reader:
             if r['definition'] == target_definition:
@@ -15,7 +15,7 @@ def debug_derivation(target_definition):
                 break
     
     if not row:
-        print(f"Error: Could not find definition '{target_definition}' in artifacts/corpus.csv")
+        print(f"Error: Could not find definition '{target_definition}' in artifacts/data/corpus.csv")
         return
 
     print(f"Tracing derivation for: {row['definition']}")

@@ -189,8 +189,8 @@ class ReconstructionEngine:
 
 def main():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    stem_corpus_path = os.path.join(base_dir, 'artifacts', 'stem_corpus.csv')
-    corpus_path = os.path.join(base_dir, 'artifacts', 'corpus.csv')
+    stem_corpus_path = os.path.join(base_dir, 'artifacts', 'data', 'stem_corpus.csv')
+    corpus_path = os.path.join(base_dir, 'artifacts', 'data', 'corpus.csv')
     king_classes_path = os.path.join(base_dir, 'data', 'king_classes.csv')
     
     engine = ReconstructionEngine(king_classes_path)
@@ -314,9 +314,12 @@ def main():
     
     # Export Artifacts
     artifacts_dir = os.path.join(base_dir, 'artifacts')
-    analysis_path = os.path.join(artifacts_dir, 'consistency_analysis.csv')
-    report_path = os.path.join(artifacts_dir, 'reconstruction_report.csv')
-    validation_path = os.path.join(artifacts_dir, 'reconstruction_validation.json')
+    reports_dir = os.path.join(artifacts_dir, 'reports')
+    analysis_path = os.path.join(reports_dir, 'consistency_analysis.csv')
+    report_path = os.path.join(reports_dir, 'reconstruction_report.csv')
+    validation_path = os.path.join(reports_dir, 'reconstruction_validation.json')
+    
+    os.makedirs(reports_dir, exist_ok=True)
     
     # Save Consistency Analysis
     analysis_fields = ['definition', 'assigned_class', 'is_consistent', 'mismatch_details'] + [f'root_{fn}' for fn in forms]

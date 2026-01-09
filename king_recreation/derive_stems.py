@@ -191,8 +191,8 @@ class StemDeriver:
 
 def main():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    input_path = os.path.join(base_dir, 'artifacts', 'corpus.csv')
-    output_path = os.path.join(base_dir, 'artifacts', 'stem_corpus.csv')
+    input_path = os.path.join(base_dir, 'artifacts', 'data', 'corpus.csv')
+    output_path = os.path.join(base_dir, 'artifacts', 'data', 'stem_corpus.csv')
     debug_path = os.path.join(base_dir, 'artifacts', 'debug', 'derivation_failures.json')
     
     if not os.path.exists(os.path.dirname(debug_path)):
