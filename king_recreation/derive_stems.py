@@ -249,7 +249,6 @@ class StemDeriver:
                 final_stems[fn] = ";".join(matching_stems)
 
             # Determine if metathesis was used in ANY of the chosen forms
-            # We already tracked it during the loop
             is_metathesis = metathesis_used
 
             return Derivation(

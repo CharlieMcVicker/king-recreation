@@ -58,6 +58,7 @@ PRONOMINAL_PREFIXES_MAP = {
         ('akw-', Condition.VOWEL),
         ('akh-', Condition.ASPIRATED), 
         ('akh-', Condition.S_STEM),
+        ('akhi-', Condition.METATHESIS_H_CONS),
         ('ak-', Condition.CONSONANT) 
     ],
     '1st to 3rd': [
