@@ -1,4 +1,31 @@
 {
-    "summary": "170/170",
-    "failures": []
+    "summary": "173/177",
+    "failures": [
+        {
+            "definition": "he's attaching it (flexible), behind it",
+            "failed_forms": [
+                "perfective: expected 'uwasanenatvn', got {'usanenatn', 'uwasanenatn'}",
+                "infinitive: expected 'uwasanenatvt', got {'uwasanenatt', 'usanenatt'}"
+            ]
+        },
+        {
+            "definition": "it's bending",
+            "failed_forms": [
+                "perfective: expected 'uhliyvhkwitvn', got {'uhliyvhkwitn'}",
+                "infinitive: expected 'uhliyvhkwitvt', got {'uhliyvhkwitt'}"
+            ]
+        },
+        {
+            "definition": "1. he's taking liquid from him, it  2. he's milking it (when used with unvdi)",
+            "failed_forms": [
+                "imperative: expected 'hinekisi', got {'hineksi'}"
+            ]
+        },
+        {
+            "definition": "he's disbelieving",
+            "failed_forms": [
+                "imperative: expected 'tsatlasithvsi', got {'tsatlasithsi'}"
+            ]
+        }
+    ]
 }
