@@ -33,8 +33,14 @@ export async function getCorpus() {
 }
 
 export async function getMatches() {
-  // matches.csv is large, might need optimization later
   return readCsv<any>(path.join(ARTIFACTS_DIR, "data"), "matches.csv");
+}
+
+export async function getConsistencyAnalysis() {
+  return readCsv<any>(
+    path.join(ARTIFACTS_DIR, "reports"),
+    "consistency_analysis.csv"
+  );
 }
 
 export async function getMatchCounts() {
