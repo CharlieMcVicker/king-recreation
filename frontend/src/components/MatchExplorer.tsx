@@ -59,7 +59,7 @@ export default function MatchExplorer({
       case "full":
         return "bg-emerald-500";
       case "reconstructs":
-        return "bg-violet-500";
+        return "bg-indigo-600";
       case "ending":
         return "bg-amber-500";
       default:
@@ -72,7 +72,7 @@ export default function MatchExplorer({
       case "full":
         return "Full Match";
       case "reconstructs":
-        return "Reconstructs";
+        return "Gold Standard";
       case "ending":
         return "Near Miss";
       default:
@@ -85,7 +85,7 @@ export default function MatchExplorer({
       case "full":
         return "bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400";
       case "reconstructs":
-        return "bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400";
+        return "bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300 ring-1 ring-indigo-500/30";
       case "ending":
         return "bg-amber-100 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400";
       default:
@@ -154,8 +154,8 @@ export default function MatchExplorer({
                   <span
                     className={`text-[10px] uppercase font-bold px-1.5 py-0.5 rounded ${
                       match.scope === "reconstructs"
-                        ? "text-violet-600 bg-violet-50 dark:bg-violet-900/20"
-                        : "text-amber-600 bg-amber-50 dark:bg-amber-900/20"
+                        ? "text-indigo-600 bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-100 dark:border-indigo-900/30"
+                        : "text-amber-600 bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-900/30"
                     }`}
                   >
                     {match.scope === "reconstructs" ? "Recon" : "Miss"}

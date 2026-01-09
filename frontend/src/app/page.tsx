@@ -16,6 +16,19 @@ export default async function Dashboard() {
 
   const metrics = [
     {
+      label: "Reconstructible",
+      value: `${coverage.strict_reconstructs.coverage_pct.toFixed(1)}%`,
+      total:
+        coverage.strict_reconstructs["0"] +
+        coverage.strict_reconstructs["1"] +
+        coverage.strict_reconstructs["2+"],
+      matched:
+        coverage.strict_reconstructs["1"] + coverage.strict_reconstructs["2+"],
+      icon: CheckCircle2,
+      color: "text-emerald-600",
+      bg: "bg-emerald-50 dark:bg-emerald-900/20",
+    },
+    {
       label: "Full Match",
       value: `${coverage.strict_full.coverage_pct.toFixed(1)}%`,
       total:
@@ -35,7 +48,7 @@ export default async function Dashboard() {
         coverage.strict_ending["1"] +
         coverage.strict_ending["2+"],
       matched: coverage.strict_ending["1"] + coverage.strict_ending["2+"],
-      icon: CheckCircle2,
+      icon: Filter,
       color: "text-indigo-600",
       bg: "bg-indigo-50 dark:bg-indigo-900/20",
     },
@@ -139,6 +152,7 @@ export default async function Dashboard() {
               <thead>
                 <tr className="bg-gray-50 dark:bg-zinc-800/50 border-b border-gray-200 dark:border-zinc-800 text-gray-400 uppercase text-[10px] tracking-widest font-bold">
                   <th className="px-6 py-4">Class</th>
+                  <th className="px-6 py-4">Reconstructs</th>
                   <th className="px-6 py-4">Full Matches</th>
                   <th className="px-6 py-4">Ending Matches</th>
                   <th className="px-6 py-4 text-right">Action</th>
@@ -152,6 +166,9 @@ export default async function Dashboard() {
                   >
                     <td className="px-6 py-4 font-semibold text-indigo-600 dark:text-indigo-400">
                       {row.class}
+                    </td>
+                    <td className="px-6 py-4 text-emerald-600 font-medium">
+                      {row.strict_reconstructs}
                     </td>
                     <td className="px-6 py-4">{row.strict_full}</td>
                     <td className="px-6 py-4">{row.strict_ending}</td>

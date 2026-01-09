@@ -68,3 +68,10 @@ export async function getNearMisses() {
   );
   return allNearMisses.filter((nm: any) => nm.strictness === "strict");
 }
+
+export async function getReconstructionFailures() {
+  return readCsv<any>(
+    path.join(ARTIFACTS_DIR, "reports"),
+    "reconstruction_failures.csv"
+  );
+}
