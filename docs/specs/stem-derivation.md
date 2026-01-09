@@ -47,21 +47,23 @@ For Set B verbs, we expect to see the following person-prefixes on each form
 
 ### Phonological content of prefixes
 
-| Pronoun           | Form                | Stem initial   |
-| ----------------- | ------------------- | -------------- |
-| 3rd person Set A  | ø, k-               | a, e           |
-| 3rd person Set A  | k-                  | o, u, v        |
-| 3rd person Set A  | a-, ka-             | consonants     |
-| 3rd person Set B  | u- (replaces a)     | a              |
-| 3rd person Set B  | uw-                 | e, o, u, v     |
-| 3rd person Set B  | uwa- (v is dropped) | v              |
-| 3rd person Set B  | u-, uwa-            | consonants     |
-| 2nd person Set B  | ts-                 | a, e, o, u , v |
-| 2nd person Set B  | tsa-                | consonants     |
-| 2nd person Set A  | h-                  | a, e, o, u , v |
-| 2nd person Set A  | hi-                 | consonants     |
-| 2nd person to 3rd | hiy-                | a, e, o, u , v |
-| 2nd person to 3rd | hi-                 | consonants     |
+| Pronoun           | Form                | Stem initial    |
+| ----------------- | ------------------- | --------------- |
+| 3rd person Set A  | ø, k-               | a, e            |
+| 3rd person Set A  | k-                  | o, u, v         |
+| 3rd person Set A  | a-, ka-             | consonants      |
+| 3rd person Set B  | u- (replaces a)     | a               |
+| 3rd person Set B  | uw-                 | e, o, u, v      |
+| 3rd person Set B  | uwa- (v is dropped) | v               |
+| 3rd person Set B  | u-, uwa-            | consonants      |
+| 2nd person Set B  | ts-                 | a, e, o, u , v  |
+| 2nd person Set B  | tsa-                | consonants      |
+| 2nd person Set B  | ts-                 | aspirated cons. |
+| 2nd person Set B  | t-                  | s               |
+| 2nd person Set A  | h-                  | a, e, o, u , v  |
+| 2nd person Set A  | hi-                 | consonants      |
+| 2nd person to 3rd | hiy-                | a, e, o, u , v  |
+| 2nd person to 3rd | hi-                 | consonants      |
 
 ## Prepronominal prefixes
 

@@ -44,7 +44,9 @@ class ReconstructionEngine:
             ],
             '2nd Set B': [
                 ('ts-', 'vowel'),
-                ('tsa-', 'con')
+                ('tsa-', 'con'),
+                ('ts-', 'aspirated'),
+                ('t-', 's_stem')
             ],
             '2nd Set A': [
                 ('h-', 'vowel'),
@@ -99,6 +101,14 @@ class ReconstructionEngine:
             return None
         if condition == 'con':
             if stem and not is_vowel(stem[0]): 
+                return clean_prefix + stem
+            return None
+        if condition == 'aspirated':
+            if stem and stem.startswith('th'):
+                return clean_prefix + stem
+            return None
+        if condition == 's_stem':
+            if stem and stem.startswith('s'):
                 return clean_prefix + stem
             return None
         return None

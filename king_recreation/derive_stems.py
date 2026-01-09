@@ -22,7 +22,7 @@ class StemDeriver:
         self.prefixes_pronominal = {
             '3rd Set A': [('ø', 'vowel_ae'), ('k-', 'vowel'), ('a-', 'con'), ('ka-', 'con')],
             '3rd Set B': [('u-', 'a_replace'), ('uw-', 'vowel_no_a'), ('uwa-', 'v'), ('u-', 'con'), ('uwa-', 'con')],
-            '2nd Set B': [('ts-', 'vowel'), ('tsa-', 'con')],
+            '2nd Set B': [('ts-', 'vowel'), ('tsa-', 'con'), ('ts-', 'aspirated'), ('t-', 's_stem')],
             '2nd Set A': [('h-', 'vowel'), ('hi-', 'con')],
             '2nd to 3rd': [('hiy-', 'vowel'), ('hi-', 'con')]
         }
@@ -135,15 +135,21 @@ class StemDeriver:
                             possible_stems[fn].append('a' + remainder)
                         elif cond == 'v' and pref == 'uwa-':
                             possible_stems[fn].append('v' + remainder)
+                        elif cond == 'aspirated' and remainder.startswith('th'):
+                             possible_stems[fn].append(remainder)
+                        elif cond == 's_stem' and remainder.startswith('s'):
+                             possible_stems[fn].append(remainder)
                         else:
                             possible_stems[fn].append(remainder)
-                            # Handle /h/ alternation for 2->3 forms: restore dropped /h/
-                            if pron_type == '2nd to 3rd':
-                                possible_stems[fn].append('h' + remainder)
+                        
+                        # Handle /h/ alternation for 2->3 forms: restore dropped /h/
+                        if pron_type == '2nd to 3rd':
+                            possible_stems[fn].append('h' + remainder)
 
         # Cross-form check: intersection of all stem possibilities
         # Skip forms that are missing
         for fn, stems in possible_stems.items():
+            possible_stems[fn] = list(set(stems)) # Deduplicate
             if fn in forms and not stems:
                 return None
         
