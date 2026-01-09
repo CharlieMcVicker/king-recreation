@@ -3,6 +3,11 @@ he's taking a drink (alcoholic beverage),Ia,True,,athuki,athuki,athuki,athuki,at
 "he's catching a falling person, object",Ia*,False,Root mismatch: imperative: 'skwahl',skwahle,skwahle,skwahle,skwahl,skwahle
 it's hatching,Ia,True,,atsai,atsai,atsai,atsai,atsai
 he's opening it,Ia,True,,stui,stui,stui,stui,stui
+it's freezing,Vb*,True,,nestalat,nestalat,nestalat,nestalat,nestalat
+he's getting married,Vb*,True,,anelat,anelat,anelat,anelat,anelat
+1. he's pleading 2. he's urging,Vb*,True,,nilat,nilat,nilat,nilat,nilat
+he's bewitching him,Vb*,True,,nekut,nekut,nekut,nekut,nekut
+it's burning (flames),Vb*,True,,atawelak,atawelak,atawelak,atawelak,atawelak
 he's taking off his socks,Ia,True,,aliyoki,aliyoki,aliyoki,aliyoki,aliyoki
 he's chewing it,Ib,True,,kisto,kisto,kisto,kisto,kisto
 1. he's pondering it  2. he's considering,Ib,True,,atanhthehilo,atanhthehilo,atanhthehilo,atanhthehilo,atanhthehilo
@@ -10,6 +15,7 @@ he's taking a step,Ic*,True,,alaskv,alaskv,alaskv,alaskv,alaskv
 he's replying,Ic*,True,,awohiliyv,awohiliyv,awohiliyv,awohiliyv,awohiliyv
 "he, it's changing",Ic*,True,,atanetliyv,atanetliyv,atanetliyv,atanetliyv,atanetliyv
 he's changing it,Ic*,True,,netliyv,netliyv,netliyv,netliyv,netliyv
+he's erasing it,Vb*,True,,skolvt,skolvt,skolvt,skolvt,skolvt
 "he, it's moving from one place to another",Ic*,True,,atanv,atanv,atanv,atanv,atanv
 he's shoveling it,Ia*,False,Root mismatch: imperative: 'khot',khote,khote,khote,khot,khote
 "he's taking off, removing a cap",Ia*,False,Root mismatch: imperative: 'alstul',alstule,alstule,alstule,alstul,alstule
@@ -17,10 +23,30 @@ he's oiling it,Id,False,Root mismatch: imperative: 'lon',lone,lone,lone,lon,lone
 he's washing (dishes),Id,False,Root mismatch: imperative: 'vtiy',vtiye,vtiye,vtiye,vtiy,vtiye
 "1. he's reading, 2. he's examining him, it",Id,False,Root mismatch: imperative: 'koliy',koliye,koliye,koliye,koliy,koliye
 "he's rubbing him, it",Id,False,Root mismatch: imperative: 'askoliy',askoliye,askoliye,askoliye,askoliy,askoliye
+he's laying a long object down,Vb*,True,,t,t,t,t,t
+"he's remembering him, it",Vb*,False,Root mismatch: imperative: 'anvtat',anhtat,anhtat,anhtat,anvtat,anhtat
 "he's lifting him, raising him, it",Vc*,True,,salat,salat,salat,salat,salat
 "he, it's ascending, raising",Vc*,True,,alsalat,alsalat,alsalat,alsalat,alsalat
+he's mooring a boat,Vb*,True,,thalat,thalat,thalat,thalat,thalat
+he's joining,Vb*,True,,athelat,athelat,athelat,athelat,athelat
+"he's roping him, it",Vb*,True,,slat,slat,slat,slat,slat
+"he's placing his hand on him, it",Vb*,True,,asihthat,asihthat,asihthat,asihthat,asihthat
+he's sending a long object,Vb*,True,,t,t,t,t,t
+he's finishing it,Vb*,True,,skwat,skwat,skwat,skwat,skwat
+it's ending,Vb*,True,,alskwat,alskwat,alskwat,,alskwat
+he's exchanging/trading it,Vb*,True,,aliit,aliit,aliit,aliit,aliit
+he's putting a long object in liquid,Vb*,True,,hut,hut,hut,hut,hut
+he's putting a long object in a container,Vb*,True,,lat,lat,lat,lat,lat
+he's hiding a long object,Vb*,True,,vskalat,vskalat,vskalat,vskalat,vskalat
+it's misting,Vb*,False,"Root mismatch: perfective: 'hnuyolat', infinitive: 'hnuyolat'",hanuyolat,hanuyolat,hnuyolat,,hnuyolat
+he's setting up a bed,Vb*,True,,nihlat,nihlat,nihlat,nihlat,nihlat
+he's licking it,Vb*,True,,kanat,kanat,kanat,kanat,kanat
 he's sticking his head out,Vc*,True,,alskwalut,alskwalut,alskwalut,alskwalut,alskwalut
+"he's missing him, it",Vb*,True,,nvt,nvt,nvt,nvt,nvt
+he's eating it (a single solid food),Vb*,True,,k,k,k,k,k
 1. he's leaving  2. it's starting,Ia,True,,ahniki,ahniki,ahniki,ahniki,ahniki
+he's gnawing it,Vb*,True,,skok,skok,skok,skok,skok
+he's eating a long object,Vb*,True,,stik,stik,stik,stik,stik
 he's dipping liquid,Ia,True,,khuki,khuki,khuki,khuki,khuki
 he's plowing it,Vc*,True,,taluk,taluk,taluk,taluk,taluk
 he's putting his gloves on,Vc*,True,,aliyesul,aliyesul,aliyesul,aliyesul,aliyesul
@@ -121,7 +147,7 @@ he's sandwiching it,IIIa1,False,"Root mismatch: perfective: 'stvhahla', infiniti
 1. he's covering it 2. he's putting a lid on it,IIIa1,False,Root mismatch: imperative: 'uhlvv',uhlv,uhlv,uhlv,uhlvv,uhlv
 "light a fire, match",IIIa1,False,"Root mismatch: perfective: 'tsisla', infinitive: 'tsislvs'",tsislv,tsislv,tsisla,tsislv,tsislvs
 "he, it's growing",IIIc1*,True,,athv,athv,athv,athv,athv
-he's enduring it (idiom),IIIa1,False,"Root mismatch: perfective: 'ethi', imperative: 'ethv', infinitive: 'eth'",ethvsk;ekethv,ethvsk;ekethv,ethi,ethv,eth
+he's enduring it (idiom),IIIa1,False,"Root mismatch: perfective: 'ethi', imperative: 'ethv', infinitive: 'eth'",ekethvsk;ethv,ekethvsk;ethv,ethi,ethv,eth
 "he's hiding him, it (flexible)",IIIa1,False,Root mismatch: imperative: 'vskalvv',vskalv,vskalv,vskalv,vskalvv,vskalv
 "1.  he's breaking a flexible object, 2. He's cutting a flexible object",IIId*,True,,kal,kal,kal,kal,kal
 he's breaking a long object,IIId*,True,,skwal,skwal,skwal,skwal,skwal
