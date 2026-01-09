@@ -56,7 +56,7 @@ it's thundering,Ib,True,,ahyvtakwalo,ahyvtakwalo,ahyvtakwalo,,ahyvtakwalo
 he's removing it (solid or flexible object) from a hanging position,Ia*,False,Root mismatch: imperative: 'at',ate,ate,ate,at,ate
 he's taking off his glasses,Ia*,False,Root mismatch: imperative: 'akhthinvt',akhthinvte,akhthinvte,akhthinvte,akhthinvt,akhthinvte
 he's taking it off,Ia*,False,Root mismatch: imperative: 'vnht',vnhte,vnhte,vnhte,vnht,vnhte
-he's taking a bite,Ia*,False,Root mismatch: imperative: 'athst',athste,athste,athste,athst,athste
+he's taking a bite,Ia*,False,Root mismatch: imperative: 'atst',atste,atste,atste,atst,atste
 "1. he's unhitching him, it 2. he's unhooking it 3. he's unplugging it",Ia*,False,Root mismatch: imperative: 'utal',utale,utale,utale,utal,utale
 he's taking it (solid or flexible object) out of a container,Ia*,False,Root mismatch: imperative: 'l',le,le,le,l,le
 he's taking off his shoes,Ia*,False,Root mismatch: imperative: 'alasul',alasule,alasule,alasule,alasul,alasule
@@ -74,6 +74,7 @@ he's undressing,Ia*,False,Root mismatch: imperative: 'ahnaw',ahnawe,ahnawe,ahnaw
 he's waving his hand,Ia,True,,asolvtaki,asolvtaki,asolvtaki,asolvtaki,asolvtaki
 he's having a nightmare,Ia,True,,ahliki,ahliki,ahliki,ahliki,ahliki
 he's snoring,Ia,True,,khwalaki,khwalaki,khwalaki,khwalaki,khwalaki
+he's thirsty,Vc*,True,,thatek,thatek,thatek,thatek,thatek
 1. he's getting some liquid  2. he's picking up some liquid,Ia,True,,neki,neki,neki,neki,neki
 he's taking his hat off,Ia,True,,alskwethuhki,alskwethuhki,alskwethuhki,alskwethuhki,alskwethuhki
 he's hoeing it,Vc*,True,,lok,lok,lok,lok,lok
@@ -130,7 +131,7 @@ he's getting a rash,IIIc2,True,,akwenothi,akwenothi,akwenothi,akwenothi,akwenoth
 he's piling it up,IIIa1,False,Root mismatch: infinitive: 'hlus',hlu,hlu,hlu,hlu,hlus
 "He is getting in a car, box, etc",IIIa1,False,Root mismatch: perfective: 'atsa',atsav,atsav,atsa,atsav,
 he's kissing her,IIIa1,False,"Root mismatch: perfective: 'thaweto', imperative: 'tawetov', infinitive: 'thaweto'",thawetov,thawetov,thaweto,tawetov,thaweto
-he's lying,IIIa1,False,"Root mismatch: perfective: 'athsko', infinitive: 'athsko'",athskov,athskov,athsko,athskov,athsko
+he's lying,IIIa1,False,"Root mismatch: perfective: 'atsko', infinitive: 'atsko'",atskov,atskov,atsko,atskov,atsko
 "he's sprinkling it (with a liquid, powder, salt, etc.)",IIIa1,False,"Root mismatch: perfective: 'khwayo', infinitive: 'khwayo'",khwayov,khwayov,khwayo,khwayov,khwayo
 he's becoming wise,IIIc1*,False,"Root mismatch: imperative: 'khthov', infinitive: 'khthov'",khthohv,khthohv,khthohv,khthov,khthov
 1. he's closing it  2. he's jailing him,IIIa1,False,"Root mismatch: perfective: 'stuh', infinitive: 'stu'",stuhv,stuhv,stuh,stuhv,stu
@@ -155,6 +156,7 @@ he's getting exhausted,IIIc1*,True,,asthaye,asthaye,asthaye,asthaye,asthaye
 he's finding it out,IIIc1,True,,ateloho,ateloho,ateloho,ateloho,ateloho
 he's confronted with it,IIIc1,True,,atlo,atlo,atlo,atlo,atlo
 he's beating him at a game,IIIc1,True,,hlo,hlo,hlo,hlo,hlo
+he's becoming enraged,IIIc1,True,,thahlawo,thahlawo,thahlawo,thahlawo,thahlawo
 1. he's becoming warm  2. he's warming himself,IIIc1,True,,akanawo,akanawo,akanawo,akanawo,akanawo
 it's melting,IIIc1,True,,vnawo,vnawo,vnawo,vnawo,vnawo
 "he's dying, (human)",IIIc1,True,,yohu,yohu,yohu,yohu,yohu
@@ -216,10 +218,10 @@ he's ordering it,IIId*,False,Root mismatch: imperative: 'atanvl',atanv,atanv,ata
 a long object is falling from an upright position,IIIc1*,True,,leyv,leyv,leyv,leyv,leyv
 she's cooking a meal,IIIa1,False,"Root mismatch: perfective: 'atastayvh', infinitive: 'atastayh'",atastayvhv,atastayvhv,atastayvh,atastayvhv,atastayh
 he's quilting it,IIIa1,False,"Root mismatch: perfective: 'hyehkahla', infinitive: 'hyehkahl'",hyehkahlv,hyehkahlv,hyehkahla,hyehkahlv,hyehkahl
-he's sucking it,IIId*,False,Root mismatch: imperative: 'skwanuths',skwanuth,skwanuth,skwanuth,skwanuths,skwanuth
-he's laughing,IIId*,False,Root mismatch: imperative: 'ayeths',ayeth,ayeth,ayeth,ayeths,ayeth
-"he's dreaming about him, it",IIId*,False,Root mismatch: imperative: 'askiths',askith,askith,askith,askiths,askith
-he's peeling it,IIId*,False,Root mismatch: imperative: 'hyahkheths',hyahkheth,hyahkheth,hyahkheth,hyahkheths,hyahkheth
+he's sucking it,IIId*,False,Root mismatch: imperative: 'skwanuts',skwanut,skwanut,skwanut,skwanuts,skwanut
+he's laughing,IIId*,False,Root mismatch: imperative: 'ayets',ayet,ayet,ayet,ayets,ayet
+"he's dreaming about him, it",IIId*,False,Root mismatch: imperative: 'askits',askit,askit,askit,askits,askit
+he's peeling it,IIId*,False,Root mismatch: imperative: 'hyahkhets',hyahkhet,hyahkhet,hyahkhet,hyahkhets,hyahkhet
 he's bragging,IIId*,False,Root mismatch: infinitive: 'atlvkhwi',atlvkhw,atlvkhw,atlvkhw,atlvkhw,atlvkhwi
 "he's putting him inside, (somewhere large enough to move around)",IVa,False,Root mismatch: imperative: 'yvt',yht,yht,yht,yvt,yht
 he's fanning himself,IIa,False,Root mismatch: imperative: 'atahnoyvl',atahnoye,atahnoye,atahnoye,atahnoyvl,atahnoye

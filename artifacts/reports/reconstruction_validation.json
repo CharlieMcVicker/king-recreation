@@ -1,4 +1,17 @@
 {
-    "summary": "197/197",
-    "failures": []
+  "summary": "197/199",
+  "failures": [
+    {
+      "definition": "he's thirsty",
+      "failed_forms": [
+        "imperative: expected 'tsthatekvka', got {'tsathatekvka'}"
+      ]
+    },
+    {
+      "definition": "he's becoming enraged",
+      "failed_forms": [
+        "imperative: expected 'tsthahlawohi', got {'tsathahlawohi'}"
+      ]
+    }
+  ]
 }
