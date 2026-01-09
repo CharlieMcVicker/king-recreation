@@ -1,4 +1,35 @@
 {
-    "summary": "204/204",
-    "failures": []
+    "summary": "212/217",
+    "failures": [
+        {
+            "definition": "it's shattering",
+            "failed_forms": [
+                "perfective: expected 'uhlkhotvhn', got {'uhlkhotn', 'uwahlkhotn'}"
+            ]
+        },
+        {
+            "definition": "he has time",
+            "failed_forms": [
+                "imperative: expected 'tsatlanvtatisi', got {'tsatlanvtasi'}"
+            ]
+        },
+        {
+            "definition": "he's taking revenge against him",
+            "failed_forms": [
+                "imperative: expected 'hiyatletshisi', got {'hiyatletssi'}"
+            ]
+        },
+        {
+            "definition": "he's giving him a long  object",
+            "failed_forms": [
+                "imperative: expected 'hitisi', got {'hisi'}"
+            ]
+        },
+        {
+            "definition": "he's showing him",
+            "failed_forms": [
+                "imperative: expected 'hiyasehisi', got {'hiyasesi'}"
+            ]
+        }
+    ]
 }

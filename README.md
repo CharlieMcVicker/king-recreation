@@ -51,7 +51,7 @@ Before classification, we derive pronominal-inflection patterns and extract the 
 
 **Outputs:**
 
-- `artifacts/labeled_corpus.csv`: The corpus updated with inflectional patterns, prefix flags, and the derived present stem.
+- `artifacts/data/stem_corpus.csv`: The corpus updated with inflectional patterns, prefix flags, and the derived stems (functional forms with prefixes removed).
 - `artifacts/reports/stem_derivation_failures.csv`: A list of verbs where stems could not be derived using the pronominal and prepronominal rules.
 
 **Usage:**
@@ -68,7 +68,7 @@ King's classes are stored in `data/king_classes.csv` (note: filename corrected f
 
 #### Match Criteria
 
-We define two strictness levels (**Strict**, **Loose**) and two scopes (**Ending**, **Full**).
+We define two strictness levels (**Strict**, **Loose**) and three scopes (**Ending**, **Full**, **Reconstructs**).
 
 > See [Classification Rules](docs/specs/classification-rules.md) for the complete matching matrix and logic.
 
@@ -79,16 +79,16 @@ For each verb in the corpus, if a match is found, append a row to `artifacts/mat
 1.  `definition`: From corpus.
 2.  `class`: The matched class ID (e.g., `Ia`, `IIb`).
 3.  `strictness`: `strict` or `loose`.
-4.  `scope`: `ending` or `full`.
+4.  `scope`: `ending`, `full`, or `reconstructs`.
 5.  `stem_final_match_present`: Boolean.
 6.  `stem_final_match_imperfective`: Boolean.
 7.  `stem_final_match_perfective`: Boolean.
 8.  `stem_final_match_imperative`: Boolean.
 9.  `stem_final_match_infinitive`: Boolean.
 
-> **Important:** Even if a "Full Match" fails (resulting in a scope of "Ending"), the `stem_final_match_*` columns **must** still be calculated and populated. This is crucial for debugging near-matches and identifying data quality issues.
+> **Important:** Even if a "Full Match" or "Reconstructs Match" fails (resulting in a scope of "Ending"), the `stem_final_match_*` columns **must** still be calculated and populated. This is crucial for debugging near-matches and identifying data quality issues.
 
-Note: A single verb may have multiple matches (e.g., one Strict/Full and one Loose/Ending).
+Note: A single verb may have multiple matches (e.g., one Strict/Reconstructs and one Loose/Ending).
 
 ### Match data analysis
 
@@ -99,14 +99,14 @@ The data in `artifacts/matches.csv` contains rich information about how well the
 - `--visualize`: If set, automatically runs the visualization script after analysis is complete.
 
 **Technical Note on `matches.csv`:**
-A single verb (`definition`) can match multiple classes and strictnesses. However, for a given `(verb, class, strictness)`, only the _largest_ achieved scope is recorded as a single row. If a "Full" match is achieved, there should not be a separate "Ending" row for that specific combination.
+A single verb (`definition`) can match multiple classes and strictnesses. However, for a given `(verb, class, strictness)`, only the _largest_ achieved scope is recorded as a single row. The scope hierarchy is `reconstructs` > `full` > `ending`.
 
 **1. Class-wise Match Counts**
 Calculate the total number of unique verbs matched by each class, broken down by all four strictness/scope combinations.
 
-- **Output**: `artifacts/class_match_counts.csv`
-- **Columns**: `class`, `strict_ending`, `strict_full`, `loose_ending`, `loose_full`
-- **Logic**: `strict_ending` counts verbs that matched _only_ at the ending level for that class, while `strict_full` counts those that passed the full stem-final check. (Note: Scripts should implement a safety check to ensure they are counting the largest scope per verb/class).
+- **Output**: `artifacts/reports/class_match_counts.csv`
+- **Columns**: `class`, `strict_ending`, `strict_full`, `strict_reconstructs`, `loose_ending`, `loose_full`
+- **Logic**: `strict_ending` counts verbs that matched _only_ at the ending level for that class, while `strict_reconstructs` counts those that passed the highest tier of validation.
 
 **2. Verb Coverage Summary**
 Analyze how well the King classification explains the total corpus.
@@ -140,9 +140,9 @@ The final stage of the analysis validates that the classified verbs are not only
 
 **Logic:**
 
-1.  **Classification Integration**: Uses the shared matching interface from `classify_verbs.py` to identify unique **Strict Full Matches**.
-2.  **Root Extraction**: Strips suffixes from derived stems to find the root.
-3.  **Consistency Check**: Enforces that the root is identical across all 5 forms.
+1.  **Classification Integration**: Relies on the **`reconstructs`** scope flagged in `artifacts/data/matches.csv`.
+2.  **Shared Logic**: Uses `king_recreation/stem_analysis.py` to strip suffixes and verify root consistency across all forms.
+3.  **Consistency Check**: Enforces that the root is identical across all available forms (skipping nulls).
 4.  **Reconstruction**: Re-generates full forms from the root and validates against the original corpus.
 
 > See [Reconstruction Specs](docs/specs/reconstruction.md) for detailed logic.

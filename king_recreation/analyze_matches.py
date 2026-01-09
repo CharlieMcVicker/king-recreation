@@ -55,7 +55,11 @@ def analyze_matches():
         if key not in filtered_matches:
             filtered_matches[key] = row
         else:
-            if scope == 'full':
+            # Upgrade scope if better match found (reconstructs > full > ending)
+            # Ranking: reconstructs=3, full=2, ending=1
+            rank = {'reconstructs': 3, 'full': 2, 'ending': 1}
+            current_scope = filtered_matches[key]['scope']
+            if rank.get(scope, 0) > rank.get(current_scope, 0):
                 filtered_matches[key] = row
 
     class_counts = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
@@ -68,6 +72,7 @@ def analyze_matches():
             'class': cls,
             'strict_ending': class_counts[cls]['strict']['ending'],
             'strict_full': class_counts[cls]['strict']['full'],
+            'strict_reconstructs': class_counts[cls]['strict']['reconstructs'],
             'loose_ending': class_counts[cls]['loose']['ending'],
             'loose_full': class_counts[cls]['loose']['full']
         })
@@ -76,11 +81,12 @@ def analyze_matches():
     os.makedirs(output_dir, exist_ok=True)
 
     save_csv(os.path.join(output_dir, 'class_match_counts.csv'), class_match_data, 
-             ['class', 'strict_ending', 'strict_full', 'loose_ending', 'loose_full'])
+             ['class', 'strict_ending', 'strict_full', 'strict_reconstructs', 'loose_ending', 'loose_full'])
 
     # 2. Verb Coverage Summary
     coverage_summary = {}
     combos = [
+        ('strict', 'reconstructs'),
         ('strict', 'full'),
         ('loose', 'full'),
         ('strict', 'ending'),
@@ -92,11 +98,18 @@ def analyze_matches():
         for key, row in filtered_matches.items():
             verb, cls, s = key
             if s == strictness:
-                if scope_target == 'full':
-                    if row['scope'] == 'full':
+                # Range matching: scope_target defines the MINIMUM level
+                # reconstructs tier
+                if scope_target == 'reconstructs':
+                    if row['scope'] == 'reconstructs':
                         verb_match_counts[verb] += 1
+                # full tier includes reconstructs
+                elif scope_target == 'full':
+                    if row['scope'] in ['full', 'reconstructs']:
+                        verb_match_counts[verb] += 1
+                # ending tier includes all
                 else: 
-                    if row['scope'] == 'ending' or row['scope'] == 'full':
+                    if row['scope'] in ['ending', 'full', 'reconstructs']:
                         verb_match_counts[verb] += 1
         
         matched_verbs = set(verb_match_counts.keys())
@@ -126,7 +139,8 @@ def analyze_matches():
         target_set = set()
         for key, row in filtered_matches.items():
             verb, cls, s = key
-            if s == strictness and row['scope'] == 'full':
+            # Unmatched here means "no full match" (or better)
+            if s == strictness and row['scope'] in ['full', 'reconstructs']:
                 target_set.add(verb)
         
         unmatched = sorted(list(all_verbs - target_set))
@@ -144,7 +158,7 @@ def analyze_matches():
     print("\nVerb Class Coverage Summary:")
     print(f"{'Match Configuration':<20} | {'Count (>=1)':<12} | {'Percentage':<10}")
     print("-" * 48)
-    for key in sorted(coverage_summary.keys()):
+    for key in sorted(coverage_summary.keys(), key=lambda x: (0 if 'reconstructs' in x else (1 if 'full' in x else 2), x)):
         stats = coverage_summary[key]
         matched = total_verb_count - stats['0']
         pct = stats['coverage_pct']
@@ -160,7 +174,6 @@ def analyze_matches():
         if row['scope'] == 'ending':
             near_miss_groups[(row['class'], row['strictness'])].append(row)
             
-    # Include all classes and both strictness levels
     for cls in all_classes:
         for s in ['strict', 'loose']:
             group = near_miss_groups[(cls, s)]
@@ -183,7 +196,6 @@ def analyze_matches():
             }
             near_miss_data.append(data_row)
 
-    # Sort near_miss_data by class (custom key) then strictness
     near_miss_data.sort(key=lambda x: (get_class_sort_key(x['class']), x['strictness']))
 
     save_csv(os.path.join(output_dir, 'class_near_misses.csv'), near_miss_data,

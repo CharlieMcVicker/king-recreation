@@ -16,8 +16,12 @@ def plot_class_distribution(csv_path, output_prefix):
         return
 
     # Prepare data for plotting
+    value_vars = ['strict_ending', 'strict_full', 'strict_reconstructs', 'loose_ending', 'loose_full']
+    # Filter for existing columns to avoid errors if some are missing
+    value_vars = [v for v in value_vars if v in df.columns]
+    
     df_melted = df.melt(id_vars='class', 
-                        value_vars=['strict_ending', 'strict_full', 'loose_ending', 'loose_full'],
+                        value_vars=value_vars,
                         var_name='Match Type', value_name='Count')
 
     def create_plot(data, suffix):
@@ -33,7 +37,7 @@ def plot_class_distribution(csv_path, output_prefix):
     create_plot(df_melted, 'Full')
 
     # Filtered version (only classes with at least one match in any category)
-    active_classes = df[(df[['strict_ending', 'strict_full', 'loose_ending', 'loose_full']] > 0).any(axis=1)]['class']
+    active_classes = df[(df[value_vars] > 0).any(axis=1)]['class']
     df_filtered = df_melted[df_melted['class'].isin(active_classes)]
     if not df_filtered.empty:
         create_plot(df_filtered, 'Filtered')
