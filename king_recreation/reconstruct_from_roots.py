@@ -17,6 +17,7 @@ class ReconstructibleVerb:
     translocutive: bool
     partitive: bool
     distributive: bool
+    metathesis: bool
     original_stems: Dict[str, str] = field(default_factory=dict)
 
 def is_vowel(char):
@@ -35,7 +36,8 @@ class ReconstructionEngine:
                 classes.append(row)
         return classes
 
-    def apply_mutation(self, stem, prefix, condition):
+    dealt_with_h_drop: bool = False
+    def apply_mutation(self, stem, prefix, condition, metathesis_allowed=True, h_drop_set=False):
         clean_prefix = prefix.replace('-', '')
         if clean_prefix == 'ø': clean_prefix = ''
         
@@ -43,8 +45,8 @@ class ReconstructionEngine:
             if stem and stem[0] in 'ae': return clean_prefix + stem
             return None
         if condition == Condition.VOWEL: 
-             if stem and is_vowel(stem[0]): return clean_prefix + stem
-             return None
+            if stem and is_vowel(stem[0]): return clean_prefix + stem
+            return None
         if condition == Condition.A_REPLACE: 
             if stem.startswith('a'):
                 return clean_prefix + stem[1:] 
@@ -56,7 +58,7 @@ class ReconstructionEngine:
             if stem and stem[0] == 'v': return clean_prefix + stem[1:]
             return None
         if condition == Condition.CONSONANT:
-            if stem and not is_vowel(stem[0]): 
+            if stem and (not is_vowel(stem[0]) or h_drop_set): 
                 return clean_prefix + stem
             return None
         if condition == Condition.ASPIRATED:
@@ -67,19 +69,36 @@ class ReconstructionEngine:
             if stem and stem.startswith('s'):
                 return clean_prefix + stem
             return None
+        if condition == Condition.METATHESIS_H_CONS:
+            if not metathesis_allowed: return None
+            # ka- + hnogi -> khanogi
+            if stem.startswith('h') and len(stem) > 1 and not is_vowel(stem[1]):
+                if clean_prefix == 'kha': return 'kha' + stem[1:]
+            return None
+        if condition == Condition.METATHESIS_VOWEL:
+            if not metathesis_allowed: return None
+            # k- + ehlatitoh -> khelatitoh
+            # uw- + ehlatitoh -> uhwelatitoh
+            # h- + ehlatita -> helatita
+            if len(stem) > 1 and is_vowel(stem[0]) and stem[1] == 'h':
+                if clean_prefix == 'kh': return 'kh' + stem[0] + stem[2:]
+                if clean_prefix == 'uhw': return 'uhw' + stem[0] + stem[2:]
+                if clean_prefix == 'h': return 'h' + stem[0] + stem[2:]
+            return None
         return None
 
-    def generate_pronominal_forms(self, stem: str, set_name: str) -> List[str]:
+    def generate_pronominal_forms(self, stem: str, set_name: str, metathesis_allowed=True) -> List[str]:
         candidates = []
         rules = PRONOMINAL_PREFIXES_MAP.get(set_name, [])
+        is_h_drop_set = set_name in ['2nd to 3rd', '1st to 3rd', '1st Set A']
         
-        stems_to_try = [stem]
-        if set_name == '2nd to 3rd' and stem.startswith('h'):
-            stems_to_try.append(stem[1:])
+        stems_to_try = [(stem, False)]
+        if is_h_drop_set and stem.startswith('h'):
+            stems_to_try.append((stem[1:], True))
             
-        for s in stems_to_try:
+        for s, dropped in stems_to_try:
             for pref, cond in rules:
-                res = self.apply_mutation(s, pref, cond)
+                res = self.apply_mutation(s, pref, cond, metathesis_allowed, h_drop_set=is_h_drop_set)
                 if res:
                     candidates.append(res)
         return candidates
@@ -192,7 +211,7 @@ class ReconstructionEngine:
             if not set_name: 
                 candidates = [stem]
             else:
-                candidates = self.generate_pronominal_forms(stem, set_name)
+                candidates = self.generate_pronominal_forms(stem, set_name, verb.metathesis)
                 if not candidates: candidates = [] 
             
             candidates = self.apply_prepronominal_layer(candidates, 'D', verb.distributive, fn)
@@ -268,6 +287,7 @@ def main():
                 translocutive=stem_row['translocutive'] == 'True',
                 partitive=stem_row['partitive'] == 'True',
                 distributive=stem_row['distributive'] == 'True',
+                metathesis=stem_row['metathesis'] == 'True',
                 original_stems={fn: stem_row[fn] for fn in forms}
             )
             reconstructible_verbs.append(verb)

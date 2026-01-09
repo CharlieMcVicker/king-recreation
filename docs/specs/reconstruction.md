@@ -42,6 +42,13 @@ Apply in order: `Distributive` -> `Partitive` -> `Translocutive` (Inner to Outer
 
 _Phonological Rules:_ Handle `h` deletion/insertion and vowel coalescence in reverse of the stripping logic.
 
+**Step 2d: H-Metathesis (If Applicable)**
+If the verb is flagged as using metathesis in `stem_corpus.csv`, apply the metathesis variants:
+
+- **Consonant**: `ka-` + `hnogi` -> `khanogi`
+- **Vowel**: `k-` + `ehlatitoh` -> `khelatitoh`, `uw-` + `ehlatitoh` -> `uhwelatitoh`, `h-` + `ehlatita` -> `helatita`
+- If the verb is _not_ flagged, these metathesized variants are skipped to avoid over-application.
+
 ### 3. Validation
 
 **Input**: Generated forms and `artifacts/corpus.csv` (Reference).

@@ -9,6 +9,8 @@ class Condition(Enum):
     V = 'v'
     ASPIRATED = 'aspirated'
     S_STEM = 's_stem'
+    METATHESIS_H_CONS = 'metathesis_h_cons'
+    METATHESIS_VOWEL = 'metathesis_vowel'
 
 def get_vowel_set():
     return {'a', 'e', 'o', 'u', 'v', 'i'}
@@ -17,17 +19,20 @@ VOWEL_SET = get_vowel_set()
 
 PRONOMINAL_PREFIXES_MAP = {
     '3rd Set A': [
+        ('kha-', Condition.METATHESIS_H_CONS),
+        ('kh-', Condition.METATHESIS_VOWEL),
         ('ø', Condition.VOWEL_AE),
         ('k-', Condition.VOWEL),
         ('a-', Condition.CONSONANT),
         ('ka-', Condition.CONSONANT)
     ],
     '3rd Set B': [
-        ('u-', Condition.A_REPLACE),
+        ('uhw-', Condition.METATHESIS_VOWEL),
         ('uw-', Condition.VOWEL_NO_A),
         ('uwa-', Condition.V),
         ('u-', Condition.CONSONANT),
-        ('uwa-', Condition.CONSONANT)
+        ('uwa-', Condition.CONSONANT),
+        ('u-', Condition.A_REPLACE)
     ],
     '2nd Set B': [
         ('ts-', Condition.VOWEL),
@@ -36,6 +41,7 @@ PRONOMINAL_PREFIXES_MAP = {
         ('t-', Condition.S_STEM)
     ],
     '2nd Set A': [
+        ('h-', Condition.METATHESIS_VOWEL),
         ('h-', Condition.VOWEL),
         ('hi-', Condition.CONSONANT)
     ],

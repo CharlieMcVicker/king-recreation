@@ -11,6 +11,7 @@ class Derivation:
     translocutive: bool
     partitive: bool
     distributive: bool
+    metathesis: bool
     stems: Dict[str, str]
     stem_initial: str
 
@@ -89,6 +90,7 @@ class StemDeriver:
 
     def test_config(self, forms, set_type, imp_type, t, p, d):
         possible_stems = {fn: [] for fn in forms}
+        metathesis_used = False
         
         for fn, word in forms.items():
             # Step 1: Prepronominal T -> P -> D
@@ -103,6 +105,9 @@ class StemDeriver:
             pron_type = get_pronominal_set_name(fn, set_type, imp_type)
             prefixes = PRONOMINAL_PREFIXES_MAP[pron_type]
             
+            # H-dropping sets allow CONSONANT condition to match vowels (representing a dropped h)
+            is_h_drop_set = pron_type in ['2nd to 3rd', '1st to 3rd', '1st Set A']
+            
             for _, w in current_words:
                 for pref, cond in prefixes:
                     if pref == 'ø':
@@ -110,6 +115,21 @@ class StemDeriver:
                             possible_stems[fn].append(w)
                     elif w.startswith(pref.replace('-', '')):
                         remainder = w[len(pref.replace('-', '')):]
+                        
+                        # Condition validation
+                        is_valid = True
+                        if cond == Condition.VOWEL:
+                            is_valid = remainder and self.is_vowel(remainder[0])
+                        elif cond == Condition.CONSONANT:
+                            is_valid = remainder and (not self.is_vowel(remainder[0]) or is_h_drop_set)
+                        elif cond == Condition.VOWEL_AE:
+                            is_valid = remainder and remainder[0] in 'ae'
+                        elif cond == Condition.VOWEL_NO_A:
+                            is_valid = remainder and self.is_vowel(remainder[0]) and remainder[0] != 'a'
+                        
+                        if not is_valid:
+                            continue
+
                         # Special rules for Set B u- replaces a
                         if cond == Condition.A_REPLACE:
                             possible_stems[fn].append('a' + remainder)
@@ -119,15 +139,41 @@ class StemDeriver:
                              possible_stems[fn].append(remainder)
                         elif cond == Condition.S_STEM and remainder.startswith('s'):
                              possible_stems[fn].append(remainder)
+                        elif cond == Condition.METATHESIS_H_CONS:
+                             # kha- matched. prefix stripped was 'kha'. remainder is 'nogi'
+                             # restore 'h' -> 'hnogi'
+                             possible_stems[fn].append('h' + remainder)
+                             metathesis_used = True
+                        elif cond == Condition.METATHESIS_VOWEL:
+                             # kh- or uhw- matched.
+                             # If kh- matched 'khelatitoh', remainder is 'elatitoh'
+                             # Restore h after first vowel: 'ehlatitoh'
+                             if remainder:
+                                 v = remainder[0]
+                                 possible_stems[fn].append(v + 'h' + remainder[1:])
+                                 metathesis_used = True
                         else:
-                            possible_stems[fn].append(remainder)
+                            # In h-dropping sets, if we matched a CONSONANT condition with a vowel-initial remainder,
+                            # it's likely a dropped 'h'. We only want the restored version.
+                            # For VOWEL conditions, we want the literal version.
+                            is_h_restoration_case = is_h_drop_set and cond == Condition.CONSONANT and remainder and self.is_vowel(remainder[0])
+                            
+                            if not is_h_restoration_case:
+                                possible_stems[fn].append(remainder)
                         
                         # Handle /h/ alternation for forms that cause it: restore dropped /h/
-                        # 2->3 forms cause this.
-                        # 1->3 forms cause this.
-                        # 1st Set A forms cause this.
-                        if pron_type in ['2nd to 3rd', '1st to 3rd', '1st Set A']:
-                            possible_stems[fn].append('h' + remainder)
+                        if is_h_drop_set:
+                            # If it was Condition.CONSONANT and we matched a vowel, we MUST restore h.
+                            # If it was Condition.CONSONANT and we matched a consonant (like 'k' in 'tsi-k...'),
+                            # we might still want to restore h if it's 'tsik' -> 'hth'? No, that's different.
+                            # Standard h-dropping is before vowels.
+                            if not remainder or self.is_vowel(remainder[0]):
+                                possible_stems[fn].append('h' + remainder)
+                            else:
+                                # For consonant-initial remainders, literal is usually correct,
+                                # but some verbs might have 'h' + consonant. 
+                                # We allow both to be safe, but literal will usually be the one that stays.
+                                possible_stems[fn].append('h' + remainder)
 
         # Cross-form check: intersection of all stem possibilities
         # Skip forms that are missing
@@ -163,6 +209,7 @@ class StemDeriver:
                 valid_present_stems.append(ps)
         
         if valid_present_stems:
+            valid_present_stems.sort()
             final_stems = {}
             # For each form, pick the stems that match the consistent initial
             # Use the first valid present stem as the reference for disambiguation
@@ -172,6 +219,10 @@ class StemDeriver:
             for fn in possible_stems:
                 if fn not in forms: continue
                 matching_stems = [s for s in possible_stems[fn] if s and s[0] == initial]
+                
+                # Check if this choice implied metathesis
+                # We do this by seeing if the prefixes used for these matching stems hit a metathesis condition
+                # But that's hard to track here. Let's instead check the prefixes used in Step 2.
                 
                 # Disambiguate if we have multiple candidates (e.g. hvkhita vs hyvkhita)
                 if len(matching_stems) > 1:
@@ -197,12 +248,17 @@ class StemDeriver:
 
                 final_stems[fn] = ";".join(matching_stems)
 
+            # Determine if metathesis was used in ANY of the chosen forms
+            # We already tracked it during the loop
+            is_metathesis = metathesis_used
+
             return Derivation(
                 set_type=set_type,
                 imp_type=imp_type,
                 translocutive=t,
                 partitive=p,
                 distributive=d,
+                metathesis=is_metathesis,
                 stems=final_stems,
                 stem_initial=initial
             )
@@ -236,6 +292,7 @@ def main():
                 row['translocutive'] = d.translocutive
                 row['partitive'] = d.partitive
                 row['distributive'] = d.distributive
+                row['metathesis'] = d.metathesis
                 row['multiple_explanations'] = len(derivations) > 1
                 labeled_data.append(row)
 
