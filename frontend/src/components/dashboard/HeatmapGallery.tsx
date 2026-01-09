@@ -4,15 +4,12 @@ import { useState } from "react";
 import { BarChart3, Filter, Settings2 } from "lucide-react";
 
 export function HeatmapGallery() {
-  const [strictness, setStrictness] = useState<"strict" | "loose">("strict");
   const [filtered, setFiltered] = useState<boolean>(true);
 
-  const currentSrc = `/artifacts/visualizations/near_miss_heatmap_${strictness}_${
+  const currentSrc = `/artifacts/visualizations/near_miss_heatmap_strict_${
     filtered ? "filtered" : "full"
   }.png`;
-  const currentTitle = `Near-Miss Heatmap (${strictness}, ${
-    filtered ? "Filtered" : "Full"
-  })`;
+  const currentTitle = `Near-Miss Heatmap (${filtered ? "Filtered" : "Full"})`;
 
   return (
     <div className="bg-white dark:bg-zinc-900 p-4 rounded-xl border border-gray-200 dark:border-zinc-800 shadow-sm">
@@ -23,30 +20,6 @@ export function HeatmapGallery() {
         </h4>
 
         <div className="flex items-center gap-2">
-          {/* Strictness Toggle */}
-          <div className="flex items-center bg-gray-100 dark:bg-zinc-800 rounded-lg p-1">
-            <button
-              onClick={() => setStrictness("strict")}
-              className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
-                strictness === "strict"
-                  ? "bg-white dark:bg-zinc-700 shadow-sm text-indigo-600 dark:text-indigo-400"
-                  : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-              }`}
-            >
-              Strict
-            </button>
-            <button
-              onClick={() => setStrictness("loose")}
-              className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
-                strictness === "loose"
-                  ? "bg-white dark:bg-zinc-700 shadow-sm text-indigo-600 dark:text-indigo-400"
-                  : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-              }`}
-            >
-              Loose
-            </button>
-          </div>
-
           {/* Filter Toggle */}
           <button
             onClick={() => setFiltered(!filtered)}

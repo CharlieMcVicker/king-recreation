@@ -6,7 +6,6 @@ const mockMatches = [
   {
     definition: "test verb 1",
     class: "Ia",
-    strictness: "strict",
     scope: "full",
     stem_final_match_present: "True",
     stem_final_match_imperfective: "True",
@@ -17,7 +16,6 @@ const mockMatches = [
   {
     definition: "test verb 2",
     class: "Ia",
-    strictness: "strict",
     scope: "ending",
     stem_final_match_present: "True",
     stem_final_match_imperfective: "False",

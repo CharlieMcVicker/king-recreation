@@ -7,7 +7,6 @@ import { CheckCircle, XCircle, ArrowRight, Info } from "lucide-react";
 interface Match {
   definition: string;
   class: string;
-  strictness: string;
   scope: string;
   is_consistent?: boolean | null;
   mismatch_details?: string | null;
@@ -203,9 +202,6 @@ export default function MatchExplorer({
                 </Link>
               </div>
               <div className="flex gap-2">
-                <span className="text-[10px] bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
-                  {selectedMatch.strictness}
-                </span>
                 <span
                   className={`text-[10px] px-2 py-0.5 rounded font-bold uppercase tracking-wider ${getScopeBadgeClass(
                     selectedMatch.scope

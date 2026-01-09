@@ -27,7 +27,6 @@ export default async function ExplorerPage({
 }) {
   const params = await searchParams;
   const selectedClass = params.class;
-  const selectedStrictness = params.strictness || "strict";
   const classes = await getClasses();
   const allMatchesData = await getMatches();
   const consistencyData = await getConsistencyAnalysis();
@@ -63,7 +62,6 @@ export default async function ExplorerPage({
     ? allMatches.filter(
         (m: any) =>
           m.class === selectedClass &&
-          m.strictness === selectedStrictness &&
           (m.scope === "full" ||
             m.scope === "ending" ||
             m.scope === "reconstructs")
@@ -72,12 +70,7 @@ export default async function ExplorerPage({
 
   const coveredVerbs = selectedClass
     ? allMatches
-        .filter(
-          (m: any) =>
-            m.class !== selectedClass &&
-            m.strictness === selectedStrictness &&
-            m.scope === "full"
-        )
+        .filter((m: any) => m.class !== selectedClass && m.scope === "full")
         .map((m: any) => m.definition)
     : [];
 
@@ -87,10 +80,7 @@ export default async function ExplorerPage({
 
   const nearMissVerbs = selectedClass
     ? allMatches.filter(
-        (m: any) =>
-          m.class === selectedClass &&
-          m.strictness === selectedStrictness &&
-          m.scope === "ending"
+        (m: any) => m.class === selectedClass && m.scope === "ending"
       )
     : [];
 
@@ -104,20 +94,6 @@ export default async function ExplorerPage({
           </p>
         </div>
         <div className="flex items-center gap-4">
-          <div className="flex items-center gap-2">
-            <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">
-              Strictness:
-            </span>
-            <NavSelect
-              name="strictness"
-              defaultValue={selectedStrictness}
-              options={[
-                { label: "Strict", value: "strict" },
-                { label: "Loose", value: "loose" },
-              ]}
-              className="bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
           <div className="relative w-64">
             <NavSelect
               name="class"
@@ -198,68 +174,63 @@ export default async function ExplorerPage({
                 <h3 className="font-semibold text-sm">Near-Miss Diagnosis</h3>
               </div>
               <div className="p-6 space-y-6">
-                {nearMissData
-                  .filter((nm) => nm.strictness === selectedStrictness)
-                  .map((nm: any) => (
-                    <div key={nm.strictness} className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold uppercase tracking-wider text-gray-500">
-                          {nm.strictness} Mode
-                        </span>
-                        <span className="text-[10px] text-gray-400">
-                          {nm.match_count} matches
-                        </span>
-                      </div>
-                      <div className="space-y-4">
-                        {[
-                          "present",
-                          "imperfective",
-                          "perfective",
-                          "imperative",
-                          "infinitive",
-                        ].map((form) => {
-                          const successRate = parseFloat(nm[`${form}_rate`]);
-                          const failureRate = 1 - successRate;
-                          return (
-                            <div key={form} className="space-y-1">
-                              <div className="flex justify-between text-[10px]">
-                                <span className="capitalize">{form}</span>
-                                <span
-                                  className={
-                                    failureRate > 0.3
-                                      ? "text-red-500 font-bold"
-                                      : "text-gray-500"
-                                  }
-                                >
-                                  {Math.round(failureRate * 100)}% failure
-                                </span>
-                              </div>
-                              <div className="h-1.5 w-full bg-gray-100 dark:bg-zinc-800 rounded-full overflow-hidden">
-                                <div
-                                  className={`h-full rounded-full transition-all duration-500 ${
-                                    failureRate > 0.5
-                                      ? "bg-red-500"
-                                      : failureRate > 0.2
-                                      ? "bg-amber-500"
-                                      : "bg-emerald-500"
-                                  }`}
-                                  style={{ width: `${failureRate * 100}%` }}
-                                />
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </div>
+                {nearMissData.map((nm: any) => (
+                  <div key={nm.class} className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold uppercase tracking-wider text-gray-500">
+                        Failure Breakdown
+                      </span>
+                      <span className="text-[10px] text-gray-400">
+                        {nm.match_count} matches
+                      </span>
                     </div>
-                  ))}
-                {nearMissData.filter(
-                  (nm) => nm.strictness === selectedStrictness
-                ).length === 0 && (
+                    <div className="space-y-4">
+                      {[
+                        "present",
+                        "imperfective",
+                        "perfective",
+                        "imperative",
+                        "infinitive",
+                      ].map((form) => {
+                        const successRate = parseFloat(nm[`${form}_rate`]);
+                        const failureRate = 1 - successRate;
+                        return (
+                          <div key={form} className="space-y-1">
+                            <div className="flex justify-between text-[10px]">
+                              <span className="capitalize">{form}</span>
+                              <span
+                                className={
+                                  failureRate > 0.3
+                                    ? "text-red-500 font-bold"
+                                    : "text-gray-500"
+                                }
+                              >
+                                {Math.round(failureRate * 100)}% failure
+                              </span>
+                            </div>
+                            <div className="h-1.5 w-full bg-gray-100 dark:bg-zinc-800 rounded-full overflow-hidden">
+                              <div
+                                className={`h-full rounded-full transition-all duration-500 ${
+                                  failureRate > 0.5
+                                    ? "bg-red-500"
+                                    : failureRate > 0.2
+                                    ? "bg-amber-500"
+                                    : "bg-emerald-500"
+                                }`}
+                                style={{ width: `${failureRate * 100}%` }}
+                              />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+                {nearMissData.length === 0 && (
                   <div className="text-center py-6">
                     <Info className="w-8 h-8 text-gray-200 mx-auto mb-2" />
                     <p className="text-xs text-gray-400 italic">
-                      No near-miss data available for this class in{" "}
-                      {selectedStrictness} mode.
+                      No near-miss data available for this class.
                     </p>
                   </div>
                 )}

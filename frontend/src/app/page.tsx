@@ -3,7 +3,6 @@ import {
   BarChart3,
   CheckCircle2,
   Target,
-  Activity,
   ArrowUpRight,
   Filter,
 } from "lucide-react";
@@ -17,7 +16,7 @@ export default async function Dashboard() {
 
   const metrics = [
     {
-      label: "Strict Full",
+      label: "Full Match",
       value: `${coverage.strict_full.coverage_pct.toFixed(1)}%`,
       total:
         coverage.strict_full["0"] +
@@ -29,7 +28,7 @@ export default async function Dashboard() {
       bg: "bg-blue-50 dark:bg-blue-900/20",
     },
     {
-      label: "Strict Ending",
+      label: "Ending Match",
       value: `${coverage.strict_ending.coverage_pct.toFixed(1)}%`,
       total:
         coverage.strict_ending["0"] +
@@ -39,30 +38,6 @@ export default async function Dashboard() {
       icon: CheckCircle2,
       color: "text-indigo-600",
       bg: "bg-indigo-50 dark:bg-indigo-900/20",
-    },
-    {
-      label: "Loose Full",
-      value: `${coverage.loose_full.coverage_pct.toFixed(1)}%`,
-      total:
-        coverage.loose_full["0"] +
-        coverage.loose_full["1"] +
-        coverage.loose_full["2+"],
-      matched: coverage.loose_full["1"] + coverage.loose_full["2+"],
-      icon: Activity,
-      color: "text-emerald-600",
-      bg: "bg-emerald-50 dark:bg-emerald-900/20",
-    },
-    {
-      label: "Loose Ending",
-      value: `${coverage.loose_ending.coverage_pct.toFixed(1)}%`,
-      total:
-        coverage.loose_ending["0"] +
-        coverage.loose_ending["1"] +
-        coverage.loose_ending["2+"],
-      matched: coverage.loose_ending["1"] + coverage.loose_ending["2+"],
-      icon: BarChart3,
-      color: "text-amber-600",
-      bg: "bg-amber-50 dark:bg-amber-900/20",
     },
   ];
 
@@ -164,10 +139,8 @@ export default async function Dashboard() {
               <thead>
                 <tr className="bg-gray-50 dark:bg-zinc-800/50 border-b border-gray-200 dark:border-zinc-800 text-gray-400 uppercase text-[10px] tracking-widest font-bold">
                   <th className="px-6 py-4">Class</th>
-                  <th className="px-6 py-4">Strict Full</th>
-                  <th className="px-6 py-4">Strict Ending</th>
-                  <th className="px-6 py-4">Loose Full</th>
-                  <th className="px-6 py-4">Loose Ending</th>
+                  <th className="px-6 py-4">Full Matches</th>
+                  <th className="px-6 py-4">Ending Matches</th>
                   <th className="px-6 py-4 text-right">Action</th>
                 </tr>
               </thead>
@@ -182,8 +155,6 @@ export default async function Dashboard() {
                     </td>
                     <td className="px-6 py-4">{row.strict_full}</td>
                     <td className="px-6 py-4">{row.strict_ending}</td>
-                    <td className="px-6 py-4">{row.loose_full}</td>
-                    <td className="px-6 py-4">{row.loose_ending}</td>
                     <td className="px-6 py-4 text-right">
                       <button className="text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
                         <ArrowUpRight className="w-4 h-4" />

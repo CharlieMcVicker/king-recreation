@@ -33,7 +33,11 @@ export async function getCorpus() {
 }
 
 export async function getMatches() {
-  return readCsv<any>(path.join(ARTIFACTS_DIR, "data"), "matches.csv");
+  const allMatches = await readCsv<any>(
+    path.join(ARTIFACTS_DIR, "data"),
+    "matches.csv"
+  );
+  return allMatches.filter((m: any) => m.strictness === "strict");
 }
 
 export async function getConsistencyAnalysis() {
@@ -58,8 +62,9 @@ export async function getVerbCoverage() {
 }
 
 export async function getNearMisses() {
-  return readCsv<any>(
+  const allNearMisses = await readCsv<any>(
     path.join(ARTIFACTS_DIR, "reports"),
     "class_near_misses.csv"
   );
+  return allNearMisses.filter((nm: any) => nm.strictness === "strict");
 }
