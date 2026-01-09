@@ -7,8 +7,12 @@ export function HeatmapGallery() {
   const [strictness, setStrictness] = useState<"strict" | "loose">("strict");
   const [filtered, setFiltered] = useState<boolean>(true);
 
-  const currentSrc = `/artifacts/analysis/near_miss_heatmap_${strictness}_${filtered ? "filtered" : "full"}.png`;
-  const currentTitle = `Near-Miss Heatmap (${strictness}, ${filtered ? "Filtered" : "Full"})`;
+  const currentSrc = `/artifacts/visualizations/near_miss_heatmap_${strictness}_${
+    filtered ? "filtered" : "full"
+  }.png`;
+  const currentTitle = `Near-Miss Heatmap (${strictness}, ${
+    filtered ? "Filtered" : "Full"
+  })`;
 
   return (
     <div className="bg-white dark:bg-zinc-900 p-4 rounded-xl border border-gray-200 dark:border-zinc-800 shadow-sm">
@@ -17,9 +21,9 @@ export function HeatmapGallery() {
           <BarChart3 className="w-4 h-4 text-gray-400" />
           Near-Miss Heatmap
         </h4>
-        
+
         <div className="flex items-center gap-2">
-           {/* Strictness Toggle */}
+          {/* Strictness Toggle */}
           <div className="flex items-center bg-gray-100 dark:bg-zinc-800 rounded-lg p-1">
             <button
               onClick={() => setStrictness("strict")}
@@ -35,7 +39,7 @@ export function HeatmapGallery() {
               onClick={() => setStrictness("loose")}
               className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
                 strictness === "loose"
-                    ? "bg-white dark:bg-zinc-700 shadow-sm text-indigo-600 dark:text-indigo-400"
+                  ? "bg-white dark:bg-zinc-700 shadow-sm text-indigo-600 dark:text-indigo-400"
                   : "text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
               }`}
             >
