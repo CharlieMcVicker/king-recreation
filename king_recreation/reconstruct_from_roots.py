@@ -159,9 +159,17 @@ class ReconstructionEngine:
         if not class_info: return []
         
         for form_name in ['present', 'imperfective', 'perfective', 'imperative', 'infinitive']:
-            ending = class_info.get(form_name, '')
-            ending = ending.replace('*', '').replace('@', '')
-            base_stems[form_name] = verb.root + ending
+            ending_pattern = class_info.get(form_name, '')
+            modified_root = verb.root
+            if '*' in ending_pattern:
+                if len(modified_root) >= 1:
+                    modified_root = modified_root[:-1]
+            elif '@' in ending_pattern:
+                if len(modified_root) >= 2:
+                    modified_root = modified_root[:-2]
+            
+            literal_ending = ending_pattern.replace('*', '').replace('@', '')
+            base_stems[form_name] = modified_root + literal_ending
             
         form_options = {}
         for fn, stem in base_stems.items():
@@ -235,8 +243,7 @@ def main():
                 stem = stem_row.get(fn)
                 class_pattern = class_info.get(fn)
                 if not stem:
-                    is_consistent = False
-                    mismatch_details.append(f"Missing stem for {fn}")
+                    # Policy: Skip missing forms in consistency check
                     continue
                 
                 root = engine.get_root_candidate(stem, class_pattern)
@@ -246,7 +253,8 @@ def main():
                 else:
                     possible_roots[fn] = root
             
-            if is_consistent:
+            # Root check only if we have at least one root
+            if is_consistent and possible_roots:
                 # Check if all roots are the same
                 roots_list = list(possible_roots.values())
                 first_root = roots_list[0]
@@ -254,7 +262,10 @@ def main():
                     is_consistent = False
                     # Find which ones differ
                     diffs = [f"{fn}: '{r}'" for fn, r in possible_roots.items() if r != first_root]
-                    mismatch_details.append(f"Root mismatch from {forms[0]} ('{first_root}'): " + ", ".join(diffs))
+                    mismatch_details.append(f"Root mismatch: " + ", ".join(diffs))
+            elif is_consistent and not possible_roots:
+                is_consistent = False
+                mismatch_details.append("No forms available to extract root")
             
             # 3. Record for analysis
             analysis_row = {
@@ -270,7 +281,7 @@ def main():
             if is_consistent:
                 verb = ReconstructibleVerb(
                     definition=definition,
-                    root=first_root,
+                    root=first_root if possible_roots else "",
                     class_name=cls_name,
                     set_type=stem_row['set_a_b'],
                     imp_type='to_3rd' if stem_row['2_to_3'] == 'True' else 'normal',
@@ -300,6 +311,7 @@ def main():
             options = generated_sets[0]
             for fn in forms:
                 ref_word = ref.get(fn)
+                # Policy: Missing corpus form does NOT contradict theory
                 if not ref_word: continue 
                 if ref_word not in options.get(fn, set()):
                     matches_all = False

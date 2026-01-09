@@ -95,7 +95,7 @@ class StemDeriver:
     def derive_row(self, row: Dict[str, str]) -> List[Derivation]:
         form_names = ['present', 'imperfective', 'perfective', 'imperative', 'infinitive']
         forms = {fn: row[fn] for fn in form_names if row[fn]}
-        if len(forms) < 5: return []
+        if not forms: return []
 
         valid_derivations = []
         for set_type in ['Set A', 'Set B']:
@@ -140,9 +140,10 @@ class StemDeriver:
                             possible_stems[fn].append(remainder)
 
         # Cross-form check: intersection of all stem possibilities
-        # But we also need to check stem-initial consistency
-        if any(not stems for stems in possible_stems.values()):
-            return None
+        # Skip forms that are missing
+        for fn, stems in possible_stems.items():
+            if fn in forms and not stems:
+                return None
         
         # Simple consistency check for now: constant stem initial and same prefix variant usage if possible
         # This is strictly about finding ONE shared stem string that could be extracted
@@ -162,8 +163,9 @@ class StemDeriver:
             if not ps: continue
             initial = ps[0]
             consistent = True
-            for fn in possible_stems:
-                if not any(s and s[0] == initial for s in possible_stems[fn]):
+            for fn, p_stems in possible_stems.items():
+                if fn not in forms: continue
+                if not any(s and s[0] == initial for s in p_stems):
                     consistent = False
                     break
             if consistent:
@@ -174,7 +176,8 @@ class StemDeriver:
             # For each form, pick the stems that match the consistent initial
             # For now, we just pick the first valid present stem's initial
             initial = valid_present_stems[0][0]
-            for fn in forms:
+            for fn in possible_stems:
+                if fn not in forms: continue
                 matching_stems = [s for s in possible_stems[fn] if s and s[0] == initial]
                 final_stems[fn] = ";".join(matching_stems)
 

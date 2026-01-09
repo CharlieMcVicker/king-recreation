@@ -7,6 +7,11 @@ def normalize(s):
     return s.replace("h", "")
 
 def match_ending(corpus_form, pattern_suffix, strict):
+    # Policy: Vacuous Matching
+    # If the corpus form is missing, it cannot contradict any pattern.
+    if not corpus_form:
+        return True
+
     # Literal characters only, ignore * or @
     literal_suffix = pattern_suffix.replace("*", "").replace("@", "")
     
@@ -16,6 +21,10 @@ def match_ending(corpus_form, pattern_suffix, strict):
         return normalize(corpus_form).endswith(normalize(literal_suffix))
 
 def calculate_stem_final_match(corpus_form, pattern_suffix, stem_final_str, strict):
+    # Policy: Vacuous Matching
+    if not corpus_form:
+        return True
+
     # 1. Identify literal ending
     literal_suffix = pattern_suffix.replace("*", "").replace("@", "")
     
@@ -81,7 +90,8 @@ def get_matches_for_verb(verb, classes):
             all_endings_match = True
             for form in forms:
                 form_val = verb.get(form)
-                if not form_val or not match_ending(form_val, cls[form], is_strict_bool):
+                # match_ending now handles empty form_val correctly
+                if not match_ending(form_val, cls[form], is_strict_bool):
                     all_endings_match = False
                     break
             
@@ -91,7 +101,7 @@ def get_matches_for_verb(verb, classes):
                 form_val = verb.get(form)
                 sf_matches[f"stem_final_match_{form}"] = calculate_stem_final_match(
                     form_val, cls[form], stem_final, is_strict_bool
-                ) if form_val else False
+                )
             
             # All 5 forms satisfy both Ending Match and Stem Final check for Full Match
             all_sf_match = all(sf_matches.values())
