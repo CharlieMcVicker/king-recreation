@@ -63,6 +63,7 @@ For Set B verbs, we expect to see the following person-prefixes on each form
 | 3rd person Set B  | u-, uwa-            | consonants      |
 | 2nd person Set B  | ts-                 | a, e, o, u , v  |
 | 2nd person Set B  | tsa-                | consonants      |
+| 2nd person Set B  | tsha-               | h + consonant   |
 | 2nd person Set B  | ts-                 | aspirated cons. |
 | 2nd person Set B  | t-                  | s               |
 | 2nd person Set A  | h-                  | a, e, o, u , v  |
@@ -73,7 +74,8 @@ For Set B verbs, we expect to see the following person-prefixes on each form
 | 1st person Set A  | k-                  | a, e, o, u, v   |
 | 1st person Set A  | tsi-                | consonants      |
 | 1st person Set B  | akw-                | a, e, o, u, v   |
-| 1st person Set B  | aki-, ak-           | consonants      |
+| 1st person Set B  | akhi-, ak-          | consonants      |
+| 1st person Set B  | akhi-               | h + consonant   |
 | 1st person Set B  | akh-                | aspirated, s    |
 | 1st person Set B  | ak-                 | h               |
 | 1st person to 3rd | tsiy-               | a, e, o, u, v   |
@@ -118,7 +120,7 @@ There are sometimes prefixes before the pronouns that make splitting off the pro
 - **Stem Consistency**: All forms for an item in the corpus will have the same stem-initial sound. In addition, all forms with the same pronoun on a given verb will take the same variant. Eg. if a verb takes k- before -e for 3rd person Set A in one form, it will take the g- variant in all forms.
 - **/h/ Alternation**: Certain person-prefixes (2nd -> 3rd, 1st -> 3rd, and 1st Set A) cause the first /h/ in a stem (after the pronoun) to turn to a glottal stop (which is dropped). During derivation, if we encounter a stem in one of these contexts that seems to be missing an initial /h/, we should consider the version with /h/ restored as a valid candidate.
 - **H-Metathesis**: Sometimes an /h/ in a stem "fuses" with the pronoun prefix.
-  - **Type 1 (Consonant)**: /h/ followed by a consonant fuses with a prefix (e.g., `ka-` + `hnoki` -> `khanoki`).
+  - **Type 1 (Consonant)**: /h/ followed by a consonant fuses with a prefix (e.g., `ka-` + `hnogi` -> `khanogi`, `tsha-` + `hnaskwalo` -> `tshanaskwalo`).
   - **Type 2 (Vowel)**: A stem starting with a vowel+/h/ fuses with a prefix (e.g., `k-` + `ehlatitoh` -> `khelatitoh`, `uw-` + `ehlatitoh` -> `uhwelatitoh`).
   - During stem derivation, the system detects these fusions and restores the underlying /h/ into the stem to ensure consistency across forms.
 - **Stem Initial Disambiguation**: The choice of prefix variant (e.g., `a-` before consonant vs `ø` before `a`) is disambiguated by checking other forms of the same verb to ensure a consistent stem-initial sound.

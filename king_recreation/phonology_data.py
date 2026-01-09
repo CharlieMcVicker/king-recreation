@@ -37,6 +37,7 @@ PRONOMINAL_PREFIXES_MAP = {
     '2nd Set B': [
         ('ts-', Condition.VOWEL),
         ('tsa-', Condition.CONSONANT),
+        ('tsha-', Condition.METATHESIS_H_CONS),
         ('ts-', Condition.ASPIRATED),
         ('t-', Condition.S_STEM)
     ],

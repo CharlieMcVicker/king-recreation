@@ -45,7 +45,7 @@ _Phonological Rules:_ Handle `h` deletion/insertion and vowel coalescence in rev
 **Step 2d: H-Metathesis (If Applicable)**
 If the verb is flagged as using metathesis in `stem_corpus.csv`, apply the metathesis variants:
 
-- **Consonant**: `ka-` + `hnogi` -> `khanogi`
+- **Consonant**: `ka-` + `hnogi` -> `khanogi`, `tsha-` + `hnaskwalo` -> `tshanaskwalo`, `akhi-` + `hnaskwalo` -> `akhinaskwalo`
 - **Vowel**: `k-` + `ehlatitoh` -> `khelatitoh`, `uw-` + `ehlatitoh` -> `uhwelatitoh`, `h-` + `ehlatita` -> `helatita`
 - If the verb is _not_ flagged, these metathesized variants are skipped to avoid over-application.
 

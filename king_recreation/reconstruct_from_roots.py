@@ -71,9 +71,9 @@ class ReconstructionEngine:
             return None
         if condition == Condition.METATHESIS_H_CONS:
             if not metathesis_allowed: return None
-            # ka- + hnogi -> khanogi
+            # e.g., ka- + hnogi -> khanogi; tsha- + hnaskwalo -> tshanaskwalo
             if stem.startswith('h') and len(stem) > 1 and not is_vowel(stem[1]):
-                if clean_prefix == 'kha': return 'kha' + stem[1:]
+                return clean_prefix + stem[1:]
             return None
         if condition == Condition.METATHESIS_VOWEL:
             if not metathesis_allowed: return None
@@ -81,9 +81,7 @@ class ReconstructionEngine:
             # uw- + ehlatitoh -> uhwelatitoh
             # h- + ehlatita -> helatita
             if len(stem) > 1 and is_vowel(stem[0]) and stem[1] == 'h':
-                if clean_prefix == 'kh': return 'kh' + stem[0] + stem[2:]
-                if clean_prefix == 'uhw': return 'uhw' + stem[0] + stem[2:]
-                if clean_prefix == 'h': return 'h' + stem[0] + stem[2:]
+                return clean_prefix + stem[0] + stem[2:]
             return None
         return None
 
