@@ -1,11 +1,22 @@
-import { getReconstructionFailures } from "@/lib/data";
+import { getReconstructionFailures, getMatches } from "@/lib/data";
 import { AlertTriangle, ArrowLeft, RefreshCw, Search } from "lucide-react";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
 export default async function ReconstructionPage() {
-  const failures = await getReconstructionFailures();
+  const allFailures = await getReconstructionFailures();
+  const matches = await getMatches();
+
+  const reconstructableVerbs = new Set(
+    matches
+      .filter((m: any) => m.scope === "reconstructs")
+      .map((m: any) => m.definition)
+  );
+
+  const failures = allFailures.filter(
+    (f: any) => !reconstructableVerbs.has(f.definition)
+  );
 
   return (
     <div className="space-y-8">
