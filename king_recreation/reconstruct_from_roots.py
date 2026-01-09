@@ -106,10 +106,17 @@ class ReconstructionEngine:
     def generate_pronominal_forms(self, stem: str, set_name: str) -> List[str]:
         candidates = []
         rules = self.prefixes_pronominal_map.get(set_name, [])
-        for pref, cond in rules:
-            res = self.apply_mutation(stem, pref, cond)
-            if res:
-                candidates.append(res)
+        
+        stems_to_try = [stem]
+        if set_name == '2nd to 3rd' and stem.startswith('h'):
+            # Handle /h/ alternation: consider stem with dropped /h/
+            stems_to_try.append(stem[1:])
+            
+        for s in stems_to_try:
+            for pref, cond in rules:
+                res = self.apply_mutation(s, pref, cond)
+                if res:
+                    candidates.append(res)
         return candidates
 
     def apply_prepronominal_layer(self, forms: List[str], p_type: str, exists: bool, form_name: str) -> List[str]:

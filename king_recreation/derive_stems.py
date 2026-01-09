@@ -137,6 +137,9 @@ class StemDeriver:
                             possible_stems[fn].append('v' + remainder)
                         else:
                             possible_stems[fn].append(remainder)
+                            # Handle /h/ alternation for 2->3 forms: restore dropped /h/
+                            if pron_type == '2nd to 3rd':
+                                possible_stems[fn].append('h' + remainder)
 
         # Cross-form check: intersection of all stem possibilities
         # Skip forms that are missing
@@ -173,11 +176,36 @@ class StemDeriver:
         if valid_present_stems:
             final_stems = {}
             # For each form, pick the stems that match the consistent initial
-            # For now, we just pick the first valid present stem's initial
-            initial = valid_present_stems[0][0]
+            # Use the first valid present stem as the reference for disambiguation
+            ref_stem = valid_present_stems[0]
+            initial = ref_stem[0]
+
             for fn in possible_stems:
                 if fn not in forms: continue
                 matching_stems = [s for s in possible_stems[fn] if s and s[0] == initial]
+                
+                # Disambiguate if we have multiple candidates (e.g. hvkhita vs hyvkhita)
+                if len(matching_stems) > 1:
+                    # Score by length of common prefix with reference stem
+                    def prefix_score(s):
+                        l = 0
+                        for c1, c2 in zip(s, ref_stem):
+                            if c1 == c2: l += 1
+                            else: break
+                        return l
+                    
+                    # Get scores
+                    scores = getattr(self, '_memo_scores', {})
+                    scored_stems = []
+                    for s in matching_stems:
+                        score = prefix_score(s)
+                        scored_stems.append((score, s))
+                    
+                    # Keep only the max scored ones
+                    if scored_stems:
+                        max_score = max(s[0] for s in scored_stems)
+                        matching_stems = [s[1] for s in scored_stems if s[0] == max_score]
+
                 final_stems[fn] = ";".join(matching_stems)
 
             return Derivation(

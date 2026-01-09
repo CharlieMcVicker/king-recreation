@@ -100,6 +100,7 @@ There are sometimes prefixes before the pronouns that make splitting off the pro
 ## Other considerations
 
 - **Stem Consistency**: All forms for an item in the corpus will have the same stem-initial sound. In addition, all forms with the same pronoun on a given verb will take the same variant. Eg. if a verb takes k- before -e for 3rd person Set A in one form, it will take the g- variant in all forms.
+- **/h/ Alternation**: The 2nd -> 3rd person pronoun causes the first /h/ in a stem (after the pronoun) to turn to a glottal stop (which is dropped). During derivation, if we encounter a stem in a 2nd -> 3rd context that seems to be missing an initial /h/, we should consider the version with /h/ restored as a valid candidate.
 - **Stem Initial Disambiguation**: The choice of prefix variant (e.g., `a-` before consonant vs `ø` before `a`) is disambiguated by checking other forms of the same verb to ensure a consistent stem-initial sound.
 - **Partitive ø**: Before a stem or pronoun starting with `-i`, the Partitive prefix has a null form (`ø`).
 - **Distributive de-**: A following `-i` is masked (disappears) when it follows the `te-` variant of the Distributive prefix.
