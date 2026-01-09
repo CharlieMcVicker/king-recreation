@@ -174,6 +174,11 @@ class StemDeriver:
                                 # but some verbs might have 'h' + consonant. 
                                 # We allow both to be safe, but literal will usually be the one that stays.
                                 possible_stems[fn].append('h' + remainder)
+                            
+                            # Also restore h after initial vowel if it looks like h-dropping occurred there
+                            # e.g. akwiyv -> ahkwiyv
+                            if remainder and self.is_vowel(remainder[0]):
+                                possible_stems[fn].append(remainder[0] + 'h' + remainder[1:])
 
         # Cross-form check: intersection of all stem possibilities
         # Skip forms that are missing
@@ -229,9 +234,19 @@ class StemDeriver:
                     # Score by length of common prefix with reference stem
                     def prefix_score(s):
                         l = 0
-                        for c1, c2 in zip(s, ref_stem):
-                            if c1 == c2: l += 1
-                            else: break
+                        i = 0
+                        # Calculate min length to avoid index errors
+                        limit = min(len(s), len(ref_stem))
+                        while i < limit:
+                            if s[i] == ref_stem[i]:
+                                l += 1
+                                i += 1
+                            elif i + 1 < limit and s[i] == ref_stem[i+1] and s[i+1] == ref_stem[i]:
+                                # Metathesis match (e.g. hk vs kh)
+                                l += 2
+                                i += 2
+                            else:
+                                break
                         return l
                     
                     # Get scores

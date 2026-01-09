@@ -118,7 +118,7 @@ There are sometimes prefixes before the pronouns that make splitting off the pro
 ## Other considerations
 
 - **Stem Consistency**: All forms for an item in the corpus will have the same stem-initial sound. In addition, all forms with the same pronoun on a given verb will take the same variant. Eg. if a verb takes k- before -e for 3rd person Set A in one form, it will take the g- variant in all forms.
-- **/h/ Alternation**: Certain person-prefixes (2nd -> 3rd, 1st -> 3rd, and 1st Set A) cause the first /h/ in a stem (after the pronoun) to turn to a glottal stop (which is dropped). During derivation, if we encounter a stem in one of these contexts that seems to be missing an initial /h/, we should consider the version with /h/ restored as a valid candidate.
+- **/h/ Alternation**: Certain person-prefixes (2nd -> 3rd, 1st -> 3rd, and 1st Set A) cause the first /h/ in a stem (after the pronoun) to turn to a glottal stop (which is dropped). This applies to the _first_ /h/ in the stem, whether it is stem-initial or follows an initial vowel (e.g. `ahkw...` -> `akw...`). During derivation, if we encounter a stem in one of these contexts that seems to be missing its first /h/, we should consider the version with /h/ restored as a valid candidate.
 - **H-Metathesis**: Sometimes an /h/ in a stem "fuses" with the pronoun prefix.
   - **Type 1 (Consonant)**: /h/ followed by a consonant fuses with a prefix (e.g., `ka-` + `hnogi` -> `khanogi`, `tsha-` + `hnaskwalo` -> `tshanaskwalo`).
   - **Type 2 (Vowel)**: A stem starting with a vowel+/h/ fuses with a prefix (e.g., `k-` + `ehlatitoh` -> `khelatitoh`, `uw-` + `ehlatitoh` -> `uhwelatitoh`).

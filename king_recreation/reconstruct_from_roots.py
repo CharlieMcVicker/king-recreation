@@ -93,6 +93,10 @@ class ReconstructionEngine:
         stems_to_try = [(stem, False)]
         if is_h_drop_set and stem.startswith('h'):
             stems_to_try.append((stem[1:], True))
+        
+        # Also drop h after initial vowel if applicable
+        if is_h_drop_set and len(stem) > 1 and is_vowel(stem[0]) and stem[1] == 'h':
+            stems_to_try.append((stem[0] + stem[2:], True))
             
         for s, dropped in stems_to_try:
             for pref, cond in rules:
