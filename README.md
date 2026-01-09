@@ -46,8 +46,8 @@ Before classification, we derive pronominal-inflection patterns and extract the 
 
 - Tests all combinations of **Prepronominal prefixes** (Translocutive, Partitive, Distributive).
 - Tests both **Set A** and **Set B** pronominal patterns.
-- Ensures **Stem Consistency**: A consistent stem-initial sound must be shared across all 5 forms for a derivation to be valid.
-- Extracts the **Present Stem** from the present tense form.
+- Ensures **Stem Consistency**: A consistent stem-initial sound must be shared across all available forms (the 5 standard reference forms plus the 1st person present) for a derivation to be valid.
+- Extracts the **Present Stem** from the 3rd person present tense form.
 
 **Outputs:**
 

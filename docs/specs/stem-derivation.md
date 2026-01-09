@@ -30,6 +30,7 @@ There are two main patterns of person inflection we might see. These are called 
 For Set A verbs, we expect to see the following person-prefixes on each form
 
 - Present: 3rd person set A singular
+- Present 1sg: 1st person set A singular or 1st person to 3rd person
 - Incompletive: 3rd person set A singular
 - Completive: 3rd person set B singular
 - Imperative: 2nd person set A singular or 2nd person to 3rd person
@@ -40,6 +41,7 @@ For Set A verbs, we expect to see the following person-prefixes on each form
 For Set B verbs, we expect to see the following person-prefixes on each form
 
 - Present: 3rd person set B singular
+- Present 1sg: 1st person set B singular or 1st person to 3rd person
 - Incompletive: 3rd person set B singular
 - Completive: 3rd person set B singular
 - Imperative: 2nd person set B singular or 2nd person to 3rd person
@@ -64,6 +66,14 @@ For Set B verbs, we expect to see the following person-prefixes on each form
 | 2nd person Set A  | hi-                 | consonants      |
 | 2nd person to 3rd | hiy-                | a, e, o, u , v  |
 | 2nd person to 3rd | hi-                 | consonants      |
+| 1st person Set A  | k-                  | a, e, o, u, v   |
+| 1st person Set A  | tsi-                | consonants      |
+| 1st person Set B  | akw-                | a, e, o, u, v   |
+| 1st person Set B  | aki-, ak-           | consonants      |
+| 1st person Set B  | akh-                | aspirated, s    |
+| 1st person Set B  | ak-                 | h               |
+| 1st person to 3rd | tsiy-               | a, e, o, u, v   |
+| 1st person to 3rd | tsi-                | consonants      |
 
 ## Prepronominal prefixes
 
@@ -102,8 +112,8 @@ There are sometimes prefixes before the pronouns that make splitting off the pro
 ## Other considerations
 
 - **Stem Consistency**: All forms for an item in the corpus will have the same stem-initial sound. In addition, all forms with the same pronoun on a given verb will take the same variant. Eg. if a verb takes k- before -e for 3rd person Set A in one form, it will take the g- variant in all forms.
-- **/h/ Alternation**: The 2nd -> 3rd person pronoun causes the first /h/ in a stem (after the pronoun) to turn to a glottal stop (which is dropped). During derivation, if we encounter a stem in a 2nd -> 3rd context that seems to be missing an initial /h/, we should consider the version with /h/ restored as a valid candidate.
+- **/h/ Alternation**: Certain person-prefixes (2nd -> 3rd, 1st -> 3rd, and 1st Set A) cause the first /h/ in a stem (after the pronoun) to turn to a glottal stop (which is dropped). During derivation, if we encounter a stem in one of these contexts that seems to be missing an initial /h/, we should consider the version with /h/ restored as a valid candidate.
 - **Stem Initial Disambiguation**: The choice of prefix variant (e.g., `a-` before consonant vs `ø` before `a`) is disambiguated by checking other forms of the same verb to ensure a consistent stem-initial sound.
 - **Partitive ø**: Before a stem or pronoun starting with `-i`, the Partitive prefix has a null form (`ø`).
 - **Distributive de-**: A following `-i` is masked (disappears) when it follows the `te-` variant of the Distributive prefix.
-- **Present Stem Extraction**: For each valid derivation that explains all 5 forms, strip the prefixes from the **present tense** form to derive the Present Stem. If multiple derivations are valid, include all resulting stems in a list for that row.
+- **Present Stem Extraction**: For each valid derivation that explains all forms, strip the prefixes from the **present tense** form to derive the Present Stem. If multiple derivations are valid, include all resulting stems in a list for that row.

@@ -39,6 +39,13 @@ def clean_row(row):
         present = present[:-1]
     elif present.endswith("i") or present.endswith("a"):
         present = present[:-1]
+
+    present_1sg = clean_string(row.get("1st present", ""))
+    # Same logic as 3rd present: strip final i or a
+    if present_1sg.endswith("ia"):
+        present_1sg = present_1sg[:-1]
+    elif present_1sg.endswith("i") or present_1sg.endswith("a"):
+        present_1sg = present_1sg[:-1]
     
     imperfective_raw = row.get("3rd incompletive habitual", "")
     imperfective = clean_string(imperfective_raw)
@@ -64,6 +71,7 @@ def clean_row(row):
     return {
         "definition": definition,
         "present": present,
+        "present_1sg": present_1sg,
         "imperfective": imperfective,
         "perfective": perfective,
         "imperative": imperative,
@@ -90,7 +98,7 @@ def process_ced():
         for row in reader:
             processed_data.append(clean_row(row))
 
-    fieldnames = ["definition", "present", "imperfective", "perfective", "imperative", "infinitive"]
+    fieldnames = ["definition", "present", "present_1sg", "imperfective", "perfective", "imperative", "infinitive"]
     with open(output_path, mode='w', encoding='utf-8', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()

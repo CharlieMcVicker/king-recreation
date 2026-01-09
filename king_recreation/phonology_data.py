@@ -42,6 +42,21 @@ PRONOMINAL_PREFIXES_MAP = {
     '2nd to 3rd': [
         ('hiy-', Condition.VOWEL),
         ('hi-', Condition.CONSONANT)
+    ],
+    '1st Set A': [
+        ('tsi-', Condition.CONSONANT),
+        ('k-', Condition.VOWEL)
+    ],
+    '1st Set B': [
+        ('aki-', Condition.CONSONANT),
+        ('akw-', Condition.VOWEL),
+        ('akh-', Condition.ASPIRATED), 
+        ('akh-', Condition.S_STEM),
+        ('ak-', Condition.CONSONANT) 
+    ],
+    '1st to 3rd': [
+        ('tsi-', Condition.CONSONANT),
+        ('tsiy-', Condition.VOWEL)
     ]
 }
 
@@ -56,4 +71,8 @@ def get_pronominal_set_name(form_name, set_type, imp_type):
         return '2nd to 3rd' if imp_type == 'to_3rd' else ('2nd Set A' if (set_type == 'Set A' or set_type == 'a') else '2nd Set B')
     if form_name == 'infinitive':
         return '3rd Set B'
+    if form_name == 'present_1sg':
+        if imp_type == 'to_3rd':
+            return '1st to 3rd'
+        return '1st Set A' if (set_type == 'Set A' or set_type == 'a') else '1st Set B'
     return None

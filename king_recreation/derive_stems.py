@@ -72,8 +72,8 @@ class StemDeriver:
         return matches
 
     def derive_row(self, row: Dict[str, str]) -> List[Derivation]:
-        form_names = ['present', 'imperfective', 'perfective', 'imperative', 'infinitive']
-        forms = {fn: row[fn] for fn in form_names if row[fn]}
+        form_names = ['present', 'present_1sg', 'imperfective', 'perfective', 'imperative', 'infinitive']
+        forms = {fn: row[fn] for fn in form_names if row.get(fn)}
         if not forms: return []
 
         valid_derivations = []
@@ -122,8 +122,11 @@ class StemDeriver:
                         else:
                             possible_stems[fn].append(remainder)
                         
-                        # Handle /h/ alternation for 2->3 forms: restore dropped /h/
-                        if pron_type == '2nd to 3rd':
+                        # Handle /h/ alternation for forms that cause it: restore dropped /h/
+                        # 2->3 forms cause this.
+                        # 1->3 forms cause this.
+                        # 1st Set A forms cause this.
+                        if pron_type in ['2nd to 3rd', '1st to 3rd', '1st Set A']:
                             possible_stems[fn].append('h' + remainder)
 
         # Cross-form check: intersection of all stem possibilities

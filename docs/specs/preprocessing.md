@@ -30,6 +30,7 @@ The study considers the following 5 reference forms, derived as follows:
 | Form ID          | Source Column               | Processing                                        |
 | :--------------- | :-------------------------- | :------------------------------------------------ |
 | **Present**      | `3rd present`               | `i` or `a` rstripped (for `ia`, only `a` dropped) |
+| **Present 1sg**  | `1st present`               | `i` or `a` rstripped (for `ia`, only `a` dropped) |
 | **Imperfective** | `3rd incompletive habitual` | `oi` rstripped                                    |
 | **Perfective**   | `3rd completive past`       | `vi` rstripped                                    |
 | **Imperative**   | `2nd imperative`            | None (Keep as is)                                 |
