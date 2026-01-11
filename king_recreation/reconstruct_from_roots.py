@@ -91,12 +91,14 @@ class ReconstructionEngine:
         is_h_drop_set = set_name in ['2nd to 3rd', '1st to 3rd', '1st Set A']
         
         stems_to_try = [(stem, False)]
-        if is_h_drop_set and stem.startswith('h'):
-            stems_to_try.append((stem[1:], True))
         
-        # Also drop h after initial vowel if applicable
-        if is_h_drop_set and len(stem) > 1 and is_vowel(stem[0]) and stem[1] == 'h':
-            stems_to_try.append((stem[0] + stem[2:], True))
+        if is_h_drop_set:
+            # Generalized First /h/ Drop Rule
+            # Find the first 'h' and drop it
+            h_index = stem.find('h')
+            if h_index != -1:
+                dropped_stem = stem[:h_index] + stem[h_index+1:]
+                stems_to_try.append((dropped_stem, True))
             
         for s, dropped in stems_to_try:
             for pref, cond in rules:

@@ -52,6 +52,7 @@ PRONOMINAL_PREFIXES_MAP = {
     ],
     '1st Set A': [
         ('tsi-', Condition.CONSONANT),
+        ('ts-', Condition.VOWEL),
         ('k-', Condition.VOWEL)
     ],
     '1st Set B': [
@@ -84,3 +85,16 @@ def get_pronominal_set_name(form_name, set_type, imp_type):
             return '1st to 3rd'
         return '1st Set A' if (set_type == 'Set A' or set_type == 'a') else '1st Set B'
     return None
+
+def is_h_dropping_set(set_name):
+    return set_name in ['2nd to 3rd', '1st to 3rd', '1st Set A']
+
+def drop_first_h(stem: str) -> str:
+    """
+    Removes the first 'h' found in the stem.
+    Used for h-dropping sets validation.
+    """
+    idx = stem.find('h')
+    if idx != -1:
+        return stem[:idx] + stem[idx+1:]
+    return stem

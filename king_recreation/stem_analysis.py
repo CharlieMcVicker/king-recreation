@@ -1,4 +1,5 @@
 from typing import List, Dict, Optional, Tuple
+from king_recreation.phonology_data import get_pronominal_set_name, is_h_dropping_set, drop_first_h
 
 def get_root_candidate(stem: str, ending_pattern: str) -> Optional[str]:
     """
@@ -29,6 +30,10 @@ def check_root_consistency(stem_row: Dict[str, str], class_info: Dict[str, str])
     candidate_data = [] # List of (form, root, depth)
     mismatch_details = []
     
+    # Extract metadata for set identification
+    set_type = stem_row.get('set_a_b') # 'a' or 'b'
+    imp_type = 'to_3rd' if stem_row.get('2_to_3') == 'True' else 'normal'
+
     for fn in forms:
         stem = stem_row.get(fn)
         pattern = class_info.get(fn, "")
@@ -63,27 +68,36 @@ def check_root_consistency(stem_row: Dict[str, str], class_info: Dict[str, str])
     is_consistent = True
     for fn, root, depth in candidate_data:
         # Expected relationship: root == target_root[:len(target_root) - (depth - target_depth)]
-        # This handles cases where we have mixed truncation levels.
-        # e.g. target_depth=0 (full), depth=1 (*) -> root should be target_root[:-1]
         
-        # Calculate expected length for THIS root candidate based on target_root
         depth_diff = depth - target_depth
         if depth_diff < 0:
-            # This shouldn't happen because we picked the min depth as target
-            # but for safety:
              is_consistent = False
              mismatch_details.append(f"{fn}: Unexpectedly longer than target")
              continue
              
-        if depth_diff == 0:
-            if root != target_root:
+        expected_root = target_root
+        if depth_diff > 0:
+            if len(target_root) >= depth_diff:
+                expected_root = target_root[:-depth_diff]
+            else:
+                expected_root = "" # Truncated to nothing
+
+        if root != expected_root:
+            # Check if mismatch is due to allowed h-dropping
+            set_name = get_pronominal_set_name(fn, set_type, imp_type) if set_type else None
+            is_dropped_match = False
+            
+            if set_name and is_h_dropping_set(set_name):
+                # If target has h, and root is dropped version
+                if drop_first_h(expected_root) == root:
+                    is_dropped_match = True
+            
+            if not is_dropped_match:
                 is_consistent = False
-                mismatch_details.append(f"{fn}: Root mismatch (got '{root}', expected '{target_root}')")
-        else:
-            expected_root = target_root[:-depth_diff] if len(target_root) >= depth_diff else ""
-            if root != expected_root:
-                is_consistent = False
-                mismatch_details.append(f"{fn}: Truncation mismatch (got '{root}', expected '{expected_root}' as {depth_diff}-char truncation of '{target_root}')")
+                if depth_diff > 0:
+                    mismatch_details.append(f"{fn}: Truncation mismatch (got '{root}', expected '{expected_root}' as {depth_diff}-char truncation of '{target_root}')")
+                else:
+                    mismatch_details.append(f"{fn}: Root mismatch (got '{root}', expected '{expected_root}')")
                 
     if is_consistent:
         return True, target_root, []

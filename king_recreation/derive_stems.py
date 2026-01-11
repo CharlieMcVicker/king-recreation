@@ -2,7 +2,7 @@ import os
 import csv
 from dataclasses import dataclass, asdict
 from typing import List, Dict, Set, Optional, Tuple
-from king_recreation.phonology_data import Condition, VOWEL_SET, PRONOMINAL_PREFIXES_MAP, get_pronominal_set_name
+from king_recreation.phonology_data import Condition, VOWEL_SET, PRONOMINAL_PREFIXES_MAP, get_pronominal_set_name, is_h_dropping_set, drop_first_h
 
 @dataclass
 class Derivation:
@@ -15,14 +15,24 @@ class Derivation:
     stems: Dict[str, str]
     stem_initial: str
 
+def is_compatible(s1: str, s2: str) -> bool:
+    if s1 == s2: return True
+    if s1.startswith(s2) or s2.startswith(s1): return True
+    # Allow mismatch if they share a significant common prefix
+    # e.g. ehlatitoh vs ehlatitol
+    common_len = 0
+    for c1, c2 in zip(s1, s2):
+        if c1 == c2: common_len += 1
+        else: break
+    return common_len >= 3 or common_len == min(len(s1), len(s2))
+
 class StemDeriver:
     def __init__(self):
         self.vowels = VOWEL_SET
+        # Pre-compute or cache things if needed
 
     def is_vowel(self, char):
         return char in self.vowels
-
-    # Removed get_pronominal_prefix as it is now imported
 
     def match_prepronominal(self, word, exists, p_type, form_name):
         if not exists:
@@ -72,27 +82,17 @@ class StemDeriver:
         
         return matches
 
-    def derive_row(self, row: Dict[str, str]) -> List[Derivation]:
-        form_names = ['present', 'present_1sg', 'imperfective', 'perfective', 'imperative', 'infinitive']
-        forms = {fn: row[fn] for fn in form_names if row.get(fn)}
-        if not forms: return []
-
-        valid_derivations = []
-        for set_type in ['Set A', 'Set B']:
-            for imp_type in ['normal', 'to_3rd']:
-                for t in [True, False]:
-                    for p in [True, False]:
-                        for d in [True, False]:
-                            deriv = self.test_config(forms, set_type, imp_type, t, p, d)
-                            if deriv:
-                                valid_derivations.append(deriv)
-        return valid_derivations
-
-    def test_config(self, forms, set_type, imp_type, t, p, d):
-        possible_stems = {fn: [] for fn in forms}
-        metathesis_used = False
+    def extract_literals(self, forms, set_type, imp_type, t, p, d):
+        """
+        Extracts literal stems for all forms under the given configuration.
+        Returns a dict: {form_name: Set[(stem_string, uses_metathesis)]}
+        Returns None if any form fails to produce a valid stem (which invalidates the config).
+        """
+        literals = {}
         
         for fn, word in forms.items():
+            form_literals = set()
+            
             # Step 1: Prepronominal T -> P -> D
             current_words = [('', word)]
             for exists, p_type in [(t, 'T'), (p, 'P'), (d, 'D')]:
@@ -104,15 +104,16 @@ class StemDeriver:
             # Step 2: Pronominal
             pron_type = get_pronominal_set_name(fn, set_type, imp_type)
             prefixes = PRONOMINAL_PREFIXES_MAP[pron_type]
-            
-            # H-dropping sets allow CONSONANT condition to match vowels (representing a dropped h)
-            is_h_drop_set = pron_type in ['2nd to 3rd', '1st to 3rd', '1st Set A']
-            
+            is_h_drop = is_h_dropping_set(pron_type)
+
             for _, w in current_words:
                 for pref, cond in prefixes:
+                    uses_meta = False
+                    candidate = None
+                    
                     if pref == 'ø':
                         if w and cond == Condition.VOWEL_AE and w[0] in 'ae':
-                            possible_stems[fn].append(w)
+                            candidate = w
                     elif w.startswith(pref.replace('-', '')):
                         remainder = w[len(pref.replace('-', '')):]
                         
@@ -121,7 +122,9 @@ class StemDeriver:
                         if cond == Condition.VOWEL:
                             is_valid = remainder and self.is_vowel(remainder[0])
                         elif cond == Condition.CONSONANT:
-                            is_valid = remainder and (not self.is_vowel(remainder[0]) or is_h_drop_set)
+                            # In h-dropping sets, literal remainder might be vowel (h dropped).
+                            # So we allow vowel matches in h-drop sets.
+                            is_valid = remainder and (not self.is_vowel(remainder[0]) or is_h_drop)
                         elif cond == Condition.VOWEL_AE:
                             is_valid = remainder and remainder[0] in 'ae'
                         elif cond == Condition.VOWEL_NO_A:
@@ -132,151 +135,119 @@ class StemDeriver:
 
                         # Special rules for Set B u- replaces a
                         if cond == Condition.A_REPLACE:
-                            possible_stems[fn].append('a' + remainder)
+                            candidate = 'a' + remainder
                         elif cond == Condition.V and pref == 'uwa-':
-                            possible_stems[fn].append('v' + remainder)
+                            candidate = 'v' + remainder
                         elif cond == Condition.ASPIRATED and remainder.startswith('th'):
-                             possible_stems[fn].append(remainder)
+                             candidate = remainder
                         elif cond == Condition.S_STEM and remainder.startswith('s'):
-                             possible_stems[fn].append(remainder)
+                             candidate = remainder
                         elif cond == Condition.METATHESIS_H_CONS:
-                             # kha- matched. prefix stripped was 'kha'. remainder is 'nogi'
-                             # restore 'h' -> 'hnogi'
-                             possible_stems[fn].append('h' + remainder)
-                             metathesis_used = True
+                             # Restore 'h' -> 'hnogi'
+                             candidate = 'h' + remainder
+                             uses_meta = True
                         elif cond == Condition.METATHESIS_VOWEL:
-                             # kh- or uhw- matched.
-                             # If kh- matched 'khelatitoh', remainder is 'elatitoh'
                              # Restore h after first vowel: 'ehlatitoh'
                              if remainder:
                                  v = remainder[0]
-                                 possible_stems[fn].append(v + 'h' + remainder[1:])
-                                 metathesis_used = True
+                                 candidate = v + 'h' + remainder[1:]
+                                 uses_meta = True
                         else:
-                            # In h-dropping sets, if we matched a CONSONANT condition with a vowel-initial remainder,
-                            # it's likely a dropped 'h'. We only want the restored version.
-                            # For VOWEL conditions, we want the literal version.
-                            is_h_restoration_case = is_h_drop_set and cond == Condition.CONSONANT and remainder and self.is_vowel(remainder[0])
-                            
-                            if not is_h_restoration_case:
-                                possible_stems[fn].append(remainder)
-                        
-                        # Handle /h/ alternation for forms that cause it: restore dropped /h/
-                        if is_h_drop_set:
-                            # If it was Condition.CONSONANT and we matched a vowel, we MUST restore h.
-                            # If it was Condition.CONSONANT and we matched a consonant (like 'k' in 'tsi-k...'),
-                            # we might still want to restore h if it's 'tsik' -> 'hth'? No, that's different.
-                            # Standard h-dropping is before vowels.
-                            if not remainder or self.is_vowel(remainder[0]):
-                                possible_stems[fn].append('h' + remainder)
-                            else:
-                                # For consonant-initial remainders, literal is usually correct,
-                                # but some verbs might have 'h' + consonant. 
-                                # We allow both to be safe, but literal will usually be the one that stays.
-                                possible_stems[fn].append('h' + remainder)
-                            
-                            # Also restore h after initial vowel if it looks like h-dropping occurred there
-                            # e.g. akwiyv -> ahkwiyv
-                            if remainder and self.is_vowel(remainder[0]):
-                                possible_stems[fn].append(remainder[0] + 'h' + remainder[1:])
-
-        # Cross-form check: intersection of all stem possibilities
-        # Skip forms that are missing
-        for fn, stems in possible_stems.items():
-            possible_stems[fn] = list(set(stems)) # Deduplicate
-            if fn in forms and not stems:
-                return None
-        
-        # Simple consistency check for now: constant stem initial and same prefix variant usage if possible
-        # This is strictly about finding ONE shared stem string that could be extracted
-        # The prompt says: "Present Stem: the present tense form with... prefixes removed"
-        # "Should have the right stem initial that matches other forms"
-        
-        common_stems = set(possible_stems['present'])
-        for fn in possible_stems:
-            # Stems might differ after the first character, but we need consistent initial
-            # Actually, per prompt "All forms... have the same stem-initial sound"
-            # It's better to find if there is a consistent mapping.
-            pass
-
-        # For MVP: find stems in 'present' where the initial char is consistent with at least one possible stem in all other forms
-        valid_present_stems = []
-        for ps in possible_stems['present']:
-            if not ps: continue
-            initial = ps[0]
-            consistent = True
-            for fn, p_stems in possible_stems.items():
-                if fn not in forms: continue
-                if not any(s and s[0] == initial for s in p_stems):
-                    consistent = False
-                    break
-            if consistent:
-                valid_present_stems.append(ps)
-        
-        if valid_present_stems:
-            valid_present_stems.sort()
-            final_stems = {}
-            # For each form, pick the stems that match the consistent initial
-            # Use the first valid present stem as the reference for disambiguation
-            ref_stem = valid_present_stems[0]
-            initial = ref_stem[0]
-
-            for fn in possible_stems:
-                if fn not in forms: continue
-                matching_stems = [s for s in possible_stems[fn] if s and s[0] == initial]
-                
-                # Check if this choice implied metathesis
-                # We do this by seeing if the prefixes used for these matching stems hit a metathesis condition
-                # But that's hard to track here. Let's instead check the prefixes used in Step 2.
-                
-                # Disambiguate if we have multiple candidates (e.g. hvkhita vs hyvkhita)
-                if len(matching_stems) > 1:
-                    # Score by length of common prefix with reference stem
-                    def prefix_score(s):
-                        l = 0
-                        i = 0
-                        # Calculate min length to avoid index errors
-                        limit = min(len(s), len(ref_stem))
-                        while i < limit:
-                            if s[i] == ref_stem[i]:
-                                l += 1
-                                i += 1
-                            elif i + 1 < limit and s[i] == ref_stem[i+1] and s[i+1] == ref_stem[i]:
-                                # Metathesis match (e.g. hk vs kh)
-                                l += 2
-                                i += 2
-                            else:
-                                break
-                        return l
+                            # Standard case
+                            candidate = remainder
                     
-                    # Get scores
-                    scores = getattr(self, '_memo_scores', {})
-                    scored_stems = []
-                    for s in matching_stems:
-                        score = prefix_score(s)
-                        scored_stems.append((score, s))
-                    
-                    # Keep only the max scored ones
-                    if scored_stems:
-                        max_score = max(s[0] for s in scored_stems)
-                        matching_stems = [s[1] for s in scored_stems if s[0] == max_score]
+                    if candidate is not None:
+                        form_literals.add((candidate, uses_meta))
+            
+            if not form_literals:
+                return None # This form could not be parsed with this config
+            
+            literals[fn] = form_literals
+            
+        return literals
 
-                final_stems[fn] = ";".join(matching_stems)
+    def derive_row(self, row: Dict[str, str]) -> List[Derivation]:
+        form_names = ['present', 'present_1sg', 'imperfective', 'perfective', 'imperative', 'infinitive']
+        forms = {fn: row[fn] for fn in form_names if row.get(fn)}
+        if not forms: return []
 
-            # Determine if metathesis was used in ANY of the chosen forms
-            is_metathesis = metathesis_used
+        valid_derivations = []
+        for set_type in ['Set A', 'Set B']:
+            for imp_type in ['normal', 'to_3rd']:
+                for t in [True, False]:
+                    for p in [True, False]:
+                        for d in [True, False]:
+                            literals = self.extract_literals(forms, set_type, imp_type, t, p, d)
+                            if not literals: continue
+                            
+                            # Identify Candidate Consensus Stems
+                            # Use stems derived from non-h-dropping forms as Target Stems
+                            candidates = set()
+                            
+                            for fn, form_literals in literals.items():
+                                pron_type = get_pronominal_set_name(fn, set_type, imp_type)
+                                if not is_h_dropping_set(pron_type):
+                                    for s, meta in form_literals:
+                                        candidates.add(s)
+                            
+                            # Fallback: if no non-h-dropping forms (unlikely), try all literals
+                            if not candidates:
+                                for fn, form_literals in literals.items():
+                                    for s, meta in form_literals:
+                                        candidates.add(s)
+                            
+                            # Validate Candidates
+                            for target in candidates:
+                                explained_all = True
+                                final_stems = {}
+                                metathesis_involved = False
+                                
+                                for fn in forms:
+                                    pron_type = get_pronominal_set_name(fn, set_type, imp_type)
+                                    is_h_drop = is_h_dropping_set(pron_type)
+                                    
+                                    # Check if target explains this form
+                                    matched_literal = False
+                                    best_match = None
+                                    
+                                    # Check direct match
+                                    for s, meta in literals[fn]:
+                                        if is_compatible(s, target):
+                                            matched_literal = True
+                                            best_match = s
+                                            if meta: metathesis_involved = True
+                                            break
+                                    
+                                    # If not direct match, and h-drop set, check drop_first_h
+                                    if not matched_literal and is_h_drop:
+                                        dropped = drop_first_h(target)
+                                        for s, meta in literals[fn]:
+                                            if is_compatible(s, dropped):
+                                                matched_literal = True
+                                                best_match = s
+                                                if meta: metathesis_involved = True # Unlikely for h-drop set
+                                                break
+                                    
+                                    if not matched_literal:
+                                        explained_all = False
+                                        break
+                                    
+                                    # We use the actual matched literal for the output to preserve suffixes
+                                    final_stems[fn] = best_match
+                                
+                                if explained_all:
+                                    valid_derivations.append(Derivation(
+                                        set_type=set_type,
+                                        imp_type=imp_type,
+                                        translocutive=t,
+                                        partitive=p,
+                                        distributive=d,
+                                        metathesis=metathesis_involved,
+                                        stems=final_stems,
+                                        stem_initial=target[0] if target else ''
+                                    ))
 
-            return Derivation(
-                set_type=set_type,
-                imp_type=imp_type,
-                translocutive=t,
-                partitive=p,
-                distributive=d,
-                metathesis=is_metathesis,
-                stems=final_stems,
-                stem_initial=initial
-            )
-        return None
+        return valid_derivations
 
 def main():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -296,18 +267,24 @@ def main():
                 failures.append(row)
             else:
                 # Use the first valid derivation for labeling
+                # Ideally we would prioritize or disambiguate
+                # Sorting by some heuristic could help
+                
+                # Deduplicate derivations (sometimes multiple targets are same or similar)
+                # For now just take first
                 d = derivations[0]
-                # Overwrite form columns with cleaned stems
+                
+                # Overwrite form columns with cleaned stems (Consensus Stems)
                 for fn, stem in d.stems.items():
                     row[fn] = stem
                 
                 row['set_a_b'] = 'a' if d.set_type == 'Set A' else 'b'
-                row['2_to_3'] = d.imp_type == 'to_3rd'
-                row['translocutive'] = d.translocutive
-                row['partitive'] = d.partitive
-                row['distributive'] = d.distributive
-                row['metathesis'] = d.metathesis
-                row['multiple_explanations'] = len(derivations) > 1
+                row['2_to_3'] = str(d.imp_type == 'to_3rd')
+                row['translocutive'] = str(d.translocutive)
+                row['partitive'] = str(d.partitive)
+                row['distributive'] = str(d.distributive)
+                row['metathesis'] = str(d.metathesis)
+                row['multiple_explanations'] = str(len(derivations) > 1)
                 labeled_data.append(row)
 
     if labeled_data:
