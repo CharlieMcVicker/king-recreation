@@ -7,8 +7,8 @@ import os
 # Ensure the project root is in sys.path
 sys.path.append(os.getcwd())
 
-from king_recreation.derive_stems import StemDeriver
-from king_recreation.phonology_data import get_pronominal_set_name, PRONOMINAL_PREFIXES_MAP, Condition
+from king_recreation.derive_stems import StemDeriver, is_compatible
+from king_recreation.phonology_data import get_pronominal_set_name, PRONOMINAL_PREFIXES_MAP, Condition, is_h_dropping_set, drop_first_h
 
 def analyze_failure(target_definition):
     deriver = StemDeriver()
@@ -109,30 +109,71 @@ def analyze_failure(target_definition):
                         if failed_forms:
                             outcome = "Form Failure"
                         else:
-                            # Check consistency across all forms
-                            # We need to find at least one stem start char that is present in ALL forms' possible stems
-                            # This is a simplified consistency check.
+                            # Strict consistency check using is_compatible
+                            candidates = set()
                             
-                            # Flatten all stems to find common initials
-                            all_initials = set()
-                            for fn in possible_stems:
-                                for s in possible_stems[fn]:
-                                    if s: all_initials.add(s[0])
+                            # Identify Candidate Consensus Stems (similar logic to derive_stems.py)
+                            # Use stems derived from non-h-dropping forms as Target Stems
+                            for fn, form_literals in possible_stems.items():
+                                pron_type = get_pronominal_set_name(fn, set_type, imp_type)
+                                if not is_h_dropping_set(pron_type):
+                                    for s in form_literals: # analyze_failure uses raw strings in list
+                                        if s: candidates.add(s)
                             
-                            valid_initials = []
-                            for initial in all_initials:
-                                is_consistent = True
-                                for fn in possible_stems:
-                                    if not any(s and s.startswith(initial) for s in possible_stems[fn]):
-                                        is_consistent = False
+                            # Fallback
+                            if not candidates:
+                                for fn, form_literals in possible_stems.items():
+                                    for s in form_literals:
+                                        if s: candidates.add(s)
+                            
+                            valid_candidates = []
+                            for target in candidates:
+                                explained_all = True
+                                for fn in forms:
+                                    pron_type = get_pronominal_set_name(fn, set_type, imp_type)
+                                    is_h_drop = is_h_dropping_set(pron_type)
+                                    
+                                    matched_literal = False
+                                    
+                                    # Check direct match
+                                    for s in possible_stems[fn]:
+                                        if is_compatible(s, target):
+                                            matched_literal = True
+                                            break
+                                    
+                                    # Check drop_first_h
+                                    if not matched_literal and is_h_drop:
+                                        dropped = drop_first_h(target)
+                                        for s in possible_stems[fn]:
+                                            if is_compatible(s, dropped):
+                                                matched_literal = True
+                                                break
+                                    
+                                    if not matched_literal:
+                                        explained_all = False
                                         break
-                                if is_consistent:
-                                    valid_initials.append(initial)
+                                
+                                if explained_all:
+                                    valid_candidates.append(target)
                             
-                            if valid_initials:
-                                outcome = "Success" # Or at least "Consistent"
-                                # Collect the stems that match the valid initials
-                                consistent_stems = {fn: [s for s in possible_stems[fn] if s and s[0] in valid_initials] for fn in possible_stems}
+                            if valid_candidates:
+                                outcome = "Success"
+                                # Collect consistent stems based on valid candidates
+                                consistent_stems = {}
+                                for fn in possible_stems:
+                                    consistent_stems[fn] = []
+                                    for s in possible_stems[fn]:
+                                        is_consistent_s = False
+                                        for target in valid_candidates:
+                                            pron_type = get_pronominal_set_name(fn, set_type, imp_type)
+                                            is_h_drop = is_h_dropping_set(pron_type)
+                                            if is_compatible(s, target):
+                                                is_consistent_s = True
+                                            elif is_h_drop and is_compatible(s, drop_first_h(target)):
+                                                is_consistent_s = True
+                                        if is_consistent_s:
+                                            consistent_stems[fn].append(s)
+
                             else:
                                 outcome = "Inconsistent"
 
