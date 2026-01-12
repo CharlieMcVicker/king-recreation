@@ -75,3 +75,10 @@ export async function getReconstructionFailures() {
     "reconstruction_failures.csv"
   );
 }
+
+export async function getStemDerivationFailures() {
+  return readCsv<any>(
+    path.join(ARTIFACTS_DIR, "reports"),
+    "stem_derivation_failures.csv"
+  );
+}

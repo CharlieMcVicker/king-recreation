@@ -69,6 +69,15 @@ export default function RootLayout({
                 Reconstruction
               </Link>
               <Link
+                href="/failures"
+                className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+              >
+                <div className="w-4 h-4 flex items-center justify-center">
+                  <span className="text-xs font-bold text-red-500">!</span>
+                </div>
+                Derivation Failures
+              </Link>
+              <Link
                 href="/search"
                 className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
               >
