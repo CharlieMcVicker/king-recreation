@@ -1,129 +1,63 @@
-# Pronouns and stems
+# Stem Derivation Specification
 
-To improve our analysis we will derive pronominal-inflection patterns for all our verbs. Our goal will be to label each row of the corpus with:
+## Overview
 
-1. **Inflectional pattern:** two features:
-   - Set A vs Set B
-   - +/- 2nd to 3rd for imperative
-2. **Pre-Pronominal prefixes:** for each prefix:
-   - Boolean flag for if it is present - flag only if a prefix occurs on all forms
-3. **Present stem:** the present tense form with the pre-pronominal and pronominal prefixes removed. Should have the right stem initial that matches the other forms.
+This document specifies the algorithm and rules for deriving King's Verb Classes and stems from raw CED corpus data. The process involves identifying pronominal and pre-pronominal prefixes, handling phonological alternations (like h-dropping and metathesis), and extracting consistent stems across 5-6 verb forms.
 
-A single form doesn't have enough information to decide exactly all of these features. Make a list of possible derivations based on each form and find the derivation which can explain all forms.
+## Core Goal
 
-**Selection Rules:**
+For each verb entry (row) in the corpus:
+1.  **Identify the Configuration**: Determine the correct combination of:
+    *   Set A / Set B inflection.
+    *   Imperative target (2nd->3rd vs normal).
+    *   Pre-pronominal prefixes (Translocutive, Partitive, Distributive).
+2.  **Extract Stems**: Isolate the verb stem from each of the 5-6 provided forms (Present, 1sg, Imperfective, Perfective, Imperative, Infinitive).
+3.  **Validate Consistency**: Ensure the extracted stems are phonologically compatible with a single underlying root/stem.
 
-- For variants like `ø/k-` or `a-/ka-` (3rd Set A) and `u-/uwa-` (3rd Set B) before consonants, **try both**. A verb will use one variant consistently across its stems, but which one is used is a lexical property of the verb.
-- **Set B u-**: This variant **always replaces a-** when the stem starts with `a`.
+## Algorithm: Consensus Stem Derivation
 
-Also flag if multiple explanations of the data are possible for each row.
+Instead of guessing stems from individual forms in isolation, we use a **Consensus Approach**:
 
-Lastly, forms where stems could not be derived are saved to `artifacts/reports/stem_derivation_failures.csv`.
-Results are saved to `artifacts/data/stem_corpus.csv`.
+1.  **Generate Literal Stems**: For every form, generate all possible "literal" stems by stripping valid prefix combinations.
+2.  **Identify Candidates**: Collect a set of "Candidate Stems" from the forms that are **phonologically stable** (i.e., not subject to h-dropping rules). These are typically the *Present*, *Imperfective*, and *Perfective* forms.
+3.  **Validate**: For each Candidate Stem, check if it can "explain" every other form's observed literal stem.
+    *   **Strict Check (Present/1sg)**: The observed stem must match the Candidate Stem exactly, or share a significant prefix (length >= 3).
+    *   **Loose Check (Others)**: The observed stem must share the same starting character as the Candidate Stem.
+    *   **H-Dropping**: If the form is in an h-dropping context (e.g., 1st Set A, 2nd->3rd), the observed stem can match the `drop_first_h(Candidate)` version.
+    *   **Vowel Restoration**: If h-dropping removes a consonant cluster that blocked a vowel, the observed stem might show a restored vowel (e.g., `akhth...` -> `akath...`). This is checked via `is_compatible_with_vowel_restoration`.
+4.  **Select Best Match**: If multiple valid derivations exist, prioritize the one where the derived stems have the highest character overlap with the Candidate Stem.
 
-## Pronominal prefixes
+## Phonological Rules
 
-There are two main patterns of person inflection we might see. These are called Set A and Set B verbs.
+### 1. Pronominal Prefixes (Sets A & B)
 
-### Set A pattern
+*   **Set A**: Used for Present, Imperfective (3rd person).
+*   **Set B**: Used for Perfective, Infinitive (3rd person).
+*   **Imperative**: Uses 2nd Person (Set A or B depending on verb class, or specialized 2nd->3rd prefixes).
+*   **1st Person**: 1st Set A or B, or 1st->3rd.
 
-For Set A verbs, we expect to see the following person-prefixes on each form
+Specific prefix shapes (e.g., `k-`, `a-`, `u-`, `ts-`) depend on the **Stem Initial** sound (Vowel vs Consonant, specific vowels, etc.). See `phonology_data.py` for the complete mapping.
 
-- Present: 3rd person set A singular
-- Present 1sg: 1st person set A singular or 1st person to 3rd person
-- Incompletive: 3rd person set A singular
-- Completive: 3rd person set B singular
-- Imperative: 2nd person set A singular or 2nd person to 3rd person
-- Infinitive: 3rd person set B singular
+### 2. Pre-Pronominal Prefixes
 
-### Set B pattern
+*   **Translocutive**: `w-` (vowels), `wi-` (consonants), `hw-` (before h).
+*   **Partitive**: `n-` (vowels), `ni-` (consonants), `hn-` (before h).
+*   **Distributive**: `t-`/`te-`/`ts-` variations.
 
-For Set B verbs, we expect to see the following person-prefixes on each form
+### 3. H-Alternation (Generalized)
 
-- Present: 3rd person set B singular
-- Present 1sg: 1st person set B singular or 1st person to 3rd person
-- Incompletive: 3rd person set B singular
-- Completive: 3rd person set B singular
-- Imperative: 2nd person set B singular or 2nd person to 3rd person
-- Infinitive: 3rd person set B singular
+*   **Rule**: In specific contexts (1st Set A, 1st->3rd, 2nd->3rd), the **first /h/ in the stem** is dropped.
+    *   Example: `ahkwiyv` -> `akwiyv`
+    *   Example: `hlogi` -> `logi`
+*   **Vowel Restoration**: Sometimes dropping /h/ breaks a cluster and allows an underlying vowel to surface.
+    *   Example: `akhthastih` (3rd) -> `akathastih` (1st, h-dropped).
 
-### Phonological content of prefixes
+### 4. Split Stems (1st Person Irregularity)
 
-| Pronoun           | Form                | Stem initial    |
-| ----------------- | ------------------- | --------------- |
-| 3rd person Set A  | ø, k-               | a, e            |
-| 3rd person Set A  | k-                  | o, u, v         |
-| 3rd person Set A  | a-, ka-             | consonants      |
-| 3rd person Set A  | kha-                | h + consonant   |
-| 3rd person Set A  | kh-                 | V + h           |
-| 3rd person Set B  | u- (replaces a)     | a               |
-| 3rd person Set B  | uw-                 | e, o, u, v      |
-| 3rd person Set B  | uhw-                | V + h           |
-| 3rd person Set B  | uwa- (v is dropped) | v               |
-| 3rd person Set B  | u-, uwa-            | consonants      |
-| 2nd person Set B  | ts-                 | a, e, o, u , v  |
-| 2nd person Set B  | tsa-                | consonants      |
-| 2nd person Set B  | tsha-               | h + consonant   |
-| 2nd person Set B  | ts-                 | aspirated cons. |
-| 2nd person Set B  | t-                  | s               |
-| 2nd person Set A  | h-                  | a, e, o, u , v  |
-| 2nd person Set A  | h-                  | V + h           |
-| 2nd person Set A  | hi-                 | consonants      |
-| 2nd person to 3rd | hiy-                | a, e, o, u , v  |
-| 2nd person to 3rd | hi-                 | consonants      |
-| 1st person Set A  | k-                  | a, e, o, u, v   |
-| 1st person Set A  | tsi-                | consonants      |
-| 1st person Set B  | akw-                | a, e, o, u, v   |
-| 1st person Set B  | akhi-, ak-          | consonants      |
-| 1st person Set B  | akhi-               | h + consonant   |
-| 1st person Set B  | akh-                | aspirated, s    |
-| 1st person Set B  | ak-                 | h               |
-| 1st person to 3rd | tsiy-               | a, e, o, u, v   |
-| 1st person to 3rd | tsi-                | consonants      |
+The 1st Person Singular form is allowed to have a "split stem" that differs from the consensus stem derived from the 3rd person forms. This accommodates irregular verbs (e.g., "changing clothes") where the 1st person stem morphology diverges significantly but is still valid.
 
-## Prepronominal prefixes
+## Artifacts
 
-There are sometimes prefixes before the pronouns that make splitting off the pronouns hard. We will consider three prefixes for now.
-
-### Translocutive
-
-| Stem form | Prefix form                 | Following sound |
-| --------- | --------------------------- | --------------- |
-| All forms | w-                          | vowels          |
-| All forms | hw- (h on right is dropped) | h               |
-| All forms | wi-                         | consonants      |
-
-### Partitive
-
-| Stem form   | Prefix form                 | Following sound |
-| ----------- | --------------------------- | --------------- |
-| Infinitive  | iy-                         | a, e, o, u, v   |
-| Infinitive  | i-                          | consonants      |
-| Infinitive  | ø                           | -i              |
-| Other forms | n-                          | vowels          |
-| Other forms | hn- (h on right is dropped) | h               |
-| Other forms | ni-                         | consonants      |
-
-### Distributive
-
-| Stem form              | Prefix form       | Following sound |
-| ---------------------- | ----------------- | --------------- |
-| Infinitive, imperative | t-                | h               |
-| Infinitive, imperative | ti-               | consonants      |
-| Infinitive, imperative | ts-               | vowels          |
-| Other forms            | t-                | a, e, o, u, v   |
-| Other forms            | te-               | consonants      |
-| Other forms            | te- (replaces -i) | -i              |
-
-## Other considerations
-
-- **Stem Consistency**: All forms for an item in the corpus will have the same stem-initial sound. In addition, all forms with the same pronoun on a given verb will take the same variant. Eg. if a verb takes k- before -e for 3rd person Set A in one form, it will take the g- variant in all forms.
-- **/h/ Alternation**: Certain person-prefixes (2nd -> 3rd, 1st -> 3rd, and 1st Set A) cause the first /h/ in a stem (after the pronoun) to turn to a glottal stop (which is dropped). This applies to the _first_ /h/ in the stem, whether it is stem-initial or follows an initial vowel (e.g. `ahkw...` -> `akw...`). During derivation, if we encounter a stem in one of these contexts that seems to be missing its first /h/, we should consider the version with /h/ restored as a valid candidate.
-- **H-Metathesis**: Sometimes an /h/ in a stem "fuses" with the pronoun prefix.
-  - **Type 1 (Consonant)**: /h/ followed by a consonant fuses with a prefix (e.g., `ka-` + `hnogi` -> `khanogi`, `tsha-` + `hnaskwalo` -> `tshanaskwalo`).
-  - **Type 2 (Vowel)**: A stem starting with a vowel+/h/ fuses with a prefix (e.g., `k-` + `ehlatitoh` -> `khelatitoh`, `uw-` + `ehlatitoh` -> `uhwelatitoh`).
-  - During stem derivation, the system detects these fusions and restores the underlying /h/ into the stem to ensure consistency across forms.
-- **Stem Initial Disambiguation**: The choice of prefix variant (e.g., `a-` before consonant vs `ø` before `a`) is disambiguated by checking other forms of the same verb to ensure a consistent stem-initial sound.
-- **Partitive ø**: Before a stem or pronoun starting with `-i`, the Partitive prefix has a null form (`ø`).
-- **Distributive de-**: A following `-i` is masked (disappears) when it follows the `te-` variant of the Distributive prefix.
-- **Present Stem Extraction**: For each valid derivation that explains all forms, strip the prefixes from the **present tense** form to derive the Present Stem. If multiple derivations are valid, include all resulting stems in a list for that row.
+*   **Output**: `artifacts/data/stem_corpus.csv` (Successfully parsed verbs).
+*   **Failures**: `artifacts/reports/stem_derivation_failures.csv` (Verbs that could not be parsed).
+*   **Debug Tool**: `king_recreation/analyze_failure.py` can be used to trace the derivation logic for any specific verb.
