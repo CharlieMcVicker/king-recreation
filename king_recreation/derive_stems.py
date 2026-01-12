@@ -316,6 +316,24 @@ class StemDeriver:
                                         if best_match_tuple[1]: metathesis_involved = True
                                     
                                     if not matched_literal:
+                                        if fn == 'present_1sg':
+                                            # Exception for 1sg: allow it to differ (split stem)
+                                            # Pick the literal that shares the longest prefix with target
+                                            if literals[fn]:
+                                                 def simple_overlap(s_tuple):
+                                                     s = s_tuple[0]
+                                                     l = 0
+                                                     for c1, c2 in zip(s, target):
+                                                         if c1 == c2: l += 1
+                                                         else: break
+                                                     return l
+                                                 # Convert set to list for sorting
+                                                 sorted_literals = sorted(list(literals[fn]), key=simple_overlap, reverse=True)
+                                                 best_1sg = sorted_literals[0][0]
+                                                 final_stems[fn] = best_1sg
+                                                 # Consider this form handled
+                                                 continue 
+
                                         explained_all = False
                                         break
                                     
