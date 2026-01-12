@@ -222,38 +222,63 @@ class StemDeriver:
                                     # "and between pres and 1st pres for matching" (Strict)
                                     use_strict = (fn in ['present', 'present_1sg'])
 
+                                    # Collect all valid matches for this form to pick the best one
+                                    valid_matches = [] # List of (stem, metathesis_bool, is_dropped_h)
+
                                     # Check direct match
                                     for s, meta in literals[fn]:
+                                        is_valid = False
                                         if use_strict:
-                                            if is_strict_compatible(s, target):
-                                                matched_literal = True
-                                                best_match = s
-                                                if meta: metathesis_involved = True
-                                                break
+                                            if is_strict_compatible(s, target): is_valid = True
                                         else:
-                                            if is_loose_compatible(s, target):
-                                                matched_literal = True
-                                                best_match = s
-                                                if meta: metathesis_involved = True
-                                                break
+                                            if is_loose_compatible(s, target): is_valid = True
+                                        
+                                        if is_valid:
+                                            valid_matches.append((s, meta, False))
 
                                     
-                                    # If not direct match, and h-drop set, check drop_first_h
-                                    if not matched_literal and is_h_drop:
+                                    # If h-drop set, check drop_first_h
+                                    if is_h_drop:
                                         dropped = drop_first_h(target)
                                         for s, meta in literals[fn]:
+                                            is_valid = False
                                             if use_strict:
-                                                if is_strict_compatible(s, dropped):
-                                                    matched_literal = True
-                                                    best_match = s
-                                                    if meta: metathesis_involved = True 
-                                                    break
+                                                if is_strict_compatible(s, dropped): is_valid = True
                                             else:
-                                                if is_loose_compatible(s, dropped):
-                                                    matched_literal = True
-                                                    best_match = s
-                                                    if meta: metathesis_involved = True
-                                                    break
+                                                if is_loose_compatible(s, dropped): is_valid = True
+                                            
+                                            if is_valid:
+                                                valid_matches.append((s, meta, True)) # True = is_dropped match
+                                    
+                                    if valid_matches:
+                                        matched_literal = True
+                                        # Pick the best match
+                                        # Criteria:
+                                        # 1. Longest common prefix with target (prefer matches that overlap more)
+                                        # 2. Prefer direct match over dropped match? (Maybe not strictly, score should handle it)
+                                        
+                                        def score_match(m):
+                                            s, meta, dropped = m
+                                            # Calculate overlap with target
+                                            # If dropped match, we are comparing s to dropped(target).
+                                            # But we want to see how "good" s is relative to target.
+                                            # Let's compare s to target directly for scoring?
+                                            # Or compare s to the thing it matched (target or dropped).
+                                            
+                                            ref = drop_first_h(target) if dropped else target
+                                            
+                                            common = 0
+                                            for c1, c2 in zip(s, ref):
+                                                if c1 == c2: common += 1
+                                                else: break
+                                            return common
+                                        
+                                        # Sort by score descending
+                                        valid_matches.sort(key=score_match, reverse=True)
+                                        best_match_tuple = valid_matches[0]
+                                        
+                                        best_match = best_match_tuple[0]
+                                        if best_match_tuple[1]: metathesis_involved = True
                                     
                                     if not matched_literal:
                                         explained_all = False

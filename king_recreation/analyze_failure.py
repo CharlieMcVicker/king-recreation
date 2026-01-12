@@ -136,31 +136,46 @@ def analyze_failure(target_definition):
                                     # Strictness Logic
                                     use_strict = (fn in ['present', 'present_1sg'])
                                     
-                                    matched_literal = False
+                                    valid_matches = [] # List of (stem, is_dropped_h)
                                     
                                     # Check direct match
                                     for s in possible_stems[fn]:
+                                        is_valid = False
                                         if use_strict:
-                                            if is_strict_compatible(s, target):
-                                                matched_literal = True
-                                                break
+                                            if is_strict_compatible(s, target): is_valid = True
                                         else:
-                                            if is_loose_compatible(s, target):
-                                                matched_literal = True
-                                                break
+                                            if is_loose_compatible(s, target): is_valid = True
+                                        if is_valid:
+                                            valid_matches.append((s, False))
                                     
                                     # Check drop_first_h
-                                    if not matched_literal and is_h_drop:
+                                    if is_h_drop:
                                         dropped = drop_first_h(target)
                                         for s in possible_stems[fn]:
+                                            is_valid = False
                                             if use_strict:
-                                                if is_strict_compatible(s, dropped):
-                                                    matched_literal = True
-                                                    break
+                                                if is_strict_compatible(s, dropped): is_valid = True
                                             else:
-                                                if is_loose_compatible(s, dropped):
-                                                    matched_literal = True
-                                                    break
+                                                if is_loose_compatible(s, dropped): is_valid = True
+                                            if is_valid:
+                                                valid_matches.append((s, True))
+                                    
+                                    if valid_matches:
+                                        def score_match(m):
+                                            s, dropped = m
+                                            ref = drop_first_h(target) if dropped else target
+                                            common = 0
+                                            for c1, c2 in zip(s, ref):
+                                                if c1 == c2: common += 1
+                                                else: break
+                                            return common
+                                        
+                                        valid_matches.sort(key=score_match, reverse=True)
+                                        best_match = valid_matches[0][0]
+                                        
+                                        # Match found
+                                        explained_all = True # Wait, explained_all logic is outside loop in derive_stems
+                                        matched_literal = True
                                     
                                     if not matched_literal:
                                         explained_all = False
@@ -176,6 +191,9 @@ def analyze_failure(target_definition):
                                 for fn in possible_stems:
                                     consistent_stems[fn] = []
                                     use_strict = (fn in ['present', 'present_1sg'])
+                                    
+                                    # Re-run selection logic to just output all 'good' stems?
+                                    # Or just output all stems that matched any valid candidate?
                                     for s in possible_stems[fn]:
                                         is_consistent_s = False
                                         for target in valid_candidates:
