@@ -7,8 +7,8 @@ import os
 # Ensure the project root is in sys.path
 sys.path.append(os.getcwd())
 
-from king_recreation.derive_stems import StemDeriver, is_compatible
-from king_recreation.phonology_data import get_pronominal_set_name, PRONOMINAL_PREFIXES_MAP, Condition, is_h_dropping_set, drop_first_h
+from king_recreation.derive_stems import StemDeriver, is_strict_compatible, is_loose_compatible, drop_first_h
+from king_recreation.phonology_data import get_pronominal_set_name, PRONOMINAL_PREFIXES_MAP, Condition, is_h_dropping_set
 
 def analyze_failure(target_definition):
     deriver = StemDeriver()
@@ -133,21 +133,34 @@ def analyze_failure(target_definition):
                                     pron_type = get_pronominal_set_name(fn, set_type, imp_type)
                                     is_h_drop = is_h_dropping_set(pron_type)
                                     
+                                    # Strictness Logic
+                                    use_strict = (fn in ['present', 'present_1sg'])
+                                    
                                     matched_literal = False
                                     
                                     # Check direct match
                                     for s in possible_stems[fn]:
-                                        if is_compatible(s, target):
-                                            matched_literal = True
-                                            break
+                                        if use_strict:
+                                            if is_strict_compatible(s, target):
+                                                matched_literal = True
+                                                break
+                                        else:
+                                            if is_loose_compatible(s, target):
+                                                matched_literal = True
+                                                break
                                     
                                     # Check drop_first_h
                                     if not matched_literal and is_h_drop:
                                         dropped = drop_first_h(target)
                                         for s in possible_stems[fn]:
-                                            if is_compatible(s, dropped):
-                                                matched_literal = True
-                                                break
+                                            if use_strict:
+                                                if is_strict_compatible(s, dropped):
+                                                    matched_literal = True
+                                                    break
+                                            else:
+                                                if is_loose_compatible(s, dropped):
+                                                    matched_literal = True
+                                                    break
                                     
                                     if not matched_literal:
                                         explained_all = False
@@ -162,15 +175,25 @@ def analyze_failure(target_definition):
                                 consistent_stems = {}
                                 for fn in possible_stems:
                                     consistent_stems[fn] = []
+                                    use_strict = (fn in ['present', 'present_1sg'])
                                     for s in possible_stems[fn]:
                                         is_consistent_s = False
                                         for target in valid_candidates:
                                             pron_type = get_pronominal_set_name(fn, set_type, imp_type)
                                             is_h_drop = is_h_dropping_set(pron_type)
-                                            if is_compatible(s, target):
+                                            
+                                            matched = False
+                                            if use_strict:
+                                                if is_strict_compatible(s, target): matched = True
+                                                elif is_h_drop and is_strict_compatible(s, drop_first_h(target)): matched = True
+                                            else:
+                                                if is_loose_compatible(s, target): matched = True
+                                                elif is_h_drop and is_loose_compatible(s, drop_first_h(target)): matched = True
+                                            
+                                            if matched:
                                                 is_consistent_s = True
-                                            elif is_h_drop and is_compatible(s, drop_first_h(target)):
-                                                is_consistent_s = True
+                                                break
+                                        
                                         if is_consistent_s:
                                             consistent_stems[fn].append(s)
 

@@ -15,7 +15,7 @@ class Derivation:
     stems: Dict[str, str]
     stem_initial: str
 
-def is_compatible(s1: str, s2: str) -> bool:
+def is_strict_compatible(s1: str, s2: str) -> bool:
     if s1 == s2: return True
     if s1.startswith(s2) or s2.startswith(s1): return True
     # Allow mismatch if they share a significant common prefix
@@ -25,6 +25,13 @@ def is_compatible(s1: str, s2: str) -> bool:
         if c1 == c2: common_len += 1
         else: break
     return common_len >= 3 or common_len == min(len(s1), len(s2))
+
+def is_loose_compatible(s1: str, s2: str) -> bool:
+    # Stem consistency should be checked between all forms for starting sound
+    return bool(s1 and s2 and s1[0] == s2[0])
+
+# Backwards compatibility for other modules if needed (though we should update them)
+is_compatible = is_strict_compatible
 
 class StemDeriver:
     def __init__(self):
@@ -210,23 +217,43 @@ class StemDeriver:
                                     matched_literal = False
                                     best_match = None
                                     
+                                    # Strictness Logic
+                                    # "stem consistency should be checked between all forms for starting sound" (Loose)
+                                    # "and between pres and 1st pres for matching" (Strict)
+                                    use_strict = (fn in ['present', 'present_1sg'])
+
                                     # Check direct match
                                     for s, meta in literals[fn]:
-                                        if is_compatible(s, target):
-                                            matched_literal = True
-                                            best_match = s
-                                            if meta: metathesis_involved = True
-                                            break
+                                        if use_strict:
+                                            if is_strict_compatible(s, target):
+                                                matched_literal = True
+                                                best_match = s
+                                                if meta: metathesis_involved = True
+                                                break
+                                        else:
+                                            if is_loose_compatible(s, target):
+                                                matched_literal = True
+                                                best_match = s
+                                                if meta: metathesis_involved = True
+                                                break
+
                                     
                                     # If not direct match, and h-drop set, check drop_first_h
                                     if not matched_literal and is_h_drop:
                                         dropped = drop_first_h(target)
                                         for s, meta in literals[fn]:
-                                            if is_compatible(s, dropped):
-                                                matched_literal = True
-                                                best_match = s
-                                                if meta: metathesis_involved = True # Unlikely for h-drop set
-                                                break
+                                            if use_strict:
+                                                if is_strict_compatible(s, dropped):
+                                                    matched_literal = True
+                                                    best_match = s
+                                                    if meta: metathesis_involved = True 
+                                                    break
+                                            else:
+                                                if is_loose_compatible(s, dropped):
+                                                    matched_literal = True
+                                                    best_match = s
+                                                    if meta: metathesis_involved = True
+                                                    break
                                     
                                     if not matched_literal:
                                         explained_all = False
