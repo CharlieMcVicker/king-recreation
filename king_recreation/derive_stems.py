@@ -30,6 +30,38 @@ def is_loose_compatible(s1: str, s2: str) -> bool:
     # Stem consistency should be checked between all forms for starting sound
     return bool(s1 and s2 and s1[0] == s2[0])
 
+def is_compatible_with_vowel_restoration(restored: str, syncopated: str) -> bool:
+    """
+    Checks if 'restored' (e.g. akathastih) is 'syncopated' (e.g. akthastih) with one extra vowel.
+    Used for cases where h-dropping allows a vowel to return.
+    """
+    if len(restored) != len(syncopated) + 1:
+        return False
+    
+    # Check if syncopated is a subsequence of restored
+    # And the skipped char is a vowel
+    i = 0
+    j = 0
+    skipped = False
+    
+    while i < len(restored) and j < len(syncopated):
+        if restored[i] == syncopated[j]:
+            i += 1
+            j += 1
+        else:
+            if skipped: return False # Already skipped one
+            if restored[i] in VOWEL_SET:
+                skipped = True
+                i += 1
+            else:
+                return False # Mismatch is not a vowel
+    
+    if not skipped:
+        # Must be the last char
+        return i == len(restored) - 1 and restored[i] in VOWEL_SET
+    
+    return True
+
 # Backwards compatibility for other modules if needed (though we should update them)
 is_compatible = is_strict_compatible
 
@@ -243,7 +275,10 @@ class StemDeriver:
                                         for s, meta in literals[fn]:
                                             is_valid = False
                                             if use_strict:
-                                                if is_strict_compatible(s, dropped): is_valid = True
+                                                if is_strict_compatible(s, dropped): 
+                                                    is_valid = True
+                                                elif is_compatible_with_vowel_restoration(s, dropped):
+                                                    is_valid = True
                                             else:
                                                 if is_loose_compatible(s, dropped): is_valid = True
                                             
