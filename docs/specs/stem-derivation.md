@@ -1,63 +1,122 @@
-# Stem Derivation Specification
+# Stem Derivation Refactoring Plan
 
-## Overview
+## Objective
 
-This document specifies the algorithm and rules for deriving King's Verb Classes and stems from raw CED corpus data. The process involves identifying pronominal and pre-pronominal prefixes, handling phonological alternations (like h-dropping and metathesis), and extracting consistent stems across 5-6 verb forms.
+Refactor the stem derivation logic in `derive_stems.py` to use a **configuration-driven** approach. This will separate the "guessing" of morphological structure from the "validation" of that structure against surface forms, making the logic explicit, consistent, and serializable.
 
-## Core Goal
+## Motivation
 
-For each verb entry (row) in the corpus:
-1.  **Identify the Configuration**: Determine the correct combination of:
-    *   Set A / Set B inflection.
-    *   Imperative target (2nd->3rd vs normal).
-    *   Pre-pronominal prefixes (Translocutive, Partitive, Distributive).
-2.  **Extract Stems**: Isolate the verb stem from each of the 5-6 provided forms (Present, 1sg, Imperfective, Perfective, Imperative, Infinitive).
-3.  **Validate Consistency**: Ensure the extracted stems are phonologically compatible with a single underlying root/stem.
+- **Explicit Decisions**: We want to record _why_ a stem was derived (e.g., "This verb uses the `ka-` variant of 3rd person Set A").
+- **Strict Consistency**: A chosen configuration (e.g., "Vowel Stem") must validly explain _all_ provided forms.
+- **Separation of Concerns**: Pre-pronominal prefixes (T, P, D) and Pronominal prefixes operate at different layers. Splitting them simplifies the combinatorial logic.
 
-## Algorithm: Consensus Stem Derivation
+## Proposed Architecture
 
-Instead of guessing stems from individual forms in isolation, we use a **Consensus Approach**:
+### 1. Configuration Objects
 
-1.  **Generate Literal Stems**: For every form, generate all possible "literal" stems by stripping valid prefix combinations.
-2.  **Identify Candidates**: Collect a set of "Candidate Stems" from the forms that are **phonologically stable** (i.e., not subject to h-dropping rules). These are typically the *Present*, *Imperfective*, and *Perfective* forms.
-3.  **Validate**: For each Candidate Stem, check if it can "explain" every other form's observed literal stem.
-    *   **Strict Check (Present/1sg)**: The observed stem must match the Candidate Stem exactly, or share a significant prefix (length >= 3).
-    *   **Loose Check (Others)**: The observed stem must share the same starting character as the Candidate Stem.
-    *   **H-Dropping**: If the form is in an h-dropping context (e.g., 1st Set A, 2nd->3rd), the observed stem can match the `drop_first_h(Candidate)` version.
-    *   **Vowel Restoration**: If h-dropping removes a consonant cluster that blocked a vowel, the observed stem might show a restored vowel (e.g., `akhth...` -> `akath...`). This is checked via `is_compatible_with_vowel_restoration`.
-4.  **Select Best Match**: If multiple valid derivations exist, prioritize the one where the derived stems have the highest character overlap with the Candidate Stem.
+We split the configuration into two layers:
 
-## Phonological Rules
+#### A. `PrePronominalConfig`
 
-### 1. Pronominal Prefixes (Sets A & B)
+Handles the outer prefixes: Translocutive, Partitive, Distributive.
 
-*   **Set A**: Used for Present, Imperfective (3rd person).
-*   **Set B**: Used for Perfective, Infinitive (3rd person).
-*   **Imperative**: Uses 2nd Person (Set A or B depending on verb class, or specialized 2nd->3rd prefixes).
-*   **1st Person**: 1st Set A or B, or 1st->3rd.
+```python
+@dataclass(frozen=True)
+class PrePronominalConfig:
+    translocutive: bool
+    partitive: bool
+    distributive: bool
+```
 
-Specific prefix shapes (e.g., `k-`, `a-`, `u-`, `ts-`) depend on the **Stem Initial** sound (Vowel vs Consonant, specific vowels, etc.). See `phonology_data.py` for the complete mapping.
+#### B. `PronominalConfig`
 
-### 2. Pre-Pronominal Prefixes
+Handles the inner pronominal inflection and stem properties.
 
-*   **Translocutive**: `w-` (vowels), `wi-` (consonants), `hw-` (before h).
-*   **Partitive**: `n-` (vowels), `ni-` (consonants), `hn-` (before h).
-*   **Distributive**: `t-`/`te-`/`ts-` variations.
+```python
+@dataclass(frozen=True)
+class PronominalConfig:
+    set_type: str  # 'Set A' | 'Set B'
 
-### 3. H-Alternation (Generalized)
+    # Stem / Root Properties
+    stem_type: StemType  # Enum: CONSONANT, VOWEL, VOWEL_AE, ...
 
-*   **Rule**: In specific contexts (1st Set A, 1st->3rd, 2nd->3rd), the **first /h/ in the stem** is dropped.
-    *   Example: `ahkwiyv` -> `akwiyv`
-    *   Example: `hlogi` -> `logi`
-*   **Vowel Restoration**: Sometimes dropping /h/ breaks a cluster and allows an underlying vowel to surface.
-    *   Example: `akhthastih` (3rd) -> `akathastih` (1st, h-dropped).
+    # Metathesis Strategy
+    metathesis_strategy: MetathesisStrategy  # Enum: NONE, H_CONS, VOWEL_METATHESIS
 
-### 4. Split Stems (1st Person Irregularity)
+    # 3rd Person Set A Variant Flag
+    # If True: Expect 'ka-' (before cons) / 'k-' (before vowel)
+    # If False: Expect 'a-' (before cons/-a) / 'ø-' (before other vowels)
+    use_ka_variant: bool
+```
 
-The 1st Person Singular form is allowed to have a "split stem" that differs from the consensus stem derived from the 3rd person forms. This accommodates irregular verbs (e.g., "changing clothes") where the 1st person stem morphology diverges significantly but is still valid.
+### 2. The `Derivation` Result Object
 
-## Artifacts
+The `Derivation` object represents a _successful_ application of a configuration to a set of forms.
+It **composes** the configuration objects rather than duplicating them.
 
-*   **Output**: `artifacts/data/stem_corpus.csv` (Successfully parsed verbs).
-*   **Failures**: `artifacts/reports/stem_derivation_failures.csv` (Verbs that could not be parsed).
-*   **Debug Tool**: `king_recreation/analyze_failure.py` can be used to trace the derivation logic for any specific verb.
+```python
+@dataclass
+class Derivation:
+    # The accepted configurations
+    pre_config: PrePronominalConfig
+    pron_config: PronominalConfig
+
+    # The resulting Single Root (if reachable) or Consensus Stem
+    root: str
+
+    # The specific stems used for each form (for transparency)
+    forms_stem_usage: Dict[str, str]
+```
+
+### 3. Derivation Logic (Decoupled System)
+
+We define two distinct operations:
+
+#### A. `strip_prepronominals(forms, pre_config) -> Optional[Dict[str, str]]`
+
+- Attempts to strip the Translocutive/Partitive/Distributive prefixes defined in `pre_config` from all forms.
+- Returns the `intermediate_forms` (pronominal bases) if successful.
+- Returns `None` if any form differs from the expected prefix pattern.
+
+#### B. `derive_pronominals(intermediate_forms, pron_config) -> Optional[Derivation]`
+
+- Takes the clean `intermediate_forms`.
+- Applies the `pron_config` logic (lookup prefix -> strip -> reverse metathesis).
+- Validates consistency of the resulting stems.
+- Returns a `Derivation` object (composing both configs) if successful.
+
+### 4. Guessing Strategy (The Outer Loop)
+
+We maximize efficiency by filtering invalid outer layers first.
+
+1.  **Find Valid Pre-Configs**:
+    - Iterate all 8 `PrePronominalConfig` combinations.
+    - Run `strip_prepronominals(forms, config)`.
+    - Keep only the successful `(config, intermediate_forms)` pairs.
+2.  **Iterate Pronominal Configs**:
+    - For each valid `intermediate_forms` set:
+      - Iterate `PronominalConfig` candidates (Set/StemType/Flags).
+      - Run `derive_pronominals`.
+3.  **Collect & Rank**:
+    - Collect all successful `Derivation` objects.
+    - Rank if necessary.
+
+## Implementation Details
+
+### `king_recreation/phonology_data.py`
+
+- Add `StemType` Enum.
+- Add `MetathesisStrategy` Enum.
+- Implement Prefix Lookup Table: `(Set, StemType, UseKa) -> Prefix`.
+
+### `king_recreation/derive_stems.py`
+
+- Separate `strip_prepronominals` logic.
+- Separate `strip_pronominals` logic.
+- Implement the nested guessing loop.
+
+### Verification
+
+- Regress entire corpus.
+- **Critical Check**: If `stem_corpus.csv` changes significantly (rows failing that used to pass, or massive changes in stem shapes), HALT and investigate.
+- Manual verification of new columns in `stem_corpus.csv`.

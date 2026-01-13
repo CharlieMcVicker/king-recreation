@@ -14,13 +14,16 @@ The process begins by reading the `matches.csv` to identify verbs with the **`re
 2.  **Shared Interface**: Use `king_recreation/stem_analysis.py` to extract the root from the `stem_corpus.csv` data.
 3.  **Validation Check**: The classification phase already performed the root consistency check; reconstruction consumes this result to ensure it works from a high-quality base.
 
-**Data Model**:
-A "Reconstructible Verb" consists of:
-
 - Definition
 - Root
 - Class ID
-- Metadata: `set_a_b`, `2_to_3`, `translocutive` (T), `partitive` (P), `distributive` (D).
+- Metadata:
+  - `stem_type` (e.g. `con`, `vowel_a`)
+  - `metathesis_strategy`
+  - `set_a_b`
+  - `use_ka_variant`, `use_uwa_for_3rd_set_b`, `use_aki_for_1st_set_b`
+  - `use_3rd_person_object` (Implies 2->3 interaction)
+  - `translocutive` (T), `partitive` (P), `distributive` (D).
 
 ### 2. Reconstruction (Generation)
 
