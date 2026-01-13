@@ -20,11 +20,12 @@ def save_json(path, data):
     with open(path, mode='w', encoding='utf-8') as f:
         json.dump(data, f, indent=4, sort_keys=True)
 
-def analyze_matches():
+def analyze_matches(classes_path=None):
     matches_path = 'artifacts/data/matches.csv'
     corpus_path = 'artifacts/data/corpus.csv'
     stem_corpus_path = 'artifacts/data/stem_corpus.csv'
-    classes_path = 'data/king_classes.csv'
+    if classes_path is None:
+        classes_path = 'data/king_classes.csv'
     
     if not os.path.exists(matches_path):
         print(f"Error: {matches_path} not found.")
@@ -242,9 +243,10 @@ def analyze_matches():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Analyze match data.")
     parser.add_argument("--visualize", action="store_true", help="Run visualization.")
+    parser.add_argument("--classes", help="Path to classes CSV file")
     args = parser.parse_args()
     
-    analyze_matches()
+    analyze_matches(args.classes)
     
     if args.visualize:
         from king_recreation.visualize_analysis import run_all_visualizations

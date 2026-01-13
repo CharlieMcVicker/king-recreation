@@ -83,11 +83,14 @@ class ReconstructionEngine:
         
         return [{fn: set(opts or []) for fn, opts in form_options.items()}]
 
-def main():
+def main(classes_path=None):
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     stem_corpus_path = os.path.join(base_dir, 'artifacts', 'data', 'stem_corpus.csv')
     corpus_path = os.path.join(base_dir, 'artifacts', 'data', 'corpus.csv')
-    king_classes_path = os.path.join(base_dir, 'data', 'king_classes.csv')
+    if classes_path is None:
+        king_classes_path = os.path.join(base_dir, 'data', 'king_classes.csv')
+    else:
+        king_classes_path = classes_path
     matches_path = os.path.join(base_dir, 'artifacts', 'data', 'matches.csv')
     
     engine = ReconstructionEngine(king_classes_path)
@@ -239,4 +242,8 @@ def main():
     print(f"Artifacts saved to {reports_dir}")
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    parser = argparse.ArgumentParser(description="Reconstruct verbs from roots.")
+    parser.add_argument("--classes", help="Path to classes CSV file")
+    args = parser.parse_args()
+    main(args.classes)

@@ -14,6 +14,8 @@ def match_ending(corpus_form, pattern_suffix, strict):
         return True
 
     # Literal characters only, ignore * or @
+    if pattern_suffix is None:
+        pattern_suffix = ""
     literal_suffix = pattern_suffix.replace("*", "").replace("@", "")
     
     if strict:
@@ -27,6 +29,8 @@ def calculate_stem_final_match(corpus_form, pattern_suffix, stem_final_str, stri
         return True
 
     # 1. Identify literal ending
+    if pattern_suffix is None:
+        pattern_suffix = ""
     literal_suffix = pattern_suffix.replace("*", "").replace("@", "")
     
     # 2. Strip literal ending (if possible)
@@ -118,9 +122,10 @@ def get_matches_for_verb(verb, classes):
                 })
     return matches
 
-def classify_verbs():
+def classify_verbs(classes_path=None):
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    classes_path = os.path.join(base_dir, "data", "king_classes.csv")
+    if classes_path is None:
+        classes_path = os.path.join(base_dir, "data", "king_classes.csv")
     corpus_path = os.path.join(base_dir, "artifacts", "data", "stem_corpus.csv")
     output_path = os.path.join(base_dir, "artifacts", "data", "matches.csv")
 
@@ -162,4 +167,8 @@ def classify_verbs():
     print(f"Matches written to {output_path}")
 
 if __name__ == "__main__":
-    classify_verbs()
+    import argparse
+    parser = argparse.ArgumentParser(description="Classify verbs using King's classes.")
+    parser.add_argument("--classes", help="Path to classes CSV file")
+    args = parser.parse_args()
+    classify_verbs(args.classes)
