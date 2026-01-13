@@ -5,7 +5,7 @@ from king_recreation.derive_stems import StemDeriver, Derivation, strip_preprono
 from king_recreation.phonology_data import (
     StemType, MetathesisStrategy, PronominalConfig, PrePronominalConfig,
     get_pronominal_set_name, is_h_dropping_set, drop_first_h,
-    get_stem_type, get_prefix_for_config, VOWEL_SET
+    get_stem_type, get_prefix_details, detach_prefix, VOWEL_SET, Condition
 )
 
 class TestStemDerivations(unittest.TestCase):
@@ -82,35 +82,15 @@ class TestStemDerivations(unittest.TestCase):
 
                 for fn, word in intermediate.items():
                     set_name = get_pronominal_set_name(fn, check_config)
-                    expected_prefix = get_prefix_for_config(set_name, target_pron)
-                    clean_pref = expected_prefix.replace('-', '')
+                    prefix, condition = get_prefix_details(set_name, target_pron)
                     
-                    effective_pref = clean_pref
-                    if effective_pref == 'ka' and word.startswith('kh'):
-                        effective_pref = 'k'
+                    stem = detach_prefix(word, prefix, condition, target_pron.metathesis_strategy)
                     
-                    if not word.startswith(effective_pref):
-                        print(f"    [FAILURE] Form '{fn}' ('{word}') does not start with expected prefix '{expected_prefix}' (clean: '{effective_pref}') for Set '{set_name}'")
+                    if stem is None:
+                        print(f"    [FAILURE] Form '{fn}' ('{word}') failed to detach prefix '{prefix}' with condition {condition}")
                         failed_prefix = True
                     else:
-                        print(f"    [SUCCESS] Form '{fn}' ('{word}') matches prefix '{expected_prefix}'")
-                        remainder = word[len(effective_pref):]
-                        stem = remainder
-                        if target_pron.metathesis_strategy != MetathesisStrategy.NONE:
-                            is_meta_pref = expected_prefix in ['kha-', 'kh-', 'akhi-', 'tsha-', 'h-']
-                            if is_meta_pref:
-                                if target_pron.metathesis_strategy == MetathesisStrategy.H_CONS:
-                                    stem = 'h' + remainder
-                                elif target_pron.metathesis_strategy == MetathesisStrategy.VOWEL:
-                                    if remainder: stem = remainder[0] + 'h' + remainder[1:]
-                        
-                        if set_name == '3rd Set B' and expected_prefix == 'u-' and target_pron.stem_type == StemType.VOWEL_A:
-                            stem = 'a' + remainder
-                        elif set_name == '3rd Set B' and expected_prefix == 'uwa-' and target_pron.stem_type == StemType.VOWEL_V:
-                            stem = 'v' + remainder
-                        elif set_name == '3rd Set A' and expected_prefix == 'a-' and target_pron.stem_type == StemType.VOWEL_A:
-                            stem = 'a' + remainder
-                            
+                        print(f"    [SUCCESS] Form '{fn}' ('{word}') matches prefix '{prefix}' -> Stem: '{stem}'")
                         derived_stems[fn] = stem
                         
                 if failed_prefix:
@@ -184,7 +164,8 @@ class TestStemDerivations(unittest.TestCase):
             # ADD YOUR TEST CASES HERE
             # ("he's closing his eyes", PronominalConfig(set_type="a", stem_type=StemType.ASPIRATED)),
             ("he's plowing it", PronominalConfig(set_type="a", use_ka_variant=True, use_uwa_for_3rd_set_b=True, stem_type=StemType.CONSONANT)),
-            ("he's breathing", PronominalConfig(set_type="a", use_ka_variant=True, stem_type=StemType.VOWEL_A, metathesis_strategy=MetathesisStrategy.VOWEL))
+            ("he's breathing", PronominalConfig(set_type="a", use_ka_variant=True, stem_type=StemType.VOWEL_A, metathesis_strategy=MetathesisStrategy.VOWEL)),
+            ("he's singing", PronominalConfig(set_type="a", use_ka_variant=True, stem_type=StemType.CONSONANT, metathesis_strategy=MetathesisStrategy.H_CONS))
         ]
 
         if not TEST_CASES:
@@ -240,6 +221,7 @@ class TestStemDerivations(unittest.TestCase):
                         
                         if pron_match and pre_match:
                             found_match = True
+                            print(f"    [MATCH FOUND] Consensus Stem: '{d.consensus_stem}', Metathesis Involved: {d.metathesis_involved}")
                             break
                     if found_match:
                         break

@@ -186,7 +186,9 @@ def detach_prefix(word: str, prefix: str, condition: Condition, metathesis_strat
              return 'h' + remainder
 
     # Heuristic for ka+h -> kh merger (for non-metathesis or implicit metathesis)
-    if clean_pref == 'ka' and word.startswith('kh'):
+    # Only applies if the 'a' is missing (syncopated), e.g. khtosadi. 
+    # If word is kha..., we should let standard logic or METATHESIS_H_CONS handle it.
+    if clean_pref == 'ka' and word.startswith('kh') and not word.startswith('kha'):
         clean_pref = 'k'
 
     if not word.startswith(clean_pref):

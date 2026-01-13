@@ -95,11 +95,12 @@ def derive_pronominals(intermediate_forms: Dict[str, str], pron_config: Pronomin
             return None
         
         # Check if metathesis was actually involved
+        if condition in [Condition.METATHESIS_H_CONS, Condition.METATHESIS_VOWEL]:
+            metathesis_used = True
+        
         clean_pref = prefix.replace('-', '')
-        if clean_pref == 'ka' and word.startswith('kh'): clean_pref = 'k'
-        if pron_config.metathesis_strategy != MetathesisStrategy.NONE:
-            if clean_pref in ['kha', 'kh', 'akhi', 'tsha', 'h']:
-                metathesis_used = True
+        if clean_pref == 'ka' and word.startswith('kh'):
+            metathesis_used = True
             
         derived_stems[fn] = stem
 

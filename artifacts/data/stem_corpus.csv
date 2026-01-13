@@ -50,7 +50,7 @@ he's putting a long object in liquid,huti,uti,hutisk,hut,huta,hutist,huti,a,Fals
 he's receiving punishment,stvti,stvti,stvtisk,stvt,stvta,stvtist,stvti,b,False,False,False,s_stem,none,False,False,False,False,False,True
 he's putting a long object in a container,lati,lati,latisk,lat,lata,latist,lati,a,False,False,False,con,none,False,True,False,False,False,True
 he's hiding a long object,vskalati,vskalati,vskalatisk,vskalat,vskalata,vskalatist,vskalati,a,False,False,False,vowel_v,none,False,True,False,False,False,True
-it's misting,hanuyolati,,hanuyolatisk,hnuyolat,,hnuyolatist,hanuyolati,a,False,False,False,con,none,False,True,False,False,False,True
+it's misting,hnuyolati,,hnuyolatisk,hnuyolat,,hnuyolatist,hnuyolati,a,False,False,False,con,h_cons,True,True,False,False,False,True
 he's setting up a bed,nihlati,nihlati,nihlatisk,nihlat,nihlata,nihlatist,nihlati,a,False,False,False,con,none,False,True,False,False,False,True
 he's licking it,kanati,kanati,kanatisk,kanat,kanata,kanatist,kanati,a,False,False,False,con,none,False,False,False,False,False,True
 he's sticking his head out,alskwaluti,aliskwaluti,alskwalutisk,alskwalutan,alskwalutvka,alskwalutot,alskwaluti,a,False,False,False,vowel_a,none,False,False,False,False,False,True
@@ -70,7 +70,7 @@ he's pouring liquid from a container,tli,tli,tlisk,tl,tlika,tlist,tli,a,False,Fa
 he's sprinkling it (with a liquid),stutli,stutli,stutlisk,stutl,stutla,stutlist,stutli,a,False,False,True,con,none,False,False,False,False,False,True
 he's shivering,nawi,inawi,nawisk,naw,nawa,nawist,nawi,b,False,False,False,con,none,False,False,True,False,False,True
 "1. he's spilling it (a liquid or nonliquid like salt, sugar) 2. he's pouring it on the ground (liquid or non-liquid) 3. he's being wasteful (of money, etc.)",atsewi,atsewi,atsewisk,atsew,atsewa,atsewast,atsewi,a,False,False,False,vowel_a,none,False,False,False,False,False,True
-"1. he's curing, doctoring him, 2. he's soldering, welding it",hnvwi,nvwi,hnvwisk,hnvwan,nvwvka,hnvwot,hnvwi,a,False,False,False,con,h_cons,False,True,False,False,True,True
+"1. he's curing, doctoring him, 2. he's soldering, welding it",hnvwi,nvwi,hnvwisk,hnvwan,nvwvka,hnvwot,hnvwi,a,False,False,False,con,h_cons,True,True,False,False,True,True
 it's thundering,hyvtakwalo,,hyvtakwalosk,hyvtakwalo,,hyvtakwalost,hyvtakwalo,a,False,False,False,con,none,False,False,False,False,False,True
 he's leaving some liquid,nehiya,neiya,nehiyask,nehiy,nehiya,nehiyast,nehiya,a,False,False,False,con,none,False,True,False,False,False,True
 he's removing it (solid or flexible object) from a hanging position,ate,ate,atesk,ates,ataki,atest,ate,a,False,False,False,vowel_a,none,False,True,False,False,False,True
@@ -102,7 +102,7 @@ he's thirsty,thateki,thateki,thatekisk,thatekan,thatekvka,thatekot,thateki,b,Fal
 1. he's getting some liquid  2. he's picking up some liquid,neki,neki,nekisk,nekis,neki,nekist,neki,a,False,False,False,con,none,False,True,False,False,False,True
 he's taking his hat off,alskwethuhki,aliskwethuhki,alskwethuhkisk,alskwethuhkis,alskwethuhki,alskwethuhkist,alskwethuhki,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he's hoeing it,loki,loki,lokisk,lokan,lokvka,lokot,loki,a,False,False,False,con,none,False,True,False,False,False,True
-he's singing,hanoki,noki,hanokisk,hnokis,hnoki,hnokist,hanoki,a,False,False,True,con,none,False,True,False,False,False,True
+he's singing,hnoki,noki,hnokisk,hnokis,hnoki,hnokist,hnoki,a,False,False,True,con,h_cons,True,True,False,False,False,True
 "he hears him, it",athvki,athvki,athvkisk,athvkan,athvkvka,athvkot,athvki,a,False,False,False,vowel_a,none,False,False,False,False,True,True
 he's dancing,alski,aliski,alskisk,alskis,alski,alskist,alski,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 it's exploding,athaski,,athaskisk,athaskis,athaski,athaskist,athaski,a,False,False,False,vowel_a,none,False,False,False,False,False,True
@@ -125,7 +125,7 @@ he's putting on clothes,ahnawo,aniwo,ahnawosk,ahnawo,ahnawotsa,ahnawost,ahnawo,a
 he's combing someone's hair,thawo,thawo,thawosk,thawo,thawotsa,thawost,thawo,a,False,False,False,con,none,False,False,False,False,False,True
 he's combing his hair,ahlthawo,alithawo,ahlthawosk,ahlthawo,ahlthawotsa,ahlthawost,ahlthawo,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he's performing a baptism,atawo,atawo,atawosk,atawo,atawotsa,atawost,atawo,a,False,False,True,vowel_a,none,False,False,False,False,False,True
-"he's accumulating it, he's increasing it",hanehkwo,nehkwo,hanehkwosk,hnehkwo,hnehkwotsa,hnehkwost,hanehkwo,a,False,False,False,con,none,False,True,False,False,False,True
+"he's accumulating it, he's increasing it",hnehkwo,nehkwo,hnehkwosk,hnehkwo,hnehkwotsa,hnehkwost,hnehkwo,a,False,False,False,con,h_cons,True,True,False,False,False,True
 he's washing his face,akvskwo,akvskwo,akvskwosk,akvskwo,akvskwotsa,akvskwost,akvskwo,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he's sopping it,asu,asu,asusk,asus,asutsa,asust,asu,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he's moving it from one place to another,hv,v,hvsk,hvs,hvna,hvst,hv,a,False,False,False,con,none,False,False,False,False,False,True
@@ -151,7 +151,7 @@ he's pitying him,atolik,atolik,atolik,awatolits,atoliki,awatolist,atolik,a,False
 "1. it's pouring into a container (liquid), 2. it's filling",tlik,,tlik,tlits,,tliyst,tlik,a,False,False,False,con,none,False,False,False,False,False,True
 1. it's getting shorter 2. he's getting short on,skwalok,skwalok,skwalok,skwalots,skwaloki,skwaloyst,skwalok,a,False,False,False,con,none,False,False,False,False,False,True
 1. it's lacking 2. it's missing,lulok,lulok,lulok,lulots,luloki,lulost,lulok,a,False,False,False,con,none,False,True,False,False,False,True
-he's cold,hanawok,nawok,hanawok,hnawots,hnawoki,hnawost,hanawok,a,False,False,False,con,none,False,True,False,False,False,True
+he's cold,hnawok,nawok,hnawok,hnawots,hnawoki,hnawost,hnawok,a,False,False,False,con,h_cons,True,True,False,False,False,True
 it's scattering,tikaleyok,,tikaleyok,tikaleyots,,tikaleyoyst,tikaleyok,a,False,False,False,con,none,False,False,False,False,False,True
 "he's in agony, pain",kihliyok,kiliyok,kihliyok,kihliyots,kihliyoki,kihliyost,kihliyok,a,False,False,False,con,none,False,False,False,False,False,True
 he's late,kohniyok,ikohniyok,kohniyok,kohniyots,kohniyoki,kohniyost,kohniyok,b,False,False,False,con,none,False,False,False,False,False,True
@@ -173,10 +173,10 @@ he's limping,atatek,atatek,atatek,atates,atatuka,atatinvt,atatek,a,False,False,F
 he's selling it,natek,natek,natek,natinvs,natuka,natinvt,natek,a,False,False,False,con,none,False,True,False,False,False,True
 he's jumping,ahlthatek,alithatek,ahlthatek,ahlthatinvs,ahlthatuka,ahlthatinvt,ahlthatek,a,False,False,True,vowel_a,none,False,False,False,False,False,True
 "he's following him, it",stawatek,stawatek,stawatek,stawatvs,stawatuka,stawatvst,stawatek,a,False,False,False,con,none,False,False,False,False,False,True
-"he's turning, it over",hlihkwatek,lihkwatek,hlihkwatek,hlihkwatinvs,lihkwatuka,hlihkwatinvt,hlihkwatek,a,False,False,True,con,h_cons,False,True,False,False,True,True
+"he's turning, it over",hlihkwatek,lihkwatek,hlihkwatek,hlihkwatinvs,lihkwatuka,hlihkwatinvt,hlihkwatek,a,False,False,True,con,h_cons,True,True,False,False,True,True
 he's taking a liquid somewhere by hand,nhtsek,nvtsek,nhtsek,nhtsvs,nhtsuka,nhtsvst,nhtsek,a,False,False,False,con,none,False,True,False,False,False,True
 he's taking revenge,tlek,watlek,tlek,tlets,tleki,tleist,tlek,b,False,False,False,con,none,False,False,False,False,False,True
-1. he's speaking  2. he's answering,hanek,nek,hanek,hnets,hneki,hnest,hanek,a,False,False,False,con,none,False,True,False,False,False,True
+1. he's speaking  2. he's answering,hnek,nek,hnek,hnets,hneki,hnest,hnek,a,False,False,False,con,h_cons,True,True,False,False,False,True
 he's taking a long object somewhere by hand,nek,nek,nek,nvs,nuka,nvst,nek,a,False,False,False,con,none,False,True,True,False,False,True
 he's swimming (propelling himself through water),ahyuinek,ayuinek,ahyuinek,ahyuinvs,ahyuinuka,ahyuinvst,ahyuinek,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he's backing up,asinek,asinek,asinek,asinvs,asinuka,asinvst,asinek,a,False,False,False,vowel_a,none,False,False,False,False,False,True
@@ -190,7 +190,7 @@ it is sounding,nohyvhk,inohyvhk,nohyvhk,nohyvls,nohyvla,nohyvhlist,nohyvhk,b,Fal
 it (forest or grass) is burning,lik,,lik,lits,,,lik,a,False,False,False,con,none,False,True,False,False,False,True
 he's quitting,sulikok,sulikok,sulikok,sulikots,sulikoi,sulikost,sulikok,a,False,False,False,con,none,False,False,False,False,False,True
 he's exiting,nukok,nukok,nukok,nukots,nukoi,nukost,nukok,a,False,False,False,con,none,False,True,False,False,False,True
-"it's accumulating, it's increasing",hanehkwok,,hanehkwok,hnehkwots,hnehkwoki,hnehkwoist,hanehkwok,a,False,False,False,con,none,False,True,False,False,False,True
+"it's accumulating, it's increasing",hnehkwok,,hnehkwok,hnehkwots,hnehkwoki,hnehkwoist,hnehkwok,a,False,False,False,con,h_cons,True,True,False,False,False,True
 "it (animal, plant) is dying",lihwok,liwok,lihwok,lihwots,lihwoki,lihwost,lihwok,a,False,False,False,con,none,False,True,False,False,False,True
 1. it's breaking  2. he's becoming spoiled,yok,yok,yok,yots,yoki,yost,yok,a,False,False,False,con,none,False,False,False,False,False,True
 "he's accepting him, it",atanilvk,atanilvk,atanilvk,atanilvts,atanilvki,atanilvst,atanilvk,a,False,False,True,vowel_a,none,False,False,False,False,True,True
@@ -256,7 +256,7 @@ it's getting warm,kanawosk,,kanawosk,kanawos,,kanawohist,kanawosk,a,False,False,
 1. he's becoming warm  2. he's warming himself,kanawosk,ikanawosk,kanawosk,kanawos,kanawohi,kanawohist,kanawosk,b,False,False,False,con,none,False,False,False,False,False,True
 it's melting,vnawosk,vnawosk,vnawosk,vnawos,vnawohi,vnawohist,vnawosk,a,False,False,False,vowel_v,none,False,True,False,False,False,True
 "he's dying, (human)",yohusk,yousk,yohusk,yohus,yohuhi,yohuhist,yohusk,a,False,False,False,con,none,False,False,False,False,False,True
-he's ascending an incline,hanalusk,nalusk,hanalusk,hnalus,hnaluhi,hnaluhist,hanalusk,a,False,False,False,con,none,False,True,False,False,False,True
+he's ascending an incline,hnalusk,nalusk,hnalusk,hnalus,hnaluhi,hnaluhist,hnalusk,a,False,False,False,con,h_cons,True,True,False,False,False,True
 it's shattering,hlkhotvsk,,hlkhotvsk,hlkhotvhn,,,hlkhotvsk,a,False,False,False,con,none,False,False,False,False,False,True
 he's acting like him,atselvsk,atselvsk,atselvsk,atselvhn,atselvna,atsehlt,atselvsk,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 it's blooming,tsilvsk,,tsilvsk,tsilvhn,,tsihlt,tsilvsk,a,False,False,False,con,none,False,False,False,False,False,True
@@ -308,9 +308,9 @@ he's hiding,atiskahlvsk,atiskahlvsk,atiskahlvsk,atiskahlan,atiskahlvka,atiskahlt
 he's putting a handle on a tool,uhahlvsk,uahlvsk,uhahlvsk,uhahlan,uhahlvka,uhahlt,uhahlvsk,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 1. he's advertising it  2. he's announcing it,notsahlvsk,notsalvsk,notsahlvsk,notsahlan,notsahlvka,notsahlt,notsahlvsk,a,False,False,True,con,none,False,True,False,False,False,True
 he's frying it,vtsahlvsk,vtsahlvsk,vtsahlvsk,vtsahlan,vtsahlvka,vtsahlt,vtsahlvsk,a,False,False,False,vowel_e,none,False,True,False,False,False,True
-he's contaminating it (with visible foreign matter),hanesahlvsk,nesahlvsk,hanesahlvsk,hnesahlan,hnesahlvka,hnesahlt,hanesahlvsk,a,False,False,False,con,none,False,True,False,False,False,True
+he's contaminating it (with visible foreign matter),hnesahlvsk,nesahlvsk,hnesahlvsk,hnesahlan,hnesahlvka,hnesahlt,hnesahlvsk,a,False,False,False,con,h_cons,True,True,False,False,False,True
 he's soaking it (flexible object),vwahlvsk,vwahlvsk,vwahlvsk,vwahlan,vwahlvka,vwahlt,vwahlvsk,a,False,False,False,vowel_e,none,False,True,False,False,False,True
-he's collecting from him,hnihlvsk,nihlvsk,hnihlvsk,hnihlan,nihlvka,hnihlt,hnihlvsk,a,False,False,False,con,h_cons,False,True,False,False,True,True
+he's collecting from him,hnihlvsk,nihlvsk,hnihlvsk,hnihlan,nihlvka,hnihlt,hnihlvsk,a,False,False,False,con,h_cons,True,True,False,False,True,True
 he's getting full,ohlvsk,olvsk,ohlvsk,ohlvs,ohlvhi,ohlvhist,ohlvsk,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 "1. he's whittling it., 2. he's carving it., 3. he's hewing it",yohlvsk,yolvsk,yohlvsk,yohlan,yohlvka,yohlvst,yohlvsk,a,False,False,False,con,none,False,False,False,False,False,True
 he's putting on shoes,alasuhlvsk,alasuhlvsk,alasuhlvsk,alasuhlan,alasuhlvka,alasuhlt,alasuhlvsk,a,False,False,True,vowel_a,none,False,False,False,False,False,True
@@ -343,7 +343,7 @@ he's quilting it,hyehkahlvsk,yehkahlvsk,hyehkahlvsk,hyehkahlan,hyehkahlvka,hyehk
 "he's crossing (a road, bridge, etc.)",natiwsk,natiwsk,natiwsk,natiws,natihwi,natihwist,natiwsk,a,False,False,True,con,none,False,True,False,False,False,True
 he's stinging it,atsvysk,atsvysk,atsvysk,awatsvhy,atsvhya,awatsvyst,atsvysk,a,False,False,False,vowel_a,none,False,True,False,False,True,True
 he's smoking it,okhsk,okisk,okhsk,okhs,oki,okhst,okhsk,a,False,False,False,vowel_e,none,False,True,False,False,False,True
-he's clawing him,hnukosk,nukosk,hnukosk,hnukos,nukola,hnukost,hnukosk,a,False,False,True,con,h_cons,False,True,False,False,True,True
+he's clawing him,hnukosk,nukosk,hnukosk,hnukos,nukola,hnukost,hnukosk,a,False,False,True,con,h_cons,True,True,False,False,True,True
 he's sucking it,skwanutsk,skwanutsk,skwanutsk,skwanuts,skwanutsa,skwanutst,skwanutsk,a,False,False,False,con,none,False,False,False,False,False,True
 he's laughing,yetsk,iyetsk,yetsk,yets,yetsa,yetst,yetsk,b,False,False,False,con,none,False,False,False,False,False,True
 "he's dreaming about him, it",askitsk,askitsk,askitsk,askits,askitsa,askitst,askitsk,a,False,False,False,vowel_a,none,False,False,False,False,True,True
@@ -369,7 +369,7 @@ he's committing adultery,atahyoneh,atayoneh,atahyoneh,atahyonel,atahyonvla,atahy
 he's doing it,atvneh,atvneh,atvneh,atvnel,atvka,atvnht,atvneh,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he's giving him a flexible object,nvneh,nvneh,nvneh,nvnel,nvsi,nvneht,nvneh,a,False,False,False,con,none,False,True,False,False,False,True
 it's happening to him,lstahneh,walstahneh,lstahneh,lstahnel,lstasi,lstahneht,lstahneh,b,False,False,False,con,none,False,False,False,False,False,True
-"he's fanning him, it",hnoyeh,noyeh,hnoyesk,hnoyeh,noyvla,hnoyeht,hnoyeh,a,False,False,False,con,h_cons,False,True,False,False,True,True
+"he's fanning him, it",hnoyeh,noyeh,hnoyesk,hnoyeh,noyvla,hnoyeht,hnoyeh,a,False,False,False,con,h_cons,True,True,False,False,True,True
 he's fanning himself,atahnoyeh,atanoyeh,atahnoyesk,atahnoyeh,atahnoyvla,atahnoyeht,atahnoyeh,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he's stirring it,asuyeh,asuyeh,asuyesk,asuyeh,asuyvla,asuyeht,asuyeh,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 "he's tying him, it up",ahlvih,alvih,ahlvih,ahlvl,alvtsa,ahlvst,ahlvih,a,False,False,False,vowel_a,none,False,True,False,False,True,True
@@ -402,7 +402,7 @@ he's spinning it,tikwalvteystih,tikwalvteystih,tikwalvteystisk,tikwalvteysthan,t
 "he's smothering, suffocating",hawostih,ihawostih,hawostisk,hawosthan,hawosta,hawostoht,hawostih,b,False,False,False,con,none,False,False,False,False,False,True
 he's holding his breath,athahwostih,atahwostih,athahwostisk,athahwosthan,athahwosta,athahwostoht,athahwostih,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 "1. he's breaking it., 2. he's spoiling him",yostih,yostih,yostisk,yosthan,yosta,yostoht,yostih,a,False,False,False,con,none,False,False,False,False,False,True
-he's making him angry,hnalvstih,nalvstih,hnalvstisk,hnalvsthan,nalvsta,hnalvstoht,hnalvstih,a,False,False,False,con,h_cons,False,True,False,False,True,True
+he's making him angry,hnalvstih,nalvstih,hnalvstisk,hnalvsthan,nalvsta,hnalvstoht,hnalvstih,a,False,False,False,con,h_cons,True,True,False,False,True,True
 he's vomiting,khstih,ikhstih,khstisk,khsthan,khsta,khstoht,khstih,b,False,False,True,con,none,False,False,False,False,False,True
 it's (sun or moon) shining,kalih,,kalisk,kalis,,kalihist,kalih,a,False,False,False,con,none,False,False,False,False,False,True
 he's greeting him,yolih,yolih,yolih,yolil,yolika,yolist,yolih,a,False,False,False,con,none,False,False,False,False,False,True
@@ -440,7 +440,7 @@ he's moaning,liyetih,iliyetih,liyetisk,liyethan,liyeta,liyetoht,liyetih,b,False,
 he's making a mistake,litastih,ilitastih,litastisk,litasthan,litasta,litastoht,litastih,b,False,False,False,con,none,False,False,False,False,False,True
 he's batting it,ostvnih,ostvnih,ostvnih,ostvnil,ostvnika,ostvnist,ostvnih,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 "he, it's rocking",ahlihkeh,alihkeh,ahlihkesk,ahlihkeh,ahlihkvla,ahlihkeht,ahlihkeh,a,False,False,True,vowel_a,none,False,False,False,False,False,True
-he's telling it,hanoheh,noheh,hanohesk,hnohehl,hnohvla,hnoheht,hanoheh,a,False,False,False,con,none,False,True,False,False,False,True
+he's telling it,hnoheh,noheh,hnohesk,hnohehl,hnohvla,hnoheht,hnoheh,a,False,False,False,con,h_cons,True,True,False,False,False,True
 he's conversing,ahlinoheh,alinoheh,ahlinohesk,ahlinohehl,ahlinohvla,ahlinoheht,ahlinoheh,a,False,False,True,vowel_a,none,False,False,False,False,False,True
 he's looking at himself in a mirror,atakheh,atakheh,atakhesk,atakheh,atakhvla,atakheht,atakheh,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he's saying to him,oseh,oseh,oseh,osel,osi,oseht,oseh,a,False,False,False,vowel_e,none,False,True,False,False,True,True
@@ -448,7 +448,7 @@ he's saying to him,oseh,oseh,oseh,osel,osi,oseht,oseh,a,False,False,False,vowel_
 he's losing it,yohuseh,iyohuseh,yohuseh,yohusel,yohusi,yohuseht,yohuseh,b,False,False,False,con,none,False,False,False,False,False,True
 he's thinking,atanhtheh,atanvtheh,atanhthesk,atanhthehl,atanhthvla,atanhtheht,atanhtheh,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 "he's trimming it, (boy's hair, grass, hedge, but not paper, cloth)",stoyeh,stoyeh,stoyesk,stoyeh,stoya,stoyht,stoyeh,a,False,False,False,con,none,False,False,False,False,False,True
-he's prying it,hanekwatih,nekwatih,hanekwatisk,hnekwatvh,hnekwata,hnekwatht,hanekwatih,a,False,False,False,con,none,False,True,False,False,False,True
+he's prying it,hnekwatih,nekwatih,hnekwatisk,hnekwatvh,hnekwata,hnekwatht,hnekwatih,a,False,False,False,con,h_cons,True,True,False,False,False,True
 he's placing a long object in an upright position,alehtih,aletih,alehtisk,alehthan,alehta,alehtoht,alehtih,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 1. he's helping him up 2. he's standing it up (object with legs),alehtih,aletih,alehtisk,alehthan,aleta,alehtoht,alehtih,a,False,False,True,vowel_a,none,False,False,False,False,True,True
 "he's making it (round, long) fall",ohonhtih,oonhtih,ohonhtisk,ohonhthan,ohonhta,ohonhtoht,ohonhtih,a,False,False,False,vowel_e,none,False,True,False,False,False,True
@@ -474,7 +474,7 @@ he's deciding,ukhtih,ukotih,ukhtisk,ukhthan,ukhta,ukhtoht,ukhtih,a,False,False,T
 he's snorting,ahliyvsanawstih,aliyvsanawstih,ahliyvsanawstisk,ahliyvsanawsthan,ahliyvsanawsta,ahliyvsanawstoht,ahliyvsanawstih,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 "he's including him, it (in counting)",asestih,asestih,asestisk,asesthan,asesta,asestoht,asestih,a,False,False,False,vowel_a,none,False,False,False,False,True,True
 he's promising,thuistih,thuistih,thuistisk,thuisthan,thuista,thuistoht,thuistih,a,False,False,False,con,none,False,False,False,False,False,True
-he's mentioning it,haneistih,neistih,haneistisk,hneistan,hneista,hneistoht,haneistih,a,False,False,False,con,none,False,True,False,False,False,True
+he's mentioning it,hneistih,neistih,hneistisk,hneistan,hneista,hneistoht,hneistih,a,False,False,False,con,h_cons,True,True,False,False,False,True
 1. he's preparing it.  2. he's getting ready,atvnvistih,atvnvistih,atvnvistisk,atvnvisthan,atvnvista,atvnvistoht,atvnvistih,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 "1. he's raising him, it., 2. he's growing it., (plant)",athvhistih,atvhistih,athvhistisk,athvhisthan,atvhista,athvhistoht,athvhistih,a,False,False,False,vowel_a,none,False,False,False,False,True,True
 he's stopping by (on his way somewhere),lohistih,loistih,lohistisk,lohisthan,lohista,lohistoht,lohistih,a,False,False,False,con,none,False,True,False,False,False,True
@@ -497,7 +497,7 @@ he's accusing him,uhistih,uistih,uhistisk,uhisthan,uista,uhistoht,uhistih,a,Fals
 he's sifting it,vkustih,vkustih,vkustisk,vkusthan,vkusta,vkustoht,vkustih,a,False,False,False,vowel_v,none,False,True,False,False,False,True
 he's resting,atawesolvstih,atawesolvstih,atawesolvstisk,atawesolvsthan,atawesolvsta,atawesolvstoht,atawesolvstih,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he's resting him,awesolvstih,awesolvstih,awesolvstisk,ayawesolvsthan,awesolvsta,ayawesolvstoht,awesolvstih,a,False,False,False,vowel_a,none,False,True,False,False,True,True
-he's straining it,hanvsolvstih,nvsolvstih,hanvsolvstisk,hnvsolvsthan,hnvsolvsta,hnvsolvstoht,hanvsolvstih,a,False,False,False,con,none,False,True,False,False,False,True
+he's straining it,hnvsolvstih,nvsolvstih,hnvsolvstisk,hnvsolvsthan,hnvsolvsta,hnvsolvstoht,hnvsolvstih,a,False,False,False,con,h_cons,True,True,False,False,False,True
 1. he's making smoke; 2. it's smoking,khsvstih,kasvstih,khsvstisk,khsvsthan,khsvsta,khsvstoht,khsvstih,a,False,False,True,con,none,False,False,False,False,False,True
 "he's making him, it fly",ahlawithtih,atlawithtih,ahlawithtisk,ahlawithtan,atlawithta,ahlawithtoht,ahlawithtih,a,False,False,False,vowel_a,none,False,False,False,False,True,True
 he's shattering it,ahlkhothtih,alikhothtih,ahlkhothtisk,ahlkhoththan,ahlkhothta,ahlkhothtoht,ahlkhothtih,a,False,False,False,vowel_a,none,False,False,False,False,False,True
@@ -529,7 +529,7 @@ he's helping,alstelih,alistelih,alstelisk,alstelvh,alstela,alstehlt,alstelih,a,F
 he's acting silly,atvnelih,atvnelih,atvnelisk,atvnelvhn,atvnela,atvnehlt,atvnelih,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he wants it,tulih,watulih,tulisk,tulvh,tula,tuhlt,tulih,b,False,False,False,con,none,False,False,False,False,False,True
 it's boiling,litlih,,litlisk,litlvh,,lihlt,litlih,a,False,False,False,con,none,False,False,False,False,False,True
-he's rooting it out,hanastetlih,nastetlih,hanastetlisk,hnastetlvh,hnastetla,hnastehlt,hanastetlih,a,False,False,False,con,none,False,True,False,False,False,True
+he's rooting it out,hnastetlih,nastetlih,hnastetlisk,hnastetlvh,hnastetla,hnastehlt,hnastetlih,a,False,False,False,con,h_cons,True,True,False,False,False,True
 he's shelling corn,khthlih,kathlih,khthlisk,khthlvh,khthla,khthlvht,khthlih,a,False,False,True,con,none,False,False,False,False,False,True
 "1. he's calling him, inviting him. 2. he's receiving, getting him",hyanih,yanih,hyanisk,hyanvh,yana,hyanht,hyanih,a,False,False,False,con,none,False,False,False,False,True,True
 he's starting/beginning,alenih,aleni,alenisk,alenvh,alena,alenht,alenih,a,False,False,False,vowel_a,none,False,False,False,False,False,True
@@ -576,7 +576,7 @@ he's choking him,hyvskiyih,yvskiyih,hyvskiyisk,hyvskiyvh,yvskiya,hyvskiyht,hyvsk
 "1. he's walking around., 2. he's here",etoh,eto,etoh,etol,eta,etast,etoh,a,False,False,False,vowel_e,none,False,False,False,False,False,True
 he's tossing about,nvtsitoh,nvtsitoh,nvtsitoh,nvtsitol,nvtsita,nvtsitast,nvtsitoh,a,False,False,False,con,none,False,True,False,False,False,True
 he's climbing around,litoh,litoh,litoh,litol,lita,litast,litoh,a,False,False,False,con,none,False,True,False,False,False,True
-"he's omitting him, it",hnohiyah,nohiya,hnohiyask,hnohiy,nohiya,hnohiyast,hnohiyah,a,False,False,False,con,h_cons,False,True,False,False,True,True
+"he's omitting him, it",hnohiyah,nohiya,hnohiyask,hnohiy,nohiya,hnohiyast,hnohiyah,a,False,False,False,con,h_cons,True,True,False,False,True,True
 "1.  he's diverting him, it, 2. he's flagging him, it down",halukih,aluki,halukisk,halukis,aluki,halukist,halukih,a,False,False,False,con,none,False,False,False,False,True,True
 "he's touching him, it",asvhnih,asvhnih,asvhnih,asvhnil,asvnhka,asvnst,asvhnih,a,False,False,False,vowel_a,none,False,False,False,False,True,True
 it (weather) is cold,hyvtl,,hyvtl,hyvtl,,,hyvtl,b,False,False,False,con,none,False,False,False,False,False,True
