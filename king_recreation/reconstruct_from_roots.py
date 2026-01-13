@@ -4,7 +4,11 @@ import json
 from dataclasses import dataclass, field
 from typing import List, Dict, Set, Optional, Tuple
 from king_recreation.classify_verbs import get_matches_for_verb
-from king_recreation.phonology_data import Condition, VOWEL_SET, PRONOMINAL_PREFIXES_MAP, get_pronominal_set_name, PronominalConfig, StemType
+from king_recreation.phonology_data import (
+    Condition, VOWEL_SET, get_pronominal_set_name, 
+    PronominalConfig, PrePronominalConfig, VerbConfig, StemType, MetathesisStrategy,
+    get_prefix_details, attach_prefix, apply_prepronominal, is_h_dropping_set, drop_first_h
+)
 from king_recreation.stem_analysis import get_root_candidate, check_root_consistency
 
 @dataclass
@@ -12,16 +16,8 @@ class ReconstructibleVerb:
     definition: str
     root: str
     class_name: str
-    set_type: str # 'a' or 'b'
-    use_3rd_person_object: bool # Replaces imp_type
-    translocutive: bool
-    partitive: bool
-    distributive: bool
-    metathesis: bool
+    config: VerbConfig
     original_stems: Dict[str, str] = field(default_factory=dict)
-
-def is_vowel(char):
-    return char in VOWEL_SET
 
 class ReconstructionEngine:
     def __init__(self, king_classes_path: str):
@@ -36,117 +32,21 @@ class ReconstructionEngine:
                 classes.append(row)
         return classes
 
-    dealt_with_h_drop: bool = False
-    def apply_mutation(self, stem, prefix, condition, metathesis_allowed=True, h_drop_set=False):
-        clean_prefix = prefix.replace('-', '')
-        if clean_prefix == 'ø': clean_prefix = ''
-        
-        if condition == Condition.VOWEL_AE:
-            if stem and stem[0] in 'ae': return clean_prefix + stem
-            return None
-        if condition == Condition.VOWEL: 
-            if stem and is_vowel(stem[0]): return clean_prefix + stem
-            return None
-        if condition == Condition.A_REPLACE: 
-            if stem.startswith('a'):
-                return clean_prefix + stem[1:] 
-            return None
-        if condition == Condition.VOWEL_NO_A: 
-            if stem and is_vowel(stem[0]) and stem[0] != 'a': return clean_prefix + stem
-            return None
-        if condition == Condition.V:
-            if stem and stem[0] == 'v': return clean_prefix + stem[1:]
-            return None
-        if condition == Condition.CONSONANT:
-            if stem and (not is_vowel(stem[0]) or h_drop_set): 
-                return clean_prefix + stem
-            return None
-        if condition == Condition.ASPIRATED:
-            if stem and stem.startswith('th'):
-                return clean_prefix + stem
-            return None
-        if condition == Condition.S_STEM:
-            if stem and stem.startswith('s'):
-                return clean_prefix + stem
-            return None
-        if condition == Condition.METATHESIS_H_CONS:
-            if not metathesis_allowed: return None
-            # e.g., ka- + hnogi -> khanogi; tsha- + hnaskwalo -> tshanaskwalo
-            if stem.startswith('h') and len(stem) > 1 and not is_vowel(stem[1]):
-                return clean_prefix + stem[1:]
-            return None
-        if condition == Condition.METATHESIS_VOWEL:
-            if not metathesis_allowed: return None
-            # k- + ehlatitoh -> khelatitoh
-            # uw- + ehlatitoh -> uhwelatitoh
-            # h- + ehlatita -> helatita
-            if len(stem) > 1 and is_vowel(stem[0]) and stem[1] == 'h':
-                return clean_prefix + stem[0] + stem[2:]
-            return None
-        return None
-
-    def generate_pronominal_forms(self, stem: str, set_name: str, metathesis_allowed=True) -> List[str]:
-        candidates = []
-        rules = PRONOMINAL_PREFIXES_MAP.get(set_name, [])
-        is_h_drop_set = set_name in ['2nd to 3rd', '1st to 3rd', '1st Set A']
+    def generate_pronominal_forms(self, stem: str, set_name: str, config: PronominalConfig) -> List[str]:
+        prefix, condition = get_prefix_details(set_name, config)
         
         stems_to_try = [(stem, False)]
-        
-        if is_h_drop_set:
-            # Generalized First /h/ Drop Rule
-            # Find the first 'h' and drop it
-            h_index = stem.find('h')
-            if h_index != -1:
-                dropped_stem = stem[:h_index] + stem[h_index+1:]
+        if is_h_dropping_set(set_name):
+            dropped_stem = drop_first_h(stem)
+            if dropped_stem != stem:
                 stems_to_try.append((dropped_stem, True))
             
+        candidates = []
         for s, dropped in stems_to_try:
-            for pref, cond in rules:
-                res = self.apply_mutation(s, pref, cond, metathesis_allowed, h_drop_set=is_h_drop_set)
-                if res:
-                    candidates.append(res)
+            res = attach_prefix(s, prefix, condition)
+            if res:
+                candidates.append(res)
         return candidates
-
-    def apply_prepronominal_layer(self, forms: List[str], p_type: str, exists: bool, form_name: str) -> List[str]:
-        if not exists:
-            return forms
-        
-        new_forms = []
-        for word in forms:
-            if p_type == 'D':
-                if is_vowel(word[0]):
-                    variants = ['t' + word]
-                else:
-                    variants = ['ti' + word, 'te' + word, 'ts' + word]
-                if word.startswith('i'):
-                    variants.append('te' + word[1:])
-                if form_name in ['infinitive', 'imperative']:
-                    variants = ['ts'+word, 'ti'+word, 't'+word]
-                else:
-                    variants = ['te'+word, 't'+word]
-                    if word.startswith('i'): variants.append('te' + word[1:])
-                new_forms.extend(variants)
-            elif p_type == 'P':
-                variants = []
-                if form_name == 'infinitive':
-                    variants.append('iy' + word)
-                    variants.append('i' + word)
-                    variants.append(word) 
-                else:
-                    variants.append('ni' + word)
-                    variants.append('n' + word)
-                    variants.append(word)
-                    if word.startswith('h'):
-                        variants.append('hn' + word[1:])
-                new_forms.extend(variants)
-            elif p_type == 'T':
-                variants = []
-                variants.append('wi' + word)
-                variants.append('w' + word)
-                if word.startswith('h'):
-                    variants.append('hw' + word[1:])
-                new_forms.extend(variants)
-        return list(set(new_forms))
 
     def reconstruct_verb(self, verb: ReconstructibleVerb) -> List[Dict[str, str]]:
         base_stems = {}
@@ -156,79 +56,30 @@ class ReconstructionEngine:
         for form_name in ['present', 'imperfective', 'perfective', 'imperative', 'infinitive']:
             ending_pattern = class_info.get(form_name, '')
             root = verb.root
-            
             literal_ending = ending_pattern.replace('*', '').replace('@', '')
             
-            # Reconstruction is the inverse of stripping. 
-            # If get_root_candidate does:
-            #   1. Strip literal_ending
-            #   2. Strip * or @
-            # Then reconstruct_verb must:
-            #   1. Add * or @
-            #   2. Add literal_ending
-            
-            # NOTE: Reconstruction is inherently lossy if * or @ removed characters.
-            # We assume the root provided is the one AFTER stripping.
-            # But the stem used to generate prefixes needs the modifiers re-added?
-            # Actually, king_recreation/derive_stems.py + get_root_candidate define the "Stem"
-            # as the thing that prefixes attach to.
-            # So the "Stem" for form X is root + re-added characters + literal_ending.
-            
-            # However, looking at original code:
-            # it was calculating modified_root by stripping FROM THE END.
-            
-            # Let's stick to the established (though potentially lossy) logic:
-            # We need to re-add the "lost" characters if we want to perfectly match.
-            # But since we don't know what they were, we might just be reconstructing
-            # what we CAN reconstruct.
-            
-            # WAIT: If I use shared get_root_candidate, I am stripping.
-            # If I reconstruct, I need to know what was stripped.
-            
-            # For now, I will use a simple reconstruction that assumes root is the common base.
-            # If the original code did:
-            # modified_root = verb.root
-            # if '*' in ending_pattern: modified_root = modified_root[:-1]
-            # base_stems[form_name] = modified_root + literal_ending
-            
-            # This looks wrong if it's meant to be RECONSTRUCTION.
-            # If stem was "abcde" and ending was "*f", root became "abcd" -> "abc".
-            # Reconstructing it with root "abc" and ending "*f" should probably give "abc" + "?" + "f".
-            
-            # I will preserve the original logic for now to avoid regression, 
-            # just replacing the core pieces.
-            
             modified_root = root
-            # Original logic (preserved):
             if '*' in ending_pattern:
-                if len(modified_root) >= 1:
-                    modified_root = modified_root[:-1]
+                if len(modified_root) >= 1: modified_root = modified_root[:-1]
             elif '@' in ending_pattern:
-                if len(modified_root) >= 2:
-                    modified_root = modified_root[:-2]
+                if len(modified_root) >= 2: modified_root = modified_root[:-2]
             
             base_stems[form_name] = modified_root + literal_ending
             
         form_options = {}
         for fn, stem in base_stems.items():
-            # Create a partial config for get_pronominal_set_name
-            # Note: StemType is not used for set name determination
-            config = PronominalConfig(
-                set_type=verb.set_type, 
-                stem_type=StemType.CONSONANT, # Dummy
-                use_3rd_person_object=verb.use_3rd_person_object
-            )
-            set_name = get_pronominal_set_name(fn, config)
+            set_name = get_pronominal_set_name(fn, verb.config.pron)
             if not set_name: 
                 candidates = [stem]
             else:
-                candidates = self.generate_pronominal_forms(stem, set_name, verb.metathesis)
-                if not candidates: candidates = [] 
+                candidates = self.generate_pronominal_forms(stem, set_name, verb.config.pron)
             
-            candidates = self.apply_prepronominal_layer(candidates, 'D', verb.distributive, fn)
-            candidates = self.apply_prepronominal_layer(candidates, 'P', verb.partitive, fn)
-            candidates = self.apply_prepronominal_layer(candidates, 'T', verb.translocutive, fn)
-            form_options[fn] = candidates
+            # Apply Prepronominals
+            layered_candidates = []
+            for c in candidates:
+                layered_candidates.extend(apply_prepronominal(c, verb.config.pre, fn))
+            
+            form_options[fn] = layered_candidates
         
         return [{fn: set(opts or []) for fn, opts in form_options.items()}]
 
@@ -289,16 +140,28 @@ def main():
         consistency_analysis.append(analysis_row)
 
         if consistent:
+            from king_recreation.phonology_data import StemType, MetathesisStrategy
+            
+            pre_config = PrePronominalConfig(
+                translocutive=stem_row['translocutive'] == 'True',
+                partitive=stem_row['partitive'] == 'True',
+                distributive=stem_row['distributive'] == 'True'
+            )
+            pron_config = PronominalConfig(
+                set_type=stem_row['set_a_b'],
+                stem_type=StemType(stem_row['stem_type']),
+                metathesis_strategy=MetathesisStrategy(stem_row['metathesis_strategy']),
+                use_ka_variant=stem_row['ka_variant'] == 'True',
+                use_uwa_for_3rd_set_b=stem_row['uwa_3rd'] == 'True',
+                use_aki_for_1st_set_b=stem_row['aki_1st'] == 'True',
+                use_3rd_person_object=stem_row['3rd_person_object'] == 'True'
+            )
+            
             verb = ReconstructibleVerb(
                 definition=definition,
                 root=root,
                 class_name=cls_name,
-                set_type=stem_row['set_a_b'],
-                use_3rd_person_object=stem_row['3rd_person_object'] == 'True',
-                translocutive=stem_row['translocutive'] == 'True',
-                partitive=stem_row['partitive'] == 'True',
-                distributive=stem_row['distributive'] == 'True',
-                metathesis=stem_row['metathesis_involved'] == 'True',
+                config=VerbConfig(pre=pre_config, pron=pron_config),
                 original_stems={fn: stem_row[fn] for fn in forms}
             )
             reconstructible_verbs.append(verb)

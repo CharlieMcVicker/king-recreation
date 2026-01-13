@@ -492,6 +492,8 @@ he's stealing it,Ia,strict,reconstructs,True,True,True,True,True
 he's stealing it,Ia,loose,full,True,True,True,True,True
 he's taking his ring off,Ia,strict,reconstructs,True,True,True,True,True
 he's taking his ring off,Ia,loose,full,True,True,True,True,True
+"he's shelling, picking out (peas, nut meats, etc.)",Ia,strict,reconstructs,True,True,True,True,True
+"he's shelling, picking out (peas, nut meats, etc.)",Ia,loose,full,True,True,True,True,True
 "1. he's imitating him, it 2. he's mocking him",Ia,strict,ending,True,True,True,False,True
 "1. he's imitating him, it 2. he's mocking him",Ia,loose,ending,True,True,True,False,True
 "1. he's imitating him, it 2. he's mocking him",Id,strict,ending,False,False,False,True,False
@@ -517,7 +519,7 @@ he's hammering it,Ib,loose,full,True,True,True,True,True
 he's hammering it,Id,strict,ending,False,False,False,True,False
 he's hammering it,Id,loose,ending,False,False,False,True,False
 he's hammering it,IIa,loose,ending,False,False,False,False,False
-stubbing his toe,Ib,strict,reconstructs,True,True,True,True,True
+stubbing his toe,Ib,strict,full,True,True,True,True,True
 stubbing his toe,Ib,loose,full,True,True,True,True,True
 stubbing his toe,Id,strict,ending,False,False,False,True,False
 stubbing his toe,Id,loose,ending,False,False,False,True,False
@@ -696,7 +698,7 @@ he's falling from an upright  position,VIIIa,loose,full,True,True,True,True,True
 "he's blowing, he's blowing on it",IIa,loose,ending,False,False,False,False,False
 he's buying it,Ia,strict,ending,False,False,False,True,True
 he's buying it,Ia,loose,ending,False,False,False,True,True
-he's buying it,IIIc1,strict,reconstructs,True,True,True,True,True
+he's buying it,IIIc1,strict,full,True,True,True,True,True
 he's buying it,IIIc1,loose,full,True,True,True,True,True
 he's buying it,IIIc1*,strict,ending,False,False,False,False,False
 he's buying it,IIIc1*,loose,ending,False,False,False,False,False
@@ -1765,6 +1767,20 @@ he's putting a handle on a tool,IIIb,loose,ending,False,False,True,False,True
 1. he's advertising it  2. he's announcing it,IIIa2*,loose,full,True,True,True,True,True
 1. he's advertising it  2. he's announcing it,IIIb,strict,ending,False,False,True,False,True
 1. he's advertising it  2. he's announcing it,IIIb,loose,ending,False,False,True,False,True
+he's frying it,Id,strict,ending,False,False,False,True,False
+he's frying it,Id,loose,ending,False,False,False,True,False
+he's frying it,IIa,loose,ending,False,False,False,False,False
+he's frying it,IIIa1,strict,full,True,True,True,True,True
+he's frying it,IIIa1,loose,full,True,True,True,True,True
+he's frying it,IIIa1*,strict,ending,True,True,False,True,False
+he's frying it,IIIa1*,loose,ending,True,True,False,True,False
+he's frying it,IIIa1**,strict,ending,True,True,False,False,False
+he's frying it,IIIa1**,loose,ending,True,True,False,False,False
+he's frying it,IIIa2,loose,ending,False,False,False,False,False
+he's frying it,IIIa2*,strict,reconstructs,True,True,True,True,True
+he's frying it,IIIa2*,loose,full,True,True,True,True,True
+he's frying it,IIIb,strict,ending,False,False,True,False,True
+he's frying it,IIIb,loose,ending,False,False,True,False,True
 he's contaminating it (with visible foreign matter),Id,strict,ending,False,False,False,True,False
 he's contaminating it (with visible foreign matter),Id,loose,ending,False,False,False,True,False
 he's contaminating it (with visible foreign matter),IIa,loose,ending,False,False,False,False,False
@@ -1779,6 +1795,20 @@ he's contaminating it (with visible foreign matter),IIIa2*,strict,full,True,True
 he's contaminating it (with visible foreign matter),IIIa2*,loose,full,True,True,True,True,True
 he's contaminating it (with visible foreign matter),IIIb,strict,ending,False,False,True,False,True
 he's contaminating it (with visible foreign matter),IIIb,loose,ending,False,False,True,False,True
+he's soaking it (flexible object),Id,strict,ending,False,False,False,True,False
+he's soaking it (flexible object),Id,loose,ending,False,False,False,True,False
+he's soaking it (flexible object),IIa,loose,ending,False,False,False,False,False
+he's soaking it (flexible object),IIIa1,strict,full,True,True,True,True,True
+he's soaking it (flexible object),IIIa1,loose,full,True,True,True,True,True
+he's soaking it (flexible object),IIIa1*,strict,ending,True,True,False,True,False
+he's soaking it (flexible object),IIIa1*,loose,ending,True,True,False,True,False
+he's soaking it (flexible object),IIIa1**,strict,ending,True,True,False,False,False
+he's soaking it (flexible object),IIIa1**,loose,ending,True,True,False,False,False
+he's soaking it (flexible object),IIIa2,loose,ending,False,False,False,False,False
+he's soaking it (flexible object),IIIa2*,strict,reconstructs,True,True,True,True,True
+he's soaking it (flexible object),IIIa2*,loose,full,True,True,True,True,True
+he's soaking it (flexible object),IIIb,strict,ending,False,False,True,False,True
+he's soaking it (flexible object),IIIb,loose,ending,False,False,True,False,True
 he's collecting from him,Id,strict,ending,False,False,False,True,False
 he's collecting from him,Id,loose,ending,False,False,False,True,False
 he's collecting from him,IIa,loose,ending,False,False,False,False,False
@@ -1885,6 +1915,21 @@ he's setting a post (or other long object) into the ground,IIIa2,strict,ending,F
 he's setting a post (or other long object) into the ground,IIIa2,loose,ending,False,False,False,False,False
 he's setting a post (or other long object) into the ground,IIIb,strict,ending,False,False,False,False,True
 he's setting a post (or other long object) into the ground,IIIb,loose,ending,False,False,False,False,True
+he's putting it into a fire,Id,strict,ending,False,False,False,True,False
+he's putting it into a fire,Id,loose,ending,False,False,False,True,False
+he's putting it into a fire,IIa,loose,ending,False,False,False,False,False
+he's putting it into a fire,IIIa1,strict,full,True,True,True,True,True
+he's putting it into a fire,IIIa1,loose,full,True,True,True,True,True
+he's putting it into a fire,IIIa1*,strict,ending,True,True,False,True,False
+he's putting it into a fire,IIIa1*,loose,ending,True,True,False,True,False
+he's putting it into a fire,IIIa1**,strict,ending,True,True,False,False,False
+he's putting it into a fire,IIIa1**,loose,ending,True,True,False,False,False
+he's putting it into a fire,IIIa2,strict,ending,False,False,False,False,False
+he's putting it into a fire,IIIa2,loose,ending,False,False,False,False,False
+he's putting it into a fire,IIIa2*,strict,reconstructs,True,True,True,True,True
+he's putting it into a fire,IIIa2*,loose,full,True,True,True,True,True
+he's putting it into a fire,IIIb,strict,ending,False,False,True,False,True
+he's putting it into a fire,IIIb,loose,ending,False,False,True,False,True
 He's putting fuel (solid) into a fire,Id,strict,ending,False,False,False,True,False
 He's putting fuel (solid) into a fire,Id,loose,ending,False,False,False,True,False
 He's putting fuel (solid) into a fire,IIa,loose,ending,False,False,False,False,False
@@ -2194,7 +2239,7 @@ he's spitting,IIa,loose,ending,False,False,False,False,False
 "he's putting him inside, (somewhere large enough to move around)",IIa,loose,ending,False,False,False,False,False
 "he's putting him inside, (somewhere large enough to move around)",IVa,strict,full,True,True,True,True,True
 "he's putting him inside, (somewhere large enough to move around)",IVa,loose,full,True,True,True,True,True
-He's mingling with a group,IXa,strict,full,True,True,True,True,True
+He's mingling with a group,IXa,strict,reconstructs,True,True,True,True,True
 He's mingling with a group,IXa,loose,full,True,True,True,True,True
 he has time,XIa*,strict,full,True,True,True,True,True
 he has time,XIa*,loose,full,True,True,True,True,True
@@ -2331,7 +2376,7 @@ he's closing his eyes,IVa,loose,full,True,True,True,True,True
 he has a chill,Id,strict,ending,False,False,False,True,False
 he has a chill,Id,loose,ending,False,False,False,True,False
 he has a chill,IIa,loose,ending,False,False,False,False,False
-he has a chill,IVa,strict,reconstructs,True,True,True,True,True
+he has a chill,IVa,strict,full,True,True,True,True,True
 he has a chill,IVa,loose,full,True,True,True,True,True
 he's wringing it out,Id,strict,ending,False,False,False,True,False
 he's wringing it out,Id,loose,ending,False,False,False,True,False

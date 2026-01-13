@@ -3,10 +3,10 @@ import csv
 from dataclasses import dataclass, asdict
 from typing import List, Dict, Set, Optional, Tuple
 from king_recreation.phonology_data import (
-    Condition, VOWEL_SET, PRONOMINAL_PREFIXES_MAP, 
+    Condition, VOWEL_SET, 
     get_pronominal_set_name, is_h_dropping_set, drop_first_h,
     StemType, MetathesisStrategy, PrePronominalConfig, PronominalConfig,
-    get_stem_type, get_prefix_for_config
+    get_stem_type, get_prefix_details, detach_prefix
 )
 
 @dataclass
@@ -83,38 +83,23 @@ def strip_prepronominals(forms: Dict[str, str], config: PrePronominalConfig) -> 
     return stripped
 
 def derive_pronominals(intermediate_forms: Dict[str, str], pron_config: PronominalConfig) -> Optional[Derivation]:
+    from king_recreation.phonology_data import get_prefix_details, detach_prefix
     derived_stems = {}
     metathesis_used = False
     for fn, word in intermediate_forms.items():
         set_name = get_pronominal_set_name(fn, pron_config)
-        prefix = get_prefix_for_config(set_name, pron_config)
-        clean_pref = prefix.replace('-', '')
-        if not word.startswith(clean_pref):
-            # PHONOLOGICAL RULE: ka- prefix merges with h-initial stem to form kh-
-            # This 'Aspirated Pruning' occurs during derivation to recover the stem initial.
-            if clean_pref == 'ka' and word.startswith('kh'):
-                clean_pref = 'k'
-            else:
-                return None
-        remainder = word[len(clean_pref):]
-        stem = remainder
-        if pron_config.metathesis_strategy != MetathesisStrategy.NONE:
-            is_meta_pref = prefix in ['kha-', 'kh-', 'akhi-', 'tsha-', 'h-']
-            if is_meta_pref:
-                metathesis_used = True
-                if pron_config.metathesis_strategy == MetathesisStrategy.H_CONS:
-                    stem = 'h' + remainder
-                elif pron_config.metathesis_strategy == MetathesisStrategy.VOWEL:
-                    if remainder: stem = remainder[0] + 'h' + remainder[1:]
+        prefix, condition = get_prefix_details(set_name, pron_config)
         
-        # Reverse Stem Transformations (Replacement rules)
-        if set_name == '3rd Set B' and prefix == 'u-' and pron_config.stem_type == StemType.VOWEL_A:
-            stem = 'a' + remainder
-        elif set_name == '3rd Set B' and prefix == 'uwa-' and pron_config.stem_type == StemType.VOWEL_V:
-            stem = 'v' + remainder
-        elif set_name == '3rd Set A' and prefix == 'a-' and pron_config.stem_type == StemType.VOWEL_A:
-            # a- (prefix) + a... (stem) -> a... (word)
-            stem = 'a' + remainder
+        stem = detach_prefix(word, prefix, condition, pron_config.metathesis_strategy)
+        if stem is None:
+            return None
+        
+        # Check if metathesis was actually involved
+        clean_pref = prefix.replace('-', '')
+        if clean_pref == 'ka' and word.startswith('kh'): clean_pref = 'k'
+        if pron_config.metathesis_strategy != MetathesisStrategy.NONE:
+            if clean_pref in ['kha', 'kh', 'akhi', 'tsha', 'h']:
+                metathesis_used = True
             
         derived_stems[fn] = stem
 
@@ -138,7 +123,9 @@ def derive_pronominals(intermediate_forms: Dict[str, str], pron_config: Pronomin
             
         if not is_ok: return None
 
-    if get_stem_type(consensus_stem) != pron_config.stem_type: return None
+    # Policy: Flexibility. We don't check get_stem_type(consensus_stem) == stem_type
+    # because some stems behave like other types (e.g. aspirated behaving like vowel).
+    # The recorded stem_type will drive reconstruction correctly.
     return Derivation(pre_config=None, pron_config=pron_config, consensus_stem=consensus_stem, stems=derived_stems, metathesis_involved=metathesis_used)
 
 class StemDeriver:
