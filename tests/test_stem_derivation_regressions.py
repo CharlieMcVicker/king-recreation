@@ -164,8 +164,6 @@ class TestStemDerivations(unittest.TestCase):
             # ADD YOUR TEST CASES HERE
             # ("he's closing his eyes", PronominalConfig(set_type="a", stem_type=StemType.ASPIRATED)),
             ("he's plowing it", PronominalConfig(set_type="a", use_ka_variant=True, use_uwa_for_3rd_set_b=True, stem_type=StemType.CONSONANT)),
-            ("he's breathing", PronominalConfig(set_type="a", use_ka_variant=True, stem_type=StemType.VOWEL_A, metathesis_strategy=MetathesisStrategy.VOWEL)),
-
             ("he's breathing", Derivation(
                     pre_config=PrePronominalConfig(translocutive=False, partitive=False, distributive=False),
                     pron_config=PronominalConfig(set_type="a", use_ka_variant=True, stem_type=StemType.VOWEL_A, metathesis_strategy=MetathesisStrategy.VOWEL),
@@ -181,7 +179,8 @@ class TestStemDerivations(unittest.TestCase):
                     }
                 )
             ),
-            ("he's singing", PronominalConfig(set_type="a", use_ka_variant=True, stem_type=StemType.CONSONANT, metathesis_strategy=MetathesisStrategy.H_CONS))
+            ("he's singing", PronominalConfig(set_type="a", use_ka_variant=True, stem_type=StemType.CONSONANT, metathesis_strategy=MetathesisStrategy.H_CONS)),
+            ("stubbing his toe", PronominalConfig(set_type="b", use_aki_for_1st_set_b=True, stem_type=StemType.CONSONANT, metathesis_strategy=MetathesisStrategy.H_CONS))
         ]
 
         if not TEST_CASES:
@@ -254,6 +253,30 @@ class TestStemDerivations(unittest.TestCase):
                         self.diagnose_derivation(matching_rows[0], diag_pron, diag_pre)
                 
                 self.assertTrue(found_match, f"No derivation for '{definition}' matched expected configurations.")
+
+    def test_reject_stubbing_toe_bad_config(self):
+        """
+        Regression test: "stubbing his toe" should NOT derive with the specific configuration
+        that was previously found to be incorrect.
+        """
+        definition = "stubbing his toe"
+        bad_pron_config = PronominalConfig(set_type='b', stem_type=StemType.ASPIRATED, metathesis_strategy=MetathesisStrategy.NONE, use_ka_variant=False, use_uwa_for_3rd_set_b=False, use_aki_for_1st_set_b=False, use_3rd_person_object=False)
+        bad_pre_config = PrePronominalConfig(translocutive=False, partitive=False, distributive=False)
+
+        matching_rows = [r for r in self.corpus_rows if r.get('definition') == definition]
+        self.assertTrue(matching_rows, f"No row found in corpus for definition: {definition}")
+        row = matching_rows[0]
+
+        deriver = StemDeriver()
+        derivations = deriver.derive_row(row)
+        
+        found_bad = False
+        for d in derivations:
+            if d.pron_config == bad_pron_config and d.pre_config == bad_pre_config:
+                found_bad = True
+                break
+        
+        self.assertFalse(found_bad, "Should not derive 'stubbing his toe' with the rejected configuration.")
 
 if __name__ == '__main__':
     unittest.main()

@@ -217,6 +217,13 @@ def detach_prefix(word: str, prefix: str, condition: Condition, metathesis_strat
     elif condition == Condition.V:
         stem = 'v' + remainder
 
+    # Regressions/Constraints
+    if condition == Condition.ASPIRATED:
+        # Restriction: ak- (akh-) before -i is not valid
+        if clean_pref == 'akh' and stem.startswith('i'): return None
+        # Restriction: ts- before -ha is not valid
+        if clean_pref == 'ts' and stem.startswith('ha'): return None
+
     return stem
 
 def apply_prepronominal(word: str, config: PrePronominalConfig, form_name: str) -> List[str]:
