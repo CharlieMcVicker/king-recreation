@@ -158,8 +158,10 @@ class StemDeriver:
                             for meta in MetathesisStrategy:
                                 for s_type in StemType:
                                     ka_options = [False, True] if set_type == 'a' else [False]
-                                    uwa_options = [False, True] if set_type == 'b' else [False]
-                                    aki_options = [False, True] if set_type == 'b' else [False]
+                                    uwa_options = [False, True]
+                                    aki_options = [False, True]
+                                    # uwa_options = [False, True] if set_type == 'b' else [False]
+                                    # aki_options = [False, True] if set_type == 'b' else [False]
                                     for ka in ka_options:
                                         for uwa in uwa_options:
                                             for aki in aki_options:
