@@ -67,7 +67,8 @@ def get_prefix_for_config(set_name: str, config: PronominalConfig) -> str:
         
     if meta == MetathesisStrategy.VOWEL:
         if set_name == '3rd Set A': return 'kh-'
-        if set_name == '3rd Set B': return 'uhw-'
+        if set_name == '3rd Set B':
+            return 'u-' if s_type == StemType.VOWEL_A else 'uhw-'
         if set_name == '2nd Set A': return 'h-'
     
     if set_name == '3rd Set A':

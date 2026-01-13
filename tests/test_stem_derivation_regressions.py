@@ -168,6 +168,7 @@ class TestStemDerivations(unittest.TestCase):
             # ADD YOUR TEST CASES HERE
             # ("he's closing his eyes", PronominalConfig(set_type="a", stem_type=StemType.ASPIRATED)),
             ("he's plowing it", PronominalConfig(set_type="a", use_ka_variant=True, use_uwa_for_3rd_set_b=True, stem_type=StemType.CONSONANT)),
+            ("he's breathing", PronominalConfig(set_type="a", use_ka_variant=True, stem_type=StemType.VOWEL_A, metathesis_strategy=MetathesisStrategy.VOWEL))
         ]
 
         if not TEST_CASES:
