@@ -1,5 +1,5 @@
 from typing import List, Dict, Optional, Tuple
-from king_recreation.phonology_data import get_pronominal_set_name, is_h_dropping_set, drop_first_h
+from king_recreation.phonology_data import get_pronominal_set_name, is_h_dropping_set, drop_first_h, PronominalConfig, StemType
 
 def get_root_candidate(stem: str, ending_pattern: str) -> Optional[str]:
     """
@@ -32,7 +32,7 @@ def check_root_consistency(stem_row: Dict[str, str], class_info: Dict[str, str])
     
     # Extract metadata for set identification
     set_type = stem_row.get('set_a_b') # 'a' or 'b'
-    imp_type = 'to_3rd' if stem_row.get('2_to_3') == 'True' else 'normal'
+    use_3rd = stem_row.get('3rd_person_object') == 'True'
 
     for fn in forms:
         stem = stem_row.get(fn)
@@ -84,7 +84,10 @@ def check_root_consistency(stem_row: Dict[str, str], class_info: Dict[str, str])
 
         if root != expected_root:
             # Check if mismatch is due to allowed h-dropping
-            set_name = get_pronominal_set_name(fn, set_type, imp_type) if set_type else None
+            set_name = None
+            if set_type:
+                config = PronominalConfig(set_type=set_type, stem_type=StemType.CONSONANT, use_3rd_person_object=use_3rd)
+                set_name = get_pronominal_set_name(fn, config)
             is_dropped_match = False
             
             if set_name and is_h_dropping_set(set_name):

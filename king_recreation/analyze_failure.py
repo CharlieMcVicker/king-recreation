@@ -8,7 +8,7 @@ import os
 sys.path.append(os.getcwd())
 
 from king_recreation.derive_stems import StemDeriver, is_strict_compatible, is_loose_compatible, drop_first_h, is_compatible_with_vowel_restoration
-from king_recreation.phonology_data import get_pronominal_set_name, PRONOMINAL_PREFIXES_MAP, Condition, is_h_dropping_set
+from king_recreation.phonology_data import get_pronominal_set_name, PRONOMINAL_PREFIXES_MAP, Condition, is_h_dropping_set, PronominalConfig, StemType
 
 def analyze_failure(target_definition):
     deriver = StemDeriver()
@@ -51,13 +51,13 @@ def analyze_failure(target_definition):
     configs_data = []
 
     for set_type in ['Set A', 'Set B']:
-        for imp_type in ['normal', 'to_3rd']:
+        for use_3rd in [False, True]:
             for t in [True, False]:
                 for p in [True, False]:
                     for d in [True, False]:
                         config_desc = {
                             "set_type": set_type,
-                            "imp_type": imp_type,
+                            "use_3rd_person_object": use_3rd,
                             "translocutive": t,
                             "partitive": p,
                             "distributive": d,
@@ -77,7 +77,9 @@ def analyze_failure(target_definition):
                                 current_words = list(set(next_words))
                             
                             # Match Pronominal Prefix
-                            pron_type = get_pronominal_set_name(fn, set_type, imp_type)
+                            # Dummy config for set name
+                            pron_config = PronominalConfig(set_type=set_type, stem_type=StemType.CONSONANT, use_3rd_person_object=use_3rd)
+                            pron_type = get_pronominal_set_name(fn, pron_config)
                             prefixes = PRONOMINAL_PREFIXES_MAP[pron_type]
                             
                             found_stem_for_form = False
@@ -115,7 +117,8 @@ def analyze_failure(target_definition):
                             # Identify Candidate Consensus Stems (similar logic to derive_stems.py)
                             # Use stems derived from non-h-dropping forms as Target Stems
                             for fn, form_literals in possible_stems.items():
-                                pron_type = get_pronominal_set_name(fn, set_type, imp_type)
+                                pron_config = PronominalConfig(set_type=set_type, stem_type=StemType.CONSONANT, use_3rd_person_object=use_3rd)
+                                pron_type = get_pronominal_set_name(fn, pron_config)
                                 if not is_h_dropping_set(pron_type):
                                     for s in form_literals: # analyze_failure uses raw strings in list
                                         if s: candidates.add(s)
@@ -130,7 +133,8 @@ def analyze_failure(target_definition):
                             for target in candidates:
                                 explained_all = True
                                 for fn in forms:
-                                    pron_type = get_pronominal_set_name(fn, set_type, imp_type)
+                                    pron_config = PronominalConfig(set_type=set_type, stem_type=StemType.CONSONANT, use_3rd_person_object=use_3rd)
+                                    pron_type = get_pronominal_set_name(fn, pron_config)
                                     is_h_drop = is_h_dropping_set(pron_type)
                                     
                                     # Strictness Logic
@@ -200,7 +204,8 @@ def analyze_failure(target_definition):
                                     for s in possible_stems[fn]:
                                         is_consistent_s = False
                                         for target in valid_candidates:
-                                            pron_type = get_pronominal_set_name(fn, set_type, imp_type)
+                                            pron_config = PronominalConfig(set_type=set_type, stem_type=StemType.CONSONANT, use_3rd_person_object=use_3rd)
+                                            pron_type = get_pronominal_set_name(fn, pron_config)
                                             is_h_drop = is_h_dropping_set(pron_type)
                                             
                                             matched = False

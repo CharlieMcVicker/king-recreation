@@ -82,11 +82,11 @@ def strip_prepronominals(forms: Dict[str, str], config: PrePronominalConfig) -> 
         stripped[fn] = current
     return stripped
 
-def derive_pronominals(intermediate_forms: Dict[str, str], pron_config: PronominalConfig, imp_type: str) -> Optional[Derivation]:
+def derive_pronominals(intermediate_forms: Dict[str, str], pron_config: PronominalConfig) -> Optional[Derivation]:
     derived_stems = {}
     metathesis_used = False
     for fn, word in intermediate_forms.items():
-        set_name = get_pronominal_set_name(fn, pron_config.set_type, imp_type)
+        set_name = get_pronominal_set_name(fn, pron_config)
         prefix = get_prefix_for_config(set_name, pron_config)
         clean_pref = prefix.replace('-', '')
         if not word.startswith(clean_pref):
@@ -125,7 +125,7 @@ def derive_pronominals(intermediate_forms: Dict[str, str], pron_config: Pronomin
     for fn, s in derived_stems.items():
         if fn == 'present_1sg': continue
         
-        set_name = get_pronominal_set_name(fn, pron_config.set_type, imp_type)
+        set_name = get_pronominal_set_name(fn, pron_config)
         is_h_drop = is_h_dropping_set(set_name)
         ref = drop_first_h(consensus_stem) if is_h_drop else consensus_stem
         
@@ -154,7 +154,7 @@ class StemDeriver:
                     intermediate = strip_prepronominals(forms, pre_config)
                     if intermediate is None: continue
                     for set_type in ['a', 'b']:
-                        for imp_type in ['normal', 'to_3rd']:
+                        for use_3rd in [False, True]:
                             for meta in MetathesisStrategy:
                                 for s_type in StemType:
                                     ka_options = [False, True] if set_type == 'a' else [False]
@@ -165,8 +165,16 @@ class StemDeriver:
                                     for ka in ka_options:
                                         for uwa in uwa_options:
                                             for aki in aki_options:
-                                                pron_config = PronominalConfig(set_type=set_type, stem_type=s_type, metathesis_strategy=meta, use_ka_variant=ka, use_uwa_for_3rd_set_b=uwa, use_aki_for_1st_set_b=aki)
-                                                res = derive_pronominals(intermediate, pron_config, imp_type)
+                                                pron_config = PronominalConfig(
+                                                    set_type=set_type, 
+                                                    stem_type=s_type, 
+                                                    metathesis_strategy=meta, 
+                                                    use_ka_variant=ka, 
+                                                    use_uwa_for_3rd_set_b=uwa, 
+                                                    use_aki_for_1st_set_b=aki,
+                                                    use_3rd_person_object=use_3rd
+                                                )
+                                                res = derive_pronominals(intermediate, pron_config)
                                                 if res:
                                                     res.pre_config = pre_config
                                                     valid_derivations.append(res)
@@ -202,6 +210,7 @@ def main():
                 row['ka_variant'] = str(d.pron_config.use_ka_variant)
                 row['uwa_3rd'] = str(d.pron_config.use_uwa_for_3rd_set_b)
                 row['aki_1st'] = str(d.pron_config.use_aki_for_1st_set_b)
+                row['3rd_person_object'] = str(d.pron_config.use_3rd_person_object)
                 row['multiple_explanations'] = str(len(derivations) > 1)
                 labeled_data.append(row)
     if labeled_data:

@@ -58,14 +58,30 @@ class TestStemDerivations(unittest.TestCase):
         
         for pc, intermediate in successful_pre_strips:
             print(f"\n[DIAGNOSIS] Testing PreConfig: {pc}")
-            for imp_type in ['normal', 'to_3rd']:
-                print(f"  [DIAGNOSIS] Testing imp_type='{imp_type}'")
+            for use_3rd in [False, True]:
+                print(f"  [DIAGNOSIS] Testing use_3rd_person_object='{use_3rd}'")
                 
                 derived_stems = {}
                 failed_prefix = False
                 
+                # Check consistency of target_pron with use_3rd
+                # We need a new config object that merges target_pron with use_3rd for testing?
+                # Actually, target_pron is passed in. If target_pron has usage_3rd fixed, we should maybe only test that?
+                # But here we are diagnosing why it failed.
+                
+                # For diagnosis, we construct a temporary config to check prefixes
+                check_config = PronominalConfig(
+                    set_type=target_pron.set_type,
+                    stem_type=target_pron.stem_type,
+                    metathesis_strategy=target_pron.metathesis_strategy,
+                    use_ka_variant=target_pron.use_ka_variant,
+                    use_uwa_for_3rd_set_b=target_pron.use_uwa_for_3rd_set_b,
+                    use_aki_for_1st_set_b=target_pron.use_aki_for_1st_set_b,
+                    use_3rd_person_object=use_3rd
+                )
+
                 for fn, word in intermediate.items():
-                    set_name = get_pronominal_set_name(fn, target_pron.set_type, imp_type)
+                    set_name = get_pronominal_set_name(fn, check_config)
                     expected_prefix = get_prefix_for_config(set_name, target_pron)
                     clean_pref = expected_prefix.replace('-', '')
                     
@@ -109,7 +125,7 @@ class TestStemDerivations(unittest.TestCase):
                 consensus_fail = False
                 for fn, s in derived_stems.items():
                     if fn == 'present_1sg': continue
-                    set_name = get_pronominal_set_name(fn, target_pron.set_type, imp_type)
+                    set_name = get_pronominal_set_name(fn, check_config)
                     is_h_drop = is_h_dropping_set(set_name)
                     ref = drop_first_h(consensus_stem) if is_h_drop else consensus_stem
                     

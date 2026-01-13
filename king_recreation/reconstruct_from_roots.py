@@ -4,7 +4,7 @@ import json
 from dataclasses import dataclass, field
 from typing import List, Dict, Set, Optional, Tuple
 from king_recreation.classify_verbs import get_matches_for_verb
-from king_recreation.phonology_data import Condition, VOWEL_SET, PRONOMINAL_PREFIXES_MAP, get_pronominal_set_name
+from king_recreation.phonology_data import Condition, VOWEL_SET, PRONOMINAL_PREFIXES_MAP, get_pronominal_set_name, PronominalConfig, StemType
 from king_recreation.stem_analysis import get_root_candidate, check_root_consistency
 
 @dataclass
@@ -13,7 +13,7 @@ class ReconstructibleVerb:
     root: str
     class_name: str
     set_type: str # 'a' or 'b'
-    imp_type: str # 'normal' or 'to_3rd'
+    use_3rd_person_object: bool # Replaces imp_type
     translocutive: bool
     partitive: bool
     distributive: bool
@@ -211,7 +211,14 @@ class ReconstructionEngine:
             
         form_options = {}
         for fn, stem in base_stems.items():
-            set_name = get_pronominal_set_name(fn, verb.set_type, verb.imp_type)
+            # Create a partial config for get_pronominal_set_name
+            # Note: StemType is not used for set name determination
+            config = PronominalConfig(
+                set_type=verb.set_type, 
+                stem_type=StemType.CONSONANT, # Dummy
+                use_3rd_person_object=verb.use_3rd_person_object
+            )
+            set_name = get_pronominal_set_name(fn, config)
             if not set_name: 
                 candidates = [stem]
             else:
@@ -287,11 +294,11 @@ def main():
                 root=root,
                 class_name=cls_name,
                 set_type=stem_row['set_a_b'],
-                imp_type='to_3rd' if stem_row['2_to_3'] == 'True' else 'normal',
+                use_3rd_person_object=stem_row['3rd_person_object'] == 'True',
                 translocutive=stem_row['translocutive'] == 'True',
                 partitive=stem_row['partitive'] == 'True',
                 distributive=stem_row['distributive'] == 'True',
-                metathesis=stem_row['metathesis'] == 'True',
+                metathesis=stem_row['metathesis_involved'] == 'True',
                 original_stems={fn: stem_row[fn] for fn in forms}
             )
             reconstructible_verbs.append(verb)

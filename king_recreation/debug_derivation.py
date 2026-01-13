@@ -1,6 +1,7 @@
 import csv
 import sys
 from king_recreation.derive_stems import StemDeriver, Derivation
+from king_recreation.phonology_data import get_pronominal_set_name, PronominalConfig, StemType
 
 def debug_derivation(target_definition):
     deriver = StemDeriver()
@@ -24,11 +25,11 @@ def debug_derivation(target_definition):
     print(f"Forms: {forms}")
 
     for set_type in ['Set A', 'Set B']:
-        for imp_type in ['normal', 'to_3rd']:
+        for use_3rd in [False, True]:
             for t in [True, False]:
                 for p in [True, False]:
                     for d in [True, False]:
-                        config = f"{set_type}, {imp_type}, T={t}, P={p}, D={d}"
+                        config = f"{set_type}, 3rd={use_3rd}, T={t}, P={p}, D={d}"
                         
                         possible_stems = {fn: [] for fn in forms}
                         
@@ -40,7 +41,8 @@ def debug_derivation(target_definition):
                                     next_words.extend(deriver.match_prepronominal(w, exists, p_type, fn))
                                 current_words = list(set(next_words))
                             
-                            pron_type = deriver.get_pronominal_prefix(fn, set_type, imp_type)
+                            pron_config = PronominalConfig(set_type=set_type, stem_type=StemType.CONSONANT, use_3rd_person_object=use_3rd)
+                            pron_type = get_pronominal_set_name(fn, pron_config)
                             prefixes = deriver.prefixes_pronominal[pron_type]
                             
                             for _, w in current_words:
@@ -95,7 +97,7 @@ def debug_derivation(target_definition):
     for fn in forms:
         working_configs = 0
         for set_type in ['Set A', 'Set B']:
-            for imp_type in ['normal', 'to_3rd']:
+            for use_3rd in [False, True]:
                 for t in [True, False]:
                     for p in [True, False]:
                         for d in [True, False]:
@@ -106,7 +108,8 @@ def debug_derivation(target_definition):
                                     next_words.extend(deriver.match_prepronominal(w, exists, p_type, fn))
                                 current_words = list(set(next_words))
                             
-                            pron_type = deriver.get_pronominal_prefix(fn, set_type, imp_type)
+                            pron_config = PronominalConfig(set_type=set_type, stem_type=StemType.CONSONANT, use_3rd_person_object=use_3rd)
+                            pron_type = get_pronominal_set_name(fn, pron_config)
                             prefixes = deriver.prefixes_pronominal[pron_type]
                             can_derive = False
                             for _, w in current_words:

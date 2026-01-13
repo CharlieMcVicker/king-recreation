@@ -35,6 +35,9 @@ class PronominalConfig:
     use_ka_variant: bool = False       # 3rd Set A: ka-/k- (True) vs a-/ø (False)
     use_uwa_for_3rd_set_b: bool = False # 3rd Set B: uwa- vs u- (on consonants)
     use_aki_for_1st_set_b: bool = False # 1st Set B: aki- vs ak- (on consonants)
+    
+    # Functional Flags
+    use_3rd_person_object: bool = False # Use 1->3 and 2->3 forms (imp_type='to_3rd')
 
 def get_stem_type(stem: str) -> StemType:
     if not stem: return StemType.CONSONANT
@@ -186,7 +189,10 @@ PRONOMINAL_PREFIXES_MAP = {
     ]
 }
 
-def get_pronominal_set_name(form_name, set_type, imp_type):
+def get_pronominal_set_name(form_name: str, config: PronominalConfig) -> Optional[str]:
+    set_type = config.set_type
+    use_3rd_person_object = config.use_3rd_person_object
+    
     if form_name == 'present':
         return '3rd Set A' if set_type == 'Set A' or set_type == 'a' else '3rd Set B'
     if form_name == 'imperfective':
@@ -194,11 +200,11 @@ def get_pronominal_set_name(form_name, set_type, imp_type):
     if form_name == 'perfective':
         return '3rd Set B'
     if form_name == 'imperative':
-        return '2nd to 3rd' if imp_type == 'to_3rd' else ('2nd Set A' if (set_type == 'Set A' or set_type == 'a') else '2nd Set B')
+        return '2nd to 3rd' if use_3rd_person_object else ('2nd Set A' if (set_type == 'Set A' or set_type == 'a') else '2nd Set B')
     if form_name == 'infinitive':
         return '3rd Set B'
     if form_name == 'present_1sg':
-        if imp_type == 'to_3rd':
+        if use_3rd_person_object:
             return '1st to 3rd'
         return '1st Set A' if (set_type == 'Set A' or set_type == 'a') else '1st Set B'
     return None
