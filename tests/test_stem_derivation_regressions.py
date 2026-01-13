@@ -165,6 +165,22 @@ class TestStemDerivations(unittest.TestCase):
             # ("he's closing his eyes", PronominalConfig(set_type="a", stem_type=StemType.ASPIRATED)),
             ("he's plowing it", PronominalConfig(set_type="a", use_ka_variant=True, use_uwa_for_3rd_set_b=True, stem_type=StemType.CONSONANT)),
             ("he's breathing", PronominalConfig(set_type="a", use_ka_variant=True, stem_type=StemType.VOWEL_A, metathesis_strategy=MetathesisStrategy.VOWEL)),
+
+            ("he's breathing", Derivation(
+                    pre_config=PrePronominalConfig(translocutive=False, partitive=False, distributive=False),
+                    pron_config=PronominalConfig(set_type="a", use_ka_variant=True, stem_type=StemType.VOWEL_A, metathesis_strategy=MetathesisStrategy.VOWEL),
+                    consensus_stem="ahwolate",
+                    metathesis_involved=True,
+                    stems={
+                        "present": "ahwolate",
+                        "present_1sg": "awolate",
+                        "imperfective": "ahwolatesk",
+                        "perfective": "ahwolates",
+                        "imperative": "ahwolataki",
+                        "infinitive": "ahwolatest",
+                    }
+                )
+            ),
             ("he's singing", PronominalConfig(set_type="a", use_ka_variant=True, stem_type=StemType.CONSONANT, metathesis_strategy=MetathesisStrategy.H_CONS))
         ]
 
@@ -228,7 +244,14 @@ class TestStemDerivations(unittest.TestCase):
                 
                 if not found_match:
                     if matching_rows:
-                        self.diagnose_derivation(matching_rows[0], expected_pron, expected_pre)
+                        # Extract configs if target is a full Derivation object
+                        diag_pron = expected_pron
+                        diag_pre = expected_pre
+                        if isinstance(expected_pron, Derivation):
+                            diag_pron = expected_pron.pron_config
+                            diag_pre = expected_pron.pre_config
+                        
+                        self.diagnose_derivation(matching_rows[0], diag_pron, diag_pre)
                 
                 self.assertTrue(found_match, f"No derivation for '{definition}' matched expected configurations.")
 

@@ -105,7 +105,7 @@ def get_prefix_details(set_name: str, config: PronominalConfig) -> Tuple[str, Co
         # B-set vowels for VOWEL meta
         if set_name == '3rd Set B':
             return ('u-', Condition.METATHESIS_VOWEL) if s_type == StemType.VOWEL_A else ('uhw-', Condition.METATHESIS_VOWEL)
-        if set_name == '2nd Set A': return 'h-', Condition.METATHESIS_VOWEL
+        if set_name == '2nd Set A': return 'h-', Condition.VOWEL
 
     if set_name == '3rd Set A':
         if config.use_ka_variant:
@@ -163,7 +163,11 @@ def attach_prefix(stem: str, prefix: str, condition: Condition) -> str:
     if condition == Condition.METATHESIS_VOWEL:
         if len(stem) > 1 and stem[1] == 'h':
             # u- + ah... -> uhw...
-            if clean_prefix == 'u': return 'uhw' + stem[2:]
+            if clean_prefix == 'u':
+                # Check for double w formation from stem starting with w
+                res = 'uhw' + stem[2:]
+                if res.startswith('uhww'): return 'uhw' + res[4:]
+                return res
             return clean_prefix + stem[0] + stem[2:]
             
     if condition == Condition.A_REPLACE:
@@ -199,7 +203,12 @@ def detach_prefix(word: str, prefix: str, condition: Condition, metathesis_strat
     
     if condition == Condition.METATHESIS_VOWEL:
         if clean_pref == 'u' and word.startswith('uhw'):
-             return 'ah' + word[3:]
+             remainder = word[3:]
+             # If remainder starts with a vowel, w was likely part of the stem (ahw...)
+             # Preservation of /w/ before vowels (e.g. uhwolates -> ahwolates)
+             if remainder and remainder[0] in VOWEL_SET:
+                 return 'ahw' + remainder
+             return 'ah' + remainder
         if remainder: stem = remainder[0] + 'h' + remainder[1:]
     
     # Reverse Stem Transformations
