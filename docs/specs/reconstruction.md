@@ -1,28 +1,32 @@
 # Reconstruction from Roots Specification
 
-This document outlines the system for reconstructing full verb forms from a single root and metadata, and validating them against the original corpus.
-
 ## Core Logic
 
-### 1. Classification & Root Extraction
+### 1. Root Extraction & Grade Selection
 
-The process begins by reading the `matches.csv` to identify verbs with the **`reconstructs`** scope.
+The process begins by reading `matches.csv` to identify verbs with the **`reconstructs`** scope and fetching their derived stems from `stem_corpus.csv`.
 
 **Logic:**
 
 1.  **Input**: Iterate through verbs flagged as `reconstructs` in `matches.csv`.
-2.  **Shared Interface**: Use `king_recreation/stem_analysis.py` to extract the root from the `stem_corpus.csv` data.
-3.  **Validation Check**: The classification phase already performed the root consistency check; reconstruction consumes this result to ensure it works from a high-quality base.
+2.  **Dual Roots**: The system extracts two roots:
+    - **h-grade root**: The unalternated base, used for most forms.
+    - **glottal-grade root**: The `/h/`-alternated base (from `present_1sg`).
+3.  **Grade Selection**: For each target form, the engine selects the appropriate grade:
+    - **Glottal Grade**: Used for `present_1sg` (if Set A or to 3rd) and `imperative` (if to 3rd).
+    - **H-Grade**: Used for all other forms.
+4.  **Consistency Check**: Verifies that `drop_first_h(h_root) == glottal_root`. Mismatches are flagged but do not necessarily block reconstruction if both grades are explicitly available.
 
 - Definition
-- Root
+- h_grade_root
+- glottal_grade_root (Optional)
 - Class ID
 - Metadata:
   - `stem_type` (e.g. `con`, `vowel_a`)
   - `metathesis_strategy`
   - `set_a_b`
   - `use_ka_variant`, `use_uwa_for_3rd_set_b`, `use_aki_for_1st_set_b`
-  - `use_3rd_person_object` (Implies 2->3 interaction)
+  - `use_3rd_person_object` (Implies 2->3 and 1->3 interaction)
   - `translocutive` (T), `partitive` (P), `distributive` (D).
 
 ### 2. Reconstruction (Generation)

@@ -14,7 +14,8 @@ from king_recreation.stem_analysis import get_root_candidate, check_root_consist
 @dataclass
 class ReconstructibleVerb:
     definition: str
-    root: str
+    h_grade_root: str
+    glottal_grade_root: Optional[str]
     class_name: str
     config: VerbConfig
     original_stems: Dict[str, str] = field(default_factory=dict)
@@ -53,12 +54,40 @@ class ReconstructionEngine:
         class_info = self.king_classes.get(verb.class_name)
         if not class_info: return []
         
-        for form_name in ['present', 'imperfective', 'perfective', 'imperative', 'infinitive']:
+        for form_name in ['present', 'present_1sg', 'imperfective', 'perfective', 'imperative', 'infinitive']:
             ending_pattern = class_info.get(form_name, '')
-            root = verb.root
+            if form_name == 'present_1sg' and not ending_pattern:
+                ending_pattern = class_info.get('present', '')
+                
             literal_ending = ending_pattern.replace('*', '').replace('@', '')
             
-            modified_root = root
+            # Determine Grade
+            # Default: h-grade
+            use_glottal = False
+            
+            if form_name == 'present_1sg':
+                set_name = get_pronominal_set_name('present_1sg', verb.config.pron)
+                # Set A (1st Set A) or 'to 3rd' (1st to 3rd) -> Glottal
+                # Set B (1st Set B) -> H-grade? Wait, spec: "h if set B, glottal if Set A or to third person"
+                if set_name in ['1st Set A', '1st to 3rd']:
+                    use_glottal = True
+            
+            elif form_name == 'imperative':
+                set_name = get_pronominal_set_name('imperative', verb.config.pron)
+                # "h if Set A/B, glottal if to third person"
+                if set_name == '2nd to 3rd':
+                    use_glottal = True
+                    
+            root_to_use = verb.glottal_grade_root if use_glottal else verb.h_grade_root
+            
+            if use_glottal and not root_to_use:
+                # Missing required root for this form
+                continue
+                
+            if not root_to_use:
+                continue
+
+            modified_root = root_to_use
             if '*' in ending_pattern:
                 if len(modified_root) >= 1: modified_root = modified_root[:-1]
             elif '@' in ending_pattern:
@@ -120,6 +149,12 @@ def main(classes_path=None):
     # Filter for 'reconstructs' scope matches (strictly)
     reconstruct_matches = [m for m in matches if m['scope'] == 'reconstructs' and m['strictness'] == 'strict']
     
+    # Updated Loop: Iterate all stem_corpus entries that are fully populated (roughly)
+    # Actually, we should stick to iterating matches that were deemed 'reconstructs' -> 'strict' to keep the pipeline stable,
+    # OR better yet, iterate all stem_corpus rows and see if they can form a ReconstructibleVerb.
+    # The original code filtered by matches.csv ('reconstructs').
+    # Let's keep that filter for now to avoid processing garbage, but we must update the consistency logic.
+    
     for match in reconstruct_matches:
         definition = match['definition']
         cls_name = match['class']
@@ -128,21 +163,75 @@ def main(classes_path=None):
         
         class_info = engine.king_classes[cls_name]
         
-        # Use shared logic to get the consistent root
-        consistent, root, details = check_root_consistency(stem_row, class_info)
+        # 1. Extract Roots
+        # h-grade: derived from 'present' (3rd person)
+        root_h_candidate = get_root_candidate(stem_row.get('present', ''), class_info.get('present', ''))
         
+        # glottal-grade: derived from 'present_1sg'
+        # Default to 'present' pattern if 'present_1sg' not specified in class
+        pat_1sg = class_info.get('present_1sg') or class_info.get('present', '')
+        root_glottal_candidate = get_root_candidate(stem_row.get('present_1sg', ''), pat_1sg)
+        
+        # Determine strictness of glottal grade availability
+        set_type = stem_row['set_a_b'] # 'Set A' or 'Set B' (or 'a'/'b')
+        to_3rd = stem_row['3rd_person_object'] == 'True'
+        
+        # Glottal grade is needed/visible if:
+        # 1. Set A (1sg is Set A)
+        # 2. To 3rd (1sg is 1->3)
+        # Note: Set B 1sg uses aki- (h-grade equivalent behavior in terms of root? No, Set B is h-grade usually).
+        # Spec: "h if set B, glottal if Set A or to third person" for present_1sg.
+        
+        # Checking if 1sg is glottal source:
+        is_1sg_glottal = False
+        if set_type in ['Set A', 'a'] or to_3rd:
+            is_1sg_glottal = True
+            
+        h_root = root_h_candidate
+        glottal_root = root_glottal_candidate if is_1sg_glottal else None
+        
+        # If we expect a glottal root (Set A) but don't have one (present_1sg missing), we might have an issue.
+        # But stick to data availability.
+        
+        # 2. Check Consistency (H-dropping check)
+        is_consistent = True
+        mismatch_details = []
+        
+        if not h_root:
+            is_consistent = False
+            mismatch_details.append("Missing h-grade root (present)")
+            
+        if is_consistent and glottal_root:
+            # Check: drop_first_h(h_root) == glottal_root
+            # Note: glottal_root should NOT be dropped.
+            h_dropped = drop_first_h(h_root)
+            if h_dropped != glottal_root:
+                # "Expect some forms to have diverging... which fail this check." -> But for now let's mark inconsistent?
+                # User said: "flag forms for which derivation is possible but... dont match".
+                # User also said: "make it blocking eventually." -> "flag mismatches in report"
+                # Let's mark is_consistent = False for the REPORT, but maybe still allow reconstruction if roots are present?
+                # Spec says: "Forms will then be checked against the matching grade root".
+                # If we mark it inconsistent, does it stop reconstruction?
+                # Previous code: `if consistent: ... reconstructible_verbs.append(...)`
+                # So yes, it blocks reconstruction in this pipeline.
+                
+                # Check for "vacuous" match? 
+                # If h_root has no h? "ali" -> "ali" == "ali".
+                # If mismatch:
+                is_consistent = False 
+                mismatch_details.append(f"Grade Mismatch: h-grade '{h_root}' (dropped '{h_dropped}') != glottal-grade '{glottal_root}'")
+
         analysis_row = {
             'definition': definition,
             'assigned_class': cls_name,
-            'is_consistent': consistent,
-            'mismatch_details': "; ".join(details)
+            'is_consistent': is_consistent,
+            'mismatch_details': "; ".join(mismatch_details)
         }
-        # Re-calculate individual roots for analysis artifact
         for fn in forms:
             analysis_row[f'root_{fn}'] = get_root_candidate(stem_row.get(fn, ''), class_info.get(fn, '')) or ''
         consistency_analysis.append(analysis_row)
 
-        if consistent:
+        if is_consistent:
             from king_recreation.phonology_data import StemType, MetathesisStrategy
             
             pre_config = PrePronominalConfig(
@@ -162,18 +251,20 @@ def main(classes_path=None):
             
             verb = ReconstructibleVerb(
                 definition=definition,
-                root=root,
+                h_grade_root=h_root,
+                glottal_grade_root=glottal_root,
                 class_name=cls_name,
                 config=VerbConfig(pre=pre_config, pron=pron_config),
                 original_stems={fn: stem_row[fn] for fn in forms}
             )
             reconstructible_verbs.append(verb)
-    
+
     print(f"Found {len(reconstructible_verbs)} reconstructible verbs.")
     
     # Validation Phase
     success_count = 0
     failures = []
+    report_data = []
     
     for verb in reconstructible_verbs:
         generated_sets = engine.reconstruct_verb(verb)
@@ -181,11 +272,13 @@ def main(classes_path=None):
         failed_forms = []
         ref = full_corpus_map.get(verb.definition)
         
+        # Capture options for report
+        options = generated_sets[0] if generated_sets else {fn: set() for fn in forms}
+        
         if not generated_sets:
             matches_all = False
             failed_forms = ["Generation Failed"]
         else:
-            options = generated_sets[0]
             for fn in forms:
                 ref_word = ref.get(fn)
                 if not ref_word: continue 
@@ -197,6 +290,17 @@ def main(classes_path=None):
              success_count += 1
         else:
              failures.append({'definition': verb.definition, 'failed_forms': failed_forms})
+
+        # Add to report data
+        ambiguous_forms = [fn for fn, opts in options.items() if len(opts) > 1]
+        report_data.append({
+            'definition': verb.definition,
+            'class': verb.class_name,
+            'root': verb.h_grade_root, # Use h-grade as primary for report
+            'success': matches_all,
+            'ambiguous_forms': ";".join(ambiguous_forms),
+            'notes': "Ambiguity implies lossy rule reversal" if ambiguous_forms else ""
+        })
              
     print(f"Validation Success: {success_count}/{len(reconstructible_verbs)}")
     
@@ -216,21 +320,6 @@ def main(classes_path=None):
         writer.writerows(consistency_analysis)
         
     # Save Reconstruction Report
-    report_data = []
-    for verb in reconstructible_verbs:
-        generated_sets = engine.reconstruct_verb(verb)
-        options = generated_sets[0] if generated_sets else {fn: set() for fn in forms}
-        ambiguous_forms = [fn for fn, opts in options.items() if len(opts) > 1]
-        
-        report_data.append({
-            'definition': verb.definition,
-            'class': verb.class_name,
-            'root': verb.root,
-            'success': True,
-            'ambiguous_forms': ";".join(ambiguous_forms),
-            'notes': "Ambiguity implies lossy rule reversal" if ambiguous_forms else ""
-        })
-        
     with open(report_path, 'w', encoding='utf-8', newline='') as f:
         writer = csv.DictWriter(f, fieldnames=['definition', 'class', 'root', 'success', 'ambiguous_forms', 'notes'])
         writer.writeheader()

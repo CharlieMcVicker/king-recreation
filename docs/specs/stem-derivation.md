@@ -139,12 +139,15 @@ The 1st Person Singular Present (`present_1sg`) is treated with special logic:
     - **Selection Criteria**: It selects the literal candidate from `present_1sg` that has the **longest common prefix** with the Consensus Stem.
     - This separate stem is saved in the `present_1sg` column of `stem_corpus.csv`.
 
-### Current Pipeline Status
+### Dual Grade Handling
 
-Currently, the reconstruction engine **does not use** the 1st person split stems.
+The system now actively utilizes these split stems via a **Dual Grade** approach:
 
-- **Input Data**: The engine loads `stem_corpus.csv`.
-- **Root Consistency**: The `check_root_consistency` function only considers the standard 5 forms: `['present', 'imperfective', 'perfective', 'imperative', 'infinitive']`. It explicitly excludes `present_1sg` from the consistency check.
-- **Validation**: The validation loop verifies generated forms against the corpus, but it restricts validation to the same 5 standard forms.
+- **h-grade**: The standard Consensus Stem, derived from 3rd person forms.
+- **glottal-grade**: The `present_1sg` stem (extracted using the best available pattern).
 
-The "1st person" data is currently generated and stored but is effectively **dormant** in the reconstruction and validation steps. The system currently assumes 1st person forms should be reconstructible from the main root, but doesn't verify this.
+The reconstruction engine selects between these grades based on the `PronominalConfig`.
+
+#### Imperative Consistency Allowance
+
+To support verbs where the imperative form (2->3) reflects the glottal grade, `derive_stems.py` has been updated to allow the `imperative` form to diverge from the consensus stem when `use_3rd_person_object` is enabled. This ensures that the glottal-grade imperative is correctly captured and stored in `stem_corpus.csv` without failing the derivation consistency check.

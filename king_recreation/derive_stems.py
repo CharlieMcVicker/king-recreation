@@ -110,6 +110,7 @@ def derive_pronominals(intermediate_forms: Dict[str, str], pron_config: Pronomin
     
     for fn, s in derived_stems.items():
         if fn == 'present_1sg': continue
+        if fn == 'imperative' and pron_config.use_3rd_person_object: continue
         
         set_name = get_pronominal_set_name(fn, pron_config)
         is_h_drop = is_h_dropping_set(set_name)
