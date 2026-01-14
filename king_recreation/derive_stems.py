@@ -168,7 +168,6 @@ def stems_are_consistent(
 
     # check that grades are consistent together
     if g_candidate and not grades_are_compatible(h=h_candidate, glottal=g_candidate):
-        print("couldn't match grades", h_candidate, g_candidate)
         return None
 
     return h_candidate

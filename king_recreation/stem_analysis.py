@@ -111,10 +111,6 @@ def check_root_consistency(
             root_from_stem[:-target_depth] if target_depth > 0 else root_from_stem
         )
 
-        if "swelling" in stem_row.get("definition", ""):
-            print(class_info.get("class"), stem, root_from_stem, target_root)
-            print("\t\t\t", truncated_stem_root, truncated_target)
-
         if truncated_stem_root != truncated_target:
             is_consistent = False
             if depth_diff > 0:
