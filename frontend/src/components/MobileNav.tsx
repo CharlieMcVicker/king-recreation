@@ -10,6 +10,7 @@ import {
   X,
   BookA,
   RefreshCw,
+  BarChart3,
 } from "lucide-react";
 
 export default function MobileNav() {
@@ -103,6 +104,16 @@ export default function MobileNav() {
               <span className="text-xs font-bold text-red-500">!</span>
             </div>
             Derivation Failures
+          </Link>
+          <Link
+            href="/analysis"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+          >
+            <div className="w-4 h-4 flex items-center justify-center">
+              <BarChart3 className="w-4 h-4 text-indigo-500" />
+            </div>
+            Reconstruction Analysis
           </Link>
           <Link
             href="/search"
