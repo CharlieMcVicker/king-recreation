@@ -344,6 +344,8 @@ he's piling it up,IIIa1,loose,ending,False,False,True,False,True
 "He is getting in a car, box, etc",IIIa2,loose,ending,False,False,False,False,True
 "He is getting in a car, box, etc",IIIa2*,strict,full,True,True,True,True,True
 "He is getting in a car, box, etc",IIIa2*,loose,full,True,True,True,True,True
+"He is getting in a car, box, etc",IIIa2**,strict,full,True,True,True,True,True
+"He is getting in a car, box, etc",IIIa2**,loose,full,True,True,True,True,True
 "He is getting in a car, box, etc",IIIa3,loose,full,True,True,True,True,True
 he's kissing her,IIIa1,strict,full,True,True,True,True,True
 he's kissing her,IIIa1,loose,full,True,True,True,True,True
@@ -428,6 +430,8 @@ he's sandwiching it,IIIa2*,loose,full,True,True,True,True,True
 "light a fire, match",IIIa2,loose,ending,False,False,False,False,False
 "light a fire, match",IIIa2*,strict,full,True,True,True,True,True
 "light a fire, match",IIIa2*,loose,full,True,True,True,True,True
+"light a fire, match",IIIa2**,strict,reconstructs,True,True,True,True,True
+"light a fire, match",IIIa2**,loose,full,True,True,True,True,True
 "he, it's growing",IIIc1,strict,ending,False,False,False,False,False
 "he, it's growing",IIIc1,loose,ending,False,False,False,False,False
 "he, it's growing",IIIc1*,strict,reconstructs,True,True,True,True,True
@@ -755,6 +759,8 @@ he's getting full,IIIc2,loose,ending,False,False,False,False,True
 "1. he's whittling it., 2. he's carving it., 3. he's hewing it",IIIa2,loose,ending,False,False,False,False,False
 "1. he's whittling it., 2. he's carving it., 3. he's hewing it",IIIa2*,strict,full,True,True,True,True,True
 "1. he's whittling it., 2. he's carving it., 3. he's hewing it",IIIa2*,loose,full,True,True,True,True,True
+"1. he's whittling it., 2. he's carving it., 3. he's hewing it",IIIa2**,strict,reconstructs,True,True,True,True,True
+"1. he's whittling it., 2. he's carving it., 3. he's hewing it",IIIa2**,loose,full,True,True,True,True,True
 he's putting on shoes,IIIa1,strict,full,True,True,True,True,True
 he's putting on shoes,IIIa1,loose,full,True,True,True,True,True
 he's putting on shoes,IIIa2,loose,ending,False,False,False,False,False
@@ -806,11 +812,15 @@ he's putting a ring on his finger,IIIa1,loose,full,True,True,True,True,True
 he's putting a ring on his finger,IIIa2,loose,ending,False,False,False,False,False
 he's putting a ring on his finger,IIIa2*,strict,full,True,True,True,True,True
 he's putting a ring on his finger,IIIa2*,loose,full,True,True,True,True,True
+he's putting a ring on his finger,IIIa2**,strict,reconstructs,True,True,True,True,True
+he's putting a ring on his finger,IIIa2**,loose,full,True,True,True,True,True
 he's turning on a light,IIIa1,strict,full,True,True,True,True,True
 he's turning on a light,IIIa1,loose,full,True,True,True,True,True
 he's turning on a light,IIIa2,loose,ending,False,False,False,False,False
 he's turning on a light,IIIa2*,strict,full,True,True,True,True,True
 he's turning on a light,IIIa2*,loose,full,True,True,True,True,True
+he's turning on a light,IIIa2**,strict,reconstructs,True,True,True,True,True
+he's turning on a light,IIIa2**,loose,full,True,True,True,True,True
 he's mixing it in,IIIa1,strict,full,True,True,True,True,True
 he's mixing it in,IIIa1,loose,full,True,True,True,True,True
 he's mixing it in,IIIa1*,strict,full,True,True,True,True,True
