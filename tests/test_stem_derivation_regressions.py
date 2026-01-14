@@ -14,7 +14,7 @@ from king_recreation.phonology_data import (
     PronominalConfig,
     PrePronominalConfig,
     get_pronominal_set_name,
-    is_h_dropping_set,
+    use_glottal_grade,
     _drop_first_h,
     _is_compatible_with_vowel_restoration,
     get_stem_type,
@@ -145,8 +145,7 @@ class TestStemDerivations(unittest.TestCase):
                 for fn, s in derived_stems.items():
                     if fn == "present_1sg":
                         continue
-                    set_name = get_pronominal_set_name(fn, check_config)
-                    is_h_drop = is_h_dropping_set(set_name)
+                    is_h_drop = use_glottal_grade(fn, check_config)
                     ref = _drop_first_h(consensus_stem) if is_h_drop else consensus_stem
 
                     is_ok = False

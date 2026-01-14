@@ -98,7 +98,7 @@ def strip_prepronominals(
 
 
 def derive_pronominals(
-    intermediate_forms: Dict[str, str], pron_config: PronominalConfig
+    intermediate_forms: Dict[str, str], pron_config: PronominalConfig, log=False
 ) -> Optional[Derivation]:
     from king_recreation.phonology_data import get_prefix_details, detach_prefix
 
@@ -121,7 +121,7 @@ def derive_pronominals(
             metathesis_used = True
 
         derived_stems[fn] = stem
-    h_grade = stems_are_consistent(derived_stems, pron_config)
+    h_grade = stems_are_consistent(derived_stems, pron_config, log=log)
     if h_grade:
         return Derivation(
             pre_config=None,
@@ -135,15 +135,19 @@ def derive_pronominals(
 
 
 def stems_are_consistent(
-    derived_stems: dict[str, str], pron_config: PronominalConfig
+    derived_stems: dict[str, str], pron_config: PronominalConfig, log=False
 ) -> Optional[str]:
     """
     Check if a set of derived stems are consistent.
 
-    1. Check that h grade stems are consisent
-    2. Check that glottal grade stems are consistent
+    1. Check that h-grade stems are consistent (using is_strict_compatible)
+    2. Check that glottal grade stems are consistent (using is_loose_compatible)
     3. Check that h and glottal grade stems match each other up to h alternation
+
+    log: If True, prints detailed step-by-step validation logic.
     """
+    if log:
+        print("")
     h_candidate = derived_stems.get("present")
     g_candidate = derived_stems.get("present_1sg")
 
@@ -153,13 +157,22 @@ def stems_are_consistent(
         if use_glottal_grade(fn, pron_config):
             check = is_loose_compatible(s, g_candidate)
             passing &= check
+            if log:
+                print("g grade, loose", fn, s, g_candidate, check)
         else:
             check = False
             # HOW DOES is strict compatible change this?
+
             if fn == "present":
+                # The primary h-grade stem is derived from 'present' (3rd present).
                 check = is_strict_compatible(s, h_candidate)
+                if log:
+                    print("h grade, strict", fn, s, h_candidate, check)
             else:
-                check = is_loose_compatible(s, h_candidate)
+                # Other h-grade forms must also be strictly compatible with the h-candidate.
+                check = is_strict_compatible(s, h_candidate)
+                if log:
+                    print("h grade, loose", fn, s, h_candidate, check)
 
             passing &= check
 
@@ -186,7 +199,7 @@ class StemDeriver:
         forms = {fn: row[fn] for fn in form_names if row.get(fn)}
         if not forms:
             return []
-        valid_derivations = []
+        valid_derivations: list[Derivation] = []
         for t in [False, True]:
             for p in [False, True]:
                 for d in [False, True]:
@@ -218,7 +231,9 @@ class StemDeriver:
                                                     use_3rd_person_object=use_3rd,
                                                 )
                                                 res = derive_pronominals(
-                                                    intermediate, pron_config
+                                                    intermediate,
+                                                    pron_config,
+                                                    # log="calling" in row["definition"],
                                                 )
                                                 if res:
                                                     res.pre_config = pre_config
@@ -227,6 +242,7 @@ class StemDeriver:
             return []
         valid_derivations.sort(
             key=lambda d: (
+                d.pron_config.use_3rd_person_object,
                 d.pron_config.metathesis_strategy != MetathesisStrategy.NONE,
                 d.pron_config.use_ka_variant,
                 sum(

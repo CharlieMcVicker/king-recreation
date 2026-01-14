@@ -158,7 +158,9 @@ def get_prefix_details(
             return (
                 ("u-", Condition.METATHESIS_VOWEL)
                 if s_type == StemType.VOWEL_A
-                else ("uhw-", Condition.METATHESIS_VOWEL)
+                # Use 'uwh-' for vowel metathesis to match the new respelling reform (wh, yh, lh, nh)
+                # where 'h' follows the resonant.
+                else ("uwh-", Condition.METATHESIS_VOWEL)
             )
         if set_name == "2nd Set A":
             return "h-", Condition.VOWEL
@@ -233,20 +235,22 @@ def attach_prefix(stem: str, prefix: str, condition: Condition) -> str:
         clean_prefix = ""
 
     if condition == Condition.METATHESIS_H_CONS:
-        if stem.startswith("h"):
-            return clean_prefix[:-1] + "h" + clean_prefix[-1:] + stem[1:]
-        elif len(stem) > 1 and stem[1] == "h" and stem[0] in VOWEL_SET:
-            # Merger: ka + ah... -> khaw...
+        if stem[0] in VOWEL_SET:
+            # ka + ah... -> khah...
             return clean_prefix[:-1] + "h" + stem[0] + stem[2:]
+        else:
+            # ka + n... -> kan... -> khan... (aspiration moves to prefix)
+            return clean_prefix[:-1] + "h" + clean_prefix[-1:] + stem[0] + stem[2:]
 
     if condition == Condition.METATHESIS_VOWEL:
         if len(stem) > 1 and stem[1] == "h":
             # u- + ah... -> uhw...
             if clean_prefix == "u":
                 # Check for double w formation from stem starting with w
-                res = "uhw" + stem[2:]
-                if res.startswith("uhww"):
-                    return "uhw" + res[4:]
+                # e.g., u- + ahw... -> uwhw... (simplified to uwh...)
+                res = "uwh" + stem[2:]
+                if res.startswith("uwhw"):
+                    return "uwh" + res[4:]
                 return res
             return clean_prefix + stem[0] + stem[2:]
 
@@ -276,7 +280,7 @@ def detach_prefix(
         meta_pref = clean_pref[:-1] + "h" + clean_pref[-1:]
         if word.startswith(meta_pref):
             remainder = word[len(meta_pref) :]
-            return "h" + remainder
+            return remainder[0] + "h" + remainder[1:]
 
     # Heuristic for ka+h -> kh merger (for non-metathesis or implicit metathesis)
     # Only applies if the 'a' is missing (syncopated), e.g. khtosadi.
@@ -291,15 +295,15 @@ def detach_prefix(
     stem = remainder
 
     if condition == Condition.METATHESIS_VOWEL:
-        if clean_pref == "u" and word.startswith("uhw"):
+        if clean_pref == "u" and word.startswith("uwh"):
             remainder = word[3:]
             # If remainder starts with a vowel, w was likely part of the stem (ahw...)
             # Preservation of /w/ before vowels (e.g. uhwolates -> ahwolates)
             if remainder and remainder[0] in VOWEL_SET:
-                return "ahw" + remainder
+                return "awh" + remainder
             return "ah" + remainder
         if remainder:
-            stem = remainder[0] + "h" + remainder[1:]
+            stem = remainder[0:2] + remainder[2:] + "h"
 
     # Reverse Stem Transformations
     if condition == Condition.A_REPLACE:
@@ -339,17 +343,15 @@ def apply_prepronominal(
             if form_name == "infinitive":
                 new_forms.extend(["iy" + w, "i" + w, w])
             else:
-                new_forms.extend(["ni" + w, "n" + w, w])
-                if w.startswith("h"):
-                    new_forms.append("hn" + w[1:])
+                # Manual 'hn'/'hw' cases removed here as they are now handled
+                # by the 'nh'/'wh' respelling reform in preprocessing.
+                new_forms.extend(["ni" + w, "n" + w])
         current_forms = list(set(new_forms))
 
     if config.translocutive:
         new_forms = []
         for w in current_forms:
             new_forms.extend(["wi" + w, "w" + w])
-            if w.startswith("h"):
-                new_forms.append("hw" + w[1:])
         current_forms = list(set(new_forms))
 
     return current_forms
@@ -394,7 +396,7 @@ def _is_compatible_with_vowel_restoration(restored: str, syncopated: str) -> boo
 
 
 def _drop_h_in_deaffricated_lateral(h_grade: str):
-    return h_grade.replace("hl", "tl", 1)
+    return h_grade.replace("lh", "tl", 1)
 
 
 def grades_are_compatible(*, h: str, glottal: str) -> bool:

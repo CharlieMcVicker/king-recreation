@@ -1,6 +1,19 @@
 # Reconstruction from Roots Specification
 
-## Core Logic
+## Consonant Respelling Reform
+
+To simplify the internal representation and phonological rules, the following consonant clusters are respelled during preprocessing:
+
+| Original | Respelled |
+| :------- | :-------- |
+| `hw`     | `wh`      |
+| `hy`     | `yh`      |
+| `hl`     | `lh`      |
+| `hn`     | `nh`      |
+
+This change ensures that `/h/` always follows the resonant in these clusters, which simplifies prefix attachment and metathesis logic by treating them as standard consonant-starting stems where the aspiration is part of the cluster.
+
+## Proposed Architecture
 
 ### 1. Root Extraction & Grade Selection
 
@@ -52,8 +65,8 @@ _Phonological Rules:_ Handle `h` deletion/insertion and vowel coalescence in rev
 **Step 2d: H-Metathesis (If Applicable)**
 If the verb is flagged as using metathesis in `stem_corpus.csv`, apply the metathesis variants:
 
-- **Consonant**: `ka-` + `hnogi` -> `khanogi`, `tsha-` + `hnaskwalo` -> `tshanaskwalo`, `akhi-` + `hnaskwalo` -> `akhinaskwalo`
-- **Vowel**: `k-` + `ehlatitoh` -> `khelatitoh`, `uw-` + `ehlatitoh` -> `uhwelatitoh`, `h-` + `ehlatita` -> `helatita`
+- **Consonant**: `ka-` + `nhogi` -> `kanhogi` -> `khanhogi` (via metathesis-like aspiration)
+- **Vowel**: `k-` + `ehlatitoh` -> `khelatitoh`, `uw-` + `ehlatitoh` -> `uwhelatitoh`, `h-` + `ehlatita` -> `helatita`
 - If the verb is _not_ flagged, these metathesized variants are skipped to avoid over-application.
 
 ### 3. Validation
