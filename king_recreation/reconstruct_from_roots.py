@@ -7,7 +7,8 @@ from king_recreation.classify_verbs import get_matches_for_verb
 from king_recreation.phonology_data import (
     Condition, VOWEL_SET, get_pronominal_set_name, 
     PronominalConfig, PrePronominalConfig, VerbConfig, StemType, MetathesisStrategy,
-    get_prefix_details, attach_prefix, apply_prepronominal, is_h_dropping_set, drop_first_h
+    get_prefix_details, attach_prefix, apply_prepronominal, is_h_dropping_set, drop_first_h,
+    is_compatible_with_vowel_restoration
 )
 from king_recreation.stem_analysis import get_root_candidate, check_root_consistency
 
@@ -205,7 +206,16 @@ def main(classes_path=None):
             # Check: drop_first_h(h_root) == glottal_root
             # Note: glottal_root should NOT be dropped.
             h_dropped = drop_first_h(h_root)
-            if h_dropped != glottal_root:
+            
+            check_passed = False
+            if h_root == glottal_root:
+                check_passed = True
+            elif h_dropped == glottal_root:
+                check_passed = True
+            elif is_compatible_with_vowel_restoration(glottal_root, h_dropped):
+                check_passed = True
+                
+            if not check_passed:
                 # "Expect some forms to have diverging... which fail this check." -> But for now let's mark inconsistent?
                 # User said: "flag forms for which derivation is possible but... dont match".
                 # User also said: "make it blocking eventually." -> "flag mismatches in report"

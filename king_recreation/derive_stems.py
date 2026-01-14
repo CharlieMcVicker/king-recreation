@@ -6,7 +6,8 @@ from king_recreation.phonology_data import (
     Condition, VOWEL_SET, 
     get_pronominal_set_name, is_h_dropping_set, drop_first_h,
     StemType, MetathesisStrategy, PrePronominalConfig, PronominalConfig,
-    get_stem_type, get_prefix_details, detach_prefix
+    get_stem_type, get_prefix_details, detach_prefix,
+    is_compatible_with_vowel_restoration
 )
 
 @dataclass
@@ -29,26 +30,6 @@ def is_strict_compatible(s1: str, s2: str) -> bool:
 def is_loose_compatible(s1: str, s2: str) -> bool:
     return bool(s1 and s2 and s1[0] == s2[0])
 
-def is_compatible_with_vowel_restoration(restored: str, syncopated: str) -> bool:
-    if len(restored) != len(syncopated) + 1:
-        return False
-    i = 0
-    j = 0
-    skipped = False
-    while i < len(restored) and j < len(syncopated):
-        if restored[i] == syncopated[j]:
-            i += 1
-            j += 1
-        else:
-            if skipped: return False
-            if restored[i] in VOWEL_SET:
-                skipped = True
-                i += 1
-            else:
-                return False
-    if not skipped:
-        return i == len(restored) - 1 and restored[i] in VOWEL_SET
-    return True
 
 def strip_prepronominals(forms: Dict[str, str], config: PrePronominalConfig) -> Optional[Dict[str, str]]:
     stripped = {}

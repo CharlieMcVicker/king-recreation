@@ -265,3 +265,25 @@ def drop_first_h(stem: str) -> str:
     if idx != -1:
         return stem[:idx] + stem[idx+1:]
     return stem
+
+def is_compatible_with_vowel_restoration(restored: str, syncopated: str) -> bool:
+    if len(restored) != len(syncopated) + 1:
+        return False
+    i = 0
+    j = 0
+    skipped = False
+    while i < len(restored) and j < len(syncopated):
+        if restored[i] == syncopated[j]:
+            i += 1
+            j += 1
+        else:
+            if skipped: return False
+            if restored[i] in VOWEL_SET:
+                skipped = True
+                i += 1
+            else:
+                return False
+    if not skipped:
+        return i == len(restored) - 1 and restored[i] in VOWEL_SET
+    return True
+

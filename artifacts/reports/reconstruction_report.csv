@@ -1,5 +1,6 @@
 definition,class,root,success,ambiguous_forms,notes
 he's taking a drink (alcoholic beverage),Ia,athuk,True,,
+"he's catching a falling person, object",Ia*,skwahl,True,present_1sg,Ambiguity implies lossy rule reversal
 it's hatching,Ia,atsa,True,,
 he's opening it,Ia,stu,True,,
 it's freezing,Vb*,nestalat,True,,
@@ -10,17 +11,22 @@ he's bewitching him,Vb*,nekut,True,,
 it's burning (flames),Vb*,atawelak,True,,
 he's taking off his socks,Ia,aliyok,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he's chewing it,Ib,kist,True,,
+1. he's pondering it  2. he's considering,Ib,atanhthehil,True,present_1sg,Ambiguity implies lossy rule reversal
 he's taking a step,Ic*,alask,True,,
 he's replying,Ic*,awohiliy,True,,
 "he, it's changing",Ic*,atanetliy,True,,
 he's changing it,Ic*,netliy,True,,
 he's erasing it,Vb*,skolvt,True,,
 "he, it's moving from one place to another",Ic*,atan,True,,
+he's shoveling it,Ia*,khot,True,present_1sg,Ambiguity implies lossy rule reversal
+"he's taking off, removing a cap",Ia*,alstul,True,,
 he's oiling it,Id,lon,True,,
 he's washing (dishes),Id,vtiy,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 "1. he's reading, 2. he's examining him, it",Id,koliy,True,,
 he's laying a long object down,Vb*,t,True,,
 "he's lifting him, raising him, it",Vc*,salat,True,,
+"he, it's ascending, raising",Vc*,alsalat,True,,
+he's mooring a boat,Vb*,thalat,True,present_1sg,Ambiguity implies lossy rule reversal
 he's joining,Vb*,athelat,True,,
 "he's roping him, it",Vb*,slat,True,,
 he's sending a long object,Vb*,t,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
@@ -32,7 +38,9 @@ he's receiving punishment,Vb*,stvt,True,,
 he's putting a long object in a container,Vb*,lat,True,,
 he's hiding a long object,Vb*,vskalat,True,,
 it's misting,Vb*,hnuyolat,True,,
+he's setting up a bed,Vb*,nihlat,True,present_1sg,Ambiguity implies lossy rule reversal
 he's licking it,Vb*,kanat,True,,
+he's sticking his head out,Vc*,alskwalut,True,,
 "he's missing him, it",Vb*,nvt,True,,
 he's eating it (a single solid food),Vb*,k,True,,
 1. he's leaving  2. it's starting,Ia,ahnik,True,,
@@ -45,10 +53,13 @@ he's plowing it,Vc*,taluk,True,,
 1. he's tickling him; 2. he's spurring a horse,Vb*,hyvk,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he's putting his gloves on,Vc*,aliyesul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he's putting his pants on,Vc*,asul,True,,
+he's putting on a cap,Vc*,alstul,True,,
 "1. he's curing, doctoring him, 2. he's soldering, welding it",Vc*,hnvw,True,,
 it's thundering,Ib,hyvtakwal,True,,
 he's removing it (solid or flexible object) from a hanging position,Ia*,at,True,,
 he's breathing,Ia*,ahwolat,True,,
+he's taking off his glasses,Ia*,akhthinvt,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he's taking it off,Ia*,vnht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 "1. he's unhitching him, it 2. he's unhooking it 3. he's unplugging it",Ia*,utal,True,,
 he's taking it (solid or flexible object) out of a container,Ia*,l,True,,
 he's taking off his shoes,Ia*,alasul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
@@ -59,34 +70,44 @@ he's turning off the road,Ia*,atl,True,,
 he's pulling a trigger,Ia*,otsan,True,,
 1. he's picking it up  2. he's getting it,Ia,k,True,,
 he's waving his hand,Ia,asolvtak,True,,
+he's snoring,Ia,khwalak,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he's thirsty,Vc*,thatek,True,,
 1. he's getting some liquid  2. he's picking up some liquid,Ia,nek,True,,
 he's hoeing it,Vc*,lok,True,,
 he's singing,Ia,hnok,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he's dancing,Ia,alsk,True,,
 it's exploding,Ia,athask,True,,
 he's stealing it,Ia,nosk,True,,
+"he's shelling, picking out (peas, nut meats, etc.)",Ia,vthoh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he's writing it,Vc*,ohwel,True,,
+"he's running away, he's escaping",Ia,alith,True,present_1sg,Ambiguity implies lossy rule reversal
 he's crushing it,Ib,st,True,,
 he's hammering it,Ib,nvkwal,True,,
 stubbing his toe,Ib,hnaskwal,True,,
 he's cracking it,Ib,vskwal,True,,
 he's washing it,Ib,uhil,True,,
 1. he's bathing  2. he's swimming,Ib,ataw,True,,
+he's combing someone's hair,Ib,thaw,True,present_1sg,Ambiguity implies lossy rule reversal
+he's combing his hair,Ib,alhthaw,True,present_1sg,Ambiguity implies lossy rule reversal
 he's performing a baptism,Ib,ataw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 "he's accumulating it, he's increasing it",Ib,hnehkw,True,present_1sg,Ambiguity implies lossy rule reversal
 he's washing his face,Ib,akvskw,True,,
 he's moving it from one place to another,Ic*,h,True,,
+1. he's turning back 2. he's turning (his head or body),Ic*,akhthah,True,present_1sg,Ambiguity implies lossy rule reversal
 he's changing shoes,Ic*,alasulaiy,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he's changing his pants,Ic*,asulaiy,True,,
 he's climbing it,Xa1*,l,True,,
+"he's chasing him, it",Xa1*,kheh,True,present_1sg,Ambiguity implies lossy rule reversal
 he's not having any luck hunting,Xa1*,khwol,True,,
 he's leading him by the hand,Xa1*,ohin,True,,
 he's carrying a long object on his shoulder,Xa1*,ahnohlin,True,present_1sg,Ambiguity implies lossy rule reversal
 1. he's throwing it 2. he's pitching (ball),Xa2*,t,True,,
 it's bouncing,Xa2*,atat,True,,
 he's selling it,Xa2*,nat,True,,
+he's jumping,Xa2*,alhthat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 "he's following him, it",Xa1*,stawat,True,,
 "he's turning, it over",Xa2*,hlihkwat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he's taking a liquid somewhere by hand,Xa1*,nhts,True,,
 he's taking a long object somewhere by hand,Xa1*,n,True,,
 he's swimming (propelling himself through water),Xa1*,ahyuin,True,,
 he's backing up,Xa1*,asin,True,,
@@ -98,11 +119,14 @@ he's getting a rash,IIIc2,kwenothi,True,present;present_1sg;imperfective;perfect
 "it's (round, long) falling",IIIc1,oho,True,,
 "He is getting in a car, box, etc",IIIa1,atsav,True,,
 he's sending; taking it (flexible),IIIa1,nvv,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+"he's sprinkling it (with a liquid, powder, salt, etc.)",IIIa1,khwayov,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 it (wind) is blowing,IIIa1,nolvv,True,,
 "he's attaching it (flexible), behind it",IIIa1*,sanenat,True,,
 he's hitting him on the nose,IIIa1,hyvsteluhv,True,present_1sg;imperative,Ambiguity implies lossy rule reversal
 he's hitting him on the nose,IIIa2,hyvstelu,True,present_1sg;imperative,Ambiguity implies lossy rule reversal
 "he's sending, taking it (liquid)",IIIa1,nehv,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he's hiring him,IIIa1**,nahl,True,present_1sg,Ambiguity implies lossy rule reversal
+1. he's covering it 2. he's putting a lid on it,IIIa1**,uhl,True,present_1sg,Ambiguity implies lossy rule reversal
 "he, it's growing",IIIc1*,athv,True,,
 "he's hiding him, it (flexible)",IIIa1**,vskal,True,,
 "1.  he's breaking a flexible object, 2. He's cutting a flexible object",IIId*,kal,True,,
@@ -113,9 +137,12 @@ he's setting a trap,IIIa1**,sat,True,,
 "1. he's hitching him, it up 2. he's hooking it up 3. he's plugging it in",IIIa1**,utal,True,,
 he's scolding him,IIIa1**,kvskol,True,,
 it's flashing (reflected light),IIId*,thoyaw,True,,
+he/it is going through it,IIIc1*,khthvle,True,present_1sg,Ambiguity implies lossy rule reversal
+he's getting exhausted,IIIc1*,asthaye,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 1. it's decaying  2. it's spoiling,IIIc1,ko,True,,
 he's finding it out,IIIc1,ateloho,True,,
 he's confronted with it,IIIc1,tlo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he's beating him at a game,IIIc1,hlo,True,present_1sg,Ambiguity implies lossy rule reversal
 he's becoming enraged,IIIc1,thahlawo,True,,
 it's getting warm,IIIc1,kanawo,True,,
 1. he's becoming warm  2. he's warming himself,IIIc1,kanawo,True,,
@@ -123,7 +150,9 @@ it's melting,IIIc1,vnawo,True,,
 "he's dying, (human)",IIIc1,yohu,True,,
 he's ascending an incline,IIIc1,hnalu,True,,
 he's burning,IIIc1*,leyv,True,,
+he's sewing it,IIId*,yew,True,,
 it (a flexible object) is falling from a hanging position,IIIc1,ato,True,,
+he's going down hill,IIIc1,khso,True,,
 he's releasing him,IIIc1,yo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 "He's releasing it, (voluntarily)",IIIc1,yo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he's giving up,IIIc1,atayo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
@@ -134,11 +163,14 @@ he's standing in a certain spot,IIIa1,alehv,True,,
 he's getting up (from sitting or from involuntarily assumed prone position),IIIa1,alehv,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he's putting it in water,IIIa1,uhv,True,,
 he's putting it in water,IIIa2,u,True,,
+he's fishing,IIIa1,asuhv,True,present_1sg,Ambiguity implies lossy rule reversal
 he's fishing,IIIa2,asu,True,present_1sg,Ambiguity implies lossy rule reversal
 he's getting full,IIIc1*,ohlv,True,,
 he's hanging it up,IIIa2*,ath,True,,
 he's putting it into a fire,IIIa2*,vth,True,,
 He's putting fuel (solid) into a fire,IIIa2*,hvth,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he's putting on glasses,IIIa2*,akhthinvth,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he's piling it up,IIIa2*,svth,True,present_1sg,Ambiguity implies lossy rule reversal
 he's building a fire,IIIa2*,oth,True,,
 he's mixing it in,IIIa1**,asuy,True,,
 he's amazed,IIIc1,skwaniko,True,,
@@ -159,10 +191,13 @@ he's giving him a flexible object,XIa*,nvn,True,present_1sg,Ambiguity implies lo
 he's fanning himself,IIb*,atahnoy,True,present_1sg,Ambiguity implies lossy rule reversal
 he's stirring it,IIb*,asuy,True,present_1sg,Ambiguity implies lossy rule reversal
 he's bouncing it,IVa,atatinvt,True,present_1sg,Ambiguity implies lossy rule reversal
+he's making him fall from an elevated psition,IVa,lonht,True,present_1sg,Ambiguity implies lossy rule reversal
 "he's interpreting, translating it",IVa,ahnelht,True,present_1sg,Ambiguity implies lossy rule reversal
 he's taking turns with him,IVa,atanetliyvst,True,present_1sg,Ambiguity implies lossy rule reversal
 he's waking him up,IVa,yeist,True,present_1sg,Ambiguity implies lossy rule reversal
 1. He's bluffing him. 2. he's deceiving him 3. he's tricking him,IVa,lonast,True,present_1sg,Ambiguity implies lossy rule reversal
+he's winking,IVa,akhthast,True,present_1sg,Ambiguity implies lossy rule reversal
+he's closing his eyes,IVa,akhthast,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he has a chill,IVa,hnawast,True,,
 he's wringing it out,IVa,tsvwast,True,present_1sg,Ambiguity implies lossy rule reversal
 he's stretching,IVa,atahyast,True,present_1sg,Ambiguity implies lossy rule reversal
@@ -170,6 +205,7 @@ he's starting it,IVa,ahnikist,True,present_1sg,Ambiguity implies lossy rule reve
 he's praying,IVa,atatolist,True,present_1sg,Ambiguity implies lossy rule reversal
 he's pouring liquid into a container,IVa,tlist,True,present_1sg,Ambiguity implies lossy rule reversal
 "he's slamming him, it",IVa,lvtvnist,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he's turning it,IVa,teyst,True,present_1sg,Ambiguity implies lossy rule reversal
 he's spinning it,IVa,tikwalvteyst,True,present_1sg,Ambiguity implies lossy rule reversal
 "he's releasing it, (involuntarily)",IVa,skalest,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 "he's smothering him, it",IVa,hawost,True,present_1sg,Ambiguity implies lossy rule reversal
@@ -181,6 +217,7 @@ he's vomiting,IVa,khst,True,present;present_1sg;imperfective;perfective;imperati
 "he's handling it, he has it in his hand",IXa,hit,True,present_1sg,Ambiguity implies lossy rule reversal
 he's visiting him,IXa,hwahthvhit,True,present_1sg;imperative,Ambiguity implies lossy rule reversal
 he's visiting,IXa,atahwahthvhit,True,present_1sg,Ambiguity implies lossy rule reversal
+he's handling some liquid,IXa,nhtsit,True,present_1sg,Ambiguity implies lossy rule reversal
 he's hunting,IXa,nohalit,True,present_1sg,Ambiguity implies lossy rule reversal
 its taking time,IXa,hliilit,True,,
 he's handling a flexible object,IXa,hnit,True,present_1sg,Ambiguity implies lossy rule reversal
@@ -193,27 +230,44 @@ he's telling it,IIc*,hnoh,True,present_1sg,Ambiguity implies lossy rule reversal
 he's conversing,IIc*,ahlinoh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he's saying to him,XIa*,os,True,present_1sg,Ambiguity implies lossy rule reversal
 he's losing it,XIa*,yohus,True,,
+he's thinking,IIc*,atanhth,True,present_1sg,Ambiguity implies lossy rule reversal
 he's prying it,IVb,hnekwat,True,present_1sg,Ambiguity implies lossy rule reversal
 he's placing a long object in an upright position,IVa,aleht,True,present_1sg,Ambiguity implies lossy rule reversal
 "he's making it (round, long) fall",IVa,ohonht,True,present_1sg,Ambiguity implies lossy rule reversal
+he's showing it to him,IVa,kowhthvht,True,present_1sg,Ambiguity implies lossy rule reversal
+he's melting it,IVa,vnawht,True,present_1sg,Ambiguity implies lossy rule reversal
+he's warming it,IVa,kanawht,True,present_1sg,Ambiguity implies lossy rule reversal
+1. he's making it crisp  2. he's starching it,IVa,stakayht,True,present_1sg,Ambiguity implies lossy rule reversal
 he's rising from a prone position,IVb,atit,True,,
 "he's taking it (animal, flexible object) somewhere",IVb,nawit,True,present_1sg,Ambiguity implies lossy rule reversal
 he's taking some liquid somewhere,IVb,nehwit,True,present_1sg,Ambiguity implies lossy rule reversal
 he's taking a long object somewhere,IVb,yvhwit,True,present_1sg,Ambiguity implies lossy rule reversal
+he's putting it into a container,IVa,lht,True,present_1sg,Ambiguity implies lossy rule reversal
+he's setting a price,IVa,kvwalht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he's attempting it,IVa,anelht,True,present_1sg,Ambiguity implies lossy rule reversal
+he's lecturing him,IVa,wonht,True,present_1sg,Ambiguity implies lossy rule reversal
+he's putting it on,IVa,vnht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he's staggering,IVa,tokht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he's deciding,IVa,ukht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he's snorting,IVa,ahliyvsanawst,True,present_1sg,Ambiguity implies lossy rule reversal
+he's promising,IVa,thuist,True,present_1sg,Ambiguity implies lossy rule reversal
 1. he's preparing it.  2. he's getting ready,IVa,atvnvist,True,present_1sg,Ambiguity implies lossy rule reversal
 he's stopping by (on his way somewhere),IVa,lohist,True,present_1sg,Ambiguity implies lossy rule reversal
+he's taking a break,IVa,yohist,True,present_1sg,Ambiguity implies lossy rule reversal
 he's cooking it (a specific food),IVa,vhnist,True,present_1sg,Ambiguity implies lossy rule reversal
 he/it is stopping,IVa,alehwist,True,present_1sg,Ambiguity implies lossy rule reversal
+he's smelling it  (sniff),IVa,alsvst,True,present_1sg,Ambiguity implies lossy rule reversal
 he's taking off running,IVa,atanawst,True,present_1sg,Ambiguity implies lossy rule reversal
 He's making an X,IVa,atahnawst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he's breaking it up,IVa,yoist,True,present_1sg,Ambiguity implies lossy rule reversal
 he's scheduling time,IVa,svst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he's accusing him,IVa,uhist,True,present_1sg,Ambiguity implies lossy rule reversal
+1. he's setting a goal 2.  he's aiming,IVa,alsost,True,present_1sg,Ambiguity implies lossy rule reversal
 he's sifting it,IVa,vkust,True,present_1sg,Ambiguity implies lossy rule reversal
 he's resting,IVa,atawesolvst,True,present_1sg,Ambiguity implies lossy rule reversal
 he's straining it,IVa,hnvsolvst,True,present_1sg,Ambiguity implies lossy rule reversal
+1. he's making smoke; 2. it's smoking,IVa,khsvst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he's shattering it,IVa,alhkhotht,True,present_1sg,Ambiguity implies lossy rule reversal
 it's becoming crisp,VIa2,stakayvh,True,,
 it's becoming crisp,VIIa2,stakayv,True,,
 it's ripping,IVb,atatsakal,True,,
@@ -225,12 +279,15 @@ he's playing ball,IVb,alaskal,True,present_1sg,Ambiguity implies lossy rule reve
 it's lightning,IVb,nakal,True,,
 it's lightning,IVb*,nakal,True,,
 he's helping him,IVb,stel,True,present_1sg,Ambiguity implies lossy rule reversal
+he's helping,IVb,alstel,True,present_1sg,Ambiguity implies lossy rule reversal
 he wants it,IVb,tul,True,,
+he's shelling corn,IVb*,khthl,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 "1. he's calling him, inviting him. 2. he's receiving, getting him",IVb,hyan,True,present_1sg,Ambiguity implies lossy rule reversal
 he's starting/beginning,IVb,alen,True,,
 it's beginning,IVb,talen,True,,
 he's target practicing,IVb,akon,True,present_1sg,Ambiguity implies lossy rule reversal
 1. he's withdrawing (a motion)  2. he's withdrawing (his candidacy)  3. he's pulling it out (a drawer),IVb*,ases,True,present_1sg,Ambiguity implies lossy rule reversal
+he's finding a flexible object,IVb*,nawhth,True,present_1sg,Ambiguity implies lossy rule reversal
 "he's finding him, it",IVb*,hwahth,True,present_1sg;imperative,Ambiguity implies lossy rule reversal
 he's finding some liquid,IVb*,nehwahth,True,present_1sg,Ambiguity implies lossy rule reversal
 he's finding a long object,IVb*,yvhwahth,True,present_1sg,Ambiguity implies lossy rule reversal
