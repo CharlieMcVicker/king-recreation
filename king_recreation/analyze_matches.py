@@ -206,7 +206,7 @@ def analyze_matches(classes_path=None):
             if s == strictness and row["scope"] in ["full", "reconstructs"]:
                 target_set.add(verb)
 
-        unmatched = sorted(list(all_verbs - target_set))
+        unmatched = list(all_verbs - target_set)
         unmatched_data = []
         for v in unmatched:
             data = {"verb": v}
@@ -214,6 +214,9 @@ def analyze_matches(classes_path=None):
                 for field in form_fields:
                     data[field] = verb_forms_map[v].get(field, "")
             unmatched_data.append(data)
+
+        # Sort by reversed perfective string to group by ending
+        unmatched_data.sort(key=lambda x: x.get("perfective", "")[::-1])
 
         save_csv(
             os.path.join(output_dir, f"unmatched_verbs_{strictness}.csv"),
