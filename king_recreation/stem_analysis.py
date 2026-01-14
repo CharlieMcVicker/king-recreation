@@ -34,7 +34,6 @@ def check_root_consistency(
     Returns (is_consistent, root, mismatch_details).
     """
     forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
-    candidate_data = []  # List of (form, root, depth)
     mismatch_details = []
 
     # Extract metadata for set identification
@@ -55,30 +54,27 @@ def check_root_consistency(
 
     pattern = class_info.get("present", "")
 
+    roots = []
     for stem in stem_grades:
         root = get_root_candidate(stem, pattern)
         if root is None:
             mismatch_details.append(f"{stem}/{pattern} ({'present'}): Suffix mismatch")
             continue
 
-        # Determine truncation depth
-        depth = 0
         if "*" in pattern:
-            depth = 1
+            raise Exception("Did not expect * in present pattern")
         elif "@" in pattern:
-            depth = 2
+            raise Exception("Did not expect @ in present pattern")
 
-        candidate_data.append((root, depth))
+        roots.append(root)
 
-    if not candidate_data:
+    if not roots:
         if mismatch_details:
             return False, None, mismatch_details
         return False, None, ["No forms available to extract root"]
 
-    h_root, h_root_depth = candidate_data[0]
-    g_root, g_root_depth = (
-        candidate_data[1] if len(candidate_data) == 2 else [None, None]
-    )
+    h_root = roots[0]
+    g_root = roots[1] if len(roots) == 2 else None
 
     is_consistent = True
     for fn in forms:
@@ -88,38 +84,28 @@ def check_root_consistency(
 
         use_g = use_glottal_grade(fn, config.pron)
         target_root = g_root if use_g else h_root
-        target_depth = g_root_depth if use_g else h_root_depth
 
         pattern = class_info.get("present" if fn == "present_1sg" else fn, "")
         root_from_stem = get_root_candidate(stem, pattern)
-        # Determine truncation depth
+
+        # Determine truncation depth for pattern
         form_depth = 0
         if "*" in pattern:
             form_depth = 1
         elif "@" in pattern:
             form_depth = 2
 
-        # if the reference has more cut off than the form that is too bad
-        depth_diff = form_depth - target_depth
-        if depth_diff < 0:
-            is_consistent = False
-            mismatch_details.append(f"{fn}: Unexpectedly longer than target")
-            continue
-
         truncated_target = target_root[:-form_depth] if form_depth > 0 else target_root
-        truncated_stem_root = (
-            root_from_stem[:-target_depth] if target_depth > 0 else root_from_stem
-        )
 
-        if truncated_stem_root != truncated_target:
+        if root_from_stem != truncated_target:
             is_consistent = False
-            if depth_diff > 0:
+            if form_depth > 0:
                 mismatch_details.append(
-                    f"{fn}: Truncation mismatch (got '{root}', expected '{truncated_target}' as {depth_diff}-char truncation of '{target_root}')"
+                    f"{fn}: Truncation mismatch (got '{root_from_stem}', expected '{truncated_target}' as {form_depth}-char truncation of '{target_root}')"
                 )
             else:
                 mismatch_details.append(
-                    f"{fn}: Root mismatch (got '{root}', expected '{truncated_target}')"
+                    f"{fn}: Root mismatch (got '{root_from_stem}', expected '{truncated_target}')"
                 )
 
     if is_consistent:
