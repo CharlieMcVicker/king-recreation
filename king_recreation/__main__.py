@@ -17,11 +17,11 @@ def main():
     print("\n[1/6] Preprocessing CED Data...")
     process_ced()
 
-    print("\n[2/6] Deriving Stems and Pronominal Patterns...")
-    derive_stems()
-
-    print("\n[3/6] Classifying Verbs...")
+    print("\n[2/6] Classifying Verbs and Stripping Endings...")
     classify_verbs(args.classes)
+
+    print("\n[3/6] Deriving Roots from Stripped Corpus...")
+    derive_stems()
 
     print("\n[4/6] Analyzing Matches...")
     analyze_matches(args.classes)

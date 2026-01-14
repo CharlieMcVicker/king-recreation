@@ -1,6 +1,5 @@
 import csv
 import os
-from king_recreation.stem_analysis import check_root_consistency
 
 
 def normalize(s):
@@ -121,12 +120,6 @@ def get_matches_for_verb(verb, classes):
                 if all_sf_match:
                     scope = "full"
 
-                    # New: Check for Root Consistency -> 'reconstructs'
-                    if is_strict_bool:
-                        consistent, root, details = check_root_consistency(verb, cls)
-                        if consistent:
-                            scope = "reconstructs"
-
                 matches.append(
                     {
                         "definition": definition,
@@ -143,11 +136,14 @@ def classify_verbs(classes_path=None):
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     if classes_path is None:
         classes_path = os.path.join(base_dir, "data", "king_classes.csv")
-    corpus_path = os.path.join(base_dir, "artifacts", "data", "stem_corpus.csv")
-    output_path = os.path.join(base_dir, "artifacts", "data", "matches.csv")
+    corpus_path = os.path.join(base_dir, "artifacts", "data", "corpus.csv")
+    matches_path = os.path.join(base_dir, "artifacts", "data", "matches_initial.csv")
+    stripped_path = os.path.join(
+        base_dir, "artifacts", "data", "endings_stripped_corpus.csv"
+    )
 
     if not os.path.exists(corpus_path):
-        print(f"Error: {corpus_path} not found. Ensure stem derivation is run first.")
+        print(f"Error: {corpus_path} not found.")
         return
 
     # Load classes
@@ -157,17 +153,97 @@ def classify_verbs(classes_path=None):
         for row in reader:
             classes.append(row)
 
-    # Load stem corpus
-    verbs = []
+    # Load raw corpus
+    corpus_rows = []
     with open(corpus_path, mode="r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            verbs.append(row)
+            corpus_rows.append(row)
 
     matches_data = []
 
-    for verb in verbs:
-        matches_data.extend(get_matches_for_verb(verb, classes))
+    matches_data = []
+    stripped_corpus_data = []
+
+    for verb in corpus_rows:
+        matches = get_matches_for_verb(verb, classes)
+        matches_data.extend(matches)
+
+        # Identify candidates for stripping
+        # We include any match that satisfies strictly the ENDING requirement (scope >= ending)
+        # We only care about Strict matches for now for derivation? User prompt: "matches at the endings and full level"
+        # Let's include strict ending matches.
+
+        seen_class_def = set()
+
+        for m in matches:
+            if m["strictness"] == "strict" and m["scope"] in [
+                "ending",
+                "full",
+                "reconstructs",
+            ]:
+                # Create stripped row
+                key = (m["definition"], m["class"])
+                if key in seen_class_def:
+                    continue
+                seen_class_def.add(key)
+
+                cls_info = next((c for c in classes if c["class"] == m["class"]), None)
+                if not cls_info:
+                    continue
+
+                stripped_row = {
+                    "definition": m["definition"],
+                    "class": m["class"],
+                    # Pre-populate empty stems
+                    "present": "",
+                    "present_1sg": "",
+                    "imperfective": "",
+                    "perfective": "",
+                    "imperative": "",
+                    "infinitive": "",
+                }
+
+                # Strip suffixes
+                forms = [
+                    "present",
+                    "present_1sg",
+                    "imperfective",
+                    "perfective",
+                    "imperative",
+                    "infinitive",
+                ]
+                for fn in forms:
+                    # Input is raw corpus, so we look up in `verb` (the corpus row)
+                    # Note: corpus.csv might not have present_1sg if not in original data?
+                    # corpus.csv has specific columns. `get_matches_for_verb` uses ["present", "imperfective", "perfective", "imperative", "infinitive"]
+                    # If present_1sg is in corpus, we use it. If not, it's fine.
+
+                    form_val = verb.get(fn)
+                    if not form_val:
+                        continue
+
+                    # Get pattern from class
+                    # Fallback for present_1sg -> present if not in class (standard behavior)
+                    cls_pattern = cls_info.get(fn)
+                    if fn == "present_1sg" and not cls_pattern:
+                        cls_pattern = cls_info.get("present")
+
+                    if cls_pattern is None:
+                        cls_pattern = ""
+
+                    # Strip Literal Suffix
+                    literal_suffix = cls_pattern.replace("*", "").replace("@", "")
+
+                    if form_val.endswith(literal_suffix):
+                        stripped_stem = (
+                            form_val[: -len(literal_suffix)]
+                            if literal_suffix
+                            else form_val
+                        )
+                        stripped_row[fn] = stripped_stem
+
+                stripped_corpus_data.append(stripped_row)
 
     fieldnames = [
         "definition",
@@ -181,12 +257,22 @@ def classify_verbs(classes_path=None):
         "stem_final_match_infinitive",
     ]
 
-    with open(output_path, mode="w", encoding="utf-8", newline="") as f:
+    with open(matches_path, mode="w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(matches_data)
 
-    print(f"Matches written to {output_path}")
+    if stripped_corpus_data:
+        # Determine all keys dynamically or fixed
+        keys = list(stripped_corpus_data[0].keys())
+        # Ensure all form columns present
+        with open(stripped_path, mode="w", encoding="utf-8", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=keys)
+            writer.writeheader()
+            writer.writerows(stripped_corpus_data)
+
+    print(f"Matches written to {matches_path}")
+    print(f"Endings Stripped Corpus written to {stripped_path}")
 
 
 if __name__ == "__main__":

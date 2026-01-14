@@ -154,8 +154,8 @@ def stems_are_consistent(
     # check that h and g grades are consistent within grades
     passing = True
     for fn, s in derived_stems.items():
-        if use_glottal_grade(fn, pron_config):
-            check = is_loose_compatible(s, g_candidate)
+        if use_glottal_grade(fn, pron_config) and g_candidate:
+            check = is_strict_compatible(s, g_candidate)
             passing &= check
             if log:
                 print("g grade, loose", fn, s, g_candidate, check)
@@ -259,8 +259,10 @@ class StemDeriver:
 
 def main():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    input_path = os.path.join(base_dir, "artifacts", "data", "corpus.csv")
-    output_path = os.path.join(base_dir, "artifacts", "data", "stem_corpus.csv")
+    input_path = os.path.join(
+        base_dir, "artifacts", "data", "endings_stripped_corpus.csv"
+    )
+    output_path = os.path.join(base_dir, "artifacts", "data", "derived_roots.csv")
     failures_path = os.path.join(
         base_dir, "artifacts", "reports", "stem_derivation_failures.csv"
     )
@@ -277,7 +279,7 @@ def main():
                 d = derivations[0]
                 for fn, stem in d.stems.items():
                     row[fn] = stem
-                row["consensus_stem"] = d.consensus_stem
+                row["consensus_root"] = d.consensus_stem
                 row["set_a_b"] = d.pron_config.set_type
                 row["translocutive"] = str(d.pre_config.translocutive)
                 row["partitive"] = str(d.pre_config.partitive)

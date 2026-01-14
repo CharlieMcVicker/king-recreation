@@ -120,21 +120,30 @@ class ReconstructionEngine:
 
 def main(classes_path=None):
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    stem_corpus_path = os.path.join(base_dir, "artifacts", "data", "stem_corpus.csv")
+    derived_roots_path = os.path.join(
+        base_dir, "artifacts", "data", "derived_roots.csv"
+    )
     corpus_path = os.path.join(base_dir, "artifacts", "data", "corpus.csv")
     if classes_path is None:
         king_classes_path = os.path.join(base_dir, "data", "king_classes.csv")
     else:
         king_classes_path = classes_path
-    matches_path = os.path.join(base_dir, "artifacts", "data", "matches.csv")
+
+    # We output valid matches here
+    matches_output_path = os.path.join(
+        base_dir, "artifacts", "data", "matches_validated.csv"
+    )
 
     engine = ReconstructionEngine(king_classes_path)
 
-    # Load Stem Corpus
-    stem_corpus_map = {}
-    with open(stem_corpus_path, "r", encoding="utf-8") as f:
-        for row in csv.DictReader(f):
-            stem_corpus_map[row["definition"]] = row
+    # Load Derived Roots
+    derived_roots = []
+    if os.path.exists(derived_roots_path):
+        with open(derived_roots_path, "r", encoding="utf-8") as f:
+            derived_roots = list(csv.DictReader(f))
+    else:
+        print(f"Error: {derived_roots_path} not found.")
+        return
 
     # Load raw Corpus
     full_corpus_map = {}
@@ -142,123 +151,45 @@ def main(classes_path=None):
         for row in csv.DictReader(f):
             full_corpus_map[row["definition"]] = row
 
-    # Load Matches
-    matches = []
-    if os.path.exists(matches_path):
-        with open(matches_path, "r", encoding="utf-8") as f:
-            matches = list(csv.DictReader(f))
-
     reconstructible_verbs: list[ReconstructibleVerb] = []
     consistency_analysis = []
     forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
 
-    # Filter for 'reconstructs' scope matches (strictly)
-    reconstruct_matches = [
-        m
-        for m in matches
-        if m["scope"] == "reconstructs" and m["strictness"] == "strict"
-    ]
+    for stem_row in derived_roots:
+        definition = stem_row["definition"]
+        cls_name = stem_row["class"]
 
-    # Updated Loop: Iterate all stem_corpus entries that are fully populated (roughly)
-    # Actually, we should stick to iterating matches that were deemed 'reconstructs' -> 'strict' to keep the pipeline stable,
-    # OR better yet, iterate all stem_corpus rows and see if they can form a ReconstructibleVerb.
-    # The original code filtered by matches.csv ('reconstructs').
-    # Let's keep that filter for now to avoid processing garbage, but we must update the consistency logic.
+        # In derived_roots context, the columns like 'present', 'present_1sg' are already stripped roots
+        h_root = stem_row.get("consensus_root")
+        if not h_root:
+            # Fallback if consensus_root not written (e.g. absent from row? derived_stems writes it)
+            h_root = stem_row.get("present")
 
-    for match in reconstruct_matches:
-        definition = match["definition"]
-        cls_name = match["class"]
-        stem_row = stem_corpus_map.get(definition)
-        if not stem_row:
-            continue
-
-        class_info = engine.king_classes[cls_name]
-
-        # 1. Extract Roots
-        # h-grade: derived from 'present' (3rd person)
-        root_h_candidate = get_root_candidate(
-            stem_row.get("present", ""), class_info.get("present", "")
-        )
-
-        # glottal-grade: derived from 'present_1sg'
-        # Default to 'present' pattern if 'present_1sg' not specified in class
-        pat_1sg = class_info.get("present_1sg") or class_info.get("present", "")
-        root_glottal_candidate = get_root_candidate(
-            stem_row.get("present_1sg", ""), pat_1sg
-        )
-
-        # Determine strictness of glottal grade availability
         config = VerbConfig.from_row(stem_row)
 
-        # Glottal grade is needed/visible if:
-        # 1. Set A (1sg is Set A)
-        # 2. To 3rd (1sg is 1->3)
-        # Note: Set B 1sg uses aki- (h-grade equivalent behavior in terms of root? No, Set B is h-grade usually).
-        # Spec: "h if set B, glottal if Set A or to third person" for present_1sg.
+        # Glottal root: If 1sg is glottal (Set A), use the derived 1sg root.
+        glottal_root = None
+        if use_glottal_grade("present_1sg", config.pron):
+            glottal_root = stem_row.get("present_1sg")
 
-        h_root = root_h_candidate
-        glottal_root = (
-            root_glottal_candidate
-            if use_glottal_grade("present_1sg", config.pron)
-            else None
+        # Optional: We could re-verify consistency here, but derive_stems checks it.
+        # We assume if it's in derived_roots, it passed basic consistency.
+
+        verb = ReconstructibleVerb(
+            definition=definition,
+            h_grade_root=h_root,
+            glottal_grade_root=glottal_root,
+            class_name=cls_name,
+            config=config,
+            original_stems={
+                fn: stem_row.get(fn, "") for fn in forms
+            },  # These are roots now
         )
+        reconstructible_verbs.append(verb)
 
-        # If we expect a glottal root (Set A) but don't have one (present_1sg missing), we might have an issue.
-        # But stick to data availability.
-
-        # 2. Check Consistency (H-dropping check)
-        is_consistent = True
-        mismatch_details = []
-
-        if not h_root:
-            is_consistent = False
-            mismatch_details.append("Missing h-grade root (present)")
-
-        if is_consistent and glottal_root:
-            if not grades_are_compatible(h=h_root, glottal=glottal_root):
-                # "Expect some forms to have diverging... which fail this check." -> But for now let's mark inconsistent?
-                # User said: "flag forms for which derivation is possible but... dont match".
-                # User also said: "make it blocking eventually." -> "flag mismatches in report"
-                # Let's mark is_consistent = False for the REPORT, but maybe still allow reconstruction if roots are present?
-                # Spec says: "Forms will then be checked against the matching grade root".
-                # If we mark it inconsistent, does it stop reconstruction?
-                # Previous code: `if consistent: ... reconstructible_verbs.append(...)`
-                # So yes, it blocks reconstruction in this pipeline.
-
-                # Check for "vacuous" match?
-                # If h_root has no h? "ali" -> "ali" == "ali".
-                # If mismatch:
-                is_consistent = False
-                mismatch_details.append(
-                    f"Grade Mismatch: h-grade '{h_root}' != glottal-grade '{glottal_root}'"
-                )
-
-        analysis_row = {
-            "definition": definition,
-            "assigned_class": cls_name,
-            "is_consistent": is_consistent,
-            "mismatch_details": "; ".join(mismatch_details),
-        }
-        for fn in forms:
-            analysis_row[f"root_{fn}"] = (
-                get_root_candidate(stem_row.get(fn, ""), class_info.get(fn, "")) or ""
-            )
-        consistency_analysis.append(analysis_row)
-
-        if is_consistent:
-            from king_recreation.phonology_data import StemType, MetathesisStrategy
-
-            verb = ReconstructibleVerb(
-                definition=definition,
-                h_grade_root=h_root,
-                glottal_grade_root=glottal_root,
-                class_name=cls_name,
-                config=VerbConfig.from_row(stem_row),
-                original_stems={fn: stem_row[fn] for fn in forms},
-            )
-            reconstructible_verbs.append(verb)
-
-    print(f"Found {len(reconstructible_verbs)} reconstructible verbs.")
+    print(
+        f"Found {len(reconstructible_verbs)} reconstructible candidates from derived roots."
+    )
 
     # Validation Phase
     success_count = 0
@@ -335,6 +266,28 @@ def main(classes_path=None):
         writer = csv.DictWriter(f, fieldnames=analysis_fields)
         writer.writeheader()
         writer.writerows(consistency_analysis)
+
+    # Save Matches Validated
+    validated_matches_data = []
+    for d in report_data:
+        if d["success"]:
+            validated_matches_data.append(
+                {
+                    "definition": d["definition"],
+                    "class": d["class"],
+                    "strictness": "strict",
+                    "scope": "reconstructs",
+                    # Include stem finals? We don't have them handy in report_data, but could pass through.
+                    # For now simple schema is fine.
+                }
+            )
+
+    if validated_matches_data:
+        keys = ["definition", "class", "strictness", "scope"]
+        with open(matches_output_path, "w", encoding="utf-8", newline="") as f:
+            writer = csv.DictWriter(f, fieldnames=keys)
+            writer.writeheader()
+            writer.writerows(validated_matches_data)
 
     # Save Reconstruction Report
     with open(report_path, "w", encoding="utf-8", newline="") as f:
