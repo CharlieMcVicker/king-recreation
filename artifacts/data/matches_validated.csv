@@ -142,6 +142,9 @@ he's tired,VIIIa*,strict,reconstructs
 he's taking it somewhere by hand,Xa1*,strict,reconstructs
 it (forest or grass) is burning,VIIIa,strict,reconstructs
 it (forest or grass) is burning,VIIIa*,strict,reconstructs
+it (forest or grass) is burning,quitting,strict,reconstructs
+he's quitting,quitting,strict,reconstructs
+he's exiting,quitting,strict,reconstructs
 "it (animal, plant) is dying",VIIIa*,strict,reconstructs
 1. it's breaking  2. he's becoming spoiled,VIIIa*,strict,reconstructs
 "he's accepting him, it",VIIIa*,strict,reconstructs
@@ -163,7 +166,9 @@ it (wind) is blowing,IIIa1,strict,reconstructs
 "he's attaching it (flexible), behind it",IIIa1*,strict,reconstructs
 he's stepping on him/it,IIIa1**,strict,reconstructs
 he's hitting him on the nose,IIIa2,strict,reconstructs
+"he, it's burning",terminative,strict,reconstructs
 "he's sending, taking it (liquid)",IIIa2,strict,reconstructs
+"1. he's asking him a question., 2. he's asking a question",episodic1,strict,reconstructs
 he's hiring him,IIIa1**,strict,reconstructs
 he's sandwiching it,IIIa2*,strict,reconstructs
 1. he's covering it 2. he's putting a lid on it,IIIa1**,strict,reconstructs
@@ -175,6 +180,8 @@ he's sandwiching it,IIIa2*,strict,reconstructs
 he's breaking a long object,IIId*,strict,reconstructs
 he's falling from an elevated position,IIIc1,strict,reconstructs
 he's falling from an elevated position,IIIc1*,strict,reconstructs
+he's nodding his head,pushing,strict,reconstructs
+he's splitting it,pushing,strict,reconstructs
 he's setting a trap,IIIa1**,strict,reconstructs
 1. he's bending it  2. she's hemming it,IIIa1**,strict,reconstructs
 "1. he's hitching him, it up 2. he's hooking it up 3. he's plugging it in",IIIa1**,strict,reconstructs
@@ -209,6 +216,12 @@ it's melting,IIIc1*,strict,reconstructs
 "he's dying, (human)",IIIc1*,strict,reconstructs
 he's ascending an incline,IIIc1,strict,reconstructs
 he's ascending an incline,IIIc1*,strict,reconstructs
+it's shattering,act_like,strict,reconstructs
+it's shattering,dressing_up,strict,reconstructs
+he's acting like him,act_like,strict,reconstructs
+it's blooming,act_like,strict,reconstructs
+he's dressing up,dressing_up,strict,reconstructs
+"he's wrapping him, it",dressing_up,strict,reconstructs
 he's burning,IIIc1,strict,reconstructs
 he's burning,IIIc1*,strict,reconstructs
 he's sewing it,IIId*,strict,reconstructs
@@ -222,11 +235,17 @@ he's releasing him,IIIc1*,strict,reconstructs
 "He's releasing it, (voluntarily)",IIIc1*,strict,reconstructs
 he's giving up,IIIc1,strict,reconstructs
 he's giving up,IIIc1*,strict,reconstructs
+"he, it's howling, screaming, yelling, etc",yell,strict,reconstructs
 he's being born,IIIa2,strict,reconstructs
 he's standing in a certain spot,IIIa2,strict,reconstructs
 he's getting up (from sitting or from involuntarily assumed prone position),IIIa2,strict,reconstructs
 he's putting it in water,IIIa2,strict,reconstructs
 he's hitting him on the eye,IIIa2,strict,reconstructs
+"he, it's moving (without changing location)",episodic1,strict,reconstructs
+he's shopping,episodic2,strict,reconstructs
+he's shopping,yell,strict,reconstructs
+he's eating a meal,episodic1,strict,reconstructs
+"he, it's destroying it",terminative,strict,reconstructs
 he's fishing,IIIa2,strict,reconstructs
 he's putting it in a hole or a container,IIIa2*,strict,reconstructs
 he's hiding it,IIIa2*,strict,reconstructs
@@ -260,6 +279,7 @@ it's leaking,IIIc2,strict,reconstructs
 it's leaking,IIId*,strict,reconstructs
 a long object is falling from an upright position,IIIc1,strict,reconstructs
 a long object is falling from an upright position,IIIc1*,strict,reconstructs
+she's cooking a meal,episodic1,strict,reconstructs
 he's putting a flexible object in a hole or in a container,IIIa1**,strict,reconstructs
 he's quilting it,IIIa2*,strict,reconstructs
 "he's crossing (a road, bridge, etc.)",IIIc1,strict,reconstructs
@@ -279,6 +299,7 @@ he's giving him a flexible object,XIa*,strict,reconstructs
 "he's fanning him, it",IIb*,strict,reconstructs
 he's fanning himself,IIb*,strict,reconstructs
 he's stirring it,IIb*,strict,reconstructs
+he's saying it,silly,strict,reconstructs
 he's riding it (anything that can be straddled),IVa,strict,reconstructs
 "he's running over him, it",IVa,strict,reconstructs
 he's bouncing it,IVa,strict,reconstructs
@@ -308,6 +329,10 @@ he's holding his breath,IVa,strict,reconstructs
 "1. he's breaking it., 2. he's spoiling him",IVa,strict,reconstructs
 he's making him angry,IVa,strict,reconstructs
 he's vomiting,IVa,strict,reconstructs
+he hates him,hate,strict,reconstructs
+he's braiding it,twist,strict,reconstructs
+he's looking for it (inanimate),finding,strict,reconstructs
+he's afraid,scared,strict,reconstructs
 he's looking after him,IXa,strict,reconstructs
 "he's handling it, he has it in his hand",IXa,strict,reconstructs
 he's visiting him,IXa,strict,reconstructs
@@ -331,6 +356,7 @@ he's saying to him,XIa*,strict,reconstructs
 "he's over-taking him, it",XIa*,strict,reconstructs
 he's losing it,XIa*,strict,reconstructs
 he's thinking,IIc*,strict,reconstructs
+"he's trimming it, (boy's hair, grass, hedge, but not paper, cloth)",wash_hair,strict,reconstructs
 he's prying it,IVb,strict,reconstructs
 he's placing a long object in an upright position,IVa,strict,reconstructs
 1. he's helping him up 2. he's standing it up (object with legs),IVa,strict,reconstructs
@@ -357,6 +383,7 @@ he's deciding,IVa,strict,reconstructs
 he's snorting,IVa,strict,reconstructs
 "he's including him, it (in counting)",IVa,strict,reconstructs
 he's promising,IVa,strict,reconstructs
+he's mentioning it,IVa*,strict,reconstructs
 1. he's preparing it.  2. he's getting ready,IVa,strict,reconstructs
 "1. he's raising him, it., 2. he's growing it., (plant)",IVa,strict,reconstructs
 he's stopping by (on his way somewhere),IVa,strict,reconstructs
@@ -378,9 +405,19 @@ he's sifting it,IVa,strict,reconstructs
 he's resting,IVa,strict,reconstructs
 he's straining it,IVa,strict,reconstructs
 1. he's making smoke; 2. it's smoking,IVa,strict,reconstructs
+"he's making him, it fly",IVa*,strict,reconstructs
 he's shattering it,IVa,strict,reconstructs
+"he's counting it, them",losing_way,strict,reconstructs
+he's putting on a belt,losing_way,strict,reconstructs
+he's strapping it,losing_way,strict,reconstructs
+1. he's tying up a leg 2. he's applying a break,losing_way,strict,reconstructs
 it's becoming crisp,VIIa1,strict,reconstructs
 it's becoming crisp,VIIa2,strict,reconstructs
+it's becoming crisp,losing_way,strict,reconstructs
+"he's rolling him, it",losing_way,strict,reconstructs
+he's tying it,losing_way,strict,reconstructs
+he's wrestling,losing_way,strict,reconstructs
+he's arguing,losing_way,strict,reconstructs
 it's ripping,IVb,strict,reconstructs
 he's ripping it,IVb,strict,reconstructs
 "he's cleaning him, it",IVb,strict,reconstructs
@@ -391,6 +428,7 @@ it's lightning,IVb,strict,reconstructs
 it's lightning,IVb*,strict,reconstructs
 he's helping him,IVb,strict,reconstructs
 he's helping,IVb,strict,reconstructs
+he's acting silly,silly,strict,reconstructs
 he wants it,IVb,strict,reconstructs
 he's shelling corn,IVb*,strict,reconstructs
 "1. he's calling him, inviting him. 2. he's receiving, getting him",IVb,strict,reconstructs
@@ -398,8 +436,10 @@ he's starting/beginning,IVb,strict,reconstructs
 it's beginning,IVb,strict,reconstructs
 he's target practicing,IVb,strict,reconstructs
 he's spanking him,VIa1,strict,reconstructs
+he's shaking his head,shake_head,strict,reconstructs
 1. he's withdrawing (a motion)  2. he's withdrawing (his candidacy)  3. he's pulling it out (a drawer),IVb*,strict,reconstructs
 he's finding a flexible object,IVb*,strict,reconstructs
+"he's stabbing him, it",hate,strict,reconstructs
 "he's finding him, it",IVb*,strict,reconstructs
 he's finding some liquid,IVb*,strict,reconstructs
 he's finding a long object,IVb*,strict,reconstructs
@@ -408,10 +448,15 @@ he's having a birthday,IVb,strict,reconstructs
 he's paying,IVb,strict,reconstructs
 1. he's catching him 2. he's arresting him 3. he's playing catcher,IVb,strict,reconstructs
 he's untying it,IVb*,strict,reconstructs
+it's twisting,twist,strict,reconstructs
+he's looking for him,finding,strict,reconstructs
+he's building a fence,finding,strict,reconstructs
 he's cheating,IIc*,strict,reconstructs
 he's taking a long object out of a container,IVb,strict,reconstructs
 he's drawing a liquid out of a container,IVb*,strict,reconstructs
+he's washing his hair,wash_hair,strict,reconstructs
 he's taking it somewhere,IVb,strict,reconstructs
+he's losing his way,losing_way,strict,reconstructs
 he's choking him,IVb,strict,reconstructs
 "1. he's walking around., 2. he's here",IXa,strict,reconstructs
 he's tossing about,IXa,strict,reconstructs

@@ -1,5 +1,5 @@
 {
-    "summary": "417/654",
+    "summary": "462/853",
     "failures": [
         {
             "definition": "he thinks so",
@@ -9,11 +9,68 @@
             "class": "Vb*"
         },
         {
+            "definition": "he's learning, he's learning it",
+            "failed_forms": [
+                "perfective: expected 'utelhohkwa', got {'utelhohkw'}",
+                "infinitive: expected 'utelhohkwast', got {'utelhohkwst'}"
+            ],
+            "class": "scatter"
+        },
+        {
+            "definition": "he's leaving it behind",
+            "failed_forms": [
+                "infinitive: expected 'uhiyast', got {'uhiyst'}"
+            ],
+            "class": "scatter"
+        },
+        {
+            "definition": "he's leaving a living thing behind",
+            "failed_forms": [
+                "infinitive: expected 'uwakhahiyast', got {'uwakhahiyst'}"
+            ],
+            "class": "scatter"
+        },
+        {
+            "definition": "he's leaving it (flexible)",
+            "failed_forms": [
+                "infinitive: expected 'uniyast', got {'uniyst'}"
+            ],
+            "class": "scatter"
+        },
+        {
+            "definition": "he's leaving a long object behind",
+            "failed_forms": [
+                "infinitive: expected 'utisiyast', got {'utisiyst'}"
+            ],
+            "class": "scatter"
+        },
+        {
+            "definition": "he's scattering it",
+            "failed_forms": [
+                "infinitive: expected 'utikaleyast', got {'utikaleyst'}"
+            ],
+            "class": "scatter"
+        },
+        {
+            "definition": "1. he's racing 2. he's running for office",
+            "failed_forms": [
+                "infinitive: expected 'uthohkiyast', got {'uthohkiyst'}"
+            ],
+            "class": "scatter"
+        },
+        {
             "definition": "he's pouring liquid from a container",
             "failed_forms": [
                 "imperative: expected 'hitlika', got {'hitla'}"
             ],
             "class": "Vb*"
+        },
+        {
+            "definition": "he's leaving some liquid",
+            "failed_forms": [
+                "infinitive: expected 'unehiyast', got {'unehiyst'}"
+            ],
+            "class": "scatter"
         },
         {
             "definition": "1. he's imitating him, it 2. he's mocking him",
@@ -23,11 +80,33 @@
             "class": "Vb*"
         },
         {
+            "definition": "he, it's going out of sight",
+            "failed_forms": [
+                "imperative: expected 'witsateliki', got {'witsatelii', 'wtsatelii'}"
+            ],
+            "class": "quitting"
+        },
+        {
+            "definition": "he's reprimanding him",
+            "failed_forms": [
+                "imperative: expected 'hiskaki', got {'hiskai'}"
+            ],
+            "class": "quitting"
+        },
+        {
             "definition": "he's becoming blind",
             "failed_forms": [
-                "infinitive: expected 'tsukhewaist', got {'tiukhewast', 'tsukhewast', 'tukhewast'}"
+                "infinitive: expected 'tsukhewaist', got {'tsukhewast', 'tiukhewast', 'tukhewast'}"
             ],
             "class": "VIIIa*"
+        },
+        {
+            "definition": "he's becoming blind",
+            "failed_forms": [
+                "imperative: expected 'thikhewaki', got {'tshikhewai', 'thikhewai', 'tihikhewai'}",
+                "infinitive: expected 'tsukhewaist', got {'tsukhewast', 'tiukhewast', 'tukhewast'}"
+            ],
+            "class": "quitting"
         },
         {
             "definition": "he's belching, burping",
@@ -37,11 +116,40 @@
             "class": "VIIIa*"
         },
         {
+            "definition": "he's belching, burping",
+            "failed_forms": [
+                "imperative: expected 'tsakhuleki', got {'tsakhulei'}",
+                "infinitive: expected 'uwakhuleist', got {'uwakhulest'}"
+            ],
+            "class": "quitting"
+        },
+        {
+            "definition": "he's happy/thankful",
+            "failed_forms": [
+                "imperative: expected 'haliheliki', got {'halihelii'}"
+            ],
+            "class": "quitting"
+        },
+        {
+            "definition": "he's pitying him",
+            "failed_forms": [
+                "imperative: expected 'hiyatoliki', got {'hiyatolii'}"
+            ],
+            "class": "quitting"
+        },
+        {
             "definition": "1. it's pouring into a container (liquid), 2. it's filling",
             "failed_forms": [
                 "infinitive: expected 'utliyst', got {'utlist'}"
             ],
             "class": "VIIIa*"
+        },
+        {
+            "definition": "1. it's pouring into a container (liquid), 2. it's filling",
+            "failed_forms": [
+                "infinitive: expected 'utliyst', got {'utlist'}"
+            ],
+            "class": "quitting"
         },
         {
             "definition": "1. it's getting shorter 2. he's getting short on",
@@ -51,11 +159,54 @@
             "class": "VIIIa*"
         },
         {
+            "definition": "1. it's getting shorter 2. he's getting short on",
+            "failed_forms": [
+                "imperative: expected 'hiskwaloki', got {'hiskwaloi'}",
+                "infinitive: expected 'uskwaloyst', got {'uskwalost'}"
+            ],
+            "class": "quitting"
+        },
+        {
+            "definition": "1. it's lacking 2. it's missing",
+            "failed_forms": [
+                "imperative: expected 'hiluloki', got {'hiluloi'}"
+            ],
+            "class": "quitting"
+        },
+        {
+            "definition": "he's cold",
+            "failed_forms": [
+                "imperative: expected 'hinhawoki', got {'hinhawoi'}"
+            ],
+            "class": "quitting"
+        },
+        {
             "definition": "it's scattering",
             "failed_forms": [
                 "infinitive: expected 'utikaleyoyst', got {'utikaleyost'}"
             ],
             "class": "VIIIa*"
+        },
+        {
+            "definition": "it's scattering",
+            "failed_forms": [
+                "infinitive: expected 'utikaleyoyst', got {'utikaleyost'}"
+            ],
+            "class": "quitting"
+        },
+        {
+            "definition": "he's in agony, pain",
+            "failed_forms": [
+                "imperative: expected 'hikilhiyoki', got {'hikilhiyoi'}"
+            ],
+            "class": "quitting"
+        },
+        {
+            "definition": "he's late",
+            "failed_forms": [
+                "imperative: expected 'tsakonhiyoki', got {'tsakonhiyoi'}"
+            ],
+            "class": "quitting"
         },
         {
             "definition": "he's becoming angry",
@@ -65,11 +216,26 @@
             "class": "VIIIa*"
         },
         {
+            "definition": "he's becoming angry",
+            "failed_forms": [
+                "imperative: expected 'tshanalvki', got {'tshanalvi'}",
+                "infinitive: expected 'unhalvist', got {'unhalvst'}"
+            ],
+            "class": "quitting"
+        },
+        {
             "definition": "it's fading",
             "failed_forms": [
                 "infinitive: expected 'uskolvyst', got {'uskolvst'}"
             ],
             "class": "VIIIa*"
+        },
+        {
+            "definition": "it's fading",
+            "failed_forms": [
+                "infinitive: expected 'uskolvyst', got {'uskolvst'}"
+            ],
+            "class": "quitting"
         },
         {
             "definition": "he's committing a crime, sin",
@@ -79,11 +245,34 @@
             "class": "VIIIa*"
         },
         {
+            "definition": "he's committing a crime, sin",
+            "failed_forms": [
+                "imperative: expected 'hiskanvki', got {'hiskanvi'}",
+                "infinitive: expected 'uskanvyst', got {'uskanvst'}"
+            ],
+            "class": "quitting"
+        },
+        {
+            "definition": "he smells it",
+            "failed_forms": [
+                "imperative: expected 'tsawsvki', got {'tsawsvi'}"
+            ],
+            "class": "quitting"
+        },
+        {
             "definition": "1. he, it's sinking  2. he, it is being buried",
             "failed_forms": [
                 "infinitive: expected 'unoyvist', got {'unoyvst'}"
             ],
             "class": "VIIIa*"
+        },
+        {
+            "definition": "1. he, it's sinking  2. he, it is being buried",
+            "failed_forms": [
+                "imperative: expected 'hinoyvki', got {'hinoyvi'}",
+                "infinitive: expected 'unoyvist', got {'unoyvst'}"
+            ],
+            "class": "quitting"
         },
         {
             "definition": "he's whistling",
@@ -93,11 +282,27 @@
             "class": "VIIIa*"
         },
         {
+            "definition": "he's whistling",
+            "failed_forms": [
+                "imperative: expected 'hisvnhki', got {'hisvnhi'}",
+                "infinitive: expected 'uwasvnst', got {'uwasvnhst'}"
+            ],
+            "class": "quitting"
+        },
+        {
             "definition": "he's arriving",
             "failed_forms": [
                 "infinitive: expected 'uluhist', got {'uluhst'}"
             ],
             "class": "VIIIa*"
+        },
+        {
+            "definition": "he's arriving",
+            "failed_forms": [
+                "imperative: expected 'hiluhki', got {'hiluhi'}",
+                "infinitive: expected 'uluhist', got {'uluhst'}"
+            ],
+            "class": "quitting"
         },
         {
             "definition": "he's recognizing him",
@@ -107,11 +312,27 @@
             "class": "VIIIa*"
         },
         {
+            "definition": "he's recognizing him",
+            "failed_forms": [
+                "imperative: expected 'hiyoliki', got {'hiyolii'}",
+                "infinitive: expected 'uwolhist', got {'uwolhst'}"
+            ],
+            "class": "quitting"
+        },
+        {
             "definition": "he understands it",
             "failed_forms": [
                 "infinitive: expected 'uwolhist', got {'uwolhst'}"
             ],
             "class": "VIIIa*"
+        },
+        {
+            "definition": "he understands it",
+            "failed_forms": [
+                "imperative: expected 'holhki', got {'holhi'}",
+                "infinitive: expected 'uwolhist', got {'uwolhst'}"
+            ],
+            "class": "quitting"
         },
         {
             "definition": "he's parting with him (in death)",
@@ -121,11 +342,41 @@
             "class": "VIIIa*"
         },
         {
+            "definition": "he's parting with him (in death)",
+            "failed_forms": [
+                "imperative: expected 'hiyvteki', got {'hiyvtei'}",
+                "infinitive: expected 'uwhteist', got {'uwhtest'}"
+            ],
+            "class": "quitting"
+        },
+        {
             "definition": "he's taking revenge",
             "failed_forms": [
                 "infinitive: expected 'utleist', got {'utlest'}"
             ],
             "class": "VIIIa*"
+        },
+        {
+            "definition": "he's taking revenge",
+            "failed_forms": [
+                "imperative: expected 'tsatleki', got {'tsatlei'}",
+                "infinitive: expected 'utleist', got {'utlest'}"
+            ],
+            "class": "quitting"
+        },
+        {
+            "definition": "1. he's speaking  2. he's answering",
+            "failed_forms": [
+                "imperative: expected 'hinheki', got {'hinhei'}"
+            ],
+            "class": "quitting"
+        },
+        {
+            "definition": "he's tired",
+            "failed_forms": [
+                "imperative: expected 'titsayaweki', got {'titsayawei', 'tstsayawei', 'ttsayawei'}"
+            ],
+            "class": "quitting"
         },
         {
             "definition": "he's waking up",
@@ -135,11 +386,27 @@
             "class": "VIIIa*"
         },
         {
+            "definition": "he's waking up",
+            "failed_forms": [
+                "imperative: expected 'hiyeki', got {'hiyei'}",
+                "infinitive: expected 'uyeist', got {'uyest'}"
+            ],
+            "class": "quitting"
+        },
+        {
             "definition": "he's crossing it (a body of water)",
             "failed_forms": [
-                "infinitive: expected 'tsuwasohist', got {'tuwasohst', 'tsuwasohst', 'tiuwasohst'}"
+                "infinitive: expected 'tsuwasohist', got {'tiuwasohst', 'tuwasohst', 'tsuwasohst'}"
             ],
             "class": "VIIIa*"
+        },
+        {
+            "definition": "he's crossing it (a body of water)",
+            "failed_forms": [
+                "imperative: expected 'thisohki', got {'tshisohi', 'thisohi', 'tihisohi'}",
+                "infinitive: expected 'tsuwasohist', got {'tiuwasohst', 'tuwasohst', 'tsuwasohst'}"
+            ],
+            "class": "quitting"
         },
         {
             "definition": "it's accumulating, it's increasing",
@@ -149,11 +416,48 @@
             "class": "VIIIa*"
         },
         {
+            "definition": "it's accumulating, it's increasing",
+            "failed_forms": [
+                "imperative: expected 'hinhehkwoki', got {'hinhehkwoi'}",
+                "infinitive: expected 'unhehkwoist', got {'unhehkwost'}"
+            ],
+            "class": "quitting"
+        },
+        {
+            "definition": "it (animal, plant) is dying",
+            "failed_forms": [
+                "imperative: expected 'hiliwhoki', got {'hiliwhoi'}"
+            ],
+            "class": "quitting"
+        },
+        {
+            "definition": "1. it's breaking  2. he's becoming spoiled",
+            "failed_forms": [
+                "imperative: expected 'hiyoki', got {'hiyoi'}"
+            ],
+            "class": "quitting"
+        },
+        {
+            "definition": "he's accepting him, it",
+            "failed_forms": [
+                "imperative: expected 'thiyatanilvki', got {'tshiyatanilvi', 'tihiyatanilvi', 'thiyatanilvi'}"
+            ],
+            "class": "quitting"
+        },
+        {
             "definition": "he's falling from an upright  position",
             "failed_forms": [
                 "infinitive: expected 'unvist', got {'unvst'}"
             ],
             "class": "VIIIa*"
+        },
+        {
+            "definition": "he's falling from an upright  position",
+            "failed_forms": [
+                "imperative: expected 'hinvki', got {'hinvi'}",
+                "infinitive: expected 'unvist', got {'unvst'}"
+            ],
+            "class": "quitting"
         },
         {
             "definition": "he's buying it",
@@ -179,14 +483,14 @@
         {
             "definition": "he's getting a rash",
             "failed_forms": [
-                "infinitive: expected 'tsukwenothist', got {'tiukwenothihist', 'tsukwenothihist', 'tukwenothihist'}"
+                "infinitive: expected 'tsukwenothist', got {'tiukwenothihist', 'tukwenothihist', 'tsukwenothihist'}"
             ],
             "class": "IIIc1"
         },
         {
             "definition": "he's getting a rash",
             "failed_forms": [
-                "infinitive: expected 'tsukwenothist', got {'tiukwenothihist', 'tsukwenothihist', 'tukwenothihist'}"
+                "infinitive: expected 'tsukwenothist', got {'tiukwenothihist', 'tukwenothihist', 'tsukwenothihist'}"
             ],
             "class": "IIIc1*"
         },
@@ -248,7 +552,7 @@
         {
             "definition": "he's sending; taking it (flexible)",
             "failed_forms": [
-                "perfective: expected 'wunvn', got {'wunvvn', 'wiunvvn'}",
+                "perfective: expected 'wunvn', got {'wiunvvn', 'wunvvn'}",
                 "infinitive: expected 'wunvt', got {'wiunvvt', 'wunvvt'}"
             ],
             "class": "IIIa1*"
@@ -256,8 +560,8 @@
         {
             "definition": "he's sending; taking it (flexible)",
             "failed_forms": [
-                "perfective: expected 'wunvn', got {'wunvvn', 'wiunvvn'}",
-                "imperative: expected 'whinvvka', got {'wihinvvvka', 'whinvvvka'}",
+                "perfective: expected 'wunvn', got {'wiunvvn', 'wunvvn'}",
+                "imperative: expected 'whinvvka', got {'whinvvvka', 'wihinvvvka'}",
                 "infinitive: expected 'wunvt', got {'wiunvvt', 'wunvvt'}"
             ],
             "class": "IIIa1**"
@@ -329,7 +633,7 @@
         {
             "definition": "he's sending, taking it (animate)",
             "failed_forms": [
-                "perfective: expected 'wuwakhan', got {'wuwakhahn', 'wiuwakhahn'}",
+                "perfective: expected 'wuwakhan', got {'wiuwakhahn', 'wuwakhahn'}",
                 "infinitive: expected 'wuwakhoht', got {'wiuwakhaht', 'wuwakhaht'}"
             ],
             "class": "IIIa1"
@@ -441,6 +745,13 @@
             "class": "IIIa1*"
         },
         {
+            "definition": "he's pushing him, it",
+            "failed_forms": [
+                "imperative: expected 'hiyasatoyha', got {'hiyasatoya'}"
+            ],
+            "class": "pushing"
+        },
+        {
             "definition": "he's falling from an elevated position",
             "failed_forms": [
                 "infinitive: expected 'ulohist', got {'ulost'}"
@@ -514,7 +825,7 @@
         {
             "definition": "he's blinking",
             "failed_forms": [
-                "imperative: expected 'thakhthanawha', got {'tihakhthanawa', 'thakhthanawa', 'tshakhthanawa'}"
+                "imperative: expected 'thakhthanawha', got {'tshakhthanawa', 'tihakhthanawa', 'thakhthanawa'}"
             ],
             "class": "IIId*"
         },
@@ -524,6 +835,30 @@
                 "infinitive: expected 'utiwhist', got {'utiwst'}"
             ],
             "class": "IIIc2"
+        },
+        {
+            "definition": "he's sneezing",
+            "failed_forms": [
+                "perfective: expected 'tuyhvstoyh', got {'tuyhvstoyyh', 'teuyhvstoyyh'}",
+                "imperative: expected 'titshayvstoyha', got {'ttshayvstoyyha', 'tstshayvstoyyha', 'titshayvstoyyha'}"
+            ],
+            "class": "pushing"
+        },
+        {
+            "definition": "he's chopping it",
+            "failed_forms": [
+                "perfective: expected 'uluyh', got {'uluyyh'}",
+                "imperative: expected 'hiluyha', got {'hiluyyha'}"
+            ],
+            "class": "pushing"
+        },
+        {
+            "definition": "he's chopping it up",
+            "failed_forms": [
+                "perfective: expected 'ukvhaluyh', got {'ukvhaluyyh'}",
+                "imperative: expected 'hikvhaluyha', got {'hikvhaluyyha'}"
+            ],
+            "class": "pushing"
         },
         {
             "definition": "it's raining",
@@ -654,6 +989,34 @@
             "class": "IIIc2"
         },
         {
+            "definition": "he's making it",
+            "failed_forms": [
+                "infinitive: expected 'uwolhvnht', got {'uwolhht'}"
+            ],
+            "class": "act_like"
+        },
+        {
+            "definition": "he's sleepy, he's going to sleep",
+            "failed_forms": [
+                "infinitive: expected 'ulhvnht', got {'ulhht'}"
+            ],
+            "class": "act_like"
+        },
+        {
+            "definition": "he's dressing up",
+            "failed_forms": [
+                "infinitive: expected 'utsanvht', got {'utsanht'}"
+            ],
+            "class": "act_like"
+        },
+        {
+            "definition": "he's wrapping him, it",
+            "failed_forms": [
+                "infinitive: expected 'uwakwhenvht', got {'uwakwhenht'}"
+            ],
+            "class": "act_like"
+        },
+        {
             "definition": "he's burning",
             "failed_forms": [
                 "infinitive: expected 'uleyvhist', got {'uleyvst'}"
@@ -687,7 +1050,7 @@
         {
             "definition": "it's barking",
             "failed_forms": [
-                "imperative: expected 'thasuwha', got {'thasuwhia', 'tshasuwhia', 'tihasuwhia'}"
+                "imperative: expected 'thasuwha', got {'tshasuwhia', 'tihasuwhia', 'thasuwhia'}"
             ],
             "class": "IIId*"
         },
@@ -724,21 +1087,21 @@
         {
             "definition": "he's releasing him",
             "failed_forms": [
-                "infinitive: expected 'tsuyohist', got {'tiuyost', 'tsuyost', 'tuyost'}"
+                "infinitive: expected 'tsuyohist', got {'tsuyost', 'tuyost', 'tiuyost'}"
             ],
             "class": "IIIc2"
         },
         {
             "definition": "He's releasing it, (voluntarily)",
             "failed_forms": [
-                "infinitive: expected 'tsuyohist', got {'tiuyost', 'tsuyost', 'tuyost'}"
+                "infinitive: expected 'tsuyohist', got {'tsuyost', 'tuyost', 'tiuyost'}"
             ],
             "class": "IIIc2"
         },
         {
             "definition": "he's giving up",
             "failed_forms": [
-                "infinitive: expected 'tsutayohist', got {'tutayost', 'tsutayost', 'tiutayost'}"
+                "infinitive: expected 'tsutayohist', got {'tsutayost', 'tutayost', 'tiutayost'}"
             ],
             "class": "IIIc2"
         },
@@ -766,6 +1129,15 @@
             "class": "IIIa2"
         },
         {
+            "definition": "he's shaking him, it",
+            "failed_forms": [
+                "perfective: expected 'uthelvnh', got {'uthelvhvnh'}",
+                "imperative: expected 'hithelvna', got {'hithelvhvna'}",
+                "infinitive: expected 'uthelht', got {'uthelvhht'}"
+            ],
+            "class": "act_like"
+        },
+        {
             "definition": "he, it's moving (without changing location)",
             "failed_forms": [
                 "infinitive: expected 'ulhthelht', got {'ulhthelvht'}"
@@ -789,16 +1161,16 @@
         {
             "definition": "he's playing",
             "failed_forms": [
-                "infinitive: expected 'tsunelht', got {'tsuneloht', 'tuneloht', 'tiuneloht'}"
+                "infinitive: expected 'tsunelht', got {'tuneloht', 'tiuneloht', 'tsuneloht'}"
             ],
             "class": "IIIa2"
         },
         {
             "definition": "he's teaching",
             "failed_forms": [
-                "imperfective: expected 'tateyhohvsk', got {'tateyohvsk', 'teateyohvsk'}",
-                "imperative: expected 'thateyhohvka', got {'thateyohvka', 'tshateyohvka', 'tihateyohvka'}",
-                "infinitive: expected 'tsuteyhoht', got {'tuteyoht', 'tsuteyoht', 'tiuteyoht'}"
+                "imperfective: expected 'tateyhohvsk', got {'teateyohvsk', 'tateyohvsk'}",
+                "imperative: expected 'thateyhohvka', got {'tshateyohvka', 'thateyohvka', 'tihateyohvka'}",
+                "infinitive: expected 'tsuteyhoht', got {'tsuteyoht', 'tiuteyoht', 'tuteyoht'}"
             ],
             "class": "IIIa2"
         },
@@ -808,6 +1180,21 @@
                 "infinitive: expected 'uyhahthvtht', got {'uyhahthvht'}"
             ],
             "class": "IIIa2"
+        },
+        {
+            "definition": "it's (the ground) becoming frosty",
+            "failed_forms": [
+                "infinitive: expected 'uyhahthvtht', got {'uyhahthht'}"
+            ],
+            "class": "episodic1"
+        },
+        {
+            "definition": "it's (the ground) becoming frosty",
+            "failed_forms": [
+                "perfective: expected 'uyhahthvnh', got {'uyhahthvhvnh'}",
+                "infinitive: expected 'uyhahthvtht', got {'uyhahthvhht'}"
+            ],
+            "class": "act_like"
         },
         {
             "definition": "he's hiding it",
@@ -833,7 +1220,7 @@
         {
             "definition": "1. he's advertising it  2. he's announcing it",
             "failed_forms": [
-                "perfective: expected 'tunotsalhan', got {'tunotsalhn', 'teunotsalhn'}"
+                "perfective: expected 'tunotsalhan', got {'teunotsalhn', 'tunotsalhn'}"
             ],
             "class": "IIIa1"
         },
@@ -897,7 +1284,7 @@
         {
             "definition": "he's putting on shoes",
             "failed_forms": [
-                "perfective: expected 'tulasulhan', got {'tulasulhn', 'teulasulhn'}"
+                "perfective: expected 'tulasulhan', got {'teulasulhn', 'tulasulhn'}"
             ],
             "class": "IIIa1"
         },
@@ -946,7 +1333,7 @@
         {
             "definition": "he's putting on glasses",
             "failed_forms": [
-                "perfective: expected 'tukhthinvthan', got {'teukhthinvthn', 'tukhthinvthn'}"
+                "perfective: expected 'tukhthinvthan', got {'tukhthinvthn', 'teukhthinvthn'}"
             ],
             "class": "IIIa1"
         },
@@ -1106,14 +1493,22 @@
         {
             "definition": "he's crossing (a road, bridge, etc.)",
             "failed_forms": [
-                "infinitive: expected 'tsunatiwhist', got {'tsunatiwst', 'tunatiwst', 'tiunatiwst'}"
+                "infinitive: expected 'tsunatiwhist', got {'tunatiwst', 'tiunatiwst', 'tsunatiwst'}"
             ],
             "class": "IIIc2"
         },
         {
+            "definition": "he's stinging it",
+            "failed_forms": [
+                "perfective: expected 'uwatsvyh', got {'uwatsvyyh'}",
+                "imperative: expected 'hiyatsvyha', got {'hiyatsvyya'}"
+            ],
+            "class": "pushing"
+        },
+        {
             "definition": "he's clawing him",
             "failed_forms": [
-                "imperative: expected 'thinukola', got {'tihinukoa', 'thinukoa', 'tshinukoa'}"
+                "imperative: expected 'thinukola', got {'tihinukoa', 'tshinukoa', 'thinukoa'}"
             ],
             "class": "IIId*"
         },
@@ -1169,6 +1564,22 @@
             "class": "VIIIa*"
         },
         {
+            "definition": "He's choking on it",
+            "failed_forms": [
+                "perfective: expected 'uyhvhtsinvts', got {'uyhvhtsinvthts'}",
+                "imperative: expected 'tshayvhtsinvthki', got {'tshayvhtsinvthi'}",
+                "infinitive: expected 'uyhvhtsinvtst', got {'uyhvhtsinvthst'}"
+            ],
+            "class": "quitting"
+        },
+        {
+            "definition": "he's putting him inside, (somewhere large enough to move around)",
+            "failed_forms": [
+                "perfective: expected 'uyhthan', got {'uyhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
             "definition": "He's mingling with a group",
             "failed_forms": [
                 "present: expected 'khelatitoh', got {'khelatithoh'}",
@@ -1201,11 +1612,27 @@
             "class": "IIa"
         },
         {
+            "definition": "he's yawning",
+            "failed_forms": [
+                "imperative: expected 'tsahalhokvla', got {'tsahalhoka'}",
+                "infinitive: expected 'uhalhokeht', got {'uhalhokht'}"
+            ],
+            "class": "wash_hair"
+        },
+        {
             "definition": "he's building a house",
             "failed_forms": [
                 "imperative: expected 'hanheskvla', got {'hanheska'}"
             ],
             "class": "IIa"
+        },
+        {
+            "definition": "he's building a house",
+            "failed_forms": [
+                "imperative: expected 'hanheskvla', got {'hanheska'}",
+                "infinitive: expected 'unheskeht', got {'unheskht'}"
+            ],
+            "class": "wash_hair"
         },
         {
             "definition": "he's thanking him",
@@ -1238,7 +1665,7 @@
         {
             "definition": "he's working",
             "failed_forms": [
-                "imperative: expected 'titsalvwhistasi', got {'tstsalvwhistansi', 'ttsalvwhistansi', 'titsalvwhistansi'}"
+                "imperative: expected 'titsalvwhistasi', got {'ttsalvwhistansi', 'tstsalvwhistansi', 'titsalvwhistansi'}"
             ],
             "class": "XIb*"
         },
@@ -1306,11 +1733,27 @@
             "class": "IIa"
         },
         {
+            "definition": "he's fanning him, it",
+            "failed_forms": [
+                "imperative: expected 'hinoyvla', got {'hinoya'}",
+                "infinitive: expected 'unhoyeht', got {'unhoyht'}"
+            ],
+            "class": "wash_hair"
+        },
+        {
             "definition": "he's fanning himself",
             "failed_forms": [
                 "imperative: expected 'hatanhoyvla', got {'hatanhoya'}"
             ],
             "class": "IIa"
+        },
+        {
+            "definition": "he's fanning himself",
+            "failed_forms": [
+                "imperative: expected 'hatanhoyvla', got {'hatanhoya'}",
+                "infinitive: expected 'utanhoyeht', got {'utanhoyht'}"
+            ],
+            "class": "wash_hair"
         },
         {
             "definition": "he's stirring it",
@@ -1320,11 +1763,230 @@
             "class": "IIa"
         },
         {
+            "definition": "he's stirring it",
+            "failed_forms": [
+                "imperative: expected 'hasuyvla', got {'hasuya'}",
+                "infinitive: expected 'usuyeht', got {'usuyht'}"
+            ],
+            "class": "wash_hair"
+        },
+        {
+            "definition": "he's riding it (anything that can be straddled)",
+            "failed_forms": [
+                "perfective: expected 'ukhilvthan', got {'ukhilvtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's running over him, it",
+            "failed_forms": [
+                "perfective: expected 'utinvthan', got {'utinvtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's bouncing it",
+            "failed_forms": [
+                "perfective: expected 'utatinvthan', got {'utatinvtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's making him fall from an elevated psition",
+            "failed_forms": [
+                "perfective: expected 'ulonhthan', got {'ulonhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's interpreting, translating it",
+            "failed_forms": [
+                "perfective: expected 'unhelhthan', got {'unhelhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's taking turns with him",
+            "failed_forms": [
+                "perfective: expected 'utanetliyvsthan', got {'utanetliyvstan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's waking him up",
+            "failed_forms": [
+                "perfective: expected 'uyeisthan', got {'uyeistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's listening to it, him",
+            "failed_forms": [
+                "perfective: expected 'uthvtasthan', got {'uthvtastan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "1. He's bluffing him. 2. he's deceiving him 3. he's tricking him",
+            "failed_forms": [
+                "perfective: expected 'ulonasthan', got {'ulonastan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's winking",
+            "failed_forms": [
+                "perfective: expected 'ukhthasthan', got {'ukhthastan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's closing his eyes",
+            "failed_forms": [
+                "perfective: expected 'tukhthasthan', got {'teukhthastan', 'tukhthastan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he has a chill",
+            "failed_forms": [
+                "perfective: expected 'unhawasthan', got {'unhawastan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's wringing it out",
+            "failed_forms": [
+                "perfective: expected 'uwatsvwasthan', got {'uwatsvwastan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's stretching",
+            "failed_forms": [
+                "perfective: expected 'utayhasthan', got {'utayhastan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
             "definition": "he's dodging",
             "failed_forms": [
                 "imperfective: expected 'tatanvtitisk', got {'tatanvtistisk', 'teatanvtistisk'}"
             ],
             "class": "IVa"
+        },
+        {
+            "definition": "he's dodging",
+            "failed_forms": [
+                "imperfective: expected 'tatanvtitisk', got {'tatanvtistisk', 'teatanvtistisk'}",
+                "perfective: expected 'tutanvtisthan', got {'tutanvtistan', 'teutanvtistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's starting it",
+            "failed_forms": [
+                "perfective: expected 'unhikisthan', got {'unhikistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's praying",
+            "failed_forms": [
+                "perfective: expected 'utatolisthan', got {'utatolistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's pouring liquid into a container",
+            "failed_forms": [
+                "perfective: expected 'utlisthan', got {'utlistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's slamming him, it",
+            "failed_forms": [
+                "perfective: expected 'tulvtvnisthan', got {'tulvtvnistan', 'teulvtvnistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's embarrassing him",
+            "failed_forms": [
+                "perfective: expected 'utehohisthan', got {'utehohistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's turning it",
+            "failed_forms": [
+                "perfective: expected 'uwateysthan', got {'uwateystan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's spinning it",
+            "failed_forms": [
+                "perfective: expected 'uwatikwalvteysthan', got {'uwatikwalvteystan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's releasing it, (involuntarily)",
+            "failed_forms": [
+                "perfective: expected 'tuskalesthan', got {'tuskalestan', 'teuskalestan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "1. he's drawing a picture of him, it; 2. he's photographing him, it",
+            "failed_forms": [
+                "perfective: expected 'tulhilosthan', got {'teulhilostan', 'tulhilostan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's smothering him, it",
+            "failed_forms": [
+                "perfective: expected 'uhawosthan', got {'uhawostan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's smothering, suffocating",
+            "failed_forms": [
+                "perfective: expected 'uhawosthan', got {'uhawostan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's holding his breath",
+            "failed_forms": [
+                "perfective: expected 'uthawhosthan', got {'uthawhostan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "1. he's breaking it., 2. he's spoiling him",
+            "failed_forms": [
+                "perfective: expected 'uyosthan', got {'uyostan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's making him angry",
+            "failed_forms": [
+                "perfective: expected 'unhalvsthan', got {'unhalvstan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's vomiting",
+            "failed_forms": [
+                "perfective: expected 'tukhsthan', got {'teukhstan', 'tukhstan'}"
+            ],
+            "class": "IVa*"
         },
         {
             "definition": "he's greeting him",
@@ -1333,6 +1995,14 @@
                 "infinitive: expected 'uyolist', got {'uyolst'}"
             ],
             "class": "VIa1"
+        },
+        {
+            "definition": "he's greeting him",
+            "failed_forms": [
+                "imperative: expected 'hiyolika', got {'hiyolka'}",
+                "infinitive: expected 'uyolist', got {'uyolt'}"
+            ],
+            "class": "shake_head"
         },
         {
             "definition": "he's greeting him",
@@ -1344,12 +2014,28 @@
             "class": "VIa2"
         },
         {
+            "definition": "he's joking, he's teasing",
+            "failed_forms": [
+                "imperative: expected 'hiwelhvna', got {'hiwelha'}",
+                "infinitive: expected 'uwelhvht', got {'uwelhht'}"
+            ],
+            "class": "silly"
+        },
+        {
             "definition": "he's hitting him on the abdomen with a long object",
             "failed_forms": [
                 "imperative: expected 'hiskwohalvnika', got {'hiskwohalvnka'}",
                 "infinitive: expected 'uskwohalvnist', got {'uskwohalvnst'}"
             ],
             "class": "VIa1"
+        },
+        {
+            "definition": "he's hitting him on the abdomen with a long object",
+            "failed_forms": [
+                "imperative: expected 'hiskwohalvnika', got {'hiskwohalvnka'}",
+                "infinitive: expected 'uskwohalvnist', got {'uskwohalvnt'}"
+            ],
+            "class": "shake_head"
         },
         {
             "definition": "he's hitting him on the abdomen with a long object",
@@ -1371,6 +2057,14 @@
         {
             "definition": "he's hitting him on the head with a long object",
             "failed_forms": [
+                "imperative: expected 'hiskwalvnika', got {'hiskwalvnka'}",
+                "infinitive: expected 'uskwalvnist', got {'uskwalvnt'}"
+            ],
+            "class": "shake_head"
+        },
+        {
+            "definition": "he's hitting him on the head with a long object",
+            "failed_forms": [
                 "perfective: expected 'uskwalvnil', got {'uskwalvnl'}",
                 "imperative: expected 'hiskwalvnika', got {'hiskwalvnka'}",
                 "infinitive: expected 'uskwalvnist', got {'uskwalvnst'}"
@@ -1384,6 +2078,14 @@
                 "infinitive: expected 'uhulvnist', got {'uhulvnst'}"
             ],
             "class": "VIa1"
+        },
+        {
+            "definition": "he's hitting him on the mouth",
+            "failed_forms": [
+                "imperative: expected 'hiulvnika', got {'hiulvnka'}",
+                "infinitive: expected 'uhulvnist', got {'uhulvnt'}"
+            ],
+            "class": "shake_head"
         },
         {
             "definition": "he's hitting him on the mouth",
@@ -1405,6 +2107,14 @@
         {
             "definition": "he's slapping him, it",
             "failed_forms": [
+                "imperative: expected 'hiyasihthvnika', got {'hiyasihthvnka'}",
+                "infinitive: expected 'usihthvnist', got {'usihthvnt'}"
+            ],
+            "class": "shake_head"
+        },
+        {
+            "definition": "he's slapping him, it",
+            "failed_forms": [
                 "perfective: expected 'usihthvnil', got {'usihthvnl'}",
                 "imperative: expected 'hiyasihthvnika', got {'hiyasihthvnka'}",
                 "infinitive: expected 'usihthvnist', got {'usihthvnst'}"
@@ -1421,10 +2131,26 @@
         {
             "definition": "he's beating him up",
             "failed_forms": [
+                "infinitive: expected 'ulvnst', got {'ulvnht'}"
+            ],
+            "class": "shake_head"
+        },
+        {
+            "definition": "he's beating him up",
+            "failed_forms": [
                 "perfective: expected 'ulvnhil', got {'ulvnhl'}",
                 "infinitive: expected 'ulvnst', got {'ulvnhst'}"
             ],
             "class": "VIa2"
+        },
+        {
+            "definition": "he hates him",
+            "failed_forms": [
+                "perfective: expected 'unikwathilh', got {'unikwatlh'}",
+                "imperative: expected 'hinikwathika', got {'hinikwatka'}",
+                "infinitive: expected 'unikwathist', got {'unikwatst'}"
+            ],
+            "class": "losing_way"
         },
         {
             "definition": "he's looking around",
@@ -1462,11 +2188,26 @@
             "class": "VII*"
         },
         {
+            "definition": "its taking time",
+            "failed_forms": [
+                "infinitive: expected 'ulhiilitast', got {'ulhiilitost'}"
+            ],
+            "class": "scared"
+        },
+        {
             "definition": "he's agitating liquid",
             "failed_forms": [
                 "imperative: expected 'hinhkwavla', got {'hinhkwaa'}"
             ],
             "class": "IIa"
+        },
+        {
+            "definition": "he's agitating liquid",
+            "failed_forms": [
+                "imperative: expected 'hinhkwavla', got {'hinhkwaa'}",
+                "infinitive: expected 'unhkwaeht', got {'unhkwaht'}"
+            ],
+            "class": "wash_hair"
         },
         {
             "definition": "1. he's taking liquid from him, it  2. he's milking it (when used with unvdi)",
@@ -1504,12 +2245,41 @@
             "class": "VII*"
         },
         {
+            "definition": "it's dripping",
+            "failed_forms": [
+                "perfective: expected 'uwaskwol', got {'uwaskwoil'}"
+            ],
+            "class": "scared"
+        },
+        {
+            "definition": "he's moaning",
+            "failed_forms": [
+                "perfective: expected 'uliyethan', got {'uliyetan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's making a mistake",
+            "failed_forms": [
+                "perfective: expected 'ulitasthan', got {'ulitastan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
             "definition": "he's batting it",
             "failed_forms": [
                 "imperative: expected 'hostvnika', got {'hostvnka'}",
                 "infinitive: expected 'uwostvnist', got {'uwostvnst'}"
             ],
             "class": "VIa1"
+        },
+        {
+            "definition": "he's batting it",
+            "failed_forms": [
+                "imperative: expected 'hostvnika', got {'hostvnka'}",
+                "infinitive: expected 'uwostvnist', got {'uwostvnt'}"
+            ],
+            "class": "shake_head"
         },
         {
             "definition": "he's batting it",
@@ -1523,9 +2293,17 @@
         {
             "definition": "he, it's rocking",
             "failed_forms": [
-                "imperative: expected 'thalhihkvla', got {'tihalhihka', 'tshalhihka', 'thalhihka'}"
+                "imperative: expected 'thalhihkvla', got {'thalhihka', 'tihalhihka', 'tshalhihka'}"
             ],
             "class": "IIa"
+        },
+        {
+            "definition": "he, it's rocking",
+            "failed_forms": [
+                "imperative: expected 'thalhihkvla', got {'thalhihka', 'tihalhihka', 'tshalhihka'}",
+                "infinitive: expected 'tsulhihkeht', got {'tiulhihkht', 'tulhihkht', 'tsulhihkht'}"
+            ],
+            "class": "wash_hair"
         },
         {
             "definition": "he's looking at himself in a mirror",
@@ -1533,6 +2311,14 @@
                 "imperative: expected 'hatakhvla', got {'hatakha'}"
             ],
             "class": "IIa"
+        },
+        {
+            "definition": "he's looking at himself in a mirror",
+            "failed_forms": [
+                "imperative: expected 'hatakhvla', got {'hatakha'}",
+                "infinitive: expected 'utakheht', got {'utakhht'}"
+            ],
+            "class": "wash_hair"
         },
         {
             "definition": "he's saying to him",
@@ -1556,6 +2342,300 @@
             "class": "XIb*"
         },
         {
+            "definition": "he's placing a long object in an upright position",
+            "failed_forms": [
+                "perfective: expected 'ulehthan', got {'ulehtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "1. he's helping him up 2. he's standing it up (object with legs)",
+            "failed_forms": [
+                "perfective: expected 'tulehthan', got {'tulehtan', 'teulehtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's making it (round, long) fall",
+            "failed_forms": [
+                "perfective: expected 'uwohonhthan', got {'uwohonhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's showing it to him",
+            "failed_forms": [
+                "perfective: expected 'ukowhthvhthan', got {'ukowhthvhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's melting it",
+            "failed_forms": [
+                "perfective: expected 'uwanawhthan', got {'uwanawhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's warming it",
+            "failed_forms": [
+                "perfective: expected 'ukanawhthan', got {'ukanawhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "1. he's making it crisp  2. he's starching it",
+            "failed_forms": [
+                "perfective: expected 'ustakayhthan', got {'ustakayhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's putting it into a container",
+            "failed_forms": [
+                "perfective: expected 'ulhthan', got {'ulhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's setting a price",
+            "failed_forms": [
+                "perfective: expected 'tukvwalhthan', got {'tukvwalhtan', 'teukvwalhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's attempting it",
+            "failed_forms": [
+                "perfective: expected 'unelhthan', got {'unelhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's playing with him, it",
+            "failed_forms": [
+                "perfective: expected 'tunelhthan', got {'teunelhtan', 'tunelhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's lecturing him",
+            "failed_forms": [
+                "perfective: expected 'uwonhthan', got {'uwonhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's putting it on",
+            "failed_forms": [
+                "perfective: expected 'nuwanhthan', got {'niuwanhtan', 'nuwanhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's stopping him/it",
+            "failed_forms": [
+                "perfective: expected 'ulewhistohthan', got {'ulewhistohtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he is dropping him, it (flexible)",
+            "failed_forms": [
+                "perfective: expected 'utonhthan', got {'utonhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's staggering",
+            "failed_forms": [
+                "perfective: expected 'tutokhthan', got {'tutokhtan', 'teutokhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's deciding",
+            "failed_forms": [
+                "perfective: expected 'tuwukhthan', got {'teuwukhtan', 'tuwukhtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's snorting",
+            "failed_forms": [
+                "perfective: expected 'ulhiyvsanawsthan', got {'ulhiyvsanawstan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's including him, it (in counting)",
+            "failed_forms": [
+                "perfective: expected 'usesthan', got {'usestan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's promising",
+            "failed_forms": [
+                "perfective: expected 'uthuisthan', got {'uthuistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "1. he's preparing it.  2. he's getting ready",
+            "failed_forms": [
+                "perfective: expected 'utvnvisthan', got {'utvnvistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "1. he's raising him, it., 2. he's growing it., (plant)",
+            "failed_forms": [
+                "perfective: expected 'uthvhisthan', got {'uthvhistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's stopping by (on his way somewhere)",
+            "failed_forms": [
+                "perfective: expected 'ulohisthan', got {'ulohistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's taking a break",
+            "failed_forms": [
+                "perfective: expected 'uyohisthan', got {'uyohistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's cooking it (a specific food)",
+            "failed_forms": [
+                "perfective: expected 'uwanhisthan', got {'uwanhistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he/it is stopping",
+            "failed_forms": [
+                "perfective: expected 'ulewhisthan', got {'ulewhistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's burning him, it",
+            "failed_forms": [
+                "perfective: expected 'ukohvsthan', got {'ukohvstan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's pressing down on him, it",
+            "failed_forms": [
+                "perfective: expected 'usonsthan', got {'usonstan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's smelling it  (sniff)",
+            "failed_forms": [
+                "perfective: expected 'ulsvsthan', got {'ulsvstan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's taking off running",
+            "failed_forms": [
+                "perfective: expected 'utanawsthan', got {'utanawstan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "He's making an X",
+            "failed_forms": [
+                "perfective: expected 'tutanhawsthan', got {'tutanhawstan', 'teutanhawstan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's breaking it up",
+            "failed_forms": [
+                "perfective: expected 'uyoisthan', got {'uyoistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's loaning it to him",
+            "failed_forms": [
+                "perfective: expected 'utholsthan', got {'utholstan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "1. he's aiming at him, it  2 . he's aiming it",
+            "failed_forms": [
+                "perfective: expected 'tulsosthan', got {'tulsostan', 'teulsostan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's scheduling time",
+            "failed_forms": [
+                "perfective: expected 'tusvsthan', got {'teusvstan', 'tusvstan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's accusing him",
+            "failed_forms": [
+                "perfective: expected 'uwuhisthan', got {'uwuhistan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "1. he's setting a goal 2.  he's aiming",
+            "failed_forms": [
+                "perfective: expected 'ulsosthan', got {'ulsostan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's sifting it",
+            "failed_forms": [
+                "perfective: expected 'uwakusthan', got {'uwakustan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's resting",
+            "failed_forms": [
+                "perfective: expected 'utawesolvsthan', got {'utawesolvstan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's straining it",
+            "failed_forms": [
+                "perfective: expected 'unhvsolvsthan', got {'unhvsolvstan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "1. he's making smoke; 2. it's smoking",
+            "failed_forms": [
+                "perfective: expected 'tukhsvsthan', got {'tukhsvstan', 'teukhsvstan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
+            "definition": "he's shattering it",
+            "failed_forms": [
+                "perfective: expected 'ulhkhoththan', got {'ulhkhothtan'}"
+            ],
+            "class": "IVa*"
+        },
+        {
             "definition": "it's boiling",
             "failed_forms": [
                 "infinitive: expected 'ulilht', got {'ulitlht'}"
@@ -1572,9 +2652,16 @@
         {
             "definition": "he's shelling corn",
             "failed_forms": [
-                "infinitive: expected 'tsukhtlhvht', got {'tsukhtlhht', 'tukhtlhht', 'tiukhtlhht'}"
+                "infinitive: expected 'tsukhtlhvht', got {'tukhtlhht', 'tiukhtlhht', 'tsukhtlhht'}"
             ],
             "class": "IVb"
+        },
+        {
+            "definition": "he's spanking him",
+            "failed_forms": [
+                "infinitive: expected 'ulivnhst', got {'ulivnht'}"
+            ],
+            "class": "shake_head"
         },
         {
             "definition": "he's spanking him",
@@ -1610,6 +2697,13 @@
         {
             "definition": "he's mourning for him, it",
             "failed_forms": [
+                "infinitive: expected 'uskonst', got {'uskonht'}"
+            ],
+            "class": "shake_head"
+        },
+        {
+            "definition": "he's mourning for him, it",
+            "failed_forms": [
                 "perfective: expected 'uskonhil', got {'uskonhl'}",
                 "infinitive: expected 'uskonst', got {'uskonhst'}"
             ],
@@ -1628,6 +2722,15 @@
                 "infinitive: expected 'unawhthvht', got {'unawhthht'}"
             ],
             "class": "IVb"
+        },
+        {
+            "definition": "he's stabbing him, it",
+            "failed_forms": [
+                "perfective: expected 'uwathilh', got {'uwatlh'}",
+                "imperative: expected 'hiyathika', got {'hiyatka'}",
+                "infinitive: expected 'uwathist', got {'uwatst'}"
+            ],
+            "class": "losing_way"
         },
         {
             "definition": "he's finding him, it",
@@ -1660,6 +2763,14 @@
         {
             "definition": "he's denying him, it",
             "failed_forms": [
+                "imperative: expected 'hiyatayika', got {'hiyatayka'}",
+                "infinitive: expected 'utayhst', got {'utayht'}"
+            ],
+            "class": "shake_head"
+        },
+        {
+            "definition": "he's denying him, it",
+            "failed_forms": [
                 "perfective: expected 'utayhil', got {'utayhl'}",
                 "imperative: expected 'hiyatayika', got {'hiyatayka'}"
             ],
@@ -1675,6 +2786,13 @@
         {
             "definition": "he's crying",
             "failed_forms": [
+                "infinitive: expected 'utloyst', got {'utloyht'}"
+            ],
+            "class": "shake_head"
+        },
+        {
+            "definition": "he's crying",
+            "failed_forms": [
                 "perfective: expected 'utloyhil', got {'utloyhl'}",
                 "infinitive: expected 'utloyst', got {'utloyhst'}"
             ],
@@ -1683,7 +2801,7 @@
         {
             "definition": "he's untying it",
             "failed_forms": [
-                "infinitive: expected 'tsukhaneyhvht', got {'tsukhaneyhht', 'tukhaneyhht', 'tiukhaneyhht'}"
+                "infinitive: expected 'tsukhaneyhvht', got {'tukhaneyhht', 'tiukhaneyhht', 'tsukhaneyhht'}"
             ],
             "class": "IVb"
         },
@@ -1737,6 +2855,13 @@
                 "infinitive: expected 'usvnst', got {'usvnhst'}"
             ],
             "class": "VIa1"
+        },
+        {
+            "definition": "he's touching him, it",
+            "failed_forms": [
+                "infinitive: expected 'usvnst', got {'usvnht'}"
+            ],
+            "class": "shake_head"
         },
         {
             "definition": "he's touching him, it",
