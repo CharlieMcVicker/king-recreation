@@ -3,6 +3,8 @@ he's taking a drink (alcoholic beverage),Ia,strict,reconstructs,True,True,True,T
 he's taking a drink (alcoholic beverage),Ia,loose,full,True,True,True,True,True
 he thinks so,Vb*,strict,ending,False,False,False,False,False
 he thinks so,Vb*,loose,ending,False,False,False,False,False
+he thinks so,Vc2*,strict,reconstructs,True,True,True,True,True
+he thinks so,Vc2*,loose,full,True,True,True,True,True
 "he's catching a falling person, object",Ia*,strict,reconstructs,True,True,True,True,True
 "he's catching a falling person, object",Ia*,loose,full,True,True,True,True,True
 it's hatching,Ia,strict,reconstructs,True,True,True,True,True
@@ -205,6 +207,8 @@ he's taking his ring off,Ia,loose,full,True,True,True,True,True
 "he's shelling, picking out (peas, nut meats, etc.)",Ia,loose,full,True,True,True,True,True
 "1. he's imitating him, it 2. he's mocking him",Vb*,strict,ending,False,False,False,False,False
 "1. he's imitating him, it 2. he's mocking him",Vb*,loose,ending,False,False,False,False,False
+"1. he's imitating him, it 2. he's mocking him",Vc2*,strict,reconstructs,True,True,True,True,True
+"1. he's imitating him, it 2. he's mocking him",Vc2*,loose,full,True,True,True,True,True
 he's writing it,IVa,loose,ending,False,False,False,False,False
 he's writing it,Vc1*,strict,reconstructs,True,True,True,True,True
 he's writing it,Vc1*,loose,full,True,True,True,True,True
@@ -1022,6 +1026,7 @@ he's vomiting,IVa,strict,reconstructs,True,True,True,True,True
 he's vomiting,IVa,loose,full,True,True,True,True,True
 it's (sun or moon) shining,Ia,loose,full,True,True,True,True,True
 it's (sun or moon) shining,Vb*,loose,ending,False,False,False,True,False
+it's (sun or moon) shining,Vc2*,loose,full,True,True,True,True,True
 he's greeting him,VIa1,strict,ending,False,False,False,False,False
 he's greeting him,VIa1,loose,ending,False,False,False,False,False
 he's greeting him,VIa2,strict,full,True,True,True,True,True
