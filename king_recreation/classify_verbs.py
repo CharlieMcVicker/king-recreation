@@ -1,3 +1,4 @@
+from king_recreation.phonology_data import _drop_first_h
 import csv
 import os
 
@@ -242,6 +243,17 @@ def classify_verbs(classes_path=None):
                             else form_val
                         )
                         stripped_row[fn] = stripped_stem
+
+                    # allow forms that might h alternate to alternate _in the ending_
+                    elif fn in ["present_1sg", "imperative"]:
+                        hless_suffix = _drop_first_h(literal_suffix)
+                        if form_val.endswith(hless_suffix):
+                            stripped_stem = (
+                                form_val[: -len(hless_suffix)]
+                                if hless_suffix
+                                else form_val
+                            )
+                            stripped_row[fn] = stripped_stem
 
                 stripped_corpus_data.append(stripped_row)
 

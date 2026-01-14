@@ -1,3 +1,4 @@
+from king_recreation.phonology_data import _drop_first_h
 from king_recreation.phonology_data import grades_are_compatible
 import os
 import csv
@@ -95,6 +96,11 @@ class ReconstructionEngine:
             elif "@" in ending_pattern:
                 if len(modified_root) >= 2:
                     modified_root = modified_root[:-2]
+
+            # if we need to /h/ alternate but there wasnt an h in the h grade root
+            # we need to try to drop it from the ending
+            if glottal_grade_form and not "h" in verb.h_grade_root:
+                literal_ending = _drop_first_h(literal_ending)
 
             base_stems[form_name] = modified_root + literal_ending
 
