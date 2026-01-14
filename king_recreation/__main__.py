@@ -23,11 +23,11 @@ def main():
     print("\n[3/6] Deriving Roots from Stripped Corpus...")
     derive_stems()
 
-    print("\n[4/6] Analyzing Matches...")
-    analyze_matches(args.classes)
-
-    print("\n[5/6] Reconstructing from Roots...")
+    print("\n[4/6] Reconstructing from Roots...")
     reconstruct_from_roots(args.classes)
+
+    print("\n[5/6] Analyzing Matches...")
+    analyze_matches(args.classes)
 
     print("\n[6/6] Visualizing Analysis...")
     run_all_visualizations()
