@@ -6,6 +6,7 @@ from king_recreation.analyze_matches import analyze_matches
 from king_recreation.visualize_analysis import run_all_visualizations
 from king_recreation.reconstruct_from_roots import main as reconstruct_from_roots
 
+
 def main():
     parser = argparse.ArgumentParser(description="King Recreation Pipeline")
     parser.add_argument("--classes", help="Path to custom classes CSV file")
@@ -32,6 +33,7 @@ def main():
     run_all_visualizations()
 
     print("\nPipeline Complete!")
+
 
 if __name__ == "__main__":
     main()

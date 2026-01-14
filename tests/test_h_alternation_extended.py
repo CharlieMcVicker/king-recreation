@@ -1,6 +1,7 @@
 import unittest
 from king_recreation.derive_stems import StemDeriver, is_strict_compatible, drop_first_h
 
+
 class TestHAlternationExtended(unittest.TestCase):
     def setUp(self):
         self.deriver = StemDeriver()
@@ -13,14 +14,14 @@ class TestHAlternationExtended(unittest.TestCase):
         """
         target = "akhthastih"
         stem_1sg = "akathastih"
-        
+
         # Current behavior:
-        dropped = drop_first_h(target) # akthastih
+        dropped = drop_first_h(target)  # akthastih
         self.assertEqual(dropped, "akthastih")
-        
+
         # Strict check fails
         self.assertFalse(is_strict_compatible(stem_1sg, dropped))
-        
+
         # We need a function that returns True for these
         # self.assertTrue(is_compatible_with_vowel_restoration(stem_1sg, dropped))
 
@@ -32,15 +33,16 @@ class TestHAlternationExtended(unittest.TestCase):
         """
         target = "alski"
         stem_1sg = "aliski"
-        
-        dropped = drop_first_h(target) # alski (no h to drop)
+
+        dropped = drop_first_h(target)  # alski (no h to drop)
         self.assertEqual(dropped, "alski")
-        
+
         # Strict check fails
         self.assertFalse(is_strict_compatible(stem_1sg, dropped))
-        
+
         # We need a function that returns True for these
         # self.assertTrue(is_compatible_with_vowel_restoration(stem_1sg, dropped))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

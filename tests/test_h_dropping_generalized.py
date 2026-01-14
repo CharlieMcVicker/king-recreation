@@ -4,13 +4,14 @@ from king_recreation.derive_stems import StemDeriver
 from king_recreation.reconstruct_from_roots import ReconstructionEngine
 from king_recreation.phonology_data import get_pronominal_set_name
 
+
 class TestHDroppingGeneralized(unittest.TestCase):
     def setUp(self):
         self.deriver = StemDeriver()
         # Mock class info not needed for derive_row usually, only for reconstruction
         # But ReconstructionEngine needs it.
-        self.classes_path = 'dummy_classes_h.csv'
-        with open(self.classes_path, 'w') as f:
+        self.classes_path = "dummy_classes_h.csv"
+        with open(self.classes_path, "w") as f:
             f.write("class,present,imperfective,perfective,imperative,infinitive\n")
             f.write("dummy,i,i,i,i,i\n")
         self.engine = ReconstructionEngine(self.classes_path)
@@ -31,14 +32,14 @@ class TestHDroppingGeneralized(unittest.TestCase):
         # So 'tsi-' matches 'logi' naturally!
         # The trick is that 'hlogi' (target) must explain 'logi'.
         # drop_first_h('hlogi') -> 'logi'. 'logi' == 'logi'. Match!
-        
-        row = {'present': 'kahlogi', 'present_1sg': 'tsilogi'}
-        
+
+        row = {"present": "kahlogi", "present_1sg": "tsilogi"}
+
         derivations = self.deriver.derive_row(row)
-        
+
         found = False
         for d in derivations:
-            if d.stems.get('present') == 'hlogi':
+            if d.stems.get("present") == "hlogi":
                 found = True
                 break
         self.assertTrue(found, "Failed to derive 'hlogi' from 'gahlogi'/'tsilogi'")
@@ -57,14 +58,14 @@ class TestHDroppingGeneralized(unittest.TestCase):
         # Literal: 'akwiyv'.
         # Target: 'ahkwiyv'.
         # drop_first_h('ahkwiyv') -> 'akwiyv'. Match!
-        
-        row = {'present': 'ahkwiyv', 'present_1sg': 'tsakwiyv'}
-        
+
+        row = {"present": "ahkwiyv", "present_1sg": "tsakwiyv"}
+
         derivations = self.deriver.derive_row(row)
-        
+
         found = False
         for d in derivations:
-            if d.stems.get('present') == 'ahkwiyv':
+            if d.stems.get("present") == "ahkwiyv":
                 found = True
                 break
         self.assertTrue(found, "Failed to derive 'ahkwiyv' from 'ahkwiyv'/'tsakwiyv'")
@@ -73,17 +74,18 @@ class TestHDroppingGeneralized(unittest.TestCase):
         # Stem: ahkwiyv
         # Set: 1st Set A (h-dropping)
         # Expected: tsakwiyv (tsi- + akwiyv, where h is dropped)
-        
-        res = self.engine.generate_pronominal_forms('ahkwiyv', '1st Set A')
-        self.assertIn('tsakwiyv', res)
+
+        res = self.engine.generate_pronominal_forms("ahkwiyv", "1st Set A")
+        self.assertIn("tsakwiyv", res)
 
     def test_reconstruction_h_start_drop(self):
         # Stem: hlogi
         # Set: 1st Set A
         # Expected: tsilogi (tsi- + logi)
-        
-        res = self.engine.generate_pronominal_forms('hlogi', '1st Set A')
-        self.assertIn('tsilogi', res)
 
-if __name__ == '__main__':
+        res = self.engine.generate_pronominal_forms("hlogi", "1st Set A")
+        self.assertIn("tsilogi", res)
+
+
+if __name__ == "__main__":
     unittest.main()
