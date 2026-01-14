@@ -20,6 +20,14 @@ def respell_consonants(s):
     ]
     for old, new in rules:
         s = s.replace(old, new)
+    
+    # hl -> lh | _ C
+    # hn -> nh | _ C
+    # Consonant: not (a, e, o, u, v, i)
+    vowels = "aeouvi"
+    s = re.sub(fr'hl(?=[^{vowels}])', 'lh', s)
+    s = re.sub(fr'hn(?=[^{vowels}])', 'nh', s)
+    
     return s
 
 def clean_string(s):

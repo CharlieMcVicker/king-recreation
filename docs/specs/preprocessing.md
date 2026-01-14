@@ -22,6 +22,8 @@ Consonants are respelled to mark aspiration explicitly:
 | `g`      | `k`                      |
 | `j`      | `ts`                     |
 | `ch`     | `tsh`                    |
+| `hl`     | `lh` (before consonant)  |
+| `hn`     | `nh` (before consonant)  |
 
 ## Reference Forms
 

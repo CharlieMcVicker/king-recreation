@@ -27,6 +27,14 @@ class TestPreprocessCed(unittest.TestCase):
         # ts exception
         self.assertEqual(respell_consonants("atsa"), "atsa")
         self.assertEqual(respell_consonants("tsa"), "tsa")
+        
+        # hl -> lh | _ C
+        self.assertEqual(respell_consonants("hla"), "hla") # followed by vowel, no change
+        self.assertEqual(respell_consonants("hlta"), "lhtha") # followed by consonant (t->th), change
+        
+        # hn -> nh | _ C
+        self.assertEqual(respell_consonants("hna"), "hna") # followed by vowel, no change
+        self.assertEqual(respell_consonants("hnta"), "nhtha") # followed by consonant (t->th), change
 
     def test_clean_row_basic(self):
         row = {
