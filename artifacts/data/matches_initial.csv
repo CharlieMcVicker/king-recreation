@@ -2327,6 +2327,10 @@ he/she is putting on his/her socks,ih,strict,full,True,True,True,True,True
 he/she is putting on his/her socks,ih,loose,full,True,True,True,True,True
 he/she is putting on his/her socks,ih[imp2],strict,full,True,True,True,True,True
 he/she is putting on his/her socks,ih[imp2],loose,full,True,True,True,True,True
+he/she is changing his/her socks,ih-vh[imperf2],strict,full,True,True,True,True,True
+he/she is changing his/her socks,ih-vh[imperf2],loose,full,True,True,True,True,True
+he/she is changing his/her socks,ih-vh[imperf2-inf2],strict,full,True,True,True,True,True
+he/she is changing his/her socks,ih-vh[imperf2-inf2],loose,full,True,True,True,True,True
 he/she is aiming at him/her,cause,strict,full,True,True,True,True,True
 he/she is aiming at him/her,cause,loose,full,True,True,True,True,True
 he/she is aiming at him/her,cause[perf2],loose,full,True,True,True,True,True
@@ -2564,25 +2568,6 @@ to come out of the nose,cause[pres2-perf2],strict,full,True,True,True,True,True
 to come out of the nose,cause[pres2-perf2],loose,full,True,True,True,True,True
 to come out of the nose,cause[pres2-perf3],strict,full,True,True,True,True,True
 to come out of the nose,cause[pres2-perf3],loose,full,True,True,True,True,True
-to come out of the nose,ih-vh,strict,full,True,True,True,True,True
-to come out of the nose,ih-vh,loose,full,True,True,True,True,True
-to come out of the nose,ih-vh[inf2],strict,full,True,True,True,True,True
-to come out of the nose,ih-vh[inf2],loose,full,True,True,True,True,True
-to come out of the nose,ih-vnh,strict,full,True,True,True,True,True
-to come out of the nose,ih-vnh,loose,full,True,True,True,True,True
-to come out of the nose,ih-vnh[inf2],strict,full,True,True,True,True,True
-to come out of the nose,ih-vnh[inf2],loose,full,True,True,True,True,True
-to come out of the nose,ih-vnh[inf3],strict,full,True,True,True,True,True
-to come out of the nose,ih-vnh[inf3],loose,full,True,True,True,True,True
-to come out of the nose,ih-vnh[imp2],strict,full,True,True,True,True,True
-to come out of the nose,ih-vnh[imp2],loose,full,True,True,True,True,True
-to come out of the nose,ih-vnh[imp2-inf2],strict,full,True,True,True,True,True
-to come out of the nose,ih-vnh[imp2-inf2],loose,full,True,True,True,True,True
-to come out of the nose,ih-vnh[imp2-inf3],strict,full,True,True,True,True,True
-to come out of the nose,ih-vnh[imp2-inf3],loose,full,True,True,True,True,True
-to come out of the nose,eat,loose,full,True,True,True,True,True
-to come out of the nose,hear,loose,full,True,True,True,True,True
-to come out of the nose,think*,loose,full,True,True,True,True,True
 to come out of the nose,ih-l,strict,full,True,True,True,True,True
 to come out of the nose,ih-l,loose,full,True,True,True,True,True
 to come out of the nose,ih-l[inf2],strict,full,True,True,True,True,True
@@ -2619,6 +2604,41 @@ to come out of the nose,ih[perf2],strict,full,True,True,True,True,True
 to come out of the nose,ih[perf2],loose,full,True,True,True,True,True
 to come out of the nose,ih[perf2-imp2],strict,full,True,True,True,True,True
 to come out of the nose,ih[perf2-imp2],loose,full,True,True,True,True,True
+to come out of the nose,ih-vh,strict,full,True,True,True,True,True
+to come out of the nose,ih-vh,loose,full,True,True,True,True,True
+to come out of the nose,ih-vh[inf2],strict,full,True,True,True,True,True
+to come out of the nose,ih-vh[inf2],loose,full,True,True,True,True,True
+to come out of the nose,ih-vh[imperf2],strict,full,True,True,True,True,True
+to come out of the nose,ih-vh[imperf2],loose,full,True,True,True,True,True
+to come out of the nose,ih-vh[imperf2-inf2],strict,full,True,True,True,True,True
+to come out of the nose,ih-vh[imperf2-inf2],loose,full,True,True,True,True,True
+to come out of the nose,ih-vnh,strict,full,True,True,True,True,True
+to come out of the nose,ih-vnh,loose,full,True,True,True,True,True
+to come out of the nose,ih-vnh[inf2],strict,full,True,True,True,True,True
+to come out of the nose,ih-vnh[inf2],loose,full,True,True,True,True,True
+to come out of the nose,ih-vnh[inf3],strict,full,True,True,True,True,True
+to come out of the nose,ih-vnh[inf3],loose,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imp2],strict,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imp2],loose,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imp2-inf2],strict,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imp2-inf2],loose,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imp2-inf3],strict,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imp2-inf3],loose,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imperf2],strict,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imperf2],loose,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imperf2-inf2],strict,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imperf2-inf2],loose,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imperf2-inf3],strict,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imperf2-inf3],loose,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imperf2-imp2],strict,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imperf2-imp2],loose,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imperf2-imp2-inf2],strict,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imperf2-imp2-inf2],loose,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imperf2-imp2-inf3],strict,full,True,True,True,True,True
+to come out of the nose,ih-vnh[imperf2-imp2-inf3],loose,full,True,True,True,True,True
+to come out of the nose,eat,loose,full,True,True,True,True,True
+to come out of the nose,hear,loose,full,True,True,True,True,True
+to come out of the nose,think*,loose,full,True,True,True,True,True
 to come out of the nose,scared,strict,full,True,True,True,True,True
 to come out of the nose,scared,loose,full,True,True,True,True,True
 to come out of the nose,aspectless,strict,full,True,True,True,True,True
@@ -2866,6 +2886,16 @@ he/she is putting it into a container,cause[pres2],loose,full,True,True,True,Tru
 he/she is putting it into a container,cause[pres2-perf2],loose,full,True,True,True,True,True
 he/she is putting it into a container,cause[pres2-perf3],strict,full,True,True,True,True,True
 he/she is putting it into a container,cause[pres2-perf3],loose,full,True,True,True,True,True
+he/she is sleeping,ih-vh[imperf2],strict,full,True,True,True,True,True
+he/she is sleeping,ih-vh[imperf2],loose,full,True,True,True,True,True
+he/she is sleeping,ih-vnh[imperf2],strict,full,True,True,True,True,True
+he/she is sleeping,ih-vnh[imperf2],loose,full,True,True,True,True,True
+he/she is sleeping,ih-vnh[imperf2-inf3],strict,full,True,True,True,True,True
+he/she is sleeping,ih-vnh[imperf2-inf3],loose,full,True,True,True,True,True
+he/she is sleeping,ih-vnh[imperf2-imp2],strict,full,True,True,True,True,True
+he/she is sleeping,ih-vnh[imperf2-imp2],loose,full,True,True,True,True,True
+he/she is sleeping,ih-vnh[imperf2-imp2-inf3],strict,full,True,True,True,True,True
+he/she is sleeping,ih-vnh[imperf2-imp2-inf3],loose,full,True,True,True,True,True
 he/she is gathering it,cause,loose,full,True,True,True,True,True
 he/she is gathering it,cause[perf2],strict,full,True,True,True,True,True
 he/she is gathering it,cause[perf2],loose,full,True,True,True,True,True
