@@ -187,7 +187,9 @@ def stems_are_consistent(
 
 
 class StemDeriver:
-    def derive_row(self, row: Dict[str, str]) -> List[Derivation]:
+    def derive_row(
+        self, row: Dict[str, str], ref: Dict[str, str] = None
+    ) -> List[Derivation]:
         form_names = [
             "present",
             "present_1sg",
@@ -196,7 +198,10 @@ class StemDeriver:
             "imperative",
             "infinitive",
         ]
-        forms = {fn: row[fn] for fn in form_names if row.get(fn)}
+        if ref:
+            forms = {fn: row[fn] for fn in form_names if ref.get(fn)}
+        else:
+            forms = {fn: row[fn] for fn in form_names if row.get(fn)}
         if not forms:
             return []
         valid_derivations: list[Derivation] = []
@@ -262,10 +267,17 @@ def main():
     input_path = os.path.join(
         base_dir, "artifacts", "data", "endings_stripped_corpus.csv"
     )
+    corpus_path = os.path.join(base_dir, "artifacts", "data", "corpus.csv")
     output_path = os.path.join(base_dir, "artifacts", "data", "derived_roots.csv")
     failures_path = os.path.join(
         base_dir, "artifacts", "reports", "stem_derivation_failures.csv"
     )
+
+    full_corpus = {}
+    with open(corpus_path, "r", encoding="utf-8") as f:
+        for r in csv.DictReader(f):
+            full_corpus[r["corpus_id"]] = r
+
     deriver = StemDeriver()
     labeled_data = []
     failures = []
@@ -274,13 +286,17 @@ def main():
         for row in reader:
             if not row["scope"] == "full":
                 continue
-            derivations = deriver.derive_row(row)
+            ref = full_corpus.get(row["corpus_id"])
+            derivations = deriver.derive_row(row, ref)
             if not derivations:
                 failures.append(row)
             else:
                 d = derivations[0]
                 for fn, stem in d.stems.items():
                     row[fn] = stem
+                row["corpus_id"] = (
+                    d.corpus_id if hasattr(d, "corpus_id") else row.get("corpus_id")
+                )
                 row["consensus_root"] = d.consensus_stem
                 row["set_a_b"] = d.pron_config.set_type
                 row["translocutive"] = str(d.pre_config.translocutive)

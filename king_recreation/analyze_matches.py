@@ -48,24 +48,30 @@ def analyze_matches(classes_path=None):
     classes_data = load_csv(classes_path)
 
     classes_map = {row["class"]: row for row in classes_data}
-    stem_corpus_map = {row["definition"]: row for row in stem_corpus}
+    stem_corpus_map = {
+        (row["corpus_id"] if "corpus_id" in row else row["definition"]): row
+        for row in stem_corpus
+    }
 
     all_classes = sorted(
         [row["class"] for row in classes_data if row["class"]],
         key=get_class_sort_key,
     )
 
-    all_verbs = set(row["definition"] for row in corpus)
+    all_verbs = set(
+        row["corpus_id"] if "corpus_id" in row else row["definition"] for row in corpus
+    )
     total_verb_count = len(all_verbs)
 
     # 1. Class-wise Match Counts
     filtered_matches = {}
     for row in matches:
         verb = row["definition"]
+        corpus_id = row.get("corpus_id", "")
         cls = row["class"]
         strictness = row["strictness"]
         scope = row["scope"]
-        key = (verb, cls, strictness)
+        key = (corpus_id if corpus_id else verb, cls, strictness)
 
         if key not in filtered_matches:
             filtered_matches[key] = row
@@ -83,10 +89,11 @@ def analyze_matches(classes_path=None):
         validated_matches = load_csv(validated_matches_path)
         for row in validated_matches:
             verb = row["definition"]
+            corpus_id = row.get("corpus_id", "")
             cls = row["class"]
             strictness = row["strictness"]
             scope = row["scope"]  # Should be 'reconstructs'
-            key = (verb, cls, strictness)
+            key = (corpus_id if corpus_id else verb, cls, strictness)
 
             # Insert or upgrade
             filtered_matches[key] = row
@@ -156,21 +163,21 @@ def analyze_matches(classes_path=None):
     for strictness, scope_target in combos:
         verb_match_counts = defaultdict(int)
         for key, row in filtered_matches.items():
-            verb, cls, s = key
+            id_val, cls, s = key
             if s == strictness:
                 # Range matching: scope_target defines the MINIMUM level
                 # reconstructs tier
                 if scope_target == "reconstructs":
                     if row["scope"] == "reconstructs":
-                        verb_match_counts[verb] += 1
+                        verb_match_counts[id_val] += 1
                 # full tier includes reconstructs
                 elif scope_target == "full":
                     if row["scope"] in ["full", "reconstructs"]:
-                        verb_match_counts[verb] += 1
+                        verb_match_counts[id_val] += 1
                 # ending tier includes all
                 else:
                     if row["scope"] in ["ending", "full", "reconstructs"]:
-                        verb_match_counts[verb] += 1
+                        verb_match_counts[id_val] += 1
 
         matched_verbs = set(verb_match_counts.keys())
         zero = len(all_verbs - matched_verbs)
@@ -287,9 +294,10 @@ def analyze_matches(classes_path=None):
             # This verb passed strict ending & strict stem final, but failed reconstruction (otherwise scope would be 'reconstructs')
             # Let's find out why
             verb_def = row["definition"]
+            corpus_id = row.get("corpus_id", "")
             cls = row["class"]
 
-            stem_row = stem_corpus_map.get(verb_def)
+            stem_row = stem_corpus_map.get(corpus_id if corpus_id else verb_def)
             class_row = classes_map.get(cls)
 
             if stem_row and class_row:

@@ -28,6 +28,7 @@ class ReconstructibleVerb:
     glottal_grade_root: Optional[str]
     class_name: str
     config: VerbConfig
+    corpus_id: Optional[int] = None
     original_stems: Dict[str, str] = field(default_factory=dict)
 
 
@@ -159,7 +160,7 @@ def main(classes_path=None):
     full_corpus_map = {}
     with open(corpus_path, "r", encoding="utf-8") as f:
         for row in csv.DictReader(f):
-            full_corpus_map[row["definition"]] = row
+            full_corpus_map[row["corpus_id"]] = row
 
     reconstructible_verbs: list[ReconstructibleVerb] = []
     consistency_analysis = []
@@ -171,7 +172,7 @@ def main(classes_path=None):
 
         # In derived_roots context, the columns like 'present', 'present_1sg' are already stripped roots
         h_root = stem_row.get("consensus_root")
-        if not h_root:
+        if h_root is None:
             # Fallback if consensus_root not written (e.g. absent from row? derived_stems writes it)
             h_root = stem_row.get("present")
 
@@ -180,7 +181,11 @@ def main(classes_path=None):
         # Glottal root: If 1sg is glottal (Set A), use the derived 1sg root.
         glottal_root = None
         if use_glottal_grade("present_1sg", config.pron):
-            glottal_root = stem_row.get("present_1sg")
+            ref_word = full_corpus_map.get(stem_row.get("corpus_id"), {}).get(
+                "present_1sg"
+            )
+            if ref_word:
+                glottal_root = stem_row.get("present_1sg")
 
         # Optional: We could re-verify consistency here, but derive_stems checks it.
         # We assume if it's in derived_roots, it passed basic consistency.
@@ -191,6 +196,7 @@ def main(classes_path=None):
             glottal_grade_root=glottal_root,
             class_name=cls_name,
             config=config,
+            corpus_id=int(stem_row["corpus_id"]) if "corpus_id" in stem_row else None,
             original_stems={
                 fn: stem_row.get(fn, "") for fn in forms
             },  # These are roots now
@@ -211,7 +217,14 @@ def main(classes_path=None):
         generated_sets = engine.reconstruct_verb(verb)
         matches_all = True
         failed_forms = []
-        ref = full_corpus_map.get(verb.definition)
+        ref = (
+            full_corpus_map.get(str(verb.corpus_id))
+            if verb.corpus_id is not None
+            else None
+        )
+        if not ref:
+            # Fallback for old data or edge cases
+            ref = full_corpus_map.get(verb.definition)
 
         # Capture options for report
         options = generated_sets[0] if generated_sets else {fn: set() for fn in forms}
@@ -281,21 +294,20 @@ def main(classes_path=None):
 
     # Save Matches Validated
     validated_matches_data = []
-    for d in report_data:
+    for d, verb in zip(report_data, reconstructible_verbs):
         if d["success"]:
             validated_matches_data.append(
                 {
+                    "corpus_id": verb.corpus_id,
                     "definition": d["definition"],
                     "class": d["class"],
                     "strictness": "strict",
                     "scope": "reconstructs",
-                    # Include stem finals? We don't have them handy in report_data, but could pass through.
-                    # For now simple schema is fine.
                 }
             )
 
     if validated_matches_data:
-        keys = ["definition", "class", "strictness", "scope"]
+        keys = ["corpus_id", "definition", "class", "strictness", "scope"]
         with open(matches_output_path, "w", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()

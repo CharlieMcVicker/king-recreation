@@ -28,8 +28,8 @@ export function VerbList({ verbs }: VerbListProps) {
       return (
         (v.definition?.toLowerCase().includes(term) ?? false) ||
         (v.class_name?.toLowerCase().includes(term) ?? false) ||
-        (v.h_grade_root?.toLowerCase().includes(term) ?? false) ||
-        (v.glottal_grade_root?.toLowerCase().includes(term) ?? false) ||
+        (v.h_grade_root?.toLowerCase()?.includes(term) ?? false) ||
+        (v.glottal_grade_root?.toLowerCase()?.includes(term) ?? false) ||
         configFlags.some((f) => f.includes(term))
       );
     })

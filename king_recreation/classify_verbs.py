@@ -211,6 +211,8 @@ def classify_verbs(classes_path=None):
 
     for verb in corpus_rows:
         matches = get_matches_for_verb(verb, macro_groups)
+        for m in matches:
+            m["corpus_id"] = verb.get("corpus_id", "")
         matches_data.extend(matches)
 
         # Identify candidates for stripping
@@ -238,6 +240,7 @@ def classify_verbs(classes_path=None):
                     continue
 
                 stripped_row = {
+                    "corpus_id": verb.get("corpus_id", ""),
                     "definition": m["definition"],
                     "class": m["class"],
                     "scope": m["scope"],
@@ -303,6 +306,7 @@ def classify_verbs(classes_path=None):
                 stripped_corpus_data.append(stripped_row)
 
     fieldnames = [
+        "corpus_id",
         "definition",
         "class",
         "strictness",
@@ -321,7 +325,9 @@ def classify_verbs(classes_path=None):
 
     if stripped_corpus_data:
         # Determine all keys dynamically or fixed
-        keys = list(stripped_corpus_data[0].keys())
+        keys = ["corpus_id"] + [
+            k for k in stripped_corpus_data[0].keys() if k != "corpus_id"
+        ]
         # Ensure all form columns present
         with open(stripped_path, mode="w", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=keys)

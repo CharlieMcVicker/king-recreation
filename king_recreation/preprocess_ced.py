@@ -121,7 +121,7 @@ def process_cn_dict(file_path, output_path):
 
     processed_data = []
 
-    for entry_no, rows in grouped_entries.items():
+    for idx, (entry_no, rows) in enumerate(grouped_entries.items()):
         # Build a single verb dictionary from the rows
         verb_data = {
             "definition": "",
@@ -283,9 +283,11 @@ def process_cn_dict(file_path, output_path):
 
         # Only add if we have at least a present form or something substantial?
         # The existing logic doesn't explicitly filter but empty strings result in empty columns.
+        verb_data["corpus_id"] = idx
         processed_data.append(verb_data)
 
     fieldnames = [
+        "corpus_id",
         "definition",
         "present",
         "present_1sg",
@@ -320,10 +322,13 @@ def process_ced():
     with open(input_path, mode="r", encoding="utf-8") as f:
         # The file seems to have a trailing comma in the header based on initial view
         reader = csv.DictReader(f)
-        for row in reader:
-            processed_data.append(clean_row(row))
+        for idx, row in enumerate(reader):
+            verb_data = clean_row(row)
+            verb_data["corpus_id"] = idx
+            processed_data.append(verb_data)
 
     fieldnames = [
+        "corpus_id",
         "definition",
         "present",
         "present_1sg",

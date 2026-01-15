@@ -7,8 +7,9 @@ import Papa from "papaparse";
 export interface ReconstructableVerb {
   definition: string;
   h_grade_root: string;
-  glottal_grade_root: string;
+  glottal_grade_root: string | null;
   class_name: string;
+  corpus_id: number | null;
   config: {
     pre: {
       translocutive: boolean;
@@ -200,9 +201,8 @@ export async function getVerbDetails(index: number) {
     .filter(
       (v) =>
         v.index !== index &&
-        v.h_grade_root !== null &&
-        v.h_grade_root !== undefined &&
-        v.h_grade_root === verb.h_grade_root
+        (v.h_grade_root === verb.h_grade_root ||
+          (v.h_grade_root === null && verb.h_grade_root === null))
     );
 
   return {
