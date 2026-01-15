@@ -1,3 +1,4 @@
+from king_recreation.utils import CLASSES_PATH
 from king_recreation.phonology_data import grades_are_compatible
 import os
 import csv
@@ -28,11 +29,11 @@ class ReconstructibleVerb:
 
 
 class ReconstructionEngine:
-    def __init__(self, king_classes_path: str):
-        self._classes_raw = self._load_king_classes_raw(king_classes_path)
-        self.king_classes = {row["class"]: row for row in self._classes_raw}
+    def __init__(self, classes_path: str):
+        self._classes_raw = self._load_classes_raw(classes_path)
+        self.classes = {row["class"]: row for row in self._classes_raw}
 
-    def _load_king_classes_raw(self, path: str) -> List[Dict[str, str]]:
+    def _load_classes_raw(self, path: str) -> List[Dict[str, str]]:
         classes = []
         with open(path, "r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
@@ -56,7 +57,7 @@ class ReconstructionEngine:
 
     def reconstruct_verb(self, verb: ReconstructibleVerb) -> List[Dict[str, str]]:
         base_stems = {}
-        class_info = self.king_classes.get(verb.class_name)
+        class_info = self.classes.get(verb.class_name)
         if not class_info:
             return []
 
@@ -123,12 +124,10 @@ def main(classes_path=None):
     stem_corpus_path = os.path.join(base_dir, "artifacts", "data", "stem_corpus.csv")
     corpus_path = os.path.join(base_dir, "artifacts", "data", "corpus.csv")
     if classes_path is None:
-        king_classes_path = os.path.join(base_dir, "data", "king_classes.csv")
-    else:
-        king_classes_path = classes_path
+        classes_path = CLASSES_PATH
     matches_path = os.path.join(base_dir, "artifacts", "data", "matches.csv")
 
-    engine = ReconstructionEngine(king_classes_path)
+    engine = ReconstructionEngine(classes_path)
 
     # Load Stem Corpus
     stem_corpus_map = {}
@@ -172,7 +171,7 @@ def main(classes_path=None):
         if not stem_row:
             continue
 
-        class_info = engine.king_classes[cls_name]
+        class_info = engine.classes[cls_name]
 
         # 1. Extract Roots
         # h-grade: derived from 'present' (3rd person)

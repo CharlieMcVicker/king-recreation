@@ -1,3 +1,4 @@
+from king_recreation.utils import CLASSES_PATH
 import csv
 import os
 from king_recreation.stem_analysis import check_root_consistency
@@ -142,7 +143,7 @@ def get_matches_for_verb(verb, classes):
 def classify_verbs(classes_path=None):
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     if classes_path is None:
-        classes_path = os.path.join(base_dir, "data", "king_classes.csv")
+        classes_path = CLASSES_PATH
     corpus_path = os.path.join(base_dir, "artifacts", "data", "stem_corpus.csv")
     output_path = os.path.join(base_dir, "artifacts", "data", "matches.csv")
 

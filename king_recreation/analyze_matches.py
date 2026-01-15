@@ -1,9 +1,10 @@
+from king_recreation.utils import CLASSES_PATH
 import csv
 import json
 import os
 import argparse
 from collections import defaultdict
-from king_recreation.utils import get_class_sort_key
+from king_recreation.utils import get_class_sort_key, CLASSES_PATH
 from king_recreation.stem_analysis import check_root_consistency
 
 
@@ -29,7 +30,7 @@ def analyze_matches(classes_path=None):
     corpus_path = "artifacts/data/corpus.csv"
     stem_corpus_path = "artifacts/data/stem_corpus.csv"
     if classes_path is None:
-        classes_path = "data/king_classes.csv"
+        classes_path = CLASSES_PATH
 
     if not os.path.exists(matches_path):
         print(f"Error: {matches_path} not found.")
@@ -44,13 +45,13 @@ def analyze_matches(classes_path=None):
     matches = load_csv(matches_path)
     corpus = load_csv(corpus_path)
     stem_corpus = load_csv(stem_corpus_path) if os.path.exists(stem_corpus_path) else []
-    king_classes_data = load_csv(classes_path)
+    classes_data = load_csv(classes_path)
 
-    king_classes_map = {row["class"]: row for row in king_classes_data}
+    classes_map = {row["class"]: row for row in classes_data}
     stem_corpus_map = {row["definition"]: row for row in stem_corpus}
 
     all_classes = sorted(
-        [row["class"] for row in king_classes_data if row["class"]],
+        [row["class"] for row in classes_data if row["class"]],
         key=get_class_sort_key,
     )
 
@@ -253,7 +254,7 @@ def analyze_matches(classes_path=None):
             cls = row["class"]
 
             stem_row = stem_corpus_map.get(verb_def)
-            class_row = king_classes_map.get(cls)
+            class_row = classes_map.get(cls)
 
             if stem_row and class_row:
                 consistent, root, details = check_root_consistency(stem_row, class_row)
