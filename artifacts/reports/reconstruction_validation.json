@@ -197,7 +197,7 @@
             "failed_forms": [
                 "infinitive: expected 'utastayht', got {'utastayvht'}"
             ],
-            "class": "hvsk1"
+            "class": "hvsk"
         },
         {
             "definition": "it\u2019s burning",
@@ -306,7 +306,7 @@
             "failed_forms": [
                 "infinitive: expected 'uteht', got {'utht'}"
             ],
-            "class": "hvsk2"
+            "class": "hvsk[inf2]"
         },
         {
             "definition": "he/she is finding it out",
@@ -415,7 +415,7 @@
             "failed_forms": [
                 "infinitive: expected 'utiskalht', got {'utiskaht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is hiding",
@@ -1074,7 +1074,7 @@
             "failed_forms": [
                 "infinitive: expected 'ulhtsatht', got {'ulhtsatoht'}"
             ],
-            "class": "hvsk1"
+            "class": "hvsk"
         },
         {
             "definition": "it\u2019s shattering",
@@ -1158,7 +1158,7 @@
             "failed_forms": [
                 "infinitive: expected 'ulhthelht', got {'ulhthelvht'}"
             ],
-            "class": "hvsk1"
+            "class": "hvsk"
         },
         {
             "definition": "he/she is changing his/her shirt",
@@ -1327,14 +1327,14 @@
             "failed_forms": [
                 "infinitive: expected 'uyhahthvtht', got {'uyhahthvht'}"
             ],
-            "class": "hvsk1"
+            "class": "hvsk"
         },
         {
             "definition": "it\u2019s becoming frosty",
             "failed_forms": [
                 "infinitive: expected 'uyhahthvtht', got {'uyhahthht'}"
             ],
-            "class": "hvsk2"
+            "class": "hvsk[inf2]"
         },
         {
             "definition": "it\u2019s becoming frosty",
@@ -1375,7 +1375,7 @@
             "failed_forms": [
                 "infinitive: expected 'uyhehkalht', got {'uyhehkaht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is quilting it",
@@ -1445,7 +1445,7 @@
             "failed_forms": [
                 "infinitive: expected 'uyhvsteluht', got {'uyhvstelht'}"
             ],
-            "class": "hvsk2"
+            "class": "hvsk[inf2]"
         },
         {
             "definition": "it\u2019s hatching",
@@ -1627,7 +1627,7 @@
             "failed_forms": [
                 "infinitive: expected 'ukhtheluht', got {'ukhthelht'}"
             ],
-            "class": "hvsk2"
+            "class": "hvsk[inf2]"
         },
         {
             "definition": "he/she is looking around",
@@ -1746,7 +1746,7 @@
             "failed_forms": [
                 "infinitive: expected 'uleht', got {'ulht'}"
             ],
-            "class": "hvsk2"
+            "class": "hvsk[inf2]"
         },
         {
             "definition": "he/she is stopping",
@@ -1890,7 +1890,7 @@
             "failed_forms": [
                 "infinitive: expected 'ulstayht', got {'ulstayvht'}"
             ],
-            "class": "hvsk1"
+            "class": "hvsk"
         },
         {
             "definition": "he/she is taking off his/her cap",
@@ -2137,7 +2137,7 @@
             "failed_forms": [
                 "infinitive: expected 'ustanvnht', got {'ustanvht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is drawing a line",
@@ -2187,7 +2187,7 @@
             "failed_forms": [
                 "infinitive: expected 'ustvhalht', got {'ustvhaht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is sandwiching it",
@@ -2598,7 +2598,7 @@
             "failed_forms": [
                 "infinitive: expected 'usuht', got {'usht'}"
             ],
-            "class": "hvsk2"
+            "class": "hvsk[inf2]"
         },
         {
             "definition": "he/she is painting it",
@@ -2916,7 +2916,7 @@
             "failed_forms": [
                 "infinitive: expected 'uthvtht', got {'uthvtvht'}"
             ],
-            "class": "hvsk1"
+            "class": "hvsk"
         },
         {
             "definition": "he/she is raising him/her",
@@ -3168,23 +3168,23 @@
             "failed_forms": [
                 "imperfective: expected 'tatanhawstisk', got {'tatanhawstihisk', 'teatanhawstihisk'}",
                 "perfective: expected 'tutanhawsthan', got {'teutanhawstihhan', 'tutanhawstihhan'}",
-                "imperative: expected 'thatanhawsta', got {'tihatanhawstiha', 'thatanhawstiha', 'tshatanhawstiha'}",
-                "infinitive: expected 'tsutanhawstoht', got {'tsutanhawstihoht', 'tiutanhawstihoht', 'tutanhawstihoht'}"
+                "imperative: expected 'thatanhawsta', got {'thatanhawstiha', 'tshatanhawstiha', 'tihatanhawstiha'}",
+                "infinitive: expected 'tsutanhawstoht', got {'tsutanhawstihoht', 'tutanhawstihoht', 'tiutanhawstihoht'}"
             ],
             "class": "cause-no-pres"
         },
         {
             "definition": "he/she is making an X",
             "failed_forms": [
-                "perfective: expected 'tutanhawsthan', got {'teutanhawstan', 'tutanhawstan'}"
+                "perfective: expected 'tutanhawsthan', got {'tutanhawstan', 'teutanhawstan'}"
             ],
             "class": "cause-no-h"
         },
         {
             "definition": "he/she is conjuring",
             "failed_forms": [
-                "perfective: expected 'tutanhesa', got {'teutanhese', 'tutanhese'}",
-                "imperative: expected 'thatanhesaka', got {'tihatanhese', 'thatanhese', 'tshatanhese'}"
+                "perfective: expected 'tutanhesa', got {'tutanhese', 'teutanhese'}",
+                "imperative: expected 'thatanhesaka', got {'tihatanhese', 'tshatanhese', 'thatanhese'}"
             ],
             "class": "glottal-sk"
         },
@@ -3198,10 +3198,10 @@
         {
             "definition": "he/she is dodging",
             "failed_forms": [
-                "imperfective: expected 'tatanvtistisk', got {'tatanvtistihisk', 'teatanvtistihisk'}",
+                "imperfective: expected 'tatanvtistisk', got {'teatanvtistihisk', 'tatanvtistihisk'}",
                 "perfective: expected 'tutanvtisthan', got {'teutanvtistihhan', 'tutanvtistihhan'}",
-                "imperative: expected 'thatanvtista', got {'thatanvtistiha', 'tihatanvtistiha', 'tshatanvtistiha'}",
-                "infinitive: expected 'tsutanvtistoht', got {'tutanvtistihoht', 'tiutanvtistihoht', 'tsutanvtistihoht'}"
+                "imperative: expected 'thatanvtista', got {'tshatanvtistiha', 'tihatanvtistiha', 'thatanvtistiha'}",
+                "infinitive: expected 'tsutanvtistoht', got {'tiutanvtistihoht', 'tutanvtistihoht', 'tsutanvtistihoht'}"
             ],
             "class": "cause-no-pres"
         },
@@ -3215,7 +3215,7 @@
         {
             "definition": "he/she is performing baptism",
             "failed_forms": [
-                "imperative: expected 'thatawotsa', got {'tshatawo', 'thatawo', 'tihatawo'}"
+                "imperative: expected 'thatawotsa', got {'tshatawo', 'tihatawo', 'thatawo'}"
             ],
             "class": "glottal-sk"
         },
@@ -3224,8 +3224,8 @@
             "failed_forms": [
                 "imperfective: expected 'tatayosk', got {'teatayosksk', 'tatayosksk'}",
                 "perfective: expected 'tutayos', got {'teutayosk', 'tutayosk'}",
-                "imperative: expected 'thatayohi', got {'tshatayosk', 'tihatayosk', 'thatayosk'}",
-                "infinitive: expected 'tsutayohist', got {'tsutayoskst', 'tutayoskst', 'tiutayoskst'}"
+                "imperative: expected 'thatayohi', got {'thatayosk', 'tihatayosk', 'tshatayosk'}",
+                "infinitive: expected 'tsutayohist', got {'tutayoskst', 'tiutayoskst', 'tsutayoskst'}"
             ],
             "class": "glottal-sk"
         },
@@ -3241,15 +3241,15 @@
             "failed_forms": [
                 "perfective: expected 'tuteyonh', got {'teuteyhonh', 'tuteyhonh'}"
             ],
-            "class": "hvsk1"
+            "class": "hvsk"
         },
         {
             "definition": "he/she is teaching",
             "failed_forms": [
                 "perfective: expected 'tuteyonh', got {'teuteyhonh', 'tuteyhonh'}",
-                "infinitive: expected 'tsuteyhoht', got {'tsuteyhht', 'tuteyhht', 'tiuteyhht'}"
+                "infinitive: expected 'tsuteyhoht', got {'tiuteyhht', 'tuteyhht', 'tsuteyhht'}"
             ],
-            "class": "hvsk2"
+            "class": "hvsk[inf2]"
         },
         {
             "definition": "he/she is teaching",
@@ -3261,14 +3261,14 @@
         {
             "definition": "he/she is weeping",
             "failed_forms": [
-                "infinitive: expected 'tsutloyst', got {'tutloyhst', 'tsutloyhst', 'tiutloyhst'}"
+                "infinitive: expected 'tsutloyst', got {'tsutloyhst', 'tiutloyhst', 'tutloyhst'}"
             ],
             "class": "round1"
         },
         {
             "definition": "he/she is weeping",
             "failed_forms": [
-                "infinitive: expected 'tsutloyst', got {'tiutloyht', 'tsutloyht', 'tutloyht'}"
+                "infinitive: expected 'tsutloyst', got {'tutloyht', 'tiutloyht', 'tsutloyht'}"
             ],
             "class": "round2"
         },
@@ -3276,7 +3276,7 @@
             "definition": "he/she is weeping",
             "failed_forms": [
                 "perfective: expected 'tutloyhil', got {'tutloyhl', 'teutloyhl'}",
-                "infinitive: expected 'tsutloyst', got {'tutloyhst', 'tsutloyhst', 'tiutloyhst'}"
+                "infinitive: expected 'tsutloyst', got {'tsutloyhst', 'tiutloyhst', 'tutloyhst'}"
             ],
             "class": "round3"
         },
@@ -3284,9 +3284,9 @@
             "definition": "he/she is setting a price",
             "failed_forms": [
                 "imperfective: expected 'takvwalhtisk', got {'teakvwalhtihisk', 'takvwalhtihisk'}",
-                "perfective: expected 'tukvwalhthan', got {'teukvwalhtihhan', 'tukvwalhtihhan'}",
-                "imperative: expected 'thikvwalhta', got {'thikvwalhtiha', 'tshikvwalhtiha', 'tihikvwalhtiha'}",
-                "infinitive: expected 'tsukvwalhtoht', got {'tukvwalhtihoht', 'tiukvwalhtihoht', 'tsukvwalhtihoht'}"
+                "perfective: expected 'tukvwalhthan', got {'tukvwalhtihhan', 'teukvwalhtihhan'}",
+                "imperative: expected 'thikvwalhta', got {'tshikvwalhtiha', 'thikvwalhtiha', 'tihikvwalhtiha'}",
+                "infinitive: expected 'tsukvwalhtoht', got {'tsukvwalhtihoht', 'tiukvwalhtihoht', 'tukvwalhtihoht'}"
             ],
             "class": "cause-no-pres"
         },
@@ -3300,8 +3300,8 @@
         {
             "definition": "he/she is rocking",
             "failed_forms": [
-                "imperative: expected 'thalhihkvla', got {'tshalhihka', 'tihalhihka', 'thalhihka'}",
-                "infinitive: expected 'tsulhihkeht', got {'tsulhihkht', 'tiulhihkht', 'tulhihkht'}"
+                "imperative: expected 'thalhihkvla', got {'tihalhihka', 'thalhihka', 'tshalhihka'}",
+                "infinitive: expected 'tsulhihkeht', got {'tsulhihkht', 'tulhihkht', 'tiulhihkht'}"
             ],
             "class": "wash-hair"
         },
@@ -3309,61 +3309,61 @@
             "definition": "he/she is drawing a picture of him/her",
             "failed_forms": [
                 "imperfective: expected 'talhilostisk', got {'tealhilostihisk', 'talhilostihisk'}",
-                "perfective: expected 'tulhilosthan', got {'teulhilostihhan', 'tulhilostihhan'}",
-                "imperative: expected 'thiyatlilosta', got {'thiyatlilostiha', 'tihiyatlilostiha', 'tshiyatlilostiha'}",
-                "infinitive: expected 'tsulhilostoht', got {'tulhilostihoht', 'tiulhilostihoht', 'tsulhilostihoht'}"
+                "perfective: expected 'tulhilosthan', got {'tulhilostihhan', 'teulhilostihhan'}",
+                "imperative: expected 'thiyatlilosta', got {'tihiyatlilostiha', 'tshiyatlilostiha', 'thiyatlilostiha'}",
+                "infinitive: expected 'tsulhilostoht', got {'tiulhilostihoht', 'tulhilostihoht', 'tsulhilostihoht'}"
             ],
             "class": "cause-no-pres"
         },
         {
             "definition": "he/she is drawing a picture of him/her",
             "failed_forms": [
-                "perfective: expected 'tulhilosthan', got {'tulhilostan', 'teulhilostan'}"
+                "perfective: expected 'tulhilosthan', got {'teulhilostan', 'tulhilostan'}"
             ],
             "class": "cause-no-h"
         },
         {
             "definition": "he/she is changing clothes",
             "failed_forms": [
-                "perfective: expected 'tunhawaiyvs', got {'teunhawaiyv', 'tunhawaiyv'}",
-                "imperative: expected 'thanhawaiyvna', got {'thanhawaiyv', 'tihanhawaiyv', 'tshanhawaiyv'}"
+                "perfective: expected 'tunhawaiyvs', got {'tunhawaiyv', 'teunhawaiyv'}",
+                "imperative: expected 'thanhawaiyvna', got {'thanhawaiyv', 'tshanhawaiyv', 'tihanhawaiyv'}"
             ],
             "class": "glottal-sk"
         },
         {
             "definition": "he/she is undressing",
             "failed_forms": [
-                "perfective: expected 'tunhawes', got {'tunhawe', 'teunhawe'}",
-                "imperative: expected 'thanhawaki', got {'tshanhawe', 'thanhawe', 'tihanhawe'}"
+                "perfective: expected 'tunhawes', got {'teunhawe', 'tunhawe'}",
+                "imperative: expected 'thanhawaki', got {'tihanhawe', 'tshanhawe', 'thanhawe'}"
             ],
             "class": "glottal-sk"
         },
         {
             "definition": "he/she is putting on clothes",
             "failed_forms": [
-                "imperative: expected 'thanhawotsa', got {'tshanhawo', 'tihanhawo', 'thanhawo'}"
+                "imperative: expected 'thanhawotsa', got {'tihanhawo', 'thanhawo', 'tshanhawo'}"
             ],
             "class": "glottal-sk"
         },
         {
             "definition": "he/she is putting fuel into a fire",
             "failed_forms": [
-                "infinitive: expected 'tsuhvtht', got {'tsuhvht', 'tiuhvht', 'tuhvht'}"
+                "infinitive: expected 'tsuhvtht', got {'tuhvht', 'tiuhvht', 'tsuhvht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is putting fuel into a fire",
             "failed_forms": [
-                "perfective: expected 'tuhvthan', got {'teuhvthn', 'tuhvthn'}"
+                "perfective: expected 'tuhvthan', got {'tuhvthn', 'teuhvthn'}"
             ],
             "class": "vvsk1"
         },
         {
             "definition": "he/she is tickling him/her",
             "failed_forms": [
-                "perfective: expected 'tuyhvk', got {'tuyhvki', 'teuyhvki'}",
-                "imperative: expected 'thiyvka', got {'thiyvki', 'tshiyvki', 'tihiyvki'}"
+                "perfective: expected 'tuyhvk', got {'teuyhvki', 'tuyhvki'}",
+                "imperative: expected 'thiyvka', got {'tshiyvki', 'thiyvki', 'tihiyvki'}"
             ],
             "class": "glottal-sk"
         },
@@ -3377,15 +3377,15 @@
         {
             "definition": "he/she is becoming blind",
             "failed_forms": [
-                "infinitive: expected 'tsukhewaist', got {'tsukhewast', 'tiukhewast', 'tukhewast'}"
+                "infinitive: expected 'tsukhewaist', got {'tiukhewast', 'tukhewast', 'tsukhewast'}"
             ],
             "class": "become2"
         },
         {
             "definition": "he/she is becoming blind",
             "failed_forms": [
-                "imperative: expected 'thikhewaki', got {'tshikhewai', 'tihikhewai', 'thikhewai'}",
-                "infinitive: expected 'tsukhewaist', got {'tsukhewast', 'tiukhewast', 'tukhewast'}"
+                "imperative: expected 'thikhewaki', got {'thikhewai', 'tshikhewai', 'tihikhewai'}",
+                "infinitive: expected 'tsukhewaist', got {'tiukhewast', 'tukhewast', 'tsukhewast'}"
             ],
             "class": "quit"
         },
@@ -3393,57 +3393,57 @@
             "definition": "he/she is making smoke",
             "failed_forms": [
                 "imperfective: expected 'takhsvstisk', got {'teakhsvstihisk', 'takhsvstihisk'}",
-                "perfective: expected 'tukhsvsthan', got {'tukhsvstihhan', 'teukhsvstihhan'}",
-                "imperative: expected 'thikhsvsta', got {'tshikhsvstiha', 'tihikhsvstiha', 'thikhsvstiha'}",
-                "infinitive: expected 'tsukhsvstoht', got {'tukhsvstihoht', 'tiukhsvstihoht', 'tsukhsvstihoht'}"
+                "perfective: expected 'tukhsvsthan', got {'teukhsvstihhan', 'tukhsvstihhan'}",
+                "imperative: expected 'thikhsvsta', got {'thikhsvstiha', 'tihikhsvstiha', 'tshikhsvstiha'}",
+                "infinitive: expected 'tsukhsvstoht', got {'tiukhsvstihoht', 'tsukhsvstihoht', 'tukhsvstihoht'}"
             ],
             "class": "cause-no-pres"
         },
         {
             "definition": "he/she is making smoke",
             "failed_forms": [
-                "perfective: expected 'tukhsvsthan', got {'teukhsvstan', 'tukhsvstan'}"
+                "perfective: expected 'tukhsvsthan', got {'tukhsvstan', 'teukhsvstan'}"
             ],
             "class": "cause-no-h"
         },
         {
             "definition": "he/she is blinking",
             "failed_forms": [
-                "imperfective: expected 'takhthanawsk', got {'takhthanawsksk', 'teakhthanawsksk'}",
+                "imperfective: expected 'takhthanawsk', got {'teakhthanawsksk', 'takhthanawsksk'}",
                 "perfective: expected 'tukhthanaws', got {'tukhthanawsk', 'teukhthanawsk'}",
                 "imperative: expected 'thakhthanawha', got {'tihakhthanawsk', 'tshakhthanawsk', 'thakhthanawsk'}",
-                "infinitive: expected 'tsukhthanawst', got {'tsukhthanawskst', 'tiukhthanawskst', 'tukhthanawskst'}"
+                "infinitive: expected 'tsukhthanawst', got {'tiukhthanawskst', 'tsukhthanawskst', 'tukhthanawskst'}"
             ],
             "class": "glottal-sk"
         },
         {
             "definition": "he/she is blinking",
             "failed_forms": [
-                "imperative: expected 'thakhthanawha', got {'tihakhthanawa', 'tshakhthanawa', 'thakhthanawa'}"
+                "imperative: expected 'thakhthanawha', got {'tshakhthanawa', 'thakhthanawa', 'tihakhthanawa'}"
             ],
             "class": "sk-s-a"
         },
         {
             "definition": "he/she is closing his eyes",
             "failed_forms": [
-                "imperfective: expected 'takhthastisk', got {'takhthastihisk', 'teakhthastihisk'}",
-                "perfective: expected 'tukhthasthan', got {'tukhthastihhan', 'teukhthastihhan'}",
+                "imperfective: expected 'takhthastisk', got {'teakhthastihisk', 'takhthastihisk'}",
+                "perfective: expected 'tukhthasthan', got {'teukhthastihhan', 'tukhthastihhan'}",
                 "imperative: expected 'thakhthasta', got {'tihakhthastiha', 'thakhthastiha', 'tshakhthastiha'}",
-                "infinitive: expected 'tsukhthastoht', got {'tsukhthastihoht', 'tukhthastihoht', 'tiukhthastihoht'}"
+                "infinitive: expected 'tsukhthastoht', got {'tiukhthastihoht', 'tukhthastihoht', 'tsukhthastihoht'}"
             ],
             "class": "cause-no-pres"
         },
         {
             "definition": "he/she is closing his eyes",
             "failed_forms": [
-                "perfective: expected 'tukhthasthan', got {'teukhthastan', 'tukhthastan'}"
+                "perfective: expected 'tukhthasthan', got {'tukhthastan', 'teukhthastan'}"
             ],
             "class": "cause-no-h"
         },
         {
             "definition": "he/she is taking off his/her glasses",
             "failed_forms": [
-                "perfective: expected 'tukhthinvtes', got {'teukhthinvte', 'tukhthinvte'}",
+                "perfective: expected 'tukhthinvtes', got {'tukhthinvte', 'teukhthinvte'}",
                 "imperative: expected 'thakhthinvtaki', got {'tihakhthinvte', 'tshakhthinvte', 'thakhthinvte'}"
             ],
             "class": "glottal-sk"
@@ -3451,9 +3451,9 @@
         {
             "definition": "he/she is putting on glasses",
             "failed_forms": [
-                "infinitive: expected 'tsukhthinvtht', got {'tiukhthinvht', 'tsukhthinvht', 'tukhthinvht'}"
+                "infinitive: expected 'tsukhthinvtht', got {'tiukhthinvht', 'tukhthinvht', 'tsukhthinvht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is putting on glasses",
@@ -3465,7 +3465,7 @@
         {
             "definition": "he/she is shelling corn",
             "failed_forms": [
-                "infinitive: expected 'tsukhtlhvht', got {'tsukhtlhht', 'tiukhtlhht', 'tukhtlhht'}"
+                "infinitive: expected 'tsukhtlhvht', got {'tiukhtlhht', 'tsukhtlhht', 'tukhtlhht'}"
             ],
             "class": "vh1"
         },
@@ -3482,22 +3482,22 @@
                 "present: expected 'tastutli', got {'teakwhayovsk', 'takwhayovsk'}",
                 "imperfective: expected 'tastutlisk', got {'teakwhayovsk', 'takwhayovsk'}",
                 "perfective: expected 'tustutl', got {'teukwhayon', 'tukwhayon'}",
-                "imperative: expected 'thistutla', got {'thikwhayovka', 'tshikwhayovka', 'tihikwhayovka'}",
-                "infinitive: expected 'tsustutlist', got {'tukwhayot', 'tsukwhayot', 'tiukwhayot'}"
+                "imperative: expected 'thistutla', got {'tshikwhayovka', 'thikwhayovka', 'tihikwhayovka'}",
+                "infinitive: expected 'tsustutlist', got {'tiukwhayot', 'tsukwhayot', 'tukwhayot'}"
             ],
             "class": "vvsk1"
         },
         {
             "definition": "he/she is putting on shoes",
             "failed_forms": [
-                "infinitive: expected 'tsulasulht', got {'tulasuht', 'tsulasuht', 'tiulasuht'}"
+                "infinitive: expected 'tsulasulht', got {'tiulasuht', 'tulasuht', 'tsulasuht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is putting on shoes",
             "failed_forms": [
-                "perfective: expected 'tulasulhan', got {'tulasulhn', 'teulasulhn'}"
+                "perfective: expected 'tulasulhan', got {'teulasulhn', 'tulasulhn'}"
             ],
             "class": "vvsk1"
         },
@@ -3505,7 +3505,7 @@
             "definition": "he/she is changing shoes",
             "failed_forms": [
                 "perfective: expected 'tulasulaiyvs', got {'tulasulaiyv', 'teulasulaiyv'}",
-                "imperative: expected 'thalasulaiyvna', got {'tihalasulaiyv', 'tshalasulaiyv', 'thalasulaiyv'}"
+                "imperative: expected 'thalasulaiyvna', got {'thalasulaiyv', 'tihalasulaiyv', 'tshalasulaiyv'}"
             ],
             "class": "glottal-sk"
         },
@@ -3520,10 +3520,10 @@
         {
             "definition": "he/she is helping him/her up",
             "failed_forms": [
-                "imperfective: expected 'talehtisk', got {'tealehtihisk', 'talehtihisk'}",
+                "imperfective: expected 'talehtisk', got {'talehtihisk', 'tealehtihisk'}",
                 "perfective: expected 'tulehthan', got {'teulehtihhan', 'tulehtihhan'}",
-                "imperative: expected 'thiyaleta', got {'tihiyaletiha', 'tshiyaletiha', 'thiyaletiha'}",
-                "infinitive: expected 'tsulehtoht', got {'tulehtihoht', 'tsulehtihoht', 'tiulehtihoht'}"
+                "imperative: expected 'thiyaleta', got {'tihiyaletiha', 'thiyaletiha', 'tshiyaletiha'}",
+                "infinitive: expected 'tsulehtoht', got {'tsulehtihoht', 'tulehtihoht', 'tiulehtihoht'}"
             ],
             "class": "cause-no-pres"
         },
@@ -3537,15 +3537,15 @@
         {
             "definition": "he/she is getting up",
             "failed_forms": [
-                "infinitive: expected 'tsuleht', got {'tiulht', 'tsulht', 'tulht'}"
+                "infinitive: expected 'tsuleht', got {'tulht', 'tiulht', 'tsulht'}"
             ],
-            "class": "hvsk2"
+            "class": "hvsk[inf2]"
         },
         {
             "definition": "he/she is taking off his/her gloves",
             "failed_forms": [
                 "perfective: expected 'tuliyesules', got {'teuliyesule', 'tuliyesule'}",
-                "imperative: expected 'thaliyesulaki', got {'tihaliyesule', 'tshaliyesule', 'thaliyesule'}"
+                "imperative: expected 'thaliyesulaki', got {'tihaliyesule', 'thaliyesule', 'tshaliyesule'}"
             ],
             "class": "glottal-sk"
         },
@@ -3559,51 +3559,51 @@
         {
             "definition": "he/she is aiming at him/her",
             "failed_forms": [
-                "imperfective: expected 'talsostisk', got {'talsostihisk', 'tealsostihisk'}",
+                "imperfective: expected 'talsostisk', got {'tealsostihisk', 'talsostihisk'}",
                 "perfective: expected 'tulsosthan', got {'teulsostihhan', 'tulsostihhan'}",
                 "imperative: expected 'thiyalisosta', got {'tshiyalisostiha', 'thiyalisostiha', 'tihiyalisostiha'}",
-                "infinitive: expected 'tsulsostoht', got {'tulsostihoht', 'tiulsostihoht', 'tsulsostihoht'}"
+                "infinitive: expected 'tsulsostoht', got {'tiulsostihoht', 'tsulsostihoht', 'tulsostihoht'}"
             ],
             "class": "cause-no-pres"
         },
         {
             "definition": "he/she is aiming at him/her",
             "failed_forms": [
-                "perfective: expected 'tulsosthan', got {'teulsostan', 'tulsostan'}"
+                "perfective: expected 'tulsosthan', got {'tulsostan', 'teulsostan'}"
             ],
             "class": "cause-no-h"
         },
         {
             "definition": "he/she is playing with him/her",
             "failed_forms": [
-                "imperfective: expected 'tanelhtisk', got {'tanelhtihisk', 'teanelhtihisk'}",
-                "perfective: expected 'tunelhthan', got {'teunelhtihhan', 'tunelhtihhan'}",
-                "imperative: expected 'thiyanelhta', got {'thiyanelhtiha', 'tshiyanelhtiha', 'tihiyanelhtiha'}",
-                "infinitive: expected 'tsunelhtoht', got {'tunelhtihoht', 'tsunelhtihoht', 'tiunelhtihoht'}"
+                "imperfective: expected 'tanelhtisk', got {'teanelhtihisk', 'tanelhtihisk'}",
+                "perfective: expected 'tunelhthan', got {'tunelhtihhan', 'teunelhtihhan'}",
+                "imperative: expected 'thiyanelhta', got {'thiyanelhtiha', 'tihiyanelhtiha', 'tshiyanelhtiha'}",
+                "infinitive: expected 'tsunelhtoht', got {'tsunelhtihoht', 'tunelhtihoht', 'tiunelhtihoht'}"
             ],
             "class": "cause-no-pres"
         },
         {
             "definition": "he/she is playing with him/her",
             "failed_forms": [
-                "perfective: expected 'tunelhthan', got {'teunelhtan', 'tunelhtan'}"
+                "perfective: expected 'tunelhthan', got {'tunelhtan', 'teunelhtan'}"
             ],
             "class": "cause-no-h"
         },
         {
             "definition": "he/she is playing",
             "failed_forms": [
-                "infinitive: expected 'tsunelht', got {'tiuneloht', 'tuneloht', 'tsuneloht'}"
+                "infinitive: expected 'tsunelht', got {'tsuneloht', 'tuneloht', 'tiuneloht'}"
             ],
-            "class": "hvsk1"
+            "class": "hvsk"
         },
         {
             "definition": "he/she is splitting it",
             "failed_forms": [
-                "imperfective: expected 'tastlusk', got {'teastlusksk', 'tastlusksk'}",
-                "perfective: expected 'tustluyh', got {'tustlusk', 'teustlusk'}",
-                "imperative: expected 'thistluyha', got {'thistlusk', 'tshistlusk', 'tihistlusk'}",
-                "infinitive: expected 'tsustlust', got {'tsustluskst', 'tiustluskst', 'tustluskst'}"
+                "imperfective: expected 'tastlusk', got {'tastlusksk', 'teastlusksk'}",
+                "perfective: expected 'tustluyh', got {'teustlusk', 'tustlusk'}",
+                "imperative: expected 'thistluyha', got {'thistlusk', 'tihistlusk', 'tshistlusk'}",
+                "infinitive: expected 'tsustlust', got {'tiustluskst', 'tustluskst', 'tsustluskst'}"
             ],
             "class": "glottal-sk"
         },
@@ -3611,7 +3611,7 @@
             "definition": "he/she is splitting it",
             "failed_forms": [
                 "perfective: expected 'tustluyh', got {'teustluh', 'tustluh'}",
-                "imperative: expected 'thistluyha', got {'thistluha', 'tihistluha', 'tshistluha'}"
+                "imperative: expected 'thistluyha', got {'tshistluha', 'tihistluha', 'thistluha'}"
             ],
             "class": "sk-h"
         },
@@ -3619,65 +3619,65 @@
             "definition": "he/she is splitting it",
             "failed_forms": [
                 "perfective: expected 'tustluyh', got {'teustluh', 'tustluh'}",
-                "imperative: expected 'thistluyha', got {'thistlu', 'tihistlu', 'tshistlu'}"
+                "imperative: expected 'thistluyha', got {'tihistlu', 'thistlu', 'tshistlu'}"
             ],
             "class": "sweep"
         },
         {
             "definition": "he/she is sprinkling it",
             "failed_forms": [
-                "perfective: expected 'tustutl', got {'teustutli', 'tustutli'}",
-                "imperative: expected 'thistutla', got {'tshistutli', 'tihistutli', 'thistutli'}"
+                "perfective: expected 'tustutl', got {'tustutli', 'teustutli'}",
+                "imperative: expected 'thistutla', got {'tshistutli', 'thistutli', 'tihistutli'}"
             ],
             "class": "glottal-sk"
         },
         {
             "definition": "he/she is cursing him/her",
             "failed_forms": [
-                "perfective: expected 'tuskinat', got {'teuskinati', 'tuskinati'}",
-                "imperative: expected 'thiskinata', got {'tihiskinati', 'thiskinati', 'tshiskinati'}"
+                "perfective: expected 'tuskinat', got {'tuskinati', 'teuskinati'}",
+                "imperative: expected 'thiskinata', got {'tihiskinati', 'tshiskinati', 'thiskinati'}"
             ],
             "class": "glottal-sk"
         },
         {
             "definition": "he/she is clapping his/her hands",
             "failed_forms": [
-                "imperative: expected 'thasihthvnika', got {'tshasihthvnka', 'thasihthvnka', 'tihasihthvnka'}",
-                "infinitive: expected 'tsusihthvnist', got {'tiusihthvnst', 'tsusihthvnst', 'tusihthvnst'}"
+                "imperative: expected 'thasihthvnika', got {'tshasihthvnka', 'tihasihthvnka', 'thasihthvnka'}",
+                "infinitive: expected 'tsusihthvnist', got {'tusihthvnst', 'tsusihthvnst', 'tiusihthvnst'}"
             ],
             "class": "round1"
         },
         {
             "definition": "he/she is clapping his/her hands",
             "failed_forms": [
-                "imperative: expected 'thasihthvnika', got {'tshasihthvnka', 'thasihthvnka', 'tihasihthvnka'}",
-                "infinitive: expected 'tsusihthvnist', got {'tiusihthvnt', 'tusihthvnt', 'tsusihthvnt'}"
+                "imperative: expected 'thasihthvnika', got {'tshasihthvnka', 'tihasihthvnka', 'thasihthvnka'}",
+                "infinitive: expected 'tsusihthvnist', got {'tusihthvnt', 'tiusihthvnt', 'tsusihthvnt'}"
             ],
             "class": "round2"
         },
         {
             "definition": "he/she is clapping his/her hands",
             "failed_forms": [
-                "perfective: expected 'tusihthvnil', got {'teusihthvnl', 'tusihthvnl'}",
-                "imperative: expected 'thasihthvnika', got {'tshasihthvnka', 'thasihthvnka', 'tihasihthvnka'}",
-                "infinitive: expected 'tsusihthvnist', got {'tiusihthvnst', 'tsusihthvnst', 'tusihthvnst'}"
+                "perfective: expected 'tusihthvnil', got {'tusihthvnl', 'teusihthvnl'}",
+                "imperative: expected 'thasihthvnika', got {'tshasihthvnka', 'tihasihthvnka', 'thasihthvnka'}",
+                "infinitive: expected 'tsusihthvnist', got {'tusihthvnst', 'tsusihthvnst', 'tiusihthvnst'}"
             ],
             "class": "round3"
         },
         {
             "definition": "he/she is getting exhausted",
             "failed_forms": [
-                "imperfective: expected 'tasthayesk', got {'tasthayesksk', 'teasthayesksk'}",
+                "imperfective: expected 'tasthayesk', got {'teasthayesksk', 'tasthayesksk'}",
                 "perfective: expected 'tusthayes', got {'teusthayesk', 'tusthayesk'}",
-                "imperative: expected 'thasthayehi', got {'tshasthayesk', 'tihasthayesk', 'thasthayesk'}",
-                "infinitive: expected 'tsusthayehist', got {'tiusthayeskst', 'tsusthayeskst', 'tusthayeskst'}"
+                "imperative: expected 'thasthayehi', got {'tihasthayesk', 'tshasthayesk', 'thasthayesk'}",
+                "infinitive: expected 'tsusthayehist', got {'tsusthayeskst', 'tusthayeskst', 'tiusthayeskst'}"
             ],
             "class": "glottal-sk"
         },
         {
             "definition": "he/she is getting exhausted",
             "failed_forms": [
-                "infinitive: expected 'tsusthayehist', got {'tsusthayest', 'tiusthayest', 'tusthayest'}"
+                "infinitive: expected 'tsusthayehist', got {'tiusthayest', 'tsusthayest', 'tusthayest'}"
             ],
             "class": "sk-s2"
         },
@@ -3686,8 +3686,8 @@
             "failed_forms": [
                 "imperfective: expected 'tasuwhisk', got {'teasuwhisksk', 'tasuwhisksk'}",
                 "perfective: expected 'tusuwhis', got {'tusuwhisk', 'teusuwhisk'}",
-                "imperative: expected 'thasuwha', got {'thasuwhisk', 'tshasuwhisk', 'tihasuwhisk'}",
-                "infinitive: expected 'tsusuwhist', got {'tiusuwhiskst', 'tusuwhiskst', 'tsusuwhiskst'}"
+                "imperative: expected 'thasuwha', got {'tshasuwhisk', 'tihasuwhisk', 'thasuwhisk'}",
+                "infinitive: expected 'tsusuwhist', got {'tsusuwhiskst', 'tusuwhiskst', 'tiusuwhiskst'}"
             ],
             "class": "glottal-sk"
         },
@@ -3702,9 +3702,9 @@
             "definition": "he/she is scheduling a time",
             "failed_forms": [
                 "imperfective: expected 'tasvstisk', got {'teasvstihisk', 'tasvstihisk'}",
-                "perfective: expected 'tusvsthan', got {'teusvstihhan', 'tusvstihhan'}",
-                "imperative: expected 'thisvsta', got {'tshisvstiha', 'tihisvstiha', 'thisvstiha'}",
-                "infinitive: expected 'tsusvstoht', got {'tsusvstihoht', 'tusvstihoht', 'tiusvstihoht'}"
+                "perfective: expected 'tusvsthan', got {'tusvstihhan', 'teusvstihhan'}",
+                "imperative: expected 'thisvsta', got {'tihisvstiha', 'thisvstiha', 'tshisvstiha'}",
+                "infinitive: expected 'tsusvstoht', got {'tsusvstihoht', 'tiusvstihoht', 'tusvstihoht'}"
             ],
             "class": "cause-no-pres"
         },
@@ -3718,7 +3718,7 @@
         {
             "definition": "he/she is releasing him/her",
             "failed_forms": [
-                "infinitive: expected 'tsuyohist', got {'tsuyost', 'tiuyost', 'tuyost'}"
+                "infinitive: expected 'tsuyohist', got {'tuyost', 'tsuyost', 'tiuyost'}"
             ],
             "class": "sk-s2"
         },
@@ -3726,9 +3726,9 @@
             "definition": "he/she is slamming him/her",
             "failed_forms": [
                 "imperfective: expected 'tekalvtvnistisk', got {'tekalvtvnistihisk', 'tkalvtvnistihisk'}",
-                "perfective: expected 'tulvtvnisthan', got {'teulvtvnistihhan', 'tulvtvnistihhan'}",
-                "imperative: expected 'thilvtvnista', got {'thilvtvnistiha', 'tihilvtvnistiha', 'tshilvtvnistiha'}",
-                "infinitive: expected 'tsulvtvnistoht', got {'tsulvtvnistihoht', 'tiulvtvnistihoht', 'tulvtvnistihoht'}"
+                "perfective: expected 'tulvtvnisthan', got {'tulvtvnistihhan', 'teulvtvnistihhan'}",
+                "imperative: expected 'thilvtvnista', got {'tshilvtvnistiha', 'thilvtvnistiha', 'tihilvtvnistiha'}",
+                "infinitive: expected 'tsulvtvnistoht', got {'tiulvtvnistihoht', 'tsulvtvnistihoht', 'tulvtvnistihoht'}"
             ],
             "class": "cause-no-pres"
         },
@@ -3745,14 +3745,14 @@
                 "imperfective: expected 'tekanatiwsk', got {'tkanatiwsksk', 'tekanatiwsksk'}",
                 "perfective: expected 'tunatiws', got {'tunatiwsk', 'teunatiwsk'}",
                 "imperative: expected 'thinatiwhi', got {'tshinatiwsk', 'tihinatiwsk', 'thinatiwsk'}",
-                "infinitive: expected 'tsunatiwhist', got {'tunatiwskst', 'tiunatiwskst', 'tsunatiwskst'}"
+                "infinitive: expected 'tsunatiwhist', got {'tsunatiwskst', 'tunatiwskst', 'tiunatiwskst'}"
             ],
             "class": "glottal-sk"
         },
         {
             "definition": "he/she is crossing",
             "failed_forms": [
-                "infinitive: expected 'tsunatiwhist', got {'tunatiwst', 'tsunatiwst', 'tiunatiwst'}"
+                "infinitive: expected 'tsunatiwhist', got {'tiunatiwst', 'tunatiwst', 'tsunatiwst'}"
             ],
             "class": "sk-s2"
         },
@@ -3761,7 +3761,7 @@
             "failed_forms": [
                 "infinitive: expected 'tsunotsalht', got {'tsunotsaht', 'tunotsaht', 'tiunotsaht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is advertising it",
@@ -3773,15 +3773,15 @@
         {
             "definition": "he/she is crossing it",
             "failed_forms": [
-                "infinitive: expected 'tsuwasohist', got {'tiuwasohst', 'tuwasohst', 'tsuwasohst'}"
+                "infinitive: expected 'tsuwasohist', got {'tuwasohst', 'tiuwasohst', 'tsuwasohst'}"
             ],
             "class": "become2"
         },
         {
             "definition": "he/she is crossing it",
             "failed_forms": [
-                "imperative: expected 'thisohki', got {'tshisohi', 'tihisohi', 'thisohi'}",
-                "infinitive: expected 'tsuwasohist', got {'tiuwasohst', 'tuwasohst', 'tsuwasohst'}"
+                "imperative: expected 'thisohki', got {'tihisohi', 'tshisohi', 'thisohi'}",
+                "infinitive: expected 'tsuwasohist', got {'tuwasohst', 'tiuwasohst', 'tsuwasohst'}"
             ],
             "class": "quit"
         },
@@ -3795,10 +3795,10 @@
         {
             "definition": "he/she is deciding",
             "failed_forms": [
-                "imperfective: expected 'tekukhtisk', got {'tkukhtihisk', 'tekukhtihisk'}",
-                "perfective: expected 'tuwukhthan', got {'tuwukhtihhan', 'teuwukhtihhan'}",
-                "imperative: expected 'thukhta', got {'tihukhtiha', 'tshukhtiha', 'thukhtiha'}",
-                "infinitive: expected 'tsuwukhtoht', got {'tsuwukhtihoht', 'tuwukhtihoht', 'tiuwukhtihoht'}"
+                "imperfective: expected 'tekukhtisk', got {'tekukhtihisk', 'tkukhtihisk'}",
+                "perfective: expected 'tuwukhthan', got {'teuwukhtihhan', 'tuwukhtihhan'}",
+                "imperative: expected 'thukhta', got {'thukhtiha', 'tshukhtiha', 'tihukhtiha'}",
+                "infinitive: expected 'tsuwukhtoht', got {'tsuwukhtihoht', 'tiuwukhtihoht', 'tuwukhtihoht'}"
             ],
             "class": "cause-no-pres"
         },
@@ -3812,18 +3812,18 @@
         {
             "definition": "he/she is washing",
             "failed_forms": [
-                "present: expected 'tekhkilo', got {'tkvtiye', 'tekvtiye'}",
+                "present: expected 'tekhkilo', got {'tekvtiye', 'tkvtiye'}",
                 "imperfective: expected 'tekhkilosk', got {'tekvtiyesk', 'tkvtiyesk'}",
-                "perfective: expected 'tuhkilo', got {'teuwatiye', 'tuwatiye'}",
+                "perfective: expected 'tuhkilo', got {'tuwatiye', 'teuwatiye'}",
                 "imperative: expected 'thvhkilotsa', got {'thvtiya', 'tshvtiya', 'tihvtiya'}",
-                "infinitive: expected 'tsuhkilost', got {'tiuwatiyet', 'tsuwatiyet', 'tuwatiyet'}"
+                "infinitive: expected 'tsuhkilost', got {'tsuwatiyet', 'tuwatiyet', 'tiuwatiyet'}"
             ],
             "class": "rub"
         },
         {
             "definition": "he/she is shelling",
             "failed_forms": [
-                "perfective: expected 'tuwvthohis', got {'tuwvthohi', 'teuwvthohi'}"
+                "perfective: expected 'tuwvthohis', got {'teuwvthohi', 'tuwvthohi'}"
             ],
             "class": "glottal-sk"
         },
@@ -3838,33 +3838,33 @@
             "definition": "he/she is clawing him/her",
             "failed_forms": [
                 "imperfective: expected 'tekhanukosk', got {'tekhanukosksk', 'tkhanukosksk'}",
-                "perfective: expected 'tunhukos', got {'teunhukosk', 'tunhukosk'}",
-                "imperative: expected 'thinukola', got {'tshinukosk', 'thinukosk', 'tihinukosk'}",
-                "infinitive: expected 'tsunhukost', got {'tunhukoskst', 'tsunhukoskst', 'tiunhukoskst'}"
+                "perfective: expected 'tunhukos', got {'tunhukosk', 'teunhukosk'}",
+                "imperative: expected 'thinukola', got {'tihinukosk', 'thinukosk', 'tshinukosk'}",
+                "infinitive: expected 'tsunhukost', got {'tsunhukoskst', 'tunhukoskst', 'tiunhukoskst'}"
             ],
             "class": "glottal-sk"
         },
         {
             "definition": "he/she is clawing him/her",
             "failed_forms": [
-                "imperative: expected 'thinukola', got {'thinukoa', 'tshinukoa', 'tihinukoa'}"
+                "imperative: expected 'thinukola', got {'tihinukoa', 'thinukoa', 'tshinukoa'}"
             ],
             "class": "sk-s-a"
         },
         {
             "definition": "he/she is confronted with it",
             "failed_forms": [
-                "imperfective: expected 'tutlosk', got {'tutlosksk', 'teutlosksk'}",
+                "imperfective: expected 'tutlosk', got {'teutlosksk', 'tutlosksk'}",
                 "perfective: expected 'tutlos', got {'tutlosk', 'teutlosk'}",
-                "imperative: expected 'titsatlohi', got {'titsatlosk', 'ttsatlosk', 'tstsatlosk'}",
-                "infinitive: expected 'tsutlohist', got {'tiutloskst', 'tsutloskst', 'tutloskst'}"
+                "imperative: expected 'titsatlohi', got {'titsatlosk', 'tstsatlosk', 'ttsatlosk'}",
+                "infinitive: expected 'tsutlohist', got {'tsutloskst', 'tiutloskst', 'tutloskst'}"
             ],
             "class": "glottal-sk"
         },
         {
             "definition": "he/she is confronted with it",
             "failed_forms": [
-                "infinitive: expected 'tsutlohist', got {'tiutlost', 'tsutlost', 'tutlost'}"
+                "infinitive: expected 'tsutlohist', got {'tiutlost', 'tutlost', 'tsutlost'}"
             ],
             "class": "sk-s2"
         },
@@ -3874,66 +3874,66 @@
                 "imperfective: expected 'tutokhtisk', got {'tutokhtihisk', 'teutokhtihisk'}",
                 "perfective: expected 'tutokhthan', got {'teutokhtihhan', 'tutokhtihhan'}",
                 "imperative: expected 'titsatokhta', got {'ttsatokhtiha', 'tstsatokhtiha', 'titsatokhtiha'}",
-                "infinitive: expected 'tsutokhtoht', got {'tiutokhtihoht', 'tutokhtihoht', 'tsutokhtihoht'}"
+                "infinitive: expected 'tsutokhtoht', got {'tsutokhtihoht', 'tiutokhtihoht', 'tutokhtihoht'}"
             ],
             "class": "cause-no-pres"
         },
         {
             "definition": "he/she is staggering",
             "failed_forms": [
-                "perfective: expected 'tutokhthan', got {'tutokhtan', 'teutokhtan'}"
+                "perfective: expected 'tutokhthan', got {'teutokhtan', 'tutokhtan'}"
             ],
             "class": "cause-no-h"
         },
         {
             "definition": "he/she is getting a rash",
             "failed_forms": [
-                "imperfective: expected 'tukwenothisk', got {'teukwenothisksk', 'tukwenothisksk'}",
-                "perfective: expected 'tukwenothis', got {'teukwenothisk', 'tukwenothisk'}",
+                "imperfective: expected 'tukwenothisk', got {'tukwenothisksk', 'teukwenothisksk'}",
+                "perfective: expected 'tukwenothis', got {'tukwenothisk', 'teukwenothisk'}",
                 "imperative: expected 'titsakwenothihi', got {'ttsakwenothisk', 'tstsakwenothisk', 'titsakwenothisk'}",
-                "infinitive: expected 'tsukwenothist', got {'tukwenothiskst', 'tsukwenothiskst', 'tiukwenothiskst'}"
+                "infinitive: expected 'tsukwenothist', got {'tiukwenothiskst', 'tukwenothiskst', 'tsukwenothiskst'}"
             ],
             "class": "glottal-sk"
         },
         {
             "definition": "he/she is getting a rash",
             "failed_forms": [
-                "infinitive: expected 'tsukwenothist', got {'tsukwenothihist', 'tiukwenothihist', 'tukwenothihist'}"
+                "infinitive: expected 'tsukwenothist', got {'tukwenothihist', 'tsukwenothihist', 'tiukwenothihist'}"
             ],
             "class": "sk-s1"
         },
         {
             "definition": "he/she is sneezing",
             "failed_forms": [
-                "imperfective: expected 'tuyhvstoysk', got {'teuyhvstoysksk', 'tuyhvstoysksk'}",
-                "perfective: expected 'tuyhvstoyh', got {'teuyhvstoysk', 'tuyhvstoysk'}",
-                "imperative: expected 'titshayvstoyha', got {'titshayvstoysk', 'ttshayvstoysk', 'tstshayvstoysk'}",
-                "infinitive: expected 'tsuyhvstoyst', got {'tiuyhvstoyskst', 'tsuyhvstoyskst', 'tuyhvstoyskst'}"
+                "imperfective: expected 'tuyhvstoysk', got {'tuyhvstoysksk', 'teuyhvstoysksk'}",
+                "perfective: expected 'tuyhvstoyh', got {'tuyhvstoysk', 'teuyhvstoysk'}",
+                "imperative: expected 'titshayvstoyha', got {'ttshayvstoysk', 'titshayvstoysk', 'tstshayvstoysk'}",
+                "infinitive: expected 'tsuyhvstoyst', got {'tsuyhvstoyskst', 'tuyhvstoyskst', 'tiuyhvstoyskst'}"
             ],
             "class": "glottal-sk"
         },
         {
             "definition": "he/she is sneezing",
             "failed_forms": [
-                "perfective: expected 'tuyhvstoyh', got {'teuyhvstoyyh', 'tuyhvstoyyh'}",
-                "imperative: expected 'titshayvstoyha', got {'titshayvstoyyha', 'ttshayvstoyyha', 'tstshayvstoyyha'}"
+                "perfective: expected 'tuyhvstoyh', got {'tuyhvstoyyh', 'teuyhvstoyyh'}",
+                "imperative: expected 'titshayvstoyha', got {'tstshayvstoyyha', 'titshayvstoyyha', 'ttshayvstoyyha'}"
             ],
             "class": "push"
         },
         {
             "definition": "he/she is sneezing",
             "failed_forms": [
-                "imperative: expected 'titshayvstoyha', got {'titshayvstoy', 'tstshayvstoy', 'ttshayvstoy'}"
+                "imperative: expected 'titshayvstoyha', got {'ttshayvstoy', 'tstshayvstoy', 'titshayvstoy'}"
             ],
             "class": "sweep"
         },
         {
             "definition": "he/she is vomiting",
             "failed_forms": [
-                "imperfective: expected 'tukhstisk', got {'tukhstihisk', 'teukhstihisk'}",
+                "imperfective: expected 'tukhstisk', got {'teukhstihisk', 'tukhstihisk'}",
                 "perfective: expected 'tukhsthan', got {'teukhstihhan', 'tukhstihhan'}",
-                "imperative: expected 'titsakhsta', got {'ttsakhstiha', 'titsakhstiha', 'tstsakhstiha'}",
-                "infinitive: expected 'tsukhstoht', got {'tsukhstihoht', 'tukhstihoht', 'tiukhstihoht'}"
+                "imperative: expected 'titsakhsta', got {'tstsakhstiha', 'ttsakhstiha', 'titsakhstiha'}",
+                "infinitive: expected 'tsukhstoht', got {'tiukhstihoht', 'tsukhstihoht', 'tukhstihoht'}"
             ],
             "class": "cause-no-pres"
         },
@@ -3947,17 +3947,17 @@
         {
             "definition": "he/she is working",
             "failed_forms": [
-                "imperative: expected 'titsalvwhistasi', got {'tstsalvwhistansi', 'ttsalvwhistansi', 'titsalvwhistansi'}"
+                "imperative: expected 'titsalvwhistasi', got {'ttsalvwhistansi', 'titsalvwhistansi', 'tstsalvwhistansi'}"
             ],
             "class": "apl2"
         },
         {
             "definition": "he/she is releasing it",
             "failed_forms": [
-                "present: expected 'tuyosk', got {'tuskalestih', 'teuskalestih'}",
+                "present: expected 'tuyosk', got {'teuskalestih', 'tuskalestih'}",
                 "imperfective: expected 'tuyosk', got {'teuskalestisk', 'tuskalestisk'}",
-                "perfective: expected 'tuyos', got {'tuskalesthan', 'teuskalesthan'}",
-                "imperative: expected 'titsayohi', got {'tstsaskalesta', 'titsaskalesta', 'ttsaskalesta'}",
+                "perfective: expected 'tuyos', got {'teuskalesthan', 'tuskalesthan'}",
+                "imperative: expected 'titsayohi', got {'tstsaskalesta', 'ttsaskalesta', 'titsaskalesta'}",
                 "infinitive: expected 'tsuyohist', got {'tsuskalestoht', 'tiuskalestoht', 'tuskalestoht'}"
             ],
             "class": "cause"
@@ -3965,21 +3965,21 @@
         {
             "definition": "he/she is releasing it",
             "failed_forms": [
-                "present: expected 'tuyosk', got {'tuskalestih', 'teuskalestih'}",
+                "present: expected 'tuyosk', got {'teuskalestih', 'tuskalestih'}",
                 "imperfective: expected 'tuyosk', got {'teuskalestihisk', 'tuskalestihisk'}",
                 "perfective: expected 'tuyos', got {'teuskalestihhan', 'tuskalestihhan'}",
-                "imperative: expected 'titsayohi', got {'tstsaskalestiha', 'ttsaskalestiha', 'titsaskalestiha'}",
-                "infinitive: expected 'tsuyohist', got {'tsuskalestihoht', 'tiuskalestihoht', 'tuskalestihoht'}"
+                "imperative: expected 'titsayohi', got {'titsaskalestiha', 'ttsaskalestiha', 'tstsaskalestiha'}",
+                "infinitive: expected 'tsuyohist', got {'tuskalestihoht', 'tiuskalestihoht', 'tsuskalestihoht'}"
             ],
             "class": "cause-no-pres"
         },
         {
             "definition": "he/she is releasing it",
             "failed_forms": [
-                "present: expected 'tuyosk', got {'tuskalestih', 'teuskalestih'}",
+                "present: expected 'tuyosk', got {'teuskalestih', 'tuskalestih'}",
                 "imperfective: expected 'tuyosk', got {'teuskalestisk', 'tuskalestisk'}",
                 "perfective: expected 'tuyos', got {'tuskalestan', 'teuskalestan'}",
-                "imperative: expected 'titsayohi', got {'tstsaskalesta', 'titsaskalesta', 'ttsaskalesta'}",
+                "imperative: expected 'titsayohi', got {'tstsaskalesta', 'ttsaskalesta', 'titsaskalesta'}",
                 "infinitive: expected 'tsuyohist', got {'tsuskalestoht', 'tiuskalestoht', 'tuskalestoht'}"
             ],
             "class": "cause-no-h"
@@ -3994,7 +3994,7 @@
         {
             "definition": "he/she is releasing it",
             "failed_forms": [
-                "infinitive: expected 'tsuyohist', got {'tsuyost', 'tiuyost', 'tuyost'}"
+                "infinitive: expected 'tsuyohist', got {'tuyost', 'tsuyost', 'tiuyost'}"
             ],
             "class": "sk-s2"
         },
@@ -4119,7 +4119,7 @@
             "failed_forms": [
                 "infinitive: expected 'uwatht', got {'uwatuht'}"
             ],
-            "class": "hvsk1"
+            "class": "hvsk"
         },
         {
             "definition": "he/she is hanging up it",
@@ -4185,7 +4185,7 @@
                 "imperative: expected 'hilvvka', got {'hilhvka'}",
                 "infinitive: expected 'ulvt', got {'ulht'}"
             ],
-            "class": "hvsk4"
+            "class": "hvsk[perf2]"
         },
         {
             "definition": "he/she is putting it in a hole or a container",
@@ -4196,7 +4196,7 @@
                 "imperative: expected 'hilvvka', got {'hilhvka'}",
                 "infinitive: expected 'ulvt', got {'uht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is putting it in a hole or a container",
@@ -4907,7 +4907,7 @@
             "failed_forms": [
                 "infinitive: expected 'uwasvtht', got {'uwasvht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is piling it up",
@@ -4934,7 +4934,7 @@
                 "imperative: expected 'hathosata', got {'hathvka'}",
                 "infinitive: expected 'uwhthosatist', got {'utht'}"
             ],
-            "class": "hvsk4"
+            "class": "hvsk[perf2]"
         },
         {
             "definition": "he/she is hanging it up",
@@ -4945,7 +4945,7 @@
                 "imperative: expected 'hathosata', got {'hathvka'}",
                 "infinitive: expected 'uwhthosatist', got {'uht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is hanging it up",
@@ -5216,7 +5216,7 @@
             "failed_forms": [
                 "infinitive: expected 'uwotht', got {'uwoht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is building a fire",
@@ -5254,7 +5254,7 @@
             "failed_forms": [
                 "infinitive: expected 'uwuhalht', got {'uwuhaht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is putting a handle on a tool",
@@ -5308,7 +5308,7 @@
             "failed_forms": [
                 "infinitive: expected 'uwuht', got {'uwht'}"
             ],
-            "class": "hvsk2"
+            "class": "hvsk[inf2]"
         },
         {
             "definition": "he/she is picking him/her up",
@@ -5400,7 +5400,7 @@
             "failed_forms": [
                 "infinitive: expected 'uwvtsalht', got {'uwvtsaht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is frying it",
@@ -5469,7 +5469,7 @@
                 "imperative: expected 'hvskalata', got {'hvskalhvka'}",
                 "infinitive: expected 'uwaskalatist', got {'uwaskalht'}"
             ],
-            "class": "hvsk4"
+            "class": "hvsk[perf2]"
         },
         {
             "definition": "he/she is hiding it",
@@ -5480,7 +5480,7 @@
                 "imperative: expected 'hvskalata', got {'hvskalhvka'}",
                 "infinitive: expected 'uwaskalatist', got {'uwaskaht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is hiding it",
@@ -5533,7 +5533,7 @@
                 "imperative: expected 'hvhtvvka', got {'hvthvka'}",
                 "infinitive: expected 'uwhtvt', got {'uwvtht'}"
             ],
-            "class": "hvsk4"
+            "class": "hvsk[perf2]"
         },
         {
             "definition": "he/she is putting it into a fire",
@@ -5544,7 +5544,7 @@
                 "imperative: expected 'hvhtvvka', got {'hvthvka'}",
                 "infinitive: expected 'uwhtvt', got {'uwvht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is putting it into a fire",
@@ -5562,7 +5562,7 @@
             "failed_forms": [
                 "infinitive: expected 'uwvwalht', got {'uwvwaht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is soaking it",
@@ -5670,7 +5670,7 @@
             "failed_forms": [
                 "infinitive: expected 'unhesalht', got {'unhesaht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is contaminating it",
@@ -5684,7 +5684,7 @@
             "failed_forms": [
                 "infinitive: expected 'unhilht', got {'unhiht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is collecting from him/her",
@@ -5778,7 +5778,7 @@
             "definition": "he/she is taking it off",
             "failed_forms": [
                 "perfective: expected 'nuwanhtes', got {'niuwanhte', 'nuwanhte'}",
-                "imperative: expected 'nhvnhtaki', got {'nihvnhte', 'nhvnhte'}"
+                "imperative: expected 'nhvnhtaki', got {'nhvnhte', 'nihvnhte'}"
             ],
             "class": "glottal-sk"
         },
@@ -5787,7 +5787,7 @@
             "failed_forms": [
                 "imperfective: expected 'nikvnhtisk', got {'nkvnhtihisk', 'nikvnhtihisk'}",
                 "perfective: expected 'nuwanhthan', got {'niuwanhtihhan', 'nuwanhtihhan'}",
-                "imperative: expected 'nhvnhta', got {'nihvnhtiha', 'nhvnhtiha'}",
+                "imperative: expected 'nhvnhta', got {'nhvnhtiha', 'nihvnhtiha'}",
                 "infinitive: expected 'iyuwanhtoht', got {'iuwanhtihoht', 'iyuwanhtihoht', 'uwanhtihoht'}"
             ],
             "class": "cause-no-pres"
@@ -5795,7 +5795,7 @@
         {
             "definition": "he/she is putting it on",
             "failed_forms": [
-                "perfective: expected 'nuwanhthan', got {'nuwanhtan', 'niuwanhtan'}"
+                "perfective: expected 'nuwanhthan', got {'niuwanhtan', 'nuwanhtan'}"
             ],
             "class": "cause-no-h"
         },
@@ -6366,51 +6366,51 @@
             "failed_forms": [
                 "present: expected 'wikanvvsk', got {'wiahvsk', 'wahvsk'}",
                 "imperfective: expected 'wikanvvsk', got {'wiahvsk', 'wahvsk'}",
-                "perfective: expected 'wunvn', got {'wunh', 'wiunh'}",
+                "perfective: expected 'wunvn', got {'wiunh', 'wunh'}",
                 "imperative: expected 'whinvvka', got {'wihihvka', 'whihvka'}",
-                "infinitive: expected 'wunvt', got {'wuht', 'wiuht'}"
+                "infinitive: expected 'wunvt', got {'wiuht', 'wuht'}"
             ],
-            "class": "hvsk1"
+            "class": "hvsk"
         },
         {
             "definition": "he/she is sending it",
             "failed_forms": [
                 "present: expected 'wikanvvsk', got {'wiahvsk', 'wahvsk'}",
                 "imperfective: expected 'wikanvvsk', got {'wiahvsk', 'wahvsk'}",
-                "perfective: expected 'wunvn', got {'wunh', 'wiunh'}",
+                "perfective: expected 'wunvn', got {'wiunh', 'wunh'}",
                 "imperative: expected 'whinvvka', got {'wihihvka', 'whihvka'}",
-                "infinitive: expected 'wunvt', got {'wuht', 'wiuht'}"
+                "infinitive: expected 'wunvt', got {'wiuht', 'wuht'}"
             ],
-            "class": "hvsk2"
+            "class": "hvsk[inf2]"
         },
         {
             "definition": "he/she is sending it",
             "failed_forms": [
                 "present: expected 'wikanvvsk', got {'wkakhahvsk', 'wikakhahvsk'}",
                 "imperfective: expected 'wikanvvsk', got {'wkakhahvsk', 'wikakhahvsk'}",
-                "perfective: expected 'wunvn', got {'wiuwakhahan', 'wuwakhahan'}",
+                "perfective: expected 'wunvn', got {'wuwakhahan', 'wiuwakhahan'}",
                 "imperative: expected 'whinvvka', got {'wihiyakhahvka', 'whiyakhahvka'}",
                 "infinitive: expected 'wunvt', got {'wiuwakhaht', 'wuwakhaht'}"
             ],
-            "class": "hvsk4"
+            "class": "hvsk[perf2]"
         },
         {
             "definition": "he/she is sending it",
             "failed_forms": [
                 "present: expected 'wikanvvsk', got {'wkakhahvsk', 'wikakhahvsk'}",
                 "imperfective: expected 'wikanvvsk', got {'wkakhahvsk', 'wikakhahvsk'}",
-                "perfective: expected 'wunvn', got {'wiuwakhahan', 'wuwakhahan'}",
+                "perfective: expected 'wunvn', got {'wuwakhahan', 'wiuwakhahan'}",
                 "imperative: expected 'whinvvka', got {'wihiyakhahvka', 'whiyakhahvka'}",
                 "infinitive: expected 'wunvt', got {'wiuwakhht', 'wuwakhht'}"
             ],
-            "class": "hvsk5"
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is sending it",
             "failed_forms": [
                 "present: expected 'wikanvvsk', got {'wkakhahvsk', 'wikakhahvsk'}",
                 "imperfective: expected 'wikanvvsk', got {'wkakhahvsk', 'wikakhahvsk'}",
-                "perfective: expected 'wunvn', got {'wiuwakhahn', 'wuwakhahn'}",
+                "perfective: expected 'wunvn', got {'wuwakhahn', 'wiuwakhahn'}",
                 "imperative: expected 'whinvvka', got {'wihiyakhahvka', 'whiyakhahvka'}",
                 "infinitive: expected 'wunvt', got {'wiuwakhaht', 'wuwakhaht'}"
             ],
@@ -6422,10 +6422,10 @@
                 "present: expected 'wikanvvsk', got {'wkanehvsk', 'wikanehvsk'}",
                 "imperfective: expected 'wikanvvsk', got {'wkanehvsk', 'wikanehvsk'}",
                 "perfective: expected 'wunvn', got {'wiunenh', 'wunenh'}",
-                "imperative: expected 'whinvvka', got {'wihinehvka', 'whinehvka'}",
-                "infinitive: expected 'wunvt', got {'wuneht', 'wiuneht'}"
+                "imperative: expected 'whinvvka', got {'whinehvka', 'wihinehvka'}",
+                "infinitive: expected 'wunvt', got {'wiuneht', 'wuneht'}"
             ],
-            "class": "hvsk1"
+            "class": "hvsk"
         },
         {
             "definition": "he/she is sending it",
@@ -6433,10 +6433,10 @@
                 "present: expected 'wikanvvsk', got {'wkanehvsk', 'wikanehvsk'}",
                 "imperfective: expected 'wikanvvsk', got {'wkanehvsk', 'wikanehvsk'}",
                 "perfective: expected 'wunvn', got {'wiunenh', 'wunenh'}",
-                "imperative: expected 'whinvvka', got {'wihinehvka', 'whinehvka'}",
+                "imperative: expected 'whinvvka', got {'whinehvka', 'wihinehvka'}",
                 "infinitive: expected 'wunvt', got {'wiunht', 'wunht'}"
             ],
-            "class": "hvsk2"
+            "class": "hvsk[inf2]"
         },
         {
             "definition": "he/she is sending it",
@@ -6458,7 +6458,7 @@
         {
             "definition": "he/she is going out of sight",
             "failed_forms": [
-                "imperative: expected 'witsateliki', got {'wtsatelii', 'witsatelii'}"
+                "imperative: expected 'witsateliki', got {'witsatelii', 'wtsatelii'}"
             ],
             "class": "quit"
         }
