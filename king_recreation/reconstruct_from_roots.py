@@ -1,3 +1,4 @@
+from king_recreation.phonology_data import possible_alternates
 from king_recreation.utils import CLASSES_PATH
 from king_recreation.phonology_data import grades_are_compatible, _drop_first_h
 import os
@@ -106,26 +107,33 @@ class ReconstructionEngine:
             # if we need to /h/ alternate but there wasnt an h in the h grade root
             # we need to try to drop it from the ending
             if glottal_grade_form and not "h" in verb.h_grade_root:
-                literal_ending = _drop_first_h(literal_ending)
-
-            base_stems[form_name] = modified_root + literal_ending
+                base_stems[form_name] = [
+                    modified_root + literal_ending
+                    for literal_ending in possible_alternates(literal_ending)
+                ]
+            else:
+                base_stems[form_name] = modified_root + literal_ending
 
         form_options = {}
-        for fn, stem in base_stems.items():
-            set_name = get_pronominal_set_name(fn, verb.config.pron)
-            if not set_name:
-                candidates = [stem]
-            else:
-                candidates = self.generate_pronominal_forms(
-                    stem, set_name, verb.config.pron
-                )
-
+        for fn, stems in base_stems.items():
             # Apply Prepronominals
             layered_candidates = []
-            for c in candidates:
-                layered_candidates.extend(apply_prepronominal(c, verb.config.pre, fn))
 
-            form_options[fn] = layered_candidates
+            for stem in stems if isinstance(stems, list) else [stems]:
+                set_name = get_pronominal_set_name(fn, verb.config.pron)
+                if not set_name:
+                    candidates = [stem]
+                else:
+                    candidates = self.generate_pronominal_forms(
+                        stem, set_name, verb.config.pron
+                    )
+
+                for c in candidates:
+                    layered_candidates.extend(
+                        apply_prepronominal(c, verb.config.pre, fn)
+                    )
+
+                form_options[fn] = layered_candidates
 
         return [{fn: set(opts or []) for fn, opts in form_options.items()}]
 

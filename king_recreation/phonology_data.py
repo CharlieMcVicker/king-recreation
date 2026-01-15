@@ -372,6 +372,23 @@ def _drop_first_h(stem: str) -> str:
     return stem
 
 
+def _first_h_to_glottal(stem: str) -> str:
+    idx = stem.find("h")
+    if idx != -1:
+        return stem[:idx] + "'" + stem[idx + 1 :]
+    return stem
+
+
+# TODO: handle cluster
+def _first_h_to_glottal_with_metathesis(stem: str) -> str:
+    idx = stem.find("h")
+    if idx != -1:
+        "'"
+        # move glottal to right of consonant
+        return stem[: idx - 1] + "'" + stem[idx - 1] + stem[idx + 1 :]
+    return stem
+
+
 def _is_compatible_with_vowel_restoration(restored: str, syncopated: str) -> bool:
     if len(restored) - len(syncopated) not in [0, 1, 2]:
         return False
@@ -425,17 +442,25 @@ def _drop_h_in_deaffricated_lateral(h_grade: str):
     return h_grade.replace("lh", "tl", 1)
 
 
+def possible_alternates(h_form: str) -> list[str]:
+    WAYS_TO_DROP = [
+        lambda x: x,
+        _drop_h_in_deaffricated_lateral,
+        _drop_first_h,
+        _first_h_to_glottal,
+        _first_h_to_glottal_with_metathesis,
+    ]
+
+    return [way(h_form) for way in WAYS_TO_DROP]
+
+
 def grades_are_compatible(*, h: str, glottal: str) -> bool:
     """Checks if `h` and `glottal` could be respective grades of the same stem or root"""
-    if h == glottal:
-        return True
-    elif _drop_h_in_deaffricated_lateral(h) == glottal:
-        return True
-    elif _drop_first_h(h) == glottal:
-        return True
-    elif _is_compatible_with_vowel_restoration(glottal, h):
-        return True
-    elif _is_compatible_with_vowel_restoration(glottal, _drop_first_h(h)):
-        return True
-    else:
-        return False
+
+    for h_dropped in possible_alternates(h):
+        if h_dropped == glottal:
+            return True
+        if _is_compatible_with_vowel_restoration(glottal, h_dropped):
+            return True
+
+    return False
