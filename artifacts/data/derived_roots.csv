@@ -66,7 +66,7 @@ he/she is being born,hvsk[inf2],full,ate,ate,ate,ate,ate,ate,ate,a,False,False,F
 he/she is finding it out,glottal-sk,full,atelohosk,ateloosk,ateloho,atelohos,atelohohi,atelohohi,atelohosk,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is finding it out,sk-s1,full,ateloho,ateloo,ateloho,ateloho,ateloho,ateloho,ateloho,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is finding it out,sk-s2,full,ateloho,ateloo,ateloho,ateloho,ateloho,atelohohi,ateloho,a,False,False,False,vowel_a,none,False,False,False,False,False,True
-he/she is diving,vvsk1,full,ateth,atet,ateth,atethi,ateth,ateth,ateth,a,False,False,False,vowel_a,none,False,False,False,False,False,True
+he/she is diving,vvsk[perf2],full,ateth,atet,ateth,atethi,ateth,ateth,ateth,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is going around a curve,round7,full,ateyo,ateyo,ateyo,ateyo,atey,atey,ateyo,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is laying it down,eat,full,t,t,t,t,t,t,t,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is rising,vh1,full,atit,atit,atit,atit,atit,atit,atit,a,False,False,False,vowel_a,none,False,False,False,False,False,True
@@ -82,7 +82,7 @@ he/she is running over him/her,cause-no-pres,full,atinvtih,atinvtih,atinvt,atinv
 he/she is running over him/her,cause-no-h,full,atinvt,atinvt,atinvt,atinvth,atinvt,atinvt,atinvt,a,False,False,False,vowel_a,none,False,False,False,False,True,True
 he/she is hiding,hvsk[perf2],full,atiskal,atiskal,atiskal,atiskal,atiskal,atiskal,atiskal,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is hiding,hvsk[perf2-inf2],full,atiskal,atiskal,atiskal,atiskal,atiskal,atiskal,atiskal,a,False,False,False,vowel_a,none,False,False,False,False,False,True
-he/she is hiding,vvsk1,full,atiskalh,atiskalh,atiskalh,atiskalha,atiskalh,atiskalh,atiskalh,a,False,False,False,vowel_a,none,False,False,False,False,False,True
+he/she is hiding,vvsk[perf2],full,atiskalh,atiskalh,atiskalh,atiskalha,atiskalh,atiskalh,atiskalh,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is leaving it behind,glottal-sk,full,tisiya,tisiya,tisiya,tisiy,tisiya,tisiya,tisiya,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is leaving it behind,scatter,full,tisiy,tisiy,tisiy,tisiy,tisiy,tisiya,tisiy,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is drinking it,glottal-sk,full,atithask,atithask,atitha,atithah,atitha,atitha,atithask,a,False,False,False,vowel_a,none,False,False,False,False,False,True
@@ -159,9 +159,14 @@ he/she is chopping it up,glottal-sk,full,kvhaluysk,kvaluysk,kvhaluy,kvhaluyh,kvh
 he/she is chopping it up,sk-h,full,kvhaluy,kvaluy,kvhaluy,kvhaluy,kvhaluy,kvhaluy,kvhaluy,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is chopping it up,push,full,kvhaluy,kvaluy,kvhaluy,kvhalu,kvhalu,kvhaluy,kvhaluy,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is chopping it up,sweep,full,kvhaluy,kvaluy,kvhaluy,kvhaluy,kvhaluyha,kvhaluy,kvhaluy,a,False,False,False,con,none,False,False,False,False,False,True
-he/she is scolding him/her,vvsk1,full,kvskol,kvskol,kvskol,kvskolv,kvskolv,kvskolv,kvskol,a,False,False,False,con,none,False,False,False,False,False,True
-he/she is scolding him/her,vvsk2,full,kvskol,kvskol,kvskol,kvskol,kvskolv,kvskol,kvskol,a,False,False,False,con,none,False,False,False,False,False,True
-he/she is scolding him/her,vvsk3,full,kvskol,kvskol,kvskol,kvskol,kvskol,kvskol,kvskol,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is scolding him/her,vvsk,full,kvskol,kvskol,kvskol,kvskol,kvskolv,kvskolv,kvskol,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is scolding him/her,vvsk[inf2],full,kvskol,kvskol,kvskol,kvskol,kvskolv,kvskol,kvskol,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is scolding him/her,vvsk[imp2],full,kvskol,kvskol,kvskol,kvskol,kvskol,kvskolv,kvskol,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is scolding him/her,vvsk[imp2-inf2],full,kvskol,kvskol,kvskol,kvskol,kvskol,kvskol,kvskol,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is scolding him/her,vvsk[perf2],full,kvskol,kvskol,kvskol,kvskolv,kvskolv,kvskolv,kvskol,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is scolding him/her,vvsk[perf2-inf2],full,kvskol,kvskol,kvskol,kvskolv,kvskolv,kvskol,kvskol,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is scolding him/her,vvsk[perf2-imp2],full,kvskol,kvskol,kvskol,kvskolv,kvskol,kvskolv,kvskol,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is scolding him/her,vvsk[perf2-imp2-inf2],full,kvskol,kvskol,kvskol,kvskolv,kvskol,kvskol,kvskol,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is washing his face,o,full,akvskw,akvskw,akvskw,akvskw,akvskw,akvskw,akvskw,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is washing his face,glottal-sk,full,akvskwo,akvskwo,akvskwo,akvskwo,akvskwotsa,akvskwo,akvskwo,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is diverting him/her,rev-gi,full,halu,alu,halu,halu,alu,halu,halu,a,False,False,False,con,none,False,False,False,False,True,True
@@ -189,9 +194,14 @@ it’s taking time,scared,full,lhiilito,,lhiilito,lhiilito,,lhiilita,lhiilito,a,
 it’s taking time,aspectless,full,lhiilitoh,,lhiilitoh,lhiilitol,,lhiilitast,lhiilitoh,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is measuring it,o,full,alhil,atlil,alhil,alhil,alhil,alhil,alhil,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is measuring it,glottal-sk,full,alhilo,atlilo,alhilo,alhilo,alhilotsa,alhilo,alhilo,a,False,False,False,vowel_a,none,False,False,False,False,False,True
-it’s bending,vvsk1,full,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwitv,,lhiyvhkwitv,lhiyvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
-it’s bending,vvsk2,full,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
-it’s bending,vvsk3,full,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+it’s bending,vvsk,full,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwit,,lhiyvhkwitv,lhiyvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+it’s bending,vvsk[inf2],full,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+it’s bending,vvsk[imp2],full,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwit,,lhiyvhkwitv,lhiyvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+it’s bending,vvsk[imp2-inf2],full,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+it’s bending,vvsk[perf2],full,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwitv,,lhiyvhkwitv,lhiyvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+it’s bending,vvsk[perf2-inf2],full,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwitv,,lhiyvhkwit,lhiyvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+it’s bending,vvsk[perf2-imp2],full,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwitv,,lhiyvhkwitv,lhiyvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+it’s bending,vvsk[perf2-imp2-inf2],full,lhiyvhkwit,,lhiyvhkwit,lhiyvhkwitv,,lhiyvhkwit,lhiyvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
 it’s bending,aspectless,full,lhiyvhkwitvsk,,lhiyvhkwitvsk,lhiyvhkwitvn,,lhiyvhkwitvt,lhiyvhkwitvsk,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is snorting,cause,full,alhiyvsanawst,aliyvsanawst,alhiyvsanawst,alhiyvsanawst,alhiyvsanawst,alhiyvsanawst,alhiyvsanawst,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is snorting,cause-no-pres,full,alhiyvsanawstih,aliyvsanawstih,alhiyvsanawst,alhiyvsanawst,alhiyvsanawst,alhiyvsanawst,alhiyvsanawstih,a,False,False,False,vowel_a,none,False,False,False,False,False,True
@@ -261,7 +271,7 @@ he/she is calling him/her,vh1,full,yhan,yan,yhan,yhan,yan,yhan,yhan,a,False,Fals
 he/she is taking it somewhere by hand,go1,full,yh,y,yh,yh,yh,yh,yh,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is quilting it,hvsk[perf2],full,yhehkal,yehkal,yhehkal,yhehkal,yhehkal,yhehkal,yhehkal,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is quilting it,hvsk[perf2-inf2],full,yhehkal,yehkal,yhehkal,yhehkal,yhehkal,yhehkal,yhehkal,a,False,False,False,con,none,False,False,False,False,False,True
-he/she is quilting it,vvsk1,full,yhehkalh,yehkalh,yhehkalh,yhehkalha,yhehkalh,yhehkalh,yhehkalh,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is quilting it,vvsk[perf2],full,yhehkalh,yehkalh,yhehkalh,yhehkalha,yhehkalh,yhehkalh,yhehkalh,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is making an incision,round7,full,yhelho,yelho,yhelho,yhelha,yel,yhel,yhelho,a,False,False,False,con,none,False,False,False,False,True,True
 he/she is imitating him/her,glottal-sk,full,yheli,yeli,yheli,yhelis,yela,yheli,yheli,a,False,False,False,con,none,False,False,False,False,True,True
 he/she is imitating him/her,eat,full,yhel,yel,yhel,yhelis,yel,yhel,yhel,a,False,False,False,con,none,False,False,False,False,True,True
@@ -271,9 +281,14 @@ he/she is swimming,go1,full,ayhuin,ayuin,ayhuin,ayhuin,ayhuin,ayhuin,ayhuin,a,Fa
 it’s thundering,o,full,yhvtakwal,,yhvtakwal,yhvtakwal,,yhvtakwal,yhvtakwal,a,False,False,False,con,none,False,False,False,False,False,True
 it’s thundering,glottal-sk,full,yhvtakwalo,,yhvtakwalo,yhvtakwalo,,yhvtakwalo,yhvtakwalo,a,False,False,False,con,none,False,False,False,False,False,True
 it’s thundering,aspectless,full,yhvtakwalo,,yhvtakwalosk,yhvtakwalo,,yhvtakwalost,yhvtakwalo,a,False,False,False,con,none,False,False,False,False,False,True
-he/she is bending it,vvsk1,full,yhvhkwit,yvhkwit,yhvhkwit,yhvhkwitv,yhvhkwitv,yhvhkwitv,yhvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
-he/she is bending it,vvsk2,full,yhvhkwit,yvhkwit,yhvhkwit,yhvhkwit,yhvhkwitv,yhvhkwit,yhvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
-he/she is bending it,vvsk3,full,yhvhkwit,yvhkwit,yhvhkwit,yhvhkwit,yhvhkwit,yhvhkwit,yhvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is bending it,vvsk,full,yhvhkwit,yvhkwit,yhvhkwit,yhvhkwit,yhvhkwitv,yhvhkwitv,yhvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is bending it,vvsk[inf2],full,yhvhkwit,yvhkwit,yhvhkwit,yhvhkwit,yhvhkwitv,yhvhkwit,yhvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is bending it,vvsk[imp2],full,yhvhkwit,yvhkwit,yhvhkwit,yhvhkwit,yhvhkwit,yhvhkwitv,yhvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is bending it,vvsk[imp2-inf2],full,yhvhkwit,yvhkwit,yhvhkwit,yhvhkwit,yhvhkwit,yhvhkwit,yhvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is bending it,vvsk[perf2],full,yhvhkwit,yvhkwit,yhvhkwit,yhvhkwitv,yhvhkwitv,yhvhkwitv,yhvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is bending it,vvsk[perf2-inf2],full,yhvhkwit,yvhkwit,yhvhkwit,yhvhkwitv,yhvhkwitv,yhvhkwit,yhvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is bending it,vvsk[perf2-imp2],full,yhvhkwit,yvhkwit,yhvhkwit,yhvhkwitv,yhvhkwit,yhvhkwitv,yhvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is bending it,vvsk[perf2-imp2-inf2],full,yhvhkwit,yvhkwit,yhvhkwit,yhvhkwitv,yhvhkwit,yhvhkwit,yhvhkwit,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is capturing him/her,glottal-sk,full,yhvkhiti,yvkhiti,yhvkhiti,yhvkhit,yvkhita,yhvkhiti,yhvkhiti,a,False,False,False,con,none,False,False,False,False,True,True
 he/she is capturing him/her,eat,full,yhvkhit,yvkhit,yhvkhit,yhvkhit,yvkhit,yhvkhit,yhvkhit,a,False,False,False,con,none,False,False,False,False,True,True
 he/she is hitting him/her on the nose,hvsk,full,yhvstelu,yvstelu,yhvstelu,yhvstelu,yvstelu,yhvstelu,yhvstelu,a,False,False,False,con,none,False,False,False,False,True,True
@@ -283,20 +298,20 @@ it’s hatching,rev-i,full,atsa,atsa,atsa,atsa,atsa,atsa,atsa,a,False,False,Fals
 it’s hatching,glottal-sk,full,atsai,atsai,atsai,atsais,atsai,atsai,atsai,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is dressing up,act-like,full,atsan,atsan,atsan,atsan,atsan,atsanv,atsan,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is dressing up,dress-up,full,atsan,atsan,atsan,atsan,atsan,atsan,atsan,a,False,False,False,vowel_a,none,False,False,False,False,False,True
-he/she is getting in,vvsk1,full,atsa,atsa,atsa,atsa,atsa,atso,atsa,a,False,False,False,vowel_a,none,False,False,False,False,False,True
+he/she is getting in,vvsk[perf2],full,atsa,atsa,atsa,atsa,atsa,atso,atsa,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is acting like him/her,act-like,full,atsel,atsel,atsel,atsel,atsel,atsel,atsel,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is spilling it,glottal-sk,full,atsewi,atsewi,atsewi,atsew,atsewa,atsewa,atsewi,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 it’s blooming,act-like,full,tsil,,tsil,tsil,,tsil,tsil,a,False,False,False,con,none,False,False,False,False,False,True
 it’s blooming,aspectless,full,tsilvsk,,tsilvsk,tsilvnh,,tsilht,tsilvsk,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is lighting a fire,glottal-sk,full,tsislhvsk,tsislhvsk,tsislhv,tsislhan,tsislhvka,tsislhv,tsislhvsk,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is lighting a fire,hvsk[perf2-inf3],full,tsisl,tsisl,tsisl,tsisl,tsisl,tsisl,tsisl,a,False,False,False,con,none,False,False,False,False,False,True
-he/she is lighting a fire,vvsk1,full,tsislh,tsislh,tsislh,tsislha,tsislh,tsislhvs,tsislh,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is lighting a fire,vvsk[perf2],full,tsislh,tsislh,tsislh,tsislha,tsislh,tsislhvs,tsislh,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is blowing,glottal-sk,full,atsothask,atsothask,atsotha,atsothah,atsotha,atsotha,atsothask,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is blowing,sk-h,full,atsotha,atsotha,atsotha,atsotha,atsot,atsotha,atsotha,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is blowing,sweep,full,atsotha,atsotha,atsotha,atsotha,atsotha,atsotha,atsotha,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is turning on a light,glottal-sk,full,tsvsthvsk,tsvsthvsk,tsvsthv,tsvsthan,tsvsthvka,tsvsthv,tsvsthvsk,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is turning on a light,hvsk[perf2-inf3],full,tsvst,tsvst,tsvst,tsvst,tsvst,tsvst,tsvst,a,False,False,False,con,none,False,False,False,False,False,True
-he/she is turning on a light,vvsk1,full,tsvsth,tsvsth,tsvsth,tsvstha,tsvsth,tsvsthvs,tsvsth,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is turning on a light,vvsk[perf2],full,tsvsth,tsvsth,tsvsth,tsvstha,tsvsth,tsvsthvs,tsvsth,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is chasing him/her,go1,full,kheh,kheh,kheh,kheh,kheh,kheh,kheh,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is riding it,cause,full,akhilvt,akhilvt,akhilvt,akhilvt,akhilvt,akhilvt,akhilvt,a,False,False,False,vowel_a,none,False,False,False,False,True,True
 he/she is riding it,cause-no-pres,full,akhilvtih,akhilvtih,akhilvt,akhilvt,akhilvt,akhilvt,akhilvtih,a,False,False,False,vowel_a,none,False,False,False,False,True,True
@@ -336,9 +351,14 @@ he/she is paying it,vh1,full,akwhiy,akwiy,akwhiy,akwhiy,akwhiy,akwhiy,akwhiy,a,F
 he/she is paying him/her,apl1,full,akwhiyv,akwiyv,akwhiyv,akwhiyv,akwiyv,akwhiyv,akwhiyv,a,False,False,False,vowel_a,none,False,False,False,False,True,True
 he/she is paying him/her,apl2,full,akwhiyv,akwiyv,akwhiyv,akwhiyv,akwiyv,akwhiyv,akwhiyv,a,False,False,False,vowel_a,none,False,False,False,False,True,True
 he/she is tromping on him/her,apl-active2,full,alasta,alasta,alasta,alasta,alasta,alasta,alasta,a,False,False,False,vowel_a,none,False,False,False,False,True,True
-he/she is stepping on him/her,vvsk1,full,alast,alast,alast,alastv,alastv,alastv,alast,a,False,False,False,vowel_a,none,False,False,False,False,True,True
-he/she is stepping on him/her,vvsk2,full,alast,alast,alast,alast,alastv,alast,alast,a,False,False,False,vowel_a,none,False,False,False,False,True,True
-he/she is stepping on him/her,vvsk3,full,alast,alast,alast,alast,alast,alast,alast,a,False,False,False,vowel_a,none,False,False,False,False,True,True
+he/she is stepping on him/her,vvsk,full,alast,alast,alast,alast,alastv,alastv,alast,a,False,False,False,vowel_a,none,False,False,False,False,True,True
+he/she is stepping on him/her,vvsk[inf2],full,alast,alast,alast,alast,alastv,alast,alast,a,False,False,False,vowel_a,none,False,False,False,False,True,True
+he/she is stepping on him/her,vvsk[imp2],full,alast,alast,alast,alast,alast,alastv,alast,a,False,False,False,vowel_a,none,False,False,False,False,True,True
+he/she is stepping on him/her,vvsk[imp2-inf2],full,alast,alast,alast,alast,alast,alast,alast,a,False,False,False,vowel_a,none,False,False,False,False,True,True
+he/she is stepping on him/her,vvsk[perf2],full,alast,alast,alast,alastv,alastv,alastv,alast,a,False,False,False,vowel_a,none,False,False,False,False,True,True
+he/she is stepping on him/her,vvsk[perf2-inf2],full,alast,alast,alast,alastv,alastv,alast,alast,a,False,False,False,vowel_a,none,False,False,False,False,True,True
+he/she is stepping on him/her,vvsk[perf2-imp2],full,alast,alast,alast,alastv,alast,alastv,alast,a,False,False,False,vowel_a,none,False,False,False,False,True,True
+he/she is stepping on him/her,vvsk[perf2-imp2-inf2],full,alast,alast,alast,alastv,alast,alast,alast,a,False,False,False,vowel_a,none,False,False,False,False,True,True
 he/she is playing ball,vh1,full,alaskal,alaskal,alaskal,alaskal,alaskal,alaskal,alaskal,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is taking a step,glottal-sk,full,alaskv,alaskv,alaskv,alaskvs,alaskvna,alaskv,alaskv,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is taking a step,change,full,alask,alask,alask,alask,alask,alask,alask,a,False,False,False,vowel_a,none,False,False,False,False,False,True
@@ -368,7 +388,7 @@ he/she is taking his/her ring off,rev-gi,full,aliyesusth,aliyesusth,aliyesusth,a
 he/she is taking his/her ring off,glottal-sk,full,aliyesusthki,aliyesusthki,aliyesusthki,aliyesusthkis,aliyesusthki,aliyesusthki,aliyesusthki,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is putting a ring on his/her finger,glottal-sk,full,aliyesusthvsk,aliyesusthvsk,aliyesusthv,aliyesusthan,aliyesusthvka,aliyesusthv,aliyesusthvsk,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is putting a ring on his/her finger,hvsk[perf2-inf3],full,aliyesust,aliyesust,aliyesust,aliyesust,aliyesust,aliyesust,aliyesust,a,False,False,False,vowel_a,none,False,False,False,False,False,True
-he/she is putting a ring on his/her finger,vvsk1,full,aliyesusth,aliyesusth,aliyesusth,aliyesustha,aliyesusth,aliyesusthvs,aliyesusth,a,False,False,False,vowel_a,none,False,False,False,False,False,True
+he/she is putting a ring on his/her finger,vvsk[perf2],full,aliyesusth,aliyesusth,aliyesusth,aliyesustha,aliyesusth,aliyesusthvs,aliyesusth,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is spitting,glottal-sk,full,altsikwhsk,altsikwhsk,altsikwh,altsikwh,altsikwha,altsikwh,altsikwhsk,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is spitting,sk-h,full,altsikwh,altsikwh,altsikwh,altsikw,altsikw,altsikwh,altsikwh,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is spitting,sweep,full,altsikwh,altsikwh,altsikwh,altsikw,altsikwha,altsikwh,altsikwh,a,False,False,False,vowel_a,none,False,False,False,False,False,True
@@ -416,9 +436,14 @@ he is getting married,glottal-sk,full,anelati,anelati,anelati,anelat,anelata,ane
 he is getting married,eat,full,anelat,anelat,anelat,anelat,anelat,anelat,anelat,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is remembering him/her,glottal-sk,full,anhtati,anvtati,anhtati,anhtat,anvtata,anhtati,anhtati,a,False,False,False,vowel_a,none,False,False,False,False,True,True
 he/she is remembering him/her,eat,full,anhtat,anvtat,anhtat,anhtat,anvtat,anhtat,anhtat,a,False,False,False,vowel_a,none,False,False,False,False,True,True
-he/she is setting a trap,vvsk1,full,sat,sat,sat,satv,satv,satv,sat,a,False,False,False,con,none,False,False,False,False,False,True
-he/she is setting a trap,vvsk2,full,sat,sat,sat,sat,satv,sat,sat,a,False,False,False,con,none,False,False,False,False,False,True
-he/she is setting a trap,vvsk3,full,sat,sat,sat,sat,sat,sat,sat,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is setting a trap,vvsk,full,sat,sat,sat,sat,satv,satv,sat,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is setting a trap,vvsk[inf2],full,sat,sat,sat,sat,satv,sat,sat,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is setting a trap,vvsk[imp2],full,sat,sat,sat,sat,sat,satv,sat,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is setting a trap,vvsk[imp2-inf2],full,sat,sat,sat,sat,sat,sat,sat,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is setting a trap,vvsk[perf2],full,sat,sat,sat,satv,satv,satv,sat,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is setting a trap,vvsk[perf2-inf2],full,sat,sat,sat,satv,satv,sat,sat,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is setting a trap,vvsk[perf2-imp2],full,sat,sat,sat,satv,sat,satv,sat,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is setting a trap,vvsk[perf2-imp2-inf2],full,sat,sat,sat,satv,sat,sat,sat,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is lifting him/her,hear,full,salat,salat,salat,salat,salat,salat,salat,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is making it crisp,cause,full,stakayht,stakayht,stakayht,stakayht,stakayht,stakayht,stakayht,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is making it crisp,cause-no-pres,full,stakayhtih,stakayhtih,stakayht,stakayht,stakayht,stakayht,stakayhtih,a,False,False,False,con,none,False,False,False,False,False,True
@@ -432,7 +457,7 @@ it’s becoming crisp,aspectless,full,stakayvhih,,stakayvhih,stakayvlh,,,stakayv
 it’s becoming crisp,aspectless-h,full,stakayvhi,,stakayvhi,stakayvl,,,stakayvhi,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is drawing a line,hvsk[perf2],full,stanvn,stanvn,stanvn,stanvn,stanvn,stanvn,stanvn,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is drawing a line,hvsk[perf2-inf2],full,stanvn,stanvn,stanvn,stanvn,stanvn,stanvn,stanvn,a,False,False,False,con,none,False,False,False,False,False,True
-he/she is drawing a line,vvsk1,full,stanvnh,stanvnh,stanvnh,stanvnha,stanvnh,stanvnh,stanvnh,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is drawing a line,vvsk[perf2],full,stanvnh,stanvnh,stanvnh,stanvnha,stanvnh,stanvnh,stanvnh,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is following him/her,go1,full,stawat,stawat,stawat,stawat,stawat,stawat,stawat,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is helping him/her,vh1,full,stel,stel,stel,stel,stel,stel,stel,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is braiding it,twist,full,stey,stey,stey,stey,stey,stey,stey,a,False,False,False,con,none,False,False,False,False,False,True
@@ -445,7 +470,7 @@ he/she is opening it,rev-i,full,stu,stu,stu,stu,stu,stu,stu,a,False,False,False,
 he/she is opening it,glottal-sk,full,stui,stui,stui,stuis,stui,stui,stui,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is sandwiching it,hvsk[perf2],full,stvhal,stvhal,stvhal,stvhal,stvhal,stvhal,stvhal,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is sandwiching it,hvsk[perf2-inf2],full,stvhal,stvhal,stvhal,stvhal,stvhal,stvhal,stvhal,a,False,False,False,con,none,False,False,False,False,False,True
-he/she is sandwiching it,vvsk1,full,stvhalh,stvhalh,stvhalh,stvhalha,stvhalh,stvhalh,stvhalh,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is sandwiching it,vvsk[perf2],full,stvhalh,stvhalh,stvhalh,stvhalha,stvhalh,stvhalh,stvhalh,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is including him/her,cause,full,asest,asest,asest,asest,asest,asest,asest,a,False,False,False,vowel_a,none,False,False,False,False,True,True
 he/she is including him/her,cause-no-pres,full,asestih,asestih,asest,asest,asest,asest,asestih,a,False,False,False,vowel_a,none,False,False,False,False,True,True
 he/she is including him/her,cause-no-h,full,asest,asest,asest,asesth,asest,asest,asest,a,False,False,False,vowel_a,none,False,False,False,False,True,True
@@ -522,9 +547,14 @@ he/she is choosing him/her,rev-e,full,asuy,asuy,asuy,asuy,asuy,asuy,asuy,a,False
 he/she is choosing him/her,glottal-sk,full,asuye,asuye,asuye,asuyes,asuyaki,asuye,asuye,a,False,False,False,vowel_a,none,False,False,False,False,True,True
 he/she is stirring it,apl-active1,full,asuy,asuy,asuy,asuy,asuy,asuy,asuy,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is stirring it,wash-hair,full,asuy,asuy,asuy,asuy,asuyvl,asuye,asuy,a,False,False,False,vowel_a,none,False,False,False,False,False,True
-he/she is mixing it in,vvsk1,full,asuy,asuy,asuy,asuyv,asuyv,asuyv,asuy,a,False,False,False,vowel_a,none,False,False,False,False,False,True
-he/she is mixing it in,vvsk2,full,asuy,asuy,asuy,asuy,asuyv,asuy,asuy,a,False,False,False,vowel_a,none,False,False,False,False,False,True
-he/she is mixing it in,vvsk3,full,asuy,asuy,asuy,asuy,asuy,asuy,asuy,a,False,False,False,vowel_a,none,False,False,False,False,False,True
+he/she is mixing it in,vvsk,full,asuy,asuy,asuy,asuy,asuyv,asuyv,asuy,a,False,False,False,vowel_a,none,False,False,False,False,False,True
+he/she is mixing it in,vvsk[inf2],full,asuy,asuy,asuy,asuy,asuyv,asuy,asuy,a,False,False,False,vowel_a,none,False,False,False,False,False,True
+he/she is mixing it in,vvsk[imp2],full,asuy,asuy,asuy,asuy,asuy,asuyv,asuy,a,False,False,False,vowel_a,none,False,False,False,False,False,True
+he/she is mixing it in,vvsk[imp2-inf2],full,asuy,asuy,asuy,asuy,asuy,asuy,asuy,a,False,False,False,vowel_a,none,False,False,False,False,False,True
+he/she is mixing it in,vvsk[perf2],full,asuy,asuy,asuy,asuyv,asuyv,asuyv,asuy,a,False,False,False,vowel_a,none,False,False,False,False,False,True
+he/she is mixing it in,vvsk[perf2-inf2],full,asuy,asuy,asuy,asuyv,asuyv,asuy,asuy,a,False,False,False,vowel_a,none,False,False,False,False,False,True
+he/she is mixing it in,vvsk[perf2-imp2],full,asuy,asuy,asuy,asuyv,asuy,asuyv,asuy,a,False,False,False,vowel_a,none,False,False,False,False,False,True
+he/she is mixing it in,vvsk[perf2-imp2-inf2],full,asuy,asuy,asuy,asuyv,asuy,asuy,asuy,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 it smells,become1,full,sv,sv,sv,,,,sv,a,False,False,False,con,none,False,False,False,False,False,True
 it smells,become2,full,sv,sv,sv,,,,sv,a,False,False,False,con,none,False,False,False,False,False,True
 it smells,quit,full,sv,sv,sv,,,,sv,a,False,False,False,con,none,False,False,False,False,False,True
@@ -545,7 +575,7 @@ it’s steaming,go1,full,thanol,,thanol,thanol,,thanol,thanol,a,False,False,Fals
 it’s steaming,aspectless,full,thanolek,,thanolek,thanolvs,,thanolvst,thanolek,a,False,False,False,con,none,False,False,False,False,False,True
 it’s exploding,rev-gi,full,athas,,athas,athas,athas,athas,athas,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 it’s exploding,glottal-sk,full,athaski,,athaski,athaskis,athaski,athaski,athaski,a,False,False,False,vowel_a,none,False,False,False,False,False,True
-he/she is kissing him/her,vvsk1,full,thaweto,taweto,thaweto,thaweto,taweto,thaweto,thaweto,a,False,False,False,con,none,False,False,False,False,True,True
+he/she is kissing him/her,vvsk[perf2],full,thaweto,taweto,thaweto,thaweto,taweto,thaweto,thaweto,a,False,False,False,con,none,False,False,False,False,True,True
 he/she is combing someone’s hair,o,full,thaw,thaw,thaw,thaw,thaw,thas,thaw,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is combing someone’s hair,glottal-sk,full,thawo,thawo,thawo,thawo,thawotsa,thaso,thawo,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is asking for it,round6,full,thayo,thayo,thayo,thayo,thayo,thayo,thayo,a,False,False,False,con,none,False,False,False,False,False,True
@@ -566,7 +596,7 @@ it’s flashing,sk-s-a,full,thoyaw,,thoyaw,thoyaw,,thoyaw,thoyaw,a,False,False,F
 it’s flashing,aspectless,full,thoyawsk,,thoyawsk,thoyaws,,thoyawst,thoyawsk,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is taking a bite,rev-e,full,atst,atsist,atst,atst,atst,atst,atst,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is taking a bite,glottal-sk,full,atste,atsiste,atste,atstes,atstaki,atste,atste,a,False,False,False,vowel_a,none,False,False,False,False,False,True
-he/she is lying,vvsk1,full,atsko,atsisko,atsko,atsko,atsko,atsko,atsko,a,False,False,False,vowel_a,none,False,False,False,False,False,True
+he/she is lying,vvsk[perf2],full,atsko,atsisko,atsko,atsko,atsko,atsko,atsko,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is taking a drink,rev-gi,full,athu,atu,athu,athu,athu,athu,athu,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is taking a drink,glottal-sk,full,athuki,atuki,athuki,athukis,athuki,athuki,athuki,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is promising,cause,full,thuist,thuist,thuist,thuist,thuist,thuist,thuist,a,False,False,False,con,none,False,False,False,False,False,True
@@ -603,7 +633,7 @@ he/she is taking a break,cause-no-pres,full,yohistih,yohistih,yohist,yohist,yohi
 he/she is taking a break,cause-no-h,full,yohist,yohist,yohist,yohisth,yohist,yohist,yohist,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is whittling it,glottal-sk,full,yolhvsk,yolvsk,yolhv,yolhan,yolhvka,yolhv,yolhvsk,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is whittling it,hvsk[perf2-inf3],full,yol,yol,yol,yol,yol,yol,yol,a,False,False,False,con,none,False,False,False,False,False,True
-he/she is whittling it,vvsk1,full,yolh,yol,yolh,yolha,yolh,yolhvs,yolh,a,False,False,False,con,none,False,False,False,False,False,True
+he/she is whittling it,vvsk[perf2],full,yolh,yol,yolh,yolha,yolh,yolhvs,yolh,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is greeting him/her,round1,full,yol,yol,yol,yol,yoli,yoli,yol,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is greeting him/her,round2,full,yol,yol,yol,yol,yoli,yolis,yol,a,False,False,False,con,none,False,False,False,False,False,True
 he/she is greeting him/her,round3,full,yol,yol,yol,yoli,yoli,yoli,yol,a,False,False,False,con,none,False,False,False,False,False,True
@@ -658,7 +688,7 @@ he/she is putting on clothes,o,full,anhaw,aniw,anhaw,anhaw,anhaw,anhaw,anhaw,a,F
 he/she is putting on clothes,glottal-sk,full,anhawo,aniwo,anhawo,anhawo,anhawotsa,anhawo,anhawo,a,False,False,True,vowel_a,none,False,False,False,False,False,True
 he/she is putting fuel into a fire,hvsk[perf2],full,hvt,vt,hvt,hvt,hvt,hvt,hvt,a,False,False,True,con,none,False,False,False,False,False,True
 he/she is putting fuel into a fire,hvsk[perf2-inf2],full,hvt,vt,hvt,hvt,hvt,hvt,hvt,a,False,False,True,con,none,False,False,False,False,False,True
-he/she is putting fuel into a fire,vvsk1,full,hvth,vth,hvth,hvtha,hvth,hvth,hvth,a,False,False,True,con,none,False,False,False,False,False,True
+he/she is putting fuel into a fire,vvsk[perf2],full,hvth,vth,hvth,hvtha,hvth,hvth,hvth,a,False,False,True,con,none,False,False,False,False,False,True
 he/she is tickling him/her,glottal-sk,full,yhvki,yvki,yhvki,yhvk,yvka,yhvki,yhvki,a,False,False,True,con,none,False,False,False,False,True,True
 he/she is tickling him/her,eat,full,yhvk,yvk,yhvk,yhvk,yvk,yhvk,yhvk,a,False,False,True,con,none,False,False,False,False,True,True
 he/she is tying it,lose-way,full,khane,kane,khane,khane,khane,khane,khane,a,False,False,True,con,none,False,False,False,False,False,True
@@ -680,15 +710,15 @@ he/she is taking off his/her glasses,rev-e,full,akhthinvt,akathinvt,akhthinvt,ak
 he/she is taking off his/her glasses,glottal-sk,full,akhthinvte,akathinvte,akhthinvte,akhthinvtes,akhthinvtaki,akhthinvte,akhthinvte,a,False,False,True,vowel_a,none,False,False,False,False,False,True
 he/she is putting on glasses,hvsk[perf2],full,akhthinvt,akathinvt,akhthinvt,akhthinvt,akhthinvt,akhthinvt,akhthinvt,a,False,False,True,vowel_a,none,False,False,False,False,False,True
 he/she is putting on glasses,hvsk[perf2-inf2],full,akhthinvt,akathinvt,akhthinvt,akhthinvt,akhthinvt,akhthinvt,akhthinvt,a,False,False,True,vowel_a,none,False,False,False,False,False,True
-he/she is putting on glasses,vvsk1,full,akhthinvth,akathinvth,akhthinvth,akhthinvtha,akhthinvth,akhthinvth,akhthinvth,a,False,False,True,vowel_a,none,False,False,False,False,False,True
+he/she is putting on glasses,vvsk[perf2],full,akhthinvth,akathinvth,akhthinvth,akhthinvtha,akhthinvth,akhthinvth,akhthinvth,a,False,False,True,vowel_a,none,False,False,False,False,False,True
 he/she is shelling corn,vh1,full,khtlh,katlh,khtlh,khtlh,khtlh,khtlhv,khtlh,a,False,False,True,con,none,False,False,False,False,False,True
 he/she is shelling corn,vh2,full,khtlh,katlh,khtlh,khtlh,khtlh,khtlh,khtlh,a,False,False,True,con,none,False,False,False,False,False,True
 he/she is snoring,rev-gi,full,kwhala,kwhala,kwhala,kwhala,kwhala,kwhala,kwhala,a,False,False,True,con,none,False,False,False,False,False,True
 he/she is snoring,glottal-sk,full,kwhalaki,kwhalaki,kwhalaki,kwhalakis,kwhalaki,kwhalaki,kwhalaki,a,False,False,True,con,none,False,False,False,False,False,True
-he/she is sprinkling it,vvsk1,full,kwhayo,kwhayo,kwhayo,kwhayo,kwhayo,kwhako,kwhayo,a,False,False,True,con,none,False,False,False,False,False,True
+he/she is sprinkling it,vvsk[perf2],full,kwhayo,kwhayo,kwhayo,kwhayo,kwhayo,kwhako,kwhayo,a,False,False,True,con,none,False,False,False,False,False,True
 he/she is putting on shoes,hvsk[perf2],full,alasul,alasul,alasul,alasul,alasul,alasul,alasul,a,False,False,True,vowel_a,none,False,False,False,False,False,True
 he/she is putting on shoes,hvsk[perf2-inf2],full,alasul,alasul,alasul,alasul,alasul,alasul,alasul,a,False,False,True,vowel_a,none,False,False,False,False,False,True
-he/she is putting on shoes,vvsk1,full,alasulh,alasulh,alasulh,alasulha,alasulh,alasulh,alasulh,a,False,False,True,vowel_a,none,False,False,False,False,False,True
+he/she is putting on shoes,vvsk[perf2],full,alasulh,alasulh,alasulh,alasulha,alasulh,alasulh,alasulh,a,False,False,True,vowel_a,none,False,False,False,False,False,True
 he/she is changing shoes,glottal-sk,full,alasulaiyv,alasulaiyv,alasulaiyv,alasulaiyvs,alasulaiyvna,alasulaiyv,alasulaiyv,a,False,False,True,vowel_a,none,False,False,False,False,False,True
 he/she is changing shoes,change,full,alasulaiy,alasulaiy,alasulaiy,alasulaiy,alasulaiy,alasulaiy,alasulaiy,a,False,False,True,vowel_a,none,False,False,False,False,False,True
 he/she is taking off his/her shoes,rev-e,full,alasul,alasul,alasul,alasul,alasul,alasul,alasul,a,False,False,True,vowel_a,none,False,False,False,False,False,True
@@ -744,10 +774,10 @@ he/she is crossing,sk-s1,full,natiw,natiw,natiw,natiw,natiw,natiw,natiw,a,False,
 he/she is crossing,sk-s2,full,natiw,natiw,natiw,natiw,natiw,natiwhi,natiw,a,False,False,True,con,none,False,True,False,False,False,True
 he/she is advertising it,hvsk[perf2],full,notsal,notsal,notsal,notsal,notsal,notsal,notsal,a,False,False,True,con,none,False,True,False,False,False,True
 he/she is advertising it,hvsk[perf2-inf2],full,notsal,notsal,notsal,notsal,notsal,notsal,notsal,a,False,False,True,con,none,False,True,False,False,False,True
-he/she is advertising it,vvsk1,full,notsalh,notsal,notsalh,notsalha,notsalh,notsalh,notsalh,a,False,False,True,con,none,False,True,False,False,False,True
+he/she is advertising it,vvsk[perf2],full,notsalh,notsal,notsalh,notsalha,notsalh,notsalh,notsalh,a,False,False,True,con,none,False,True,False,False,False,True
 he/she is crossing it,become2,full,soh,soh,soh,soh,soh,sohi,soh,a,False,False,True,con,none,False,True,True,False,False,True
 he/she is crossing it,quit,full,soh,soh,soh,soh,sohk,sohi,soh,a,False,False,True,con,none,False,True,True,False,False,True
-he/she is enduring it,vvsk1,full,eth,et,eth,ethi,eth,eth,eth,a,False,False,True,vowel_e,none,False,True,False,False,False,True
+he/she is enduring it,vvsk[perf2],full,eth,et,eth,ethi,eth,eth,eth,a,False,False,True,vowel_e,none,False,True,False,False,False,True
 he/she is explaining it,cause-late-h,full,osis,osis,osis,osis,osis,osis,osis,a,False,False,True,vowel_e,none,False,True,False,False,False,True
 he/she is deciding,cause,full,ukht,ukot,ukht,ukht,ukht,ukht,ukht,a,False,False,True,vowel_e,none,False,True,False,False,False,True
 he/she is deciding,cause-no-pres,full,ukhtih,ukotih,ukht,ukht,ukht,ukht,ukhtih,a,False,False,True,vowel_e,none,False,True,False,False,False,True
@@ -828,9 +858,14 @@ it is falling from a hanging position,sk-s1,full,ato,ato,ato,ato,ato,ato,ato,a,F
 it is falling from a hanging position,sk-s2,full,ato,ato,ato,ato,ato,atohi,ato,a,False,False,False,vowel_a,none,False,True,False,False,False,True
 he/she is baking it,hvsk,full,tu,tu,tu,tu,tu,t,tu,a,False,False,False,con,none,False,True,True,False,False,True
 he/she is baking it,hvsk[inf2],full,tu,tu,tu,tu,tu,t,tu,a,False,False,False,con,none,False,True,True,False,False,True
-he/she is hanging up it,vvsk1,full,atv,atv,atv,atv,atv,atv,atv,a,False,False,False,vowel_a,none,False,True,False,False,False,True
-he/she is hanging up it,vvsk2,full,atv,atv,atv,at,atv,at,atv,a,False,False,False,vowel_a,none,False,True,False,False,False,True
-he/she is hanging up it,vvsk3,full,atv,atv,atv,at,at,at,atv,a,False,False,False,vowel_a,none,False,True,False,False,False,True
+he/she is hanging up it,vvsk,full,atv,atv,atv,at,atv,atv,atv,a,False,False,False,vowel_a,none,False,True,False,False,False,True
+he/she is hanging up it,vvsk[inf2],full,atv,atv,atv,at,atv,at,atv,a,False,False,False,vowel_a,none,False,True,False,False,False,True
+he/she is hanging up it,vvsk[imp2],full,atv,atv,atv,at,at,atv,atv,a,False,False,False,vowel_a,none,False,True,False,False,False,True
+he/she is hanging up it,vvsk[imp2-inf2],full,atv,atv,atv,at,at,at,atv,a,False,False,False,vowel_a,none,False,True,False,False,False,True
+he/she is hanging up it,vvsk[perf2],full,atv,atv,atv,atv,atv,atv,atv,a,False,False,False,vowel_a,none,False,True,False,False,False,True
+he/she is hanging up it,vvsk[perf2-inf2],full,atv,atv,atv,atv,atv,at,atv,a,False,False,False,vowel_a,none,False,True,False,False,False,True
+he/she is hanging up it,vvsk[perf2-imp2],full,atv,atv,atv,atv,at,atv,atv,a,False,False,False,vowel_a,none,False,True,False,False,False,True
+he/she is hanging up it,vvsk[perf2-imp2-inf2],full,atv,atv,atv,atv,at,at,atv,a,False,False,False,vowel_a,none,False,True,False,False,False,True
 he/she is rowing,glottal-sk,full,kawesk,kawesk,kawe,kawes,kawehi,kawe,kawesk,a,False,False,False,con,none,False,True,True,False,False,True
 he/she is rowing,sk-s2,full,kawe,kawe,kawe,kawe,kawe,kawe,kawe,a,False,False,False,con,none,False,True,True,False,False,True
 he/she is putting it into a container,cause,full,lht,lot,lht,lht,lht,lht,lht,a,False,False,False,con,none,False,True,False,False,False,True
@@ -840,7 +875,7 @@ he/she is gathering it,cause-late-h,full,lhis,lhis,lhis,lhis,lhis,lhis,lhis,a,Fa
 he/she is piling it up,glottal-sk,full,lhusk,lhusk,lhu,lhun,lhuka,lhu,lhusk,a,False,False,False,con,none,False,True,True,False,False,True
 he/she is putting it in a hole or a container,hvsk[perf2],full,l,l,l,l,l,l,l,a,False,False,False,con,none,False,True,False,False,False,True
 he/she is putting it in a hole or a container,hvsk[perf2-inf2],full,l,l,l,l,l,l,l,a,False,False,False,con,none,False,True,False,False,False,True
-he/she is putting it in a hole or a container,vvsk1,full,lh,l,lh,lha,lh,lh,lh,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is putting it in a hole or a container,vvsk[perf2],full,lh,l,lh,lha,lh,lh,lh,a,False,False,False,con,none,False,True,False,False,False,True
 he/she is sleepy,act-like,full,lh,l,lh,lh,lh,lhvn,lh,a,False,False,False,con,none,False,True,False,False,False,True
 he/she is sleepy,make,full,lh,l,lh,lh,lh,lh,lh,a,False,False,False,con,none,False,True,False,False,False,True
 he/she is taking it somewhere by hand,go1,full,nh,n,nh,nh,nh,nh,nh,a,False,False,False,con,none,False,True,False,False,False,True
@@ -909,13 +944,23 @@ he/she is beating him/her up,round1,full,lvnh,lvnh,lvnh,lvnh,lvnh,lvn,lvnh,a,Fal
 he/she is beating him/her up,round2,full,lvnh,lvnh,lvnh,lvnh,lvnh,lvns,lvnh,a,False,False,False,con,none,False,True,False,False,False,True
 he/she is beating him/her up,round3,full,lvnh,lvnh,lvnh,lvnhi,lvnh,lvn,lvnh,a,False,False,False,con,none,False,True,False,False,False,True
 he/she is beating him/her up,touch,full,lvn,lvn,lvn,lvn,lvn,lvn,lvn,a,False,False,False,con,none,False,True,False,False,False,True
-he/she is putting it in a hole or a container,vvsk1,full,l,l,l,lv,lv,lv,l,a,False,False,False,con,none,False,True,False,False,False,True
-he/she is putting it in a hole or a container,vvsk2,full,l,l,l,l,lv,l,l,a,False,False,False,con,none,False,True,False,False,False,True
-he/she is putting it in a hole or a container,vvsk3,full,l,l,l,l,l,l,l,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is putting it in a hole or a container,vvsk,full,l,l,l,l,lv,lv,l,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is putting it in a hole or a container,vvsk[inf2],full,l,l,l,l,lv,l,l,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is putting it in a hole or a container,vvsk[imp2],full,l,l,l,l,l,lv,l,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is putting it in a hole or a container,vvsk[imp2-inf2],full,l,l,l,l,l,l,l,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is putting it in a hole or a container,vvsk[perf2],full,l,l,l,lv,lv,lv,l,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is putting it in a hole or a container,vvsk[perf2-inf2],full,l,l,l,lv,lv,l,l,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is putting it in a hole or a container,vvsk[perf2-imp2],full,l,l,l,lv,l,lv,l,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is putting it in a hole or a container,vvsk[perf2-imp2-inf2],full,l,l,l,lv,l,l,l,a,False,False,False,con,none,False,True,False,False,False,True
 he/she is selling it,go2,full,nat,nat,nat,nat,nat,nat,nat,a,False,False,False,con,none,False,True,False,False,False,True
-he/she is hiring him/her,vvsk1,full,nalh,nalh,nalh,nalhv,nalhv,nalhv,nalh,a,False,False,False,con,none,False,True,False,False,False,True
-he/she is hiring him/her,vvsk2,full,nalh,nalh,nalh,nalh,nalhv,nalh,nalh,a,False,False,False,con,none,False,True,False,False,False,True
-he/she is hiring him/her,vvsk3,full,nalh,nalh,nalh,nalh,nalh,nalh,nalh,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is hiring him/her,vvsk,full,nalh,nalh,nalh,nalh,nalhv,nalhv,nalh,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is hiring him/her,vvsk[inf2],full,nalh,nalh,nalh,nalh,nalhv,nalh,nalh,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is hiring him/her,vvsk[imp2],full,nalh,nalh,nalh,nalh,nalh,nalhv,nalh,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is hiring him/her,vvsk[imp2-inf2],full,nalh,nalh,nalh,nalh,nalh,nalh,nalh,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is hiring him/her,vvsk[perf2],full,nalh,nalh,nalh,nalhv,nalhv,nalhv,nalh,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is hiring him/her,vvsk[perf2-inf2],full,nalh,nalh,nalh,nalhv,nalhv,nalh,nalh,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is hiring him/her,vvsk[perf2-imp2],full,nalh,nalh,nalh,nalhv,nalh,nalhv,nalh,a,False,False,False,con,none,False,True,False,False,False,True
+he/she is hiring him/her,vvsk[perf2-imp2-inf2],full,nalh,nalh,nalh,nalhv,nalh,nalh,nalh,a,False,False,False,con,none,False,True,False,False,False,True
 he/she is finding it,vh1,full,nawhth,nawhth,nawhth,nawhth,nawhth,nawhthv,nawhth,a,False,False,False,con,none,False,True,False,False,False,True
 he/she is finding it,vh2,full,nawhth,nawhth,nawhth,nawhth,nawhth,nawhth,nawhth,a,False,False,False,con,none,False,True,False,False,False,True
 he/she is taking it somewhere,vh1,full,nawit,nawit,nawit,nawit,nawit,nawit,nawit,a,False,False,False,con,none,False,True,False,False,False,True
@@ -965,9 +1010,14 @@ he/she is hunting,go-around,full,nohalit,noalit,nohalit,nohalit,nohalit,nohalit,
 he/she is flying,aspectless,full,nohil,noil,nohilis,,nohilis,,nohil,a,False,False,False,con,none,False,True,False,False,False,True
 it’s flooding,hear,full,nohuk,,nohuk,nohuk,,nohuk,nohuk,a,False,False,False,con,none,False,True,False,False,False,True
 it’s flooding,aspectless,full,nohuki,,nohukisk,nohukan,,nohukot,nohuki,a,False,False,False,con,none,False,True,False,False,False,True
-it is blowing,vvsk1,full,nolv,,nolv,nolv,,nolv,nolv,a,False,False,False,con,none,False,True,False,False,False,True
-it is blowing,vvsk2,full,nolv,,nolv,nol,,nol,nolv,a,False,False,False,con,none,False,True,False,False,False,True
-it is blowing,vvsk3,full,nolv,,nolv,nol,,nol,nolv,a,False,False,False,con,none,False,True,False,False,False,True
+it is blowing,vvsk,full,nolv,,nolv,nol,,nolv,nolv,a,False,False,False,con,none,False,True,False,False,False,True
+it is blowing,vvsk[inf2],full,nolv,,nolv,nol,,nol,nolv,a,False,False,False,con,none,False,True,False,False,False,True
+it is blowing,vvsk[imp2],full,nolv,,nolv,nol,,nolv,nolv,a,False,False,False,con,none,False,True,False,False,False,True
+it is blowing,vvsk[imp2-inf2],full,nolv,,nolv,nol,,nol,nolv,a,False,False,False,con,none,False,True,False,False,False,True
+it is blowing,vvsk[perf2],full,nolv,,nolv,nolv,,nolv,nolv,a,False,False,False,con,none,False,True,False,False,False,True
+it is blowing,vvsk[perf2-inf2],full,nolv,,nolv,nolv,,nol,nolv,a,False,False,False,con,none,False,True,False,False,False,True
+it is blowing,vvsk[perf2-imp2],full,nolv,,nolv,nolv,,nolv,nolv,a,False,False,False,con,none,False,True,False,False,False,True
+it is blowing,vvsk[perf2-imp2-inf2],full,nolv,,nolv,nolv,,nol,nolv,a,False,False,False,con,none,False,True,False,False,False,True
 it is blowing,aspectless,full,nolvvsk,,nolvvsk,nolvn,,nolvt,nolvvsk,a,False,False,False,con,none,False,True,False,False,False,True
 he/she is stealing it,rev-gi,full,nos,nos,nos,nos,nos,nos,nos,a,False,False,False,con,none,False,True,False,False,False,True
 he/she is stealing it,glottal-sk,full,noski,noski,noski,noskis,noski,noski,noski,a,False,False,False,con,none,False,True,False,False,False,True
@@ -995,8 +1045,10 @@ he/she is pushing him/her,sk-h,full,asato,asato,asato,asatoy,asatoy,asato,asato,
 he/she is pushing him/her,push,full,asato,asato,asato,asato,asato,asato,asato,a,False,False,False,vowel_e,none,False,True,False,False,True,True
 he/she is pushing him/her,sweep,full,asato,asato,asato,asatoy,asatoyha,asato,asato,a,False,False,False,vowel_e,none,False,True,False,False,True,True
 he/she is rolling him/her,lose-way,full,asakwale,asakwale,asakwale,asakwale,asakwale,asakwale,asakwale,a,False,False,False,vowel_e,none,False,True,False,False,True,True
-he/she is attaching the object behind it,vvsk1,full,sanenat,sanenat,sanenat,sanenatv,sanenat,sanenatv,sanenat,a,False,False,False,con,none,False,True,True,False,False,True
-he/she is attaching the object behind it,vvsk2,full,sanenat,sanenat,sanenat,sanenat,sanenat,sanenat,sanenat,a,False,False,False,con,none,False,True,True,False,False,True
+he/she is attaching the object behind it,vvsk,full,sanenat,sanenat,sanenat,sanenat,sanenat,sanenatv,sanenat,a,False,False,False,con,none,False,True,True,False,False,True
+he/she is attaching the object behind it,vvsk[inf2],full,sanenat,sanenat,sanenat,sanenat,sanenat,sanenat,sanenat,a,False,False,False,con,none,False,True,True,False,False,True
+he/she is attaching the object behind it,vvsk[perf2],full,sanenat,sanenat,sanenat,sanenatv,sanenat,sanenatv,sanenat,a,False,False,False,con,none,False,True,True,False,False,True
+he/she is attaching the object behind it,vvsk[perf2-inf2],full,sanenat,sanenat,sanenat,sanenatv,sanenat,sanenat,sanenat,a,False,False,False,con,none,False,True,True,False,False,True
 it’s dripping,round3,full,skwo,,skwo,skwo,,skwoi,skwo,a,False,False,False,con,none,False,True,True,False,False,True
 it’s dripping,round7,full,skwoi,,skwoi,skwo,,skwoi,skwoi,a,False,False,False,con,none,False,True,True,False,False,True
 it’s dripping,scared,full,skwoi,,skwoi,skwo,,skwoi,skwoi,a,False,False,False,con,none,False,True,True,False,False,True
@@ -1005,14 +1057,14 @@ he/she is whistling,become2,full,svnh,svnh,svnh,svnh,svnh,svn,svnh,a,False,False
 he/she is whistling,quit,full,svnh,svnh,svnh,svnh,svnhk,svn,svnh,a,False,False,False,con,none,False,True,True,False,False,True
 he/she is piling it up,hvsk[perf2],full,svt,svt,svt,svt,svt,svt,svt,a,False,False,False,con,none,False,True,True,False,False,True
 he/she is piling it up,hvsk[perf2-inf2],full,svt,svt,svt,svt,svt,svt,svt,a,False,False,False,con,none,False,True,True,False,False,True
-he/she is piling it up,vvsk1,full,svth,svth,svth,svtha,svth,svth,svth,a,False,False,False,con,none,False,True,True,False,False,True
+he/she is piling it up,vvsk[perf2],full,svth,svth,svth,svtha,svth,svth,svth,a,False,False,False,con,none,False,True,True,False,False,True
 it’s hanging,aspectless,full,ath,,ath,,ath,,ath,a,False,False,False,vowel_a,none,False,True,False,False,False,True
 it’s hanging,aspectless-h,full,at,,at,,at,,at,a,False,False,False,vowel_a,none,False,True,False,False,False,True
 he/she is stabbing him/her,lose-way,full,at,at,at,athi,athi,athi,at,a,False,False,False,vowel_e,none,False,True,False,False,True,True
 he/she is stabbing him/her,hate,full,ath,ath,ath,ath,ath,ath,ath,a,False,False,False,vowel_e,none,False,True,False,False,True,True
 he/she is hanging it up,hvsk[perf2],full,at,at,at,at,at,at,at,a,False,False,False,vowel_a,none,False,True,False,False,False,True
 he/she is hanging it up,hvsk[perf2-inf2],full,at,at,at,at,at,at,at,a,False,False,False,vowel_a,none,False,True,False,False,False,True
-he/she is hanging it up,vvsk1,full,ath,at,ath,atha,ath,ath,ath,a,False,False,False,vowel_a,none,False,True,False,False,False,True
+he/she is hanging it up,vvsk[perf2],full,ath,at,ath,atha,ath,ath,ath,a,False,False,False,vowel_a,none,False,True,False,False,False,True
 he/she is joking,be-silly,full,welh,welh,welh,welh,welhvn,welhv,welh,a,False,False,False,con,none,False,True,False,False,False,True
 he/she is joking,tease,full,welh,welh,welh,welh,welh,welh,welh,a,False,False,False,con,none,False,True,False,False,False,True
 he/she is bathing him/her,o,full,aw,aw,aw,aw,aw,aw,aw,a,False,False,False,vowel_a,none,False,True,False,False,True,True
@@ -1030,7 +1082,7 @@ he/she is howling,hvsk[inf3],full,elhu,elu,elhu,elhu,elhu,elhu,elhu,a,False,Fals
 he/she is howling,sweep,full,elhuhv,eluhv,elhuhv,elhun,elhuhvka,elhuhv,elhuhv,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is leading it by a leash,aspectless,full,elisineh,elisineh,elisineh,,elisineh,elisinvst,elisineh,a,False,False,False,vowel_e,none,False,True,False,False,True,True
 he/she is leading it by a leash,aspectless-h,full,elisine,elisine,elisine,,elisine,elisinvst,elisine,a,False,False,False,vowel_e,none,False,True,False,False,True,True
-he/she is setting a post into the ground,vvsk1,full,eth,et,eth,ethi,eth,eth,eth,a,False,False,False,vowel_e,none,False,True,False,False,False,True
+he/she is setting a post into the ground,vvsk[perf2],full,eth,et,eth,ethi,eth,eth,eth,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is leading him/her by the hand,go1,full,ohin,oin,ohin,ohin,oin,ohin,ohin,a,False,False,False,vowel_e,none,False,True,False,False,True,True
 he/she is agreeing with him/her,apl1,full,ohiyhtan,oiyhtan,ohiyhtan,ohiyhtan,oiyhta,ohiyhtan,ohiyhtan,a,False,False,False,vowel_e,none,False,True,False,False,True,True
 he/she is agreeing with him/her,apl2,full,ohiyhtan,oiyhtan,ohiyhtan,ohiyhtan,oiyhta,ohiyhtan,ohiyhtan,a,False,False,False,vowel_e,none,False,True,False,False,True,True
@@ -1062,23 +1114,33 @@ it’s swelling,sk-s1,full,othi,othi,othi,othi,othi,othi,othi,a,False,False,Fals
 it’s swelling,sk-s2,full,othi,othi,othi,othi,othi,othihi,othi,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is building a fire,hvsk[perf2],full,ot,ot,ot,ot,ot,ot,ot,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is building a fire,hvsk[perf2-inf2],full,ot,ot,ot,ot,ot,ot,ot,a,False,False,False,vowel_e,none,False,True,False,False,False,True
-he/she is building a fire,vvsk1,full,oth,ot,oth,otha,oth,oth,oth,a,False,False,False,vowel_e,none,False,True,False,False,False,True
+he/she is building a fire,vvsk[perf2],full,oth,ot,oth,otha,oth,oth,oth,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is unhitching him/her,rev-e,full,utal,utal,utal,utal,utal,utal,utal,a,False,False,False,vowel_e,none,False,True,False,False,True,True
 he/she is unhitching him/her,glottal-sk,full,utale,utale,utale,utales,utalaki,utale,utale,a,False,False,False,vowel_e,none,False,True,False,False,True,True
-he/she is hitching him/her up,vvsk1,full,utal,utal,utal,utalv,utalv,utalv,utal,a,False,False,False,vowel_e,none,False,True,False,False,True,True
-he/she is hitching him/her up,vvsk2,full,utal,utal,utal,utal,utalv,utal,utal,a,False,False,False,vowel_e,none,False,True,False,False,True,True
-he/she is hitching him/her up,vvsk3,full,utal,utal,utal,utal,utal,utal,utal,a,False,False,False,vowel_e,none,False,True,False,False,True,True
+he/she is hitching him/her up,vvsk,full,utal,utal,utal,utal,utalv,utalv,utal,a,False,False,False,vowel_e,none,False,True,False,False,True,True
+he/she is hitching him/her up,vvsk[inf2],full,utal,utal,utal,utal,utalv,utal,utal,a,False,False,False,vowel_e,none,False,True,False,False,True,True
+he/she is hitching him/her up,vvsk[imp2],full,utal,utal,utal,utal,utal,utalv,utal,a,False,False,False,vowel_e,none,False,True,False,False,True,True
+he/she is hitching him/her up,vvsk[imp2-inf2],full,utal,utal,utal,utal,utal,utal,utal,a,False,False,False,vowel_e,none,False,True,False,False,True,True
+he/she is hitching him/her up,vvsk[perf2],full,utal,utal,utal,utalv,utalv,utalv,utal,a,False,False,False,vowel_e,none,False,True,False,False,True,True
+he/she is hitching him/her up,vvsk[perf2-inf2],full,utal,utal,utal,utalv,utalv,utal,utal,a,False,False,False,vowel_e,none,False,True,False,False,True,True
+he/she is hitching him/her up,vvsk[perf2-imp2],full,utal,utal,utal,utalv,utal,utalv,utal,a,False,False,False,vowel_e,none,False,True,False,False,True,True
+he/she is hitching him/her up,vvsk[perf2-imp2-inf2],full,utal,utal,utal,utalv,utal,utal,utal,a,False,False,False,vowel_e,none,False,True,False,False,True,True
 he/she is putting a handle on a tool,hvsk[perf2],full,uhal,ual,uhal,uhal,uhal,uhal,uhal,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is putting a handle on a tool,hvsk[perf2-inf2],full,uhal,ual,uhal,uhal,uhal,uhal,uhal,a,False,False,False,vowel_e,none,False,True,False,False,False,True
-he/she is putting a handle on a tool,vvsk1,full,uhalh,ualh,uhalh,uhalha,uhalh,uhalh,uhalh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
+he/she is putting a handle on a tool,vvsk[perf2],full,uhalh,ualh,uhalh,uhalha,uhalh,uhalh,uhalh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is washing it,o,full,uhil,uil,uhil,uhil,uhil,uhil,uhil,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is washing it,glottal-sk,full,uhilo,uilo,uhilo,uhilo,uhilotsa,uhilo,uhilo,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is accusing him/her,cause,full,uhist,uist,uhist,uhist,uist,uhist,uhist,a,False,False,False,vowel_e,none,False,True,False,False,True,True
 he/she is accusing him/her,cause-no-pres,full,uhistih,uistih,uhist,uhist,uist,uhist,uhistih,a,False,False,False,vowel_e,none,False,True,False,False,True,True
 he/she is accusing him/her,cause-no-h,full,uhist,uist,uhist,uhisth,uist,uhist,uhist,a,False,False,False,vowel_e,none,False,True,False,False,True,True
-he/she is covering it,vvsk1,full,ulh,ulh,ulh,ulhv,ulhv,ulhv,ulh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
-he/she is covering it,vvsk2,full,ulh,ulh,ulh,ulh,ulhv,ulh,ulh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
-he/she is covering it,vvsk3,full,ulh,ulh,ulh,ulh,ulh,ulh,ulh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
+he/she is covering it,vvsk,full,ulh,ulh,ulh,ulh,ulhv,ulhv,ulh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
+he/she is covering it,vvsk[inf2],full,ulh,ulh,ulh,ulh,ulhv,ulh,ulh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
+he/she is covering it,vvsk[imp2],full,ulh,ulh,ulh,ulh,ulh,ulhv,ulh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
+he/she is covering it,vvsk[imp2-inf2],full,ulh,ulh,ulh,ulh,ulh,ulh,ulh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
+he/she is covering it,vvsk[perf2],full,ulh,ulh,ulh,ulhv,ulhv,ulhv,ulh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
+he/she is covering it,vvsk[perf2-inf2],full,ulh,ulh,ulh,ulhv,ulhv,ulh,ulh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
+he/she is covering it,vvsk[perf2-imp2],full,ulh,ulh,ulh,ulhv,ulh,ulhv,ulh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
+he/she is covering it,vvsk[perf2-imp2-inf2],full,ulh,ulh,ulh,ulhv,ulh,ulh,ulh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is putting it in water,hvsk,full,u,u,u,u,u,u,u,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is putting it in water,hvsk[inf2],full,u,u,u,u,u,u,u,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is picking him/her up,rev-e,full,uth,uth,uth,uth,uth,uth,uth,a,False,False,False,vowel_e,none,False,True,False,False,True,True
@@ -1101,7 +1163,7 @@ he/she is cooking it,cause-no-pres,full,vnhistih,vnistih,vnhist,vnhist,vnhist,vn
 he/she is cooking it,cause-no-h,full,vnhist,vnist,vnhist,vnhisth,vnhist,vnhist,vnhist,a,False,False,False,vowel_v,none,False,True,False,False,False,True
 he/she is frying it,hvsk[perf2],full,vtsal,vtsal,vtsal,vtsal,vtsal,vtsal,vtsal,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is frying it,hvsk[perf2-inf2],full,vtsal,vtsal,vtsal,vtsal,vtsal,vtsal,vtsal,a,False,False,False,vowel_e,none,False,True,False,False,False,True
-he/she is frying it,vvsk1,full,vtsalh,vtsalh,vtsalh,vtsalha,vtsalh,vtsalh,vtsalh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
+he/she is frying it,vvsk[perf2],full,vtsalh,vtsalh,vtsalh,vtsalha,vtsalh,vtsalh,vtsalh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is melting it,cause,full,vnawht,vnawot,vnawht,vnawht,vnawht,vnawht,vnawht,a,False,False,False,vowel_v,none,False,True,False,False,False,True
 he/she is melting it,cause-no-pres,full,vnawhtih,vnawotih,vnawht,vnawht,vnawht,vnawht,vnawhtih,a,False,False,False,vowel_v,none,False,True,False,False,False,True
 he/she is melting it,cause-no-h,full,vnawht,vnawot,vnawht,vnawhth,vnawht,vnawht,vnawht,a,False,False,False,vowel_v,none,False,True,False,False,False,True
@@ -1114,20 +1176,25 @@ it’s becoming done,sk-s1,full,vn,,vn,vn,vn,vn,vn,a,False,False,False,vowel_v,n
 it’s becoming done,sk-s2,full,vn,,vn,vn,vn,vnhi,vn,a,False,False,False,vowel_v,none,False,True,False,False,False,True
 he/she is hiding it,hvsk[perf2],full,vskal,vskal,vskal,vskal,vskal,vskal,vskal,a,False,False,False,vowel_v,none,False,True,False,False,False,True
 he/she is hiding it,hvsk[perf2-inf2],full,vskal,vskal,vskal,vskal,vskal,vskal,vskal,a,False,False,False,vowel_v,none,False,True,False,False,False,True
-he/she is hiding it,vvsk1,full,vskalh,vskalh,vskalh,vskalha,vskalh,vskalh,vskalh,a,False,False,False,vowel_v,none,False,True,False,False,False,True
+he/she is hiding it,vvsk[perf2],full,vskalh,vskalh,vskalh,vskalha,vskalh,vskalh,vskalh,a,False,False,False,vowel_v,none,False,True,False,False,False,True
 he/she is hiding it,glottal-sk,full,vskalati,vskalati,vskalati,vskalat,vskalata,vskalati,vskalati,a,False,False,False,vowel_v,none,False,True,False,False,False,True
 he/she is hiding it,eat,full,vskalat,vskalat,vskalat,vskalat,vskalat,vskalat,vskalat,a,False,False,False,vowel_v,none,False,True,False,False,False,True
-he/she is hiding him/her,vvsk1,full,vskal,vskal,vskal,vskalv,vskalv,vskalv,vskal,a,False,False,False,vowel_v,none,False,True,False,False,True,True
-he/she is hiding him/her,vvsk2,full,vskal,vskal,vskal,vskal,vskalv,vskal,vskal,a,False,False,False,vowel_v,none,False,True,False,False,True,True
-he/she is hiding him/her,vvsk3,full,vskal,vskal,vskal,vskal,vskal,vskal,vskal,a,False,False,False,vowel_v,none,False,True,False,False,True,True
+he/she is hiding him/her,vvsk,full,vskal,vskal,vskal,vskal,vskalv,vskalv,vskal,a,False,False,False,vowel_v,none,False,True,False,False,True,True
+he/she is hiding him/her,vvsk[inf2],full,vskal,vskal,vskal,vskal,vskalv,vskal,vskal,a,False,False,False,vowel_v,none,False,True,False,False,True,True
+he/she is hiding him/her,vvsk[imp2],full,vskal,vskal,vskal,vskal,vskal,vskalv,vskal,a,False,False,False,vowel_v,none,False,True,False,False,True,True
+he/she is hiding him/her,vvsk[imp2-inf2],full,vskal,vskal,vskal,vskal,vskal,vskal,vskal,a,False,False,False,vowel_v,none,False,True,False,False,True,True
+he/she is hiding him/her,vvsk[perf2],full,vskal,vskal,vskal,vskalv,vskalv,vskalv,vskal,a,False,False,False,vowel_v,none,False,True,False,False,True,True
+he/she is hiding him/her,vvsk[perf2-inf2],full,vskal,vskal,vskal,vskalv,vskalv,vskal,vskal,a,False,False,False,vowel_v,none,False,True,False,False,True,True
+he/she is hiding him/her,vvsk[perf2-imp2],full,vskal,vskal,vskal,vskalv,vskal,vskalv,vskal,a,False,False,False,vowel_v,none,False,True,False,False,True,True
+he/she is hiding him/her,vvsk[perf2-imp2-inf2],full,vskal,vskal,vskal,vskalv,vskal,vskal,vskal,a,False,False,False,vowel_v,none,False,True,False,False,True,True
 he/she is cracking it,o,full,vskwal,vskwal,vskwal,vskwal,vskwal,vskwal,vskwal,a,False,False,False,vowel_v,none,False,True,False,False,False,True
 he/she is cracking it,glottal-sk,full,vskwalo,vskwalo,vskwalo,vskwalo,vskwalotsa,vskwalo,vskwalo,a,False,False,False,vowel_v,none,False,True,False,False,False,True
 he/she is putting it into a fire,hvsk[perf2],full,vt,vt,vt,vt,vt,vt,vt,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is putting it into a fire,hvsk[perf2-inf2],full,vt,vt,vt,vt,vt,vt,vt,a,False,False,False,vowel_e,none,False,True,False,False,False,True
-he/she is putting it into a fire,vvsk1,full,vth,vt,vth,vtha,vth,vth,vth,a,False,False,False,vowel_e,none,False,True,False,False,False,True
+he/she is putting it into a fire,vvsk[perf2],full,vth,vt,vth,vtha,vth,vth,vth,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is soaking it,hvsk[perf2],full,vwal,vwal,vwal,vwal,vwal,vwal,vwal,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is soaking it,hvsk[perf2-inf2],full,vwal,vwal,vwal,vwal,vwal,vwal,vwal,a,False,False,False,vowel_e,none,False,True,False,False,False,True
-he/she is soaking it,vvsk1,full,vwalh,vwalh,vwalh,vwalha,vwalh,vwalh,vwalh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
+he/she is soaking it,vvsk[perf2],full,vwalh,vwalh,vwalh,vwalha,vwalh,vwalh,vwalh,a,False,False,False,vowel_e,none,False,True,False,False,False,True
 he/she is ascending an incline,glottal-sk,full,nhalusk,nalusk,nhalu,nhalus,nhaluhi,nhaluhi,nhalusk,a,False,False,False,con,h_cons,True,True,False,False,False,True
 he/she is ascending an incline,sk-s1,full,nhalu,nalu,nhalu,nhalu,nhalu,nhalu,nhalu,a,False,False,False,con,h_cons,True,True,False,False,False,True
 he/she is ascending an incline,sk-s2,full,nhalu,nalu,nhalu,nhalu,nhalu,nhaluhi,nhalu,a,False,False,False,con,h_cons,True,True,False,False,False,True
@@ -1153,10 +1220,10 @@ it’s contaminated,aspectless,full,khanesalh,,khanesalh,,,,khanesalh,a,False,Fa
 it’s contaminated,aspectless-h,full,khanesal,,khanesal,,,,khanesal,a,False,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is contaminating it,hvsk[perf2],full,nhesal,nesal,nhesal,nhesal,nhesal,nhesal,nhesal,a,False,False,False,con,h_cons,True,True,False,False,False,True
 he/she is contaminating it,hvsk[perf2-inf2],full,nhesal,nesal,nhesal,nhesal,nhesal,nhesal,nhesal,a,False,False,False,con,h_cons,True,True,False,False,False,True
-he/she is contaminating it,vvsk1,full,nhesalh,nesalh,nhesalh,nhesalha,nhesalh,nhesalh,nhesalh,a,False,False,False,con,h_cons,True,True,False,False,False,True
+he/she is contaminating it,vvsk[perf2],full,nhesalh,nesalh,nhesalh,nhesalha,nhesalh,nhesalh,nhesalh,a,False,False,False,con,h_cons,True,True,False,False,False,True
 he/she is collecting from him/her,hvsk[perf2],full,nhil,nil,nhil,nhil,nil,nhil,nhil,a,False,False,False,con,h_cons,True,True,False,False,True,True
 he/she is collecting from him/her,hvsk[perf2-inf2],full,nhil,nil,nhil,nhil,nil,nhil,nhil,a,False,False,False,con,h_cons,True,True,False,False,True,True
-he/she is collecting from him/her,vvsk1,full,nhilh,nilh,nhilh,nhilha,nilh,nhilh,nhilh,a,False,False,False,con,h_cons,True,True,False,False,True,True
+he/she is collecting from him/her,vvsk[perf2],full,nhilh,nilh,nhilh,nhilha,nilh,nhilh,nhilh,a,False,False,False,con,h_cons,True,True,False,False,True,True
 he/she is telling it,apl-active2,full,nhoh,noh,nhoh,nhoh,nhoh,nhoh,nhoh,a,False,False,False,con,h_cons,True,True,False,False,False,True
 he/she is omitting him/her,glottal-sk,full,nhohiya,nohiya,nhohiya,nhohiy,nohiya,nhohiya,nhohiya,a,False,False,False,con,h_cons,True,True,False,False,True,True
 he/she is omitting him/her,scatter,full,nhohiy,nohiy,nhohiy,nhohiy,nohiy,nhohiya,nhohiy,a,False,False,False,con,h_cons,True,True,False,False,True,True
@@ -1307,11 +1374,16 @@ he/she is sending it,hvsk,full,,,,,,,,a,True,False,False,con,none,False,False,Fa
 he/she is sending it,hvsk[inf2],full,,,,,,,,a,True,False,False,con,none,False,False,False,False,False,True
 he/she is sending it,hvsk[perf2],full,akha,akha,akha,ak,akha,akho,akha,a,True,False,False,vowel_e,none,False,True,False,False,True,True
 he/she is sending it,hvsk[perf2-inf2],full,akha,akha,akha,ak,akha,akho,akha,a,True,False,False,vowel_e,none,False,True,False,False,True,True
-he/she is sending it,vvsk1,full,akhah,akhah,akhah,akha,akhah,akhoh,akhah,a,True,False,False,vowel_e,none,False,True,False,False,True,True
+he/she is sending it,vvsk[perf2],full,akhah,akhah,akhah,akha,akhah,akhoh,akhah,a,True,False,False,vowel_e,none,False,True,False,False,True,True
 he/she is sending it,hvsk,full,ne,ne,ne,ne,ne,ne,ne,a,True,False,False,con,none,False,True,False,False,False,True
 he/she is sending it,hvsk[inf2],full,ne,ne,ne,ne,ne,ne,ne,a,True,False,False,con,none,False,True,False,False,False,True
-he/she is sending it,vvsk1,full,nv,nv,nv,nv,nv,nv,nv,a,True,False,False,con,none,False,True,False,False,False,True
-he/she is sending it,vvsk2,full,nv,nv,nv,n,nv,n,nv,a,True,False,False,con,none,False,True,False,False,False,True
-he/she is sending it,vvsk3,full,nv,nv,nv,n,n,n,nv,a,True,False,False,con,none,False,True,False,False,False,True
+he/she is sending it,vvsk,full,nv,nv,nv,n,nv,nv,nv,a,True,False,False,con,none,False,True,False,False,False,True
+he/she is sending it,vvsk[inf2],full,nv,nv,nv,n,nv,n,nv,a,True,False,False,con,none,False,True,False,False,False,True
+he/she is sending it,vvsk[imp2],full,nv,nv,nv,n,n,nv,nv,a,True,False,False,con,none,False,True,False,False,False,True
+he/she is sending it,vvsk[imp2-inf2],full,nv,nv,nv,n,n,n,nv,a,True,False,False,con,none,False,True,False,False,False,True
+he/she is sending it,vvsk[perf2],full,nv,nv,nv,nv,nv,nv,nv,a,True,False,False,con,none,False,True,False,False,False,True
+he/she is sending it,vvsk[perf2-inf2],full,nv,nv,nv,nv,nv,n,nv,a,True,False,False,con,none,False,True,False,False,False,True
+he/she is sending it,vvsk[perf2-imp2],full,nv,nv,nv,nv,n,nv,nv,a,True,False,False,con,none,False,True,False,False,False,True
+he/she is sending it,vvsk[perf2-imp2-inf2],full,nv,nv,nv,nv,n,n,nv,a,True,False,False,con,none,False,True,False,False,False,True
 he/she is going out of sight,become2,full,ateli,ateli,ateli,ateli,ateli,ateli,ateli,b,True,False,False,vowel_a,none,False,False,False,False,False,True
 he/she is going out of sight,quit,full,ateli,ateli,ateli,ateli,atelik,ateli,ateli,b,True,False,False,vowel_a,none,False,False,False,False,False,True

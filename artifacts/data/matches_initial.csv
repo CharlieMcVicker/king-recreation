@@ -62,7 +62,10 @@ he/she is shopping,hvsk,loose,full,True,True,True,True,True
 he/she is shopping,hvsk[inf2],loose,full,True,True,True,True,True
 he/she is shopping,hvsk[inf3],strict,full,True,True,True,True,True
 he/she is shopping,hvsk[inf3],loose,full,True,True,True,True,True
-he/she is shopping,vvsk1,loose,full,True,True,True,True,True
+he/she is shopping,vvsk,loose,full,True,True,True,True,True
+he/she is shopping,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is shopping,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is shopping,vvsk[perf2-imp2],loose,full,True,True,True,True,True
 he/she is shopping,sk-h,loose,full,True,True,True,True,True
 he/she is shopping,episodic1,loose,full,True,True,True,True,True
 he/she is shopping,episodic2,strict,full,True,True,True,True,True
@@ -116,7 +119,10 @@ he/she is cooking a meal,hvsk,strict,full,True,True,True,True,True
 he/she is cooking a meal,hvsk,loose,full,True,True,True,True,True
 he/she is cooking a meal,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is cooking a meal,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is cooking a meal,vvsk1,loose,full,True,True,True,True,True
+he/she is cooking a meal,vvsk,loose,full,True,True,True,True,True
+he/she is cooking a meal,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is cooking a meal,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is cooking a meal,vvsk[perf2-imp2],loose,full,True,True,True,True,True
 he/she is cooking a meal,episodic1,strict,full,True,True,True,True,True
 he/she is cooking a meal,episodic1,loose,full,True,True,True,True,True
 it’s burning,glottal-sk,strict,full,True,True,True,True,True
@@ -161,7 +167,7 @@ he/she is being born,hvsk,strict,full,True,True,True,True,True
 he/she is being born,hvsk,loose,full,True,True,True,True,True
 he/she is being born,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is being born,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is being born,vvsk1,loose,full,True,True,True,True,True
+he/she is being born,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is finding it out,glottal-sk,strict,full,True,True,True,True,True
 he/she is finding it out,glottal-sk,loose,full,True,True,True,True,True
 he/she is finding it out,sk-s1,strict,full,True,True,True,True,True
@@ -172,8 +178,8 @@ he/she is finding it out,cough,loose,full,True,True,True,True,True
 he/she is finding it out,sweep,loose,full,True,True,True,True,True
 he/she is diving,hvsk,loose,full,True,True,True,True,True
 he/she is diving,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is diving,vvsk1,strict,full,True,True,True,True,True
-he/she is diving,vvsk1,loose,full,True,True,True,True,True
+he/she is diving,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is diving,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is going around a curve,round7,strict,full,True,True,True,True,True
 he/she is going around a curve,round7,loose,full,True,True,True,True,True
 he/she is laying it down,glottal-sk,strict,full,True,True,True,True,True
@@ -210,8 +216,8 @@ he/she is hiding,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is hiding,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is hiding,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is hiding,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is hiding,vvsk1,strict,full,True,True,True,True,True
-he/she is hiding,vvsk1,loose,full,True,True,True,True,True
+he/she is hiding,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is hiding,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is leaving it behind,glottal-sk,strict,full,True,True,True,True,True
 he/she is leaving it behind,glottal-sk,loose,full,True,True,True,True,True
 he/she is leaving it behind,scatter,strict,full,True,True,True,True,True
@@ -397,12 +403,22 @@ he/she is chopping it up,sweep,strict,full,True,True,True,True,True
 he/she is chopping it up,sweep,loose,full,True,True,True,True,True
 he/she is scolding him/her,hvsk,loose,full,True,True,True,True,True
 he/she is scolding him/her,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is scolding him/her,vvsk1,strict,full,True,True,True,True,True
-he/she is scolding him/her,vvsk1,loose,full,True,True,True,True,True
-he/she is scolding him/her,vvsk2,strict,full,True,True,True,True,True
-he/she is scolding him/her,vvsk2,loose,full,True,True,True,True,True
-he/she is scolding him/her,vvsk3,strict,full,True,True,True,True,True
-he/she is scolding him/her,vvsk3,loose,full,True,True,True,True,True
+he/she is scolding him/her,vvsk,strict,full,True,True,True,True,True
+he/she is scolding him/her,vvsk,loose,full,True,True,True,True,True
+he/she is scolding him/her,vvsk[inf2],strict,full,True,True,True,True,True
+he/she is scolding him/her,vvsk[inf2],loose,full,True,True,True,True,True
+he/she is scolding him/her,vvsk[imp2],strict,full,True,True,True,True,True
+he/she is scolding him/her,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is scolding him/her,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+he/she is scolding him/her,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+he/she is scolding him/her,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is scolding him/her,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is scolding him/her,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+he/she is scolding him/her,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+he/she is scolding him/her,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+he/she is scolding him/her,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+he/she is scolding him/her,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+he/she is scolding him/her,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 he/she is washing his face,o,strict,full,True,True,True,True,True
 he/she is washing his face,o,loose,full,True,True,True,True,True
 he/she is washing his face,glottal-sk,strict,full,True,True,True,True,True
@@ -450,7 +466,7 @@ he/she is placing it on something,hvsk[perf2],loose,full,True,True,True,True,Tru
 he/she is placing it on something,hvsk[perf2-inf2],loose,full,True,True,True,True,True
 he/she is placing it on something,hvsk-o*,strict,full,True,True,True,True,True
 he/she is placing it on something,hvsk-o*,loose,full,True,True,True,True,True
-he/she is placing it on something,vvsk1,loose,full,True,True,True,True,True
+he/she is placing it on something,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is taking off flying,vh1,strict,full,True,True,True,True,True
 he/she is taking off flying,vh1,loose,full,True,True,True,True,True
 he/she is making him/her fly,cause,loose,full,True,True,True,True,True
@@ -479,12 +495,22 @@ he/she is measuring it,glottal-sk,strict,full,True,True,True,True,True
 he/she is measuring it,glottal-sk,loose,full,True,True,True,True,True
 it’s bending,hvsk,loose,full,True,True,True,True,True
 it’s bending,hvsk[inf2],loose,full,True,True,True,True,True
-it’s bending,vvsk1,strict,full,True,True,True,True,True
-it’s bending,vvsk1,loose,full,True,True,True,True,True
-it’s bending,vvsk2,strict,full,True,True,True,True,True
-it’s bending,vvsk2,loose,full,True,True,True,True,True
-it’s bending,vvsk3,strict,full,True,True,True,True,True
-it’s bending,vvsk3,loose,full,True,True,True,True,True
+it’s bending,vvsk,strict,full,True,True,True,True,True
+it’s bending,vvsk,loose,full,True,True,True,True,True
+it’s bending,vvsk[inf2],strict,full,True,True,True,True,True
+it’s bending,vvsk[inf2],loose,full,True,True,True,True,True
+it’s bending,vvsk[imp2],strict,full,True,True,True,True,True
+it’s bending,vvsk[imp2],loose,full,True,True,True,True,True
+it’s bending,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+it’s bending,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+it’s bending,vvsk[perf2],strict,full,True,True,True,True,True
+it’s bending,vvsk[perf2],loose,full,True,True,True,True,True
+it’s bending,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+it’s bending,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+it’s bending,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+it’s bending,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+it’s bending,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+it’s bending,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 it’s bending,act-like,loose,full,True,True,True,True,True
 it’s bending,dress-up,loose,full,True,True,True,True,True
 it’s bending,aspectless,strict,full,True,True,True,True,True
@@ -501,16 +527,21 @@ he/she is preaching,hvsk,strict,full,True,True,True,True,True
 he/she is preaching,hvsk,loose,full,True,True,True,True,True
 he/she is preaching,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is preaching,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is preaching,vvsk1,loose,full,True,True,True,True,True
+he/she is preaching,vvsk[perf2],loose,full,True,True,True,True,True
 it’s shattering,glottal-sk,strict,full,True,True,True,True,True
 it’s shattering,glottal-sk,loose,full,True,True,True,True,True
 it’s shattering,hvsk,loose,full,True,True,True,True,True
 it’s shattering,hvsk[inf2],loose,full,True,True,True,True,True
 it’s shattering,hvsk[inf3],loose,full,True,True,True,True,True
 it’s shattering,hvsk-o*,loose,full,True,True,True,True,True
-it’s shattering,vvsk1,loose,full,True,True,True,True,True
-it’s shattering,vvsk2,loose,full,True,True,True,True,True
-it’s shattering,vvsk3,loose,full,True,True,True,True,True
+it’s shattering,vvsk,loose,full,True,True,True,True,True
+it’s shattering,vvsk[inf2],loose,full,True,True,True,True,True
+it’s shattering,vvsk[imp2],loose,full,True,True,True,True,True
+it’s shattering,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+it’s shattering,vvsk[perf2],loose,full,True,True,True,True,True
+it’s shattering,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+it’s shattering,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+it’s shattering,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 it’s shattering,sk-h,strict,full,True,True,True,True,True
 it’s shattering,sk-h,loose,full,True,True,True,True,True
 it’s shattering,act-like,strict,full,True,True,True,True,True
@@ -550,7 +581,10 @@ he/she is moving,hvsk,strict,full,True,True,True,True,True
 he/she is moving,hvsk,loose,full,True,True,True,True,True
 he/she is moving,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is moving,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is moving,vvsk1,loose,full,True,True,True,True,True
+he/she is moving,vvsk,loose,full,True,True,True,True,True
+he/she is moving,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is moving,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is moving,vvsk[perf2-imp2],loose,full,True,True,True,True,True
 he/she is moving,episodic1,strict,full,True,True,True,True,True
 he/she is moving,episodic1,loose,full,True,True,True,True,True
 he/she is changing his/her shirt,glottal-sk,strict,full,True,True,True,True,True
@@ -624,7 +658,7 @@ he/she is setting it down,hvsk,strict,full,True,True,True,True,True
 he/she is setting it down,hvsk,loose,full,True,True,True,True,True
 he/she is setting it down,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is setting it down,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is setting it down,vvsk1,loose,full,True,True,True,True,True
+he/she is setting it down,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is finding him/her,vh1,strict,full,True,True,True,True,True
 he/she is finding him/her,vh1,loose,full,True,True,True,True,True
 he/she is finding him/her,vh2,strict,full,True,True,True,True,True
@@ -651,7 +685,10 @@ it’s becoming frosty,hvsk,strict,full,True,True,True,True,True
 it’s becoming frosty,hvsk,loose,full,True,True,True,True,True
 it’s becoming frosty,hvsk[inf2],strict,full,True,True,True,True,True
 it’s becoming frosty,hvsk[inf2],loose,full,True,True,True,True,True
-it’s becoming frosty,vvsk1,loose,full,True,True,True,True,True
+it’s becoming frosty,vvsk,loose,full,True,True,True,True,True
+it’s becoming frosty,vvsk[imp2],loose,full,True,True,True,True,True
+it’s becoming frosty,vvsk[perf2],loose,full,True,True,True,True,True
+it’s becoming frosty,vvsk[perf2-imp2],loose,full,True,True,True,True,True
 it’s becoming frosty,act-like,strict,full,True,True,True,True,True
 it’s becoming frosty,act-like,loose,full,True,True,True,True,True
 it’s becoming frosty,episodic1,strict,full,True,True,True,True,True
@@ -673,8 +710,8 @@ he/she is quilting it,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is quilting it,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is quilting it,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is quilting it,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is quilting it,vvsk1,strict,full,True,True,True,True,True
-he/she is quilting it,vvsk1,loose,full,True,True,True,True,True
+he/she is quilting it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is quilting it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is making an incision,round7,strict,full,True,True,True,True,True
 he/she is making an incision,round7,loose,full,True,True,True,True,True
 he/she is making an incision,look,loose,full,True,True,True,True,True
@@ -697,12 +734,22 @@ it’s thundering,aspectless,loose,full,True,True,True,True,True
 it’s thundering,aspectless-h,loose,full,True,True,True,True,True
 he/she is bending it,hvsk,loose,full,True,True,True,True,True
 he/she is bending it,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is bending it,vvsk1,strict,full,True,True,True,True,True
-he/she is bending it,vvsk1,loose,full,True,True,True,True,True
-he/she is bending it,vvsk2,strict,full,True,True,True,True,True
-he/she is bending it,vvsk2,loose,full,True,True,True,True,True
-he/she is bending it,vvsk3,strict,full,True,True,True,True,True
-he/she is bending it,vvsk3,loose,full,True,True,True,True,True
+he/she is bending it,vvsk,strict,full,True,True,True,True,True
+he/she is bending it,vvsk,loose,full,True,True,True,True,True
+he/she is bending it,vvsk[inf2],strict,full,True,True,True,True,True
+he/she is bending it,vvsk[inf2],loose,full,True,True,True,True,True
+he/she is bending it,vvsk[imp2],strict,full,True,True,True,True,True
+he/she is bending it,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is bending it,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+he/she is bending it,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+he/she is bending it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is bending it,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is bending it,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+he/she is bending it,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+he/she is bending it,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+he/she is bending it,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+he/she is bending it,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+he/she is bending it,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 he/she is kicking him/her,rev-e,strict,full,True,True,True,True,True
 he/she is kicking him/her,rev-e,loose,full,True,True,True,True,True
 he/she is kicking him/her,glottal-sk,strict,full,True,True,True,True,True
@@ -715,7 +762,7 @@ he/she is hitting him/her on the nose,hvsk,strict,full,True,True,True,True,True
 he/she is hitting him/her on the nose,hvsk,loose,full,True,True,True,True,True
 he/she is hitting him/her on the nose,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is hitting him/her on the nose,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is hitting him/her on the nose,vvsk1,loose,full,True,True,True,True,True
+he/she is hitting him/her on the nose,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is choking him/her,vh1,strict,full,True,True,True,True,True
 he/she is choking him/her,vh1,loose,full,True,True,True,True,True
 he/she is walking,aspectless,strict,full,True,True,True,True,True
@@ -734,15 +781,18 @@ he/she is getting in,hvsk[inf2],loose,full,True,True,True,True,True
 he/she is getting in,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is getting in,hvsk[perf2-inf2],loose,full,True,True,True,True,True
 he/she is getting in,hvsk-o*,loose,full,True,True,True,True,True
-he/she is getting in,vvsk1,strict,full,True,True,True,True,True
-he/she is getting in,vvsk1,loose,full,True,True,True,True,True
+he/she is getting in,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is getting in,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is acting like him/her,act-like,strict,full,True,True,True,True,True
 he/she is acting like him/her,act-like,loose,full,True,True,True,True,True
 he/she is spilling it,glottal-sk,strict,full,True,True,True,True,True
 he/she is spilling it,glottal-sk,loose,full,True,True,True,True,True
 it’s blooming,hvsk,loose,full,True,True,True,True,True
 it’s blooming,hvsk[inf2],loose,full,True,True,True,True,True
-it’s blooming,vvsk1,loose,full,True,True,True,True,True
+it’s blooming,vvsk,loose,full,True,True,True,True,True
+it’s blooming,vvsk[imp2],loose,full,True,True,True,True,True
+it’s blooming,vvsk[perf2],loose,full,True,True,True,True,True
+it’s blooming,vvsk[perf2-imp2],loose,full,True,True,True,True,True
 it’s blooming,act-like,strict,full,True,True,True,True,True
 it’s blooming,act-like,loose,full,True,True,True,True,True
 it’s blooming,aspectless,strict,full,True,True,True,True,True
@@ -757,8 +807,8 @@ he/she is lighting a fire,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is lighting a fire,hvsk[perf2-inf2],loose,full,True,True,True,True,True
 he/she is lighting a fire,hvsk[perf2-inf3],strict,full,True,True,True,True,True
 he/she is lighting a fire,hvsk[perf2-inf3],loose,full,True,True,True,True,True
-he/she is lighting a fire,vvsk1,strict,full,True,True,True,True,True
-he/she is lighting a fire,vvsk1,loose,full,True,True,True,True,True
+he/she is lighting a fire,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is lighting a fire,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is lighting a fire,sk-h,loose,full,True,True,True,True,True
 he/she is lighting a fire,sweep,loose,full,True,True,True,True,True
 he/she is blowing,glottal-sk,strict,full,True,True,True,True,True
@@ -776,8 +826,8 @@ he/she is turning on a light,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is turning on a light,hvsk[perf2-inf2],loose,full,True,True,True,True,True
 he/she is turning on a light,hvsk[perf2-inf3],strict,full,True,True,True,True,True
 he/she is turning on a light,hvsk[perf2-inf3],loose,full,True,True,True,True,True
-he/she is turning on a light,vvsk1,strict,full,True,True,True,True,True
-he/she is turning on a light,vvsk1,loose,full,True,True,True,True,True
+he/she is turning on a light,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is turning on a light,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is turning on a light,sk-h,loose,full,True,True,True,True,True
 he/she is turning on a light,sweep,loose,full,True,True,True,True,True
 he/she is chasing him/her,go1,strict,full,True,True,True,True,True
@@ -832,7 +882,7 @@ he/she is hitting him/her on the eye,hvsk,strict,full,True,True,True,True,True
 he/she is hitting him/her on the eye,hvsk,loose,full,True,True,True,True,True
 he/she is hitting him/her on the eye,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is hitting him/her on the eye,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is hitting him/her on the eye,vvsk1,loose,full,True,True,True,True,True
+he/she is hitting him/her on the eye,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is looking around,round7,strict,full,True,True,True,True,True
 he/she is looking around,round7,loose,full,True,True,True,True,True
 he/she is looking around,go-around,strict,full,True,True,True,True,True
@@ -876,12 +926,22 @@ he/she is tromping on him/her,apl-active2,strict,full,True,True,True,True,True
 he/she is tromping on him/her,apl-active2,loose,full,True,True,True,True,True
 he/she is stepping on him/her,hvsk,loose,full,True,True,True,True,True
 he/she is stepping on him/her,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is stepping on him/her,vvsk1,strict,full,True,True,True,True,True
-he/she is stepping on him/her,vvsk1,loose,full,True,True,True,True,True
-he/she is stepping on him/her,vvsk2,strict,full,True,True,True,True,True
-he/she is stepping on him/her,vvsk2,loose,full,True,True,True,True,True
-he/she is stepping on him/her,vvsk3,strict,full,True,True,True,True,True
-he/she is stepping on him/her,vvsk3,loose,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk,strict,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk,loose,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk[inf2],strict,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk[inf2],loose,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk[imp2],strict,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+he/she is stepping on him/her,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 he/she is playing ball,vh1,strict,full,True,True,True,True,True
 he/she is playing ball,vh1,loose,full,True,True,True,True,True
 he/she is taking a step,glottal-sk,strict,full,True,True,True,True,True
@@ -899,7 +959,7 @@ he/she is standing in a certain spot,hvsk,strict,full,True,True,True,True,True
 he/she is standing in a certain spot,hvsk,loose,full,True,True,True,True,True
 he/she is standing in a certain spot,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is standing in a certain spot,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is standing in a certain spot,vvsk1,loose,full,True,True,True,True,True
+he/she is standing in a certain spot,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is stopping,cause,strict,full,True,True,True,True,True
 he/she is stopping,cause,loose,full,True,True,True,True,True
 he/she is stopping,cause-no-pres,strict,full,True,True,True,True,True
@@ -953,8 +1013,8 @@ he/she is putting a ring on his/her finger,hvsk[perf2],loose,full,True,True,True
 he/she is putting a ring on his/her finger,hvsk[perf2-inf2],loose,full,True,True,True,True,True
 he/she is putting a ring on his/her finger,hvsk[perf2-inf3],strict,full,True,True,True,True,True
 he/she is putting a ring on his/her finger,hvsk[perf2-inf3],loose,full,True,True,True,True,True
-he/she is putting a ring on his/her finger,vvsk1,strict,full,True,True,True,True,True
-he/she is putting a ring on his/her finger,vvsk1,loose,full,True,True,True,True,True
+he/she is putting a ring on his/her finger,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is putting a ring on his/her finger,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is putting a ring on his/her finger,sk-h,loose,full,True,True,True,True,True
 he/she is putting a ring on his/her finger,sweep,loose,full,True,True,True,True,True
 he/she is spitting,glottal-sk,strict,full,True,True,True,True,True
@@ -973,7 +1033,10 @@ he/she is eating a meal,hvsk,strict,full,True,True,True,True,True
 he/she is eating a meal,hvsk,loose,full,True,True,True,True,True
 he/she is eating a meal,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is eating a meal,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is eating a meal,vvsk1,loose,full,True,True,True,True,True
+he/she is eating a meal,vvsk,loose,full,True,True,True,True,True
+he/she is eating a meal,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is eating a meal,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is eating a meal,vvsk[perf2-imp2],loose,full,True,True,True,True,True
 he/she is eating a meal,episodic1,strict,full,True,True,True,True,True
 he/she is eating a meal,episodic1,loose,full,True,True,True,True,True
 he/she is helping,vh1,strict,full,True,True,True,True,True
@@ -1037,7 +1100,7 @@ he/she is putting his/her hat on,glottal-sk,strict,full,True,True,True,True,True
 he/she is putting his/her hat on,glottal-sk,loose,full,True,True,True,True,True
 he/she is putting his/her hat on,hvsk,loose,full,True,True,True,True,True
 he/she is putting his/her hat on,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is putting his/her hat on,vvsk1,loose,full,True,True,True,True,True
+he/she is putting his/her hat on,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is putting his/her hat on,sk-h,loose,full,True,True,True,True,True
 he/she is putting his/her hat on,sweep,strict,full,True,True,True,True,True
 he/she is putting his/her hat on,sweep,loose,full,True,True,True,True,True
@@ -1074,7 +1137,7 @@ they are getting together,hvsk,strict,full,True,True,True,True,True
 they are getting together,hvsk,loose,full,True,True,True,True,True
 they are getting together,hvsk[inf2],strict,full,True,True,True,True,True
 they are getting together,hvsk[inf2],loose,full,True,True,True,True,True
-they are getting together,vvsk1,loose,full,True,True,True,True,True
+they are getting together,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is attempting it,cause,strict,full,True,True,True,True,True
 he/she is attempting it,cause,loose,full,True,True,True,True,True
 he/she is attempting it,cause-no-pres,strict,full,True,True,True,True,True
@@ -1103,12 +1166,22 @@ they are sitting,aspectless,loose,full,True,True,True,True,True
 they are sitting,aspectless-h,loose,full,True,True,True,True,True
 he/she is setting a trap,hvsk,loose,full,True,True,True,True,True
 he/she is setting a trap,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is setting a trap,vvsk1,strict,full,True,True,True,True,True
-he/she is setting a trap,vvsk1,loose,full,True,True,True,True,True
-he/she is setting a trap,vvsk2,strict,full,True,True,True,True,True
-he/she is setting a trap,vvsk2,loose,full,True,True,True,True,True
-he/she is setting a trap,vvsk3,strict,full,True,True,True,True,True
-he/she is setting a trap,vvsk3,loose,full,True,True,True,True,True
+he/she is setting a trap,vvsk,strict,full,True,True,True,True,True
+he/she is setting a trap,vvsk,loose,full,True,True,True,True,True
+he/she is setting a trap,vvsk[inf2],strict,full,True,True,True,True,True
+he/she is setting a trap,vvsk[inf2],loose,full,True,True,True,True,True
+he/she is setting a trap,vvsk[imp2],strict,full,True,True,True,True,True
+he/she is setting a trap,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is setting a trap,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+he/she is setting a trap,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+he/she is setting a trap,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is setting a trap,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is setting a trap,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+he/she is setting a trap,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+he/she is setting a trap,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+he/she is setting a trap,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+he/she is setting a trap,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+he/she is setting a trap,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 he/she is lifting him/her,cause,loose,ending,True,True,True,False,True
 he/she is lifting him/her,cause-no-pres,loose,full,True,True,True,True,True
 he/she is lifting him/her,cause-no-h,loose,ending,True,True,True,False,True
@@ -1145,8 +1218,8 @@ he/she is drawing a line,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is drawing a line,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is drawing a line,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is drawing a line,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is drawing a line,vvsk1,strict,full,True,True,True,True,True
-he/she is drawing a line,vvsk1,loose,full,True,True,True,True,True
+he/she is drawing a line,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is drawing a line,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is following him/her,go1,strict,full,True,True,True,True,True
 he/she is following him/her,go1,loose,full,True,True,True,True,True
 he/she is helping him/her,vh1,strict,full,True,True,True,True,True
@@ -1165,7 +1238,7 @@ he/she is trimming it,wash-hair,strict,full,True,True,True,True,True
 he/she is trimming it,wash-hair,loose,full,True,True,True,True,True
 he/she is closing it,hvsk,loose,full,True,True,True,True,True
 he/she is closing it,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is closing it,vvsk1,loose,full,True,True,True,True,True
+he/she is closing it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is opening it,rev-i,strict,full,True,True,True,True,True
 he/she is opening it,rev-i,loose,full,True,True,True,True,True
 he/she is opening it,glottal-sk,strict,full,True,True,True,True,True
@@ -1176,8 +1249,8 @@ he/she is sandwiching it,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is sandwiching it,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is sandwiching it,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is sandwiching it,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is sandwiching it,vvsk1,strict,full,True,True,True,True,True
-he/she is sandwiching it,vvsk1,loose,full,True,True,True,True,True
+he/she is sandwiching it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is sandwiching it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is showing him/her,apl1,strict,full,True,True,True,True,True
 he/she is showing him/her,apl1,loose,full,True,True,True,True,True
 he/she is showing him/her,apl2,strict,full,True,True,True,True,True
@@ -1347,7 +1420,7 @@ he/she is fishing,hvsk,strict,full,True,True,True,True,True
 he/she is fishing,hvsk,loose,full,True,True,True,True,True
 he/she is fishing,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is fishing,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is fishing,vvsk1,loose,full,True,True,True,True,True
+he/she is fishing,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is painting it,glottal-sk,strict,full,True,True,True,True,True
 he/she is painting it,glottal-sk,loose,full,True,True,True,True,True
 he/she is painting it,sk-s-a,strict,full,True,True,True,True,True
@@ -1381,12 +1454,22 @@ he/she is stirring it,wash-hair,strict,full,True,True,True,True,True
 he/she is stirring it,wash-hair,loose,full,True,True,True,True,True
 he/she is mixing it in,hvsk,loose,full,True,True,True,True,True
 he/she is mixing it in,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is mixing it in,vvsk1,strict,full,True,True,True,True,True
-he/she is mixing it in,vvsk1,loose,full,True,True,True,True,True
-he/she is mixing it in,vvsk2,strict,full,True,True,True,True,True
-he/she is mixing it in,vvsk2,loose,full,True,True,True,True,True
-he/she is mixing it in,vvsk3,strict,full,True,True,True,True,True
-he/she is mixing it in,vvsk3,loose,full,True,True,True,True,True
+he/she is mixing it in,vvsk,strict,full,True,True,True,True,True
+he/she is mixing it in,vvsk,loose,full,True,True,True,True,True
+he/she is mixing it in,vvsk[inf2],strict,full,True,True,True,True,True
+he/she is mixing it in,vvsk[inf2],loose,full,True,True,True,True,True
+he/she is mixing it in,vvsk[imp2],strict,full,True,True,True,True,True
+he/she is mixing it in,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is mixing it in,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+he/she is mixing it in,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+he/she is mixing it in,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is mixing it in,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is mixing it in,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+he/she is mixing it in,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+he/she is mixing it in,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+he/she is mixing it in,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+he/she is mixing it in,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+he/she is mixing it in,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 it smells,round7,loose,full,True,True,True,True,True
 it smells,become1,strict,full,True,True,True,True,True
 it smells,become1,loose,full,True,True,True,True,True
@@ -1456,8 +1539,8 @@ he/she is exploding it,cause-late-h,loose,full,True,True,True,True,True
 he/she is kissing him/her,hvsk,loose,full,True,True,True,True,True
 he/she is kissing him/her,hvsk[inf2],loose,full,True,True,True,True,True
 he/she is kissing him/her,hvsk-o*,loose,full,True,True,True,True,True
-he/she is kissing him/her,vvsk1,strict,full,True,True,True,True,True
-he/she is kissing him/her,vvsk1,loose,full,True,True,True,True,True
+he/she is kissing him/her,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is kissing him/her,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is combing someone’s hair,o,strict,full,True,True,True,True,True
 he/she is combing someone’s hair,o,loose,full,True,True,True,True,True
 he/she is combing someone’s hair,glottal-sk,strict,full,True,True,True,True,True
@@ -1515,8 +1598,8 @@ he/she is taking a bite,glottal-sk,loose,full,True,True,True,True,True
 he/she is lying,hvsk,loose,full,True,True,True,True,True
 he/she is lying,hvsk[inf2],loose,full,True,True,True,True,True
 he/she is lying,hvsk-o*,loose,full,True,True,True,True,True
-he/she is lying,vvsk1,strict,full,True,True,True,True,True
-he/she is lying,vvsk1,loose,full,True,True,True,True,True
+he/she is lying,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is lying,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is taking a drink,rev-gi,strict,full,True,True,True,True,True
 he/she is taking a drink,rev-gi,loose,full,True,True,True,True,True
 he/she is taking a drink,rev-i,strict,ending,False,False,False,False,False
@@ -1541,7 +1624,10 @@ he/she is asking him/her a question,hvsk,strict,full,True,True,True,True,True
 he/she is asking him/her a question,hvsk,loose,full,True,True,True,True,True
 he/she is asking him/her a question,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is asking him/her a question,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is asking him/her a question,vvsk1,loose,full,True,True,True,True,True
+he/she is asking him/her a question,vvsk,loose,full,True,True,True,True,True
+he/she is asking him/her a question,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is asking him/her a question,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is asking him/her a question,vvsk[perf2-imp2],loose,full,True,True,True,True,True
 he/she is asking him/her a question,episodic1,strict,full,True,True,True,True,True
 he/she is asking him/her a question,episodic1,loose,full,True,True,True,True,True
 he/she hears him/her,cause,loose,ending,False,False,False,False,False
@@ -1614,8 +1700,8 @@ he/she is whittling it,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is whittling it,hvsk[perf2-inf2],loose,full,True,True,True,True,True
 he/she is whittling it,hvsk[perf2-inf3],strict,full,True,True,True,True,True
 he/she is whittling it,hvsk[perf2-inf3],loose,full,True,True,True,True,True
-he/she is whittling it,vvsk1,strict,full,True,True,True,True,True
-he/she is whittling it,vvsk1,loose,full,True,True,True,True,True
+he/she is whittling it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is whittling it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is whittling it,sk-h,loose,full,True,True,True,True,True
 he/she is whittling it,sweep,loose,full,True,True,True,True,True
 he/she is breaking it up,cause,strict,ending,False,True,True,True,True
@@ -1699,7 +1785,7 @@ he/she is teaching,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is teaching,hvsk[inf2],loose,full,True,True,True,True,True
 he/she is teaching,hvsk-o*,strict,full,True,True,True,True,True
 he/she is teaching,hvsk-o*,loose,full,True,True,True,True,True
-he/she is teaching,vvsk1,loose,full,True,True,True,True,True
+he/she is teaching,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is weeping,round1,strict,full,True,True,True,True,True
 he/she is weeping,round1,loose,full,True,True,True,True,True
 he/she is weeping,round2,strict,full,True,True,True,True,True
@@ -1759,8 +1845,8 @@ he/she is putting fuel into a fire,hvsk[perf2],strict,full,True,True,True,True,T
 he/she is putting fuel into a fire,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is putting fuel into a fire,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is putting fuel into a fire,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is putting fuel into a fire,vvsk1,strict,full,True,True,True,True,True
-he/she is putting fuel into a fire,vvsk1,loose,full,True,True,True,True,True
+he/she is putting fuel into a fire,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is putting fuel into a fire,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is tickling him/her,glottal-sk,strict,full,True,True,True,True,True
 he/she is tickling him/her,glottal-sk,loose,full,True,True,True,True,True
 he/she is tickling him/her,eat,strict,full,True,True,True,True,True
@@ -1817,8 +1903,8 @@ he/she is putting on glasses,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is putting on glasses,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is putting on glasses,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is putting on glasses,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is putting on glasses,vvsk1,strict,full,True,True,True,True,True
-he/she is putting on glasses,vvsk1,loose,full,True,True,True,True,True
+he/she is putting on glasses,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is putting on glasses,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is shelling corn,vh1,strict,full,True,True,True,True,True
 he/she is shelling corn,vh1,loose,full,True,True,True,True,True
 he/she is shelling corn,vh2,strict,full,True,True,True,True,True
@@ -1832,16 +1918,16 @@ he/she is snoring,glottal-sk,loose,full,True,True,True,True,True
 he/she is sprinkling it,hvsk,loose,full,True,True,True,True,True
 he/she is sprinkling it,hvsk[inf2],loose,full,True,True,True,True,True
 he/she is sprinkling it,hvsk-o*,loose,full,True,True,True,True,True
-he/she is sprinkling it,vvsk1,strict,full,True,True,True,True,True
-he/she is sprinkling it,vvsk1,loose,full,True,True,True,True,True
+he/she is sprinkling it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is sprinkling it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is putting on shoes,hvsk,loose,full,True,True,True,True,True
 he/she is putting on shoes,hvsk[inf2],loose,full,True,True,True,True,True
 he/she is putting on shoes,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is putting on shoes,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is putting on shoes,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is putting on shoes,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is putting on shoes,vvsk1,strict,full,True,True,True,True,True
-he/she is putting on shoes,vvsk1,loose,full,True,True,True,True,True
+he/she is putting on shoes,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is putting on shoes,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is changing shoes,glottal-sk,strict,full,True,True,True,True,True
 he/she is changing shoes,glottal-sk,loose,full,True,True,True,True,True
 he/she is changing shoes,change,strict,full,True,True,True,True,True
@@ -1866,7 +1952,7 @@ he/she is getting up,hvsk,strict,full,True,True,True,True,True
 he/she is getting up,hvsk,loose,full,True,True,True,True,True
 he/she is getting up,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is getting up,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is getting up,vvsk1,loose,full,True,True,True,True,True
+he/she is getting up,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is taking off his/her gloves,rev-e,strict,full,True,True,True,True,True
 he/she is taking off his/her gloves,rev-e,loose,full,True,True,True,True,True
 he/she is taking off his/her gloves,glottal-sk,strict,full,True,True,True,True,True
@@ -1918,7 +2004,7 @@ he/she is playing,hvsk,strict,full,True,True,True,True,True
 he/she is playing,hvsk,loose,full,True,True,True,True,True
 he/she is playing,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is playing,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is playing,vvsk1,loose,full,True,True,True,True,True
+he/she is playing,vvsk[perf2],loose,full,True,True,True,True,True
 they’re having church services,become1,loose,full,True,True,True,True,True
 they’re having church services,become2,strict,full,True,True,True,True,True
 they’re having church services,become2,loose,full,True,True,True,True,True
@@ -2022,8 +2108,8 @@ he/she is advertising it,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is advertising it,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is advertising it,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is advertising it,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is advertising it,vvsk1,strict,full,True,True,True,True,True
-he/she is advertising it,vvsk1,loose,full,True,True,True,True,True
+he/she is advertising it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is advertising it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is crossing it,become1,loose,full,True,True,True,True,True
 he/she is crossing it,become2,strict,full,True,True,True,True,True
 he/she is crossing it,become2,loose,full,True,True,True,True,True
@@ -2031,8 +2117,8 @@ he/she is crossing it,quit,strict,full,True,True,True,True,True
 he/she is crossing it,quit,loose,full,True,True,True,True,True
 he/she is enduring it,hvsk,loose,full,True,True,True,True,True
 he/she is enduring it,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is enduring it,vvsk1,strict,full,True,True,True,True,True
-he/she is enduring it,vvsk1,loose,full,True,True,True,True,True
+he/she is enduring it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is enduring it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is explaining it,cause,loose,ending,False,False,False,False,False
 he/she is explaining it,cause-no-pres,loose,full,True,True,True,True,True
 he/she is explaining it,cause-no-h,loose,ending,False,False,False,False,False
@@ -2271,15 +2357,25 @@ he/she is baking it,hvsk,strict,full,True,True,True,True,True
 he/she is baking it,hvsk,loose,full,True,True,True,True,True
 he/she is baking it,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is baking it,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is baking it,vvsk1,loose,full,True,True,True,True,True
+he/she is baking it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is hanging up it,hvsk,loose,full,True,True,True,True,True
 he/she is hanging up it,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is hanging up it,vvsk1,strict,full,True,True,True,True,True
-he/she is hanging up it,vvsk1,loose,full,True,True,True,True,True
-he/she is hanging up it,vvsk2,strict,full,True,True,True,True,True
-he/she is hanging up it,vvsk2,loose,full,True,True,True,True,True
-he/she is hanging up it,vvsk3,strict,full,True,True,True,True,True
-he/she is hanging up it,vvsk3,loose,full,True,True,True,True,True
+he/she is hanging up it,vvsk,strict,full,True,True,True,True,True
+he/she is hanging up it,vvsk,loose,full,True,True,True,True,True
+he/she is hanging up it,vvsk[inf2],strict,full,True,True,True,True,True
+he/she is hanging up it,vvsk[inf2],loose,full,True,True,True,True,True
+he/she is hanging up it,vvsk[imp2],strict,full,True,True,True,True,True
+he/she is hanging up it,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is hanging up it,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+he/she is hanging up it,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+he/she is hanging up it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is hanging up it,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is hanging up it,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+he/she is hanging up it,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+he/she is hanging up it,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+he/she is hanging up it,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+he/she is hanging up it,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+he/she is hanging up it,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 he/she is hanging up it,episodic1,loose,full,True,True,True,True,True
 he/she is rowing,glottal-sk,strict,full,True,True,True,True,True
 he/she is rowing,glottal-sk,loose,full,True,True,True,True,True
@@ -2310,8 +2406,8 @@ he/she is putting it in a hole or a container,hvsk[perf2],strict,full,True,True,
 he/she is putting it in a hole or a container,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is putting it in a hole or a container,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is putting it in a hole or a container,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is putting it in a hole or a container,vvsk1,strict,full,True,True,True,True,True
-he/she is putting it in a hole or a container,vvsk1,loose,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is sleepy,act-like,strict,full,True,True,True,True,True
 he/she is sleepy,act-like,loose,full,True,True,True,True,True
 he/she is sleepy,make,strict,full,True,True,True,True,True
@@ -2494,22 +2590,42 @@ he/she is beating him/her up,touch,strict,full,True,True,True,True,True
 he/she is beating him/her up,touch,loose,full,True,True,True,True,True
 he/she is putting it in a hole or a container,hvsk,loose,full,True,True,True,True,True
 he/she is putting it in a hole or a container,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is putting it in a hole or a container,vvsk1,strict,full,True,True,True,True,True
-he/she is putting it in a hole or a container,vvsk1,loose,full,True,True,True,True,True
-he/she is putting it in a hole or a container,vvsk2,strict,full,True,True,True,True,True
-he/she is putting it in a hole or a container,vvsk2,loose,full,True,True,True,True,True
-he/she is putting it in a hole or a container,vvsk3,strict,full,True,True,True,True,True
-he/she is putting it in a hole or a container,vvsk3,loose,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk,strict,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk,loose,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[inf2],strict,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[inf2],loose,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[imp2],strict,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+he/she is putting it in a hole or a container,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 he/she is selling it,go2,strict,full,True,True,True,True,True
 he/she is selling it,go2,loose,full,True,True,True,True,True
 he/she is hiring him/her,hvsk,loose,full,True,True,True,True,True
 he/she is hiring him/her,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is hiring him/her,vvsk1,strict,full,True,True,True,True,True
-he/she is hiring him/her,vvsk1,loose,full,True,True,True,True,True
-he/she is hiring him/her,vvsk2,strict,full,True,True,True,True,True
-he/she is hiring him/her,vvsk2,loose,full,True,True,True,True,True
-he/she is hiring him/her,vvsk3,strict,full,True,True,True,True,True
-he/she is hiring him/her,vvsk3,loose,full,True,True,True,True,True
+he/she is hiring him/her,vvsk,strict,full,True,True,True,True,True
+he/she is hiring him/her,vvsk,loose,full,True,True,True,True,True
+he/she is hiring him/her,vvsk[inf2],strict,full,True,True,True,True,True
+he/she is hiring him/her,vvsk[inf2],loose,full,True,True,True,True,True
+he/she is hiring him/her,vvsk[imp2],strict,full,True,True,True,True,True
+he/she is hiring him/her,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is hiring him/her,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+he/she is hiring him/her,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+he/she is hiring him/her,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is hiring him/her,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is hiring him/her,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+he/she is hiring him/her,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+he/she is hiring him/her,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+he/she is hiring him/her,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+he/she is hiring him/her,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+he/she is hiring him/her,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 he/she is finding it,vh1,strict,full,True,True,True,True,True
 he/she is finding it,vh1,loose,full,True,True,True,True,True
 he/she is finding it,vh2,strict,full,True,True,True,True,True
@@ -2650,12 +2766,22 @@ he/she is causing it to sound,cause-no-h,loose,full,True,True,True,True,True
 he/she is causing it to sound,cause-late-h,loose,full,True,True,True,True,True
 it is blowing,hvsk,loose,full,True,True,True,True,True
 it is blowing,hvsk[inf2],loose,full,True,True,True,True,True
-it is blowing,vvsk1,strict,full,True,True,True,True,True
-it is blowing,vvsk1,loose,full,True,True,True,True,True
-it is blowing,vvsk2,strict,full,True,True,True,True,True
-it is blowing,vvsk2,loose,full,True,True,True,True,True
-it is blowing,vvsk3,strict,full,True,True,True,True,True
-it is blowing,vvsk3,loose,full,True,True,True,True,True
+it is blowing,vvsk,strict,full,True,True,True,True,True
+it is blowing,vvsk,loose,full,True,True,True,True,True
+it is blowing,vvsk[inf2],strict,full,True,True,True,True,True
+it is blowing,vvsk[inf2],loose,full,True,True,True,True,True
+it is blowing,vvsk[imp2],strict,full,True,True,True,True,True
+it is blowing,vvsk[imp2],loose,full,True,True,True,True,True
+it is blowing,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+it is blowing,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+it is blowing,vvsk[perf2],strict,full,True,True,True,True,True
+it is blowing,vvsk[perf2],loose,full,True,True,True,True,True
+it is blowing,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+it is blowing,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+it is blowing,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+it is blowing,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+it is blowing,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+it is blowing,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 it is blowing,act-like,loose,full,True,True,True,True,True
 it is blowing,dress-up,loose,full,True,True,True,True,True
 it is blowing,episodic1,loose,full,True,True,True,True,True
@@ -2726,10 +2852,14 @@ he/she is rolling him/her,lose-way,strict,full,True,True,True,True,True
 he/she is rolling him/her,lose-way,loose,full,True,True,True,True,True
 he/she is attaching the object behind it,hvsk,loose,full,True,True,True,True,True
 he/she is attaching the object behind it,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is attaching the object behind it,vvsk1,strict,full,True,True,True,True,True
-he/she is attaching the object behind it,vvsk1,loose,full,True,True,True,True,True
-he/she is attaching the object behind it,vvsk2,strict,full,True,True,True,True,True
-he/she is attaching the object behind it,vvsk2,loose,full,True,True,True,True,True
+he/she is attaching the object behind it,vvsk,strict,full,True,True,True,True,True
+he/she is attaching the object behind it,vvsk,loose,full,True,True,True,True,True
+he/she is attaching the object behind it,vvsk[inf2],strict,full,True,True,True,True,True
+he/she is attaching the object behind it,vvsk[inf2],loose,full,True,True,True,True,True
+he/she is attaching the object behind it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is attaching the object behind it,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is attaching the object behind it,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+he/she is attaching the object behind it,vvsk[perf2-inf2],loose,full,True,True,True,True,True
 it’s dripping,round3,strict,full,True,True,True,True,True
 it’s dripping,round3,loose,full,True,True,True,True,True
 it’s dripping,round4,loose,full,True,True,True,True,True
@@ -2754,8 +2884,8 @@ he/she is piling it up,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is piling it up,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is piling it up,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is piling it up,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is piling it up,vvsk1,strict,full,True,True,True,True,True
-he/she is piling it up,vvsk1,loose,full,True,True,True,True,True
+he/she is piling it up,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is piling it up,vvsk[perf2],loose,full,True,True,True,True,True
 it’s hanging,aspectless,strict,full,True,True,True,True,True
 it’s hanging,aspectless,loose,full,True,True,True,True,True
 it’s hanging,aspectless-h,strict,full,True,True,True,True,True
@@ -2776,8 +2906,8 @@ he/she is hanging it up,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is hanging it up,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is hanging it up,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is hanging it up,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is hanging it up,vvsk1,strict,full,True,True,True,True,True
-he/she is hanging it up,vvsk1,loose,full,True,True,True,True,True
+he/she is hanging it up,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is hanging it up,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is joking,be-silly,strict,full,True,True,True,True,True
 he/she is joking,be-silly,loose,full,True,True,True,True,True
 he/she is joking,tease,strict,full,True,True,True,True,True
@@ -2820,7 +2950,7 @@ he/she is howling,hvsk,loose,full,True,True,True,True,True
 he/she is howling,hvsk[inf2],loose,full,True,True,True,True,True
 he/she is howling,hvsk[inf3],strict,full,True,True,True,True,True
 he/she is howling,hvsk[inf3],loose,full,True,True,True,True,True
-he/she is howling,vvsk1,loose,full,True,True,True,True,True
+he/she is howling,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is howling,sk-h,loose,full,True,True,True,True,True
 he/she is howling,sweep,strict,full,True,True,True,True,True
 he/she is howling,sweep,loose,full,True,True,True,True,True
@@ -2830,8 +2960,8 @@ he/she is leading it by a leash,aspectless-h,strict,full,True,True,True,True,Tru
 he/she is leading it by a leash,aspectless-h,loose,full,True,True,True,True,True
 he/she is setting a post into the ground,hvsk,loose,full,True,True,True,True,True
 he/she is setting a post into the ground,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is setting a post into the ground,vvsk1,strict,full,True,True,True,True,True
-he/she is setting a post into the ground,vvsk1,loose,full,True,True,True,True,True
+he/she is setting a post into the ground,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is setting a post into the ground,vvsk[perf2],loose,full,True,True,True,True,True
 he/she has a nosebleed,round6,loose,full,True,True,True,True,True
 he/she is leading him/her by the hand,go1,strict,full,True,True,True,True,True
 he/she is leading him/her by the hand,go1,loose,full,True,True,True,True,True
@@ -2919,28 +3049,38 @@ he/she is building a fire,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is building a fire,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is building a fire,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is building a fire,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is building a fire,vvsk1,strict,full,True,True,True,True,True
-he/she is building a fire,vvsk1,loose,full,True,True,True,True,True
+he/she is building a fire,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is building a fire,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is unhitching him/her,rev-e,strict,full,True,True,True,True,True
 he/she is unhitching him/her,rev-e,loose,full,True,True,True,True,True
 he/she is unhitching him/her,glottal-sk,strict,full,True,True,True,True,True
 he/she is unhitching him/her,glottal-sk,loose,full,True,True,True,True,True
 he/she is hitching him/her up,hvsk,loose,full,True,True,True,True,True
 he/she is hitching him/her up,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is hitching him/her up,vvsk1,strict,full,True,True,True,True,True
-he/she is hitching him/her up,vvsk1,loose,full,True,True,True,True,True
-he/she is hitching him/her up,vvsk2,strict,full,True,True,True,True,True
-he/she is hitching him/her up,vvsk2,loose,full,True,True,True,True,True
-he/she is hitching him/her up,vvsk3,strict,full,True,True,True,True,True
-he/she is hitching him/her up,vvsk3,loose,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk,strict,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk,loose,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk[inf2],strict,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk[inf2],loose,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk[imp2],strict,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+he/she is hitching him/her up,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 he/she is putting a handle on a tool,hvsk,loose,full,True,True,True,True,True
 he/she is putting a handle on a tool,hvsk[inf2],loose,full,True,True,True,True,True
 he/she is putting a handle on a tool,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is putting a handle on a tool,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is putting a handle on a tool,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is putting a handle on a tool,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is putting a handle on a tool,vvsk1,strict,full,True,True,True,True,True
-he/she is putting a handle on a tool,vvsk1,loose,full,True,True,True,True,True
+he/she is putting a handle on a tool,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is putting a handle on a tool,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is washing it,o,strict,full,True,True,True,True,True
 he/she is washing it,o,loose,full,True,True,True,True,True
 he/she is washing it,glottal-sk,strict,full,True,True,True,True,True
@@ -2954,17 +3094,27 @@ he/she is accusing him/her,cause-no-h,loose,full,True,True,True,True,True
 he/she is accusing him/her,cause-late-h,loose,full,True,True,True,True,True
 he/she is covering it,hvsk,loose,full,True,True,True,True,True
 he/she is covering it,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is covering it,vvsk1,strict,full,True,True,True,True,True
-he/she is covering it,vvsk1,loose,full,True,True,True,True,True
-he/she is covering it,vvsk2,strict,full,True,True,True,True,True
-he/she is covering it,vvsk2,loose,full,True,True,True,True,True
-he/she is covering it,vvsk3,strict,full,True,True,True,True,True
-he/she is covering it,vvsk3,loose,full,True,True,True,True,True
+he/she is covering it,vvsk,strict,full,True,True,True,True,True
+he/she is covering it,vvsk,loose,full,True,True,True,True,True
+he/she is covering it,vvsk[inf2],strict,full,True,True,True,True,True
+he/she is covering it,vvsk[inf2],loose,full,True,True,True,True,True
+he/she is covering it,vvsk[imp2],strict,full,True,True,True,True,True
+he/she is covering it,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is covering it,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+he/she is covering it,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+he/she is covering it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is covering it,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is covering it,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+he/she is covering it,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+he/she is covering it,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+he/she is covering it,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+he/she is covering it,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+he/she is covering it,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 he/she is putting it in water,hvsk,strict,full,True,True,True,True,True
 he/she is putting it in water,hvsk,loose,full,True,True,True,True,True
 he/she is putting it in water,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is putting it in water,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is putting it in water,vvsk1,loose,full,True,True,True,True,True
+he/she is putting it in water,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is picking him/her up,rev-e,strict,full,True,True,True,True,True
 he/she is picking him/her up,rev-e,loose,full,True,True,True,True,True
 he/she is picking him/her up,glottal-sk,strict,full,True,True,True,True,True
@@ -3023,8 +3173,8 @@ he/she is frying it,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is frying it,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is frying it,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is frying it,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is frying it,vvsk1,strict,full,True,True,True,True,True
-he/she is frying it,vvsk1,loose,full,True,True,True,True,True
+he/she is frying it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is frying it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is melting it,cause,strict,full,True,True,True,True,True
 he/she is melting it,cause,loose,full,True,True,True,True,True
 he/she is melting it,cause-no-pres,strict,full,True,True,True,True,True
@@ -3059,20 +3209,30 @@ he/she is hiding it,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is hiding it,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is hiding it,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is hiding it,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is hiding it,vvsk1,strict,full,True,True,True,True,True
-he/she is hiding it,vvsk1,loose,full,True,True,True,True,True
+he/she is hiding it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is hiding it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is hiding it,glottal-sk,strict,full,True,True,True,True,True
 he/she is hiding it,glottal-sk,loose,full,True,True,True,True,True
 he/she is hiding it,eat,strict,full,True,True,True,True,True
 he/she is hiding it,eat,loose,full,True,True,True,True,True
 he/she is hiding him/her,hvsk,loose,full,True,True,True,True,True
 he/she is hiding him/her,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is hiding him/her,vvsk1,strict,full,True,True,True,True,True
-he/she is hiding him/her,vvsk1,loose,full,True,True,True,True,True
-he/she is hiding him/her,vvsk2,strict,full,True,True,True,True,True
-he/she is hiding him/her,vvsk2,loose,full,True,True,True,True,True
-he/she is hiding him/her,vvsk3,strict,full,True,True,True,True,True
-he/she is hiding him/her,vvsk3,loose,full,True,True,True,True,True
+he/she is hiding him/her,vvsk,strict,full,True,True,True,True,True
+he/she is hiding him/her,vvsk,loose,full,True,True,True,True,True
+he/she is hiding him/her,vvsk[inf2],strict,full,True,True,True,True,True
+he/she is hiding him/her,vvsk[inf2],loose,full,True,True,True,True,True
+he/she is hiding him/her,vvsk[imp2],strict,full,True,True,True,True,True
+he/she is hiding him/her,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is hiding him/her,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+he/she is hiding him/her,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+he/she is hiding him/her,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is hiding him/her,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is hiding him/her,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+he/she is hiding him/her,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+he/she is hiding him/her,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+he/she is hiding him/her,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+he/she is hiding him/her,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+he/she is hiding him/her,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 he/she is cracking it,o,strict,full,True,True,True,True,True
 he/she is cracking it,o,loose,full,True,True,True,True,True
 he/she is cracking it,glottal-sk,strict,full,True,True,True,True,True
@@ -3083,16 +3243,16 @@ he/she is putting it into a fire,hvsk[perf2],strict,full,True,True,True,True,Tru
 he/she is putting it into a fire,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is putting it into a fire,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is putting it into a fire,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is putting it into a fire,vvsk1,strict,full,True,True,True,True,True
-he/she is putting it into a fire,vvsk1,loose,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is soaking it,hvsk,loose,full,True,True,True,True,True
 he/she is soaking it,hvsk[inf2],loose,full,True,True,True,True,True
 he/she is soaking it,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is soaking it,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is soaking it,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is soaking it,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is soaking it,vvsk1,strict,full,True,True,True,True,True
-he/she is soaking it,vvsk1,loose,full,True,True,True,True,True
+he/she is soaking it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is soaking it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is returning,become1,strict,full,True,True,True,True,True
 he/she is returning,become1,loose,full,True,True,True,True,True
 he/she is returning,become2,strict,full,True,True,True,True,True
@@ -3156,16 +3316,16 @@ he/she is contaminating it,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is contaminating it,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is contaminating it,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is contaminating it,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is contaminating it,vvsk1,strict,full,True,True,True,True,True
-he/she is contaminating it,vvsk1,loose,full,True,True,True,True,True
+he/she is contaminating it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is contaminating it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is collecting from him/her,hvsk,loose,full,True,True,True,True,True
 he/she is collecting from him/her,hvsk[inf2],loose,full,True,True,True,True,True
 he/she is collecting from him/her,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is collecting from him/her,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is collecting from him/her,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is collecting from him/her,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is collecting from him/her,vvsk1,strict,full,True,True,True,True,True
-he/she is collecting from him/her,vvsk1,loose,full,True,True,True,True,True
+he/she is collecting from him/her,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is collecting from him/her,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is telling it,apl-active2,strict,full,True,True,True,True,True
 he/she is telling it,apl-active2,loose,full,True,True,True,True,True
 he/she is omitting him/her,glottal-sk,strict,full,True,True,True,True,True
@@ -3231,12 +3391,22 @@ it is going out,cough,loose,full,True,True,True,True,True
 it is going out,sweep,loose,full,True,True,True,True,True
 he/she is putting it into a fire,hvsk,loose,full,True,True,True,True,True
 he/she is putting it into a fire,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is putting it into a fire,vvsk1,strict,full,True,True,True,True,True
-he/she is putting it into a fire,vvsk1,loose,full,True,True,True,True,True
-he/she is putting it into a fire,vvsk2,strict,full,True,True,True,True,True
-he/she is putting it into a fire,vvsk2,loose,full,True,True,True,True,True
-he/she is putting it into a fire,vvsk3,strict,full,True,True,True,True,True
-he/she is putting it into a fire,vvsk3,loose,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk,strict,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk,loose,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[inf2],strict,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[inf2],loose,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[imp2],strict,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+he/she is putting it into a fire,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 he/she is putting it into a fire,episodic1,loose,full,True,True,True,True,True
 he/she is mingling with a group,go-around,strict,full,True,True,True,True,True
 he/she is mingling with a group,go-around,loose,full,True,True,True,True,True
@@ -3246,8 +3416,8 @@ he/she is linking it,hvsk[perf2],strict,full,True,True,True,True,True
 he/she is linking it,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is linking it,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is linking it,hvsk[perf2-inf2],loose,full,True,True,True,True,True
-he/she is linking it,vvsk1,strict,full,True,True,True,True,True
-he/she is linking it,vvsk1,loose,full,True,True,True,True,True
+he/she is linking it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is linking it,vvsk[perf2],loose,full,True,True,True,True,True
 it is hanging,aspectless,strict,full,True,True,True,True,True
 it is hanging,aspectless,loose,full,True,True,True,True,True
 it is hanging,aspectless-h,loose,full,True,True,True,True,True
@@ -3611,7 +3781,7 @@ he/she is sending it,hvsk,strict,full,True,True,True,True,True
 he/she is sending it,hvsk,loose,full,True,True,True,True,True
 he/she is sending it,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is sending it,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is sending it,vvsk1,loose,full,True,True,True,True,True
+he/she is sending it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is heading in the direction of,aspectless,strict,full,True,True,True,True,True
 he/she is heading in the direction of,aspectless,loose,full,True,True,True,True,True
 he/she is heading in the direction of,aspectless-h,strict,full,True,True,True,True,True
@@ -3623,21 +3793,31 @@ he/she is sending it,hvsk[perf2],loose,full,True,True,True,True,True
 he/she is sending it,hvsk[perf2-inf2],strict,full,True,True,True,True,True
 he/she is sending it,hvsk[perf2-inf2],loose,full,True,True,True,True,True
 he/she is sending it,hvsk-o*,loose,full,True,True,True,True,True
-he/she is sending it,vvsk1,strict,full,True,True,True,True,True
-he/she is sending it,vvsk1,loose,full,True,True,True,True,True
+he/she is sending it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is sending it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is sending it,hvsk,strict,full,True,True,True,True,True
 he/she is sending it,hvsk,loose,full,True,True,True,True,True
 he/she is sending it,hvsk[inf2],strict,full,True,True,True,True,True
 he/she is sending it,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is sending it,vvsk1,loose,full,True,True,True,True,True
+he/she is sending it,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is sending it,hvsk,loose,full,True,True,True,True,True
 he/she is sending it,hvsk[inf2],loose,full,True,True,True,True,True
-he/she is sending it,vvsk1,strict,full,True,True,True,True,True
-he/she is sending it,vvsk1,loose,full,True,True,True,True,True
-he/she is sending it,vvsk2,strict,full,True,True,True,True,True
-he/she is sending it,vvsk2,loose,full,True,True,True,True,True
-he/she is sending it,vvsk3,strict,full,True,True,True,True,True
-he/she is sending it,vvsk3,loose,full,True,True,True,True,True
+he/she is sending it,vvsk,strict,full,True,True,True,True,True
+he/she is sending it,vvsk,loose,full,True,True,True,True,True
+he/she is sending it,vvsk[inf2],strict,full,True,True,True,True,True
+he/she is sending it,vvsk[inf2],loose,full,True,True,True,True,True
+he/she is sending it,vvsk[imp2],strict,full,True,True,True,True,True
+he/she is sending it,vvsk[imp2],loose,full,True,True,True,True,True
+he/she is sending it,vvsk[imp2-inf2],strict,full,True,True,True,True,True
+he/she is sending it,vvsk[imp2-inf2],loose,full,True,True,True,True,True
+he/she is sending it,vvsk[perf2],strict,full,True,True,True,True,True
+he/she is sending it,vvsk[perf2],loose,full,True,True,True,True,True
+he/she is sending it,vvsk[perf2-inf2],strict,full,True,True,True,True,True
+he/she is sending it,vvsk[perf2-inf2],loose,full,True,True,True,True,True
+he/she is sending it,vvsk[perf2-imp2],strict,full,True,True,True,True,True
+he/she is sending it,vvsk[perf2-imp2],loose,full,True,True,True,True,True
+he/she is sending it,vvsk[perf2-imp2-inf2],strict,full,True,True,True,True,True
+he/she is sending it,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 he/she is sending it,episodic1,loose,full,True,True,True,True,True
 he/she is going out of sight,become1,loose,full,True,True,True,True,True
 he/she is going out of sight,become2,strict,full,True,True,True,True,True
