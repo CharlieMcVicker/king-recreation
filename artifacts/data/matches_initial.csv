@@ -77,6 +77,8 @@ he/she is committing adultery,apl[imp4],strict,full,True,True,True,True,True
 he/she is committing adultery,apl[imp4],loose,full,True,True,True,True,True
 it’s ripping,ih-vh,strict,full,True,True,True,True,True
 it’s ripping,ih-vh,loose,full,True,True,True,True,True
+it’s ripping,ih-vh-tl,strict,ending,False,False,False,False,True
+it’s ripping,ih-vh-tl,loose,ending,False,False,False,False,True
 he/she is looking at himself/herself in a mirror,rub,loose,full,True,True,True,True,True
 he/she is looking at himself/herself in a mirror,apl-active,strict,full,True,True,True,True,True
 he/she is looking at himself/herself in a mirror,apl-active,loose,full,True,True,True,True,True
@@ -1560,6 +1562,8 @@ he/she is stepping on him/her,vvsk[perf2-imp2-inf2],strict,full,True,True,True,T
 he/she is stepping on him/her,vvsk[perf2-imp2-inf2],loose,full,True,True,True,True,True
 he/she is playing ball,ih-vh,strict,full,True,True,True,True,True
 he/she is playing ball,ih-vh,loose,full,True,True,True,True,True
+he/she is playing ball,ih-vh-tl,strict,ending,False,False,False,False,True
+he/she is playing ball,ih-vh-tl,loose,ending,False,False,False,False,True
 he/she is taking a step,glottal-sk,strict,full,True,True,True,True,True
 he/she is taking a step,glottal-sk,loose,full,True,True,True,True,True
 he/she is taking a step,glottal-sk[inf2],strict,full,True,True,True,True,True
@@ -1609,6 +1613,8 @@ he/she is starting,ih-vh,strict,full,True,True,True,True,True
 he/she is starting,ih-vh,loose,full,True,True,True,True,True
 it’s boiling,ih-vh,strict,full,True,True,True,True,True
 it’s boiling,ih-vh,loose,full,True,True,True,True,True
+it’s boiling,ih-vh-tl,strict,full,True,True,True,True,True
+it’s boiling,ih-vh-tl,loose,full,True,True,True,True,True
 it’s boiling,aspectless,strict,full,True,True,True,True,True
 it’s boiling,aspectless,loose,full,True,True,True,True,True
 it’s boiling,aspectless-h,loose,full,True,True,True,True,True
@@ -1711,6 +1717,8 @@ he/she is eating a meal,vvsk[perf2],loose,full,True,True,True,True,True
 he/she is eating a meal,vvsk[perf2-imp2],loose,full,True,True,True,True,True
 he/she is helping,ih-vh,strict,full,True,True,True,True,True
 he/she is helping,ih-vh,loose,full,True,True,True,True,True
+he/she is helping,ih-vh-tl,strict,ending,False,False,False,False,True
+he/she is helping,ih-vh-tl,loose,ending,False,False,False,False,True
 he/she is taking off his/her cap,glottal-sk,strict,full,True,True,True,True,True
 he/she is taking off his/her cap,glottal-sk,loose,full,True,True,True,True,True
 he/she is taking off his/her cap,glottal-sk[inf2],strict,full,True,True,True,True,True
@@ -1864,6 +1872,8 @@ it’s lightning,ih-vh,strict,full,True,True,True,True,True
 it’s lightning,ih-vh,loose,full,True,True,True,True,True
 it’s lightning,ih-vh[inf2],strict,full,True,True,True,True,True
 it’s lightning,ih-vh[inf2],loose,full,True,True,True,True,True
+it’s lightning,ih-vh-tl,strict,ending,False,False,False,True,True
+it’s lightning,ih-vh-tl,loose,ending,False,False,False,True,True
 it’s lightning,eat,loose,full,True,True,True,True,True
 it’s lightning,eat[inf2],loose,full,True,True,True,True,True
 it’s lightning,aspectless,strict,full,True,True,True,True,True
@@ -2001,6 +2011,8 @@ he/she is following him/her,go1,strict,full,True,True,True,True,True
 he/she is following him/her,go1,loose,full,True,True,True,True,True
 he/she is helping him/her,ih-vh,strict,full,True,True,True,True,True
 he/she is helping him/her,ih-vh,loose,full,True,True,True,True,True
+he/she is helping him/her,ih-vh-tl,strict,ending,False,False,False,False,True
+he/she is helping him/her,ih-vh-tl,loose,ending,False,False,False,False,True
 he/she is braiding it,around,strict,full,True,True,True,True,True
 he/she is braiding it,around,loose,full,True,True,True,True,True
 he/she is braiding it,around[imp2],strict,full,True,True,True,True,True
@@ -3691,6 +3703,10 @@ to come out of the nose,ih-vh[imperf2],strict,full,True,True,True,True,True
 to come out of the nose,ih-vh[imperf2],loose,full,True,True,True,True,True
 to come out of the nose,ih-vh[imperf2-inf2],strict,full,True,True,True,True,True
 to come out of the nose,ih-vh[imperf2-inf2],loose,full,True,True,True,True,True
+to come out of the nose,ih-vh-tl,strict,ending,False,True,True,True,True
+to come out of the nose,ih-vh-tl,loose,ending,False,True,True,True,True
+to come out of the nose,ih-vh-tl[imperf2],strict,ending,False,True,True,True,True
+to come out of the nose,ih-vh-tl[imperf2],loose,ending,False,True,True,True,True
 to come out of the nose,ih-vnh,strict,full,True,True,True,True,True
 to come out of the nose,ih-vnh,loose,full,True,True,True,True,True
 to come out of the nose,ih-vnh[inf2],strict,full,True,True,True,True,True
@@ -4102,6 +4118,8 @@ he/she is eating it,e-aka,strict,full,True,True,True,True,True
 he/she is eating it,e-aka,loose,full,True,True,True,True,True
 he/she is ripping it,ih-vh,strict,full,True,True,True,True,True
 he/she is ripping it,ih-vh,loose,full,True,True,True,True,True
+he/she is ripping it,ih-vh-tl,strict,ending,False,False,False,False,True
+he/she is ripping it,ih-vh-tl,loose,ending,False,False,False,False,True
 he/she is scratching him/her,glottal-sk,strict,full,True,True,True,True,True
 he/she is scratching him/her,glottal-sk,loose,full,True,True,True,True,True
 he/she is scratching him/her,glottal-sk[inf2],strict,full,True,True,True,True,True
@@ -4239,6 +4257,8 @@ it is burning,aspectless-cause,loose,full,True,True,True,True,True
 it is burning,aspectless-h,loose,full,True,True,True,True,True
 he/she is taking it out of a container,ih-vh,strict,full,True,True,True,True,True
 he/she is taking it out of a container,ih-vh,loose,full,True,True,True,True,True
+he/she is taking it out of a container,ih-vh-tl,strict,ending,False,False,False,False,True
+he/she is taking it out of a container,ih-vh-tl,loose,ending,False,False,False,False,True
 it is dying,become,strict,full,True,True,True,True,True
 it is dying,become,loose,full,True,True,True,True,True
 it is dying,become[imp2],strict,full,True,True,True,True,True
@@ -4461,6 +4481,8 @@ he/she is taking it somewhere by hand,go1,strict,full,True,True,True,True,True
 he/she is taking it somewhere by hand,go1,loose,full,True,True,True,True,True
 he/she is peeling him/her,ih-vh,strict,full,True,True,True,True,True
 he/she is peeling him/her,ih-vh,loose,full,True,True,True,True,True
+he/she is peeling him/her,ih-vh-tl,strict,ending,False,False,False,False,True
+he/she is peeling him/her,ih-vh-tl,loose,ending,False,False,False,False,True
 he/she is getting some liquid,glottal-sk,strict,full,True,True,True,True,True
 he/she is getting some liquid,glottal-sk,loose,full,True,True,True,True,True
 he/she is getting some liquid,glottal-sk[inf2],strict,full,True,True,True,True,True
@@ -4769,6 +4791,8 @@ he/she is falling from an upright position,become[imp2-inf4],strict,full,True,Tr
 he/she is falling from an upright position,become[imp2-inf4],loose,full,True,True,True,True,True
 he/she is cleaning him/her,ih-vh,strict,full,True,True,True,True,True
 he/she is cleaning him/her,ih-vh,loose,full,True,True,True,True,True
+he/she is cleaning him/her,ih-vh-tl,strict,ending,False,False,False,False,True
+he/she is cleaning him/her,ih-vh-tl,loose,ending,False,False,False,False,True
 he/she is hammering it,glottal-sk,strict,full,True,True,True,True,True
 he/she is hammering it,glottal-sk,loose,full,True,True,True,True,True
 he/she is hammering it,glottal-sk[inf2],strict,full,True,True,True,True,True
@@ -5490,6 +5514,8 @@ he/she is making him/her angry,cause[pres2-perf3],strict,full,True,True,True,Tru
 he/she is making him/her angry,cause[pres2-perf3],loose,full,True,True,True,True,True
 he/she is rooting it out,ih-vh,strict,full,True,True,True,True,True
 he/she is rooting it out,ih-vh,loose,full,True,True,True,True,True
+he/she is rooting it out,ih-vh-tl,strict,full,True,True,True,True,True
+he/she is rooting it out,ih-vh-tl,loose,full,True,True,True,True,True
 he/she is cold,become,strict,full,True,True,True,True,True
 he/she is cold,become,loose,full,True,True,True,True,True
 he/she is cold,become[imp2],strict,full,True,True,True,True,True
@@ -5854,6 +5880,8 @@ he/she is standing in liquid,aspectless,loose,full,True,True,True,True,True
 he/she is standing in liquid,aspectless-h,loose,full,True,True,True,True,True
 he/she wants it,ih-vh,strict,full,True,True,True,True,True
 he/she wants it,ih-vh,loose,full,True,True,True,True,True
+he/she wants it,ih-vh-tl,strict,ending,False,False,False,False,True
+he/she wants it,ih-vh-tl,loose,ending,False,False,False,False,True
 he/she is willing,aspectless,strict,full,True,True,True,True,True
 he/she is willing,aspectless,loose,full,True,True,True,True,True
 he/she is willing,aspectless-cause,strict,full,True,True,True,True,True
