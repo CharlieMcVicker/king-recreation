@@ -216,8 +216,8 @@ def analyze_matches(classes_path=None):
                     data[field] = verb_forms_map[v].get(field, "")
             unmatched_data.append(data)
 
-        # Sort by reversed perfective string to group by ending
-        unmatched_data.sort(key=lambda x: x.get("perfective", "")[::-1])
+        # Sort by reversed perfective string to group by ending, then by verb for stability
+        unmatched_data.sort(key=lambda x: (x.get("perfective", "")[::-1], x["verb"]))
 
         save_csv(
             os.path.join(output_dir, f"unmatched_verbs_{strictness}.csv"),

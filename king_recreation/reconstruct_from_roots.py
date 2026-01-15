@@ -215,7 +215,7 @@ def main(classes_path=None):
                 if ref_word not in options.get(fn, set()):
                     matches_all = False
                     failed_forms.append(
-                        f"{fn}: expected '{ref_word}', got {options.get(fn)}"
+                        f"{fn}: expected '{ref_word}', got {sorted(list(options.get(fn, set())))}"
                     )
 
         if matches_all:
