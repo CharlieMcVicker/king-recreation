@@ -3,7 +3,9 @@ from king_recreation.phonology_data import grades_are_compatible, _drop_first_h
 import os
 import csv
 import json
+import dataclasses
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import List, Dict, Set, Optional, Tuple
 from king_recreation.classify_verbs import get_matches_for_verb
 from king_recreation.class_patterns import ClassPatterns
@@ -27,6 +29,15 @@ class ReconstructibleVerb:
     class_name: str
     config: VerbConfig
     original_stems: Dict[str, str] = field(default_factory=dict)
+
+
+class EnhancedJSONEncoder(json.JSONEncoder):
+    def default(self, o):
+        if dataclasses.is_dataclass(o):
+            return dataclasses.asdict(o)
+        if isinstance(o, Enum):
+            return o.value
+        return super().default(o)
 
 
 class ReconstructionEngine:
@@ -194,6 +205,7 @@ def main(classes_path=None):
     success_count = 0
     failures = []
     report_data = []
+    validated_verbs: List[ReconstructibleVerb] = []
 
     for verb in reconstructible_verbs:
         generated_sets = engine.reconstruct_verb(verb)
@@ -220,6 +232,7 @@ def main(classes_path=None):
 
         if matches_all:
             success_count += 1
+            validated_verbs.append(verb)
         else:
             failures.append(
                 {
@@ -313,6 +326,13 @@ def main(classes_path=None):
             f,
             indent=4,
         )
+
+    # Save Fully Serialized Verbs
+    reconstructable_output_path = os.path.join(
+        base_dir, "artifacts", "data", "reconstructable_verbs.json"
+    )
+    with open(reconstructable_output_path, "w", encoding="utf-8") as f:
+        json.dump(validated_verbs, f, cls=EnhancedJSONEncoder, indent=4)
 
     print(f"Artifacts saved to {reports_dir}")
 
