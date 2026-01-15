@@ -26,9 +26,9 @@ def save_json(path, data):
 
 
 def analyze_matches(classes_path=None):
-    matches_path = "artifacts/data/matches.csv"
+    matches_path = "artifacts/data/matches_initial.csv"
     corpus_path = "artifacts/data/corpus.csv"
-    stem_corpus_path = "artifacts/data/stem_corpus.csv"
+    stem_corpus_path = "artifacts/data/derived_roots.csv"
     if classes_path is None:
         classes_path = CLASSES_PATH
 
