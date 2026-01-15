@@ -373,25 +373,51 @@ def _drop_first_h(stem: str) -> str:
 
 
 def _is_compatible_with_vowel_restoration(restored: str, syncopated: str) -> bool:
-    if len(restored) != len(syncopated) + 1:
+    if len(restored) - len(syncopated) not in [0, 1, 2]:
         return False
     i = 0
     j = 0
+    quality_shift = False
     skipped = False
+    skipped_idx = None
     while i < len(restored) and j < len(syncopated):
         if restored[i] == syncopated[j]:
             i += 1
             j += 1
+        elif restored[i] == "i" and syncopated[j] == "a":
+            # clothing words
+            quality_shift = True
+            i += 1
+            j += 1
         else:
             if skipped:
-                return False
-            if restored[i] in VOWEL_SET:
+                if (
+                    # sometimes we will have a case like
+                    # syncopated:   tsgo
+                    # restored:     ts_is_go
+                    skipped_idx == i - 1
+                    and restored[skipped_idx - 1] == "s"
+                    and restored[i] == "s"
+                ):
+                    i += 1
+                else:
+                    return False
+            elif restored[i] in VOWEL_SET:
                 skipped = True
+                skipped_idx = i
                 i += 1
             else:
                 return False
+    if quality_shift:
+        # can't handle this case
+        if skipped:
+            print("[WARNING] didn't plan for this case")
+
+        return not skipped
+
     if not skipped:
         return i == len(restored) - 1 and restored[i] in VOWEL_SET
+
     return True
 
 
