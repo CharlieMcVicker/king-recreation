@@ -26,6 +26,7 @@ Consonants are respelled to mark aspiration explicitly:
 | `hn`     | `nh`                     |
 | `hy`     | `yh`                     |
 | `hw`     | `wh`                     |
+| `sl`     | `slh` (before vowels)    |
 
 ## Reference Forms
 

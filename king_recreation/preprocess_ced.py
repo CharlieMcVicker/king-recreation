@@ -26,6 +26,8 @@ def respell_consonants(s):
     for old, new in rules:
         s = s.replace(old, new)
 
+    s = re.sub(r"sl(?=[aeiouv])", "slh", s)
+
     return s
 
 
