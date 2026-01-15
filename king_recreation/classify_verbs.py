@@ -3,6 +3,7 @@ from king_recreation.phonology_data import _drop_first_h
 from king_recreation.class_patterns import ClassPatterns
 import csv
 import os
+from collections import defaultdict
 
 
 def normalize(s):
@@ -88,51 +89,85 @@ def calculate_stem_final_match(corpus_form, pattern_suffix, stem_finals, strict)
     return match
 
 
-def get_matches_for_verb(verb, classes):
+def get_matches_for_verb(verb, macro_groups):
     forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
     matches = []
 
     definition = verb.get("definition", "unknown")
 
-    for cls in classes.values():  # classes is now Dict[str, ClassPatterns]
-        class_id = cls.name
-        stem_finals = cls.stem_finals
+    # Determine which forms are present in the verb
+    present_verb_forms = [f for f in forms if verb.get(f)]
 
-        for strictness in ["strict", "loose"]:
-            is_strict_bool = strictness == "strict"
+    for group_name, patterns in macro_groups.items():
+        # 1. Pruning: Group patterns by their signature on PRESENT forms
+        # We want to keep only one representative for patterns that are identical on the forms we can verify.
+        # This handles the case where patterns differ only on missing forms.
+        buckets = defaultdict(list)
+        for p in patterns:
+            # unique signature based on values for present forms
+            signature = tuple(p.get(f) for f in present_verb_forms)
+            buckets[signature].append(p)
 
-            # Check Ending Match
-            all_endings_match = True
-            for form in forms:
-                form_val = verb.get(form)
-                if not match_ending(form_val, cls.get(form), is_strict_bool):
-                    all_endings_match = False
-                    break
+        candidates = []
+        for sig, group_patterns in buckets.items():
+            # In each bucket, pick the "simplest" one (lowest specificity)
+            # This avoids returning both ClassA and ClassA[imp] if imp is missing.
+            # Specificity = number of non-empty fields
+            # We want minimum specificity here.
+            best = min(
+                group_patterns,
+                key=lambda x: sum(1 for f in forms if x.get(f)),
+            )
+            candidates.append(best)
 
-            # Calculate Stem Final matches
-            sf_matches = {}
-            for form in forms:
-                form_val = verb.get(form)
-                sf_matches[f"stem_final_match_{form}"] = calculate_stem_final_match(
-                    form_val, cls.get(form), stem_finals, is_strict_bool
-                )
+        # 2. Sorting: Sort candidates by Specificity DESCENDING
+        # If we have distinct candidates (differing on present forms),
+        # we want to match the most specific one first (e.g. ClassA[imp] vs ClassA if imp is present).
+        candidates.sort(key=lambda x: sum(1 for f in forms if x.get(f)), reverse=True)
 
-            all_sf_match = all(sf_matches.values())
+        # 3. Matching: Find the first match in the sorted candidates
+        # Since we sorted by specificity, the first match is the best match for this group.
+        # We stop after the first match to avoid returning less specific siblings.
+        for cls in candidates:
+            class_id = cls.name
+            stem_finals = cls.stem_finals
 
-            if all_endings_match:
-                scope = "ending"
-                if all_sf_match:
-                    scope = "full"
+            for strictness in ["strict", "loose"]:
+                is_strict_bool = strictness == "strict"
 
-                matches.append(
-                    {
-                        "definition": definition,
-                        "class": class_id,
-                        "strictness": strictness,
-                        "scope": scope,
-                        **sf_matches,
-                    }
-                )
+                # Check Ending Match
+                all_endings_match = True
+                for form in forms:
+                    form_val = verb.get(form)
+                    if not match_ending(form_val, cls.get(form), is_strict_bool):
+                        all_endings_match = False
+                        break
+
+                # Calculate Stem Final matches
+                sf_matches = {}
+                for form in forms:
+                    form_val = verb.get(form)
+                    sf_matches[f"stem_final_match_{form}"] = calculate_stem_final_match(
+                        form_val, cls.get(form), stem_finals, is_strict_bool
+                    )
+
+                all_sf_match = all(sf_matches.values())
+
+                if all_endings_match:
+                    scope = "ending"
+                    if all_sf_match:
+                        scope = "full"
+
+                    matches.append(
+                        {
+                            "definition": definition,
+                            "class": class_id,
+                            "strictness": strictness,
+                            "scope": scope,
+                            **sf_matches,
+                        }
+                    )
+
     return matches
 
 
@@ -154,6 +189,14 @@ def classify_verbs(classes_path=None):
     # Load classes
     classes = ClassPatterns.from_csv(classes_path)
 
+    # Group classes by macro (original name)
+    macro_groups = defaultdict(list)
+    for p in classes.values():
+        group_name = p.name.split("[")[0]
+        if p._original_data and "class" in p._original_data:
+            group_name = p._original_data["class"]
+        macro_groups[group_name].append(p)
+
     # Load raw corpus
     corpus_rows = []
     with open(corpus_path, mode="r", encoding="utf-8") as f:
@@ -167,7 +210,7 @@ def classify_verbs(classes_path=None):
     stripped_corpus_data = []
 
     for verb in corpus_rows:
-        matches = get_matches_for_verb(verb, classes)
+        matches = get_matches_for_verb(verb, macro_groups)
         matches_data.extend(matches)
 
         # Identify candidates for stripping
