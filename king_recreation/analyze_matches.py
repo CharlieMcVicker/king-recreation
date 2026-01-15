@@ -77,6 +77,39 @@ def analyze_matches(classes_path=None):
             if rank.get(scope, 0) > rank.get(current_scope, 0):
                 filtered_matches[key] = row
 
+    # Integrate Reconstructs (validated matches)
+    validated_matches_path = "artifacts/data/matches_validated.csv"
+    if os.path.exists(validated_matches_path):
+        validated_matches = load_csv(validated_matches_path)
+        for row in validated_matches:
+            verb = row["definition"]
+            cls = row["class"]
+            strictness = row["strictness"]
+            scope = row["scope"]  # Should be 'reconstructs'
+            key = (verb, cls, strictness)
+
+            # Insert or upgrade
+            filtered_matches[key] = row
+            # If we have a validated match, it implies full match + reconstruction success.
+            # We might need to ensure stem_final_match columns exist if we're overwriting a "matches.csv" row
+            # But the 'matches_validated.csv' usually doesn't have stem_final details.
+            # However, for the purpose of coverage stats (scope), this is sufficient.
+            # If we need stem_final details for near-miss analysis, we might technically lose them if we overwrite completely
+            # but usually a 'reconstructs' match was already a 'full' match in matches.csv, so we just want to promote the scope.
+            # Let's try to preserve other fields if updating an existing key.
+            # Actually, `matches_validated.csv` only has [definition,class,strictness,scope].
+            # If we just overwrite, we lose `stem_final_match_*`.
+            # We should UPDATE the existing entry if present, or create new.
+
+            # Since 'reconstructs' implies it was already found as a match (usually),
+            # let's check if it exists in filtered_matches (from matches.csv)
+            if key in filtered_matches:
+                filtered_matches[key]["scope"] = scope
+            else:
+                # If it wasn't in matches.csv (maybe a manual addition? or custom pipeline?), add it.
+                # We'll validly lack the stem_final columns, but that's okay for coverage counts.
+                filtered_matches[key] = row
+
     class_counts = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
     for row in filtered_matches.values():
         class_counts[row["class"]][row["strictness"]][row["scope"]] += 1
@@ -174,7 +207,7 @@ def analyze_matches(classes_path=None):
             if s == strictness and row["scope"] in ["full", "reconstructs"]:
                 target_set.add(verb)
 
-        unmatched = sorted(list(all_verbs - target_set))
+        unmatched = list(all_verbs - target_set)
         unmatched_data = []
         for v in unmatched:
             data = {"verb": v}
@@ -182,6 +215,9 @@ def analyze_matches(classes_path=None):
                 for field in form_fields:
                     data[field] = verb_forms_map[v].get(field, "")
             unmatched_data.append(data)
+
+        # Sort by reversed perfective string to group by ending
+        unmatched_data.sort(key=lambda x: x.get("perfective", "")[::-1])
 
         save_csv(
             os.path.join(output_dir, f"unmatched_verbs_{strictness}.csv"),
