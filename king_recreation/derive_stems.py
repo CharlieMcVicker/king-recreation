@@ -147,6 +147,10 @@ def stems_are_consistent(
     h_candidate = derived_stems.get("present")
     g_candidate = derived_stems.get("present_1sg")
 
+    if h_candidate is None:
+        print(derived_stems)
+        return None
+
     # check that h and g grades are consistent within grades
     passing = True
     for fn, s in derived_stems.items():

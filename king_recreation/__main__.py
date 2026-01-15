@@ -1,5 +1,5 @@
 import argparse
-from king_recreation.preprocess_ced import process_ced
+from king_recreation.preprocess_ced import process_cn_dict
 from king_recreation.derive_stems import main as derive_stems
 from king_recreation.classify_verbs import classify_verbs
 from king_recreation.analyze_matches import analyze_matches
@@ -15,7 +15,7 @@ def main():
     print("Starting King Recreation Pipeline...")
 
     print("\n[1/6] Preprocessing CED Data...")
-    process_ced()
+    process_cn_dict("data/cherokee_nation_dictionary.csv", "artifacts/data/corpus.csv")
 
     print("\n[2/6] Classifying Verbs and Stripping Endings...")
     classify_verbs(args.classes)
