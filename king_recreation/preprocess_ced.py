@@ -22,6 +22,8 @@ def respell_consonants(s):
         ("hl", "lh"),
         ("hy", "yh"),
         ("hw", "wh"),
+        ("?", "'"),
+        ("’", "'"),
     ]
     for old, new in rules:
         s = s.replace(old, new)
@@ -36,7 +38,7 @@ def clean_string(s):
         return ""
     # Remove tones [1234], glottal stops [?], periods [.], and apostrophes ['’] (which are glottal stops in new source)
     # README says tone markings /[1234\.]/ and glottal stops /\?/
-    s = re.sub(r"[1234\.\?'’]", "", s)
+    s = re.sub(r"[1234\.]", "", s)
     return respell_consonants(s)
 
 
@@ -45,14 +47,14 @@ def clean_row(row):
 
     present = clean_string(row.get("3rd present", ""))
     # README: "3rd present column with final i or a rstripped; for ia only a is dropped"
-    if present.endswith("ia"):
+    if present.endswith("i'a"):
         present = present[:-1]
     elif present.endswith("i") or present.endswith("a"):
         present = present[:-1]
 
     present_1sg = clean_string(row.get("1st present", ""))
     # Same logic as 3rd present: strip final i or a
-    if present_1sg.endswith("ia"):
+    if present_1sg.endswith("i'a"):
         present_1sg = present_1sg[:-1]
     elif present_1sg.endswith("i") or present_1sg.endswith("a"):
         present_1sg = present_1sg[:-1]
@@ -61,14 +63,15 @@ def clean_row(row):
     imperfective = clean_string(imperfective_raw)
     # README: "3rd incompletive habitual column with oi rstripped"
     # Logic: if it ends in 'i' (possibly with tones/glottals), and has 'o' before it.
-    if imperfective.endswith("oi"):
-        imperfective = imperfective[:-2]
+    print(imperative[:-3], imperfective.endswith("o'i"))
+    if imperfective.endswith("o'i"):
+        imperfective = imperfective[:-3]
 
     perfective_raw = row.get("3rd completive past", "")
     perfective = clean_string(perfective_raw)
     # README: "3rd completive past column with vi rstripped"
-    if perfective.endswith("vi"):
-        perfective = perfective[:-2]
+    if perfective.endswith("v'i"):
+        perfective = perfective[:-3]
 
     imperative = clean_string(row.get("2nd imperative", ""))
 
@@ -254,27 +257,23 @@ def process_cn_dict(file_path, output_path):
 
         # Present
         p = verb_data["present"]
-        if p.endswith("ia"):
-            verb_data["present"] = p[:-1]
-        elif p.endswith("i") or p.endswith("a"):
+        if p.endswith("i") or p.endswith("a"):
             verb_data["present"] = p[:-1]
 
         # Present 1sg
         p1 = verb_data["present_1sg"]
-        if p1.endswith("ia"):
-            verb_data["present_1sg"] = p1[:-1]
-        elif p1.endswith("i") or p1.endswith("a"):
+        if p1.endswith("i") or p1.endswith("a"):
             verb_data["present_1sg"] = p1[:-1]
 
         # Imperfective
         imp = verb_data["imperfective"]
-        if imp.endswith("oi"):
-            verb_data["imperfective"] = imp[:-2]
+        if imp.endswith("o'i"):
+            verb_data["imperfective"] = imp[:-3]
 
         # Perfective
         perf = verb_data["perfective"]
-        if perf.endswith("vi"):
-            verb_data["perfective"] = perf[:-2]
+        if perf.endswith("v'i"):
+            verb_data["perfective"] = perf[:-3]
 
         # Infinitive
         inf = verb_data["infinitive"]
