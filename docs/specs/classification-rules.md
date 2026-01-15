@@ -1,6 +1,6 @@
 # Classification Rules
 
-This document defines the criteria for matching verbs in the corpus to King's Conjugation Classes.
+This document defines the criteria for matching verbs in the corpus to King's Conjugation Classes. For details on how classes are defined and expanded from data, see [Class Macros](class-macros.md).
 
 ## Match Matrix
 

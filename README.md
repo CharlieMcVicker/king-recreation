@@ -8,7 +8,7 @@ A companion [Frontend Match Explorer](frontend) is available to visualize and in
 
 Detailed specifications and reports are available in the `docs/` directory:
 
-- **Specs**: [Preprocessing](docs/specs/preprocessing.md), [Stem Derivation](docs/specs/stem-derivation.md), [Classification Rules](docs/specs/classification-rules.md), [Reconstruction](docs/specs/reconstruction.md)
+- **Specs**: [Preprocessing](docs/specs/preprocessing.md), [Stem Derivation](docs/specs/stem-derivation.md), [Classification Rules](docs/specs/classification-rules.md), [Reconstruction](docs/specs/reconstruction.md), [Class Macros](docs/specs/class-macros.md)
 - **Policies**: [Blank Form Policy](docs/policies/blank-forms.md)
 - **Reference**: [Artifacts Structure](docs/reference/artifacts.md)
 
