@@ -198,6 +198,7 @@ def classify_verbs(classes_path=None):
                 stripped_row = {
                     "definition": m["definition"],
                     "class": m["class"],
+                    "scope": m["scope"],
                     # Pre-populate empty stems
                     "present": "",
                     "present_1sg": "",

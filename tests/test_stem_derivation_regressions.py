@@ -6,7 +6,6 @@ from king_recreation.derive_stems import (
     Derivation,
     strip_prepronominals,
     is_strict_compatible,
-    is_loose_compatible,
 )
 from king_recreation.phonology_data import (
     StemType,
@@ -31,7 +30,9 @@ class TestStemDerivations(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        input_path = os.path.join(base_dir, "artifacts", "data", "corpus.csv")
+        input_path = os.path.join(
+            base_dir, "artifacts", "data", "endings_stripped_corpus.csv"
+        )
         if os.path.exists(input_path):
             with open(input_path, "r", encoding="utf-8") as f:
                 reader = csv.DictReader(f)
@@ -157,7 +158,7 @@ class TestStemDerivations(unittest.TestCase):
                         ):
                             is_ok = True
                     else:
-                        if is_loose_compatible(s, ref):
+                        if is_strict_compatible(s, ref):
                             is_ok = True
 
                     if not is_ok:
@@ -244,17 +245,21 @@ class TestStemDerivations(unittest.TestCase):
             #         }
             #     )
             # ),
+            # (
+            #     "he's singing",
+            #     PronominalConfig(
+            #         set_type="a",
+            #         use_ka_variant=True,
+            #         stem_type=StemType.CONSONANT,
+            #         metathesis_strategy=MetathesisStrategy.H_CONS,
+            #     ),
+            #     PrePronominalConfig(
+            #         translocutive=False, partitive=False, distributive=True
+            #     ),
+            # ),
             (
-                "he's singing",
-                PronominalConfig(
-                    set_type="a",
-                    use_ka_variant=True,
-                    stem_type=StemType.CONSONANT,
-                    metathesis_strategy=MetathesisStrategy.H_CONS,
-                ),
-                PrePronominalConfig(
-                    translocutive=False, partitive=False, distributive=True
-                ),
+                "1. he's picking it up  2. he's getting it",
+                PronominalConfig(set_type="a", stem_type=StemType.CONSONANT),
             ),
             # ("stubbing his toe", PronominalConfig(set_type="b", use_aki_for_1st_set_b=True, stem_type=StemType.CONSONANT, metathesis_strategy=MetathesisStrategy.H_CONS))
         ]

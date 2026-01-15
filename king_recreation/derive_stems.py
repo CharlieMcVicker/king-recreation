@@ -40,10 +40,6 @@ def is_strict_compatible(s1: str, s2: str) -> bool:
     return common_len >= 3 or common_len == min(len(s1), len(s2))
 
 
-def is_loose_compatible(s1: str, s2: str) -> bool:
-    return bool(s1 and s2 and s1[0] == s2[0])
-
-
 def strip_prepronominals(
     forms: Dict[str, str], config: PrePronominalConfig
 ) -> Optional[Dict[str, str]]:
@@ -122,7 +118,7 @@ def derive_pronominals(
 
         derived_stems[fn] = stem
     h_grade = stems_are_consistent(derived_stems, pron_config, log=log)
-    if h_grade:
+    if h_grade is not None:
         return Derivation(
             pre_config=None,
             pron_config=pron_config,
@@ -154,7 +150,7 @@ def stems_are_consistent(
     # check that h and g grades are consistent within grades
     passing = True
     for fn, s in derived_stems.items():
-        if use_glottal_grade(fn, pron_config) and g_candidate:
+        if use_glottal_grade(fn, pron_config) and g_candidate is not None:
             check = is_strict_compatible(s, g_candidate)
             passing &= check
             if log:
@@ -272,6 +268,8 @@ def main():
     with open(input_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
+            if not row["scope"] == "full":
+                continue
             derivations = deriver.derive_row(row)
             if not derivations:
                 failures.append(row)

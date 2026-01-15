@@ -82,11 +82,11 @@ class ReconstructionEngine:
                 verb.glottal_grade_root if glottal_grade_form else verb.h_grade_root
             )
 
-            if glottal_grade_form and not root_to_use:
+            if glottal_grade_form and root_to_use is None:
                 # Missing required root for this form
                 continue
 
-            if not root_to_use:
+            if root_to_use is None:
                 continue
 
             modified_root = root_to_use
