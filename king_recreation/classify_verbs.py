@@ -1,5 +1,6 @@
 from king_recreation.utils import CLASSES_PATH
 from king_recreation.phonology_data import _drop_first_h
+from king_recreation.class_patterns import ClassPatterns
 import csv
 import os
 
@@ -27,7 +28,7 @@ def match_ending(corpus_form, pattern_suffix, strict):
         return normalize(corpus_form).endswith(normalize(literal_suffix))
 
 
-def calculate_stem_final_match(corpus_form, pattern_suffix, stem_final_str, strict):
+def calculate_stem_final_match(corpus_form, pattern_suffix, stem_finals, strict):
     # Policy: Vacuous Matching
     if not corpus_form:
         return True
@@ -56,7 +57,8 @@ def calculate_stem_final_match(corpus_form, pattern_suffix, stem_final_str, stri
         candidate_stem_norm = normalize(candidate_stem_raw)
 
     # 3. Adjust stem final based on modifiers
-    stem_finals = stem_final_str.split(";") if stem_final_str else [""]
+    if not stem_finals:
+        stem_finals = [""]
 
     match = False
     for sf in stem_finals:
@@ -92,9 +94,9 @@ def get_matches_for_verb(verb, classes):
 
     definition = verb.get("definition", "unknown")
 
-    for cls in classes:
-        class_id = cls["class"]
-        stem_final = cls["stem final"]
+    for cls in classes.values():  # classes is now Dict[str, ClassPatterns]
+        class_id = cls.name
+        stem_finals = cls.stem_finals
 
         for strictness in ["strict", "loose"]:
             is_strict_bool = strictness == "strict"
@@ -103,7 +105,7 @@ def get_matches_for_verb(verb, classes):
             all_endings_match = True
             for form in forms:
                 form_val = verb.get(form)
-                if not match_ending(form_val, cls[form], is_strict_bool):
+                if not match_ending(form_val, cls.get(form), is_strict_bool):
                     all_endings_match = False
                     break
 
@@ -112,7 +114,7 @@ def get_matches_for_verb(verb, classes):
             for form in forms:
                 form_val = verb.get(form)
                 sf_matches[f"stem_final_match_{form}"] = calculate_stem_final_match(
-                    form_val, cls[form], stem_final, is_strict_bool
+                    form_val, cls.get(form), stem_finals, is_strict_bool
                 )
 
             all_sf_match = all(sf_matches.values())
@@ -150,11 +152,7 @@ def classify_verbs(classes_path=None):
         return
 
     # Load classes
-    classes = []
-    with open(classes_path, mode="r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            classes.append(row)
+    classes = ClassPatterns.from_csv(classes_path)
 
     # Load raw corpus
     corpus_rows = []
@@ -191,7 +189,8 @@ def classify_verbs(classes_path=None):
                     continue
                 seen_class_def.add(key)
 
-                cls_info = next((c for c in classes if c["class"] == m["class"]), None)
+                # classes is dict now, direct lookup
+                cls_info = classes.get(m["class"])
                 if not cls_info:
                     continue
 

@@ -6,6 +6,7 @@ import json
 from dataclasses import dataclass, field
 from typing import List, Dict, Set, Optional, Tuple
 from king_recreation.classify_verbs import get_matches_for_verb
+from king_recreation.class_patterns import ClassPatterns
 from king_recreation.phonology_data import (
     get_pronominal_set_name,
     PronominalConfig,
@@ -30,16 +31,9 @@ class ReconstructibleVerb:
 
 class ReconstructionEngine:
     def __init__(self, classes_path: str):
-        self._classes_raw = self._load_classes_raw(classes_path)
-        self.classes = {row["class"]: row for row in self._classes_raw}
+        self.classes = ClassPatterns.from_csv(classes_path)
 
-    def _load_classes_raw(self, path: str) -> List[Dict[str, str]]:
-        classes = []
-        with open(path, "r", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                classes.append(row)
-        return classes
+    # _load_classes_raw removed as it is replaced by ClassPatterns.from_csv
 
     def generate_pronominal_forms(
         self, stem: str, set_name: str, config: PronominalConfig
@@ -71,7 +65,7 @@ class ReconstructionEngine:
         ]:
             ending_pattern = class_info.get(form_name, "")
             if form_name == "present_1sg" and not ending_pattern:
-                ending_pattern = class_info.get("present", "")
+                ending_pattern = class_info.present
 
             literal_ending = ending_pattern.replace("*", "").replace("@", "")
 

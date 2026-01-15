@@ -1,6 +1,7 @@
 import os
 import csv
 import functools
+from king_recreation.class_patterns import ClassPatterns
 
 CLASSES_PATH = "data/classes.csv"
 
@@ -19,18 +20,21 @@ def _get_class_order():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     csv_path = CLASSES_PATH
 
-    if os.path.exists(csv_path):
-        try:
-            with open(csv_path, "r", encoding="utf-8") as f:
-                reader = csv.DictReader(f)
-                for idx, row in enumerate(reader):
-                    cls_name = row.get("class", "").strip()
-                    if cls_name:
-                        class_order[cls_name] = idx
-        except Exception as e:
-            # Fallback: log error if possible, or just proceed empty
-            print(f"Warning: Could not load class order from {csv_path}: {e}")
-            pass
+    if not os.path.exists(csv_path):
+        # Fallback to absolute path relative to project root if CWD stems fail
+        candidate = os.path.join(base_dir, csv_path)
+        if os.path.exists(candidate):
+            csv_path = candidate
+
+    try:
+        patterns = ClassPatterns.from_csv(csv_path)
+        # Note: from_csv returns a dict but preserves insertion order in Python 3.7+
+        # which corresponds to CSV row order.
+        for idx, p in enumerate(patterns.values()):
+            if p.name:
+                class_order[p.name] = idx
+    except Exception as e:
+        print(f"Warning: Could not load class order from {csv_path}: {e}")
 
     return class_order
 
