@@ -4,6 +4,7 @@ import {
   getNearMisses,
   getCorpus,
   getConsistencyAnalysis,
+  resolveClassEndings,
 } from "@/lib/data";
 import {
   Search,
@@ -55,7 +56,7 @@ export default async function ExplorerPage({
   }, {});
 
   const classData = selectedClass
-    ? classes.find((c: any) => c.class === selectedClass)
+    ? resolveClassEndings(selectedClass, classes)
     : null;
 
   const matches = selectedClass

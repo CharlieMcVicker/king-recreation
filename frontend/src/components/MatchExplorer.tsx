@@ -263,7 +263,7 @@ export default function MatchExplorer({
                           </span>
                         )}
                         <span className="text-[10px] font-mono text-gray-400">
-                          Pattern: {classPattern[form.key] || "-"}
+                          Pattern: {classPattern?.[form.key] || "-"}
                         </span>
                       </div>
                       {isMatch ? (

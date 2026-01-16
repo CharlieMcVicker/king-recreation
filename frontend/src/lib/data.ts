@@ -231,7 +231,7 @@ function normalize(s: string) {
   return s.trim().toLowerCase().replace(/['’]/g, "'");
 }
 
-function resolveClassEndings(
+export function resolveClassEndings(
   classNameFull: string,
   classes: ClassDefinition[]
 ) {
