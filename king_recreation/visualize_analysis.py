@@ -65,7 +65,7 @@ def plot_class_distribution(csv_path, output_prefix):
 
 
 def plot_verb_coverage(json_path, output_path):
-    """Generates a bar chart for verb coverage summary."""
+    """Generates a figure with two subplots: Match Counts and Coverage %."""
     if not os.path.exists(json_path):
         print(f"Warning: {json_path} not found. Skipping verb coverage plot.")
         return
@@ -73,18 +73,73 @@ def plot_verb_coverage(json_path, output_path):
     with open(json_path, "r") as f:
         data = json.load(f)
 
-    # Convert to DataFrame
-    rows = []
-    for combo, counts in data.items():
+    # Convert to DataFrames
+    count_rows = []
+    pct_rows = []
+
+    combinations = sorted(data.keys())
+
+    for combo in combinations:
+        counts = data[combo]
         for cat, val in counts.items():
-            rows.append({"Combination": combo, "Coverage": cat, "Count": val})
+            if cat == "coverage_pct":
+                pct_rows.append({"Combination": combo, "Coverage": val})
+            else:
+                count_rows.append(
+                    {"Combination": combo, "Match Count": cat, "Count": val}
+                )
 
-    df = pd.DataFrame(rows)
+    df_counts = pd.DataFrame(count_rows)
+    df_pct = pd.DataFrame(pct_rows)
 
-    plt.figure(figsize=(10, 6))
-    sns.barplot(data=df, x="Combination", y="Count", hue="Coverage")
-    plt.title("Verb Coverage Summary")
-    plt.xticks(rotation=15)
+    # Create two subplots: Left for counts, Right for percentage
+    fig, (ax1, ax2) = plt.subplots(
+        1, 2, figsize=(14, 6), gridspec_kw={"width_ratios": [2, 1]}
+    )
+
+    # 1. Match Counts (Grouped Bar Chart)
+    sns.barplot(
+        data=df_counts,
+        x="Combination",
+        y="Count",
+        hue="Match Count",
+        ax=ax1,
+        palette="viridis",
+        order=combinations,
+    )
+    ax1.set_title("Match Count Distribution")
+    ax1.set_xlabel("Combination Strategy")
+    ax1.set_ylabel("Count")
+    ax1.tick_params(axis="x", rotation=15)
+    ax1.legend(title="Matches per Verb")
+
+    # 2. Coverage Percentage (Bar Chart)
+    sns.barplot(
+        data=df_pct,
+        x="Combination",
+        y="Coverage",
+        ax=ax2,
+        color="skyblue",
+        order=combinations,
+    )
+    ax2.set_title("Coverage Percentage")
+    ax2.set_xlabel("Combination Strategy")
+    ax2.set_ylabel("Coverage (%)")
+    ax2.set_ylim(0, 100)
+    ax2.tick_params(axis="x", rotation=15)
+
+    # Add text labels on the percentage bars
+    for i, row in df_pct.iterrows():
+        # Find the x-position for this combination
+        # Since 'order=combinations', i corresponds to the x-tick
+        ax2.text(
+            i,
+            row["Coverage"] + 1,
+            f"{row['Coverage']:.1f}%",
+            ha="center",
+            color="black",
+        )
+
     plt.tight_layout()
     plt.savefig(output_path)
     plt.close()
