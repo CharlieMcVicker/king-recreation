@@ -19,14 +19,24 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 6,he/she is bouncing it,cause[pres2],loose,full,True,True,True,True,True
 6,he/she is bouncing it,cause[pres2-perf3],strict,full,True,True,True,True,True
 6,he/she is bouncing it,cause[pres2-perf3],loose,full,True,True,True,True,True
-7,he/she is putting on a belt,ih-lh[imp2],strict,full,True,True,True,True,True
-7,he/she is putting on a belt,ih-lh[imp2],loose,full,True,True,True,True,True
-7,he/she is putting on a belt,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-7,he/she is putting on a belt,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
-7,he/she is putting on a belt,ih,strict,full,True,True,True,True,True
-7,he/she is putting on a belt,ih,loose,full,True,True,True,True,True
-7,he/she is putting on a belt,ih[imp2],strict,full,True,True,True,True,True
-7,he/she is putting on a belt,ih[imp2],loose,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3],strict,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3],loose,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-inf2],strict,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-inf2],loose,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-inf3],strict,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-inf3],loose,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-imp2],strict,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-imp2],loose,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-imp2-inf2],strict,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-imp2-inf2],loose,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-imp2-inf3],strict,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-imp2-inf3],loose,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+7,he/she is putting on a belt,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 10,he/she is praying,cause,strict,full,True,True,True,True,True
 10,he/she is praying,cause,loose,full,True,True,True,True,True
 10,he/she is praying,cause[perf3],strict,full,True,True,True,True,True
@@ -57,22 +67,56 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 21,he/she is denying him/her,ih-l,loose,full,True,True,True,True,True
 21,he/she is denying him/her,ih-l[inf2],strict,full,True,True,True,True,True
 21,he/she is denying him/her,ih-l[inf2],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[inf3],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[inf3],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp2],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp2],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp4],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp4],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp4-inf3],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp6],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp6],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp6-inf2],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp6-inf2],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp6-inf3],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[imp6-inf3],loose,full,True,True,True,True,True
 21,he/she is denying him/her,ih-l[perf2],strict,full,True,True,True,True,True
 21,he/she is denying him/her,ih-l[perf2],loose,full,True,True,True,True,True
 21,he/she is denying him/her,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 21,he/she is denying him/her,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-21,he/she is denying him/her,ih-ika[perf2-inf2],strict,full,True,True,True,True,True
-21,he/she is denying him/her,ih-ika[perf2-inf2],loose,full,True,True,True,True,True
-21,he/she is denying him/her,ih[perf2],strict,full,True,True,True,True,True
-21,he/she is denying him/her,ih[perf2],loose,full,True,True,True,True,True
-21,he/she is denying him/her,ih[perf2-imp2],strict,full,True,True,True,True,True
-21,he/she is denying him/her,ih[perf2-imp2],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp6],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp6],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp6-inf2],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp6-inf2],loose,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp6-inf3],strict,full,True,True,True,True,True
+21,he/she is denying him/her,ih-l[perf2-imp6-inf3],loose,full,True,True,True,True,True
 22,he/she is committing adultery,apl[imp5],strict,full,True,True,True,True,True
 22,he/she is committing adultery,apl[imp5],loose,full,True,True,True,True,True
 25,it’s ripping,ih-vh,strict,full,True,True,True,True,True
 25,it’s ripping,ih-vh,loose,full,True,True,True,True,True
-25,it’s ripping,ih-vh-tl,strict,ending,False,False,False,False,True
-25,it’s ripping,ih-vh-tl,loose,ending,False,False,False,False,True
+25,it’s ripping,ih-vh[inf3],strict,full,True,True,True,True,True
+25,it’s ripping,ih-vh[inf3],loose,full,True,True,True,True,True
 27,he/she is looking at himself/herself in a mirror,apl-active,strict,full,True,True,True,True,True
 27,he/she is looking at himself/herself in a mirror,apl-active,loose,full,True,True,True,True,True
 27,he/she is looking at himself/herself in a mirror,apl-active[inf2],strict,full,True,True,True,True,True
@@ -359,14 +403,38 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 98,he/she is crying,ih-l,loose,full,True,True,True,True,True
 98,he/she is crying,ih-l[inf2],strict,full,True,True,True,True,True
 98,he/she is crying,ih-l[inf2],loose,full,True,True,True,True,True
+98,he/she is crying,ih-l[inf3],strict,full,True,True,True,True,True
+98,he/she is crying,ih-l[inf3],loose,full,True,True,True,True,True
+98,he/she is crying,ih-l[imp2],strict,full,True,True,True,True,True
+98,he/she is crying,ih-l[imp2],loose,full,True,True,True,True,True
+98,he/she is crying,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+98,he/she is crying,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+98,he/she is crying,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+98,he/she is crying,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+98,he/she is crying,ih-l[imp4],strict,full,True,True,True,True,True
+98,he/she is crying,ih-l[imp4],loose,full,True,True,True,True,True
+98,he/she is crying,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+98,he/she is crying,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+98,he/she is crying,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+98,he/she is crying,ih-l[imp4-inf3],loose,full,True,True,True,True,True
 98,he/she is crying,ih-l[perf2],strict,full,True,True,True,True,True
 98,he/she is crying,ih-l[perf2],loose,full,True,True,True,True,True
 98,he/she is crying,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 98,he/she is crying,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-98,he/she is crying,ih[perf2],strict,full,True,True,True,True,True
-98,he/she is crying,ih[perf2],loose,full,True,True,True,True,True
-98,he/she is crying,ih[perf2-imp2],strict,full,True,True,True,True,True
-98,he/she is crying,ih[perf2-imp2],loose,full,True,True,True,True,True
+98,he/she is crying,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+98,he/she is crying,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+98,he/she is crying,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+98,he/she is crying,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+98,he/she is crying,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+98,he/she is crying,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+98,he/she is crying,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+98,he/she is crying,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+98,he/she is crying,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+98,he/she is crying,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+98,he/she is crying,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+98,he/she is crying,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+98,he/she is crying,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+98,he/she is crying,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
 99,he/she is getting off,sk-s,strict,full,True,True,True,True,True
 99,he/she is getting off,sk-s,loose,full,True,True,True,True,True
 99,he/she is getting off,sk-s[inf2],strict,full,True,True,True,True,True
@@ -559,16 +627,30 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 158,he/she is smothering him/her,cause[pres2-perf3],loose,full,True,True,True,True,True
 160,he/she is handling it,go-around,strict,full,True,True,True,True,True
 160,he/she is handling it,go-around,loose,full,True,True,True,True,True
-161,he/she is killing him/her,ih-lh[imp2],strict,full,True,True,True,True,True
-161,he/she is killing him/her,ih-lh[imp2],loose,full,True,True,True,True,True
-161,he/she is killing him/her,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-161,he/she is killing him/her,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
-161,he/she is killing him/her,ih-lh[imp2-inf3],strict,full,True,True,True,True,True
-161,he/she is killing him/her,ih-lh[imp2-inf3],loose,full,True,True,True,True,True
-161,he/she is killing him/her,ih,strict,full,True,True,True,True,True
-161,he/she is killing him/her,ih,loose,full,True,True,True,True,True
-161,he/she is killing him/her,ih[imp2],strict,full,True,True,True,True,True
-161,he/she is killing him/her,ih[imp2],loose,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3],strict,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3],loose,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-inf2],strict,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-inf2],loose,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-inf3],strict,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-inf3],loose,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-inf4],strict,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-inf4],loose,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp2],strict,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp2],loose,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp2-inf2],strict,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp2-inf2],loose,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp2-inf3],strict,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp2-inf3],loose,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp2-inf4],strict,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp2-inf4],loose,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp4-inf4],strict,full,True,True,True,True,True
+161,he/she is killing him/her,ih-l[perf3-imp4-inf4],loose,full,True,True,True,True,True
 162,he/she has possession of a vehicle,scared,strict,full,True,True,True,True,True
 162,he/she has possession of a vehicle,scared,loose,full,True,True,True,True,True
 165,he/she is leaving it behind,glottal-sk[perf2],strict,full,True,True,True,True,True
@@ -705,14 +787,24 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 190,he/she is giving it to him/her,apl[imp2],loose,full,True,True,True,True,True
 190,he/she is giving it to him/her,apl[imp3],strict,full,True,True,True,True,True
 190,he/she is giving it to him/her,apl[imp3],loose,full,True,True,True,True,True
-191,he/she is wrestling,ih-lh[imp2],strict,full,True,True,True,True,True
-191,he/she is wrestling,ih-lh[imp2],loose,full,True,True,True,True,True
-191,he/she is wrestling,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-191,he/she is wrestling,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
-191,he/she is wrestling,ih,strict,full,True,True,True,True,True
-191,he/she is wrestling,ih,loose,full,True,True,True,True,True
-191,he/she is wrestling,ih[imp2],strict,full,True,True,True,True,True
-191,he/she is wrestling,ih[imp2],loose,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3],strict,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3],loose,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-inf2],strict,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-inf2],loose,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-inf3],strict,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-inf3],loose,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-imp2],strict,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-imp2],loose,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-imp2-inf2],strict,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-imp2-inf2],loose,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-imp2-inf3],strict,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-imp2-inf3],loose,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+191,he/she is wrestling,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 192,he/she is interpreting it,cause,strict,full,True,True,True,True,True
 192,he/she is interpreting it,cause,loose,full,True,True,True,True,True
 192,he/she is interpreting it,cause[perf3],strict,full,True,True,True,True,True
@@ -763,18 +855,66 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 204,he/she is hitting him/her on the mouth,ih-l,loose,full,True,True,True,True,True
 204,he/she is hitting him/her on the mouth,ih-l[inf2],strict,full,True,True,True,True,True
 204,he/she is hitting him/her on the mouth,ih-l[inf2],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[inf3],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[inf3],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[inf4],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[inf4],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp2],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp2],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp2-inf4],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp2-inf4],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp4],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp4],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp4-inf3],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp4-inf4],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp4-inf4],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp6],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp6],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp6-inf2],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp6-inf2],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp6-inf3],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp6-inf3],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp6-inf4],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[imp6-inf4],loose,full,True,True,True,True,True
 204,he/she is hitting him/her on the mouth,ih-l[perf2],strict,full,True,True,True,True,True
 204,he/she is hitting him/her on the mouth,ih-l[perf2],loose,full,True,True,True,True,True
 204,he/she is hitting him/her on the mouth,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 204,he/she is hitting him/her on the mouth,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-204,he/she is hitting him/her on the mouth,ih-ika[perf2],strict,full,True,True,True,True,True
-204,he/she is hitting him/her on the mouth,ih-ika[perf2],loose,full,True,True,True,True,True
-204,he/she is hitting him/her on the mouth,ih-ika[perf2-inf2],strict,full,True,True,True,True,True
-204,he/she is hitting him/her on the mouth,ih-ika[perf2-inf2],loose,full,True,True,True,True,True
-204,he/she is hitting him/her on the mouth,ih[perf2],strict,full,True,True,True,True,True
-204,he/she is hitting him/her on the mouth,ih[perf2],loose,full,True,True,True,True,True
-204,he/she is hitting him/her on the mouth,ih[perf2-imp2],strict,full,True,True,True,True,True
-204,he/she is hitting him/her on the mouth,ih[perf2-imp2],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-inf4],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-inf4],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp2-inf4],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp2-inf4],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp4-inf4],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp4-inf4],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp6],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp6],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp6-inf2],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp6-inf2],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp6-inf3],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp6-inf3],loose,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp6-inf4],strict,full,True,True,True,True,True
+204,he/she is hitting him/her on the mouth,ih-l[perf2-imp6-inf4],loose,full,True,True,True,True,True
 205,he/she is moving it from one place to another,glottal-sk[perf2],strict,full,True,True,True,True,True
 205,he/she is moving it from one place to another,glottal-sk[perf2],loose,full,True,True,True,True,True
 205,he/she is moving it from one place to another,glottal-sk[perf2-inf2],strict,full,True,True,True,True,True
@@ -1197,8 +1337,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 297,he/she is stepping on him/her,v'vsk[perf2-imp3-inf2],loose,full,True,True,True,True,True
 298,he/she is playing ball,ih-vh,strict,full,True,True,True,True,True
 298,he/she is playing ball,ih-vh,loose,full,True,True,True,True,True
-298,he/she is playing ball,ih-vh-tl,strict,ending,False,False,False,False,True
-298,he/she is playing ball,ih-vh-tl,loose,ending,False,False,False,False,True
+298,he/she is playing ball,ih-vh[inf3],strict,full,True,True,True,True,True
+298,he/she is playing ball,ih-vh[inf3],loose,full,True,True,True,True,True
 300,he/she is taking a step,glottal-sk[perf2],strict,full,True,True,True,True,True
 300,he/she is taking a step,glottal-sk[perf2],loose,full,True,True,True,True,True
 300,he/she is taking a step,glottal-sk[perf2-inf2],strict,full,True,True,True,True,True
@@ -1237,8 +1377,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 309,he/she is starting,ih-vh,loose,full,True,True,True,True,True
 311,it’s boiling,ih-vh,strict,full,True,True,True,True,True
 311,it’s boiling,ih-vh,loose,full,True,True,True,True,True
-311,it’s boiling,ih-vh-tl,strict,full,True,True,True,True,True
-311,it’s boiling,ih-vh-tl,loose,full,True,True,True,True,True
+311,it’s boiling,ih-vh[inf3],strict,full,True,True,True,True,True
+311,it’s boiling,ih-vh[inf3],loose,full,True,True,True,True,True
 311,it’s boiling,aspectless,strict,full,True,True,True,True,True
 311,it’s boiling,aspectless,loose,full,True,True,True,True,True
 314,he/she is thanking him/her,apl,strict,full,True,True,True,True,True
@@ -1291,8 +1431,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 327,he/she is eating a meal,episodic,loose,full,True,True,True,True,True
 329,he/she is helping,ih-vh,strict,full,True,True,True,True,True
 329,he/she is helping,ih-vh,loose,full,True,True,True,True,True
-329,he/she is helping,ih-vh-tl,strict,ending,False,False,False,False,True
-329,he/she is helping,ih-vh-tl,loose,ending,False,False,False,False,True
+329,he/she is helping,ih-vh[inf3],strict,full,True,True,True,True,True
+329,he/she is helping,ih-vh[inf3],loose,full,True,True,True,True,True
 330,he/she is taking off his/her cap,glottal-sk[perf2],strict,full,True,True,True,True,True
 330,he/she is taking off his/her cap,glottal-sk[perf2],loose,full,True,True,True,True,True
 330,he/she is taking off his/her cap,glottal-sk[perf2-inf2],strict,full,True,True,True,True,True
@@ -1307,8 +1447,16 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 334,he/she is taking a seat,husk,loose,full,True,True,True,True,True
 335,he/she is shaking his/her head,ih-l,strict,full,True,True,True,True,True
 335,he/she is shaking his/her head,ih-l,loose,full,True,True,True,True,True
+335,he/she is shaking his/her head,ih-l[imp2],strict,full,True,True,True,True,True
+335,he/she is shaking his/her head,ih-l[imp2],loose,full,True,True,True,True,True
+335,he/she is shaking his/her head,ih-l[imp4],strict,full,True,True,True,True,True
+335,he/she is shaking his/her head,ih-l[imp4],loose,full,True,True,True,True,True
 335,he/she is shaking his/her head,ih-l[perf2],strict,full,True,True,True,True,True
 335,he/she is shaking his/her head,ih-l[perf2],loose,full,True,True,True,True,True
+335,he/she is shaking his/her head,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+335,he/she is shaking his/her head,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+335,he/she is shaking his/her head,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+335,he/she is shaking his/her head,ih-l[perf2-imp4],loose,full,True,True,True,True,True
 336,he/she is dancing,glottal-sk[perf2],strict,full,True,True,True,True,True
 336,he/she is dancing,glottal-sk[perf2],loose,full,True,True,True,True,True
 336,he/she is dancing,glottal-sk[perf2-inf2],strict,full,True,True,True,True,True
@@ -1369,8 +1517,6 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 355,they are gathering,cause[pres2-perf2],loose,full,True,True,True,True,True
 356,it’s lightning,ih-vh,strict,full,True,True,True,True,True
 356,it’s lightning,ih-vh,loose,full,True,True,True,True,True
-356,it’s lightning,ih-vh-tl,strict,ending,False,False,False,True,True
-356,it’s lightning,ih-vh-tl,loose,ending,False,False,False,True,True
 356,it’s lightning,aspectless,strict,full,True,True,True,True,True
 356,it’s lightning,aspectless,loose,full,True,True,True,True,True
 359,they are getting together,hvsk,strict,full,True,True,True,True,True
@@ -1437,10 +1583,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 377,he/she is making it crisp,cause[pres2],loose,full,True,True,True,True,True
 377,he/she is making it crisp,cause[pres2-perf3],strict,full,True,True,True,True,True
 377,he/she is making it crisp,cause[pres2-perf3],loose,full,True,True,True,True,True
-378,it’s becoming crisp,ih-lh,strict,full,True,True,True,True,True
-378,it’s becoming crisp,ih-lh,loose,full,True,True,True,True,True
-378,it’s becoming crisp,ih,strict,full,True,True,True,True,True
-378,it’s becoming crisp,ih,loose,full,True,True,True,True,True
+378,it’s becoming crisp,ih-l[perf3],strict,full,True,True,True,True,True
+378,it’s becoming crisp,ih-l[perf3],loose,full,True,True,True,True,True
 378,it’s becoming crisp,aspectless,strict,full,True,True,True,True,True
 378,it’s becoming crisp,aspectless,loose,full,True,True,True,True,True
 378,it’s becoming crisp,aspectless-h,strict,full,True,True,True,True,True
@@ -1457,8 +1601,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 381,he/she is following him/her,go[pres2],loose,full,True,True,True,True,True
 382,he/she is helping him/her,ih-vh,strict,full,True,True,True,True,True
 382,he/she is helping him/her,ih-vh,loose,full,True,True,True,True,True
-382,he/she is helping him/her,ih-vh-tl,strict,ending,False,False,False,False,True
-382,he/she is helping him/her,ih-vh-tl,loose,ending,False,False,False,False,True
+382,he/she is helping him/her,ih-vh[inf3],strict,full,True,True,True,True,True
+382,he/she is helping him/her,ih-vh[inf3],loose,full,True,True,True,True,True
 383,he/she is braiding it,around,strict,full,True,True,True,True,True
 383,he/she is braiding it,around,loose,full,True,True,True,True,True
 383,he/she is braiding it,around[imp2],strict,full,True,True,True,True,True
@@ -1597,14 +1741,38 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 412,he/she is mourning for him/her,ih-l,loose,full,True,True,True,True,True
 412,he/she is mourning for him/her,ih-l[inf2],strict,full,True,True,True,True,True
 412,he/she is mourning for him/her,ih-l[inf2],loose,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[inf3],strict,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[inf3],loose,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[imp2],strict,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[imp2],loose,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[imp4],strict,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[imp4],loose,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[imp4-inf3],loose,full,True,True,True,True,True
 412,he/she is mourning for him/her,ih-l[perf2],strict,full,True,True,True,True,True
 412,he/she is mourning for him/her,ih-l[perf2],loose,full,True,True,True,True,True
 412,he/she is mourning for him/her,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 412,he/she is mourning for him/her,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-412,he/she is mourning for him/her,ih[perf2],strict,full,True,True,True,True,True
-412,he/she is mourning for him/her,ih[perf2],loose,full,True,True,True,True,True
-412,he/she is mourning for him/her,ih[perf2-imp2],strict,full,True,True,True,True,True
-412,he/she is mourning for him/her,ih[perf2-imp2],loose,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+412,he/she is mourning for him/her,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
 413,he/she is rubbing him/her,rub,strict,full,True,True,True,True,True
 413,he/she is rubbing him/her,rub,loose,full,True,True,True,True,True
 414,he/she is erasing it,glottal-sk[perf2],strict,full,True,True,True,True,True
@@ -1653,18 +1821,66 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 425,he/she is hitting him/her on the head with it,ih-l,loose,full,True,True,True,True,True
 425,he/she is hitting him/her on the head with it,ih-l[inf2],strict,full,True,True,True,True,True
 425,he/she is hitting him/her on the head with it,ih-l[inf2],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[inf3],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[inf3],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[inf4],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[inf4],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp2],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp2],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp2-inf4],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp2-inf4],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp4],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp4],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp4-inf3],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp4-inf4],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp4-inf4],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp6],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp6],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp6-inf2],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp6-inf2],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp6-inf3],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp6-inf3],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp6-inf4],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[imp6-inf4],loose,full,True,True,True,True,True
 425,he/she is hitting him/her on the head with it,ih-l[perf2],strict,full,True,True,True,True,True
 425,he/she is hitting him/her on the head with it,ih-l[perf2],loose,full,True,True,True,True,True
 425,he/she is hitting him/her on the head with it,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 425,he/she is hitting him/her on the head with it,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-425,he/she is hitting him/her on the head with it,ih-ika[perf2],strict,full,True,True,True,True,True
-425,he/she is hitting him/her on the head with it,ih-ika[perf2],loose,full,True,True,True,True,True
-425,he/she is hitting him/her on the head with it,ih-ika[perf2-inf2],strict,full,True,True,True,True,True
-425,he/she is hitting him/her on the head with it,ih-ika[perf2-inf2],loose,full,True,True,True,True,True
-425,he/she is hitting him/her on the head with it,ih[perf2],strict,full,True,True,True,True,True
-425,he/she is hitting him/her on the head with it,ih[perf2],loose,full,True,True,True,True,True
-425,he/she is hitting him/her on the head with it,ih[perf2-imp2],strict,full,True,True,True,True,True
-425,he/she is hitting him/her on the head with it,ih[perf2-imp2],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-inf4],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-inf4],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp2-inf4],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp2-inf4],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp4-inf4],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp4-inf4],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp6],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp6],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp6-inf2],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp6-inf2],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp6-inf3],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp6-inf3],loose,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp6-inf4],strict,full,True,True,True,True,True
+425,he/she is hitting him/her on the head with it,ih-l[perf2-imp6-inf4],loose,full,True,True,True,True,True
 427,he/she is amazed,sk-s,strict,full,True,True,True,True,True
 427,he/she is amazed,sk-s,loose,full,True,True,True,True,True
 427,he/she is amazed,sk-s[inf2],strict,full,True,True,True,True,True
@@ -1681,18 +1897,66 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 429,he/she is hitting him/her on the abdomen with it,ih-l,loose,full,True,True,True,True,True
 429,he/she is hitting him/her on the abdomen with it,ih-l[inf2],strict,full,True,True,True,True,True
 429,he/she is hitting him/her on the abdomen with it,ih-l[inf2],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[inf3],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[inf3],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[inf4],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[inf4],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp2],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp2],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp2-inf4],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp2-inf4],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp4],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp4],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp4-inf3],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp4-inf4],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp4-inf4],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp6],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp6],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp6-inf2],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp6-inf2],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp6-inf3],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp6-inf3],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp6-inf4],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp6-inf4],loose,full,True,True,True,True,True
 429,he/she is hitting him/her on the abdomen with it,ih-l[perf2],strict,full,True,True,True,True,True
 429,he/she is hitting him/her on the abdomen with it,ih-l[perf2],loose,full,True,True,True,True,True
 429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-429,he/she is hitting him/her on the abdomen with it,ih-ika[perf2],strict,full,True,True,True,True,True
-429,he/she is hitting him/her on the abdomen with it,ih-ika[perf2],loose,full,True,True,True,True,True
-429,he/she is hitting him/her on the abdomen with it,ih-ika[perf2-inf2],strict,full,True,True,True,True,True
-429,he/she is hitting him/her on the abdomen with it,ih-ika[perf2-inf2],loose,full,True,True,True,True,True
-429,he/she is hitting him/her on the abdomen with it,ih[perf2],strict,full,True,True,True,True,True
-429,he/she is hitting him/her on the abdomen with it,ih[perf2],loose,full,True,True,True,True,True
-429,he/she is hitting him/her on the abdomen with it,ih[perf2-imp2],strict,full,True,True,True,True,True
-429,he/she is hitting him/her on the abdomen with it,ih[perf2-imp2],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-inf4],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-inf4],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp2-inf4],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp2-inf4],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp4-inf4],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp4-inf4],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp6],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp6],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp6-inf2],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp6-inf2],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp6-inf3],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp6-inf3],loose,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp6-inf4],strict,full,True,True,True,True,True
+429,he/she is hitting him/her on the abdomen with it,ih-l[perf2-imp6-inf4],loose,full,True,True,True,True,True
 430,he/she is placing his/her hand on him/her,glottal-sk[perf2],strict,full,True,True,True,True,True
 430,he/she is placing his/her hand on him/her,glottal-sk[perf2],loose,full,True,True,True,True,True
 430,he/she is placing his/her hand on him/her,glottal-sk[perf2-inf2],strict,full,True,True,True,True,True
@@ -1703,18 +1967,66 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 431,he/she is slapping him/her,ih-l,loose,full,True,True,True,True,True
 431,he/she is slapping him/her,ih-l[inf2],strict,full,True,True,True,True,True
 431,he/she is slapping him/her,ih-l[inf2],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[inf3],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[inf3],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[inf4],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[inf4],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp2],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp2],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp2-inf4],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp2-inf4],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp4],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp4],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp4-inf3],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp4-inf4],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp4-inf4],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp6],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp6],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp6-inf2],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp6-inf2],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp6-inf3],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp6-inf3],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp6-inf4],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[imp6-inf4],loose,full,True,True,True,True,True
 431,he/she is slapping him/her,ih-l[perf2],strict,full,True,True,True,True,True
 431,he/she is slapping him/her,ih-l[perf2],loose,full,True,True,True,True,True
 431,he/she is slapping him/her,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 431,he/she is slapping him/her,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-431,he/she is slapping him/her,ih-ika[perf2],strict,full,True,True,True,True,True
-431,he/she is slapping him/her,ih-ika[perf2],loose,full,True,True,True,True,True
-431,he/she is slapping him/her,ih-ika[perf2-inf2],strict,full,True,True,True,True,True
-431,he/she is slapping him/her,ih-ika[perf2-inf2],loose,full,True,True,True,True,True
-431,he/she is slapping him/her,ih[perf2],strict,full,True,True,True,True,True
-431,he/she is slapping him/her,ih[perf2],loose,full,True,True,True,True,True
-431,he/she is slapping him/her,ih[perf2-imp2],strict,full,True,True,True,True,True
-431,he/she is slapping him/her,ih[perf2-imp2],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-inf4],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-inf4],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp2-inf4],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp2-inf4],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp4-inf4],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp4-inf4],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp6],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp6],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp6-inf2],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp6-inf2],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp6-inf3],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp6-inf3],loose,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp6-inf4],strict,full,True,True,True,True,True
+431,he/she is slapping him/her,ih-l[perf2-imp6-inf4],loose,full,True,True,True,True,True
 432,he/she is backing up,go,strict,full,True,True,True,True,True
 432,he/she is backing up,go,loose,full,True,True,True,True,True
 432,he/she is backing up,go[perf2],strict,full,True,True,True,True,True
@@ -1847,14 +2159,38 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 458,he/she is touching him/her,ih-l,loose,full,True,True,True,True,True
 458,he/she is touching him/her,ih-l[inf2],strict,full,True,True,True,True,True
 458,he/she is touching him/her,ih-l[inf2],loose,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[inf3],strict,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[inf3],loose,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[imp2],strict,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[imp2],loose,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[imp4],strict,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[imp4],loose,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[imp4-inf3],loose,full,True,True,True,True,True
 458,he/she is touching him/her,ih-l[perf2],strict,full,True,True,True,True,True
 458,he/she is touching him/her,ih-l[perf2],loose,full,True,True,True,True,True
 458,he/she is touching him/her,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 458,he/she is touching him/her,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-458,he/she is touching him/her,ih[perf2],strict,full,True,True,True,True,True
-458,he/she is touching him/her,ih[perf2],loose,full,True,True,True,True,True
-458,he/she is touching him/her,ih[perf2-imp2],strict,full,True,True,True,True,True
-458,he/she is touching him/her,ih[perf2-imp2],loose,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+458,he/she is touching him/her,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
 459,he/she is drinking it up,sk-h,strict,full,True,True,True,True,True
 459,he/she is drinking it up,sk-h,loose,full,True,True,True,True,True
 459,he/she is drinking it up,sk-h[imp3],strict,full,True,True,True,True,True
@@ -1927,10 +2263,12 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 473,he/she is combing someone’s hair,glottal-sk[perf2-inf2],loose,full,True,True,True,True,True
 473,he/she is combing someone’s hair,o,strict,full,True,True,True,True,True
 473,he/she is combing someone’s hair,o,loose,full,True,True,True,True,True
-474,he/she is asking for it,ih-lh[imp2],strict,full,True,True,True,True,True
-474,he/she is asking for it,ih-lh[imp2],loose,full,True,True,True,True,True
-474,he/she is asking for it,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-474,he/she is asking for it,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
+474,he/she is asking for it,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+474,he/she is asking for it,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+474,he/she is asking for it,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+474,he/she is asking for it,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+474,he/she is asking for it,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+474,he/she is asking for it,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 475,he/she is joining,glottal-sk[perf2],strict,full,True,True,True,True,True
 475,he/she is joining,glottal-sk[perf2],loose,full,True,True,True,True,True
 475,he/she is joining,glottal-sk[perf2-inf2],strict,full,True,True,True,True,True
@@ -1943,14 +2281,24 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 477,he/she is shaking him/her,vsk-vnh,loose,full,True,True,True,True,True
 479,he/she is leading him/her,go[pres2],strict,full,True,True,True,True,True
 479,he/she is leading him/her,go[pres2],loose,full,True,True,True,True,True
-480,he/she is arguing,ih-lh[imp2],strict,full,True,True,True,True,True
-480,he/she is arguing,ih-lh[imp2],loose,full,True,True,True,True,True
-480,he/she is arguing,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-480,he/she is arguing,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
-480,he/she is arguing,ih,strict,full,True,True,True,True,True
-480,he/she is arguing,ih,loose,full,True,True,True,True,True
-480,he/she is arguing,ih[imp2],strict,full,True,True,True,True,True
-480,he/she is arguing,ih[imp2],loose,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3],strict,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3],loose,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-inf2],strict,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-inf2],loose,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-inf3],strict,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-inf3],loose,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-imp2],strict,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-imp2],loose,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-imp2-inf2],strict,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-imp2-inf2],loose,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-imp2-inf3],strict,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-imp2-inf3],loose,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+480,he/she is arguing,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 482,he/she is running,aspectless,strict,full,True,True,True,True,True
 482,he/she is running,aspectless,loose,full,True,True,True,True,True
 482,he/she is running,aspectless-s,strict,full,True,True,True,True,True
@@ -2069,12 +2417,14 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 498,he/she is growing,sk-s[imp3-inf3],loose,full,True,True,True,True,True
 502,he/she is inside,aspectless,strict,full,True,True,True,True,True
 502,he/she is inside,aspectless,loose,full,True,True,True,True,True
-504,he/she is distributing it,ih-lh[imp3],strict,full,True,True,True,True,True
-504,he/she is distributing it,ih-lh[imp3],loose,full,True,True,True,True,True
-504,he/she is distributing it,ih-lh[imp3-inf2],strict,full,True,True,True,True,True
-504,he/she is distributing it,ih-lh[imp3-inf2],loose,full,True,True,True,True,True
-504,he/she is distributing it,ih-lh[imp3-inf3],strict,full,True,True,True,True,True
-504,he/she is distributing it,ih-lh[imp3-inf3],loose,full,True,True,True,True,True
+504,he/she is distributing it,ih-l[perf3-imp5],strict,full,True,True,True,True,True
+504,he/she is distributing it,ih-l[perf3-imp5],loose,full,True,True,True,True,True
+504,he/she is distributing it,ih-l[perf3-imp5-inf2],strict,full,True,True,True,True,True
+504,he/she is distributing it,ih-l[perf3-imp5-inf2],loose,full,True,True,True,True,True
+504,he/she is distributing it,ih-l[perf3-imp5-inf3],strict,full,True,True,True,True,True
+504,he/she is distributing it,ih-l[perf3-imp5-inf3],loose,full,True,True,True,True,True
+504,he/she is distributing it,ih-l[perf3-imp5-inf4],strict,full,True,True,True,True,True
+504,he/she is distributing it,ih-l[perf3-imp5-inf4],loose,full,True,True,True,True,True
 507,he/she is waking up,become[imp2],strict,full,True,True,True,True,True
 507,he/she is waking up,become[imp2],loose,full,True,True,True,True,True
 507,he/she is waking up,become[imp2-inf4],strict,full,True,True,True,True,True
@@ -2103,10 +2453,12 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 515,it’s breaking,become[imp2],loose,full,True,True,True,True,True
 515,it’s breaking,become[imp2-inf3],strict,full,True,True,True,True,True
 515,it’s breaking,become[imp2-inf3],loose,full,True,True,True,True,True
-516,he/she is shooting him/her,ih-lh[imp2],strict,full,True,True,True,True,True
-516,he/she is shooting him/her,ih-lh[imp2],loose,full,True,True,True,True,True
-516,he/she is shooting him/her,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-516,he/she is shooting him/her,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
+516,he/she is shooting him/her,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+516,he/she is shooting him/her,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+516,he/she is shooting him/her,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+516,he/she is shooting him/her,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+516,he/she is shooting him/her,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+516,he/she is shooting him/her,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 517,he/she is taking a break,cause,strict,full,True,True,True,True,True
 517,he/she is taking a break,cause,loose,full,True,True,True,True,True
 517,he/she is taking a break,cause[perf3],strict,full,True,True,True,True,True
@@ -2131,18 +2483,66 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 523,he/she is greeting him/her,ih-l,loose,full,True,True,True,True,True
 523,he/she is greeting him/her,ih-l[inf2],strict,full,True,True,True,True,True
 523,he/she is greeting him/her,ih-l[inf2],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[inf3],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[inf3],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[inf4],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[inf4],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp2],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp2],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp2-inf4],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp2-inf4],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp4],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp4],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp4-inf3],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp4-inf4],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp4-inf4],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp6],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp6],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp6-inf2],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp6-inf2],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp6-inf3],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp6-inf3],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp6-inf4],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[imp6-inf4],loose,full,True,True,True,True,True
 523,he/she is greeting him/her,ih-l[perf2],strict,full,True,True,True,True,True
 523,he/she is greeting him/her,ih-l[perf2],loose,full,True,True,True,True,True
 523,he/she is greeting him/her,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 523,he/she is greeting him/her,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-523,he/she is greeting him/her,ih-ika[perf2],strict,full,True,True,True,True,True
-523,he/she is greeting him/her,ih-ika[perf2],loose,full,True,True,True,True,True
-523,he/she is greeting him/her,ih-ika[perf2-inf2],strict,full,True,True,True,True,True
-523,he/she is greeting him/her,ih-ika[perf2-inf2],loose,full,True,True,True,True,True
-523,he/she is greeting him/her,ih[perf2],strict,full,True,True,True,True,True
-523,he/she is greeting him/her,ih[perf2],loose,full,True,True,True,True,True
-523,he/she is greeting him/her,ih[perf2-imp2],strict,full,True,True,True,True,True
-523,he/she is greeting him/her,ih[perf2-imp2],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-inf4],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-inf4],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp2-inf4],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp2-inf4],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp4-inf4],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp4-inf4],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp6],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp6],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp6-inf2],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp6-inf2],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp6-inf3],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp6-inf3],loose,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp6-inf4],strict,full,True,True,True,True,True
+523,he/she is greeting him/her,ih-l[perf2-imp6-inf4],loose,full,True,True,True,True,True
 524,he/she is breaking it,cause,strict,full,True,True,True,True,True
 524,he/she is breaking it,cause,loose,full,True,True,True,True,True
 524,he/she is breaking it,cause[perf3],strict,full,True,True,True,True,True
@@ -2159,10 +2559,12 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 526,he/she is destroying it,terminative,loose,full,True,True,True,True,True
 526,he/she is destroying it,terminative-no-o,strict,full,True,True,True,True,True
 526,he/she is destroying it,terminative-no-o,loose,full,True,True,True,True,True
-529,he/she is entering it,ih-lh[imp2],strict,full,True,True,True,True,True
-529,he/she is entering it,ih-lh[imp2],loose,full,True,True,True,True,True
-529,he/she is entering it,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-529,he/she is entering it,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
+529,he/she is entering it,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+529,he/she is entering it,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+529,he/she is entering it,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+529,he/she is entering it,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+529,he/she is entering it,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+529,he/she is entering it,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 530,he/she is finding it,ih-vh,strict,full,True,True,True,True,True
 530,he/she is finding it,ih-vh,loose,full,True,True,True,True,True
 530,he/she is finding it,ih-vh[inf2],strict,full,True,True,True,True,True
@@ -2229,14 +2631,38 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 547,he/she is weeping,ih-l,loose,full,True,True,True,True,True
 547,he/she is weeping,ih-l[inf2],strict,full,True,True,True,True,True
 547,he/she is weeping,ih-l[inf2],loose,full,True,True,True,True,True
+547,he/she is weeping,ih-l[inf3],strict,full,True,True,True,True,True
+547,he/she is weeping,ih-l[inf3],loose,full,True,True,True,True,True
+547,he/she is weeping,ih-l[imp2],strict,full,True,True,True,True,True
+547,he/she is weeping,ih-l[imp2],loose,full,True,True,True,True,True
+547,he/she is weeping,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+547,he/she is weeping,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+547,he/she is weeping,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+547,he/she is weeping,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+547,he/she is weeping,ih-l[imp4],strict,full,True,True,True,True,True
+547,he/she is weeping,ih-l[imp4],loose,full,True,True,True,True,True
+547,he/she is weeping,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+547,he/she is weeping,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+547,he/she is weeping,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+547,he/she is weeping,ih-l[imp4-inf3],loose,full,True,True,True,True,True
 547,he/she is weeping,ih-l[perf2],strict,full,True,True,True,True,True
 547,he/she is weeping,ih-l[perf2],loose,full,True,True,True,True,True
 547,he/she is weeping,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 547,he/she is weeping,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-547,he/she is weeping,ih[perf2],strict,full,True,True,True,True,True
-547,he/she is weeping,ih[perf2],loose,full,True,True,True,True,True
-547,he/she is weeping,ih[perf2-imp2],strict,full,True,True,True,True,True
-547,he/she is weeping,ih[perf2-imp2],loose,full,True,True,True,True,True
+547,he/she is weeping,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+547,he/she is weeping,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+547,he/she is weeping,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+547,he/she is weeping,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+547,he/she is weeping,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+547,he/she is weeping,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+547,he/she is weeping,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+547,he/she is weeping,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+547,he/she is weeping,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+547,he/she is weeping,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+547,he/she is weeping,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+547,he/she is weeping,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+547,he/she is weeping,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+547,he/she is weeping,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
 548,he/she is being married,cause,strict,full,True,True,True,True,True
 548,he/she is being married,cause,loose,full,True,True,True,True,True
 548,he/she is being married,cause[perf3],strict,full,True,True,True,True,True
@@ -2321,14 +2747,24 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 562,he/she is tickling him/her,eat,loose,full,True,True,True,True,True
 564,he/she is squatting,husk,strict,full,True,True,True,True,True
 564,he/she is squatting,husk,loose,full,True,True,True,True,True
-565,he/she is tying it,ih-lh[imp2],strict,full,True,True,True,True,True
-565,he/she is tying it,ih-lh[imp2],loose,full,True,True,True,True,True
-565,he/she is tying it,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-565,he/she is tying it,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
-565,he/she is tying it,ih,strict,full,True,True,True,True,True
-565,he/she is tying it,ih,loose,full,True,True,True,True,True
-565,he/she is tying it,ih[imp2],strict,full,True,True,True,True,True
-565,he/she is tying it,ih[imp2],loose,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3],strict,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3],loose,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-inf2],strict,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-inf2],loose,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-inf3],strict,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-inf3],loose,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-imp2],strict,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-imp2],loose,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-imp2-inf2],strict,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-imp2-inf2],loose,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-imp2-inf3],strict,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-imp2-inf3],loose,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+565,he/she is tying it,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 566,he/she is untying it,ih-vh,strict,full,True,True,True,True,True
 566,he/she is untying it,ih-vh,loose,full,True,True,True,True,True
 566,he/she is untying it,ih-vh[inf2],strict,full,True,True,True,True,True
@@ -2459,14 +2895,24 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 591,he/she is taking off his/her socks,rev-gi,loose,full,True,True,True,True,True
 591,he/she is taking off his/her socks,rev-i,strict,ending,False,False,False,False,False
 591,he/she is taking off his/her socks,rev-i,loose,full,True,True,True,True,True
-592,he/she is putting on his/her socks,ih-lh[imp2],strict,full,True,True,True,True,True
-592,he/she is putting on his/her socks,ih-lh[imp2],loose,full,True,True,True,True,True
-592,he/she is putting on his/her socks,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-592,he/she is putting on his/her socks,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
-592,he/she is putting on his/her socks,ih,strict,full,True,True,True,True,True
-592,he/she is putting on his/her socks,ih,loose,full,True,True,True,True,True
-592,he/she is putting on his/her socks,ih[imp2],strict,full,True,True,True,True,True
-592,he/she is putting on his/her socks,ih[imp2],loose,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3],strict,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3],loose,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-inf2],strict,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-inf2],loose,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-inf3],strict,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-inf3],loose,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-imp2],strict,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-imp2],loose,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-imp2-inf2],strict,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-imp2-inf2],loose,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-imp2-inf3],strict,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-imp2-inf3],loose,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+592,he/she is putting on his/her socks,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 593,he/she is changing his/her socks,ih-vh[imperf2],strict,full,True,True,True,True,True
 593,he/she is changing his/her socks,ih-vh[imperf2],loose,full,True,True,True,True,True
 593,he/she is changing his/her socks,ih-vh[imperf2-inf2],strict,full,True,True,True,True,True
@@ -2523,10 +2969,12 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 603,they are adjourning,sk-s[imp3-inf2],loose,full,True,True,True,True,True
 603,they are adjourning,sk-s[imp3-inf3],strict,full,True,True,True,True,True
 603,they are adjourning,sk-s[imp3-inf3],loose,full,True,True,True,True,True
-604,he/she is shooting at him/her,ih-lh[imp2],strict,full,True,True,True,True,True
-604,he/she is shooting at him/her,ih-lh[imp2],loose,full,True,True,True,True,True
-604,he/she is shooting at him/her,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-604,he/she is shooting at him/her,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
+604,he/she is shooting at him/her,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+604,he/she is shooting at him/her,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+604,he/she is shooting at him/her,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+604,he/she is shooting at him/her,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+604,he/she is shooting at him/her,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+604,he/she is shooting at him/her,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 605,he/she is splitting it,sk-h,strict,full,True,True,True,True,True
 605,he/she is splitting it,sk-h,loose,full,True,True,True,True,True
 605,he/she is splitting it,sk-h[imp3],strict,full,True,True,True,True,True
@@ -2539,14 +2987,24 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 606,he/she is sprinkling it,glottal-sk[perf2-inf2],loose,full,True,True,True,True,True
 606,he/she is sprinkling it,eat,strict,full,True,True,True,True,True
 606,he/she is sprinkling it,eat,loose,full,True,True,True,True,True
-607,he/she is counting it,ih-lh[imp2],strict,full,True,True,True,True,True
-607,he/she is counting it,ih-lh[imp2],loose,full,True,True,True,True,True
-607,he/she is counting it,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-607,he/she is counting it,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
-607,he/she is counting it,ih,strict,full,True,True,True,True,True
-607,he/she is counting it,ih,loose,full,True,True,True,True,True
-607,he/she is counting it,ih[imp2],strict,full,True,True,True,True,True
-607,he/she is counting it,ih[imp2],loose,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3],strict,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3],loose,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-inf2],strict,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-inf2],loose,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-inf3],strict,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-inf3],loose,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-imp2],strict,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-imp2],loose,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-imp2-inf2],strict,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-imp2-inf2],loose,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-imp2-inf3],strict,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-imp2-inf3],loose,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+607,he/she is counting it,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 608,he/she is cursing him/her,glottal-sk[perf2],strict,full,True,True,True,True,True
 608,he/she is cursing him/her,glottal-sk[perf2],loose,full,True,True,True,True,True
 608,he/she is cursing him/her,glottal-sk[perf2-inf2],strict,full,True,True,True,True,True
@@ -2557,18 +3015,66 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 609,he/she is clapping his/her hands,ih-l,loose,full,True,True,True,True,True
 609,he/she is clapping his/her hands,ih-l[inf2],strict,full,True,True,True,True,True
 609,he/she is clapping his/her hands,ih-l[inf2],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[inf3],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[inf3],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[inf4],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[inf4],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp2],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp2],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp2-inf4],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp2-inf4],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp4],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp4],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp4-inf3],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp4-inf4],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp4-inf4],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp6],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp6],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp6-inf2],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp6-inf2],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp6-inf3],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp6-inf3],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp6-inf4],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[imp6-inf4],loose,full,True,True,True,True,True
 609,he/she is clapping his/her hands,ih-l[perf2],strict,full,True,True,True,True,True
 609,he/she is clapping his/her hands,ih-l[perf2],loose,full,True,True,True,True,True
 609,he/she is clapping his/her hands,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 609,he/she is clapping his/her hands,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-609,he/she is clapping his/her hands,ih-ika[perf2],strict,full,True,True,True,True,True
-609,he/she is clapping his/her hands,ih-ika[perf2],loose,full,True,True,True,True,True
-609,he/she is clapping his/her hands,ih-ika[perf2-inf2],strict,full,True,True,True,True,True
-609,he/she is clapping his/her hands,ih-ika[perf2-inf2],loose,full,True,True,True,True,True
-609,he/she is clapping his/her hands,ih[perf2],strict,full,True,True,True,True,True
-609,he/she is clapping his/her hands,ih[perf2],loose,full,True,True,True,True,True
-609,he/she is clapping his/her hands,ih[perf2-imp2],strict,full,True,True,True,True,True
-609,he/she is clapping his/her hands,ih[perf2-imp2],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-inf4],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-inf4],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp2-inf4],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp2-inf4],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp4-inf4],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp4-inf4],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp6],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp6],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp6-inf2],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp6-inf2],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp6-inf3],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp6-inf3],loose,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp6-inf4],strict,full,True,True,True,True,True
+609,he/she is clapping his/her hands,ih-l[perf2-imp6-inf4],loose,full,True,True,True,True,True
 610,he/she is getting exhausted,sk-s,strict,full,True,True,True,True,True
 610,he/she is getting exhausted,sk-s,loose,full,True,True,True,True,True
 610,he/she is getting exhausted,sk-s[inf2],strict,full,True,True,True,True,True
@@ -2717,16 +3223,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 633,to come out of the nose,cause[pres2],loose,full,True,True,True,True,True
 633,to come out of the nose,ih-l,strict,full,True,True,True,True,True
 633,to come out of the nose,ih-l,loose,full,True,True,True,True,True
-633,to come out of the nose,ih-lh,strict,full,True,True,True,True,True
-633,to come out of the nose,ih-lh,loose,full,True,True,True,True,True
-633,to come out of the nose,ih-ika,strict,full,True,True,True,True,True
-633,to come out of the nose,ih-ika,loose,full,True,True,True,True,True
-633,to come out of the nose,ih,strict,full,True,True,True,True,True
-633,to come out of the nose,ih,loose,full,True,True,True,True,True
 633,to come out of the nose,ih-vh,strict,full,True,True,True,True,True
 633,to come out of the nose,ih-vh,loose,full,True,True,True,True,True
-633,to come out of the nose,ih-vh-tl,strict,ending,False,True,True,True,True
-633,to come out of the nose,ih-vh-tl,loose,ending,False,True,True,True,True
 633,to come out of the nose,ih-vnh,strict,full,True,True,True,True,True
 633,to come out of the nose,ih-vnh,loose,full,True,True,True,True,True
 633,to come out of the nose,scared,strict,full,True,True,True,True,True
@@ -2879,14 +3377,24 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 769,he/she is spinning it,cause[pres2],loose,full,True,True,True,True,True
 769,he/she is spinning it,cause[pres2-perf3],strict,full,True,True,True,True,True
 769,he/she is spinning it,cause[pres2-perf3],loose,full,True,True,True,True,True
-770,he/she is strapping it,ih-lh[imp2],strict,full,True,True,True,True,True
-770,he/she is strapping it,ih-lh[imp2],loose,full,True,True,True,True,True
-770,he/she is strapping it,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-770,he/she is strapping it,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
-770,he/she is strapping it,ih,strict,full,True,True,True,True,True
-770,he/she is strapping it,ih,loose,full,True,True,True,True,True
-770,he/she is strapping it,ih[imp2],strict,full,True,True,True,True,True
-770,he/she is strapping it,ih[imp2],loose,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3],strict,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3],loose,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-inf2],strict,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-inf2],loose,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-inf3],strict,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-inf3],loose,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-imp2],strict,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-imp2],loose,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-imp2-inf2],strict,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-imp2-inf2],loose,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-imp2-inf3],strict,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-imp2-inf3],loose,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+770,he/she is strapping it,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 772,he/she is standing,aspectless,strict,full,True,True,True,True,True
 772,he/she is standing,aspectless,loose,full,True,True,True,True,True
 775,he/she is pitying him/her,become[imp2],strict,full,True,True,True,True,True
@@ -3017,10 +3525,12 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 791,he/she is rowing,sk-s[inf2],loose,full,True,True,True,True,True
 791,he/she is rowing,sk-s[imp3-inf2],strict,full,True,True,True,True,True
 791,he/she is rowing,sk-s[imp3-inf2],loose,full,True,True,True,True,True
-796,he/she is pecking it,ih-lh[imp2],strict,full,True,True,True,True,True
-796,he/she is pecking it,ih-lh[imp2],loose,full,True,True,True,True,True
-796,he/she is pecking it,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-796,he/she is pecking it,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
+796,he/she is pecking it,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+796,he/she is pecking it,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+796,he/she is pecking it,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+796,he/she is pecking it,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+796,he/she is pecking it,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+796,he/she is pecking it,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 798,he/she is putting it into a container,cause,strict,full,True,True,True,True,True
 798,he/she is putting it into a container,cause,loose,full,True,True,True,True,True
 798,he/she is putting it into a container,cause[perf3],strict,full,True,True,True,True,True
@@ -3029,6 +3539,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 798,he/she is putting it into a container,cause[pres2],loose,full,True,True,True,True,True
 798,he/she is putting it into a container,cause[pres2-perf3],strict,full,True,True,True,True,True
 798,he/she is putting it into a container,cause[pres2-perf3],loose,full,True,True,True,True,True
+803,he/she is sleeping,ih-l[imp4],strict,full,True,True,True,True,True
+803,he/she is sleeping,ih-l[imp4],loose,full,True,True,True,True,True
 803,he/she is sleeping,ih-vh[imperf2],strict,full,True,True,True,True,True
 803,he/she is sleeping,ih-vh[imperf2],loose,full,True,True,True,True,True
 803,he/she is sleeping,ih-vnh[imperf2],strict,full,True,True,True,True,True
@@ -3045,6 +3557,12 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 804,he/she is gathering it,cause[pres2-perf2],loose,full,True,True,True,True,True
 809,he/she is piling it up,husk,strict,full,True,True,True,True,True
 809,he/she is piling it up,husk,loose,full,True,True,True,True,True
+810,he/she is tying him/her up,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+810,he/she is tying him/her up,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+810,he/she is tying him/her up,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+810,he/she is tying him/her up,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+810,he/she is tying him/her up,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+810,he/she is tying him/her up,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
 811,he/she is putting it in a hole or a container,hvsk[perf2],strict,full,True,True,True,True,True
 811,he/she is putting it in a hole or a container,hvsk[perf2],loose,full,True,True,True,True,True
 811,he/she is putting it in a hole or a container,hvsk[perf2-inf2],strict,full,True,True,True,True,True
@@ -3073,8 +3591,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 818,he/she is eating it,e-aka,loose,full,True,True,True,True,True
 820,he/she is ripping it,ih-vh,strict,full,True,True,True,True,True
 820,he/she is ripping it,ih-vh,loose,full,True,True,True,True,True
-820,he/she is ripping it,ih-vh-tl,strict,ending,False,False,False,False,True
-820,he/she is ripping it,ih-vh-tl,loose,ending,False,False,False,False,True
+820,he/she is ripping it,ih-vh[inf3],strict,full,True,True,True,True,True
+820,he/she is ripping it,ih-vh[inf3],loose,full,True,True,True,True,True
 821,he/she is scratching him/her,sk-s[imp2-inf2],strict,full,True,True,True,True,True
 821,he/she is scratching him/her,sk-s[imp2-inf2],loose,full,True,True,True,True,True
 821,he/she is scratching him/her,sk-s[imp4-inf2],strict,full,True,True,True,True,True
@@ -3083,10 +3601,12 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 821,he/she is scratching him/her,sk-s[imp5-inf2],loose,full,True,True,True,True,True
 821,he/she is scratching him/her,sk-s[imp3-inf2],strict,full,True,True,True,True,True
 821,he/she is scratching him/her,sk-s[imp3-inf2],loose,full,True,True,True,True,True
-823,he/she is pricking him/her,ih-lh[imp2],strict,full,True,True,True,True,True
-823,he/she is pricking him/her,ih-lh[imp2],loose,full,True,True,True,True,True
-823,he/she is pricking him/her,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-823,he/she is pricking him/her,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
+823,he/she is pricking him/her,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+823,he/she is pricking him/her,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+823,he/she is pricking him/her,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+823,he/she is pricking him/her,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+823,he/she is pricking him/her,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+823,he/she is pricking him/her,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 824,he/she is wringing it out,cause,strict,full,True,True,True,True,True
 824,he/she is wringing it out,cause,loose,full,True,True,True,True,True
 824,he/she is wringing it out,cause[perf3],strict,full,True,True,True,True,True
@@ -3163,22 +3683,46 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 840,it is burning,aspectless,loose,full,True,True,True,True,True
 841,he/she is taking it out of a container,ih-vh,strict,full,True,True,True,True,True
 841,he/she is taking it out of a container,ih-vh,loose,full,True,True,True,True,True
-841,he/she is taking it out of a container,ih-vh-tl,strict,ending,False,False,False,False,True
-841,he/she is taking it out of a container,ih-vh-tl,loose,ending,False,False,False,False,True
+841,he/she is taking it out of a container,ih-vh[inf3],strict,full,True,True,True,True,True
+841,he/she is taking it out of a container,ih-vh[inf3],loose,full,True,True,True,True,True
 842,it is dying,become[imp2],strict,full,True,True,True,True,True
 842,it is dying,become[imp2],loose,full,True,True,True,True,True
 844,he/she is spanking him/her,ih-l,strict,full,True,True,True,True,True
 844,he/she is spanking him/her,ih-l,loose,full,True,True,True,True,True
 844,he/she is spanking him/her,ih-l[inf2],strict,full,True,True,True,True,True
 844,he/she is spanking him/her,ih-l[inf2],loose,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[inf3],strict,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[inf3],loose,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[imp2],strict,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[imp2],loose,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[imp4],strict,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[imp4],loose,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[imp4-inf3],loose,full,True,True,True,True,True
 844,he/she is spanking him/her,ih-l[perf2],strict,full,True,True,True,True,True
 844,he/she is spanking him/her,ih-l[perf2],loose,full,True,True,True,True,True
 844,he/she is spanking him/her,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 844,he/she is spanking him/her,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-844,he/she is spanking him/her,ih[perf2],strict,full,True,True,True,True,True
-844,he/she is spanking him/her,ih[perf2],loose,full,True,True,True,True,True
-844,he/she is spanking him/her,ih[perf2-imp2],strict,full,True,True,True,True,True
-844,he/she is spanking him/her,ih[perf2-imp2],loose,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+844,he/she is spanking him/her,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
 845,he/she is hoeing it,hear,strict,full,True,True,True,True,True
 845,he/she is hoeing it,hear,loose,full,True,True,True,True,True
 848,he/she is stopping by,cause,strict,full,True,True,True,True,True
@@ -3263,14 +3807,38 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 864,he/she is beating him/her up,ih-l,loose,full,True,True,True,True,True
 864,he/she is beating him/her up,ih-l[inf2],strict,full,True,True,True,True,True
 864,he/she is beating him/her up,ih-l[inf2],loose,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[inf3],strict,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[inf3],loose,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[imp2],strict,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[imp2],loose,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[imp4],strict,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[imp4],loose,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[imp4-inf3],loose,full,True,True,True,True,True
 864,he/she is beating him/her up,ih-l[perf2],strict,full,True,True,True,True,True
 864,he/she is beating him/her up,ih-l[perf2],loose,full,True,True,True,True,True
 864,he/she is beating him/her up,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 864,he/she is beating him/her up,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-864,he/she is beating him/her up,ih[perf2],strict,full,True,True,True,True,True
-864,he/she is beating him/her up,ih[perf2],loose,full,True,True,True,True,True
-864,he/she is beating him/her up,ih[perf2-imp2],strict,full,True,True,True,True,True
-864,he/she is beating him/her up,ih[perf2-imp2],loose,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+864,he/she is beating him/her up,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
 870,he/she is putting it in a hole or a container,v'vsk,strict,full,True,True,True,True,True
 870,he/she is putting it in a hole or a container,v'vsk,loose,full,True,True,True,True,True
 870,he/she is putting it in a hole or a container,v'vsk[inf2],strict,full,True,True,True,True,True
@@ -3351,8 +3919,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 882,he/she is taking it somewhere by hand,go[pres2],loose,full,True,True,True,True,True
 883,he/she is peeling him/her,ih-vh,strict,full,True,True,True,True,True
 883,he/she is peeling him/her,ih-vh,loose,full,True,True,True,True,True
-883,he/she is peeling him/her,ih-vh-tl,strict,ending,False,False,False,False,True
-883,he/she is peeling him/her,ih-vh-tl,loose,ending,False,False,False,False,True
+883,he/she is peeling him/her,ih-vh[inf3],strict,full,True,True,True,True,True
+883,he/she is peeling him/her,ih-vh[inf3],loose,full,True,True,True,True,True
 884,he/she is getting some liquid,glottal-sk[perf2],strict,full,True,True,True,True,True
 884,he/she is getting some liquid,glottal-sk[perf2],loose,full,True,True,True,True,True
 884,he/she is getting some liquid,glottal-sk[perf2-inf2],strict,full,True,True,True,True,True
@@ -3427,20 +3995,70 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 904,he/she is handling some liquid,go-around,loose,full,True,True,True,True,True
 908,he/she is handling it,go-around,strict,full,True,True,True,True,True
 908,he/she is handling it,go-around,loose,full,True,True,True,True,True
-909,he/she hates him/her,ih-lh[imp2],strict,full,True,True,True,True,True
-909,he/she hates him/her,ih-lh[imp2],loose,full,True,True,True,True,True
-909,he/she hates him/her,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-909,he/she hates him/her,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
-909,he/she hates him/her,ih-lh[imp2-inf3],strict,full,True,True,True,True,True
-909,he/she hates him/her,ih-lh[imp2-inf3],loose,full,True,True,True,True,True
-909,he/she hates him/her,ih-ika,strict,full,True,True,True,True,True
-909,he/she hates him/her,ih-ika,loose,full,True,True,True,True,True
-909,he/she hates him/her,ih-ika[inf2],strict,full,True,True,True,True,True
-909,he/she hates him/her,ih-ika[inf2],loose,full,True,True,True,True,True
-909,he/she hates him/her,ih,strict,full,True,True,True,True,True
-909,he/she hates him/her,ih,loose,full,True,True,True,True,True
-909,he/she hates him/her,ih[imp2],strict,full,True,True,True,True,True
-909,he/she hates him/her,ih[imp2],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-inf2],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-inf2],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-inf3],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-inf3],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-inf4],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-inf4],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp2],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp2],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp2-inf2],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp2-inf2],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp2-inf3],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp2-inf3],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp2-inf4],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp2-inf4],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp4-inf4],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp4-inf4],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp6],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp6],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp6-inf2],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp6-inf2],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp6-inf3],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp6-inf3],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp6-inf4],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf3-imp6-inf4],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-inf2],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-inf2],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-inf3],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-inf3],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-inf4],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-inf4],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp2],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp2],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp2-inf2],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp2-inf2],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp2-inf3],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp2-inf3],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp2-inf4],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp2-inf4],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp4],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp4],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp4-inf2],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp4-inf2],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp4-inf3],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp4-inf3],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp4-inf4],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp4-inf4],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp6],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp6],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp6-inf2],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp6-inf2],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp6-inf3],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp6-inf3],loose,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp6-inf4],strict,full,True,True,True,True,True
+909,he/she hates him/her,ih-l[perf4-imp6-inf4],loose,full,True,True,True,True,True
 910,he/she is setting up a bed,glottal-sk[perf2],strict,full,True,True,True,True,True
 910,he/she is setting up a bed,glottal-sk[perf2],loose,full,True,True,True,True,True
 910,he/she is setting up a bed,glottal-sk[perf2-inf2],strict,full,True,True,True,True,True
@@ -3573,8 +4191,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 940,he/she is falling from an upright position,become[imp2-inf5],loose,full,True,True,True,True,True
 941,he/she is cleaning him/her,ih-vh,strict,full,True,True,True,True,True
 941,he/she is cleaning him/her,ih-vh,loose,full,True,True,True,True,True
-941,he/she is cleaning him/her,ih-vh-tl,strict,ending,False,False,False,False,True
-941,he/she is cleaning him/her,ih-vh-tl,loose,ending,False,False,False,False,True
+941,he/she is cleaning him/her,ih-vh[inf3],strict,full,True,True,True,True,True
+941,he/she is cleaning him/her,ih-vh[inf3],loose,full,True,True,True,True,True
 942,he/she is hammering it,glottal-sk,strict,full,True,True,True,True,True
 942,he/she is hammering it,glottal-sk,loose,full,True,True,True,True,True
 942,he/she is hammering it,glottal-sk[inf2],strict,full,True,True,True,True,True
@@ -3585,14 +4203,24 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 942,he/she is hammering it,glottal-sk[perf2-inf2],loose,full,True,True,True,True,True
 942,he/she is hammering it,o,strict,full,True,True,True,True,True
 942,he/she is hammering it,o,loose,full,True,True,True,True,True
-946,he/she is tying up a leg,ih-lh[imp2],strict,full,True,True,True,True,True
-946,he/she is tying up a leg,ih-lh[imp2],loose,full,True,True,True,True,True
-946,he/she is tying up a leg,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-946,he/she is tying up a leg,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
-946,he/she is tying up a leg,ih,strict,full,True,True,True,True,True
-946,he/she is tying up a leg,ih,loose,full,True,True,True,True,True
-946,he/she is tying up a leg,ih[imp2],strict,full,True,True,True,True,True
-946,he/she is tying up a leg,ih[imp2],loose,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3],strict,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3],loose,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-inf2],strict,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-inf2],loose,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-inf3],strict,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-inf3],loose,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-imp2],strict,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-imp2],loose,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-imp2-inf2],strict,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-imp2-inf2],loose,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-imp2-inf3],strict,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-imp2-inf3],loose,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+946,he/she is tying up a leg,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 949,he/she is tossing about,go-around,strict,full,True,True,True,True,True
 949,he/she is tossing about,go-around,loose,full,True,True,True,True,True
 950,he/she is giving him/her an object,apl,strict,full,True,True,True,True,True
@@ -3607,14 +4235,24 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 955,he/she is pushing him/her,sk-h[imp3],loose,full,True,True,True,True,True
 955,he/she is pushing him/her,sk-yh,strict,full,True,True,True,True,True
 955,he/she is pushing him/her,sk-yh,loose,full,True,True,True,True,True
-956,he/she is rolling him/her,ih-lh[imp2],strict,full,True,True,True,True,True
-956,he/she is rolling him/her,ih-lh[imp2],loose,full,True,True,True,True,True
-956,he/she is rolling him/her,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-956,he/she is rolling him/her,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
-956,he/she is rolling him/her,ih,strict,full,True,True,True,True,True
-956,he/she is rolling him/her,ih,loose,full,True,True,True,True,True
-956,he/she is rolling him/her,ih[imp2],strict,full,True,True,True,True,True
-956,he/she is rolling him/her,ih[imp2],loose,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3],strict,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3],loose,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-inf2],strict,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-inf2],loose,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-inf3],strict,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-inf3],loose,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-imp2],strict,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-imp2],loose,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-imp2-inf2],strict,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-imp2-inf2],loose,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-imp2-inf3],strict,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-imp2-inf3],loose,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+956,he/she is rolling him/her,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 960,he/she is attaching the object behind it,v'vsk,strict,full,True,True,True,True,True
 960,he/she is attaching the object behind it,v'vsk,loose,full,True,True,True,True,True
 960,he/she is attaching the object behind it,v'vsk[inf2],strict,full,True,True,True,True,True
@@ -3627,6 +4265,10 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 965,it’s dripping,ih-l[perf2],loose,full,True,True,True,True,True
 965,it’s dripping,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 965,it’s dripping,ih-l[perf2-inf2],loose,full,True,True,True,True,True
+965,it’s dripping,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+965,it’s dripping,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+965,it’s dripping,ih-l[perf2-inf4],strict,full,True,True,True,True,True
+965,it’s dripping,ih-l[perf2-inf4],loose,full,True,True,True,True,True
 965,it’s dripping,scared,strict,full,True,True,True,True,True
 965,it’s dripping,scared,loose,full,True,True,True,True,True
 968,he/she is whistling,become[imp2],strict,full,True,True,True,True,True
@@ -3641,20 +4283,70 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 970,it’s hanging,aspectless,loose,full,True,True,True,True,True
 970,it’s hanging,aspectless-h,strict,full,True,True,True,True,True
 970,it’s hanging,aspectless-h,loose,full,True,True,True,True,True
-973,he/she is stabbing him/her,ih-lh[imp2],strict,full,True,True,True,True,True
-973,he/she is stabbing him/her,ih-lh[imp2],loose,full,True,True,True,True,True
-973,he/she is stabbing him/her,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-973,he/she is stabbing him/her,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
-973,he/she is stabbing him/her,ih-lh[imp2-inf3],strict,full,True,True,True,True,True
-973,he/she is stabbing him/her,ih-lh[imp2-inf3],loose,full,True,True,True,True,True
-973,he/she is stabbing him/her,ih-ika,strict,full,True,True,True,True,True
-973,he/she is stabbing him/her,ih-ika,loose,full,True,True,True,True,True
-973,he/she is stabbing him/her,ih-ika[inf2],strict,full,True,True,True,True,True
-973,he/she is stabbing him/her,ih-ika[inf2],loose,full,True,True,True,True,True
-973,he/she is stabbing him/her,ih,strict,full,True,True,True,True,True
-973,he/she is stabbing him/her,ih,loose,full,True,True,True,True,True
-973,he/she is stabbing him/her,ih[imp2],strict,full,True,True,True,True,True
-973,he/she is stabbing him/her,ih[imp2],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-inf2],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-inf2],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-inf3],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-inf3],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-inf4],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-inf4],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp2],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp2],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp2-inf2],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp2-inf2],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp2-inf3],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp2-inf3],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp2-inf4],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp2-inf4],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp4-inf4],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp4-inf4],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp6],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp6],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp6-inf2],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp6-inf2],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp6-inf3],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp6-inf3],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp6-inf4],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf3-imp6-inf4],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-inf2],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-inf2],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-inf3],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-inf3],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-inf4],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-inf4],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp2],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp2],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp2-inf2],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp2-inf2],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp2-inf3],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp2-inf3],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp2-inf4],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp2-inf4],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp4],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp4],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp4-inf2],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp4-inf2],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp4-inf3],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp4-inf3],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp4-inf4],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp4-inf4],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp6],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp6],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp6-inf2],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp6-inf2],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp6-inf3],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp6-inf3],loose,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp6-inf4],strict,full,True,True,True,True,True
+973,he/she is stabbing him/her,ih-l[perf4-imp6-inf4],loose,full,True,True,True,True,True
 976,he/she is hanging it up,hvsk[perf2],strict,full,True,True,True,True,True
 976,he/she is hanging it up,hvsk[perf2],loose,full,True,True,True,True,True
 976,he/she is hanging it up,hvsk[perf2-inf2],strict,full,True,True,True,True,True
@@ -3717,6 +4409,14 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 993,he/she is howling,hvsk[inf3],loose,full,True,True,True,True,True
 1001,he/she is setting a post into the ground,v'vsk,strict,full,True,True,True,True,True
 1001,he/she is setting a post into the ground,v'vsk,loose,full,True,True,True,True,True
+1003,he/she has a nosebleed,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+1003,he/she has a nosebleed,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+1003,he/she has a nosebleed,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+1003,he/she has a nosebleed,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+1003,he/she has a nosebleed,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+1003,he/she has a nosebleed,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
+1003,he/she has a nosebleed,ih-l[perf2-imp4-inf4],strict,full,True,True,True,True,True
+1003,he/she has a nosebleed,ih-l[perf2-imp4-inf4],loose,full,True,True,True,True,True
 1014,he/she is leading him/her by the hand,go,strict,full,True,True,True,True,True
 1014,he/she is leading him/her by the hand,go,loose,full,True,True,True,True,True
 1014,he/she is leading him/her by the hand,go[perf2],strict,full,True,True,True,True,True
@@ -3789,18 +4489,66 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 1038,he/she is batting it,ih-l,loose,full,True,True,True,True,True
 1038,he/she is batting it,ih-l[inf2],strict,full,True,True,True,True,True
 1038,he/she is batting it,ih-l[inf2],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[inf3],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[inf3],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[inf4],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[inf4],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp2],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp2],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp2-inf4],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp2-inf4],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp4],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp4],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp4-inf3],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp4-inf4],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp4-inf4],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp6],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp6],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp6-inf2],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp6-inf2],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp6-inf3],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp6-inf3],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp6-inf4],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[imp6-inf4],loose,full,True,True,True,True,True
 1038,he/she is batting it,ih-l[perf2],strict,full,True,True,True,True,True
 1038,he/she is batting it,ih-l[perf2],loose,full,True,True,True,True,True
 1038,he/she is batting it,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 1038,he/she is batting it,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-1038,he/she is batting it,ih-ika[perf2],strict,full,True,True,True,True,True
-1038,he/she is batting it,ih-ika[perf2],loose,full,True,True,True,True,True
-1038,he/she is batting it,ih-ika[perf2-inf2],strict,full,True,True,True,True,True
-1038,he/she is batting it,ih-ika[perf2-inf2],loose,full,True,True,True,True,True
-1038,he/she is batting it,ih[perf2],strict,full,True,True,True,True,True
-1038,he/she is batting it,ih[perf2],loose,full,True,True,True,True,True
-1038,he/she is batting it,ih[perf2-imp2],strict,full,True,True,True,True,True
-1038,he/she is batting it,ih[perf2-imp2],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-inf4],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-inf4],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp2-inf4],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp2-inf4],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp4-inf4],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp4-inf4],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp6],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp6],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp6-inf2],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp6-inf2],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp6-inf3],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp6-inf3],loose,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp6-inf4],strict,full,True,True,True,True,True
+1038,he/she is batting it,ih-l[perf2-imp6-inf4],loose,full,True,True,True,True,True
 1040,he/she is saying to him/her,apl,strict,full,True,True,True,True,True
 1040,he/she is saying to him/her,apl,loose,full,True,True,True,True,True
 1040,he/she is saying to him/her,apl[imp2],strict,full,True,True,True,True,True
@@ -3939,16 +4687,50 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 1070,he/she is hitting him/her,ih-l,loose,full,True,True,True,True,True
 1070,he/she is hitting him/her,ih-l[inf2],strict,full,True,True,True,True,True
 1070,he/she is hitting him/her,ih-l[inf2],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[inf3],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[inf3],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp2],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp2],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp2-inf2],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp2-inf2],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp2-inf3],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp2-inf3],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp4],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp4],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp4-inf2],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp4-inf2],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp4-inf3],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp4-inf3],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp6],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp6],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp6-inf2],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp6-inf2],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp6-inf3],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[imp6-inf3],loose,full,True,True,True,True,True
 1070,he/she is hitting him/her,ih-l[perf2],strict,full,True,True,True,True,True
 1070,he/she is hitting him/her,ih-l[perf2],loose,full,True,True,True,True,True
 1070,he/she is hitting him/her,ih-l[perf2-inf2],strict,full,True,True,True,True,True
 1070,he/she is hitting him/her,ih-l[perf2-inf2],loose,full,True,True,True,True,True
-1070,he/she is hitting him/her,ih-ika[perf2-inf2],strict,full,True,True,True,True,True
-1070,he/she is hitting him/her,ih-ika[perf2-inf2],loose,full,True,True,True,True,True
-1070,he/she is hitting him/her,ih[perf2],strict,full,True,True,True,True,True
-1070,he/she is hitting him/her,ih[perf2],loose,full,True,True,True,True,True
-1070,he/she is hitting him/her,ih[perf2-imp2],strict,full,True,True,True,True,True
-1070,he/she is hitting him/her,ih[perf2-imp2],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-inf3],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-inf3],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp2],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp2],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp2-inf2],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp2-inf2],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp2-inf3],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp2-inf3],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp4],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp4],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp4-inf2],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp4-inf2],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp4-inf3],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp4-inf3],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp6],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp6],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp6-inf2],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp6-inf2],loose,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp6-inf3],strict,full,True,True,True,True,True
+1070,he/she is hitting him/her,ih-l[perf2-imp6-inf3],loose,full,True,True,True,True,True
 1071,he/she is cooking it,cause,strict,full,True,True,True,True,True
 1071,he/she is cooking it,cause,loose,full,True,True,True,True,True
 1071,he/she is cooking it,cause[perf3],strict,full,True,True,True,True,True
@@ -4073,8 +4855,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 1224,he/she is making him/her angry,cause[pres2-perf3],loose,full,True,True,True,True,True
 1227,he/she is rooting it out,ih-vh,strict,full,True,True,True,True,True
 1227,he/she is rooting it out,ih-vh,loose,full,True,True,True,True,True
-1227,he/she is rooting it out,ih-vh-tl,strict,full,True,True,True,True,True
-1227,he/she is rooting it out,ih-vh-tl,loose,full,True,True,True,True,True
+1227,he/she is rooting it out,ih-vh[inf3],strict,full,True,True,True,True,True
+1227,he/she is rooting it out,ih-vh[inf3],loose,full,True,True,True,True,True
 1229,he/she is cold,become[imp2],strict,full,True,True,True,True,True
 1229,he/she is cold,become[imp2],loose,full,True,True,True,True,True
 1230,he/she is speaking,become[imp2],strict,full,True,True,True,True,True
@@ -4409,8 +5191,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 1505,he/she is standing in liquid,aspectless-s,loose,full,True,True,True,True,True
 1507,he/she wants it,ih-vh,strict,full,True,True,True,True,True
 1507,he/she wants it,ih-vh,loose,full,True,True,True,True,True
-1507,he/she wants it,ih-vh-tl,strict,ending,False,False,False,False,True
-1507,he/she wants it,ih-vh-tl,loose,ending,False,False,False,False,True
+1507,he/she wants it,ih-vh[inf3],strict,full,True,True,True,True,True
+1507,he/she wants it,ih-vh[inf3],loose,full,True,True,True,True,True
 1508,he/she is willing,aspectless,strict,full,True,True,True,True,True
 1508,he/she is willing,aspectless,loose,full,True,True,True,True,True
 1514,he/she is becoming warm,sk-s,strict,full,True,True,True,True,True
@@ -4555,18 +5337,30 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 1599,he/she is not having luck at hunting,go,loose,full,True,True,True,True,True
 1599,he/she is not having luck at hunting,go[pres2],strict,full,True,True,True,True,True
 1599,he/she is not having luck at hunting,go[pres2],loose,full,True,True,True,True,True
-1602,he/she is losing his/her way,ih-lh,strict,full,True,True,True,True,True
-1602,he/she is losing his/her way,ih-lh,loose,full,True,True,True,True,True
-1602,he/she is losing his/her way,ih-lh[inf2],strict,full,True,True,True,True,True
-1602,he/she is losing his/her way,ih-lh[inf2],loose,full,True,True,True,True,True
-1602,he/she is losing his/her way,ih-lh[imp2],strict,full,True,True,True,True,True
-1602,he/she is losing his/her way,ih-lh[imp2],loose,full,True,True,True,True,True
-1602,he/she is losing his/her way,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-1602,he/she is losing his/her way,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
-1602,he/she is losing his/her way,ih,strict,full,True,True,True,True,True
-1602,he/she is losing his/her way,ih,loose,full,True,True,True,True,True
-1602,he/she is losing his/her way,ih[imp2],strict,full,True,True,True,True,True
-1602,he/she is losing his/her way,ih[imp2],loose,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3],strict,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3],loose,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-inf2],strict,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-inf2],loose,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-inf3],strict,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-inf3],loose,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp2],strict,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp2],loose,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp2-inf2],strict,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp2-inf2],loose,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp2-inf3],strict,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp2-inf3],loose,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp3],strict,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp3],loose,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp3-inf2],strict,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp3-inf2],loose,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp3-inf3],strict,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp3-inf3],loose,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+1602,he/she is losing his/her way,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 1604,he/she is making a mistake,cause,strict,full,True,True,True,True,True
 1604,he/she is making a mistake,cause,loose,full,True,True,True,True,True
 1604,he/she is making a mistake,cause[perf3],strict,full,True,True,True,True,True
@@ -4633,10 +5427,12 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 1671,he/she is coughing,sk-h[imp3-inf2],loose,full,True,True,True,True,True
 1677,he/she is wearing pants,aspectless,strict,full,True,True,True,True,True
 1677,he/she is wearing pants,aspectless,loose,full,True,True,True,True,True
-1681,he/she is going to bed,ih-lh[imp2],strict,full,True,True,True,True,True
-1681,he/she is going to bed,ih-lh[imp2],loose,full,True,True,True,True,True
-1681,he/she is going to bed,ih-lh[imp2-inf2],strict,full,True,True,True,True,True
-1681,he/she is going to bed,ih-lh[imp2-inf2],loose,full,True,True,True,True,True
+1681,he/she is going to bed,ih-l[perf3-imp4],strict,full,True,True,True,True,True
+1681,he/she is going to bed,ih-l[perf3-imp4],loose,full,True,True,True,True,True
+1681,he/she is going to bed,ih-l[perf3-imp4-inf2],strict,full,True,True,True,True,True
+1681,he/she is going to bed,ih-l[perf3-imp4-inf2],loose,full,True,True,True,True,True
+1681,he/she is going to bed,ih-l[perf3-imp4-inf3],strict,full,True,True,True,True,True
+1681,he/she is going to bed,ih-l[perf3-imp4-inf3],loose,full,True,True,True,True,True
 1683,he/she is thirsty,hear,strict,full,True,True,True,True,True
 1683,he/she is thirsty,hear,loose,full,True,True,True,True,True
 1684,he/she is becoming enraged,sk-s,strict,full,True,True,True,True,True

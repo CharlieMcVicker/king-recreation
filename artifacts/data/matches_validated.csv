@@ -2,7 +2,7 @@ corpus_id,definition,class,strictness,scope
 4,it’s bouncing,go[perf2-inf2],strict,reconstructs
 5,he/she is limping,go[perf3-inf2],strict,reconstructs
 6,he/she is bouncing it,cause,strict,reconstructs
-7,he/she is putting on a belt,ih,strict,reconstructs
+7,he/she is putting on a belt,ih-l[perf3-inf2],strict,reconstructs
 10,he/she is praying,cause,strict,reconstructs
 16,he/she is fanning himself/herself,apl-active,strict,reconstructs
 18,he/she is visiting,go-around,strict,reconstructs
@@ -49,7 +49,7 @@ corpus_id,definition,class,strictness,scope
 94,it’s pouring into a container,become[inf3],strict,reconstructs
 95,he/she is drawing a liquid out of a container,ih-vh[inf2],strict,reconstructs
 96,he/she is pouring a liquid into a container,cause,strict,reconstructs
-98,he/she is crying,ih[perf2-imp2],strict,reconstructs
+98,he/she is crying,ih-l[imp2-inf2],strict,reconstructs
 100,he/she is bragging,sk-s[imp6],strict,reconstructs
 101,he/she is catching up with him/her,sk-h[imp3],strict,reconstructs
 107,he/she is acting silly,ih-vnh,strict,reconstructs
@@ -93,14 +93,14 @@ corpus_id,definition,class,strictness,scope
 186,he/she is changing his/her shirt,change,strict,reconstructs
 187,he/she is taking his/her shirt off,rev-e,strict,reconstructs
 189,he/she is putting on a shirt,o,strict,reconstructs
-191,he/she is wrestling,ih,strict,reconstructs
+191,he/she is wrestling,ih-l[perf3-inf2],strict,reconstructs
 192,he/she is interpreting it,cause,strict,reconstructs
 195,he/she is building a house,apl-active,strict,reconstructs
 196,he/she is leaving,rev-gi,strict,reconstructs
 197,he/she is starting it,cause,strict,reconstructs
 198,he/she is carrying it on his/her shoulder,go,strict,reconstructs
 200,he/she is putting it in liquid,eat,strict,reconstructs
-204,he/she is hitting him/her on the mouth,ih-ika[perf2],strict,reconstructs
+204,he/she is hitting him/her on the mouth,ih-l[imp6-inf4],strict,reconstructs
 205,he/she is moving it from one place to another,change,strict,reconstructs
 206,he/she is setting it down,hvsk,strict,reconstructs
 206,he/she is setting it down,hvsk[inf2],strict,reconstructs
@@ -155,7 +155,7 @@ corpus_id,definition,class,strictness,scope
 307,he/she is stopping,cause,strict,reconstructs
 308,he/she is stopping him/her,cause,strict,reconstructs
 309,he/she is starting,ih-vh,strict,reconstructs
-311,it’s boiling,ih-vh-tl,strict,reconstructs
+311,it’s boiling,ih-vh[inf3],strict,reconstructs
 314,he/she is thanking him/her,apl[imp4],strict,reconstructs
 315,he/she is happy,become[imp2],strict,reconstructs
 317,he/she is exchanging it,eat,strict,reconstructs
@@ -171,7 +171,7 @@ corpus_id,definition,class,strictness,scope
 331,he/she is washing his/her hair,apl-active[imp2-inf2],strict,reconstructs
 332,he/she is putting on a cap,hear,strict,reconstructs
 334,he/she is taking a seat,husk,strict,reconstructs
-335,he/she is shaking his/her head,ih-l,strict,reconstructs
+335,he/she is shaking his/her head,ih-l[imp2],strict,reconstructs
 336,he/she is dancing,rev-gi,strict,reconstructs
 337,he/she is permitting him/her,apl[imp2],strict,reconstructs
 338,he/she is nodding his/her head,sk-yh,strict,reconstructs
@@ -188,8 +188,7 @@ corpus_id,definition,class,strictness,scope
 373,he/she is setting a trap,v'vsk[perf2-imp3-inf2],strict,reconstructs
 374,he/she is lifting him/her,hear,strict,reconstructs
 377,he/she is making it crisp,cause,strict,reconstructs
-378,it’s becoming crisp,ih-lh,strict,reconstructs
-378,it’s becoming crisp,ih,strict,reconstructs
+378,it’s becoming crisp,ih-l[perf3],strict,reconstructs
 380,he/she is drawing a line,hvsk[perf2],strict,reconstructs
 381,he/she is following him/her,go,strict,reconstructs
 382,he/she is helping him/her,ih-vh,strict,reconstructs
@@ -205,7 +204,7 @@ corpus_id,definition,class,strictness,scope
 401,he/she is afraid,scared,strict,reconstructs
 405,he/she is committing a crime,become[imp2-inf3],strict,reconstructs
 411,he/she is gnawing it,eat,strict,reconstructs
-412,he/she is mourning for him/her,ih[perf2-imp2],strict,reconstructs
+412,he/she is mourning for him/her,ih-l[imp2-inf2],strict,reconstructs
 413,he/she is rubbing him/her,rub,strict,reconstructs
 416,it’s fading,become[inf3],strict,reconstructs
 417,he/she is digging it,sk-s[imp5-inf2],strict,reconstructs
@@ -213,11 +212,11 @@ corpus_id,definition,class,strictness,scope
 421,he/she is catching him/her,rev-e,strict,reconstructs
 423,it’s getting shorter,become[imp2-inf3],strict,reconstructs
 424,he/she is breaking it,sk-s[imp2-inf2],strict,reconstructs
-425,he/she is hitting him/her on the head with it,ih-ika[perf2],strict,reconstructs
+425,he/she is hitting him/her on the head with it,ih-l[imp6-inf4],strict,reconstructs
 427,he/she is amazed,sk-s,strict,reconstructs
-429,he/she is hitting him/her on the abdomen with it,ih-ika[perf2],strict,reconstructs
+429,he/she is hitting him/her on the abdomen with it,ih-l[imp6-inf4],strict,reconstructs
 430,he/she is placing his/her hand on him/her,eat,strict,reconstructs
-431,he/she is slapping him/her,ih-ika[perf2],strict,reconstructs
+431,he/she is slapping him/her,ih-l[imp6-inf4],strict,reconstructs
 432,he/she is backing up,go,strict,reconstructs
 436,he/she is roping him/her,eat,strict,reconstructs
 437,he/she is building a fence,around[perf2-imp2-inf2],strict,reconstructs
@@ -235,17 +234,17 @@ corpus_id,definition,class,strictness,scope
 454,he/she is mixing it in,v'vsk[perf2-imp3-inf2],strict,reconstructs
 455,it smells,become,strict,reconstructs
 455,it smells,aspectless,strict,reconstructs
-458,he/she is touching him/her,ih[perf2-imp2],strict,reconstructs
+458,he/she is touching him/her,ih-l[imp2-inf2],strict,reconstructs
 459,he/she is drinking it up,terminative-no-o,strict,reconstructs
 463,he/she is holding his/her breath,cause,strict,reconstructs
 464,he/she is mooring a boat,eat,strict,reconstructs
 467,it’s steaming,go,strict,reconstructs
 469,it’s exploding,rev-gi,strict,reconstructs
 472,he/she is kissing him/her,v'vsk[pres2-imperf2-imp2],strict,reconstructs
-474,he/she is asking for it,ih-lh[imp2],strict,reconstructs
+474,he/she is asking for it,ih-l[perf3-imp4-inf2],strict,reconstructs
 477,he/she is shaking him/her,episodic[imp2],strict,reconstructs
 479,he/she is leading him/her,go[pres2],strict,reconstructs
-480,he/she is arguing,ih,strict,reconstructs
+480,he/she is arguing,ih-l[perf3-inf2],strict,reconstructs
 483,he/she is racing,glottal-sk[perf2],strict,reconstructs
 486,he/she is loaning it to him/her,cause,strict,reconstructs
 487,he/she is borrowing him/her,sk-s[imp2],strict,reconstructs
@@ -261,19 +260,19 @@ corpus_id,definition,class,strictness,scope
 497,he/she is raising him/her,cause,strict,reconstructs
 498,he/she is growing,sk-s,strict,reconstructs
 502,he/she is inside,aspectless,strict,reconstructs
-504,he/she is distributing it,ih-lh[imp3-inf3],strict,reconstructs
+504,he/she is distributing it,ih-l[perf3-imp5-inf4],strict,reconstructs
 507,he/she is waking up,become[imp2-inf4],strict,reconstructs
 509,he/she is waking him/her up,cause,strict,reconstructs
 511,he/she is putting him/her inside,cause,strict,reconstructs
 513,he/she is getting it,ih-vh,strict,reconstructs
 515,it’s breaking,become[imp2-inf3],strict,reconstructs
-516,he/she is shooting him/her,ih-lh[imp2],strict,reconstructs
+516,he/she is shooting him/her,ih-l[perf3-imp4-inf2],strict,reconstructs
 519,he/she is whittling it,hvsk[perf2-inf3],strict,reconstructs
-523,he/she is greeting him/her,ih-ika[perf2],strict,reconstructs
+523,he/she is greeting him/her,ih-l[imp6-inf4],strict,reconstructs
 524,he/she is breaking it,cause,strict,reconstructs
 526,he/she is destroying it,terminative,strict,reconstructs
 526,he/she is destroying it,terminative-no-o,strict,reconstructs
-529,he/she is entering it,ih-lh[imp2],strict,reconstructs
+529,he/she is entering it,ih-l[perf3-imp4-inf2],strict,reconstructs
 530,he/she is finding it,ih-vh[inf2],strict,reconstructs
 531,he/she is taking it somewhere,ih-vh,strict,reconstructs
 539,he/she is making an X,cause,strict,reconstructs
@@ -282,7 +281,7 @@ corpus_id,definition,class,strictness,scope
 543,he/she is dodging,cause,strict,reconstructs
 544,he/she is performing baptism,o,strict,reconstructs
 545,he/she is giving up,sk-s,strict,reconstructs
-547,he/she is weeping,ih[perf2-imp2],strict,reconstructs
+547,he/she is weeping,ih-l[imp2-inf2],strict,reconstructs
 550,he/she is setting a price,cause,strict,reconstructs
 552,he/she is rocking,apl-active,strict,reconstructs
 553,he/she is drawing a picture of him/her,cause,strict,reconstructs
@@ -293,7 +292,7 @@ corpus_id,definition,class,strictness,scope
 559,he/she is putting on clothes,o,strict,reconstructs
 561,he/she is putting fuel into a fire,hvsk[perf2],strict,reconstructs
 562,he/she is tickling him/her,eat,strict,reconstructs
-565,he/she is tying it,ih,strict,reconstructs
+565,he/she is tying it,ih-l[perf3-inf2],strict,reconstructs
 566,he/she is untying it,ih-vh[inf2],strict,reconstructs
 567,he/she is looking after him/her,go-around,strict,reconstructs
 568,he/she is becoming blind,become[imp2-inf4],strict,reconstructs
@@ -314,17 +313,17 @@ corpus_id,definition,class,strictness,scope
 589,he/she is taking off his/her gloves,rev-e,strict,reconstructs
 590,he/she is putting on his/her gloves,hear,strict,reconstructs
 591,he/she is taking off his/her socks,rev-gi,strict,reconstructs
-592,he/she is putting on his/her socks,ih,strict,reconstructs
+592,he/she is putting on his/her socks,ih-l[perf3-inf2],strict,reconstructs
 593,he/she is changing his/her socks,ih-vh[imperf2-inf2],strict,reconstructs
 594,he/she is aiming at him/her,cause,strict,reconstructs
 599,he/she is playing with him/her,cause,strict,reconstructs
 600,he/she is playing,hvsk[inf2],strict,reconstructs
-604,he/she is shooting at him/her,ih-lh[imp2],strict,reconstructs
+604,he/she is shooting at him/her,ih-l[perf3-imp4-inf2],strict,reconstructs
 605,he/she is splitting it,sk-yh,strict,reconstructs
 606,he/she is sprinkling it,eat,strict,reconstructs
-607,he/she is counting it,ih,strict,reconstructs
+607,he/she is counting it,ih-l[perf3-inf2],strict,reconstructs
 608,he/she is cursing him/her,eat,strict,reconstructs
-609,he/she is clapping his/her hands,ih-ika[perf2],strict,reconstructs
+609,he/she is clapping his/her hands,ih-l[imp6-inf4],strict,reconstructs
 610,he/she is getting exhausted,sk-s,strict,reconstructs
 611,it’s barking,sk-s[imp4-inf2],strict,reconstructs
 612,he/she is scheduling a time,cause,strict,reconstructs
@@ -344,9 +343,6 @@ corpus_id,definition,class,strictness,scope
 633,to come out of the nose,cause,strict,reconstructs
 633,to come out of the nose,cause[pres2],strict,reconstructs
 633,to come out of the nose,ih-l,strict,reconstructs
-633,to come out of the nose,ih-lh,strict,reconstructs
-633,to come out of the nose,ih-ika,strict,reconstructs
-633,to come out of the nose,ih,strict,reconstructs
 633,to come out of the nose,ih-vh,strict,reconstructs
 633,to come out of the nose,ih-vnh,strict,reconstructs
 633,to come out of the nose,scared,strict,reconstructs
@@ -378,7 +374,7 @@ corpus_id,definition,class,strictness,scope
 766,he/she is removing it from a hanging position,rev-e,strict,reconstructs
 767,he/she is turning it,cause,strict,reconstructs
 769,he/she is spinning it,cause,strict,reconstructs
-770,he/she is strapping it,ih,strict,reconstructs
+770,he/she is strapping it,ih-l[perf3-inf2],strict,reconstructs
 772,he/she is standing,aspectless,strict,reconstructs
 775,he/she is pitying him/her,become[imp2],strict,reconstructs
 776,he/she is dropping him/her,cause,strict,reconstructs
@@ -386,7 +382,7 @@ corpus_id,definition,class,strictness,scope
 784,he/she is baking it,hvsk[inf2],strict,reconstructs
 788,he/she is hanging up it,v'vsk[pres2-imperf2-imp2],strict,reconstructs
 791,he/she is rowing,sk-s[inf2],strict,reconstructs
-796,he/she is pecking it,ih-lh[imp2],strict,reconstructs
+796,he/she is pecking it,ih-l[perf3-imp4-inf2],strict,reconstructs
 798,he/she is putting it into a container,cause,strict,reconstructs
 803,he/she is sleeping,ih-vnh[imperf2-imp2-inf3],strict,reconstructs
 804,he/she is gathering it,cause[perf2],strict,reconstructs
@@ -398,7 +394,7 @@ corpus_id,definition,class,strictness,scope
 818,he/she is eating it,e-aka,strict,reconstructs
 820,he/she is ripping it,ih-vh,strict,reconstructs
 821,he/she is scratching him/her,sk-s[imp5-inf2],strict,reconstructs
-823,he/she is pricking him/her,ih-lh[imp2],strict,reconstructs
+823,he/she is pricking him/her,ih-l[perf3-imp4-inf2],strict,reconstructs
 824,he/she is wringing it out,cause,strict,reconstructs
 825,he/she is stinging it,sk-h,strict,reconstructs
 826,he/she is leaving a living thing behind,glottal-sk[perf2],strict,reconstructs
@@ -421,7 +417,7 @@ corpus_id,definition,class,strictness,scope
 857,he/she is falling from an elevated position,sk-s,strict,reconstructs
 859,it’s lacking,become[imp2],strict,reconstructs
 862,he/she is chopping it,sk-h,strict,reconstructs
-864,he/she is beating him/her up,ih[perf2-imp2],strict,reconstructs
+864,he/she is beating him/her up,ih-l[imp2-inf2],strict,reconstructs
 870,he/she is putting it in a hole or a container,v'vsk[perf2-imp3-inf2],strict,reconstructs
 871,he/she is selling it,go[perf2-inf2],strict,reconstructs
 873,he/she is hiring him/her,v'vsk[perf2-imp3-inf2],strict,reconstructs
@@ -449,7 +445,7 @@ corpus_id,definition,class,strictness,scope
 903,he/she is holding some liquid,aspectless-h,strict,reconstructs
 904,he/she is handling some liquid,go-around,strict,reconstructs
 908,he/she is handling it,go-around,strict,reconstructs
-909,he/she hates him/her,ih-ika,strict,reconstructs
+909,he/she hates him/her,ih-l[perf4-imp6-inf4],strict,reconstructs
 910,he/she is setting up a bed,eat,strict,reconstructs
 913,he/she is pleading,eat,strict,reconstructs
 918,he/she is hunting,go-around,strict,reconstructs
@@ -465,16 +461,16 @@ corpus_id,definition,class,strictness,scope
 940,he/she is falling from an upright position,become[imp2-inf4],strict,reconstructs
 941,he/she is cleaning him/her,ih-vh,strict,reconstructs
 942,he/she is hammering it,o,strict,reconstructs
-946,he/she is tying up a leg,ih,strict,reconstructs
+946,he/she is tying up a leg,ih-l[perf3-inf2],strict,reconstructs
 949,he/she is tossing about,go-around,strict,reconstructs
 950,he/she is giving him/her an object,apl[imp2],strict,reconstructs
 955,he/she is pushing him/her,sk-yh,strict,reconstructs
-956,he/she is rolling him/her,ih,strict,reconstructs
+956,he/she is rolling him/her,ih-l[perf3-inf2],strict,reconstructs
 960,he/she is attaching the object behind it,v'vsk[perf2-inf2],strict,reconstructs
 969,he/she is piling it up,hvsk[perf2],strict,reconstructs
 970,it’s hanging,aspectless,strict,reconstructs
 970,it’s hanging,aspectless-h,strict,reconstructs
-973,he/she is stabbing him/her,ih-ika,strict,reconstructs
+973,he/she is stabbing him/her,ih-l[perf4-imp6-inf4],strict,reconstructs
 976,he/she is hanging it up,hvsk[perf2],strict,reconstructs
 977,he/she is joking,ih-vnh[imp2-inf2],strict,reconstructs
 979,he/she is bathing him/her,o,strict,reconstructs
@@ -492,7 +488,7 @@ corpus_id,definition,class,strictness,scope
 1024,it’s falling,sk-s,strict,reconstructs
 1027,he/she is writing it,hear,strict,reconstructs
 1030,he/she is pulling a trigger,rev-e,strict,reconstructs
-1038,he/she is batting it,ih-ika[perf2],strict,reconstructs
+1038,he/she is batting it,ih-l[imp6-inf4],strict,reconstructs
 1040,he/she is saying to him/her,apl[imp3],strict,reconstructs
 1041,it’s swelling,sk-s,strict,reconstructs
 1043,he/she is building a fire,hvsk[perf2],strict,reconstructs
@@ -509,6 +505,7 @@ corpus_id,definition,class,strictness,scope
 1064,it’s leaking,sk-s[imp3-inf2],strict,reconstructs
 1067,he/she is alive,aspectless,strict,reconstructs
 1067,he/she is alive,aspectless-h,strict,reconstructs
+1070,he/she is hitting him/her,ih-l[imp6-inf2],strict,reconstructs
 1071,he/she is cooking it,cause,strict,reconstructs
 1076,he/she is frying it,hvsk[perf2],strict,reconstructs
 1078,he/she is melting it,cause,strict,reconstructs
@@ -522,7 +519,7 @@ corpus_id,definition,class,strictness,scope
 1088,he/she is soaking it,hvsk[perf2],strict,reconstructs
 1221,he/she is ascending an incline,sk-s,strict,reconstructs
 1224,he/she is making him/her angry,cause,strict,reconstructs
-1227,he/she is rooting it out,ih-vh-tl,strict,reconstructs
+1227,he/she is rooting it out,ih-vh[inf3],strict,reconstructs
 1229,he/she is cold,become[imp2],strict,reconstructs
 1230,he/she is speaking,become[imp2],strict,reconstructs
 1231,he/she is prying it,ih-vh,strict,reconstructs
@@ -582,7 +579,7 @@ corpus_id,definition,class,strictness,scope
 1593,he/she is watching him/her,aspectless[inf2],strict,reconstructs
 1597,it’s foggy,aspectless,strict,reconstructs
 1599,he/she is not having luck at hunting,go,strict,reconstructs
-1602,he/she is losing his/her way,ih,strict,reconstructs
+1602,he/she is losing his/her way,ih-l[perf3-inf2],strict,reconstructs
 1604,he/she is making a mistake,cause,strict,reconstructs
 1612,he/she is whining,cause,strict,reconstructs
 1613,he/she is wearing a ring,aspectless,strict,reconstructs
