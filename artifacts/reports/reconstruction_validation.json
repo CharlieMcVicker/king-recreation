@@ -1,5 +1,5 @@
 {
-    "summary": "617/2110",
+    "summary": "617/2111",
     "failures": [
         {
             "definition": "it\u2019s bouncing",
@@ -6197,7 +6197,7 @@
             "failed_forms": [
                 "perfective: expected 'tuteyonh', got ['teuteyhonh', 'tuteyhonh']"
             ],
-            "class": "hvsk-o*",
+            "class": "hvsk[inf4]",
             "corpus_id": 546
         },
         {
@@ -12873,6 +12873,14 @@
                 "infinitive: expected 'wuwakhoht', got ['wiuwakhht', 'wuwakhht']"
             ],
             "class": "hvsk[perf2-inf2]",
+            "corpus_id": 1774
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "perfective: expected 'wuwakhan', got ['wiuwakhahan', 'wuwakhahan']"
+            ],
+            "class": "hvsk[perf2-inf4]",
             "corpus_id": 1774
         },
         {
