@@ -36,10 +36,6 @@ class ExpandedClassPattern:
         return default
 
 
-# Alias for backward compatibility during refactor
-ClassPatterns = ExpandedClassPattern
-
-
 @dataclass
 class ClassMacro:
     """
