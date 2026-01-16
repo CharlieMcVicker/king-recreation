@@ -6,24 +6,7 @@ import os
 import argparse
 
 
-def plot_class_distribution(csv_path, output_prefix):
-    """Generates a bar chart showing verbs matched by each class."""
-    if not os.path.exists(csv_path):
-        print(f"Warning: {csv_path} not found. Skipping class distribution plot.")
-        return
-
-    df = pd.read_csv(csv_path)
-    if df.empty:
-        return
-
-    # Prepare data for plotting
-    value_vars = [
-        "strict_ending",
-        "strict_full",
-        "strict_reconstructs",
-        "loose_ending",
-        "loose_full",
-    ]
+def _plot_class_distribution(df, value_vars: list[str], output_prefix: str):
     # Filter for existing columns to avoid errors if some are missing
     value_vars = [v for v in value_vars if v in df.columns]
 
@@ -51,6 +34,34 @@ def plot_class_distribution(csv_path, output_prefix):
     df_filtered = df_melted[df_melted["class"].isin(active_classes)]
     if not df_filtered.empty:
         create_plot(df_filtered, "Filtered")
+
+
+def plot_class_distribution(csv_path, output_prefix):
+    """Generates a bar chart showing verbs matched by each class."""
+    if not os.path.exists(csv_path):
+        print(f"Warning: {csv_path} not found. Skipping class distribution plot.")
+        return
+
+    df = pd.read_csv(csv_path)
+    if df.empty:
+        return
+
+    plots = [
+        (
+            "all",
+            [
+                "strict_ending",
+                "strict_full",
+                "strict_reconstructs",
+                "loose_ending",
+                "loose_full",
+            ],
+        ),
+        ("reconstructs", ["strict_reconstructs"]),
+    ]
+
+    for prefix, vals in plots:
+        _plot_class_distribution(df, vals, output_prefix + "_" + prefix)
 
 
 def plot_verb_coverage(json_path, output_path):

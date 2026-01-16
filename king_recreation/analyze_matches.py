@@ -1,11 +1,10 @@
-from king_recreation.utils import CLASSES_PATH
+from king_recreation.pattern_registry import PatternRegistry
+from typing import Optional
 import csv
 import json
 import os
 import argparse
 from collections import defaultdict
-from king_recreation.utils import get_class_sort_key, CLASSES_PATH
-from king_recreation.stem_analysis import check_root_consistency
 
 
 def load_csv(path):
@@ -25,12 +24,10 @@ def save_json(path, data):
         json.dump(data, f, indent=4, sort_keys=True)
 
 
-def analyze_matches(classes_path=None):
+def analyze_matches(classes_path: Optional[str] = None):
     matches_path = "artifacts/data/matches_initial.csv"
     corpus_path = "artifacts/data/corpus.csv"
     stem_corpus_path = "artifacts/data/derived_roots.csv"
-    if classes_path is None:
-        classes_path = CLASSES_PATH
 
     if not os.path.exists(matches_path):
         print(f"Error: {matches_path} not found.")
@@ -38,25 +35,20 @@ def analyze_matches(classes_path=None):
     if not os.path.exists(corpus_path):
         print(f"Error: {corpus_path} not found.")
         return
-    if not os.path.exists(classes_path):
+    if classes_path and not os.path.exists(classes_path):
         print(f"Error: {classes_path} not found.")
         return
 
     matches = load_csv(matches_path)
     corpus = load_csv(corpus_path)
     stem_corpus = load_csv(stem_corpus_path) if os.path.exists(stem_corpus_path) else []
-    classes_data = load_csv(classes_path)
+    pattern_registry = PatternRegistry.get_instance()
+    pattern_registry.load_from_csv(classes_path)
 
-    classes_map = {row["class"]: row for row in classes_data}
     stem_corpus_map = {
         (row["corpus_id"] if "corpus_id" in row else row["definition"]): row
         for row in stem_corpus
     }
-
-    all_classes = sorted(
-        [row["class"] for row in classes_data if row["class"]],
-        key=get_class_sort_key,
-    )
 
     all_verbs = set(
         row["corpus_id"] if "corpus_id" in row else row["definition"] for row in corpus
@@ -119,18 +111,20 @@ def analyze_matches(classes_path=None):
 
     class_counts = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
     for row in filtered_matches.values():
-        class_counts[row["class"]][row["strictness"]][row["scope"]] += 1
+        class_counts[row["class"].split("[")[0]][row["strictness"]][row["scope"]] += 1
 
     class_match_data = []
-    for cls in all_classes:
+    for macro in pattern_registry.macros:
         class_match_data.append(
             {
-                "class": cls,
-                "strict_ending": class_counts[cls]["strict"]["ending"],
-                "strict_full": class_counts[cls]["strict"]["full"],
-                "strict_reconstructs": class_counts[cls]["strict"]["reconstructs"],
-                "loose_ending": class_counts[cls]["loose"]["ending"],
-                "loose_full": class_counts[cls]["loose"]["full"],
+                "class": macro.name,
+                "strict_ending": class_counts[macro.name]["strict"]["ending"],
+                "strict_full": class_counts[macro.name]["strict"]["full"],
+                "strict_reconstructs": class_counts[macro.name]["strict"][
+                    "reconstructs"
+                ],
+                "loose_ending": class_counts[macro.name]["loose"]["ending"],
+                "loose_full": class_counts[macro.name]["loose"]["full"],
             }
         )
 
@@ -266,9 +260,9 @@ def analyze_matches(classes_path=None):
         if row["scope"] == "ending":
             near_miss_groups[(row["class"], row["strictness"])].append(row)
 
-    for cls in all_classes:
+    for macro in pattern_registry.macros:
         for s in ["strict", "loose"]:
-            group = near_miss_groups[(cls, s)]
+            group = near_miss_groups[(macro.name, s)]
             match_count = len(group)
             rates = {}
             for form in forms:
@@ -281,14 +275,19 @@ def analyze_matches(classes_path=None):
                 rates[f"{form}_rate"] = rate
 
             data_row = {
-                "class": cls,
+                "class": macro.name,
                 "strictness": s,
                 "match_count": match_count,
                 **rates,
             }
             near_miss_data.append(data_row)
 
-    near_miss_data.sort(key=lambda x: (get_class_sort_key(x["class"]), x["strictness"]))
+    near_miss_data.sort(
+        key=lambda x: (
+            (pattern_registry.key_for_pattern_name(x["class"])),
+            x["strictness"],
+        )
+    )
 
     save_csv(
         os.path.join(output_dir, "class_near_misses.csv"),

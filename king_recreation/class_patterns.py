@@ -1,14 +1,17 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import List, Dict, Optional
-import csv
-import os
 import itertools
+import re
 
 
-@dataclass
-class ClassPatterns:
+@dataclass(frozen=True)
+class ExpandedClassPattern:
+    """
+    Represents a single, fully resolved pattern (no lists).
+    """
+
     name: str
-    stem_finals: List[str]
+    stem_finals: tuple
     present: str
     imperfective: str
     perfective: str
@@ -16,7 +19,10 @@ class ClassPatterns:
     infinitive: str
 
     # Store original row just in case we need extra fields later without breaking changes
-    _original_data: Dict[str, str] = None
+    _original_data: Dict[str, str] = field(default=None, hash=False, compare=False)
+
+    def macro_name(self):
+        return self._original_data.get("class", self.name)
 
     def get(self, form: str, default: str = "") -> str:
         """
@@ -29,23 +35,48 @@ class ClassPatterns:
             return val if val is not None else default
         return default
 
+
+# Alias for backward compatibility during refactor
+ClassPatterns = ExpandedClassPattern
+
+
+@dataclass
+class ClassMacro:
+    """
+    Represents a raw row from the CSV where fields can contain multiple options (semicolon-separated).
+    """
+
+    name: str
+    stem_finals: List[str]
+    present: List[str]
+    imperfective: List[str]
+    perfective: List[str]
+    imperative: List[str]
+    infinitive: List[str]
+    _original_data: Dict[str, str] = field(default_factory=dict)
+
     @staticmethod
-    def from_csv(path: str) -> Dict[str, "ClassPatterns"]:
-        patterns = {}
-        if not os.path.exists(path):
-            print(f"Warning: Class patterns file not found at {path}")
-            return patterns
+    def from_row(row: Dict[str, str]) -> "ClassMacro":
+        name = row.get("class", "")
+        sf_raw = row.get("stem final", "")
+        sf_list = [s for s in sf_raw.split(";") if s] if sf_raw else [""]
 
-        with open(path, "r", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                for pattern in ClassPatterns._expand_row(row):
-                    patterns[pattern.name] = pattern
+        def parse_field(field_name):
+            val = row.get(field_name, "")
+            return [v.strip() for v in val.split(";")]
 
-        return patterns
+        return ClassMacro(
+            name=name,
+            stem_finals=sf_list,
+            present=parse_field("present"),
+            imperfective=parse_field("imperfective"),
+            perfective=parse_field("perfective"),
+            imperative=parse_field("imperative"),
+            infinitive=parse_field("infinitive"),
+            _original_data=row,
+        )
 
-    @staticmethod
-    def _expand_row(row: Dict[str, str]) -> List["ClassPatterns"]:
+    def expand(self) -> List[ExpandedClassPattern]:
         shorthands = {
             "present": "pres",
             "imperfective": "imperf",
@@ -61,38 +92,38 @@ class ClassPatterns:
             "infinitive",
         ]
 
-        name = row.get("class", "")
-        sf_raw = row.get("stem final", "")
-        sf_list = [s for s in sf_raw.split(";") if s] if sf_raw else [""]
-
-        # Prepare options for each field
+        # Prepare options for Cartesian product
         field_options = []
         for field in form_fields:
-            val = row.get(field, "")
-            options = [v.strip() for v in val.split(";")]
+            # Get list of options from self
+            options = getattr(self, field)
+            # Enumerate to track variant indices (1-based)
             field_options.append(list(enumerate(options, 1)))
 
         expanded_patterns = []
         # Cartesian product of options
         for combo in itertools.product(*field_options):
-            # combo is a list of (index, value) tuples
+            # combo is a list of (index, value) tuples corresponding to form_fields order
+
             expanded_data = {
-                "name": name,
-                "stem_finals": sf_list,
-                "_original_data": row,
+                "name": self.name,
+                "stem_finals": tuple(self.stem_finals),
+                "_original_data": self._original_data,
             }
             suffixes = []
 
-            for i, (field_idx, field_val) in enumerate(combo):
+            for i, (variant_idx, variant_val) in enumerate(combo):
                 field_name = form_fields[i]
-                expanded_data[field_name] = field_val
-                if field_idx > 1:
-                    tag = f"{shorthands[field_name]}{field_idx}"
+                expanded_data[field_name] = variant_val
+
+                # If it's the 2nd (or later) variant, add a suffix tag
+                if variant_idx > 1:
+                    tag = f"{shorthands[field_name]}{variant_idx}"
                     suffixes.append(tag)
 
             if suffixes:
-                expanded_data["name"] = f"{name}[{'-'.join(suffixes)}]"
+                expanded_data["name"] = f"{self.name}[{'-'.join(suffixes)}]"
 
-            expanded_patterns.append(ClassPatterns(**expanded_data))
+            expanded_patterns.append(ExpandedClassPattern(**expanded_data))
 
         return expanded_patterns

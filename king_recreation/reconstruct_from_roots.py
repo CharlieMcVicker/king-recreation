@@ -1,7 +1,5 @@
 from king_recreation.phonology_data import prevent_C_glottal_cluster
 from king_recreation.phonology_data import possible_alternates
-from king_recreation.utils import CLASSES_PATH
-from king_recreation.phonology_data import grades_are_compatible, _drop_first_h
 import os
 import csv
 import json
@@ -9,8 +7,6 @@ import dataclasses
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import List, Dict, Set, Optional, Tuple
-from king_recreation.classify_verbs import get_matches_for_verb
-from king_recreation.class_patterns import ClassPatterns
 from king_recreation.phonology_data import (
     get_pronominal_set_name,
     PronominalConfig,
@@ -20,6 +16,7 @@ from king_recreation.phonology_data import (
     apply_prepronominal,
     use_glottal_grade,
 )
+from king_recreation.pattern_registry import PatternRegistry
 
 
 @dataclass
@@ -43,8 +40,11 @@ class EnhancedJSONEncoder(json.JSONEncoder):
 
 
 class ReconstructionEngine:
-    def __init__(self, classes_path: str):
-        self.classes = ClassPatterns.from_csv(classes_path)
+    def __init__(self, classes_path: Optional[str]):
+        registry = PatternRegistry.get_instance()
+        registry.load_from_csv(classes_path)
+        # Create the name -> pattern map expected by reconstruct_verb
+        self.classes = {p.name: p for p in registry.expanded_patterns}
 
     # _load_classes_raw removed as it is replaced by ClassPatterns.from_csv
 
@@ -151,9 +151,6 @@ def main(classes_path=None):
     matches_output_path = os.path.join(
         base_dir, "artifacts", "data", "matches_validated.csv"
     )
-
-    if classes_path is None:
-        classes_path = CLASSES_PATH
 
     engine = ReconstructionEngine(classes_path)
 

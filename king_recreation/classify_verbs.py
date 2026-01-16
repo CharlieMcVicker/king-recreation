@@ -1,8 +1,7 @@
 from king_recreation.phonology_data import prevent_C_glottal_cluster
 from king_recreation.phonology_data import recreate_C_glottal_clusters
 from king_recreation.phonology_data import possible_alternates
-from king_recreation.utils import CLASSES_PATH
-from king_recreation.class_patterns import ClassPatterns
+from king_recreation.pattern_registry import PatternRegistry
 import csv
 import os
 from collections import defaultdict
@@ -91,31 +90,70 @@ def calculate_stem_final_match(corpus_form, pattern_suffix, stem_finals, strict)
     return match
 
 
-def get_matches_for_verb(verb, macro_groups):
+def get_candidates_combined(verb, registry: PatternRegistry):
+    """
+    Get initial candidates by intersecting matches from available forms.
+    Returns a set of unique ExpandedClassPattern objects.
+    """
+    forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
+
+    # Identify available forms
+    available_forms = [f for f in forms if verb.get(f)]
+
+    if not available_forms:
+        return (
+            set()
+        )  # No forms to match against? Or should we return all? Return none seems safer.
+
+    # Start with candidates from the first available form (usually present)
+    primary_form = available_forms[0]
+    candidate_set = set(registry.get_candidates(verb.get(primary_form), primary_form))
+
+    # Intersect with other forms to narrow down
+    # Optimization: Only intersect if candidate_set is large?
+    # For correctness, we must intersect or just union?
+    # WAIT. If a pattern matches Present but mismatches Imperfective, it is NOT a match.
+    # So intersection is correct for finding patterns that are consistent with ALL present forms.
+    # PatternRegistry.get_candidates returns patterns whose LITERAL SUFFIX matches the verb form.
+    # If a pattern has Imperfective suffix "abc" and verb has "xyz", it won't be returned by get_candidates(imperf).
+    # So yes, Intersection is the way.
+
+    for form in available_forms[1:]:
+        matches_for_form = set(registry.get_candidates(verb.get(form), form))
+        candidate_set.intersection_update(matches_for_form)
+        if not candidate_set:
+            break
+
+    return candidate_set
+
+
+def get_matches_for_verb(verb, registry: PatternRegistry):
     forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
     matches = []
 
     definition = verb.get("definition", "unknown")
-
-    # Determine which forms are present in the verb
     present_verb_forms = [f for f in forms if verb.get(f)]
 
+    # 1. OPTIMIZED LOOKUP
+    candidate_patterns = get_candidates_combined(verb, registry)
+
+    # Group by Macro for preference logic
+    macro_groups = defaultdict(list)
+    for p in sorted(candidate_patterns, key=lambda p: registry.key_for_pattern(p)):
+        macro_groups[p.macro_name()].append(p)
+
     for group_name, patterns in macro_groups.items():
+        # LOGIC COPIED FROM OLD get_matches_for_verb TO PRETAIN SELECTION BEHAVIOR
+
         # 1. Pruning: Group patterns by their signature on PRESENT forms
-        # We want to keep only one representative for patterns that are identical on the forms we can verify.
-        # This handles the case where patterns differ only on missing forms.
         buckets = defaultdict(list)
         for p in patterns:
-            # unique signature based on values for present forms
             signature = tuple(p.get(f) for f in present_verb_forms)
             buckets[signature].append(p)
 
         candidates = []
         for sig, group_patterns in buckets.items():
-            # In each bucket, pick the "simplest" one (lowest specificity)
-            # This avoids returning both ClassA and ClassA[imp] if imp is missing.
-            # Specificity = number of non-empty fields
-            # We want minimum specificity here.
+            # Pick simplest (lowest specificity)
             best = min(
                 group_patterns,
                 key=lambda x: sum(1 for f in forms if x.get(f)),
@@ -123,13 +161,9 @@ def get_matches_for_verb(verb, macro_groups):
             candidates.append(best)
 
         # 2. Sorting: Sort candidates by Specificity DESCENDING
-        # If we have distinct candidates (differing on present forms),
-        # we want to match the most specific one first (e.g. ClassA[imp] vs ClassA if imp is present).
         candidates.sort(key=lambda x: sum(1 for f in forms if x.get(f)), reverse=True)
 
-        # 3. Matching: Find the first match in the sorted candidates
-        # Since we sorted by specificity, the first match is the best match for this group.
-        # We stop after the first match to avoid returning less specific siblings.
+        # 3. Matching
         for cls in candidates:
             class_id = cls.name
             stem_finals = cls.stem_finals
@@ -137,13 +171,17 @@ def get_matches_for_verb(verb, macro_groups):
             for strictness in ["strict", "loose"]:
                 is_strict_bool = strictness == "strict"
 
-                # Check Ending Match
+                # Check Ending Match (Already mostly done by lookup/intersect, but verifying specifics like * or @)
                 all_endings_match = True
                 for form in forms:
                     form_val = verb.get(form)
+                    # Use existing match_ending helper which handles vacuous match
                     if not match_ending(form_val, cls.get(form), is_strict_bool):
                         all_endings_match = False
                         break
+
+                if not all_endings_match:
+                    continue
 
                 # Calculate Stem Final matches
                 sf_matches = {}
@@ -181,23 +219,20 @@ def classify_verbs(classes_path=None):
         base_dir, "artifacts", "data", "endings_stripped_corpus.csv"
     )
 
-    if classes_path is None:
-        classes_path = CLASSES_PATH
-
     if not os.path.exists(corpus_path):
         print(f"Error: {corpus_path} not found.")
         return
 
-    # Load classes
-    classes = ClassPatterns.from_csv(classes_path)
+    # Load classes via Registry
+    registry = PatternRegistry.get_instance()
+    registry.load_from_csv(classes_path)
 
-    # Group classes by macro (original name)
-    macro_groups = defaultdict(list)
-    for p in classes.values():
-        group_name = p.name.split("[")[0]
-        if p._original_data and "class" in p._original_data:
-            group_name = p._original_data["class"]
-        macro_groups[group_name].append(p)
+    # Access expanded patterns map for looking up full details later if needed
+    # But get_matches_for_verb now initiates lookup.
+
+    # For stripping later, we need a map of name -> pattern
+    # Let's build a quick map from the registry's patterns
+    classes_map = {p.name: p for p in registry.expanded_patterns}
 
     # Load raw corpus
     corpus_rows = []
@@ -207,21 +242,15 @@ def classify_verbs(classes_path=None):
             corpus_rows.append(row)
 
     matches_data = []
-
-    matches_data = []
     stripped_corpus_data = []
 
     for verb in corpus_rows:
-        matches = get_matches_for_verb(verb, macro_groups)
+        matches = get_matches_for_verb(verb, registry)
         for m in matches:
             m["corpus_id"] = verb.get("corpus_id", "")
         matches_data.extend(matches)
 
         # Identify candidates for stripping
-        # We include any match that satisfies strictly the ENDING requirement (scope >= ending)
-        # We only care about Strict matches for now for derivation? User prompt: "matches at the endings and full level"
-        # Let's include strict ending matches.
-
         seen_class_def = set()
 
         for m in matches:
@@ -236,8 +265,7 @@ def classify_verbs(classes_path=None):
                     continue
                 seen_class_def.add(key)
 
-                # classes is dict now, direct lookup
-                cls_info = classes.get(m["class"])
+                cls_info = classes_map.get(m["class"])
                 if not cls_info:
                     continue
 
@@ -246,7 +274,6 @@ def classify_verbs(classes_path=None):
                     "definition": m["definition"],
                     "class": m["class"],
                     "scope": m["scope"],
-                    # Pre-populate empty stems
                     "present": "",
                     "present_1sg": "",
                     "imperfective": "",
@@ -265,17 +292,10 @@ def classify_verbs(classes_path=None):
                     "infinitive",
                 ]
                 for fn in forms:
-                    # Input is raw corpus, so we look up in `verb` (the corpus row)
-                    # Note: corpus.csv might not have present_1sg if not in original data?
-                    # corpus.csv has specific columns. `get_matches_for_verb` uses ["present", "imperfective", "perfective", "imperative", "infinitive"]
-                    # If present_1sg is in corpus, we use it. If not, it's fine.
-
                     form_val = verb.get(fn)
                     if not form_val:
                         continue
 
-                    # Get pattern from class
-                    # Fallback for present_1sg -> present if not in class (standard behavior)
                     cls_pattern = cls_info.get(fn)
                     if fn == "present_1sg" and not cls_pattern:
                         cls_pattern = cls_info.get("present")
@@ -294,7 +314,7 @@ def classify_verbs(classes_path=None):
                         )
                         stripped_row[fn] = stripped_stem
 
-                    # allow forms that might h alternate to alternate _in the ending_
+                    # allow h alternates
                     elif fn in ["present_1sg", "imperative"]:
                         for hless_suffix in possible_alternates(
                             literal_suffix, fix_clusters=False
@@ -308,8 +328,6 @@ def classify_verbs(classes_path=None):
                                 )
                                 stripped_row[fn] = stripped_stem
                             elif hless_suffix.startswith("'"):
-                                # handle the case that this glottal may have metathesized into the stem
-                                # put glottals back on right side of consonants
                                 form_with_glottals = recreate_C_glottal_clusters(
                                     form_val
                                 )
@@ -319,7 +337,6 @@ def classify_verbs(classes_path=None):
                                         if hless_suffix
                                         else form_with_glottals
                                     )
-                                    # ensure documented form is still standard
                                     stripped_row[fn] = prevent_C_glottal_cluster(
                                         stripped_stem
                                     )
@@ -345,11 +362,9 @@ def classify_verbs(classes_path=None):
         writer.writerows(matches_data)
 
     if stripped_corpus_data:
-        # Determine all keys dynamically or fixed
         keys = ["corpus_id"] + [
             k for k in stripped_corpus_data[0].keys() if k != "corpus_id"
         ]
-        # Ensure all form columns present
         with open(stripped_path, mode="w", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()

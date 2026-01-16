@@ -3,7 +3,7 @@ from king_recreation.phonology_data import (
     use_glottal_grade,
     VerbConfig,
 )
-from king_recreation.class_patterns import ClassPatterns
+from king_recreation.class_patterns import ExpandedClassPattern
 
 
 def get_root_candidate(stem: str, ending_pattern: str) -> Optional[str]:
@@ -27,7 +27,7 @@ def get_root_candidate(stem: str, ending_pattern: str) -> Optional[str]:
 
 
 def check_root_consistency(
-    stem_row: Dict[str, str], class_info: ClassPatterns
+    stem_row: Dict[str, str], class_info: ExpandedClassPattern
 ) -> Tuple[bool, Optional[str], List[str]]:
     """
     Verifies if all available forms in stem_row yield the same root for a given King Class.
