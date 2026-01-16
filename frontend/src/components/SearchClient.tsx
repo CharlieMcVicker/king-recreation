@@ -12,6 +12,7 @@ interface CorpusEntry {
   perfective: string;
   imperative: string;
   infinitive: string;
+  corpus_id: number;
 }
 
 export default function SearchClient({ corpus }: { corpus: CorpusEntry[] }) {
@@ -82,7 +83,7 @@ export default function SearchClient({ corpus }: { corpus: CorpusEntry[] }) {
           {results.map((entry) => (
             <Link
               key={entry.definition}
-              href={`/explorer/entry/${encodeURIComponent(entry.definition)}`}
+              href={`/explorer/entry/${entry.corpus_id}`}
               className="group block bg-white dark:bg-zinc-900 rounded-xl border border-gray-200 dark:border-zinc-800 p-6 hover:border-indigo-500 dark:hover:border-indigo-500 hover:shadow-md transition-all"
             >
               <div className="flex items-start justify-between">

@@ -106,9 +106,12 @@ export default async function ReconstructionFailuresPage() {
                       className="group flex flex-col md:flex-row md:items-start gap-4 p-3 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-all"
                     >
                       <div className="md:w-1/4 shrink-0">
-                        <div className="font-semibold text-slate-200 text-sm">
+                        <Link
+                          href={`/explorer/entry/${fail.corpus_id}`}
+                          className="font-semibold text-slate-200 text-sm hover:text-indigo-400 transition-colors"
+                        >
                           {fail.definition}
-                        </div>
+                        </Link>
                         <div className="text-xs text-slate-500 font-mono mt-1">
                           ID: {fail.corpus_id}
                         </div>

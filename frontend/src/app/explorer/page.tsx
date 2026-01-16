@@ -1,6 +1,6 @@
 import {
   getClasses,
-  getMatches,
+  getInitialMatches,
   getNearMisses,
   getCorpus,
   getConsistencyAnalysis,
@@ -29,7 +29,7 @@ export default async function ExplorerPage({
   const params = await searchParams;
   const selectedClass = params.class;
   const classes = await getClasses();
-  const allMatchesData = await getMatches();
+  const allMatchesData = await getInitialMatches();
   const consistencyData = await getConsistencyAnalysis();
   const nearMisses = await getNearMisses();
   const corpus = await getCorpus();

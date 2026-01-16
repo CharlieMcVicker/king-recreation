@@ -6,6 +6,7 @@ import { CheckCircle, XCircle, ArrowRight, Info } from "lucide-react";
 
 interface Match {
   definition: string;
+  corpus_id: number;
   class: string;
   scope: string;
   is_consistent?: boolean | null;
@@ -193,9 +194,7 @@ export default function MatchExplorer({
                   {selectedMatch.definition}
                 </h4>
                 <Link
-                  href={`/explorer/entry/${encodeURIComponent(
-                    selectedMatch.definition
-                  )}`}
+                  href={`/explorer/entry/${selectedMatch.corpus_id}`}
                   className="shrink-0 text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 flex items-center gap-1 bg-indigo-50 dark:bg-indigo-900/20 px-2 py-1 rounded transition-colors"
                 >
                   View Entry <ArrowRight className="w-3 h-3" />

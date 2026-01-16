@@ -117,6 +117,18 @@ export async function getMatches(): Promise<any[]> {
   return result.data;
 }
 
+export async function getInitialMatches(): Promise<any[]> {
+  const filePath = path.join(ARTIFACTS_DATA_DIR, "matches_initial.csv");
+  if (!fs.existsSync(filePath)) return [];
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const result = Papa.parse(fileContent, {
+    header: true,
+    skipEmptyLines: true,
+    dynamicTyping: true,
+  });
+  return result.data;
+}
+
 export async function getNearMisses(): Promise<any[]> {
   const filePath = path.join(REPORTS_DIR, "class_near_misses.csv");
   if (!fs.existsSync(filePath)) return [];
