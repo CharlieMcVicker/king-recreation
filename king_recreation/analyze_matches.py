@@ -203,8 +203,15 @@ def analyze_matches(classes_path=None):
     save_json(os.path.join(output_dir, "verb_coverage.json"), coverage_summary)
 
     # 2b. Export Unmatched Verbs
-    verb_forms_map = {row["definition"]: row for row in corpus}
-    form_fields = ["present", "imperfective", "perfective", "imperative", "infinitive"]
+    verb_forms_map = {row["corpus_id"]: row for row in corpus}
+    form_fields = [
+        "definition",
+        "present",
+        "imperfective",
+        "perfective",
+        "imperative",
+        "infinitive",
+    ]
 
     for strictness in ["strict", "loose"]:
         target_set = set()
@@ -217,19 +224,23 @@ def analyze_matches(classes_path=None):
         unmatched = list(all_verbs - target_set)
         unmatched_data = []
         for v in unmatched:
-            data = {"verb": v}
+            data = {
+                "corpus_id": v,
+            }
             if v in verb_forms_map:
                 for field in form_fields:
                     data[field] = verb_forms_map[v].get(field, "")
             unmatched_data.append(data)
 
         # Sort by reversed perfective string to group by ending, then by verb for stability
-        unmatched_data.sort(key=lambda x: (x.get("perfective", "")[::-1], x["verb"]))
+        unmatched_data.sort(
+            key=lambda x: (x.get("perfective", "")[::-1], x["corpus_id"])
+        )
 
         save_csv(
             os.path.join(output_dir, f"unmatched_verbs_{strictness}.csv"),
             unmatched_data,
-            ["verb"] + form_fields,
+            ["corpus_id"] + form_fields,
         )
 
     # Print summary to console
