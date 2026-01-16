@@ -6,7 +6,9 @@ import os
 import argparse
 
 
-def _plot_class_distribution(df, value_vars: list[str], output_prefix: str):
+def _plot_class_distribution(
+    df, value_vars: list[str], output_prefix: str, sort_by: str = None
+):
     # Filter for existing columns to avoid errors if some are missing
     value_vars = [v for v in value_vars if v in df.columns]
 
@@ -17,9 +19,27 @@ def _plot_class_distribution(df, value_vars: list[str], output_prefix: str):
         value_name="Count",
     )
 
+    # Determine full class order
+    if sort_by and sort_by in df.columns:
+        full_class_order = df.sort_values(by=sort_by, ascending=False)["class"].tolist()
+    else:
+        # Default: Sort by sum of displayed variables
+        full_class_order = (
+            df.set_index("class")[value_vars]
+            .sum(axis=1)
+            .sort_values(ascending=False)
+            .index.tolist()
+        )
+
     def create_plot(data, suffix):
+        # Filter order to only include classes present in the data
+        present_classes = set(data["class"].unique())
+        class_order = [c for c in full_class_order if c in present_classes]
+
         plt.figure(figsize=(12, 8))
-        sns.barplot(data=data, x="class", y="Count", hue="Match Type")
+        sns.barplot(
+            data=data, x="class", y="Count", hue="Match Type", order=class_order
+        )
         plt.title(f"Verb Matches per Class ({suffix})")
         plt.xticks(rotation=45, ha="right")
         plt.tight_layout()
@@ -50,18 +70,18 @@ def plot_class_distribution(csv_path, output_prefix):
         (
             "all",
             [
-                "strict_ending",
                 "strict_full",
                 "strict_reconstructs",
-                "loose_ending",
-                "loose_full",
             ],
+            "strict_reconstructs",  # Sort by reconstructions
         ),
-        ("reconstructs", ["strict_reconstructs"]),
+        ("reconstructs", ["strict_reconstructs"], None),
     ]
 
-    for prefix, vals in plots:
-        _plot_class_distribution(df, vals, output_prefix + "_" + prefix)
+    for prefix, vals, sort_col in plots:
+        _plot_class_distribution(
+            df, vals, output_prefix + "_" + prefix, sort_by=sort_col
+        )
 
 
 def plot_verb_coverage(json_path, output_path):
