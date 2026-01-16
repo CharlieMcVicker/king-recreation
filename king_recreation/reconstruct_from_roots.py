@@ -262,6 +262,7 @@ def main(classes_path=None):
                     "definition": verb.definition,
                     "failed_forms": failed_forms,
                     "class": verb.class_name,
+                    "corpus_id": verb.corpus_id,
                 }
             )
 
@@ -358,6 +359,7 @@ def main(classes_path=None):
     for fail in failures:
         failures_csv_data.append(
             {
+                "corpus_id": fail["corpus_id"],
                 "definition": fail["definition"],
                 "class": fail["class"],
                 "mismatch_details": "; ".join(fail["failed_forms"]),
@@ -365,12 +367,14 @@ def main(classes_path=None):
         )
 
     # Sort for stability
-    failures_csv_data.sort(key=lambda x: (x["class"], x["definition"]))
+    failures_csv_data.sort(
+        key=lambda x: (x["class"], x["definition"], x["corpus_id"] or 0)
+    )
 
     with open(reconstruction_failures_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(
             f,
-            fieldnames=["definition", "class", "mismatch_details"],
+            fieldnames=["corpus_id", "definition", "class", "mismatch_details"],
         )
         writer.writeheader()
         writer.writerows(failures_csv_data)

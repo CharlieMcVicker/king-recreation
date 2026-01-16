@@ -62,13 +62,7 @@ export default function RootLayout({
                 <GitCompare className="w-4 h-4" />
                 Comparison Tool
               </Link>
-              <Link
-                href="/reconstruction"
-                className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors text-emerald-600 dark:text-emerald-400 font-semibold"
-              >
-                <RefreshCw className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                Reconstruction
-              </Link>
+
               <Link
                 href="/failures"
                 className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
@@ -79,13 +73,13 @@ export default function RootLayout({
                 Derivation Failures
               </Link>
               <Link
-                href="/analysis"
+                href="/reconstruction"
                 className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
               >
                 <div className="w-4 h-4 flex items-center justify-center">
                   <BarChart3 className="w-4 h-4 text-indigo-500" />
                 </div>
-                Reconstruction Analysis
+                Reconstruction Failures
               </Link>
               <Link
                 href="/search"

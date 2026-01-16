@@ -1,4 +1,5 @@
 import { getVerbCoverage, getMatchCounts } from "@/lib/data";
+import Link from "next/link";
 import {
   BarChart3,
   CheckCircle2,
@@ -71,13 +72,22 @@ export default async function Dashboard() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h2 className="text-2xl font-bold tracking-tight">
-          Dashboard Overview
-        </h2>
-        <p className="text-gray-500 dark:text-zinc-400">
-          High-level insights into linguistic verb classification.
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold tracking-tight">
+            Dashboard Overview
+          </h2>
+          <p className="text-gray-500 dark:text-zinc-400">
+            High-level insights into linguistic verb classification.
+          </p>
+        </div>
+        <Link
+          href="/reconstruction"
+          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-rose-600 rounded-lg hover:bg-rose-700 transition-colors shadow-sm"
+        >
+          View Failures Report
+          <ArrowUpRight className="w-4 h-4" />
+        </Link>
       </div>
 
       {/* Metrics Grid */}
