@@ -1,5 +1,5 @@
 {
-    "summary": "617/1957",
+    "summary": "617/2110",
     "failures": [
         {
             "definition": "it\u2019s bouncing",
@@ -1518,6 +1518,7 @@
             "definition": "he/she is scolding him/her",
             "failed_forms": [
                 "perfective: expected 'ukvhskolvn', got ['ukvhskoln']",
+                "imperative: expected 'hikvhskolv'vka', got [\"hikvhskol'vka\"]",
                 "infinitive: expected 'ukvhskolvt', got ['ukvhskolt']"
             ],
             "class": "v'vsk[imp2]",
@@ -1526,9 +1527,27 @@
         {
             "definition": "he/she is scolding him/her",
             "failed_forms": [
-                "perfective: expected 'ukvhskolvn', got ['ukvhskoln']"
+                "perfective: expected 'ukvhskolvn', got ['ukvhskoln']",
+                "imperative: expected 'hikvhskolv'vka', got [\"hikvhskol'vka\"]"
             ],
             "class": "v'vsk[imp2-inf2]",
+            "corpus_id": 152
+        },
+        {
+            "definition": "he/she is scolding him/her",
+            "failed_forms": [
+                "perfective: expected 'ukvhskolvn', got ['ukvhskoln']",
+                "infinitive: expected 'ukvhskolvt', got ['ukvhskolt']"
+            ],
+            "class": "v'vsk[imp3]",
+            "corpus_id": 152
+        },
+        {
+            "definition": "he/she is scolding him/her",
+            "failed_forms": [
+                "perfective: expected 'ukvhskolvn', got ['ukvhskoln']"
+            ],
+            "class": "v'vsk[imp3-inf2]",
             "corpus_id": 152
         },
         {
@@ -1551,9 +1570,26 @@
         {
             "definition": "he/she is scolding him/her",
             "failed_forms": [
+                "imperative: expected 'hikvhskolv'vka', got [\"hikvhskol'vka\"]",
                 "infinitive: expected 'ukvhskolvt', got ['ukvhskolt']"
             ],
             "class": "v'vsk[perf2-imp2]",
+            "corpus_id": 152
+        },
+        {
+            "definition": "he/she is scolding him/her",
+            "failed_forms": [
+                "imperative: expected 'hikvhskolv'vka', got [\"hikvhskol'vka\"]"
+            ],
+            "class": "v'vsk[perf2-imp2-inf2]",
+            "corpus_id": 152
+        },
+        {
+            "definition": "he/she is scolding him/her",
+            "failed_forms": [
+                "infinitive: expected 'ukvhskolvt', got ['ukvhskolt']"
+            ],
+            "class": "v'vsk[perf2-imp3]",
             "corpus_id": 152
         },
         {
@@ -2535,6 +2571,7 @@
             "definition": "he/she is bending it",
             "failed_forms": [
                 "perfective: expected 'uyhvhkwitvn', got ['uyhvhkwitn']",
+                "imperative: expected 'hiyhvhkwitv'vka', got [\"hiyhvhkwit'vka\"]",
                 "infinitive: expected 'uyhvhkwitvt', got ['uyhvhkwitt']"
             ],
             "class": "v'vsk[imp2]",
@@ -2543,9 +2580,27 @@
         {
             "definition": "he/she is bending it",
             "failed_forms": [
-                "perfective: expected 'uyhvhkwitvn', got ['uyhvhkwitn']"
+                "perfective: expected 'uyhvhkwitvn', got ['uyhvhkwitn']",
+                "imperative: expected 'hiyhvhkwitv'vka', got [\"hiyhvhkwit'vka\"]"
             ],
             "class": "v'vsk[imp2-inf2]",
+            "corpus_id": 228
+        },
+        {
+            "definition": "he/she is bending it",
+            "failed_forms": [
+                "perfective: expected 'uyhvhkwitvn', got ['uyhvhkwitn']",
+                "infinitive: expected 'uyhvhkwitvt', got ['uyhvhkwitt']"
+            ],
+            "class": "v'vsk[imp3]",
+            "corpus_id": 228
+        },
+        {
+            "definition": "he/she is bending it",
+            "failed_forms": [
+                "perfective: expected 'uyhvhkwitvn', got ['uyhvhkwitn']"
+            ],
+            "class": "v'vsk[imp3-inf2]",
             "corpus_id": 228
         },
         {
@@ -2568,9 +2623,26 @@
         {
             "definition": "he/she is bending it",
             "failed_forms": [
+                "imperative: expected 'hiyhvhkwitv'vka', got [\"hiyhvhkwit'vka\"]",
                 "infinitive: expected 'uyhvhkwitvt', got ['uyhvhkwitt']"
             ],
             "class": "v'vsk[perf2-imp2]",
+            "corpus_id": 228
+        },
+        {
+            "definition": "he/she is bending it",
+            "failed_forms": [
+                "imperative: expected 'hiyhvhkwitv'vka', got [\"hiyhvhkwit'vka\"]"
+            ],
+            "class": "v'vsk[perf2-imp2-inf2]",
+            "corpus_id": 228
+        },
+        {
+            "definition": "he/she is bending it",
+            "failed_forms": [
+                "infinitive: expected 'uyhvhkwitvt', got ['uyhvhkwitt']"
+            ],
+            "class": "v'vsk[perf2-imp3]",
             "corpus_id": 228
         },
         {
@@ -2635,9 +2707,68 @@
         {
             "definition": "he/she is getting in",
             "failed_forms": [
+                "perfective: expected 'utsan', got [\"utsa'n\"]",
+                "imperative: expected 'hatsa'vka', got [\"hatsa''vka\"]",
+                "infinitive: expected 'utsot', got [\"utsa't\"]"
+            ],
+            "class": "v'vsk[imp2]",
+            "corpus_id": 240
+        },
+        {
+            "definition": "he/she is getting in",
+            "failed_forms": [
+                "imperfective: expected 'atsa'vhsk', got [\"atsa''vhsk\"]",
+                "perfective: expected 'utsan', got [\"utsa'n\"]",
+                "infinitive: expected 'utsot', got [\"utsa't\"]"
+            ],
+            "class": "v'vsk[imperf2]",
+            "corpus_id": 240
+        },
+        {
+            "definition": "he/she is getting in",
+            "failed_forms": [
+                "imperfective: expected 'atsa'vhsk', got [\"atsa''vhsk\"]",
+                "perfective: expected 'utsan', got [\"utsa'n\"]",
+                "imperative: expected 'hatsa'vka', got [\"hatsa''vka\"]",
+                "infinitive: expected 'utsot', got [\"utsa't\"]"
+            ],
+            "class": "v'vsk[imperf2-imp2]",
+            "corpus_id": 240
+        },
+        {
+            "definition": "he/she is getting in",
+            "failed_forms": [
+                "imperfective: expected 'atsa'vhsk', got ['atsavhsk']",
+                "imperative: expected 'hatsa'vka', got ['hatsavka']",
                 "infinitive: expected 'utsot', got ['utsat']"
             ],
-            "class": "'vsk",
+            "class": "v'vsk[pres2]",
+            "corpus_id": 240
+        },
+        {
+            "definition": "he/she is getting in",
+            "failed_forms": [
+                "imperfective: expected 'atsa'vhsk', got ['atsavhsk']",
+                "infinitive: expected 'utsot', got ['utsat']"
+            ],
+            "class": "v'vsk[pres2-imp2]",
+            "corpus_id": 240
+        },
+        {
+            "definition": "he/she is getting in",
+            "failed_forms": [
+                "imperative: expected 'hatsa'vka', got ['hatsavka']",
+                "infinitive: expected 'utsot', got ['utsat']"
+            ],
+            "class": "v'vsk[pres2-imperf2]",
+            "corpus_id": 240
+        },
+        {
+            "definition": "he/she is getting in",
+            "failed_forms": [
+                "infinitive: expected 'utsot', got ['utsat']"
+            ],
+            "class": "v'vsk[pres2-imperf2-imp2]",
             "corpus_id": 240
         },
         {
@@ -3166,6 +3297,7 @@
             "definition": "he/she is stepping on him/her",
             "failed_forms": [
                 "perfective: expected 'ulahstvn', got ['ulahstn']",
+                "imperative: expected 'hiyalahstv'vka', got [\"hiyalahst'vka\"]",
                 "infinitive: expected 'ulahstvt', got ['ulahstt']"
             ],
             "class": "v'vsk[imp2]",
@@ -3174,9 +3306,27 @@
         {
             "definition": "he/she is stepping on him/her",
             "failed_forms": [
-                "perfective: expected 'ulahstvn', got ['ulahstn']"
+                "perfective: expected 'ulahstvn', got ['ulahstn']",
+                "imperative: expected 'hiyalahstv'vka', got [\"hiyalahst'vka\"]"
             ],
             "class": "v'vsk[imp2-inf2]",
+            "corpus_id": 297
+        },
+        {
+            "definition": "he/she is stepping on him/her",
+            "failed_forms": [
+                "perfective: expected 'ulahstvn', got ['ulahstn']",
+                "infinitive: expected 'ulahstvt', got ['ulahstt']"
+            ],
+            "class": "v'vsk[imp3]",
+            "corpus_id": 297
+        },
+        {
+            "definition": "he/she is stepping on him/her",
+            "failed_forms": [
+                "perfective: expected 'ulahstvn', got ['ulahstn']"
+            ],
+            "class": "v'vsk[imp3-inf2]",
             "corpus_id": 297
         },
         {
@@ -3199,9 +3349,26 @@
         {
             "definition": "he/she is stepping on him/her",
             "failed_forms": [
+                "imperative: expected 'hiyalahstv'vka', got [\"hiyalahst'vka\"]",
                 "infinitive: expected 'ulahstvt', got ['ulahstt']"
             ],
             "class": "v'vsk[perf2-imp2]",
+            "corpus_id": 297
+        },
+        {
+            "definition": "he/she is stepping on him/her",
+            "failed_forms": [
+                "imperative: expected 'hiyalahstv'vka', got [\"hiyalahst'vka\"]"
+            ],
+            "class": "v'vsk[perf2-imp2-inf2]",
+            "corpus_id": 297
+        },
+        {
+            "definition": "he/she is stepping on him/her",
+            "failed_forms": [
+                "infinitive: expected 'ulahstvt', got ['ulahstt']"
+            ],
+            "class": "v'vsk[perf2-imp3]",
             "corpus_id": 297
         },
         {
@@ -3716,6 +3883,7 @@
             "definition": "he/she is setting a trap",
             "failed_forms": [
                 "perfective: expected 'uhsatvn', got ['uhsatn']",
+                "imperative: expected 'hihsatv'vka', got [\"hihsat'vka\"]",
                 "infinitive: expected 'uhsatvt', got ['uhsatt']"
             ],
             "class": "v'vsk[imp2]",
@@ -3724,9 +3892,27 @@
         {
             "definition": "he/she is setting a trap",
             "failed_forms": [
-                "perfective: expected 'uhsatvn', got ['uhsatn']"
+                "perfective: expected 'uhsatvn', got ['uhsatn']",
+                "imperative: expected 'hihsatv'vka', got [\"hihsat'vka\"]"
             ],
             "class": "v'vsk[imp2-inf2]",
+            "corpus_id": 373
+        },
+        {
+            "definition": "he/she is setting a trap",
+            "failed_forms": [
+                "perfective: expected 'uhsatvn', got ['uhsatn']",
+                "infinitive: expected 'uhsatvt', got ['uhsatt']"
+            ],
+            "class": "v'vsk[imp3]",
+            "corpus_id": 373
+        },
+        {
+            "definition": "he/she is setting a trap",
+            "failed_forms": [
+                "perfective: expected 'uhsatvn', got ['uhsatn']"
+            ],
+            "class": "v'vsk[imp3-inf2]",
             "corpus_id": 373
         },
         {
@@ -3749,9 +3935,26 @@
         {
             "definition": "he/she is setting a trap",
             "failed_forms": [
+                "imperative: expected 'hihsatv'vka', got [\"hihsat'vka\"]",
                 "infinitive: expected 'uhsatvt', got ['uhsatt']"
             ],
             "class": "v'vsk[perf2-imp2]",
+            "corpus_id": 373
+        },
+        {
+            "definition": "he/she is setting a trap",
+            "failed_forms": [
+                "imperative: expected 'hihsatv'vka', got [\"hihsat'vka\"]"
+            ],
+            "class": "v'vsk[perf2-imp2-inf2]",
+            "corpus_id": 373
+        },
+        {
+            "definition": "he/she is setting a trap",
+            "failed_forms": [
+                "infinitive: expected 'uhsatvt', got ['uhsatt']"
+            ],
+            "class": "v'vsk[perf2-imp3]",
             "corpus_id": 373
         },
         {
@@ -4792,6 +4995,7 @@
             "definition": "he/she is mixing it in",
             "failed_forms": [
                 "perfective: expected 'uhsuyvn', got ['uhsuyn']",
+                "imperative: expected 'hahsuyv'vka', got [\"hahsuy'vka\"]",
                 "infinitive: expected 'uhsuyvt', got ['uhsuyt']"
             ],
             "class": "v'vsk[imp2]",
@@ -4800,9 +5004,27 @@
         {
             "definition": "he/she is mixing it in",
             "failed_forms": [
-                "perfective: expected 'uhsuyvn', got ['uhsuyn']"
+                "perfective: expected 'uhsuyvn', got ['uhsuyn']",
+                "imperative: expected 'hahsuyv'vka', got [\"hahsuy'vka\"]"
             ],
             "class": "v'vsk[imp2-inf2]",
+            "corpus_id": 454
+        },
+        {
+            "definition": "he/she is mixing it in",
+            "failed_forms": [
+                "perfective: expected 'uhsuyvn', got ['uhsuyn']",
+                "infinitive: expected 'uhsuyvt', got ['uhsuyt']"
+            ],
+            "class": "v'vsk[imp3]",
+            "corpus_id": 454
+        },
+        {
+            "definition": "he/she is mixing it in",
+            "failed_forms": [
+                "perfective: expected 'uhsuyvn', got ['uhsuyn']"
+            ],
+            "class": "v'vsk[imp3-inf2]",
             "corpus_id": 454
         },
         {
@@ -4825,9 +5047,26 @@
         {
             "definition": "he/she is mixing it in",
             "failed_forms": [
+                "imperative: expected 'hahsuyv'vka', got [\"hahsuy'vka\"]",
                 "infinitive: expected 'uhsuyvt', got ['uhsuyt']"
             ],
             "class": "v'vsk[perf2-imp2]",
+            "corpus_id": 454
+        },
+        {
+            "definition": "he/she is mixing it in",
+            "failed_forms": [
+                "imperative: expected 'hahsuyv'vka', got [\"hahsuy'vka\"]"
+            ],
+            "class": "v'vsk[perf2-imp2-inf2]",
+            "corpus_id": 454
+        },
+        {
+            "definition": "he/she is mixing it in",
+            "failed_forms": [
+                "infinitive: expected 'uhsuyvt', got ['uhsuyt']"
+            ],
+            "class": "v'vsk[perf2-imp3]",
             "corpus_id": 454
         },
         {
@@ -4995,6 +5234,62 @@
                 "infinitive: expected 'uthawetot', got [\"uthaweto't\"]"
             ],
             "class": "v'vsk",
+            "corpus_id": 472
+        },
+        {
+            "definition": "he/she is kissing him/her",
+            "failed_forms": [
+                "perfective: expected 'uthaweton', got [\"uthaweto'n\"]",
+                "imperative: expected 'hitaweto'vka', got [\"hitaweto''vka\"]",
+                "infinitive: expected 'uthawetot', got [\"uthaweto't\"]"
+            ],
+            "class": "v'vsk[imp2]",
+            "corpus_id": 472
+        },
+        {
+            "definition": "he/she is kissing him/her",
+            "failed_forms": [
+                "imperfective: expected 'athaweto'vhsk', got [\"athaweto''vhsk\"]",
+                "perfective: expected 'uthaweton', got [\"uthaweto'n\"]",
+                "infinitive: expected 'uthawetot', got [\"uthaweto't\"]"
+            ],
+            "class": "v'vsk[imperf2]",
+            "corpus_id": 472
+        },
+        {
+            "definition": "he/she is kissing him/her",
+            "failed_forms": [
+                "imperfective: expected 'athaweto'vhsk', got [\"athaweto''vhsk\"]",
+                "perfective: expected 'uthaweton', got [\"uthaweto'n\"]",
+                "imperative: expected 'hitaweto'vka', got [\"hitaweto''vka\"]",
+                "infinitive: expected 'uthawetot', got [\"uthaweto't\"]"
+            ],
+            "class": "v'vsk[imperf2-imp2]",
+            "corpus_id": 472
+        },
+        {
+            "definition": "he/she is kissing him/her",
+            "failed_forms": [
+                "imperfective: expected 'athaweto'vhsk', got ['athawetovhsk']",
+                "imperative: expected 'hitaweto'vka', got ['hitawetovka']"
+            ],
+            "class": "v'vsk[pres2]",
+            "corpus_id": 472
+        },
+        {
+            "definition": "he/she is kissing him/her",
+            "failed_forms": [
+                "imperfective: expected 'athaweto'vhsk', got ['athawetovhsk']"
+            ],
+            "class": "v'vsk[pres2-imp2]",
+            "corpus_id": 472
+        },
+        {
+            "definition": "he/she is kissing him/her",
+            "failed_forms": [
+                "imperative: expected 'hitaweto'vka', got ['hitawetovka']"
+            ],
+            "class": "v'vsk[pres2-imperf2]",
             "corpus_id": 472
         },
         {
@@ -5244,6 +5539,62 @@
                 "infinitive: expected 'utskot', got [\"utsko't\"]"
             ],
             "class": "v'vsk",
+            "corpus_id": 490
+        },
+        {
+            "definition": "he/she is lying",
+            "failed_forms": [
+                "perfective: expected 'utskon', got [\"utsko'n\"]",
+                "imperative: expected 'hatsko'vka', got [\"hatsko''vka\"]",
+                "infinitive: expected 'utskot', got [\"utsko't\"]"
+            ],
+            "class": "v'vsk[imp2]",
+            "corpus_id": 490
+        },
+        {
+            "definition": "he/she is lying",
+            "failed_forms": [
+                "imperfective: expected 'atsko'vhsk', got [\"atsko''vhsk\"]",
+                "perfective: expected 'utskon', got [\"utsko'n\"]",
+                "infinitive: expected 'utskot', got [\"utsko't\"]"
+            ],
+            "class": "v'vsk[imperf2]",
+            "corpus_id": 490
+        },
+        {
+            "definition": "he/she is lying",
+            "failed_forms": [
+                "imperfective: expected 'atsko'vhsk', got [\"atsko''vhsk\"]",
+                "perfective: expected 'utskon', got [\"utsko'n\"]",
+                "imperative: expected 'hatsko'vka', got [\"hatsko''vka\"]",
+                "infinitive: expected 'utskot', got [\"utsko't\"]"
+            ],
+            "class": "v'vsk[imperf2-imp2]",
+            "corpus_id": 490
+        },
+        {
+            "definition": "he/she is lying",
+            "failed_forms": [
+                "imperfective: expected 'atsko'vhsk', got ['atskovhsk']",
+                "imperative: expected 'hatsko'vka', got ['hatskovka']"
+            ],
+            "class": "v'vsk[pres2]",
+            "corpus_id": 490
+        },
+        {
+            "definition": "he/she is lying",
+            "failed_forms": [
+                "imperfective: expected 'atsko'vhsk', got ['atskovhsk']"
+            ],
+            "class": "v'vsk[pres2-imp2]",
+            "corpus_id": 490
+        },
+        {
+            "definition": "he/she is lying",
+            "failed_forms": [
+                "imperative: expected 'hatsko'vka', got ['hatskovka']"
+            ],
+            "class": "v'vsk[pres2-imperf2]",
             "corpus_id": 490
         },
         {
@@ -6354,9 +6705,68 @@
         {
             "definition": "he/she is sprinkling it",
             "failed_forms": [
+                "perfective: expected 'tukwhayon', got [\"teukwhayo'n\", \"tukwhayo'n\"]",
+                "imperative: expected 'thikwhayo'vka', got [\"thikwhayo''vka\", \"tihikwhayo''vka\", \"tshikwhayo''vka\"]",
+                "infinitive: expected 'tsukwhakot', got [\"tiukwhayo't\", \"tsukwhayo't\", \"tukwhayo't\"]"
+            ],
+            "class": "v'vsk[imp2]",
+            "corpus_id": 579
+        },
+        {
+            "definition": "he/she is sprinkling it",
+            "failed_forms": [
+                "imperfective: expected 'takwhayo'vhsk', got [\"takwhayo''vhsk\", \"teakwhayo''vhsk\"]",
+                "perfective: expected 'tukwhayon', got [\"teukwhayo'n\", \"tukwhayo'n\"]",
+                "infinitive: expected 'tsukwhakot', got [\"tiukwhayo't\", \"tsukwhayo't\", \"tukwhayo't\"]"
+            ],
+            "class": "v'vsk[imperf2]",
+            "corpus_id": 579
+        },
+        {
+            "definition": "he/she is sprinkling it",
+            "failed_forms": [
+                "imperfective: expected 'takwhayo'vhsk', got [\"takwhayo''vhsk\", \"teakwhayo''vhsk\"]",
+                "perfective: expected 'tukwhayon', got [\"teukwhayo'n\", \"tukwhayo'n\"]",
+                "imperative: expected 'thikwhayo'vka', got [\"thikwhayo''vka\", \"tihikwhayo''vka\", \"tshikwhayo''vka\"]",
+                "infinitive: expected 'tsukwhakot', got [\"tiukwhayo't\", \"tsukwhayo't\", \"tukwhayo't\"]"
+            ],
+            "class": "v'vsk[imperf2-imp2]",
+            "corpus_id": 579
+        },
+        {
+            "definition": "he/she is sprinkling it",
+            "failed_forms": [
+                "imperfective: expected 'takwhayo'vhsk', got ['takwhayovhsk', 'teakwhayovhsk']",
+                "imperative: expected 'thikwhayo'vka', got ['thikwhayovka', 'tihikwhayovka', 'tshikwhayovka']",
                 "infinitive: expected 'tsukwhakot', got ['tiukwhayot', 'tsukwhayot', 'tukwhayot']"
             ],
-            "class": "'vsk",
+            "class": "v'vsk[pres2]",
+            "corpus_id": 579
+        },
+        {
+            "definition": "he/she is sprinkling it",
+            "failed_forms": [
+                "imperfective: expected 'takwhayo'vhsk', got ['takwhayovhsk', 'teakwhayovhsk']",
+                "infinitive: expected 'tsukwhakot', got ['tiukwhayot', 'tsukwhayot', 'tukwhayot']"
+            ],
+            "class": "v'vsk[pres2-imp2]",
+            "corpus_id": 579
+        },
+        {
+            "definition": "he/she is sprinkling it",
+            "failed_forms": [
+                "imperative: expected 'thikwhayo'vka', got ['thikwhayovka', 'tihikwhayovka', 'tshikwhayovka']",
+                "infinitive: expected 'tsukwhakot', got ['tiukwhayot', 'tsukwhayot', 'tukwhayot']"
+            ],
+            "class": "v'vsk[pres2-imperf2]",
+            "corpus_id": 579
+        },
+        {
+            "definition": "he/she is sprinkling it",
+            "failed_forms": [
+                "infinitive: expected 'tsukwhakot', got ['tiukwhayot', 'tsukwhayot', 'tukwhayot']"
+            ],
+            "class": "v'vsk[pres2-imperf2-imp2]",
             "corpus_id": 579
         },
         {
@@ -7660,7 +8070,7 @@
             "definition": "he/she is hanging up it",
             "failed_forms": [
                 "perfective: expected 'utvn', got [\"utv'n\"]",
-                "imperative: expected 'hatv'vka', got [\"hatv'v'vka\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv''vka\"]",
                 "infinitive: expected 'utvt', got [\"utv't\"]"
             ],
             "class": "v'vsk[imp2]",
@@ -7670,10 +8080,30 @@
             "definition": "he/she is hanging up it",
             "failed_forms": [
                 "perfective: expected 'utvn', got [\"utv'n\"]",
-                "imperative: expected 'hatv'vka', got [\"hatv'v'vka\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv''vka\"]",
                 "infinitive: expected 'utvt', got [\"utv'vt\"]"
             ],
             "class": "v'vsk[imp2-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "perfective: expected 'utvn', got [\"utv'n\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv'v'vka\"]",
+                "infinitive: expected 'utvt', got [\"utv't\"]"
+            ],
+            "class": "v'vsk[imp3]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "perfective: expected 'utvn', got [\"utv'n\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv'v'vka\"]",
+                "infinitive: expected 'utvt', got [\"utv'vt\"]"
+            ],
+            "class": "v'vsk[imp3-inf2]",
             "corpus_id": 788
         },
         {
@@ -7698,7 +8128,7 @@
             "definition": "he/she is hanging up it",
             "failed_forms": [
                 "perfective: expected 'utvn', got [\"utv'vn\"]",
-                "imperative: expected 'hatv'vka', got [\"hatv'v'vka\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv''vka\"]",
                 "infinitive: expected 'utvt', got [\"utv't\"]"
             ],
             "class": "v'vsk[perf2-imp2]",
@@ -7708,10 +8138,371 @@
             "definition": "he/she is hanging up it",
             "failed_forms": [
                 "perfective: expected 'utvn', got [\"utv'vn\"]",
-                "imperative: expected 'hatv'vka', got [\"hatv'v'vka\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv''vka\"]",
                 "infinitive: expected 'utvt', got [\"utv'vt\"]"
             ],
             "class": "v'vsk[perf2-imp2-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "perfective: expected 'utvn', got [\"utv'vn\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv'v'vka\"]",
+                "infinitive: expected 'utvt', got [\"utv't\"]"
+            ],
+            "class": "v'vsk[perf2-imp3]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "perfective: expected 'utvn', got [\"utv'vn\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv'v'vka\"]",
+                "infinitive: expected 'utvt', got [\"utv'vt\"]"
+            ],
+            "class": "v'vsk[perf2-imp3-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got [\"katv''vhsk\"]",
+                "perfective: expected 'utvn', got [\"utv'n\"]",
+                "infinitive: expected 'utvt', got [\"utv't\"]"
+            ],
+            "class": "v'vsk[imperf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got [\"katv''vhsk\"]",
+                "perfective: expected 'utvn', got [\"utv'n\"]",
+                "infinitive: expected 'utvt', got [\"utv'vt\"]"
+            ],
+            "class": "v'vsk[imperf2-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got [\"katv''vhsk\"]",
+                "perfective: expected 'utvn', got [\"utv'n\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv''vka\"]",
+                "infinitive: expected 'utvt', got [\"utv't\"]"
+            ],
+            "class": "v'vsk[imperf2-imp2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got [\"katv''vhsk\"]",
+                "perfective: expected 'utvn', got [\"utv'n\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv''vka\"]",
+                "infinitive: expected 'utvt', got [\"utv'vt\"]"
+            ],
+            "class": "v'vsk[imperf2-imp2-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got [\"katv''vhsk\"]",
+                "perfective: expected 'utvn', got [\"utv'n\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv'v'vka\"]",
+                "infinitive: expected 'utvt', got [\"utv't\"]"
+            ],
+            "class": "v'vsk[imperf2-imp3]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got [\"katv''vhsk\"]",
+                "perfective: expected 'utvn', got [\"utv'n\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv'v'vka\"]",
+                "infinitive: expected 'utvt', got [\"utv'vt\"]"
+            ],
+            "class": "v'vsk[imperf2-imp3-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got [\"katv''vhsk\"]",
+                "perfective: expected 'utvn', got [\"utv'vn\"]",
+                "infinitive: expected 'utvt', got [\"utv't\"]"
+            ],
+            "class": "v'vsk[imperf2-perf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got [\"katv''vhsk\"]",
+                "perfective: expected 'utvn', got [\"utv'vn\"]",
+                "infinitive: expected 'utvt', got [\"utv'vt\"]"
+            ],
+            "class": "v'vsk[imperf2-perf2-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got [\"katv''vhsk\"]",
+                "perfective: expected 'utvn', got [\"utv'vn\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv''vka\"]",
+                "infinitive: expected 'utvt', got [\"utv't\"]"
+            ],
+            "class": "v'vsk[imperf2-perf2-imp2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got [\"katv''vhsk\"]",
+                "perfective: expected 'utvn', got [\"utv'vn\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv''vka\"]",
+                "infinitive: expected 'utvt', got [\"utv'vt\"]"
+            ],
+            "class": "v'vsk[imperf2-perf2-imp2-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got [\"katv''vhsk\"]",
+                "perfective: expected 'utvn', got [\"utv'vn\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv'v'vka\"]",
+                "infinitive: expected 'utvt', got [\"utv't\"]"
+            ],
+            "class": "v'vsk[imperf2-perf2-imp3]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got [\"katv''vhsk\"]",
+                "perfective: expected 'utvn', got [\"utv'vn\"]",
+                "imperative: expected 'hatv'vka', got [\"hatv'v'vka\"]",
+                "infinitive: expected 'utvt', got [\"utv'vt\"]"
+            ],
+            "class": "v'vsk[imperf2-perf2-imp3-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got ['katvvhsk']",
+                "imperative: expected 'hatv'vka', got ['hatvvka']"
+            ],
+            "class": "v'vsk[pres2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got ['katvvhsk']",
+                "imperative: expected 'hatv'vka', got ['hatvvka']",
+                "infinitive: expected 'utvt', got ['utvvt']"
+            ],
+            "class": "v'vsk[pres2-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got ['katvvhsk']"
+            ],
+            "class": "v'vsk[pres2-imp2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got ['katvvhsk']",
+                "infinitive: expected 'utvt', got ['utvvt']"
+            ],
+            "class": "v'vsk[pres2-imp2-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got ['katvvhsk']",
+                "imperative: expected 'hatv'vka', got [\"hatvv'vka\"]"
+            ],
+            "class": "v'vsk[pres2-imp3]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got ['katvvhsk']",
+                "imperative: expected 'hatv'vka', got [\"hatvv'vka\"]",
+                "infinitive: expected 'utvt', got ['utvvt']"
+            ],
+            "class": "v'vsk[pres2-imp3-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got ['katvvhsk']",
+                "perfective: expected 'utvn', got ['utvvn']",
+                "imperative: expected 'hatv'vka', got ['hatvvka']"
+            ],
+            "class": "v'vsk[pres2-perf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got ['katvvhsk']",
+                "perfective: expected 'utvn', got ['utvvn']",
+                "imperative: expected 'hatv'vka', got ['hatvvka']",
+                "infinitive: expected 'utvt', got ['utvvt']"
+            ],
+            "class": "v'vsk[pres2-perf2-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got ['katvvhsk']",
+                "perfective: expected 'utvn', got ['utvvn']"
+            ],
+            "class": "v'vsk[pres2-perf2-imp2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got ['katvvhsk']",
+                "perfective: expected 'utvn', got ['utvvn']",
+                "infinitive: expected 'utvt', got ['utvvt']"
+            ],
+            "class": "v'vsk[pres2-perf2-imp2-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got ['katvvhsk']",
+                "perfective: expected 'utvn', got ['utvvn']",
+                "imperative: expected 'hatv'vka', got [\"hatvv'vka\"]"
+            ],
+            "class": "v'vsk[pres2-perf2-imp3]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperfective: expected 'katv'vhsk', got ['katvvhsk']",
+                "perfective: expected 'utvn', got ['utvvn']",
+                "imperative: expected 'hatv'vka', got [\"hatvv'vka\"]",
+                "infinitive: expected 'utvt', got ['utvvt']"
+            ],
+            "class": "v'vsk[pres2-perf2-imp3-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperative: expected 'hatv'vka', got ['hatvvka']"
+            ],
+            "class": "v'vsk[pres2-imperf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperative: expected 'hatv'vka', got ['hatvvka']",
+                "infinitive: expected 'utvt', got ['utvvt']"
+            ],
+            "class": "v'vsk[pres2-imperf2-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "infinitive: expected 'utvt', got ['utvvt']"
+            ],
+            "class": "v'vsk[pres2-imperf2-imp2-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperative: expected 'hatv'vka', got [\"hatvv'vka\"]"
+            ],
+            "class": "v'vsk[pres2-imperf2-imp3]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "imperative: expected 'hatv'vka', got [\"hatvv'vka\"]",
+                "infinitive: expected 'utvt', got ['utvvt']"
+            ],
+            "class": "v'vsk[pres2-imperf2-imp3-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "perfective: expected 'utvn', got ['utvvn']",
+                "imperative: expected 'hatv'vka', got ['hatvvka']"
+            ],
+            "class": "v'vsk[pres2-imperf2-perf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "perfective: expected 'utvn', got ['utvvn']",
+                "imperative: expected 'hatv'vka', got ['hatvvka']",
+                "infinitive: expected 'utvt', got ['utvvt']"
+            ],
+            "class": "v'vsk[pres2-imperf2-perf2-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "perfective: expected 'utvn', got ['utvvn']"
+            ],
+            "class": "v'vsk[pres2-imperf2-perf2-imp2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "perfective: expected 'utvn', got ['utvvn']",
+                "infinitive: expected 'utvt', got ['utvvt']"
+            ],
+            "class": "v'vsk[pres2-imperf2-perf2-imp2-inf2]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "perfective: expected 'utvn', got ['utvvn']",
+                "imperative: expected 'hatv'vka', got [\"hatvv'vka\"]"
+            ],
+            "class": "v'vsk[pres2-imperf2-perf2-imp3]",
+            "corpus_id": 788
+        },
+        {
+            "definition": "he/she is hanging up it",
+            "failed_forms": [
+                "perfective: expected 'utvn', got ['utvvn']",
+                "imperative: expected 'hatv'vka', got [\"hatvv'vka\"]",
+                "infinitive: expected 'utvt', got ['utvvt']"
+            ],
+            "class": "v'vsk[pres2-imperf2-perf2-imp3-inf2]",
             "corpus_id": 788
         },
         {
@@ -8365,6 +9156,7 @@
             "definition": "he/she is putting it in a hole or a container",
             "failed_forms": [
                 "perfective: expected 'ulvn', got ['uln']",
+                "imperative: expected 'hilv'vka', got [\"hil'vka\"]",
                 "infinitive: expected 'ulvt', got ['ult']"
             ],
             "class": "v'vsk[imp2]",
@@ -8373,9 +9165,27 @@
         {
             "definition": "he/she is putting it in a hole or a container",
             "failed_forms": [
-                "perfective: expected 'ulvn', got ['uln']"
+                "perfective: expected 'ulvn', got ['uln']",
+                "imperative: expected 'hilv'vka', got [\"hil'vka\"]"
             ],
             "class": "v'vsk[imp2-inf2]",
+            "corpus_id": 870
+        },
+        {
+            "definition": "he/she is putting it in a hole or a container",
+            "failed_forms": [
+                "perfective: expected 'ulvn', got ['uln']",
+                "infinitive: expected 'ulvt', got ['ult']"
+            ],
+            "class": "v'vsk[imp3]",
+            "corpus_id": 870
+        },
+        {
+            "definition": "he/she is putting it in a hole or a container",
+            "failed_forms": [
+                "perfective: expected 'ulvn', got ['uln']"
+            ],
+            "class": "v'vsk[imp3-inf2]",
             "corpus_id": 870
         },
         {
@@ -8398,9 +9208,26 @@
         {
             "definition": "he/she is putting it in a hole or a container",
             "failed_forms": [
+                "imperative: expected 'hilv'vka', got [\"hil'vka\"]",
                 "infinitive: expected 'ulvt', got ['ult']"
             ],
             "class": "v'vsk[perf2-imp2]",
+            "corpus_id": 870
+        },
+        {
+            "definition": "he/she is putting it in a hole or a container",
+            "failed_forms": [
+                "imperative: expected 'hilv'vka', got [\"hil'vka\"]"
+            ],
+            "class": "v'vsk[perf2-imp2-inf2]",
+            "corpus_id": 870
+        },
+        {
+            "definition": "he/she is putting it in a hole or a container",
+            "failed_forms": [
+                "infinitive: expected 'ulvt', got ['ult']"
+            ],
+            "class": "v'vsk[perf2-imp3]",
             "corpus_id": 870
         },
         {
@@ -8456,6 +9283,7 @@
             "definition": "he/she is hiring him/her",
             "failed_forms": [
                 "perfective: expected 'unalhvn', got ['unalhn']",
+                "imperative: expected 'hinalhv'vka', got [\"hinalh'vka\"]",
                 "infinitive: expected 'unalhvt', got ['unalht']"
             ],
             "class": "v'vsk[imp2]",
@@ -8464,9 +9292,27 @@
         {
             "definition": "he/she is hiring him/her",
             "failed_forms": [
-                "perfective: expected 'unalhvn', got ['unalhn']"
+                "perfective: expected 'unalhvn', got ['unalhn']",
+                "imperative: expected 'hinalhv'vka', got [\"hinalh'vka\"]"
             ],
             "class": "v'vsk[imp2-inf2]",
+            "corpus_id": 873
+        },
+        {
+            "definition": "he/she is hiring him/her",
+            "failed_forms": [
+                "perfective: expected 'unalhvn', got ['unalhn']",
+                "infinitive: expected 'unalhvt', got ['unalht']"
+            ],
+            "class": "v'vsk[imp3]",
+            "corpus_id": 873
+        },
+        {
+            "definition": "he/she is hiring him/her",
+            "failed_forms": [
+                "perfective: expected 'unalhvn', got ['unalhn']"
+            ],
+            "class": "v'vsk[imp3-inf2]",
             "corpus_id": 873
         },
         {
@@ -8489,9 +9335,26 @@
         {
             "definition": "he/she is hiring him/her",
             "failed_forms": [
+                "imperative: expected 'hinalhv'vka', got [\"hinalh'vka\"]",
                 "infinitive: expected 'unalhvt', got ['unalht']"
             ],
             "class": "v'vsk[perf2-imp2]",
+            "corpus_id": 873
+        },
+        {
+            "definition": "he/she is hiring him/her",
+            "failed_forms": [
+                "imperative: expected 'hinalhv'vka', got [\"hinalh'vka\"]"
+            ],
+            "class": "v'vsk[perf2-imp2-inf2]",
+            "corpus_id": 873
+        },
+        {
+            "definition": "he/she is hiring him/her",
+            "failed_forms": [
+                "infinitive: expected 'unalhvt', got ['unalht']"
+            ],
+            "class": "v'vsk[perf2-imp3]",
             "corpus_id": 873
         },
         {
@@ -8793,6 +9656,107 @@
                 "infinitive: expected 'unolvt', got [\"unolv'vt\"]"
             ],
             "class": "v'vsk[perf2-inf2]",
+            "corpus_id": 924
+        },
+        {
+            "definition": "it is blowing",
+            "failed_forms": [
+                "imperfective: expected 'kanolv'vhsk', got [\"kanolv''vhsk\"]",
+                "perfective: expected 'unolvn', got [\"unolv'n\"]",
+                "infinitive: expected 'unolvt', got [\"unolv't\"]"
+            ],
+            "class": "v'vsk[imperf2]",
+            "corpus_id": 924
+        },
+        {
+            "definition": "it is blowing",
+            "failed_forms": [
+                "imperfective: expected 'kanolv'vhsk', got [\"kanolv''vhsk\"]",
+                "perfective: expected 'unolvn', got [\"unolv'n\"]",
+                "infinitive: expected 'unolvt', got [\"unolv'vt\"]"
+            ],
+            "class": "v'vsk[imperf2-inf2]",
+            "corpus_id": 924
+        },
+        {
+            "definition": "it is blowing",
+            "failed_forms": [
+                "imperfective: expected 'kanolv'vhsk', got [\"kanolv''vhsk\"]",
+                "perfective: expected 'unolvn', got [\"unolv'vn\"]",
+                "infinitive: expected 'unolvt', got [\"unolv't\"]"
+            ],
+            "class": "v'vsk[imperf2-perf2]",
+            "corpus_id": 924
+        },
+        {
+            "definition": "it is blowing",
+            "failed_forms": [
+                "imperfective: expected 'kanolv'vhsk', got [\"kanolv''vhsk\"]",
+                "perfective: expected 'unolvn', got [\"unolv'vn\"]",
+                "infinitive: expected 'unolvt', got [\"unolv'vt\"]"
+            ],
+            "class": "v'vsk[imperf2-perf2-inf2]",
+            "corpus_id": 924
+        },
+        {
+            "definition": "it is blowing",
+            "failed_forms": [
+                "imperfective: expected 'kanolv'vhsk', got ['kanolvvhsk']"
+            ],
+            "class": "v'vsk[pres2]",
+            "corpus_id": 924
+        },
+        {
+            "definition": "it is blowing",
+            "failed_forms": [
+                "imperfective: expected 'kanolv'vhsk', got ['kanolvvhsk']",
+                "infinitive: expected 'unolvt', got ['unolvvt']"
+            ],
+            "class": "v'vsk[pres2-inf2]",
+            "corpus_id": 924
+        },
+        {
+            "definition": "it is blowing",
+            "failed_forms": [
+                "imperfective: expected 'kanolv'vhsk', got ['kanolvvhsk']",
+                "perfective: expected 'unolvn', got ['unolvvn']"
+            ],
+            "class": "v'vsk[pres2-perf2]",
+            "corpus_id": 924
+        },
+        {
+            "definition": "it is blowing",
+            "failed_forms": [
+                "imperfective: expected 'kanolv'vhsk', got ['kanolvvhsk']",
+                "perfective: expected 'unolvn', got ['unolvvn']",
+                "infinitive: expected 'unolvt', got ['unolvvt']"
+            ],
+            "class": "v'vsk[pres2-perf2-inf2]",
+            "corpus_id": 924
+        },
+        {
+            "definition": "it is blowing",
+            "failed_forms": [
+                "infinitive: expected 'unolvt', got ['unolvvt']"
+            ],
+            "class": "v'vsk[pres2-imperf2-inf2]",
+            "corpus_id": 924
+        },
+        {
+            "definition": "it is blowing",
+            "failed_forms": [
+                "perfective: expected 'unolvn', got ['unolvvn']"
+            ],
+            "class": "v'vsk[pres2-imperf2-perf2]",
+            "corpus_id": 924
+        },
+        {
+            "definition": "it is blowing",
+            "failed_forms": [
+                "perfective: expected 'unolvn', got ['unolvvn']",
+                "infinitive: expected 'unolvt', got ['unolvvt']"
+            ],
+            "class": "v'vsk[pres2-imperf2-perf2-inf2]",
             "corpus_id": 924
         },
         {
@@ -9805,6 +10769,7 @@
             "definition": "he/she is hitching him/her up",
             "failed_forms": [
                 "perfective: expected 'uwutalvn', got ['uwutaln']",
+                "imperative: expected 'hiyutalv'vka', got [\"hiyuta'lvka\"]",
                 "infinitive: expected 'uwutalvt', got ['uwutalt']"
             ],
             "class": "v'vsk[imp2]",
@@ -9813,9 +10778,27 @@
         {
             "definition": "he/she is hitching him/her up",
             "failed_forms": [
-                "perfective: expected 'uwutalvn', got ['uwutaln']"
+                "perfective: expected 'uwutalvn', got ['uwutaln']",
+                "imperative: expected 'hiyutalv'vka', got [\"hiyuta'lvka\"]"
             ],
             "class": "v'vsk[imp2-inf2]",
+            "corpus_id": 1045
+        },
+        {
+            "definition": "he/she is hitching him/her up",
+            "failed_forms": [
+                "perfective: expected 'uwutalvn', got ['uwutaln']",
+                "infinitive: expected 'uwutalvt', got ['uwutalt']"
+            ],
+            "class": "v'vsk[imp3]",
+            "corpus_id": 1045
+        },
+        {
+            "definition": "he/she is hitching him/her up",
+            "failed_forms": [
+                "perfective: expected 'uwutalvn', got ['uwutaln']"
+            ],
+            "class": "v'vsk[imp3-inf2]",
             "corpus_id": 1045
         },
         {
@@ -9838,9 +10821,26 @@
         {
             "definition": "he/she is hitching him/her up",
             "failed_forms": [
+                "imperative: expected 'hiyutalv'vka', got [\"hiyuta'lvka\"]",
                 "infinitive: expected 'uwutalvt', got ['uwutalt']"
             ],
             "class": "v'vsk[perf2-imp2]",
+            "corpus_id": 1045
+        },
+        {
+            "definition": "he/she is hitching him/her up",
+            "failed_forms": [
+                "imperative: expected 'hiyutalv'vka', got [\"hiyuta'lvka\"]"
+            ],
+            "class": "v'vsk[perf2-imp2-inf2]",
+            "corpus_id": 1045
+        },
+        {
+            "definition": "he/she is hitching him/her up",
+            "failed_forms": [
+                "infinitive: expected 'uwutalvt', got ['uwutalt']"
+            ],
+            "class": "v'vsk[perf2-imp3]",
             "corpus_id": 1045
         },
         {
@@ -9948,6 +10948,7 @@
             "definition": "he/she is covering it",
             "failed_forms": [
                 "perfective: expected 'uwulhvn', got ['uwulhn']",
+                "imperative: expected 'hulhv'vka', got [\"hulh'vka\"]",
                 "infinitive: expected 'uwulhvt', got ['uwulht']"
             ],
             "class": "v'vsk[imp2]",
@@ -9956,9 +10957,27 @@
         {
             "definition": "he/she is covering it",
             "failed_forms": [
-                "perfective: expected 'uwulhvn', got ['uwulhn']"
+                "perfective: expected 'uwulhvn', got ['uwulhn']",
+                "imperative: expected 'hulhv'vka', got [\"hulh'vka\"]"
             ],
             "class": "v'vsk[imp2-inf2]",
+            "corpus_id": 1055
+        },
+        {
+            "definition": "he/she is covering it",
+            "failed_forms": [
+                "perfective: expected 'uwulhvn', got ['uwulhn']",
+                "infinitive: expected 'uwulhvt', got ['uwulht']"
+            ],
+            "class": "v'vsk[imp3]",
+            "corpus_id": 1055
+        },
+        {
+            "definition": "he/she is covering it",
+            "failed_forms": [
+                "perfective: expected 'uwulhvn', got ['uwulhn']"
+            ],
+            "class": "v'vsk[imp3-inf2]",
             "corpus_id": 1055
         },
         {
@@ -9981,9 +11000,26 @@
         {
             "definition": "he/she is covering it",
             "failed_forms": [
+                "imperative: expected 'hulhv'vka', got [\"hulh'vka\"]",
                 "infinitive: expected 'uwulhvt', got ['uwulht']"
             ],
             "class": "v'vsk[perf2-imp2]",
+            "corpus_id": 1055
+        },
+        {
+            "definition": "he/she is covering it",
+            "failed_forms": [
+                "imperative: expected 'hulhv'vka', got [\"hulh'vka\"]"
+            ],
+            "class": "v'vsk[perf2-imp2-inf2]",
+            "corpus_id": 1055
+        },
+        {
+            "definition": "he/she is covering it",
+            "failed_forms": [
+                "infinitive: expected 'uwulhvt', got ['uwulht']"
+            ],
+            "class": "v'vsk[perf2-imp3]",
             "corpus_id": 1055
         },
         {
@@ -10334,6 +11370,7 @@
             "definition": "he/she is hiding him/her",
             "failed_forms": [
                 "perfective: expected 'uwahskalvn', got ['uwahskaln']",
+                "imperative: expected 'hiyvhskalv'vka', got [\"hiyvhskal'vka\"]",
                 "infinitive: expected 'uwahskalvt', got ['uwahskalt']"
             ],
             "class": "v'vsk[imp2]",
@@ -10342,9 +11379,27 @@
         {
             "definition": "he/she is hiding him/her",
             "failed_forms": [
-                "perfective: expected 'uwahskalvn', got ['uwahskaln']"
+                "perfective: expected 'uwahskalvn', got ['uwahskaln']",
+                "imperative: expected 'hiyvhskalv'vka', got [\"hiyvhskal'vka\"]"
             ],
             "class": "v'vsk[imp2-inf2]",
+            "corpus_id": 1085
+        },
+        {
+            "definition": "he/she is hiding him/her",
+            "failed_forms": [
+                "perfective: expected 'uwahskalvn', got ['uwahskaln']",
+                "infinitive: expected 'uwahskalvt', got ['uwahskalt']"
+            ],
+            "class": "v'vsk[imp3]",
+            "corpus_id": 1085
+        },
+        {
+            "definition": "he/she is hiding him/her",
+            "failed_forms": [
+                "perfective: expected 'uwahskalvn', got ['uwahskaln']"
+            ],
+            "class": "v'vsk[imp3-inf2]",
             "corpus_id": 1085
         },
         {
@@ -10367,9 +11422,26 @@
         {
             "definition": "he/she is hiding him/her",
             "failed_forms": [
+                "imperative: expected 'hiyvhskalv'vka', got [\"hiyvhskal'vka\"]",
                 "infinitive: expected 'uwahskalvt', got ['uwahskalt']"
             ],
             "class": "v'vsk[perf2-imp2]",
+            "corpus_id": 1085
+        },
+        {
+            "definition": "he/she is hiding him/her",
+            "failed_forms": [
+                "imperative: expected 'hiyvhskalv'vka', got [\"hiyvhskal'vka\"]"
+            ],
+            "class": "v'vsk[perf2-imp2-inf2]",
+            "corpus_id": 1085
+        },
+        {
+            "definition": "he/she is hiding him/her",
+            "failed_forms": [
+                "infinitive: expected 'uwahskalvt', got ['uwahskalt']"
+            ],
+            "class": "v'vsk[perf2-imp3]",
             "corpus_id": 1085
         },
         {
@@ -11842,7 +12914,7 @@
             "definition": "he/she is sending it",
             "failed_forms": [
                 "perfective: expected 'wunvn', got [\"wiunv'n\", \"wunv'n\"]",
-                "imperative: expected 'whinv'vka', got [\"whinv'v'vka\", \"wihinv'v'vka\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv''vka\", \"wihinv''vka\"]",
                 "infinitive: expected 'wunvt', got [\"wiunv't\", \"wunv't\"]"
             ],
             "class": "v'vsk[imp2]",
@@ -11852,10 +12924,30 @@
             "definition": "he/she is sending it",
             "failed_forms": [
                 "perfective: expected 'wunvn', got [\"wiunv'n\", \"wunv'n\"]",
-                "imperative: expected 'whinv'vka', got [\"whinv'v'vka\", \"wihinv'v'vka\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv''vka\", \"wihinv''vka\"]",
                 "infinitive: expected 'wunvt', got [\"wiunv'vt\", \"wunv'vt\"]"
             ],
             "class": "v'vsk[imp2-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "perfective: expected 'wunvn', got [\"wiunv'n\", \"wunv'n\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv'v'vka\", \"wihinv'v'vka\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv't\", \"wunv't\"]"
+            ],
+            "class": "v'vsk[imp3]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "perfective: expected 'wunvn', got [\"wiunv'n\", \"wunv'n\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv'v'vka\", \"wihinv'v'vka\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv'vt\", \"wunv'vt\"]"
+            ],
+            "class": "v'vsk[imp3-inf2]",
             "corpus_id": 1776
         },
         {
@@ -11880,7 +12972,7 @@
             "definition": "he/she is sending it",
             "failed_forms": [
                 "perfective: expected 'wunvn', got [\"wiunv'vn\", \"wunv'vn\"]",
-                "imperative: expected 'whinv'vka', got [\"whinv'v'vka\", \"wihinv'v'vka\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv''vka\", \"wihinv''vka\"]",
                 "infinitive: expected 'wunvt', got [\"wiunv't\", \"wunv't\"]"
             ],
             "class": "v'vsk[perf2-imp2]",
@@ -11890,10 +12982,371 @@
             "definition": "he/she is sending it",
             "failed_forms": [
                 "perfective: expected 'wunvn', got [\"wiunv'vn\", \"wunv'vn\"]",
-                "imperative: expected 'whinv'vka', got [\"whinv'v'vka\", \"wihinv'v'vka\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv''vka\", \"wihinv''vka\"]",
                 "infinitive: expected 'wunvt', got [\"wiunv'vt\", \"wunv'vt\"]"
             ],
             "class": "v'vsk[perf2-imp2-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "perfective: expected 'wunvn', got [\"wiunv'vn\", \"wunv'vn\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv'v'vka\", \"wihinv'v'vka\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv't\", \"wunv't\"]"
+            ],
+            "class": "v'vsk[perf2-imp3]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "perfective: expected 'wunvn', got [\"wiunv'vn\", \"wunv'vn\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv'v'vka\", \"wihinv'v'vka\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv'vt\", \"wunv'vt\"]"
+            ],
+            "class": "v'vsk[perf2-imp3-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got [\"wikanv''vhsk\", \"wkanv''vhsk\"]",
+                "perfective: expected 'wunvn', got [\"wiunv'n\", \"wunv'n\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv't\", \"wunv't\"]"
+            ],
+            "class": "v'vsk[imperf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got [\"wikanv''vhsk\", \"wkanv''vhsk\"]",
+                "perfective: expected 'wunvn', got [\"wiunv'n\", \"wunv'n\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv'vt\", \"wunv'vt\"]"
+            ],
+            "class": "v'vsk[imperf2-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got [\"wikanv''vhsk\", \"wkanv''vhsk\"]",
+                "perfective: expected 'wunvn', got [\"wiunv'n\", \"wunv'n\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv''vka\", \"wihinv''vka\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv't\", \"wunv't\"]"
+            ],
+            "class": "v'vsk[imperf2-imp2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got [\"wikanv''vhsk\", \"wkanv''vhsk\"]",
+                "perfective: expected 'wunvn', got [\"wiunv'n\", \"wunv'n\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv''vka\", \"wihinv''vka\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv'vt\", \"wunv'vt\"]"
+            ],
+            "class": "v'vsk[imperf2-imp2-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got [\"wikanv''vhsk\", \"wkanv''vhsk\"]",
+                "perfective: expected 'wunvn', got [\"wiunv'n\", \"wunv'n\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv'v'vka\", \"wihinv'v'vka\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv't\", \"wunv't\"]"
+            ],
+            "class": "v'vsk[imperf2-imp3]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got [\"wikanv''vhsk\", \"wkanv''vhsk\"]",
+                "perfective: expected 'wunvn', got [\"wiunv'n\", \"wunv'n\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv'v'vka\", \"wihinv'v'vka\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv'vt\", \"wunv'vt\"]"
+            ],
+            "class": "v'vsk[imperf2-imp3-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got [\"wikanv''vhsk\", \"wkanv''vhsk\"]",
+                "perfective: expected 'wunvn', got [\"wiunv'vn\", \"wunv'vn\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv't\", \"wunv't\"]"
+            ],
+            "class": "v'vsk[imperf2-perf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got [\"wikanv''vhsk\", \"wkanv''vhsk\"]",
+                "perfective: expected 'wunvn', got [\"wiunv'vn\", \"wunv'vn\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv'vt\", \"wunv'vt\"]"
+            ],
+            "class": "v'vsk[imperf2-perf2-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got [\"wikanv''vhsk\", \"wkanv''vhsk\"]",
+                "perfective: expected 'wunvn', got [\"wiunv'vn\", \"wunv'vn\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv''vka\", \"wihinv''vka\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv't\", \"wunv't\"]"
+            ],
+            "class": "v'vsk[imperf2-perf2-imp2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got [\"wikanv''vhsk\", \"wkanv''vhsk\"]",
+                "perfective: expected 'wunvn', got [\"wiunv'vn\", \"wunv'vn\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv''vka\", \"wihinv''vka\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv'vt\", \"wunv'vt\"]"
+            ],
+            "class": "v'vsk[imperf2-perf2-imp2-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got [\"wikanv''vhsk\", \"wkanv''vhsk\"]",
+                "perfective: expected 'wunvn', got [\"wiunv'vn\", \"wunv'vn\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv'v'vka\", \"wihinv'v'vka\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv't\", \"wunv't\"]"
+            ],
+            "class": "v'vsk[imperf2-perf2-imp3]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got [\"wikanv''vhsk\", \"wkanv''vhsk\"]",
+                "perfective: expected 'wunvn', got [\"wiunv'vn\", \"wunv'vn\"]",
+                "imperative: expected 'whinv'vka', got [\"whinv'v'vka\", \"wihinv'v'vka\"]",
+                "infinitive: expected 'wunvt', got [\"wiunv'vt\", \"wunv'vt\"]"
+            ],
+            "class": "v'vsk[imperf2-perf2-imp3-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got ['wikanvvhsk', 'wkanvvhsk']",
+                "imperative: expected 'whinv'vka', got ['whinvvka', 'wihinvvka']"
+            ],
+            "class": "v'vsk[pres2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got ['wikanvvhsk', 'wkanvvhsk']",
+                "imperative: expected 'whinv'vka', got ['whinvvka', 'wihinvvka']",
+                "infinitive: expected 'wunvt', got ['wiunvvt', 'wunvvt']"
+            ],
+            "class": "v'vsk[pres2-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got ['wikanvvhsk', 'wkanvvhsk']"
+            ],
+            "class": "v'vsk[pres2-imp2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got ['wikanvvhsk', 'wkanvvhsk']",
+                "infinitive: expected 'wunvt', got ['wiunvvt', 'wunvvt']"
+            ],
+            "class": "v'vsk[pres2-imp2-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got ['wikanvvhsk', 'wkanvvhsk']",
+                "imperative: expected 'whinv'vka', got [\"whinvv'vka\", \"wihinvv'vka\"]"
+            ],
+            "class": "v'vsk[pres2-imp3]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got ['wikanvvhsk', 'wkanvvhsk']",
+                "imperative: expected 'whinv'vka', got [\"whinvv'vka\", \"wihinvv'vka\"]",
+                "infinitive: expected 'wunvt', got ['wiunvvt', 'wunvvt']"
+            ],
+            "class": "v'vsk[pres2-imp3-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got ['wikanvvhsk', 'wkanvvhsk']",
+                "perfective: expected 'wunvn', got ['wiunvvn', 'wunvvn']",
+                "imperative: expected 'whinv'vka', got ['whinvvka', 'wihinvvka']"
+            ],
+            "class": "v'vsk[pres2-perf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got ['wikanvvhsk', 'wkanvvhsk']",
+                "perfective: expected 'wunvn', got ['wiunvvn', 'wunvvn']",
+                "imperative: expected 'whinv'vka', got ['whinvvka', 'wihinvvka']",
+                "infinitive: expected 'wunvt', got ['wiunvvt', 'wunvvt']"
+            ],
+            "class": "v'vsk[pres2-perf2-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got ['wikanvvhsk', 'wkanvvhsk']",
+                "perfective: expected 'wunvn', got ['wiunvvn', 'wunvvn']"
+            ],
+            "class": "v'vsk[pres2-perf2-imp2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got ['wikanvvhsk', 'wkanvvhsk']",
+                "perfective: expected 'wunvn', got ['wiunvvn', 'wunvvn']",
+                "infinitive: expected 'wunvt', got ['wiunvvt', 'wunvvt']"
+            ],
+            "class": "v'vsk[pres2-perf2-imp2-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got ['wikanvvhsk', 'wkanvvhsk']",
+                "perfective: expected 'wunvn', got ['wiunvvn', 'wunvvn']",
+                "imperative: expected 'whinv'vka', got [\"whinvv'vka\", \"wihinvv'vka\"]"
+            ],
+            "class": "v'vsk[pres2-perf2-imp3]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperfective: expected 'wikanv'vhsk', got ['wikanvvhsk', 'wkanvvhsk']",
+                "perfective: expected 'wunvn', got ['wiunvvn', 'wunvvn']",
+                "imperative: expected 'whinv'vka', got [\"whinvv'vka\", \"wihinvv'vka\"]",
+                "infinitive: expected 'wunvt', got ['wiunvvt', 'wunvvt']"
+            ],
+            "class": "v'vsk[pres2-perf2-imp3-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperative: expected 'whinv'vka', got ['whinvvka', 'wihinvvka']"
+            ],
+            "class": "v'vsk[pres2-imperf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperative: expected 'whinv'vka', got ['whinvvka', 'wihinvvka']",
+                "infinitive: expected 'wunvt', got ['wiunvvt', 'wunvvt']"
+            ],
+            "class": "v'vsk[pres2-imperf2-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "infinitive: expected 'wunvt', got ['wiunvvt', 'wunvvt']"
+            ],
+            "class": "v'vsk[pres2-imperf2-imp2-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperative: expected 'whinv'vka', got [\"whinvv'vka\", \"wihinvv'vka\"]"
+            ],
+            "class": "v'vsk[pres2-imperf2-imp3]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "imperative: expected 'whinv'vka', got [\"whinvv'vka\", \"wihinvv'vka\"]",
+                "infinitive: expected 'wunvt', got ['wiunvvt', 'wunvvt']"
+            ],
+            "class": "v'vsk[pres2-imperf2-imp3-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "perfective: expected 'wunvn', got ['wiunvvn', 'wunvvn']",
+                "imperative: expected 'whinv'vka', got ['whinvvka', 'wihinvvka']"
+            ],
+            "class": "v'vsk[pres2-imperf2-perf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "perfective: expected 'wunvn', got ['wiunvvn', 'wunvvn']",
+                "imperative: expected 'whinv'vka', got ['whinvvka', 'wihinvvka']",
+                "infinitive: expected 'wunvt', got ['wiunvvt', 'wunvvt']"
+            ],
+            "class": "v'vsk[pres2-imperf2-perf2-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "perfective: expected 'wunvn', got ['wiunvvn', 'wunvvn']"
+            ],
+            "class": "v'vsk[pres2-imperf2-perf2-imp2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "perfective: expected 'wunvn', got ['wiunvvn', 'wunvvn']",
+                "infinitive: expected 'wunvt', got ['wiunvvt', 'wunvvt']"
+            ],
+            "class": "v'vsk[pres2-imperf2-perf2-imp2-inf2]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "perfective: expected 'wunvn', got ['wiunvvn', 'wunvvn']",
+                "imperative: expected 'whinv'vka', got [\"whinvv'vka\", \"wihinvv'vka\"]"
+            ],
+            "class": "v'vsk[pres2-imperf2-perf2-imp3]",
+            "corpus_id": 1776
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "perfective: expected 'wunvn', got ['wiunvvn', 'wunvvn']",
+                "imperative: expected 'whinv'vka', got [\"whinvv'vka\", \"wihinvv'vka\"]",
+                "infinitive: expected 'wunvt', got ['wiunvvt', 'wunvvt']"
+            ],
+            "class": "v'vsk[pres2-imperf2-perf2-imp3-inf2]",
             "corpus_id": 1776
         },
         {
