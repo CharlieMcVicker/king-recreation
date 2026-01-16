@@ -1,6 +1,7 @@
 from enum import Enum
 from dataclasses import dataclass
 from typing import Dict, Optional, List, Tuple
+import re
 
 
 class StemType(Enum):
@@ -365,28 +366,24 @@ def use_glottal_grade(form: str, config: PronominalConfig) -> bool:
     return use_glottal_grade_for_set(get_pronominal_set_name(form, config))
 
 
-def _drop_first_h(stem: str) -> str:
-    idx = stem.find("h")
+def _drop_first_h(h_grade: str) -> str:
+    idx = h_grade.find("h")
     if idx != -1:
-        return stem[:idx] + stem[idx + 1 :]
-    return stem
+        return h_grade[:idx] + h_grade[idx + 1 :]
+    return h_grade
 
 
-def _first_h_to_glottal(stem: str) -> str:
-    idx = stem.find("h")
+def _first_h_to_glottal(h_grade: str) -> str:
+    idx = h_grade.find("h")
     if idx != -1:
-        return stem[:idx] + "'" + stem[idx + 1 :]
-    return stem
+        return h_grade[:idx] + "'" + h_grade[idx + 1 :]
+    return h_grade
 
 
-# TODO: handle cluster
-def _first_h_to_glottal_with_metathesis(stem: str) -> str:
-    idx = stem.find("h")
-    if idx != -1:
-        "'"
-        # move glottal to right of consonant
-        return stem[: idx - 1] + "'" + stem[idx - 1] + stem[idx + 1 :]
-    return stem
+def prevent_C_glottal_cluster(form: str) -> str:
+    # turn all sequences of (C+)' into '(C+)
+    # capture consonants as [^aeiouv']
+    return re.sub(r"([^aeiouv']+)'", r"'\1", form)
 
 
 def _is_compatible_with_vowel_restoration(restored: str, syncopated: str) -> bool:
@@ -448,10 +445,9 @@ def possible_alternates(h_form: str) -> list[str]:
         _drop_h_in_deaffricated_lateral,
         _drop_first_h,
         _first_h_to_glottal,
-        _first_h_to_glottal_with_metathesis,
     ]
 
-    return [way(h_form) for way in WAYS_TO_DROP]
+    return [prevent_C_glottal_cluster(way(h_form)) for way in WAYS_TO_DROP]
 
 
 def grades_are_compatible(*, h: str, glottal: str) -> bool:
