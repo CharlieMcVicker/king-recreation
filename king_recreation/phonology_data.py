@@ -471,6 +471,3 @@ def grades_are_compatible(*, h: str, glottal: str) -> bool:
             return True
 
     return False
-
-
-print(grades_are_compatible(h="tsko", glottal="tsihsko"))
