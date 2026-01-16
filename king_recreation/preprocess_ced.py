@@ -29,6 +29,7 @@ def respell_consonants(s):
         s = s.replace(old, new)
 
     s = re.sub(r"sl(?=[aeiouv])", "slh", s)
+    s = re.sub(r"([^ht])s", r"\1hs", s)
 
     return s
 

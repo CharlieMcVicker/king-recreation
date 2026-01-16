@@ -391,7 +391,7 @@ def recreate_C_glottal_clusters(surface: str) -> str:
 
 
 def _is_compatible_with_vowel_restoration(restored: str, syncopated: str) -> bool:
-    if len(restored) - len(syncopated) not in [0, 1, 2]:
+    if len(restored) - len(syncopated) not in [0, 1, 3]:
         return False
     i = 0
     j = 0
@@ -411,13 +411,17 @@ def _is_compatible_with_vowel_restoration(restored: str, syncopated: str) -> boo
             if skipped:
                 if (
                     # sometimes we will have a case like
+                    #               1234
                     # syncopated:   tsgo
-                    # restored:     ts_is_go
+                    #                 ___
+                    # restored:     tsihsgo
+                    #               1234567
                     skipped_idx == i - 1
                     and restored[skipped_idx - 1] == "s"
-                    and restored[i] == "s"
+                    and restored[i] == "h"
+                    and restored[i + 1] == "s"
                 ):
-                    i += 1
+                    i += 2
                 else:
                     return False
             elif restored[i] in VOWEL_SET:
@@ -467,3 +471,6 @@ def grades_are_compatible(*, h: str, glottal: str) -> bool:
             return True
 
     return False
+
+
+print(grades_are_compatible(h="tsko", glottal="tsihsko"))
