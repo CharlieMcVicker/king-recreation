@@ -46,7 +46,7 @@ def strip_prepronominals(
     stripped = {}
     for fn, word in forms.items():
         current = word
-        if config.translocutive:
+        if config.translocutive or (fn == "imperative" and config.translocutiveImpOnly):
             if current.startswith("wi"):
                 current = current[2:]
             elif current.startswith("w"):
@@ -73,7 +73,9 @@ def strip_prepronominals(
                 else:
                     return None
         if config.distributive:
-            if fn in ["infinitive", "imperative"]:
+            if fn == "infinitive" or (
+                fn == "imperative" and not config.distributiveImpIsFutProg
+            ):
                 if current.startswith("ts"):
                     current = current[2:]
                 elif current.startswith("ti"):
@@ -190,14 +192,18 @@ def iter_pre_configs(forms):
     Iterate over valid pre-configs
     """
     for t in [False, True]:
-        for p in [False, True]:
-            for d in [False, True]:
-                pre_config = PrePronominalConfig(t, p, d)
-                intermediate = strip_prepronominals(forms, pre_config)
-                if intermediate is None:
-                    continue
-                else:
-                    yield pre_config, intermediate
+        t2_opts = [False] if t else [False, True]
+        for t2 in t2_opts:
+            for p in [False, True]:
+                for d in [False, True]:
+                    d2_opts = [False, True] if d else [False]
+                    for d2 in d2_opts:
+                        pre_config = PrePronominalConfig(t, t2, p, d, d2)
+                        intermediate = strip_prepronominals(forms, pre_config)
+                        if intermediate is None:
+                            continue
+                        else:
+                            yield pre_config, intermediate
 
 
 class StemDeriver:
@@ -311,8 +317,12 @@ def main():
                 row["consensus_root"] = d.consensus_stem
                 row["set_a_b"] = d.pron_config.set_type
                 row["translocutive"] = str(d.pre_config.translocutive)
+                row["translocutive_imp_only"] = str(d.pre_config.translocutiveImpOnly)
                 row["partitive"] = str(d.pre_config.partitive)
                 row["distributive"] = str(d.pre_config.distributive)
+                row["distributive_fut_prog"] = str(
+                    d.pre_config.distributiveImpIsFutProg
+                )
                 row["stem_type"] = d.pron_config.stem_type.value
                 row["metathesis_strategy"] = d.pron_config.metathesis_strategy.value
                 row["metathesis_involved"] = str(d.metathesis_involved)

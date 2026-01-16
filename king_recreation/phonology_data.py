@@ -38,8 +38,10 @@ class Condition(Enum):
 @dataclass(frozen=True)
 class PrePronominalConfig:
     translocutive: bool = False
+    translocutiveImpOnly: bool = False
     partitive: bool = False
     distributive: bool = False
+    distributiveImpIsFutProg: bool = False
 
 
 @dataclass(frozen=True)
@@ -66,8 +68,10 @@ class VerbConfig:
     def from_row(stem_row: dict[str, str]) -> "VerbConfig":
         pre_config = PrePronominalConfig(
             translocutive=stem_row["translocutive"] == "True",
+            translocutiveImpOnly=stem_row["translocutive_imp_only"] == "True",
             partitive=stem_row["partitive"] == "True",
             distributive=stem_row["distributive"] == "True",
+            distributiveImpIsFutProg=stem_row["distributive_fut_prog"] == "True",
         )
         pron_config = PronominalConfig(
             set_type=stem_row["set_a_b"],
@@ -332,7 +336,9 @@ def apply_prepronominal(
     if config.distributive:
         new_forms = []
         for w in current_forms:
-            if form_name in ["infinitive", "imperative"]:
+            if form_name == "infinitive" or (
+                form_name == "imperative" and not config.distributiveImpIsFutProg
+            ):
                 new_forms.extend(["ts" + w, "ti" + w, "t" + w])
             else:
                 new_forms.extend(["te" + w, "t" + w])
@@ -349,7 +355,9 @@ def apply_prepronominal(
                 new_forms.extend(["ni" + w, "n" + w])
         current_forms = list(set(new_forms))
 
-    if config.translocutive:
+    if config.translocutive or (
+        form_name == "imperative" and config.translocutiveImpOnly
+    ):
         new_forms = []
         for w in current_forms:
             new_forms.extend(["wi" + w, "w" + w])

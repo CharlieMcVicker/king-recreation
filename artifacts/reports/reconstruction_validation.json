@@ -1,5 +1,5 @@
 {
-    "summary": "550/1849",
+    "summary": "617/1957",
     "failures": [
         {
             "definition": "it\u2019s bouncing",
@@ -269,6 +269,16 @@
             ],
             "class": "apl-active[imp2-inf2]",
             "corpus_id": 27
+        },
+        {
+            "definition": "it\u2019s beginning",
+            "failed_forms": [
+                "imperfective: expected 'atalenihsk', got ['atalenih']",
+                "perfective: expected 'utalenvh', got ['utalenih']",
+                "infinitive: expected 'utalenht', got ['utalenihht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 29
         },
         {
             "definition": "he/she is shopping",
@@ -1329,6 +1339,15 @@
             "corpus_id": 118
         },
         {
+            "definition": "it\u2019s raining",
+            "failed_forms": [
+                "perfective: expected 'ukanhan', got ['ukahsk']",
+                "infinitive: expected 'ukanht', got ['ukahskht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 119
+        },
+        {
             "definition": "he/she is picking it up",
             "failed_forms": [
                 "perfective: expected 'ukihs', got ['uk']"
@@ -1785,6 +1804,14 @@
                 "perfective: expected 'ulhkhotvnh', got ['ulhkhotvh']"
             ],
             "class": "sk-h[imp3]",
+            "corpus_id": 179
+        },
+        {
+            "definition": "it\u2019s shattering",
+            "failed_forms": [
+                "perfective: expected 'ulhkhotvnh', got ['ulhkhotvhsk']"
+            ],
+            "class": "aspectless",
             "corpus_id": 179
         },
         {
@@ -2318,6 +2345,15 @@
             "corpus_id": 214
         },
         {
+            "definition": "it\u2019s becoming frosty",
+            "failed_forms": [
+                "perfective: expected 'uyhahthvnh', got ['uyhahthvhvhsk']",
+                "infinitive: expected 'uyhahthvtht', got ['uyhahthvhvhskht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 214
+        },
+        {
             "definition": "he/she is taking it somewhere by hand",
             "failed_forms": [
                 "imperfective: expected 'ayhek', got ['ayhekek']",
@@ -2621,6 +2657,15 @@
             ],
             "class": "glottal-sk[perf2-inf2]",
             "corpus_id": 244
+        },
+        {
+            "definition": "it\u2019s blooming",
+            "failed_forms": [
+                "perfective: expected 'utsilvnh', got ['utsilvhsk']",
+                "infinitive: expected 'utsilht', got ['utsilvhskht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 250
         },
         {
             "definition": "he/she is lighting a fire",
@@ -3285,6 +3330,16 @@
             "corpus_id": 311
         },
         {
+            "definition": "it\u2019s boiling",
+            "failed_forms": [
+                "imperfective: expected 'alitlihsk', got ['alitlih']",
+                "perfective: expected 'ulitlvh', got ['ulitlih']",
+                "infinitive: expected 'ulilht', got ['ulitlihht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 311
+        },
+        {
             "definition": "he/she is thanking him/her",
             "failed_forms": [
                 "imperative: expected 'hiyali'elitshihsi', got [\"hiyali'elitshhsi\"]"
@@ -3566,6 +3621,15 @@
             "corpus_id": 345
         },
         {
+            "definition": "it\u2019s lightning",
+            "failed_forms": [
+                "imperfective: expected 'anakalihsk', got ['anakalih']",
+                "perfective: expected 'unakalvh', got ['unakalih']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 356
+        },
+        {
             "definition": "he/she is attempting it",
             "failed_forms": [
                 "perfective: expected 'unelhthan', got ['unelhtan']"
@@ -3719,6 +3783,22 @@
             ],
             "class": "cause[pres2-perf3]",
             "corpus_id": 377
+        },
+        {
+            "definition": "it\u2019s becoming crisp",
+            "failed_forms": [
+                "perfective: expected 'uhstakayvlh', got ['uhstakayvhih']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 378
+        },
+        {
+            "definition": "it\u2019s becoming crisp",
+            "failed_forms": [
+                "perfective: expected 'uhstakayvlh', got ['uhstakayvhih']"
+            ],
+            "class": "aspectless-h",
+            "corpus_id": 378
         },
         {
             "definition": "he/she is drawing a line",
@@ -7271,6 +7351,14 @@
             "corpus_id": 728
         },
         {
+            "definition": "he/she is wearing glasses",
+            "failed_forms": [
+                "infinitive: expected 'tsukhthinvtht', got ['tiukhthinvthht', 'tsukhthinvthht', 'tukhthinvthht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 729
+        },
+        {
             "definition": "he/she is working",
             "failed_forms": [
                 "imperative: expected 'titsalvwhihstahsi', got ['titsalvwhihstanhsi', 'tstsalvwhihstanhsi', 'ttsalvwhihstanhsi']"
@@ -7965,6 +8053,14 @@
             "corpus_id": 838
         },
         {
+            "definition": "it is burning",
+            "failed_forms": [
+                "perfective: expected 'ulits', got ['ulik']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 840
+        },
+        {
             "definition": "he/she is stopping by",
             "failed_forms": [
                 "perfective: expected 'ulohihsthan', got ['ulohihstan']"
@@ -8653,6 +8749,15 @@
             ],
             "class": "glottal-sk[perf2-inf2]",
             "corpus_id": 913
+        },
+        {
+            "definition": "he/she is flying",
+            "failed_forms": [
+                "imperfective: expected 'kanohilihs', got ['kanohil']",
+                "imperative: expected 'hinohilihsehsti', got ['hinohilehsti']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 920
         },
         {
             "definition": "it is blowing",
@@ -9919,6 +10024,26 @@
             "corpus_id": 1061
         },
         {
+            "definition": "it\u2019s snowing",
+            "failed_forms": [
+                "imperfective: expected 'kuthihsk', got ['kuthih']",
+                "perfective: expected 'uwuthanh', got ['uwuthih']",
+                "infinitive: expected 'uwuthoht', got ['uwuthihht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 1061
+        },
+        {
+            "definition": "it\u2019s snowing",
+            "failed_forms": [
+                "imperfective: expected 'kuthihsk', got ['kuthih']",
+                "perfective: expected 'uwuthanh', got ['uwuthih']",
+                "infinitive: expected 'uwuthoht', got ['uwuthihoht']"
+            ],
+            "class": "aspectless[inf2]",
+            "corpus_id": 1061
+        },
+        {
             "definition": "he/she is sifting it",
             "failed_forms": [
                 "perfective: expected 'uwakuhsthan', got ['uwakuhstan']"
@@ -10688,6 +10813,64 @@
             "corpus_id": 1309
         },
         {
+            "definition": "he/she is in prayer",
+            "failed_forms": [
+                "infinitive: expected 'utatolihstoht', got ['utatolihstht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 1450
+        },
+        {
+            "definition": "he/she loves",
+            "failed_forms": [
+                "imperfective: expected 'utakeyuhs', got ['utakeyuh']",
+                "perfective: expected 'utakeyuhs', got ['utakeyuh']",
+                "imperative: expected 'tsatakeyuhsehsti', got ['tsatakeyuhehsti']",
+                "infinitive: expected 'utakeyht', got ['utakeyuhht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 1451
+        },
+        {
+            "definition": "he/she loves",
+            "failed_forms": [
+                "imperfective: expected 'utakeyuhs', got ['utakeyus']",
+                "perfective: expected 'utakeyuhs', got ['utakeyus']",
+                "imperative: expected 'tsatakeyuhsehsti', got ['tsatakeyusehsti']",
+                "infinitive: expected 'utakeyht', got ['utakeyuht']"
+            ],
+            "class": "aspectless-s",
+            "corpus_id": 1451
+        },
+        {
+            "definition": "it\u2019s wrinkled",
+            "failed_forms": [
+                "imperfective: expected 'utanekoyuhs', got ['utanekoyuh']",
+                "perfective: expected 'utanekoyuhs', got ['utanekoyuh']",
+                "imperative: expected 'tsatanekoyuhsehsti', got ['tsatanekoyuhehsti']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 1459
+        },
+        {
+            "definition": "it\u2019s wrinkled",
+            "failed_forms": [
+                "imperfective: expected 'utanekoyuhs', got ['utanekoyus']",
+                "perfective: expected 'utanekoyuhs', got ['utanekoyus']",
+                "imperative: expected 'tsatanekoyuhsehsti', got ['tsatanekoyusehsti']"
+            ],
+            "class": "aspectless-s",
+            "corpus_id": 1459
+        },
+        {
+            "definition": "it\u2019s in view",
+            "failed_forms": [
+                "infinitive: expected 'utayvlatht', got ['utayvlathht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 1470
+        },
+        {
             "definition": "he/she is throwing it",
             "failed_forms": [
                 "perfective: expected 'utinvhs', got ['utvhs']"
@@ -10705,6 +10888,14 @@
             ],
             "class": "go[pres2-perf2-inf2]",
             "corpus_id": 1471
+        },
+        {
+            "definition": "he/she is in hiding",
+            "failed_forms": [
+                "infinitive: expected 'utihskalht', got ['utihskalhht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 1480
         },
         {
             "definition": "he/she is getting well",
@@ -10813,6 +11004,27 @@
             "corpus_id": 1487
         },
         {
+            "definition": "he/she is standing in liquid",
+            "failed_forms": [
+                "imperfective: expected 'utuhs', got ['utuh']",
+                "perfective: expected 'utuhs', got ['utuh']",
+                "imperative: expected 'tsatuhsehsti', got ['tsatuhehsti']",
+                "infinitive: expected 'utuht', got ['utuhht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 1505
+        },
+        {
+            "definition": "he/she is standing in liquid",
+            "failed_forms": [
+                "imperfective: expected 'utuhs', got ['utus']",
+                "perfective: expected 'utuhs', got ['utus']",
+                "imperative: expected 'tsatuhsehsti', got ['tsatusehsti']"
+            ],
+            "class": "aspectless-s",
+            "corpus_id": 1505
+        },
+        {
             "definition": "he/she is becoming warm",
             "failed_forms": [
                 "infinitive: expected 'ukanawohihst', got ['ukanawohst']"
@@ -10853,6 +11065,28 @@
             ],
             "class": "sk-s[imp3-inf3]",
             "corpus_id": 1514
+        },
+        {
+            "definition": "he/she is possessive of him/her",
+            "failed_forms": [
+                "imperfective: expected 'ukeyuhs', got ['ukeyuh']",
+                "perfective: expected 'ukeyuhs', got ['ukeyuh']",
+                "imperative: expected 'hikeyuhsehsti', got [\"hikeyu'ehsti\"]",
+                "infinitive: expected 'ukeyht', got ['ukeyuhht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 1516
+        },
+        {
+            "definition": "he/she is possessive of him/her",
+            "failed_forms": [
+                "imperfective: expected 'ukeyuhs', got ['ukeyus']",
+                "perfective: expected 'ukeyuhs', got ['ukeyus']",
+                "imperative: expected 'hikeyuhsehsti', got [\"hikeyuse'sti\", 'hikeyusehsti', 'hikeyusesti']",
+                "infinitive: expected 'ukeyht', got ['ukeyuht']"
+            ],
+            "class": "aspectless-s",
+            "corpus_id": 1516
         },
         {
             "definition": "it\u2019s decaying",
@@ -10982,6 +11216,26 @@
             ],
             "class": "become[imp2-inf5]",
             "corpus_id": 1544
+        },
+        {
+            "definition": "he/she is angry",
+            "failed_forms": [
+                "imperfective: expected 'unhalvhs', got ['unhalvh']",
+                "perfective: expected 'unhalvhs', got ['unhalvh']",
+                "imperative: expected 'tshanalvhsehsti', got ['tshanalvhehsti']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 1545
+        },
+        {
+            "definition": "he/she is angry",
+            "failed_forms": [
+                "imperfective: expected 'unhalvhs', got ['unhalvs']",
+                "perfective: expected 'unhalvhs', got ['unhalvs']",
+                "imperative: expected 'tshanalvhsehsti', got ['tshanalvsehsti']"
+            ],
+            "class": "aspectless-s",
+            "corpus_id": 1545
         },
         {
             "definition": "he/she is stubbing his/her toe",
@@ -11138,6 +11392,22 @@
             "corpus_id": 1572
         },
         {
+            "definition": "it\u2019s sticking out",
+            "failed_forms": [
+                "infinitive: expected 'ukhsatht', got ['ukhsathht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 1592
+        },
+        {
+            "definition": "he/she is watching him/her",
+            "failed_forms": [
+                "infinitive: expected 'ukhsehstoht', got ['ukhsehstht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 1593
+        },
+        {
             "definition": "he/she is not having luck at hunting",
             "failed_forms": [
                 "imperfective: expected 'ukwholek', got ['ukwholekek']",
@@ -11267,6 +11537,14 @@
             "corpus_id": 1616
         },
         {
+            "definition": "he/she has a liquid",
+            "failed_forms": [
+                "infinitive: expected 'uneht', got ['unehht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 1642
+        },
+        {
             "definition": "he/she is becoming enraged",
             "failed_forms": [
                 "infinitive: expected 'uthalhawohihst', got ['uthalhawohst']"
@@ -11307,6 +11585,82 @@
             ],
             "class": "sk-s[imp3-inf3]",
             "corpus_id": 1684
+        },
+        {
+            "definition": "he/she is listening to him/her",
+            "failed_forms": [
+                "infinitive: expected 'uthvtahstoht', got ['uthvtahstht']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 1693
+        },
+        {
+            "definition": "he/she is forgetting it",
+            "failed_forms": [
+                "infinitive: expected 'uwakhewhihst', got ['uwakhewhst']"
+            ],
+            "class": "sk-s[imp2-inf2]",
+            "corpus_id": 1698
+        },
+        {
+            "definition": "he/she is forgetting it",
+            "failed_forms": [
+                "infinitive: expected 'uwakhewhihst', got ['uwakhewihst']"
+            ],
+            "class": "sk-s[imp2-inf3]",
+            "corpus_id": 1698
+        },
+        {
+            "definition": "he/she is forgetting it",
+            "failed_forms": [
+                "imperative: expected 'witsvkhewa', got ['witsvkhea', 'wtsvkhea']"
+            ],
+            "class": "sk-s[imp4]",
+            "corpus_id": 1698
+        },
+        {
+            "definition": "he/she is forgetting it",
+            "failed_forms": [
+                "imperative: expected 'witsvkhewa', got ['witsvkhea', 'wtsvkhea']",
+                "infinitive: expected 'uwakhewhihst', got ['uwakhewhst']"
+            ],
+            "class": "sk-s[imp4-inf2]",
+            "corpus_id": 1698
+        },
+        {
+            "definition": "he/she is forgetting it",
+            "failed_forms": [
+                "imperative: expected 'witsvkhewa', got ['witsvkhea', 'wtsvkhea']",
+                "infinitive: expected 'uwakhewhihst', got ['uwakhewihst']"
+            ],
+            "class": "sk-s[imp4-inf3]",
+            "corpus_id": 1698
+        },
+        {
+            "definition": "he/she is forgetting it",
+            "failed_forms": [
+                "imperative: expected 'witsvkhewa', got ['witsvkhew', 'wtsvkhew']"
+            ],
+            "class": "sk-s[imp3]",
+            "corpus_id": 1698
+        },
+        {
+            "definition": "he/she is forgetting it",
+            "failed_forms": [
+                "imperative: expected 'witsvkhewa', got ['witsvkhew', 'wtsvkhew']",
+                "infinitive: expected 'uwakhewhihst', got ['uwakhewhst']"
+            ],
+            "class": "sk-s[imp3-inf2]",
+            "corpus_id": 1698
+        },
+        {
+            "definition": "he/she is forgetting it",
+            "failed_forms": [
+                "imperative: expected 'witsvkhewa', got ['witsvkhew', 'wtsvkhew']",
+                "infinitive: expected 'uwakhewhihst', got ['uwakhewihst']"
+            ],
+            "class": "sk-s[imp3-inf3]",
+            "corpus_id": 1698
         },
         {
             "definition": "he/she is belching",
@@ -11375,6 +11729,26 @@
             ],
             "class": "glottal-sk[perf2-inf2]",
             "corpus_id": 1721
+        },
+        {
+            "definition": "he/she is confident",
+            "failed_forms": [
+                "imperfective: expected 'uwohiyuhs', got ['uwohiyuh']",
+                "perfective: expected 'uwohiyuhs', got ['uwohiyuh']",
+                "imperative: expected 'tsohiyuhsehsti', got ['tsohiyuhehsti']"
+            ],
+            "class": "aspectless",
+            "corpus_id": 1729
+        },
+        {
+            "definition": "he/she is confident",
+            "failed_forms": [
+                "imperfective: expected 'uwohiyuhs', got ['uwohiyus']",
+                "perfective: expected 'uwohiyuhs', got ['uwohiyus']",
+                "imperative: expected 'tsohiyuhsehsti', got ['tsohiyusehsti']"
+            ],
+            "class": "aspectless-s",
+            "corpus_id": 1729
         },
         {
             "definition": "he/she is itching",
