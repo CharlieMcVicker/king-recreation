@@ -1,5 +1,5 @@
 {
-    "summary": "629/1943",
+    "summary": "632/1949",
     "failures": [
         {
             "definition": "it\u2019s bouncing",
@@ -6106,6 +6106,13 @@
         {
             "definition": "he/she is advertising it",
             "failed_forms": [
+                "infinitive: expected 'tsunotsalht', got ['tiunotsaht', 'tsunotsaht', 'tunotsaht']"
+            ],
+            "class": "hvsk[perf2-inf2]"
+        },
+        {
+            "definition": "he/she is advertising it",
+            "failed_forms": [
                 "perfective: expected 'tunotsalhan', got ['teunotsalhn', 'tunotsalhn']"
             ],
             "class": "v'vsk"
@@ -6756,6 +6763,13 @@
         {
             "definition": "he/she is putting it in a hole or a container",
             "failed_forms": [
+                "infinitive: expected 'ulht', got ['uht']"
+            ],
+            "class": "hvsk[perf2-inf2]"
+        },
+        {
+            "definition": "he/she is putting it in a hole or a container",
+            "failed_forms": [
                 "perfective: expected 'ulhan', got ['ulhn']"
             ],
             "class": "v'vsk"
@@ -6833,7 +6847,7 @@
             "definition": "he/she is stinging it",
             "failed_forms": [
                 "perfective: expected 'uwatsvyh', got ['uwatsvyyh']",
-                "imperative: expected 'hiyatsvyha', got [\"hiyatsvy'ya\", 'hiyatsvyya', 'hiyatsvyyha']"
+                "imperative: expected 'hiyatsvyha', got [\"hiyatsv'yya\", 'hiyatsvyya', 'hiyatsvyyha']"
             ],
             "class": "sk-yh"
         },
@@ -7978,6 +7992,13 @@
                 "infinitive: expected 'uwathist', got ['uwatst']"
             ],
             "class": "ih[imp2]"
+        },
+        {
+            "definition": "he/she is hanging it up",
+            "failed_forms": [
+                "infinitive: expected 'utht', got ['uht']"
+            ],
+            "class": "hvsk[perf2-inf2]"
         },
         {
             "definition": "he/she is hanging it up",

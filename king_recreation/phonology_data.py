@@ -386,6 +386,10 @@ def prevent_C_glottal_cluster(form: str) -> str:
     return re.sub(r"([^aeiouv']+)'", r"'\1", form)
 
 
+def recreate_C_glottal_clusters(surface: str) -> str:
+    return re.sub(r"'([^aeiouv']+)", r"\1'", surface)
+
+
 def _is_compatible_with_vowel_restoration(restored: str, syncopated: str) -> bool:
     if len(restored) - len(syncopated) not in [0, 1, 2]:
         return False
@@ -439,7 +443,7 @@ def _drop_h_in_deaffricated_lateral(h_grade: str):
     return h_grade.replace("lh", "tl", 1)
 
 
-def possible_alternates(h_form: str) -> list[str]:
+def possible_alternates(h_form: str, fix_clusters=True) -> list[str]:
     WAYS_TO_DROP = [
         lambda x: x,
         _drop_h_in_deaffricated_lateral,
@@ -447,7 +451,10 @@ def possible_alternates(h_form: str) -> list[str]:
         _first_h_to_glottal,
     ]
 
-    return [prevent_C_glottal_cluster(way(h_form)) for way in WAYS_TO_DROP]
+    return [
+        prevent_C_glottal_cluster(way(h_form)) if fix_clusters else way(h_form)
+        for way in WAYS_TO_DROP
+    ]
 
 
 def grades_are_compatible(*, h: str, glottal: str) -> bool:

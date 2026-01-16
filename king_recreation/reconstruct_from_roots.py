@@ -1,3 +1,4 @@
+from king_recreation.phonology_data import prevent_C_glottal_cluster
 from king_recreation.phonology_data import possible_alternates
 from king_recreation.utils import CLASSES_PATH
 from king_recreation.phonology_data import grades_are_compatible, _drop_first_h
@@ -108,8 +109,10 @@ class ReconstructionEngine:
             # we need to try to drop it from the ending
             if glottal_grade_form and not "h" in verb.h_grade_root:
                 base_stems[form_name] = [
-                    modified_root + literal_ending
-                    for literal_ending in possible_alternates(literal_ending)
+                    prevent_C_glottal_cluster(modified_root + literal_ending)
+                    for literal_ending in possible_alternates(
+                        literal_ending, fix_clusters=False
+                    )
                 ]
             else:
                 base_stems[form_name] = modified_root + literal_ending

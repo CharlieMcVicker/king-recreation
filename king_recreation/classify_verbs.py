@@ -1,3 +1,5 @@
+from king_recreation.phonology_data import prevent_C_glottal_cluster
+from king_recreation.phonology_data import recreate_C_glottal_clusters
 from king_recreation.phonology_data import possible_alternates
 from king_recreation.utils import CLASSES_PATH
 from king_recreation.class_patterns import ClassPatterns
@@ -294,14 +296,33 @@ def classify_verbs(classes_path=None):
 
                     # allow forms that might h alternate to alternate _in the ending_
                     elif fn in ["present_1sg", "imperative"]:
-                        for hless_suffix in possible_alternates(literal_suffix):
-                            if form_val.endswith(hless_suffix):
+                        for hless_suffix in possible_alternates(
+                            literal_suffix, fix_clusters=False
+                        ):
+                            fixed_hless_suffix = prevent_C_glottal_cluster(hless_suffix)
+                            if form_val.endswith(fixed_hless_suffix):
                                 stripped_stem = (
-                                    form_val[: -len(hless_suffix)]
-                                    if hless_suffix
+                                    form_val[: -len(fixed_hless_suffix)]
+                                    if fixed_hless_suffix
                                     else form_val
                                 )
                                 stripped_row[fn] = stripped_stem
+                            elif hless_suffix.startswith("'"):
+                                # handle the case that this glottal may have metathesized into the stem
+                                # put glottals back on right side of consonants
+                                form_with_glottals = recreate_C_glottal_clusters(
+                                    form_val
+                                )
+                                if form_with_glottals.endswith(hless_suffix):
+                                    stripped_stem = (
+                                        form_with_glottals[: -len(hless_suffix)]
+                                        if hless_suffix
+                                        else form_with_glottals
+                                    )
+                                    # ensure documented form is still standard
+                                    stripped_row[fn] = prevent_C_glottal_cluster(
+                                        stripped_stem
+                                    )
 
                 stripped_corpus_data.append(stripped_row)
 
