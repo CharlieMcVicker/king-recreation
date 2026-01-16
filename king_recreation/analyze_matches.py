@@ -1,27 +1,33 @@
-from king_recreation.pattern_registry import PatternRegistry
-from typing import Optional
-import csv
 import json
 import os
 import argparse
-from collections import defaultdict
+import csv
+from collections import defaultdict, Counter
+from typing import Optional, List, Dict, Any
+
+from king_recreation.pattern_registry import PatternRegistry
 
 
-def load_csv(path):
+def load_csv(path: str) -> List[Dict[str, str]]:
     with open(path, mode="r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def save_csv(path, data, fieldnames):
+def save_csv(path: str, data: List[Dict[str, Any]], fieldnames: List[str]) -> None:
     with open(path, mode="w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(data)
 
 
-def save_json(path, data):
+def save_json(path: str, data: Any) -> None:
     with open(path, mode="w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, sort_keys=True)
+
+
+def load_json(path: str) -> Any:
+    with open(path, mode="r", encoding="utf-8") as f:
+        return json.load(f)
 
 
 def analyze_matches(classes_path: Optional[str] = None):
@@ -296,6 +302,48 @@ def analyze_matches(classes_path: Optional[str] = None):
     )
 
     print(f"Analysis complete. Artifacts generated in {output_dir}/")
+
+    # 4. Root Ambiguity Analysis
+    reconstructable_path = "artifacts/data/reconstructable_verbs.json"
+    if os.path.exists(reconstructable_path):
+        reconstructable_verbs = load_json(reconstructable_path)
+
+        # Group corpus_ids by (h_grade_root, glottal_grade_root)
+        root_groups = defaultdict(set)
+        for verb in reconstructable_verbs:
+            h_grade = verb.get("h_grade_root")
+            glottal_grade = verb.get("glottal_grade_root")
+            corpus_id = verb.get("corpus_id")
+
+            # Handle potential None values for roots if any, though schema suggests strings or null
+            # Convert to tuple for hashing. Treat None as empty string or specific marker if needed.
+            # Based on user request "group by (h_grade, glottal_grade)"
+            key = (h_grade, glottal_grade)
+            root_groups[key].add(corpus_id)
+
+        # Count unique corpus IDs for each root pair and export raw data
+        root_ambiguity_data = []
+        for (h_grade, glottal_grade), corpus_ids in root_groups.items():
+            root_ambiguity_data.append(
+                {
+                    "h_grade": h_grade if h_grade is not None else "",
+                    "g_grade": glottal_grade if glottal_grade is not None else "",
+                    "count": len(corpus_ids),
+                }
+            )
+
+        # Sort for stability: count desc, then h_grade
+        root_ambiguity_data.sort(key=lambda x: (-x["count"], x["h_grade"]))
+
+        save_csv(
+            os.path.join(output_dir, "root_ambiguity_counts.csv"),
+            root_ambiguity_data,
+            ["h_grade", "g_grade", "count"],
+        )
+
+        print(
+            f"Root ambiguity counts saved to {os.path.join(output_dir, 'root_ambiguity_counts.csv')}"
+        )
 
 
 if __name__ == "__main__":

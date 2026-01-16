@@ -147,6 +147,49 @@ def plot_near_miss_heatmap(csv_path, output_prefix):
             create_heatmap(df, s, f)
 
 
+def plot_root_ambiguity_histogram(csv_path, output_path):
+    """Generates a histogram of root ambiguity counts."""
+    if not os.path.exists(csv_path):
+        print(f"Warning: {csv_path} not found. Skipping root ambiguity histogram.")
+        return
+
+    df = pd.read_csv(csv_path)
+    if df.empty:
+        return
+
+    # Count frequencies of each 'count' value (number of verbs per root pair)
+    # df['count'] is the number of verbs sharing a root pair
+    # We want to show how many root pairs have 1 verb, 2 verbs, etc.
+    counts = (
+        df["count"].value_counts().sort_index().reset_index(name="Number of Root Pairs")
+    )
+    counts.rename(columns={"count": "Verbs per Root"}, inplace=True)
+
+    plt.figure(figsize=(10, 6))
+    sns.barplot(
+        data=counts, x="Verbs per Root", y="Number of Root Pairs", color="skyblue"
+    )
+
+    plt.title("Root Ambiguity Histogram")
+    plt.xlabel("Number of Verbs Sharing a Root Pair")
+    plt.ylabel("Frequency (Number of Root Pairs)")
+
+    # Add value labels on top of bars
+    for index, row in counts.iterrows():
+        plt.text(
+            index,
+            row["Number of Root Pairs"],
+            str(row["Number of Root Pairs"]),
+            color="black",
+            ha="center",
+            va="bottom",
+        )
+
+    plt.tight_layout()
+    plt.savefig(output_path)
+    plt.close()
+
+
 def run_all_visualizations():
     # Plots (images) go to visualizations
     output_dir = "artifacts/visualizations"
@@ -171,6 +214,12 @@ def run_all_visualizations():
     plot_near_miss_heatmap(
         os.path.join(input_dir, "class_near_misses.csv"),
         os.path.join(output_dir, "near_miss_heatmap"),
+    )
+
+    print("Generating Root Ambiguity Histogram...")
+    plot_root_ambiguity_histogram(
+        os.path.join(input_dir, "root_ambiguity_counts.csv"),
+        os.path.join(output_dir, "root_ambiguity_histogram.png"),
     )
 
 
