@@ -20,7 +20,6 @@ from king_recreation.phonology_data import (
     apply_prepronominal,
     use_glottal_grade,
 )
-from king_recreation.stem_analysis import get_root_candidate, check_root_consistency
 
 
 @dataclass
