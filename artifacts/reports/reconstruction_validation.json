@@ -1,5 +1,5 @@
 {
-    "summary": "546/1843",
+    "summary": "551/1852",
     "failures": [
         {
             "definition": "it\u2019s bouncing",
@@ -4107,6 +4107,14 @@
         {
             "definition": "he/she is breaking it",
             "failed_forms": [
+                "imperative: expected 'hiskwala', got ['hiskwalla']"
+            ],
+            "class": "sk-s[imp5-inf2]",
+            "corpus_id": 424
+        },
+        {
+            "definition": "he/she is breaking it",
+            "failed_forms": [
                 "imperative: expected 'hiskwala', got ['hiskwal']"
             ],
             "class": "sk-s[imp3-inf2]",
@@ -5052,6 +5060,32 @@
                 "infinitive: expected 'utholhist', got ['utholist']"
             ],
             "class": "sk-s[imp4-inf3]",
+            "corpus_id": 487
+        },
+        {
+            "definition": "he/she is borrowing him/her",
+            "failed_forms": [
+                "imperative: expected 'hathola', got ['hatholla']"
+            ],
+            "class": "sk-s[imp5]",
+            "corpus_id": 487
+        },
+        {
+            "definition": "he/she is borrowing him/her",
+            "failed_forms": [
+                "imperative: expected 'hathola', got ['hatholla']",
+                "infinitive: expected 'utholhist', got ['utholst']"
+            ],
+            "class": "sk-s[imp5-inf2]",
+            "corpus_id": 487
+        },
+        {
+            "definition": "he/she is borrowing him/her",
+            "failed_forms": [
+                "imperative: expected 'hathola', got ['hatholla']",
+                "infinitive: expected 'utholhist', got ['utholist']"
+            ],
+            "class": "sk-s[imp5-inf3]",
             "corpus_id": 487
         },
         {
