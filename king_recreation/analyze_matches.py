@@ -296,44 +296,6 @@ def analyze_matches(classes_path=None):
         ["class", "strictness", "match_count"] + [f"{f}_rate" for f in forms],
     )
 
-    # 4. Reconstruction Near-Miss Analysis
-    # Identify verbs that are Strict Full but fail Reconstruction
-    reconstruction_miss_data = []
-
-    for row in filtered_matches.values():
-        if row["strictness"] == "strict" and row["scope"] == "full":
-            # This verb passed strict ending & strict stem final, but failed reconstruction (otherwise scope would be 'reconstructs')
-            # Let's find out why
-            verb_def = row["definition"]
-            corpus_id = row.get("corpus_id", "")
-            cls = row["class"]
-
-            stem_row = stem_corpus_map.get(corpus_id if corpus_id else verb_def)
-            class_row = classes_map.get(cls)
-
-            if stem_row and class_row:
-                consistent, root, details = check_root_consistency(stem_row, class_row)
-
-                # Should be inconsistent, otherwise it would have been marked 'reconstructs'
-                if not consistent:
-                    reconstruction_miss_data.append(
-                        {
-                            "definition": verb_def,
-                            "class": cls,
-                            "mismatch_details": "; ".join(details),
-                        }
-                    )
-
-    reconstruction_miss_data.sort(
-        key=lambda x: (get_class_sort_key(x["class"]), x["definition"])
-    )
-
-    save_csv(
-        os.path.join(output_dir, "reconstruction_failures.csv"),
-        reconstruction_miss_data,
-        ["definition", "class", "mismatch_details"],
-    )
-
     print(f"Analysis complete. Artifacts generated in {output_dir}/")
 
 

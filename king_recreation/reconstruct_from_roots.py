@@ -349,6 +349,32 @@ def main(classes_path=None):
             indent=4,
         )
 
+    # Save Reconstruction Failures CSV
+    reconstruction_failures_path = os.path.join(
+        reports_dir, "reconstruction_failures.csv"
+    )
+    # failure format: {"definition": ..., "failed_forms": [...], "class": ...}
+    failures_csv_data = []
+    for fail in failures:
+        failures_csv_data.append(
+            {
+                "definition": fail["definition"],
+                "class": fail["class"],
+                "mismatch_details": "; ".join(fail["failed_forms"]),
+            }
+        )
+
+    # Sort for stability
+    failures_csv_data.sort(key=lambda x: (x["class"], x["definition"]))
+
+    with open(reconstruction_failures_path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(
+            f,
+            fieldnames=["definition", "class", "mismatch_details"],
+        )
+        writer.writeheader()
+        writer.writerows(failures_csv_data)
+
     # Save Fully Serialized Verbs
     reconstructable_output_path = os.path.join(
         base_dir, "artifacts", "data", "reconstructable_verbs.json"
