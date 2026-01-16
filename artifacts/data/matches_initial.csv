@@ -3,8 +3,14 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 4,it’s bouncing,go[inf2],loose,full,True,True,True,True,True
 4,it’s bouncing,go[perf2-inf2],strict,full,True,True,True,True,True
 4,it’s bouncing,go[perf2-inf2],loose,full,True,True,True,True,True
+4,it’s bouncing,go[pres2-inf2],strict,full,True,True,True,True,True
+4,it’s bouncing,go[pres2-inf2],loose,full,True,True,True,True,True
+4,it’s bouncing,go[pres2-perf2-inf2],strict,full,True,True,True,True,True
+4,it’s bouncing,go[pres2-perf2-inf2],loose,full,True,True,True,True,True
 5,he/she is limping,go[perf3-inf2],strict,full,True,True,True,True,True
 5,he/she is limping,go[perf3-inf2],loose,full,True,True,True,True,True
+5,he/she is limping,go[pres2-perf3-inf2],strict,full,True,True,True,True,True
+5,he/she is limping,go[pres2-perf3-inf2],loose,full,True,True,True,True,True
 6,he/she is bouncing it,cause,strict,full,True,True,True,True,True
 6,he/she is bouncing it,cause,loose,full,True,True,True,True,True
 6,he/she is bouncing it,cause[perf2],loose,full,True,True,True,True,True
@@ -159,6 +165,10 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 42,he/she is making noise,cause[pres2-perf2],loose,full,True,True,True,True,True
 42,he/she is making noise,cause[pres2-perf3],strict,full,True,True,True,True,True
 42,he/she is making noise,cause[pres2-perf3],loose,full,True,True,True,True,True
+43,he/she is crawling,go[pres2],strict,full,True,True,True,True,True
+43,he/she is crawling,go[pres2],loose,full,True,True,True,True,True
+43,he/she is crawling,go[pres2-perf2],strict,full,True,True,True,True,True
+43,he/she is crawling,go[pres2-perf2],loose,full,True,True,True,True,True
 44,it’s twisting,around,strict,full,True,True,True,True,True
 44,it’s twisting,around,loose,full,True,True,True,True,True
 44,it’s twisting,around[imp2],strict,full,True,True,True,True,True
@@ -864,6 +874,10 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 198,he/she is carrying it on his/her shoulder,go,loose,full,True,True,True,True,True
 198,he/she is carrying it on his/her shoulder,go[perf2],strict,full,True,True,True,True,True
 198,he/she is carrying it on his/her shoulder,go[perf2],loose,full,True,True,True,True,True
+198,he/she is carrying it on his/her shoulder,go[pres2],strict,full,True,True,True,True,True
+198,he/she is carrying it on his/her shoulder,go[pres2],loose,full,True,True,True,True,True
+198,he/she is carrying it on his/her shoulder,go[pres2-perf2],strict,full,True,True,True,True,True
+198,he/she is carrying it on his/her shoulder,go[pres2-perf2],loose,full,True,True,True,True,True
 200,he/she is putting it in liquid,glottal-sk[perf2],strict,full,True,True,True,True,True
 200,he/she is putting it in liquid,glottal-sk[perf2],loose,full,True,True,True,True,True
 200,he/she is putting it in liquid,glottal-sk[perf2-inf2],strict,full,True,True,True,True,True
@@ -953,6 +967,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 215,he/she is calling him/her,ih-vh,loose,full,True,True,True,True,True
 216,he/she is taking it somewhere by hand,go,strict,full,True,True,True,True,True
 216,he/she is taking it somewhere by hand,go,loose,full,True,True,True,True,True
+216,he/she is taking it somewhere by hand,go[pres2],strict,full,True,True,True,True,True
+216,he/she is taking it somewhere by hand,go[pres2],loose,full,True,True,True,True,True
 217,he/she is holding it in his/her hand,aspectless,strict,full,True,True,True,True,True
 217,he/she is holding it in his/her hand,aspectless,loose,full,True,True,True,True,True
 217,he/she is holding it in his/her hand,aspectless-cause,strict,full,True,True,True,True,True
@@ -995,6 +1011,10 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 223,he/she is swimming,go,loose,full,True,True,True,True,True
 223,he/she is swimming,go[perf2],strict,full,True,True,True,True,True
 223,he/she is swimming,go[perf2],loose,full,True,True,True,True,True
+223,he/she is swimming,go[pres2],strict,full,True,True,True,True,True
+223,he/she is swimming,go[pres2],loose,full,True,True,True,True,True
+223,he/she is swimming,go[pres2-perf2],strict,full,True,True,True,True,True
+223,he/she is swimming,go[pres2-perf2],loose,full,True,True,True,True,True
 224,it’s thundering,glottal-sk,strict,full,True,True,True,True,True
 224,it’s thundering,glottal-sk,loose,full,True,True,True,True,True
 224,it’s thundering,glottal-sk[inf2],strict,full,True,True,True,True,True
@@ -1116,6 +1136,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 255,he/she is turning on a light,v'vsk,loose,full,True,True,True,True,True
 259,he/she is chasing him/her,go,strict,full,True,True,True,True,True
 259,he/she is chasing him/her,go,loose,full,True,True,True,True,True
+259,he/she is chasing him/her,go[pres2],strict,full,True,True,True,True,True
+259,he/she is chasing him/her,go[pres2],loose,full,True,True,True,True,True
 261,he/she is riding it,cause,strict,full,True,True,True,True,True
 261,he/she is riding it,cause,loose,full,True,True,True,True,True
 261,he/she is riding it,cause[perf2],loose,full,True,True,True,True,True
@@ -1618,6 +1640,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 380,he/she is drawing a line,v'vsk,loose,full,True,True,True,True,True
 381,he/she is following him/her,go,strict,full,True,True,True,True,True
 381,he/she is following him/her,go,loose,full,True,True,True,True,True
+381,he/she is following him/her,go[pres2],strict,full,True,True,True,True,True
+381,he/she is following him/her,go[pres2],loose,full,True,True,True,True,True
 382,he/she is helping him/her,ih-vh,strict,full,True,True,True,True,True
 382,he/she is helping him/her,ih-vh,loose,full,True,True,True,True,True
 382,he/she is helping him/her,ih-vh-tl,strict,ending,False,False,False,False,True
@@ -1877,6 +1901,10 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 432,he/she is backing up,go,loose,full,True,True,True,True,True
 432,he/she is backing up,go[perf2],strict,full,True,True,True,True,True
 432,he/she is backing up,go[perf2],loose,full,True,True,True,True,True
+432,he/she is backing up,go[pres2],strict,full,True,True,True,True,True
+432,he/she is backing up,go[pres2],loose,full,True,True,True,True,True
+432,he/she is backing up,go[pres2-perf2],strict,full,True,True,True,True,True
+432,he/she is backing up,go[pres2-perf2],loose,full,True,True,True,True,True
 436,he/she is roping him/her,glottal-sk[perf2],strict,full,True,True,True,True,True
 436,he/she is roping him/her,glottal-sk[perf2],loose,full,True,True,True,True,True
 436,he/she is roping him/her,glottal-sk[perf2-inf2],strict,full,True,True,True,True,True
@@ -2054,6 +2082,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 465,he/she is drilling a hole,sk-h[imp3],loose,full,True,True,True,True,True
 467,it’s steaming,go,strict,full,True,True,True,True,True
 467,it’s steaming,go,loose,full,True,True,True,True,True
+467,it’s steaming,go[pres2],strict,full,True,True,True,True,True
+467,it’s steaming,go[pres2],loose,full,True,True,True,True,True
 467,it’s steaming,aspectless,strict,full,True,True,True,True,True
 467,it’s steaming,aspectless,loose,full,True,True,True,True,True
 467,it’s steaming,aspectless-h,loose,full,True,True,True,True,True
@@ -2106,6 +2136,9 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 477,he/she is shaking him/her,episodic[imp2],loose,full,True,True,True,True,True
 477,he/she is shaking him/her,vsk-vnh,strict,full,True,True,True,True,True
 477,he/she is shaking him/her,vsk-vnh,loose,full,True,True,True,True,True
+479,he/she is leading him/her,go[pres2],strict,full,True,True,True,True,True
+479,he/she is leading him/her,go[pres2],loose,full,True,True,True,True,True
+479,he/she is leading him/her,go[pres2-perf2],loose,full,True,True,True,True,True
 480,he/she is arguing,ih-l[perf2],loose,full,True,True,True,True,True
 480,he/she is arguing,ih-l[perf2-inf2],loose,full,True,True,True,True,True
 480,he/she is arguing,ih-lh[imp2],strict,full,True,True,True,True,True
@@ -2504,6 +2537,10 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 555,he/she is jumping,go[inf2],loose,full,True,True,True,True,True
 555,he/she is jumping,go[perf2-inf2],strict,full,True,True,True,True,True
 555,he/she is jumping,go[perf2-inf2],loose,full,True,True,True,True,True
+555,he/she is jumping,go[pres2-inf2],strict,full,True,True,True,True,True
+555,he/she is jumping,go[pres2-inf2],loose,full,True,True,True,True,True
+555,he/she is jumping,go[pres2-perf2-inf2],strict,full,True,True,True,True,True
+555,he/she is jumping,go[pres2-perf2-inf2],loose,full,True,True,True,True,True
 557,he/she is changing clothes,glottal-sk[perf2],strict,full,True,True,True,True,True
 557,he/she is changing clothes,glottal-sk[perf2],loose,full,True,True,True,True,True
 557,he/she is changing clothes,glottal-sk[perf2-inf2],strict,full,True,True,True,True,True
@@ -2593,6 +2630,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 573,he/she is closing his eyes,cause[pres2-perf3],loose,full,True,True,True,True,True
 574,he/she is attacking him/her,go,strict,full,True,True,True,True,True
 574,he/she is attacking him/her,go,loose,full,True,True,True,True,True
+574,he/she is attacking him/her,go[pres2],strict,full,True,True,True,True,True
+574,he/she is attacking him/her,go[pres2],loose,full,True,True,True,True,True
 575,he/she is taking off his/her glasses,glottal-sk[perf2],strict,full,True,True,True,True,True
 575,he/she is taking off his/her glasses,glottal-sk[perf2],loose,full,True,True,True,True,True
 575,he/she is taking off his/her glasses,glottal-sk[perf2-inf2],strict,full,True,True,True,True,True
@@ -2962,6 +3001,10 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 630,he/she is turning him/her over,go[inf2],loose,full,True,True,True,True,True
 630,he/she is turning him/her over,go[perf2-inf2],strict,full,True,True,True,True,True
 630,he/she is turning him/her over,go[perf2-inf2],loose,full,True,True,True,True,True
+630,he/she is turning him/her over,go[pres2-inf2],strict,full,True,True,True,True,True
+630,he/she is turning him/her over,go[pres2-inf2],loose,full,True,True,True,True,True
+630,he/she is turning him/her over,go[pres2-perf2-inf2],strict,full,True,True,True,True,True
+630,he/she is turning him/her over,go[pres2-perf2-inf2],loose,full,True,True,True,True,True
 631,he/she is singing,glottal-sk[perf2],strict,full,True,True,True,True,True
 631,he/she is singing,glottal-sk[perf2],loose,full,True,True,True,True,True
 631,he/she is singing,glottal-sk[perf2-inf2],strict,full,True,True,True,True,True
@@ -2978,6 +3021,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 632,he/she is clawing him/her,sk-s[imp3-inf2],loose,full,True,True,True,True,True
 632,he/she is clawing him/her,sk-h,loose,full,True,True,True,True,True
 632,he/she is clawing him/her,sk-h[imp3],loose,full,True,True,True,True,True
+633,to come out of the nose,go[pres2],strict,full,True,True,True,True,True
+633,to come out of the nose,go[pres2],loose,full,True,True,True,True,True
 633,to come out of the nose,cause,strict,full,True,True,True,True,True
 633,to come out of the nose,cause,loose,full,True,True,True,True,True
 633,to come out of the nose,cause[pres2],strict,full,True,True,True,True,True
@@ -3314,6 +3359,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 812,he/she is sleepy,vsk-vnh[inf3],loose,full,True,True,True,True,True
 813,he/she is taking it somewhere by hand,go,strict,full,True,True,True,True,True
 813,he/she is taking it somewhere by hand,go,loose,full,True,True,True,True,True
+813,he/she is taking it somewhere by hand,go[pres2],strict,full,True,True,True,True,True
+813,he/she is taking it somewhere by hand,go[pres2],loose,full,True,True,True,True,True
 815,he/she is handling it,go-around,strict,full,True,True,True,True,True
 815,he/she is handling it,go-around,loose,full,True,True,True,True,True
 818,he/she is eating it,glottal-sk,strict,full,True,True,True,True,True
@@ -3386,6 +3433,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 833,he/she is taking it out of a container,rev-e,loose,full,True,True,True,True,True
 834,he/she is climbing it,go,strict,full,True,True,True,True,True
 834,he/she is climbing it,go,loose,full,True,True,True,True,True
+834,he/she is climbing it,go[pres2],strict,full,True,True,True,True,True
+834,he/she is climbing it,go[pres2],loose,full,True,True,True,True,True
 837,he/she is burning,sk-s,strict,full,True,True,True,True,True
 837,he/she is burning,sk-s,loose,full,True,True,True,True,True
 837,he/she is burning,sk-s[inf2],strict,full,True,True,True,True,True
@@ -3582,6 +3631,10 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 871,he/she is selling it,go[inf2],loose,full,True,True,True,True,True
 871,he/she is selling it,go[perf2-inf2],strict,full,True,True,True,True,True
 871,he/she is selling it,go[perf2-inf2],loose,full,True,True,True,True,True
+871,he/she is selling it,go[pres2-inf2],strict,full,True,True,True,True,True
+871,he/she is selling it,go[pres2-inf2],loose,full,True,True,True,True,True
+871,he/she is selling it,go[pres2-perf2-inf2],strict,full,True,True,True,True,True
+871,he/she is selling it,go[pres2-perf2-inf2],loose,full,True,True,True,True,True
 873,he/she is hiring him/her,hvsk,loose,full,True,True,True,True,True
 873,he/she is hiring him/her,hvsk[inf2],loose,full,True,True,True,True,True
 873,he/she is hiring him/her,v'vsk,strict,full,True,True,True,True,True
@@ -3620,6 +3673,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 880,he/she is changing it,change,loose,full,True,True,True,True,True
 882,he/she is taking it somewhere by hand,go,strict,full,True,True,True,True,True
 882,he/she is taking it somewhere by hand,go,loose,full,True,True,True,True,True
+882,he/she is taking it somewhere by hand,go[pres2],strict,full,True,True,True,True,True
+882,he/she is taking it somewhere by hand,go[pres2],loose,full,True,True,True,True,True
 883,he/she is peeling him/her,ih-vh,strict,full,True,True,True,True,True
 883,he/she is peeling him/her,ih-vh,loose,full,True,True,True,True,True
 883,he/she is peeling him/her,ih-vh-tl,strict,ending,False,False,False,False,True
@@ -3700,6 +3755,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 901,he/she is agitating liquid,apl-active[imp2-inf2],loose,full,True,True,True,True,True
 902,he/she is taking a liquid somewhere by hand,go,strict,full,True,True,True,True,True
 902,he/she is taking a liquid somewhere by hand,go,loose,full,True,True,True,True,True
+902,he/she is taking a liquid somewhere by hand,go[pres2],strict,full,True,True,True,True,True
+902,he/she is taking a liquid somewhere by hand,go[pres2],loose,full,True,True,True,True,True
 903,he/she is holding some liquid,aspectless,strict,full,True,True,True,True,True
 903,he/she is holding some liquid,aspectless,loose,full,True,True,True,True,True
 903,he/she is holding some liquid,aspectless-cause,strict,full,True,True,True,True,True
@@ -3824,6 +3881,10 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 931,he/she is dragging him/her,go,loose,full,True,True,True,True,True
 931,he/she is dragging him/her,go[perf2],strict,full,True,True,True,True,True
 931,he/she is dragging him/her,go[perf2],loose,full,True,True,True,True,True
+931,he/she is dragging him/her,go[pres2],strict,full,True,True,True,True,True
+931,he/she is dragging him/her,go[pres2],loose,full,True,True,True,True,True
+931,he/she is dragging him/her,go[pres2-perf2],strict,full,True,True,True,True,True
+931,he/she is dragging him/her,go[pres2-perf2],loose,full,True,True,True,True,True
 932,he/she is exiting,become,strict,full,True,True,True,True,True
 932,he/she is exiting,become,loose,full,True,True,True,True,True
 937,he/she is twisting him/her,go-around,strict,full,True,True,True,True,True
@@ -4053,6 +4114,10 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 1014,he/she is leading him/her by the hand,go,loose,full,True,True,True,True,True
 1014,he/she is leading him/her by the hand,go[perf2],strict,full,True,True,True,True,True
 1014,he/she is leading him/her by the hand,go[perf2],loose,full,True,True,True,True,True
+1014,he/she is leading him/her by the hand,go[pres2],strict,full,True,True,True,True,True
+1014,he/she is leading him/her by the hand,go[pres2],loose,full,True,True,True,True,True
+1014,he/she is leading him/her by the hand,go[pres2-perf2],strict,full,True,True,True,True,True
+1014,he/she is leading him/her by the hand,go[pres2-perf2],loose,full,True,True,True,True,True
 1015,he/she is agreeing with him/her,apl,strict,full,True,True,True,True,True
 1015,he/she is agreeing with him/her,apl,loose,full,True,True,True,True,True
 1015,he/she is agreeing with him/her,apl[imp2],strict,full,True,True,True,True,True
@@ -4702,6 +4767,10 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 1471,he/she is throwing it,go[inf2],loose,full,True,True,True,True,True
 1471,he/she is throwing it,go[perf2-inf2],strict,full,True,True,True,True,True
 1471,he/she is throwing it,go[perf2-inf2],loose,full,True,True,True,True,True
+1471,he/she is throwing it,go[pres2-inf2],strict,full,True,True,True,True,True
+1471,he/she is throwing it,go[pres2-inf2],loose,full,True,True,True,True,True
+1471,he/she is throwing it,go[pres2-perf2-inf2],strict,full,True,True,True,True,True
+1471,he/she is throwing it,go[pres2-perf2-inf2],loose,full,True,True,True,True,True
 1476,he/she is having a birthday,ih-vh,strict,full,True,True,True,True,True
 1476,he/she is having a birthday,ih-vh,loose,full,True,True,True,True,True
 1478,it’s hot,aspectless,strict,full,True,True,True,True,True
@@ -4952,6 +5021,8 @@ corpus_id,definition,class,strictness,scope,stem_final_match_present,stem_final_
 1597,it’s foggy,aspectless-h,loose,full,True,True,True,True,True
 1599,he/she is not having luck at hunting,go,strict,full,True,True,True,True,True
 1599,he/she is not having luck at hunting,go,loose,full,True,True,True,True,True
+1599,he/she is not having luck at hunting,go[pres2],strict,full,True,True,True,True,True
+1599,he/she is not having luck at hunting,go[pres2],loose,full,True,True,True,True,True
 1602,he/she is losing his/her way,ih-l[perf2],loose,full,True,True,True,True,True
 1602,he/she is losing his/her way,ih-l[perf2-inf2],loose,full,True,True,True,True,True
 1602,he/she is losing his/her way,ih-lh,strict,full,True,True,True,True,True
