@@ -96,7 +96,6 @@ def strip_prepronominals(
 def derive_pronominals(
     intermediate_forms: Dict[str, str], pron_config: PronominalConfig, log=False
 ) -> Optional[Derivation]:
-    from king_recreation.phonology_data import get_prefix_details, detach_prefix
 
     derived_stems = {}
     metathesis_used = False
@@ -186,6 +185,21 @@ def stems_are_consistent(
     return h_candidate
 
 
+def iter_pre_configs(forms):
+    """
+    Iterate over valid pre-configs
+    """
+    for t in [False, True]:
+        for p in [False, True]:
+            for d in [False, True]:
+                pre_config = PrePronominalConfig(t, p, d)
+                intermediate = strip_prepronominals(forms, pre_config)
+                if intermediate is None:
+                    continue
+                else:
+                    yield pre_config, intermediate
+
+
 class StemDeriver:
     def derive_row(
         self, row: Dict[str, str], ref: Dict[str, str] = None
@@ -204,45 +218,42 @@ class StemDeriver:
             forms = {fn: row[fn] for fn in form_names if row.get(fn)}
         if not forms:
             return []
+
         valid_derivations: list[Derivation] = []
-        for t in [False, True]:
-            for p in [False, True]:
-                for d in [False, True]:
-                    pre_config = PrePronominalConfig(t, p, d)
-                    intermediate = strip_prepronominals(forms, pre_config)
-                    if intermediate is None:
-                        continue
-                    for set_type in ["a", "b"]:
-                        for use_3rd in [False, True]:
-                            for meta in MetathesisStrategy:
-                                for s_type in StemType:
-                                    ka_options = (
-                                        [False, True] if set_type == "a" else [False]
-                                    )
-                                    uwa_options = [False, True]
-                                    aki_options = [False, True]
-                                    # uwa_options = [False, True] if set_type == 'b' else [False]
-                                    # aki_options = [False, True] if set_type == 'b' else [False]
-                                    for ka in ka_options:
-                                        for uwa in uwa_options:
-                                            for aki in aki_options:
-                                                pron_config = PronominalConfig(
-                                                    set_type=set_type,
-                                                    stem_type=s_type,
-                                                    metathesis_strategy=meta,
-                                                    use_ka_variant=ka,
-                                                    use_uwa_for_3rd_set_b=uwa,
-                                                    use_aki_for_1st_set_b=aki,
-                                                    use_3rd_person_object=use_3rd,
-                                                )
-                                                res = derive_pronominals(
-                                                    intermediate,
-                                                    pron_config,
-                                                    # log="calling" in row["definition"],
-                                                )
-                                                if res:
-                                                    res.pre_config = pre_config
-                                                    valid_derivations.append(res)
+
+        for pre_config, intermediate in iter_pre_configs(forms):
+            set_type = "b" if intermediate["present"].startswith("u") else "a"
+            for use_3rd in [False, True]:
+                for meta in MetathesisStrategy:
+                    for s_type in StemType:
+                        ka = intermediate["present"].startswith("k")
+                        aki = intermediate.get("present_1sg", "").startswith("aki")
+                        uwa_options = next(
+                            (
+                                [intermediate.get(fn, "").startswith("uwa")]
+                                for fn in (["present", "completive", "infinitive"])
+                                if intermediate.get(fn, "").startswith("u")
+                            ),
+                            [False, True],
+                        )
+                        for uwa in uwa_options:
+                            pron_config = PronominalConfig(
+                                set_type=set_type,
+                                stem_type=s_type,
+                                metathesis_strategy=meta,
+                                use_ka_variant=ka,
+                                use_uwa_for_3rd_set_b=uwa,
+                                use_aki_for_1st_set_b=aki,
+                                use_3rd_person_object=use_3rd,
+                            )
+                            res = derive_pronominals(
+                                intermediate,
+                                pron_config,
+                                # log="calling" in row["definition"],
+                            )
+                            if res:
+                                res.pre_config = pre_config
+                                valid_derivations.append(res)
         if not valid_derivations:
             return []
         valid_derivations.sort(
