@@ -265,6 +265,73 @@ def plot_root_ambiguity_histogram(csv_path, output_path):
     plt.close()
 
 
+def plot_class_match_histogram(csv_path, output_path):
+    """Generates a histogram showing distribution of class sizes (by match count)."""
+    if not os.path.exists(csv_path):
+        print(f"Warning: {csv_path} not found. Skipping class match histogram.")
+        return
+
+    df = pd.read_csv(csv_path)
+    if df.empty:
+        return
+
+    metric = "strict_reconstructs"
+    if metric not in df.columns:
+        print(f"Column {metric} not found in {csv_path}")
+        return
+
+    # Create programmatic buckets
+    # We'll use a few fixed ranges or log-ish ranges if the spread is high,
+    # but for this data (max ~50-80), linear buckets of 10 usually work well.
+    max_val = df[metric].max()
+    if max_val <= 10:
+        bins = list(range(max_val + 2))
+    else:
+        # Create bins of size 10 up to max
+        bins = list(range(0, int(max_val) + 20, 10))
+
+    # Bin the data
+    df["bucket"] = pd.cut(df[metric], bins=bins, right=False)
+
+    # Calculate counts per bucket
+    bucket_counts = df["bucket"].value_counts().sort_index().reset_index()
+    bucket_counts.columns = ["Bucket", "Class Count"]
+
+    # Convert bucket intervals to strings for labeling
+    bucket_counts["Bucket"] = bucket_counts["Bucket"].astype(str)
+
+    plt.figure(figsize=(10, 6))
+
+    # Use barplot for spacing (shrink/width control)
+    sns.barplot(
+        data=bucket_counts,
+        x="Bucket",
+        y="Class Count",
+        color="skyblue",
+        edgecolor="navy",
+        alpha=0.8,
+    )
+
+    # Add spacing between bars (matplotlib adjustment)
+    # Seaborn barplot uses internal spacing, but we can adjust width if needed.
+    # By default bars have some spacing.
+
+    plt.title("Distribution of Class Sizes")
+    plt.xlabel("Number of Verbs Matched (Buckets)")
+    plt.ylabel("Number of Classes")
+    plt.xticks(rotation=45)
+
+    # Add count labels on top of bars
+    for i, count in enumerate(bucket_counts["Class Count"]):
+        plt.text(
+            i, count + 0.1, str(count), ha="center", va="bottom", fontweight="bold"
+        )
+
+    plt.tight_layout()
+    plt.savefig(output_path)
+    plt.close()
+
+
 def run_all_visualizations():
     # Plots (images) go to visualizations
     output_dir = "artifacts/visualizations"
@@ -295,6 +362,12 @@ def run_all_visualizations():
     plot_root_ambiguity_histogram(
         os.path.join(input_dir, "root_ambiguity_counts.csv"),
         os.path.join(output_dir, "root_ambiguity_histogram.png"),
+    )
+
+    print("Generating Class Match Histogram...")
+    plot_class_match_histogram(
+        os.path.join(input_dir, "class_match_counts.csv"),
+        os.path.join(output_dir, "class_match_histogram.png"),
     )
 
 
