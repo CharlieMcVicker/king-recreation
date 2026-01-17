@@ -316,8 +316,8 @@ def plot_class_match_histogram(csv_path, output_path):
     # Seaborn barplot uses internal spacing, but we can adjust width if needed.
     # By default bars have some spacing.
 
-    plt.title("Distribution of Class Sizes")
-    plt.xlabel("Number of Verbs Matched (Buckets)")
+    plt.title("Distribution of Class Propensity")
+    plt.xlabel("Number of Verbs Using Class")
     plt.ylabel("Number of Classes")
     plt.xticks(rotation=45)
 
