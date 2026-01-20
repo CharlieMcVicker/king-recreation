@@ -17,68 +17,77 @@ This change ensures that `/h/` always follows the resonant in these clusters, wh
 
 ### 1. Root Extraction & Grade Selection
 
-The process begins by reading `matches.csv` to identify verbs with the **`reconstructs`** scope and fetching their derived stems from `stem_corpus.csv`.
+The process begins by reading `artifacts/data/derived_roots.csv` and `artifacts/data/corpus.csv`. The `derived_roots.csv` file contains verbs with their identified classes and extracted roots.
 
 **Logic:**
 
-1.  **Input**: Iterate through verbs flagged as `reconstructs` in `matches.csv`.
+1.  **Input**: Iterate through verbs in `derived_roots.csv`.
 2.  **Dual Roots**: The system extracts two roots:
-    - **h-grade root**: The unalternated base, used for most forms.
-    - **glottal-grade root**: The `/h/`-alternated base (from `present_1sg`).
-3.  **Grade Selection**: For each target form, the engine selects the appropriate grade:
-    - **Glottal Grade**: Used for `present_1sg` (if Set A or to 3rd) and `imperative` (if to 3rd).
+    - **h-grade root**: The unalternated base (from the `consensus_root` or `present` column), used for most forms.
+    - **glottal-grade root**: The `/h/`-alternated base (from `present_1sg` if it uses Set A).
+3.  **Grade Selection**: For each target form, the engine selects the appropriate grade using the `use_glottal_grade` logic:
+    - **Glottal Grade**: Used for forms using the `1st Set A`, `1st to 3rd`, and `2nd to 3rd` pronominal sets.
     - **H-Grade**: Used for all other forms.
-4.  **Consistency Check**: Verifies that `drop_first_h(h_root) == glottal_root`. Mismatches are flagged but do not necessarily block reconstruction if both grades are explicitly available.
+4.  **Compatibility Check**: Verifies that the roots are compatible using `grades_are_compatible`. This logic handles dropping the first `/h/`, glottalization (`h` -> `'`), deaffricative lateral shifts (`lh` -> `tl`), and vowel restoration heuristics.
+
+**Reconstructible Verb Object:**
 
 - Definition
 - h_grade_root
 - glottal_grade_root (Optional)
-- Class ID
-- Metadata:
-  - `stem_type` (e.g. `con`, `vowel_a`)
-  - `metathesis_strategy`
-  - `set_a_b`
+- Class ID (class_name)
+- Config:
+  - `stem_type` (e.g. `con`, `vowel_a`, `aspirated`, `s_stem`)
+  - `metathesis_strategy` (`none`, `h_cons`, `vowel`)
+  - `set_a_b` (`Set A` or `Set B`)
   - `use_ka_variant`, `use_uwa_for_3rd_set_b`, `use_aki_for_1st_set_b`
   - `use_3rd_person_object` (Implies 2->3 and 1->3 interaction)
-  - `translocutive` (T), `partitive` (P), `distributive` (D).
+  - Prepronominal flags: `translocutive`, `partitive`, `distributive`, etc.
 
 ### 2. Reconstruction (Generation)
 
 The generator functions as the inverse of the stem derivation and classification process.
 
 **Step 2a: Add Class Endings**
-For each form (pres, imp, perf, imper, inf):
-`Stem = Root + Class Suffix`
+For each form (present, present_1sg, imperfective, perfective, imperative, infinitive):
+
+1. Determine the appropriate root grade.
+2. Apply class endings from the pattern registry. Handle vowel coalescence markers (`*` for 1-vowel drop, `@` for 2-vowel drop).
+3. Handle `/h/` alternation fallbacks: if glottal grade is required but no `h` was present in the root, attempt to apply alternation to the ending if applicable (e.g., via `possible_alternates`).
 
 **Step 2b: Add Pronominal Prefix**
 
-1.  Determine abstract prefix category (e.g., "3rd Set A") based on `Set`, `Imp Type` (2->3), and `Form`.
-2.  Select specific prefix morph based on `Stem` phonology (vowel vs consonant).
-    - **Ambiguity Handling**: If multiple prefixes are valid for a condition (e.g., `a-` vs `ka-` for consonants), generate _all_ valid variants.
+1. Determine abstract prefix category based on `Set`, `3rd Person Object` flag, and `Form`.
+2. Select specific prefix morph based on `Stem` phonology and flags (`ka-`, `aki-`, `uwa-`).
+3. **Ambiguity Handling**: If multiple prefixes/alternates are valid (e.g. via `possible_alternates`), generate a set of candidates.
 
 **Step 2c: Add Prepronominal Prefixes**
-Apply in order: `Distributive` -> `Partitive` -> `Translocutive` (Inner to Outer).
+Apply in order: `Distributive` -> `Partitive` -> `Translocutive`.
 `Form = T(P(D(Pronoun(Stem))))`
 
-_Phonological Rules:_ Handle `h` deletion/insertion and vowel coalescence in reverse of the stripping logic.
+**Step 2d: Metathesis Logic**
 
-**Step 2d: H-Metathesis (If Applicable)**
-If the verb is flagged as using metathesis in `stem_corpus.csv`, apply the metathesis variants:
-
-- **Consonant**: `ka-` + `nhogi` -> `kanhogi` -> `khanhogi` (via metathesis-like aspiration)
-- **Vowel**: `k-` + `ehlatitoh` -> `khelatitoh`, `uw-` + `ehlatitoh` -> `uwhelatitoh`, `h-` + `ehlatita` -> `helatita`
-- If the verb is _not_ flagged, these metathesized variants are skipped to avoid over-application.
+- **H-Consonant Metathesis**: If `h_cons` strategy is used, aspiration moves to the prefix (e.g., `ka-` + `nh...` -> `khanh...`).
+- **Vowel Metathesis**: If `vowel` strategy is used, handles specific variants like `kh-`, `uwh-` (for vowels other than `a`), or `h-`. The `uwh-` variant aligns with the respelling reform.
 
 ### 3. Validation
 
-**Input**: Generated forms and `artifacts/corpus.csv` (Reference).
+**Input**: Generated candidate sets and `artifacts/data/corpus.csv` (Reference).
 
 **Logic**:
 
 - For each verb, check if the Reference form (from `corpus.csv`) is present in the set of Generated forms.
-- If the reference form matches any of the generated variants, the reconstruction is considered successful.
+- If all reference forms match at least one generated variant, the reconstruction is successful.
+
+### 4. Output Artifacts
+
+- **reconstructable_verbs.json**: Fully serialized successfully reconstructed verbs for frontend use.
+- **reconstruction_report.csv**: Summary of success/failure and ambiguity for each verb.
+- **reconstruction_failures.csv**: Detailed mismatch reports for failing verbs.
+- **matches_validated.csv**: Subset of verified matches for downstream logic.
 
 ## Ambiguity Resolution
 
-1.  **Prefix Variants**: The generator produces **all valid prefix variants** for a given condition (e.g., both `a-` and `ka-`).
-2.  **Consistency Constraint**: The _same_ variant must be used across all forms of a specific verb if the condition applies to multiple forms. Verification checks consistency at the outer level.
+1.  **Candidate Sets**: The generator produces a set of all valid candidates for each form.
+2.  **Validation**: Success is defined as the reference form existing within the set of candidates.
+3.  **Consistency**: Verifies that the same class and root can generate all observed forms.

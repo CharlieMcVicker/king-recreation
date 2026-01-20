@@ -1,20 +1,20 @@
-# Stem Derivation Refactoring Plan
+# Stem Derivation Specification
 
 ## Objective
 
-Refactor the stem derivation logic in `derive_stems.py` to use a **configuration-driven** approach. This will separate the "guessing" of morphological structure from the "validation" of that structure against surface forms, making the logic explicit, consistent, and serializable.
+Stem derivation is the process of extracting the underlying morphological stem(s) from a set of surface forms. The goal is to separate the "guessing" of morphological structure from the "validation" of that structure against surface forms, making the logic explicit, consistent, and serializable.
 
 ## Motivation
 
-- **Explicit Decisions**: We want to record _why_ a stem was derived (e.g., "This verb uses the `ka-` variant of 3rd person Set A").
-- **Strict Consistency**: A chosen configuration (e.g., "Vowel Stem") must validly explain _all_ provided forms.
-- **Separation of Concerns**: Pre-pronominal prefixes (T, P, D) and Pronominal prefixes operate at different layers. Splitting them simplifies the combinatorial logic.
+- **Explicit Decisions**: Record _why_ a stem was derived (e.g., "This verb uses the `ka-` variant of 3rd person Set A").
+- **Strict Consistency**: A chosen configuration must validly explain _all_ provided forms.
+- **Separation of Concerns**: Pre-pronominal prefixes (T, P, D) and Pronominal prefixes operate at different layers.
 
-## Proposed Architecture
+## Architecture
 
 ### 1. Configuration Objects
 
-We split the configuration into two layers:
+The configuration is split into two layers:
 
 #### A. `PrePronominalConfig`
 
@@ -23,9 +23,11 @@ Handles the outer prefixes: Translocutive, Partitive, Distributive.
 ```python
 @dataclass(frozen=True)
 class PrePronominalConfig:
-    translocutive: bool
-    partitive: bool
-    distributive: bool
+    translocutive: bool = False
+    translocutiveImpOnly: bool = False
+    partitive: bool = False
+    distributive: bool = False
+    distributiveImpIsFutProg: bool = False
 ```
 
 #### B. `PronominalConfig`
@@ -35,119 +37,96 @@ Handles the inner pronominal inflection and stem properties.
 ```python
 @dataclass(frozen=True)
 class PronominalConfig:
-    set_type: str  # 'Set A' | 'Set B'
-
-    # Stem / Root Properties
-    stem_type: StemType  # Enum: CONSONANT, VOWEL, VOWEL_AE, ...
-
-    # Metathesis Strategy
-    metathesis_strategy: MetathesisStrategy  # Enum: NONE, H_CONS, VOWEL_METATHESIS
-
-    # 3rd Person Set A Variant Flag
-    # If True: Expect 'ka-' (before cons) / 'k-' (before vowel)
-    # If False: Expect 'a-' (before cons/-a) / 'ø-' (before other vowels)
-    use_ka_variant: bool
+    set_type: str  # 'a' | 'b'
+    stem_type: StemType
+    metathesis_strategy: MetathesisStrategy = MetathesisStrategy.NONE
+    use_ka_variant: bool = False
+    use_uwa_for_3rd_set_b: bool = False
+    use_aki_for_1st_set_b: bool = False
+    use_3rd_person_object: bool = False
 ```
 
-### 2. The `Derivation` Result Object
+### 2. Enums
+
+#### `StemType`
+
+- `CONSONANT` ("con")
+- `VOWEL_A` ("vowel_a")
+- `VOWEL_E` ("vowel_e")
+- `VOWEL_O` ("vowel_o")
+- `VOWEL_U` ("vowel_u")
+- `VOWEL_V` ("vowel_v")
+- `VOWEL_I` ("vowel_i")
+- `ASPIRATED` ("aspirated")
+- `S_STEM` ("s_stem")
+
+#### `MetathesisStrategy`
+
+- `NONE` ("none")
+- `H_CONS` ("h_cons")
+- `VOWEL` ("vowel")
+
+### 3. The `Derivation` Result Object
 
 The `Derivation` object represents a _successful_ application of a configuration to a set of forms.
-It **composes** the configuration objects rather than duplicating them.
 
 ```python
 @dataclass
 class Derivation:
-    # The accepted configurations
     pre_config: PrePronominalConfig
     pron_config: PronominalConfig
-
-    # The resulting Single Root (if reachable) or Consensus Stem
-    root: str
-
-    # The specific stems used for each form (for transparency)
-    forms_stem_usage: Dict[str, str]
+    consensus_stem: str
+    stems: Dict[str, str]
+    metathesis_involved: bool = False
 ```
 
-### 3. Derivation Logic (Decoupled System)
+## Derivation Logic
 
-We define two distinct operations:
+### 1. Strip Pre-pronominals
 
-#### A. `strip_prepronominals(forms, pre_config) -> Optional[Dict[str, str]]`
+`strip_prepronominals(forms, pre_config) -> Optional[Dict[str, str]]`
 
 - Attempts to strip the Translocutive/Partitive/Distributive prefixes defined in `pre_config` from all forms.
 - Returns the `intermediate_forms` (pronominal bases) if successful.
-- Returns `None` if any form differs from the expected prefix pattern.
 
-#### B. `derive_pronominals(intermediate_forms, pron_config) -> Optional[Derivation]`
+### 2. Derive Pronominals
+
+`derive_pronominals(intermediate_forms, pron_config) -> Optional[Derivation]`
 
 - Takes the clean `intermediate_forms`.
 - Applies the `pron_config` logic (lookup prefix -> strip -> reverse metathesis).
-- Validates consistency of the resulting stems.
-- Returns a `Derivation` object (composing both configs) if successful.
+- Validates consistency via `stems_are_consistent`.
 
-### 4. Guessing Strategy (The Outer Loop)
+### 3. Consistency Validation
 
-We maximize efficiency by filtering invalid outer layers first.
+`stems_are_consistent(derived_stems, pron_config) -> Optional[str]`
 
-1.  **Find Valid Pre-Configs**:
-    - Iterate all 8 `PrePronominalConfig` combinations.
-    - Run `strip_prepronominals(forms, config)`.
-    - Keep only the successful `(config, intermediate_forms)` pairs.
-2.  **Iterate Pronominal Configs**:
-    - For each valid `intermediate_forms` set:
-      - Iterate `PronominalConfig` candidates (Set/StemType/Flags).
-      - Run `derive_pronominals`.
-3.  **Collect & Rank**:
-    - Collect all successful `Derivation` objects.
-    - Rank if necessary.
-
-## Implementation Details
-
-### `king_recreation/phonology_data.py`
-
-- Add `StemType` Enum.
-- Add `MetathesisStrategy` Enum.
-- Implement Prefix Lookup Table: `(Set, StemType, UseKa) -> Prefix`.
-
-### `king_recreation/derive_stems.py`
-
-- Separate `strip_prepronominals` logic.
-- Separate `strip_pronominals` logic.
-- Implement the nested guessing loop.
-
-### Verification
-
-- Regress entire corpus.
-- **Critical Check**: If `stem_corpus.csv` changes significantly (rows failing that used to pass, or massive changes in stem shapes), HALT and investigate.
-- Manual verification of new columns in `stem_corpus.csv`.
-
-## Consensus Stem vs. 1st Person Split Stem
-
-The stem derivation process distinguishes between "Consensus" stems (derived mainly from 3rd person forms) and "1st Person" stems.
-
-### 3rd Person (Consensus) Stem
-
-The "Target" stem is derived from non-h-dropping forms. In practice, for most verbs, these are the 3rd person forms (Present, Imperfective, Perfective, etc.). The system seeks a single stem that explains all these forms.
-
-### 1st Person (Split Stem) Handling
-
-The 1st Person Singular Present (`present_1sg`) is treated with special logic:
-
-1.  **Strict Check**: The system attempts to match `present_1sg` candidates against the Consensus Stem using strict compatibility.
-2.  **Fallback "Guess"**: If the 1st person form _cannot_ be explained by the Consensus Stem (indicating a "split stem" or irregularity), the derivation **does not fail**.
-    - Instead, the system produces a separate stem for `present_1sg`.
-    - **Selection Criteria**: It selects the literal candidate from `present_1sg` that has the **longest common prefix** with the Consensus Stem.
-    - This separate stem is saved in the `present_1sg` column of `stem_corpus.csv`.
-
-### Dual Grade Handling
-
-The system now actively utilizes these split stems via a **Dual Grade** approach:
-
+- Ensures that all derived stems are consistent with each other.
 - **h-grade**: The standard Consensus Stem, derived from 3rd person forms.
-- **glottal-grade**: The `present_1sg` stem (extracted using the best available pattern).
+- **glottal-grade**: The stem used for 1st person and specific other configurations (e.g., 2->3).
+- Checks compatibility between h-grade and glottal-grade candidates using `grades_are_compatible`.
 
-The reconstruction engine selects between these grades based on the `PronominalConfig`.
+## Guessing Strategy (The Outer Loop)
 
-#### Imperative Consistency Allowance
+The `StemDeriver.derive_row` method implements a nested loop to find valid configurations:
 
-To support verbs where the imperative form (2->3) reflects the glottal grade, `derive_stems.py` has been updated to allow the `imperative` form to diverge from the consensus stem when `use_3rd_person_object` is enabled. This ensures that the glottal-grade imperative is correctly captured and stored in `stem_corpus.csv` without failing the derivation consistency check.
+1.  Iterate all valid `PrePronominalConfig` combinations.
+2.  For each valid pre-config, iterate `PronominalConfig` candidates:
+    - Determine `set_type` (a/b) based on the "present" form.
+    - Test `use_3rd_person_object` (True/False).
+    - Test all `MetathesisStrategy` options.
+    - Test all `StemType` options.
+    - Auto-detect `use_ka_variant`, `use_aki_for_1st_set_b`, and `use_uwa_for_3rd_set_b`.
+3.  Collect and rank successful `Derivation` objects.
+
+## Dual Grade Handling
+
+The system utilizes h-grade and glottal-grade stems:
+
+- **h-grade**: Derived from 3rd person forms.
+- **glottal-grade**: Derived from "1st to 3rd" or "1st Set A" forms.
+- The reconstruction engine selects between these grades based on the `PronominalConfig`.
+
+### Imperative Consistency Allowance
+
+To support verbs where the imperative form (2->3) reflects the glottal grade, the system allows the `imperative` form to diverge from the consensus stem when `use_3rd_person_object` is enabled.
