@@ -27,6 +27,7 @@ class ReconstructibleVerb:
     class_name: str
     config: VerbConfig
     corpus_id: Optional[int] = None
+    entry_no: Optional[int] = None
     original_stems: Dict[str, str] = field(default_factory=dict)
 
 
@@ -233,6 +234,11 @@ def main(classes_path=None):
             # Fallback for old data or edge cases
             ref = full_corpus_map.get(verb.definition)
 
+        if ref:
+            verb.entry_no = (lambda x: int(x) if x is not None else None)(
+                ref.get("entry_no", None)
+            )
+
         # Capture options for report
         options = generated_sets[0] if generated_sets else {fn: set() for fn in forms}
 
@@ -382,6 +388,13 @@ def main(classes_path=None):
     )
     with open(reconstructable_output_path, "w", encoding="utf-8") as f:
         json.dump(validated_verbs, f, cls=EnhancedJSONEncoder, indent=4)
+
+    # Save classes used for reconstructions
+    classes_expanded_path = os.path.join(
+        base_dir, "artifacts", "data", "classes_expanded.json"
+    )
+    with open(classes_expanded_path, "w", encoding="utf-8") as f:
+        json.dump(engine.classes, f, cls=EnhancedJSONEncoder, indent=4)
 
     print(f"Artifacts saved to {reports_dir}")
 
