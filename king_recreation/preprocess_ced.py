@@ -128,6 +128,7 @@ def process_cn_dict(file_path, output_path):
     for idx, (entry_no, rows) in enumerate(grouped_entries.items()):
         # Build a single verb dictionary from the rows
         verb_data = {
+            "entry_no": entry_no,
             "definition": "",
             "present": "",
             "present_1sg": "",
@@ -288,6 +289,7 @@ def process_cn_dict(file_path, output_path):
 
     fieldnames = [
         "corpus_id",
+        "entry_no",
         "definition",
         "present",
         "present_1sg",
