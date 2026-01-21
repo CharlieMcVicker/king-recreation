@@ -11,9 +11,32 @@ class StemType(Enum):
     VOWEL_O = "vowel_o"
     VOWEL_U = "vowel_u"
     VOWEL_V = "vowel_v"
-    VOWEL_I = "vowel_i"
     ASPIRATED = "aspirated"  # th-
     S_STEM = "s_stem"  # s-
+
+    def is_valid_for_stem(self, stem: str) -> bool:
+        if stem == "":
+            # we can't know the suffix used here
+            return True
+        if self == StemType.ASPIRATED:
+            # begins with consonant sequence then s
+            return re.match("^[^aeiouvhs]+h", stem)
+        elif self == StemType.CONSONANT:
+            return re.match("^[^aeiouvs]", stem)
+        elif self == StemType.S_STEM:
+            return stem.startswith("hs")
+        elif self == StemType.VOWEL_A:
+            return stem.startswith("a")
+        elif self == StemType.VOWEL_E:
+            return stem.startswith("e")
+        elif self == StemType.VOWEL_O:
+            return stem.startswith("o")
+        elif self == StemType.VOWEL_U:
+            return stem.startswith("u")
+        elif self == StemType.VOWEL_V:
+            return stem.startswith("v")
+        else:
+            raise Exception("Unreachable")
 
 
 class MetathesisStrategy(Enum):
@@ -43,6 +66,27 @@ class PrePronominalConfig:
     distributive: bool = False
     distributiveImpIsFutProg: bool = False
 
+    @staticmethod
+    def from_row(row: dict[str, str]):
+        return PrePronominalConfig(
+            translocutive=row["translocutive"] == "True",
+            translocutiveImpOnly=row["translocutive_imp_only"] == "True",
+            partitive=row["partitive"] == "True",
+            distributive=row["distributive"] == "True",
+            distributiveImpIsFutProg=row["distributive_fut_prog"] == "True",
+        )
+
+    def to_row(self) -> dict[str, str]:
+        row = {}
+
+        row["translocutive"] = str(self.translocutive)
+        row["translocutive_imp_only"] = str(self.translocutiveImpOnly)
+        row["partitive"] = str(self.partitive)
+        row["distributive"] = str(self.distributive)
+        row["distributive_fut_prog"] = str(self.distributiveImpIsFutProg)
+
+        return row
+
 
 @dataclass(frozen=True)
 class PronominalConfig:
@@ -52,11 +96,43 @@ class PronominalConfig:
 
     # Flags for prefix variants
     use_ka_variant: bool = False  # 3rd Set A: ka-/k- (True) vs a-/ø (False)
-    use_uwa_for_3rd_set_b: bool = False  # 3rd Set B: uwa- vs u- (on consonants)
-    use_aki_for_1st_set_b: bool = False  # 1st Set B: aki- vs ak- (on consonants)
+    long_start: bool = (
+        False  # 3rd Set B: uwa- vs u- (on consonants), tsiya- vs tsi- on person-person
+    )
+    use_aki_for_1st_set_b: bool = (
+        False  # 1st Set B: aki- vs ak- (on consonants, does stem type predict?)
+    )
+    uwa_replaces_v: bool = False  # Does uwa- replace v-?
 
     # Functional Flags
     use_3rd_person_object: bool = False  # Use 1->3 and 2->3 forms (imp_type='to_3rd')
+
+    @staticmethod
+    def from_row(row: dict[str, str]):
+        return PronominalConfig(
+            set_type=row["set_a_b"],
+            stem_type=StemType(row["stem_type"]),
+            metathesis_strategy=MetathesisStrategy(row["metathesis_strategy"]),
+            use_ka_variant=row["ka_variant"] == "True",
+            long_start=row["long_start"] == "True",
+            use_aki_for_1st_set_b=row["aki_1st"] == "True",
+            uwa_replaces_v=row["uwa_v"] == "True",
+            use_3rd_person_object=row["3rd_person_object"] == "True",
+        )
+
+    def to_row(self):
+        row = {}
+
+        row["set_a_b"] = self.set_type
+        row["stem_type"] = self.stem_type.value
+        row["metathesis_strategy"] = self.metathesis_strategy.value
+        row["ka_variant"] = str(self.use_ka_variant)
+        row["long_start"] = str(self.long_start)
+        row["aki_1st"] = str(self.use_aki_for_1st_set_b)
+        row["uwa_v"] = str(self.uwa_replaces_v)
+        row["3rd_person_object"] = str(self.use_3rd_person_object)
+
+        return row
 
 
 @dataclass(frozen=True)
@@ -66,22 +142,8 @@ class VerbConfig:
 
     @staticmethod
     def from_row(stem_row: dict[str, str]) -> "VerbConfig":
-        pre_config = PrePronominalConfig(
-            translocutive=stem_row["translocutive"] == "True",
-            translocutiveImpOnly=stem_row["translocutive_imp_only"] == "True",
-            partitive=stem_row["partitive"] == "True",
-            distributive=stem_row["distributive"] == "True",
-            distributiveImpIsFutProg=stem_row["distributive_fut_prog"] == "True",
-        )
-        pron_config = PronominalConfig(
-            set_type=stem_row["set_a_b"],
-            stem_type=StemType(stem_row["stem_type"]),
-            metathesis_strategy=MetathesisStrategy(stem_row["metathesis_strategy"]),
-            use_ka_variant=stem_row["ka_variant"] == "True",
-            use_uwa_for_3rd_set_b=stem_row["uwa_3rd"] == "True",
-            use_aki_for_1st_set_b=stem_row["aki_1st"] == "True",
-            use_3rd_person_object=stem_row["3rd_person_object"] == "True",
-        )
+        pre_config = PrePronominalConfig.from_row(stem_row)
+        pron_config = PronominalConfig.from_row(stem_row)
 
         return VerbConfig(pre=pre_config, pron=pron_config)
 
@@ -91,30 +153,6 @@ def get_vowel_set():
 
 
 VOWEL_SET = get_vowel_set()
-
-
-def get_stem_type(stem: str) -> StemType:
-    if not stem:
-        return StemType.CONSONANT
-    if stem.startswith("th"):
-        return StemType.ASPIRATED
-    if stem.startswith("s") and len(stem) > 1 and stem[1] not in VOWEL_SET:
-        return StemType.S_STEM
-
-    char = stem[0]
-    if char == "a":
-        return StemType.VOWEL_A
-    if char == "e":
-        return StemType.VOWEL_E
-    if char == "i":
-        return StemType.VOWEL_I
-    if char == "o":
-        return StemType.VOWEL_O
-    if char == "u":
-        return StemType.VOWEL_U
-    if char == "v":
-        return StemType.VOWEL_V
-    return StemType.CONSONANT
 
 
 def get_pronominal_set_name(form_name: str, config: PronominalConfig) -> Optional[str]:
@@ -183,17 +221,20 @@ def get_prefix_details(
         if s_type == StemType.VOWEL_A:
             return "u-", Condition.A_REPLACE
         if s_type == StemType.VOWEL_V:
-            return "uwa-", Condition.V
+            return (
+                ("uwa-", Condition.V)
+                if config.uwa_replaces_v
+                else ("uw-", Condition.VOWEL_NO_A)
+            )
         if s_type in [
             StemType.VOWEL_E,
-            StemType.VOWEL_I,
             StemType.VOWEL_O,
             StemType.VOWEL_U,
         ]:
             return "uw-", Condition.VOWEL_NO_A
         return (
             ("uwa-", Condition.CONSONANT)
-            if config.use_uwa_for_3rd_set_b
+            if config.long_start
             else ("u-", Condition.CONSONANT)
         )
 
@@ -210,7 +251,12 @@ def get_prefix_details(
         return ("hi-", Condition.CONSONANT) if is_con else ("h-", Condition.VOWEL)
 
     if set_name == "2nd to 3rd":
-        return ("hi-", Condition.CONSONANT) if is_con else ("hiy-", Condition.VOWEL)
+        if not is_con:
+            return ("hiy-", Condition.VOWEL)
+        elif config.long_start:
+            return ("hiya-", Condition.CONSONANT)
+        else:
+            return ("hi-", Condition.CONSONANT)
 
     if set_name == "1st Set A":
         return ("tsi-", Condition.CONSONANT) if is_con else ("k-", Condition.VOWEL)
@@ -229,7 +275,12 @@ def get_prefix_details(
         return "akw-", Condition.VOWEL
 
     if set_name == "1st to 3rd":
-        return ("tsi-", Condition.CONSONANT) if is_con else ("tsiy-", Condition.VOWEL)
+        if not is_con:
+            return ("tsiy-", Condition.VOWEL)
+        elif config.long_start:
+            return ("tsiya-", Condition.CONSONANT)
+        else:
+            return ("tsi-", Condition.CONSONANT)
 
     return "", Condition.CONSONANT
 

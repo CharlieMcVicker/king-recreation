@@ -16,7 +16,6 @@ from king_recreation.phonology_data import (
     use_glottal_grade,
     _drop_first_h,
     _is_compatible_with_vowel_restoration,
-    get_stem_type,
     get_prefix_details,
     detach_prefix,
     VOWEL_SET,
@@ -106,7 +105,7 @@ class TestStemDerivations(unittest.TestCase):
                     stem_type=target_pron.stem_type,
                     metathesis_strategy=target_pron.metathesis_strategy,
                     use_ka_variant=target_pron.use_ka_variant,
-                    use_uwa_for_3rd_set_b=target_pron.use_uwa_for_3rd_set_b,
+                    long_start=target_pron.long_start,
                     use_aki_for_1st_set_b=target_pron.use_aki_for_1st_set_b,
                     use_3rd_person_object=use_3rd,
                 )
@@ -170,13 +169,6 @@ class TestStemDerivations(unittest.TestCase):
                 if consensus_fail:
                     continue
 
-                calc_stem_type = get_stem_type(consensus_stem)
-                if calc_stem_type != target_pron.stem_type:
-                    print(
-                        f"    [FAILURE] Stem Type Mismatch. Calculated: {calc_stem_type}, Expected: {target_pron.stem_type}"
-                    )
-                    continue
-
                 print(
                     "    [SUCCESS] Full Derivation Successful with this configuration!"
                 )
@@ -196,7 +188,7 @@ class TestStemDerivations(unittest.TestCase):
         reachable = True
         if target_pron.use_ka_variant not in allowed_ka:
             reachable = False
-        if target_pron.use_uwa_for_3rd_set_b not in allowed_uwa:
+        if target_pron.long_start not in allowed_uwa:
             reachable = False
         if target_pron.use_aki_for_1st_set_b not in allowed_aki:
             reachable = False
@@ -209,9 +201,7 @@ class TestStemDerivations(unittest.TestCase):
             print(
                 f"    allowed_ka = {allowed_ka} (Target: {target_pron.use_ka_variant})"
             )
-            print(
-                f"    allowed_uwa = {allowed_uwa} (Target: {target_pron.use_uwa_for_3rd_set_b})"
-            )
+            print(f"    allowed_uwa = {allowed_uwa} (Target: {target_pron.long_start})")
             print(
                 f"    allowed_aki = {allowed_aki} (Target: {target_pron.use_aki_for_1st_set_b})"
             )
@@ -229,7 +219,7 @@ class TestStemDerivations(unittest.TestCase):
         TEST_CASES = [
             # ADD YOUR TEST CASES HERE
             # ("he's closing his eyes", PronominalConfig(set_type="a", stem_type=StemType.ASPIRATED)),
-            # ("he's plowing it", PronominalConfig(set_type="a", use_ka_variant=True, use_uwa_for_3rd_set_b=True, stem_type=StemType.CONSONANT)),
+            # ("he's plowing it", PronominalConfig(set_type="a", use_ka_variant=True, long_start=True, stem_type=StemType.CONSONANT)),
             # ("he's breathing", Derivation(
             #         pre_config=PrePronominalConfig(translocutive=False, partitive=False, distributive=False),
             #         pron_config=PronominalConfig(set_type="a", use_ka_variant=True, stem_type=StemType.VOWEL_A, metathesis_strategy=MetathesisStrategy.VOWEL),
@@ -356,7 +346,7 @@ class TestStemDerivations(unittest.TestCase):
             stem_type=StemType.ASPIRATED,
             metathesis_strategy=MetathesisStrategy.NONE,
             use_ka_variant=False,
-            use_uwa_for_3rd_set_b=False,
+            long_start=False,
             use_aki_for_1st_set_b=False,
             use_3rd_person_object=False,
         )

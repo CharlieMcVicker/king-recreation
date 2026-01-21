@@ -1,3 +1,4 @@
+from collections import defaultdict
 import os
 import csv
 from dataclasses import dataclass, asdict
@@ -24,6 +25,19 @@ class Derivation:
     consensus_stem: str
     stems: Dict[str, str]  # form_name -> stripped_stem (pronominal base)
     metathesis_involved: bool = False
+
+    def to_row(self):
+        row = {}
+
+        for fn, stem in self.stems.items():
+            row[fn] = stem
+
+        row["consensus_root"] = self.consensus_stem
+        row["metathesis_involved"] = str(self.metathesis_involved)
+        row.update(**self.pron_config.to_row())
+        row.update(**self.pre_config.to_row())
+
+        return row
 
 
 def is_strict_compatible(s1: str, s2: str) -> bool:
@@ -120,13 +134,20 @@ def derive_pronominals(
         derived_stems[fn] = stem
     h_grade = stems_are_consistent(derived_stems, pron_config, log=log)
     if h_grade is not None:
-        return Derivation(
-            pre_config=None,
-            pron_config=pron_config,
-            consensus_stem=h_grade,
-            stems=derived_stems,
-            metathesis_involved=metathesis_used,
-        )
+        # Metathesis must be used if strategy is not none
+        if pron_config.stem_type.is_valid_for_stem(h_grade) and (
+            not metathesis_used
+            == (pron_config.metathesis_strategy == MetathesisStrategy.NONE)
+        ):
+            return Derivation(
+                pre_config=None,
+                pron_config=pron_config,
+                consensus_stem=h_grade,
+                stems=derived_stems,
+                metathesis_involved=metathesis_used,
+            )
+        else:
+            return None
     else:
         return None
 
@@ -229,37 +250,49 @@ class StemDeriver:
 
         for pre_config, intermediate in iter_pre_configs(forms):
             set_type = "b" if intermediate["present"].startswith("u") else "a"
+            ka = intermediate["present"].startswith("k")
+            aki = intermediate.get("present_1sg", "").startswith("aki")
+            b3sg_starts_uwa = next(
+                (
+                    intermediate.get(fn, "").startswith("uwa")
+                    for fn in (["present", "completive", "infinitive"])
+                    if intermediate.get(fn, "").startswith("u")
+                ),
+                None,
+            )
+            long_start_options = (
+                [b3sg_starts_uwa] if b3sg_starts_uwa is not None else [False, True]
+            )
             for use_3rd in [False, True]:
                 for meta in MetathesisStrategy:
                     for s_type in StemType:
-                        ka = intermediate["present"].startswith("k")
-                        aki = intermediate.get("present_1sg", "").startswith("aki")
-                        uwa_options = next(
-                            (
-                                [intermediate.get(fn, "").startswith("uwa")]
-                                for fn in (["present", "completive", "infinitive"])
-                                if intermediate.get(fn, "").startswith("u")
-                            ),
-                            [False, True],
-                        )
-                        for uwa in uwa_options:
-                            pron_config = PronominalConfig(
-                                set_type=set_type,
-                                stem_type=s_type,
-                                metathesis_strategy=meta,
-                                use_ka_variant=ka,
-                                use_uwa_for_3rd_set_b=uwa,
-                                use_aki_for_1st_set_b=aki,
-                                use_3rd_person_object=use_3rd,
+                        uwa_opts = [False]
+                        if s_type == StemType.VOWEL_V:
+                            uwa_opts = (
+                                [b3sg_starts_uwa]
+                                if b3sg_starts_uwa is None
+                                else [False, True]
                             )
-                            res = derive_pronominals(
-                                intermediate,
-                                pron_config,
-                                # log="calling" in row["definition"],
-                            )
-                            if res:
-                                res.pre_config = pre_config
-                                valid_derivations.append(res)
+                        for uwa in uwa_opts:
+                            for long_start in long_start_options:
+                                pron_config = PronominalConfig(
+                                    set_type=set_type,
+                                    stem_type=s_type,
+                                    metathesis_strategy=meta,
+                                    use_ka_variant=ka,
+                                    long_start=long_start,
+                                    uwa_replaces_v=uwa,
+                                    use_aki_for_1st_set_b=aki,
+                                    use_3rd_person_object=use_3rd,
+                                )
+                                res = derive_pronominals(
+                                    intermediate,
+                                    pron_config,
+                                    # log="calling" in row["definition"],
+                                )
+                                if res:
+                                    res.pre_config = pre_config
+                                    valid_derivations.append(res)
         if not valid_derivations:
             return []
         valid_derivations.sort(
@@ -306,30 +339,12 @@ def main():
             if not derivations:
                 failures.append(row)
             else:
-                d = derivations[0]
-                for fn, stem in d.stems.items():
-                    row[fn] = stem
-                row["corpus_id"] = (
-                    d.corpus_id if hasattr(d, "corpus_id") else row.get("corpus_id")
-                )
-                row["consensus_root"] = d.consensus_stem
-                row["set_a_b"] = d.pron_config.set_type
-                row["translocutive"] = str(d.pre_config.translocutive)
-                row["translocutive_imp_only"] = str(d.pre_config.translocutiveImpOnly)
-                row["partitive"] = str(d.pre_config.partitive)
-                row["distributive"] = str(d.pre_config.distributive)
-                row["distributive_fut_prog"] = str(
-                    d.pre_config.distributiveImpIsFutProg
-                )
-                row["stem_type"] = d.pron_config.stem_type.value
-                row["metathesis_strategy"] = d.pron_config.metathesis_strategy.value
-                row["metathesis_involved"] = str(d.metathesis_involved)
-                row["ka_variant"] = str(d.pron_config.use_ka_variant)
-                row["uwa_3rd"] = str(d.pron_config.use_uwa_for_3rd_set_b)
-                row["aki_1st"] = str(d.pron_config.use_aki_for_1st_set_b)
-                row["3rd_person_object"] = str(d.pron_config.use_3rd_person_object)
-                row["multiple_explanations"] = str(len(derivations) > 1)
-                labeled_data.append(row)
+                # d = derivations[0]
+                for d in derivations:
+                    # copy row
+                    stripped_row = {**row, **d.to_row()}
+                    labeled_data.append(stripped_row)
+
     if labeled_data:
         keys = labeled_data[0].keys()
         with open(output_path, "w", encoding="utf-8") as f:
