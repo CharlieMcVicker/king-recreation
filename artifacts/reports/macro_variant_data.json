@@ -1246,8 +1246,8 @@
         },
         "can_have_variants": true,
         "combinations": {
-            "ih-l-ka": 1,
-            "ih-l-ka[inf2]": 5
+            "ih-l-ka": 5,
+            "ih-l-ka[inf2]": 1
         },
         "slots": {
             "imp": {
@@ -1257,8 +1257,8 @@
                 "1": 6
             },
             "inf": {
-                "1": 1,
-                "2": 5
+                "1": 5,
+                "2": 1
             },
             "perf": {
                 "1": 6
@@ -1273,12 +1273,12 @@
             {
                 "count": 5,
                 "percent": 83.33,
-                "variant": "ih-l-ka[inf2]"
+                "variant": "ih-l-ka"
             },
             {
                 "count": 1,
                 "percent": 16.67,
-                "variant": "ih-l-ka"
+                "variant": "ih-l-ka[inf2]"
             }
         ]
     },

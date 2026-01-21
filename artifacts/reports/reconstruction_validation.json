@@ -152,8 +152,7 @@
         {
             "definition": "he/she is denying him/her",
             "failed_forms": [
-                "imperative: expected 'hiyatayika', got [\"hiyata'yka\"]",
-                "infinitive: expected 'utayhst', got ['utayht']"
+                "imperative: expected 'hiyatayika', got [\"hiyata'yka\"]"
             ],
             "class": "ih-l-ka",
             "corpus_id": 21
@@ -161,7 +160,8 @@
         {
             "definition": "he/she is denying him/her",
             "failed_forms": [
-                "imperative: expected 'hiyatayika', got [\"hiyata'yka\"]"
+                "imperative: expected 'hiyatayika', got [\"hiyata'yka\"]",
+                "infinitive: expected 'utayhst', got ['utayht']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 21
@@ -952,7 +952,7 @@
             "failed_forms": [
                 "infinitive: expected 'utloyhst', got ['utloyht']"
             ],
-            "class": "ih-l-ka",
+            "class": "ih-l-ka[inf2]",
             "corpus_id": 98
         },
         {
@@ -2580,7 +2580,7 @@
             "definition": "he/she is hitting him/her on the mouth",
             "failed_forms": [
                 "imperative: expected 'hi'ulvnika', got [\"hi'ulvnka\"]",
-                "infinitive: expected 'uhulvnihst', got ['uhulvnt']"
+                "infinitive: expected 'uhulvnihst', got ['uhulvhst']"
             ],
             "class": "ih-l-ka",
             "corpus_id": 204
@@ -2589,7 +2589,7 @@
             "definition": "he/she is hitting him/her on the mouth",
             "failed_forms": [
                 "imperative: expected 'hi'ulvnika', got [\"hi'ulvnka\"]",
-                "infinitive: expected 'uhulvnihst', got ['uhulvhst']"
+                "infinitive: expected 'uhulvnihst', got ['uhulvnt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 204
@@ -5552,7 +5552,7 @@
             "failed_forms": [
                 "infinitive: expected 'uhskonhst', got ['uhskonht']"
             ],
-            "class": "ih-l-ka",
+            "class": "ih-l-ka[inf2]",
             "corpus_id": 412
         },
         {
@@ -5560,7 +5560,7 @@
             "failed_forms": [
                 "infinitive: expected 'uhskonhst', got ['uhskonht']"
             ],
-            "class": "ih-l-ka",
+            "class": "ih-l-ka[inf2]",
             "corpus_id": 412
         },
         {
@@ -5568,7 +5568,7 @@
             "failed_forms": [
                 "infinitive: expected 'uhskonhst', got ['uhskonht']"
             ],
-            "class": "ih-l-ka",
+            "class": "ih-l-ka[inf2]",
             "corpus_id": 412
         },
         {
@@ -5576,7 +5576,7 @@
             "failed_forms": [
                 "infinitive: expected 'uhskonhst', got ['uhskonht']"
             ],
-            "class": "ih-l-ka",
+            "class": "ih-l-ka[inf2]",
             "corpus_id": 412
         },
         {
@@ -6007,34 +6007,7 @@
             "definition": "he/she is hitting him/her on the head with it",
             "failed_forms": [
                 "imperative: expected 'hihskwalvnika', got ['hihskwalvnka']",
-                "infinitive: expected 'uhskwalvnihst', got ['uhskwalvnt']"
-            ],
-            "class": "ih-l-ka",
-            "corpus_id": 425
-        },
-        {
-            "definition": "he/she is hitting him/her on the head with it",
-            "failed_forms": [
-                "imperative: expected 'hihskwalvnika', got ['hihskwalvnka']",
-                "infinitive: expected 'uhskwalvnihst', got ['uhskwalvnt']"
-            ],
-            "class": "ih-l-ka",
-            "corpus_id": 425
-        },
-        {
-            "definition": "he/she is hitting him/her on the head with it",
-            "failed_forms": [
-                "imperative: expected 'hihskwalvnika', got ['hihskwalvnka']",
-                "infinitive: expected 'uhskwalvnihst', got ['uhskwalvnt']"
-            ],
-            "class": "ih-l-ka",
-            "corpus_id": 425
-        },
-        {
-            "definition": "he/she is hitting him/her on the head with it",
-            "failed_forms": [
-                "imperative: expected 'hihskwalvnika', got ['hihskwalvnka']",
-                "infinitive: expected 'uhskwalvnihst', got ['uhskwalvnt']"
+                "infinitive: expected 'uhskwalvnihst', got ['uhskwalvhst']"
             ],
             "class": "ih-l-ka",
             "corpus_id": 425
@@ -6044,6 +6017,33 @@
             "failed_forms": [
                 "imperative: expected 'hihskwalvnika', got ['hihskwalvnka']",
                 "infinitive: expected 'uhskwalvnihst', got ['uhskwalvhst']"
+            ],
+            "class": "ih-l-ka",
+            "corpus_id": 425
+        },
+        {
+            "definition": "he/she is hitting him/her on the head with it",
+            "failed_forms": [
+                "imperative: expected 'hihskwalvnika', got ['hihskwalvnka']",
+                "infinitive: expected 'uhskwalvnihst', got ['uhskwalvhst']"
+            ],
+            "class": "ih-l-ka",
+            "corpus_id": 425
+        },
+        {
+            "definition": "he/she is hitting him/her on the head with it",
+            "failed_forms": [
+                "imperative: expected 'hihskwalvnika', got ['hihskwalvnka']",
+                "infinitive: expected 'uhskwalvnihst', got ['uhskwalvhst']"
+            ],
+            "class": "ih-l-ka",
+            "corpus_id": 425
+        },
+        {
+            "definition": "he/she is hitting him/her on the head with it",
+            "failed_forms": [
+                "imperative: expected 'hihskwalvnika', got ['hihskwalvnka']",
+                "infinitive: expected 'uhskwalvnihst', got ['uhskwalvnt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 425
@@ -6052,7 +6052,7 @@
             "definition": "he/she is hitting him/her on the head with it",
             "failed_forms": [
                 "imperative: expected 'hihskwalvnika', got ['hihskwalvnka']",
-                "infinitive: expected 'uhskwalvnihst', got ['uhskwalvhst']"
+                "infinitive: expected 'uhskwalvnihst', got ['uhskwalvnt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 425
@@ -6061,7 +6061,7 @@
             "definition": "he/she is hitting him/her on the head with it",
             "failed_forms": [
                 "imperative: expected 'hihskwalvnika', got ['hihskwalvnka']",
-                "infinitive: expected 'uhskwalvnihst', got ['uhskwalvhst']"
+                "infinitive: expected 'uhskwalvnihst', got ['uhskwalvnt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 425
@@ -6070,7 +6070,7 @@
             "definition": "he/she is hitting him/her on the head with it",
             "failed_forms": [
                 "imperative: expected 'hihskwalvnika', got ['hihskwalvnka']",
-                "infinitive: expected 'uhskwalvnihst', got ['uhskwalvhst']"
+                "infinitive: expected 'uhskwalvnihst', got ['uhskwalvnt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 425
@@ -6211,34 +6211,7 @@
             "definition": "he/she is hitting him/her on the abdomen with it",
             "failed_forms": [
                 "imperative: expected 'hihskwohalvnika', got ['hihskwohalvnka']",
-                "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvnt']"
-            ],
-            "class": "ih-l-ka",
-            "corpus_id": 429
-        },
-        {
-            "definition": "he/she is hitting him/her on the abdomen with it",
-            "failed_forms": [
-                "imperative: expected 'hihskwohalvnika', got ['hihskwohalvnka']",
-                "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvnt']"
-            ],
-            "class": "ih-l-ka",
-            "corpus_id": 429
-        },
-        {
-            "definition": "he/she is hitting him/her on the abdomen with it",
-            "failed_forms": [
-                "imperative: expected 'hihskwohalvnika', got ['hihskwohalvnka']",
-                "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvnt']"
-            ],
-            "class": "ih-l-ka",
-            "corpus_id": 429
-        },
-        {
-            "definition": "he/she is hitting him/her on the abdomen with it",
-            "failed_forms": [
-                "imperative: expected 'hihskwohalvnika', got ['hihskwohalvnka']",
-                "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvnt']"
+                "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvhst']"
             ],
             "class": "ih-l-ka",
             "corpus_id": 429
@@ -6248,6 +6221,33 @@
             "failed_forms": [
                 "imperative: expected 'hihskwohalvnika', got ['hihskwohalvnka']",
                 "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvhst']"
+            ],
+            "class": "ih-l-ka",
+            "corpus_id": 429
+        },
+        {
+            "definition": "he/she is hitting him/her on the abdomen with it",
+            "failed_forms": [
+                "imperative: expected 'hihskwohalvnika', got ['hihskwohalvnka']",
+                "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvhst']"
+            ],
+            "class": "ih-l-ka",
+            "corpus_id": 429
+        },
+        {
+            "definition": "he/she is hitting him/her on the abdomen with it",
+            "failed_forms": [
+                "imperative: expected 'hihskwohalvnika', got ['hihskwohalvnka']",
+                "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvhst']"
+            ],
+            "class": "ih-l-ka",
+            "corpus_id": 429
+        },
+        {
+            "definition": "he/she is hitting him/her on the abdomen with it",
+            "failed_forms": [
+                "imperative: expected 'hihskwohalvnika', got ['hihskwohalvnka']",
+                "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvnt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 429
@@ -6256,7 +6256,7 @@
             "definition": "he/she is hitting him/her on the abdomen with it",
             "failed_forms": [
                 "imperative: expected 'hihskwohalvnika', got ['hihskwohalvnka']",
-                "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvhst']"
+                "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvnt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 429
@@ -6265,7 +6265,7 @@
             "definition": "he/she is hitting him/her on the abdomen with it",
             "failed_forms": [
                 "imperative: expected 'hihskwohalvnika', got ['hihskwohalvnka']",
-                "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvhst']"
+                "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvnt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 429
@@ -6274,7 +6274,7 @@
             "definition": "he/she is hitting him/her on the abdomen with it",
             "failed_forms": [
                 "imperative: expected 'hihskwohalvnika', got ['hihskwohalvnka']",
-                "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvhst']"
+                "infinitive: expected 'uhskwohalvnihst', got ['uhskwohalvnt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 429
@@ -6323,7 +6323,7 @@
             "definition": "he/she is slapping him/her",
             "failed_forms": [
                 "imperative: expected 'hiyahsihthvnika', got ['hiyahsihthvnka']",
-                "infinitive: expected 'uhsihthvnihst', got ['uhsihthvnt']"
+                "infinitive: expected 'uhsihthvnihst', got ['uhsihthvhst']"
             ],
             "class": "ih-l-ka",
             "corpus_id": 431
@@ -6332,7 +6332,7 @@
             "definition": "he/she is slapping him/her",
             "failed_forms": [
                 "imperative: expected 'hiyahsihthvnika', got ['hiyahsihthvnka']",
-                "infinitive: expected 'uhsihthvnihst', got ['uhsihthvhst']"
+                "infinitive: expected 'uhsihthvnihst', got ['uhsihthvnt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 431
@@ -6787,7 +6787,7 @@
             "failed_forms": [
                 "infinitive: expected 'uhsvnhst', got ['uhsvnht']"
             ],
-            "class": "ih-l-ka",
+            "class": "ih-l-ka[inf2]",
             "corpus_id": 458
         },
         {
@@ -7902,16 +7902,7 @@
             "definition": "he/she is greeting him/her",
             "failed_forms": [
                 "imperative: expected 'hiyolika', got ['hiyolka']",
-                "infinitive: expected 'uyolihst', got ['uyolt']"
-            ],
-            "class": "ih-l-ka",
-            "corpus_id": 523
-        },
-        {
-            "definition": "he/she is greeting him/her",
-            "failed_forms": [
-                "imperative: expected 'hiyolika', got ['hiyolka']",
-                "infinitive: expected 'uyolihst', got ['uyolt']"
+                "infinitive: expected 'uyolihst', got ['uyohst']"
             ],
             "class": "ih-l-ka",
             "corpus_id": 523
@@ -7921,6 +7912,15 @@
             "failed_forms": [
                 "imperative: expected 'hiyolika', got ['hiyolka']",
                 "infinitive: expected 'uyolihst', got ['uyohst']"
+            ],
+            "class": "ih-l-ka",
+            "corpus_id": 523
+        },
+        {
+            "definition": "he/she is greeting him/her",
+            "failed_forms": [
+                "imperative: expected 'hiyolika', got ['hiyolka']",
+                "infinitive: expected 'uyolihst', got ['uyolt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 523
@@ -7929,7 +7929,7 @@
             "definition": "he/she is greeting him/her",
             "failed_forms": [
                 "imperative: expected 'hiyolika', got ['hiyolka']",
-                "infinitive: expected 'uyolihst', got ['uyohst']"
+                "infinitive: expected 'uyolihst', got ['uyolt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 523
@@ -8374,7 +8374,7 @@
             "failed_forms": [
                 "infinitive: expected 'tsutloyhst', got ['tiutloyht', 'tsutloyht', 'tutloyht']"
             ],
-            "class": "ih-l-ka",
+            "class": "ih-l-ka[inf2]",
             "corpus_id": 547
         },
         {
@@ -8382,7 +8382,7 @@
             "failed_forms": [
                 "infinitive: expected 'tsutloyhst', got ['tiutloyht', 'tsutloyht', 'tutloyht']"
             ],
-            "class": "ih-l-ka",
+            "class": "ih-l-ka[inf2]",
             "corpus_id": 547
         },
         {
@@ -9969,7 +9969,7 @@
             "definition": "he/she is clapping his/her hands",
             "failed_forms": [
                 "imperative: expected 'thahsihthvnika', got ['thahsihthvnka', 'tihahsihthvnka', 'tshahsihthvnka']",
-                "infinitive: expected 'tsuhsihthvnihst', got ['tiuhsihthvnt', 'tsuhsihthvnt', 'tuhsihthvnt']"
+                "infinitive: expected 'tsuhsihthvnihst', got ['tiuhsihthvhst', 'tsuhsihthvhst', 'tuhsihthvhst']"
             ],
             "class": "ih-l-ka",
             "corpus_id": 609
@@ -9978,7 +9978,7 @@
             "definition": "he/she is clapping his/her hands",
             "failed_forms": [
                 "imperative: expected 'thahsihthvnika', got ['tehahsihthvnka', 'thahsihthvnka']",
-                "infinitive: expected 'tsuhsihthvnihst', got ['tiuhsihthvnt', 'tsuhsihthvnt', 'tuhsihthvnt']"
+                "infinitive: expected 'tsuhsihthvnihst', got ['tiuhsihthvhst', 'tsuhsihthvhst', 'tuhsihthvhst']"
             ],
             "class": "ih-l-ka",
             "corpus_id": 609
@@ -9987,7 +9987,7 @@
             "definition": "he/she is clapping his/her hands",
             "failed_forms": [
                 "imperative: expected 'thahsihthvnika', got ['thahsihthvnka', 'tihahsihthvnka', 'tshahsihthvnka']",
-                "infinitive: expected 'tsuhsihthvnihst', got ['tiuhsihthvhst', 'tsuhsihthvhst', 'tuhsihthvhst']"
+                "infinitive: expected 'tsuhsihthvnihst', got ['tiuhsihthvnt', 'tsuhsihthvnt', 'tuhsihthvnt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 609
@@ -9996,7 +9996,7 @@
             "definition": "he/she is clapping his/her hands",
             "failed_forms": [
                 "imperative: expected 'thahsihthvnika', got ['tehahsihthvnka', 'thahsihthvnka']",
-                "infinitive: expected 'tsuhsihthvnihst', got ['tiuhsihthvhst', 'tsuhsihthvhst', 'tuhsihthvhst']"
+                "infinitive: expected 'tsuhsihthvnihst', got ['tiuhsihthvnt', 'tsuhsihthvnt', 'tuhsihthvnt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 609
@@ -16160,35 +16160,8 @@
         {
             "definition": "he/she is beating him/her up",
             "failed_forms": [
-                "infinitive: expected 'ulvnhst', got ['ulvnht']"
-            ],
-            "class": "ih-l-ka",
-            "corpus_id": 864
-        },
-        {
-            "definition": "he/she is beating him/her up",
-            "failed_forms": [
                 "present: expected 'kalvnhih', got ['khalnhih']",
-                "imperfective: expected 'kalvnhih', got ['khalnhih']",
-                "infinitive: expected 'ulvnhst', got ['ulvnht']"
-            ],
-            "class": "ih-l-ka",
-            "corpus_id": 864
-        },
-        {
-            "definition": "he/she is beating him/her up",
-            "failed_forms": [
-                "infinitive: expected 'ulvnhst', got ['ulvnht']"
-            ],
-            "class": "ih-l-ka",
-            "corpus_id": 864
-        },
-        {
-            "definition": "he/she is beating him/her up",
-            "failed_forms": [
-                "present: expected 'kalvnhih', got ['khalnhih']",
-                "imperfective: expected 'kalvnhih', got ['khalnhih']",
-                "infinitive: expected 'ulvnhst', got ['ulvnht']"
+                "imperfective: expected 'kalvnhih', got ['khalnhih']"
             ],
             "class": "ih-l-ka",
             "corpus_id": 864
@@ -16198,6 +16171,14 @@
             "failed_forms": [
                 "present: expected 'kalvnhih', got ['khalnhih']",
                 "imperfective: expected 'kalvnhih', got ['khalnhih']"
+            ],
+            "class": "ih-l-ka",
+            "corpus_id": 864
+        },
+        {
+            "definition": "he/she is beating him/her up",
+            "failed_forms": [
+                "infinitive: expected 'ulvnhst', got ['ulvnht']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 864
@@ -16206,7 +16187,26 @@
             "definition": "he/she is beating him/her up",
             "failed_forms": [
                 "present: expected 'kalvnhih', got ['khalnhih']",
-                "imperfective: expected 'kalvnhih', got ['khalnhih']"
+                "imperfective: expected 'kalvnhih', got ['khalnhih']",
+                "infinitive: expected 'ulvnhst', got ['ulvnht']"
+            ],
+            "class": "ih-l-ka[inf2]",
+            "corpus_id": 864
+        },
+        {
+            "definition": "he/she is beating him/her up",
+            "failed_forms": [
+                "infinitive: expected 'ulvnhst', got ['ulvnht']"
+            ],
+            "class": "ih-l-ka[inf2]",
+            "corpus_id": 864
+        },
+        {
+            "definition": "he/she is beating him/her up",
+            "failed_forms": [
+                "present: expected 'kalvnhih', got ['khalnhih']",
+                "imperfective: expected 'kalvnhih', got ['khalnhih']",
+                "infinitive: expected 'ulvnhst', got ['ulvnht']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 864
@@ -20198,7 +20198,7 @@
             "definition": "he/she is batting it",
             "failed_forms": [
                 "imperative: expected 'hohstvnika', got ['hohstvnka']",
-                "infinitive: expected 'uwohstvnihst', got ['uwohstvnt']"
+                "infinitive: expected 'uwohstvnihst', got ['uwohstvhst']"
             ],
             "class": "ih-l-ka",
             "corpus_id": 1038
@@ -20207,7 +20207,7 @@
             "definition": "he/she is batting it",
             "failed_forms": [
                 "imperative: expected 'hohstvnika', got ['hohstvnka']",
-                "infinitive: expected 'uwohstvnihst', got ['uwohstvhst']"
+                "infinitive: expected 'uwohstvnihst', got ['uwohstvnt']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 1038
@@ -20495,8 +20495,7 @@
         {
             "definition": "he/she is hitting him/her",
             "failed_forms": [
-                "imperative: expected 'hiyvnika', got ['hiyvnka']",
-                "infinitive: expected 'uwanhst', got ['uwanht']"
+                "imperative: expected 'hiyvnika', got ['hiyvnka']"
             ],
             "class": "ih-l-ka",
             "corpus_id": 1070
@@ -20504,7 +20503,8 @@
         {
             "definition": "he/she is hitting him/her",
             "failed_forms": [
-                "imperative: expected 'hiyvnika', got ['hiyvnka']"
+                "imperative: expected 'hiyvnika', got ['hiyvnka']",
+                "infinitive: expected 'uwanhst', got ['uwanht']"
             ],
             "class": "ih-l-ka[inf2]",
             "corpus_id": 1070
