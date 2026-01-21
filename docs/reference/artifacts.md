@@ -29,6 +29,7 @@ Human-readable analysis summaries and validation reports.
 | `class_match_counts.csv`         | Aggregated match statistics per class.                                | `analyze_matches.py`        |
 | `class_near_misses.csv`          | Pass rates for stem-final checks, highlighting common failure points. | `analyze_matches.py`        |
 | `consistency_analysis.csv`       | Detailed report on root/stem consistency across verb forms.           | `reconstruct_from_roots.py` |
+| `macro_variant_data.json`        | Usage statistics for macro class variants and slot options.           | `analyze_matches.py`        |
 | `reconstruction_report.csv`      | Success/failure summary for every reconstruction candidate.           | `reconstruct_from_roots.py` |
 | `reconstruction_failures.csv`    | Detailed breakdown of mismatching forms for failed reconstructions.   | `reconstruct_from_roots.py` |
 | `reconstruction_validation.json` | High-level validation stats and failure list.                         | `reconstruct_from_roots.py` |
@@ -49,6 +50,7 @@ Generated plots and charts for trend analysis.
 | `verb_coverage.png`            | Combined plot showing match counts and system coverage %.        | `visualize_analysis.py` |
 | `root_ambiguity_histogram.png` | Distribution of root sharing across the corpus.                  | `visualize_analysis.py` |
 | `class_match_histogram.png`    | Histogram of "class propensity" (how many verbs use each class). | `visualize_analysis.py` |
+| `macro_variants/*.png`         | Bar charts showing combination frequency for each macro class.   | `visualize_analysis.py` |
 
 ## Debug (`artifacts/debug/`)
 

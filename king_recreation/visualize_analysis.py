@@ -4,6 +4,7 @@ import seaborn as sns
 import json
 import os
 import argparse
+import shutil
 
 
 def _plot_class_distribution(
@@ -324,6 +325,61 @@ def plot_class_match_histogram(csv_path, output_path):
     plt.close()
 
 
+def plot_macro_variants(json_path, output_dir):
+    """Generates a bar chart for each macro class showing variant frequency."""
+    if not os.path.exists(json_path):
+        print(f"Warning: {json_path} not found. Skipping macro variant plots.")
+        return
+
+    with open(json_path, "r") as f:
+        data = json.load(f)
+
+    if os.path.exists(output_dir):
+        shutil.rmtree(output_dir)
+    os.makedirs(output_dir, exist_ok=True)
+
+    for macro_name, stats in data.items():
+        if stats["total_matches"] == 0:
+            continue
+
+        # Skip macros that specify no variants (only 1 option for every slot)
+        if all(count == 1 for count in stats["available_options"].values()):
+            continue
+
+        combinations = stats["combinations"]
+        if not combinations:
+            continue
+
+        # Convert Counter to DataFrame
+        df_variants = pd.DataFrame(
+            list(combinations.items()), columns=["Variant", "Count"]
+        )
+        df_variants = df_variants.sort_values(by="Count", ascending=False)
+
+        plt.figure(figsize=(10, 6))
+        sns.barplot(
+            data=df_variants,
+            x="Variant",
+            y="Count",
+            hue="Variant",
+            palette="magma",
+            legend=False,
+        )
+
+        plt.title(f"Variant Combinations Frequency: {macro_name}")
+        plt.xlabel("Expanded Variant Pattern")
+        plt.ylabel("Usage Count")
+        plt.xticks(rotation=45, ha="right")
+
+        # Add counts on top
+        for i, count in enumerate(df_variants["Count"]):
+            plt.text(i, count + 0.1, str(count), ha="center", va="bottom")
+
+        plt.tight_layout()
+        plt.savefig(os.path.join(output_dir, f"{macro_name}_variants.png"))
+        plt.close()
+
+
 def run_all_visualizations():
     # Plots (images) go to visualizations
     output_dir = "artifacts/visualizations"
@@ -360,6 +416,12 @@ def run_all_visualizations():
     plot_class_match_histogram(
         os.path.join(input_dir, "class_match_counts.csv"),
         os.path.join(output_dir, "class_match_histogram.png"),
+    )
+
+    print("Generating Macro Variant plots...")
+    plot_macro_variants(
+        os.path.join(input_dir, "macro_variant_data.json"),
+        os.path.join(output_dir, "macro_variants"),
     )
 
 

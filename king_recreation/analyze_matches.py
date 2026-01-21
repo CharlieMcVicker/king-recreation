@@ -5,6 +5,7 @@ import csv
 from collections import defaultdict, Counter
 from typing import Optional, List, Dict, Any
 
+import re
 from king_recreation.pattern_registry import PatternRegistry
 
 
@@ -202,6 +203,91 @@ def _analyze_root_ambiguity(reconstructable_path: str) -> List[Dict[str, Any]]:
     return root_ambiguity_data
 
 
+def _analyze_macro_variants(
+    reconstructable_path: str, pattern_registry: PatternRegistry
+) -> Dict[str, Any]:
+    if not os.path.exists(reconstructable_path):
+        return {}
+
+    reconstructable_verbs = load_json(reconstructable_path)
+    # pattern captures the base name and then the digits for each form if present
+    # eg. v'vsk[perf2-inf2] -> ("v'vsk", None, None, "2", None, "2")
+    pattern_regex = r"([\w\-'\*]+)(?:\[(?:pres(\d+))?\-?(?:imperf(\d+))?\-?(?:perf(\d+))?\-?(?:imp(\d+))?\-?(?:inf(\d+))?\])?"
+
+    # macro_name -> { "combinations": Counter(full_name), "slots": { "perf": { 1: count, 2: count } } }
+    analysis = {}
+    for macro in pattern_registry.macros:
+        analysis[macro.name] = {
+            "combinations": Counter(),
+            "slots": {
+                "pres": Counter(),
+                "imperf": Counter(),
+                "perf": Counter(),
+                "imp": Counter(),
+                "inf": Counter(),
+            },
+            "total_matches": 0,
+            "available_options": {
+                "pres": len(macro.present),
+                "imperf": len(macro.imperfective),
+                "perf": len(macro.perfective),
+                "imp": len(macro.imperative),
+                "inf": len(macro.infinitive),
+            },
+        }
+
+    for verb in reconstructable_verbs:
+        class_name = verb.get("class_name", "")
+        match = re.match(pattern_regex, class_name)
+        if not match:
+            continue
+
+        base_name = match.group(1)
+        if base_name not in analysis:
+            continue
+
+        analysis[base_name]["combinations"][class_name] += 1
+        analysis[base_name]["total_matches"] += 1
+
+        # Extract indices (match groups 2-6)
+        # indices are 1-based. if matched group is None, it's 1.
+        slots = ["pres", "imperf", "perf", "imp", "inf"]
+        for i, slot in enumerate(slots):
+            idx = int(match.group(i + 2) or 1)
+            analysis[base_name]["slots"][slot][idx] += 1
+
+    # Identify unused options
+    for macro_name, data in analysis.items():
+        unused = []
+        for slot, count in data["available_options"].items():
+            for i in range(1, count + 1):
+                if data["slots"][slot][i] == 0:
+                    unused.append(f"{slot}{i}" if i > 1 else f"{slot}(base)")
+        data["unused_options"] = unused
+
+    return analysis
+
+
+def _identify_dead_variants(macro_variant_data: Dict[str, Any]) -> List[Dict[str, Any]]:
+    """
+    Summarizes which variants of which macros are never used across the entire corpus.
+    """
+    dead_variants = []
+    for macro_name, data in macro_variant_data.items():
+        if data.get("unused_options"):
+            dead_variants.append(
+                {
+                    "macro": macro_name,
+                    "total_matches": data["total_matches"],
+                    "unused_variants": data["unused_options"],
+                }
+            )
+
+    # Sort by total matches (descending) then macro name
+    dead_variants.sort(key=lambda x: (-x["total_matches"], x["macro"]))
+    return dead_variants
+
+
 def analyze_matches(classes_path: Optional[str] = None):
     matches_path = "artifacts/data/matches_initial.csv"
     corpus_path = "artifacts/data/corpus.csv"
@@ -236,6 +322,8 @@ def analyze_matches(classes_path: Optional[str] = None):
     coverage_summary = _analyze_verb_coverage(filtered_matches, all_verbs)
     unmatched_verbs_data = _get_unmatched_verbs(filtered_matches, all_verbs, corpus)
     root_ambiguity_data = _analyze_root_ambiguity(reconstructable_path)
+    macro_variant_data = _analyze_macro_variants(reconstructable_path, pattern_registry)
+    unused_variants_report = _identify_dead_variants(macro_variant_data)
 
     # 3. Output Data to Disk
     os.makedirs(output_dir, exist_ok=True)
@@ -267,6 +355,16 @@ def analyze_matches(classes_path: Optional[str] = None):
             os.path.join(output_dir, "root_ambiguity_counts.csv"),
             root_ambiguity_data,
             ["h_grade", "g_grade", "count"],
+        )
+
+    if macro_variant_data:
+        save_json(
+            os.path.join(output_dir, "macro_variant_data.json"), macro_variant_data
+        )
+
+    if unused_variants_report is not None:
+        save_json(
+            os.path.join(output_dir, "unused_variants.json"), unused_variants_report
         )
 
     # 4. Console Summary
