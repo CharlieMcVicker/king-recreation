@@ -4,15 +4,31 @@
         "present": "'",
         "imperfective": "hsk",
         "perfective": "*",
-        "imperative": "",
+        "imperative": "*a",
         "infinitive": "hst",
         "_original_data": {
             "class": "glottal-sk",
             "present": "'",
             "imperfective": "hsk",
             "perfective": "*;'",
-            "imperative": "",
-            "infinitive": "hst"
+            "imperative": "*a",
+            "infinitive": "hst;*ahst"
+        }
+    },
+    "glottal-sk[inf2]": {
+        "name": "glottal-sk[inf2]",
+        "present": "'",
+        "imperfective": "hsk",
+        "perfective": "*",
+        "imperative": "*a",
+        "infinitive": "*ahst",
+        "_original_data": {
+            "class": "glottal-sk",
+            "present": "'",
+            "imperfective": "hsk",
+            "perfective": "*;'",
+            "imperative": "*a",
+            "infinitive": "hst;*ahst"
         }
     },
     "glottal-sk[perf2]": {
@@ -20,15 +36,31 @@
         "present": "'",
         "imperfective": "hsk",
         "perfective": "'",
-        "imperative": "",
+        "imperative": "*a",
         "infinitive": "hst",
         "_original_data": {
             "class": "glottal-sk",
             "present": "'",
             "imperfective": "hsk",
             "perfective": "*;'",
-            "imperative": "",
-            "infinitive": "hst"
+            "imperative": "*a",
+            "infinitive": "hst;*ahst"
+        }
+    },
+    "glottal-sk[perf2-inf2]": {
+        "name": "glottal-sk[perf2-inf2]",
+        "present": "'",
+        "imperfective": "hsk",
+        "perfective": "'",
+        "imperative": "*a",
+        "infinitive": "*ahst",
+        "_original_data": {
+            "class": "glottal-sk",
+            "present": "'",
+            "imperfective": "hsk",
+            "perfective": "*;'",
+            "imperative": "*a",
+            "infinitive": "hst;*ahst"
         }
     },
     "become": {
@@ -159,24 +191,24 @@
             "infinitive": "hst;'ihst;yhst;ihst"
         }
     },
-    "sk-s-hihst": {
-        "name": "sk-s-hihst",
+    "sk-s-hi-hihst": {
+        "name": "sk-s-hi-hihst",
         "present": "hsk",
         "imperfective": "hsk",
         "perfective": "hs",
         "imperative": "hi",
         "infinitive": "hihst",
         "_original_data": {
-            "class": "sk-s-hihst",
+            "class": "sk-s-hi-hihst",
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "hs",
-            "imperative": "hi;a;;ha",
+            "imperative": "hi",
             "infinitive": "hihst"
         }
     },
-    "sk-s-hihst[imp2]": {
-        "name": "sk-s-hihst[imp2]",
+    "sk-s-hihst": {
+        "name": "sk-s-hihst",
         "present": "hsk",
         "imperfective": "hsk",
         "perfective": "hs",
@@ -187,39 +219,7 @@
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "hs",
-            "imperative": "hi;a;;ha",
-            "infinitive": "hihst"
-        }
-    },
-    "sk-s-hihst[imp3]": {
-        "name": "sk-s-hihst[imp3]",
-        "present": "hsk",
-        "imperfective": "hsk",
-        "perfective": "hs",
-        "imperative": "",
-        "infinitive": "hihst",
-        "_original_data": {
-            "class": "sk-s-hihst",
-            "present": "hsk",
-            "imperfective": "hsk",
-            "perfective": "hs",
-            "imperative": "hi;a;;ha",
-            "infinitive": "hihst"
-        }
-    },
-    "sk-s-hihst[imp4]": {
-        "name": "sk-s-hihst[imp4]",
-        "present": "hsk",
-        "imperfective": "hsk",
-        "perfective": "hs",
-        "imperative": "ha",
-        "infinitive": "hihst",
-        "_original_data": {
-            "class": "sk-s-hihst",
-            "present": "hsk",
-            "imperfective": "hsk",
-            "perfective": "hs",
-            "imperative": "hi;a;;ha",
+            "imperative": "a",
             "infinitive": "hihst"
         }
     },
@@ -228,22 +228,6 @@
         "present": "hsk",
         "imperfective": "hsk",
         "perfective": "hs",
-        "imperative": "la",
-        "infinitive": "hst",
-        "_original_data": {
-            "class": "sk-s-hst",
-            "present": "hsk",
-            "imperfective": "hsk",
-            "perfective": "hs",
-            "imperative": "la;;*a;hi;a;ha",
-            "infinitive": "hst"
-        }
-    },
-    "sk-s-hst[imp2]": {
-        "name": "sk-s-hst[imp2]",
-        "present": "hsk",
-        "imperfective": "hsk",
-        "perfective": "hs",
         "imperative": "",
         "infinitive": "hst",
         "_original_data": {
@@ -251,12 +235,12 @@
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "hs",
-            "imperative": "la;;*a;hi;a;ha",
+            "imperative": ";*a;hi;a;ha",
             "infinitive": "hst"
         }
     },
-    "sk-s-hst[imp3]": {
-        "name": "sk-s-hst[imp3]",
+    "sk-s-hst[imp2]": {
+        "name": "sk-s-hst[imp2]",
         "present": "hsk",
         "imperfective": "hsk",
         "perfective": "hs",
@@ -267,12 +251,12 @@
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "hs",
-            "imperative": "la;;*a;hi;a;ha",
+            "imperative": ";*a;hi;a;ha",
             "infinitive": "hst"
         }
     },
-    "sk-s-hst[imp4]": {
-        "name": "sk-s-hst[imp4]",
+    "sk-s-hst[imp3]": {
+        "name": "sk-s-hst[imp3]",
         "present": "hsk",
         "imperfective": "hsk",
         "perfective": "hs",
@@ -283,12 +267,12 @@
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "hs",
-            "imperative": "la;;*a;hi;a;ha",
+            "imperative": ";*a;hi;a;ha",
             "infinitive": "hst"
         }
     },
-    "sk-s-hst[imp5]": {
-        "name": "sk-s-hst[imp5]",
+    "sk-s-hst[imp4]": {
+        "name": "sk-s-hst[imp4]",
         "present": "hsk",
         "imperfective": "hsk",
         "perfective": "hs",
@@ -299,12 +283,12 @@
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "hs",
-            "imperative": "la;;*a;hi;a;ha",
+            "imperative": ";*a;hi;a;ha",
             "infinitive": "hst"
         }
     },
-    "sk-s-hst[imp6]": {
-        "name": "sk-s-hst[imp6]",
+    "sk-s-hst[imp5]": {
+        "name": "sk-s-hst[imp5]",
         "present": "hsk",
         "imperfective": "hsk",
         "perfective": "hs",
@@ -315,8 +299,24 @@
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "hs",
-            "imperative": "la;;*a;hi;a;ha",
+            "imperative": ";*a;hi;a;ha",
             "infinitive": "hst"
+        }
+    },
+    "ohsk": {
+        "name": "ohsk",
+        "present": "ohsk",
+        "imperfective": "ohsk",
+        "perfective": "ohs",
+        "imperative": "ola",
+        "infinitive": "ohst",
+        "_original_data": {
+            "class": "ohsk",
+            "present": "ohsk",
+            "imperfective": "ohsk",
+            "perfective": "ohs",
+            "imperative": "ola",
+            "infinitive": "ohst"
         }
     },
     "sk-h": {
@@ -591,15 +591,15 @@
             "infinitive": "ehst"
         }
     },
-    "rub": {
-        "name": "rub",
+    "e-a": {
+        "name": "e-a",
         "present": "e'",
         "imperfective": "ehsk",
         "perfective": "e'",
         "imperative": "a",
         "infinitive": "et",
         "_original_data": {
-            "class": "rub",
+            "class": "e-a",
             "present": "e'",
             "imperfective": "ehsk",
             "perfective": "e'",
@@ -730,89 +730,9 @@
             "class": "go",
             "present": "ek;",
             "imperfective": "ek",
-            "perfective": "vhs;invhs;ehs",
+            "perfective": "vhs",
             "imperative": "uka",
-            "infinitive": "vhst;invt"
-        }
-    },
-    "go[inf2]": {
-        "name": "go[inf2]",
-        "present": "ek",
-        "imperfective": "ek",
-        "perfective": "vhs",
-        "imperative": "uka",
-        "infinitive": "invt",
-        "_original_data": {
-            "class": "go",
-            "present": "ek;",
-            "imperfective": "ek",
-            "perfective": "vhs;invhs;ehs",
-            "imperative": "uka",
-            "infinitive": "vhst;invt"
-        }
-    },
-    "go[perf2]": {
-        "name": "go[perf2]",
-        "present": "ek",
-        "imperfective": "ek",
-        "perfective": "invhs",
-        "imperative": "uka",
-        "infinitive": "vhst",
-        "_original_data": {
-            "class": "go",
-            "present": "ek;",
-            "imperfective": "ek",
-            "perfective": "vhs;invhs;ehs",
-            "imperative": "uka",
-            "infinitive": "vhst;invt"
-        }
-    },
-    "go[perf2-inf2]": {
-        "name": "go[perf2-inf2]",
-        "present": "ek",
-        "imperfective": "ek",
-        "perfective": "invhs",
-        "imperative": "uka",
-        "infinitive": "invt",
-        "_original_data": {
-            "class": "go",
-            "present": "ek;",
-            "imperfective": "ek",
-            "perfective": "vhs;invhs;ehs",
-            "imperative": "uka",
-            "infinitive": "vhst;invt"
-        }
-    },
-    "go[perf3]": {
-        "name": "go[perf3]",
-        "present": "ek",
-        "imperfective": "ek",
-        "perfective": "ehs",
-        "imperative": "uka",
-        "infinitive": "vhst",
-        "_original_data": {
-            "class": "go",
-            "present": "ek;",
-            "imperfective": "ek",
-            "perfective": "vhs;invhs;ehs",
-            "imperative": "uka",
-            "infinitive": "vhst;invt"
-        }
-    },
-    "go[perf3-inf2]": {
-        "name": "go[perf3-inf2]",
-        "present": "ek",
-        "imperfective": "ek",
-        "perfective": "ehs",
-        "imperative": "uka",
-        "infinitive": "invt",
-        "_original_data": {
-            "class": "go",
-            "present": "ek;",
-            "imperfective": "ek",
-            "perfective": "vhs;invhs;ehs",
-            "imperative": "uka",
-            "infinitive": "vhst;invt"
+            "infinitive": "vhst"
         }
     },
     "go[pres2]": {
@@ -826,89 +746,41 @@
             "class": "go",
             "present": "ek;",
             "imperfective": "ek",
-            "perfective": "vhs;invhs;ehs",
+            "perfective": "vhs",
             "imperative": "uka",
-            "infinitive": "vhst;invt"
+            "infinitive": "vhst"
         }
     },
-    "go[pres2-inf2]": {
-        "name": "go[pres2-inf2]",
-        "present": "",
-        "imperfective": "ek",
-        "perfective": "vhs",
-        "imperative": "uka",
-        "infinitive": "invt",
-        "_original_data": {
-            "class": "go",
-            "present": "ek;",
-            "imperfective": "ek",
-            "perfective": "vhs;invhs;ehs",
-            "imperative": "uka",
-            "infinitive": "vhst;invt"
-        }
-    },
-    "go[pres2-perf2]": {
-        "name": "go[pres2-perf2]",
-        "present": "",
-        "imperfective": "ek",
-        "perfective": "invhs",
-        "imperative": "uka",
-        "infinitive": "vhst",
-        "_original_data": {
-            "class": "go",
-            "present": "ek;",
-            "imperfective": "ek",
-            "perfective": "vhs;invhs;ehs",
-            "imperative": "uka",
-            "infinitive": "vhst;invt"
-        }
-    },
-    "go[pres2-perf2-inf2]": {
-        "name": "go[pres2-perf2-inf2]",
-        "present": "",
+    "go-alt": {
+        "name": "go-alt",
+        "present": "ek",
         "imperfective": "ek",
         "perfective": "invhs",
         "imperative": "uka",
         "infinitive": "invt",
         "_original_data": {
-            "class": "go",
-            "present": "ek;",
+            "class": "go-alt",
+            "present": "ek",
             "imperfective": "ek",
-            "perfective": "vhs;invhs;ehs",
+            "perfective": "invhs;ehs",
             "imperative": "uka",
-            "infinitive": "vhst;invt"
+            "infinitive": "invt"
         }
     },
-    "go[pres2-perf3]": {
-        "name": "go[pres2-perf3]",
-        "present": "",
-        "imperfective": "ek",
-        "perfective": "ehs",
-        "imperative": "uka",
-        "infinitive": "vhst",
-        "_original_data": {
-            "class": "go",
-            "present": "ek;",
-            "imperfective": "ek",
-            "perfective": "vhs;invhs;ehs",
-            "imperative": "uka",
-            "infinitive": "vhst;invt"
-        }
-    },
-    "go[pres2-perf3-inf2]": {
-        "name": "go[pres2-perf3-inf2]",
-        "present": "",
+    "go-alt[perf2]": {
+        "name": "go-alt[perf2]",
+        "present": "ek",
         "imperfective": "ek",
         "perfective": "ehs",
         "imperative": "uka",
         "infinitive": "invt",
         "_original_data": {
-            "class": "go",
-            "present": "ek;",
+            "class": "go-alt",
+            "present": "ek",
             "imperfective": "ek",
-            "perfective": "vhs;invhs;ehs",
+            "perfective": "invhs;ehs",
             "imperative": "uka",
-            "infinitive": "vhst;invt"
+            "infinitive": "invt"
         }
     },
     "cause": {
@@ -1007,38 +879,6 @@
             "infinitive": "oht"
         }
     },
-    "ih-l-ka": {
-        "name": "ih-l-ka",
-        "present": "ih",
-        "imperfective": "ih",
-        "perfective": "il",
-        "imperative": "ka",
-        "infinitive": "*hst",
-        "_original_data": {
-            "class": "ih-l-ka",
-            "present": "ih",
-            "imperfective": "ih",
-            "perfective": "il",
-            "imperative": "ka",
-            "infinitive": "*hst;t"
-        }
-    },
-    "ih-l-ka[inf2]": {
-        "name": "ih-l-ka[inf2]",
-        "present": "ih",
-        "imperfective": "ih",
-        "perfective": "il",
-        "imperative": "ka",
-        "infinitive": "t",
-        "_original_data": {
-            "class": "ih-l-ka",
-            "present": "ih",
-            "imperfective": "ih",
-            "perfective": "il",
-            "imperative": "ka",
-            "infinitive": "*hst;t"
-        }
-    },
     "ih-l-ika": {
         "name": "ih-l-ika",
         "present": "ih",
@@ -1101,6 +941,38 @@
             "perfective": "il;ilh",
             "imperative": "ika",
             "infinitive": "ihst;*hst"
+        }
+    },
+    "h-ih-l-ka": {
+        "name": "h-ih-l-ka",
+        "present": "hih",
+        "imperfective": "hih",
+        "perfective": "hil",
+        "imperative": "hka",
+        "infinitive": "hst",
+        "_original_data": {
+            "class": "h-ih-l-ka",
+            "present": "hih",
+            "imperfective": "hih",
+            "perfective": "hil",
+            "imperative": "hka",
+            "infinitive": "hst;ht"
+        }
+    },
+    "h-ih-l-ka[inf2]": {
+        "name": "h-ih-l-ka[inf2]",
+        "present": "hih",
+        "imperfective": "hih",
+        "perfective": "hil",
+        "imperative": "hka",
+        "infinitive": "ht",
+        "_original_data": {
+            "class": "h-ih-l-ka",
+            "present": "hih",
+            "imperfective": "hih",
+            "perfective": "hil",
+            "imperative": "hka",
+            "infinitive": "hst;ht"
         }
     },
     "h-ih-l": {
@@ -1212,7 +1084,7 @@
             "imperfective": "ihsk;ih",
             "perfective": "vh",
             "imperative": "a",
-            "infinitive": "ht;vht;@lht"
+            "infinitive": "ht;vht"
         }
     },
     "ih-vh[inf2]": {
@@ -1228,23 +1100,7 @@
             "imperfective": "ihsk;ih",
             "perfective": "vh",
             "imperative": "a",
-            "infinitive": "ht;vht;@lht"
-        }
-    },
-    "ih-vh[inf3]": {
-        "name": "ih-vh[inf3]",
-        "present": "ih",
-        "imperfective": "ihsk",
-        "perfective": "vh",
-        "imperative": "a",
-        "infinitive": "@lht",
-        "_original_data": {
-            "class": "ih-vh",
-            "present": "ih",
-            "imperfective": "ihsk;ih",
-            "perfective": "vh",
-            "imperative": "a",
-            "infinitive": "ht;vht;@lht"
+            "infinitive": "ht;vht"
         }
     },
     "ih-vh[imperf2]": {
@@ -1260,7 +1116,7 @@
             "imperfective": "ihsk;ih",
             "perfective": "vh",
             "imperative": "a",
-            "infinitive": "ht;vht;@lht"
+            "infinitive": "ht;vht"
         }
     },
     "ih-vh[imperf2-inf2]": {
@@ -1276,23 +1132,7 @@
             "imperfective": "ihsk;ih",
             "perfective": "vh",
             "imperative": "a",
-            "infinitive": "ht;vht;@lht"
-        }
-    },
-    "ih-vh[imperf2-inf3]": {
-        "name": "ih-vh[imperf2-inf3]",
-        "present": "ih",
-        "imperfective": "ih",
-        "perfective": "vh",
-        "imperative": "a",
-        "infinitive": "@lht",
-        "_original_data": {
-            "class": "ih-vh",
-            "present": "ih",
-            "imperfective": "ihsk;ih",
-            "perfective": "vh",
-            "imperative": "a",
-            "infinitive": "ht;vht;@lht"
+            "infinitive": "ht;vht"
         }
     },
     "ih-vnh": {
@@ -1567,38 +1407,6 @@
             "infinitive": "ht;vht;vnht;vhst"
         }
     },
-    "i-a": {
-        "name": "i-a",
-        "present": "i'",
-        "imperfective": "ihsk",
-        "perfective": "",
-        "imperative": "a",
-        "infinitive": "ihst",
-        "_original_data": {
-            "class": "i-a",
-            "present": "i'",
-            "imperfective": "ihsk",
-            "perfective": "",
-            "imperative": "a",
-            "infinitive": "ihst;ahst"
-        }
-    },
-    "i-a[inf2]": {
-        "name": "i-a[inf2]",
-        "present": "i'",
-        "imperfective": "ihsk",
-        "perfective": "",
-        "imperative": "a",
-        "infinitive": "ahst",
-        "_original_data": {
-            "class": "i-a",
-            "present": "i'",
-            "imperfective": "ihsk",
-            "perfective": "",
-            "imperative": "a",
-            "infinitive": "ihst;ahst"
-        }
-    },
     "long": {
         "name": "long",
         "present": "ati'",
@@ -1663,15 +1471,15 @@
             "infinitive": "ohst"
         }
     },
-    "go-around": {
-        "name": "go-around",
+    "be-at": {
+        "name": "be-at",
         "present": "itoh",
         "imperfective": "itoh",
         "perfective": "itol",
         "imperative": "ita",
         "infinitive": "itahst",
         "_original_data": {
-            "class": "go-around",
+            "class": "be-at",
             "present": "itoh",
             "imperfective": "itoh",
             "perfective": "itol",
@@ -1679,15 +1487,15 @@
             "infinitive": "itahst"
         }
     },
-    "go-around-weak": {
-        "name": "go-around-weak",
+    "be-at-weak": {
+        "name": "be-at-weak",
         "present": "oh",
         "imperfective": "oh",
         "perfective": "ol",
         "imperative": "a",
         "infinitive": "ahst",
         "_original_data": {
-            "class": "go-around-weak",
+            "class": "be-at-weak",
             "present": "oh",
             "imperfective": "oh",
             "perfective": "ol",
@@ -1697,34 +1505,34 @@
     },
     "oh-al": {
         "name": "oh-al",
-        "present": "oh",
-        "imperfective": "oh",
-        "perfective": "al",
-        "imperative": "ka",
-        "infinitive": "*hst",
+        "present": "hoh",
+        "imperfective": "hoh",
+        "perfective": "hal",
+        "imperative": "hka",
+        "infinitive": "hst",
         "_original_data": {
             "class": "oh-al",
-            "present": "oh",
-            "imperfective": "oh",
-            "perfective": "al",
-            "imperative": "ka;*aka",
-            "infinitive": "*hst"
+            "present": "hoh",
+            "imperfective": "hoh",
+            "perfective": "hal",
+            "imperative": "hka;aka",
+            "infinitive": "hst"
         }
     },
     "oh-al[imp2]": {
         "name": "oh-al[imp2]",
-        "present": "oh",
-        "imperfective": "oh",
-        "perfective": "al",
-        "imperative": "*aka",
-        "infinitive": "*hst",
+        "present": "hoh",
+        "imperfective": "hoh",
+        "perfective": "hal",
+        "imperative": "aka",
+        "infinitive": "hst",
         "_original_data": {
             "class": "oh-al",
-            "present": "oh",
-            "imperfective": "oh",
-            "perfective": "al",
-            "imperative": "ka;*aka",
-            "infinitive": "*hst"
+            "present": "hoh",
+            "imperfective": "hoh",
+            "perfective": "hal",
+            "imperative": "hka;aka",
+            "infinitive": "hst"
         }
     },
     "oh-ol": {
@@ -1773,22 +1581,6 @@
             "perfective": "ol",
             "imperative": "aka",
             "infinitive": "ot;hst;ahst"
-        }
-    },
-    "scared": {
-        "name": "scared",
-        "present": "h",
-        "imperfective": "h",
-        "perfective": "l",
-        "imperative": "ya",
-        "infinitive": "hst",
-        "_original_data": {
-            "class": "scared",
-            "present": "h",
-            "imperfective": "h",
-            "perfective": "l",
-            "imperative": "ya",
-            "infinitive": "hst"
         }
     },
     "change": {

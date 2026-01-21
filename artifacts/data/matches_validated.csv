@@ -1,12 +1,12 @@
 corpus_id,definition,class,scope
-4,it’s bouncing,go[perf2-inf2],reconstructs
-5,he/she is limping,go[perf3-inf2],reconstructs
+4,it’s bouncing,go-alt,reconstructs
+5,he/she is limping,go-alt[perf2],reconstructs
 6,he/she is bouncing it,cause,reconstructs
 7,he/she is putting on a belt,h-ih-l,reconstructs
 10,he/she is praying,cause,reconstructs
 16,he/she is fanning himself/herself,apl-active,reconstructs
-18,he/she is visiting,go-around,reconstructs
-18,he/she is visiting,go-around-weak,reconstructs
+18,he/she is visiting,be-at,reconstructs
+18,he/she is visiting,be-at-weak,reconstructs
 19,he/she is stretching,cause,reconstructs
 22,he/she is committing adultery,apl[imp4],reconstructs
 25,it’s ripping,ih-vh,reconstructs
@@ -29,24 +29,25 @@ corpus_id,definition,class,scope
 41,he/she is pondering,o,reconstructs
 43,he/she is crawling,go[pres2],reconstructs
 44,it’s twisting,oh-ol,reconstructs
-46,he/she is ordering it,sk-s-hst,reconstructs
 48,he/she is cooking a meal,hvsk-nh[inf2],reconstructs
 48,he/she is cooking a meal,episodic,reconstructs
-51,it’s burning,i-a,reconstructs
+51,it’s burning,glottal-sk,reconstructs
 54,he/she is resting,cause,reconstructs
 56,he/she is bathing,o,reconstructs
 59,he/she is giving him/her it,apl[imp3],reconstructs
 59,he/she is giving him/her it,apl[imp3],reconstructs
 60,he/she is learning,glottal-sk[perf2],reconstructs
+60,he/she is learning,glottal-sk[perf2-inf2],reconstructs
 61,he/she is embarrassing him/her,cause,reconstructs
-62,he/she is embarrassed,sk-s-hihst,reconstructs
+62,he/she is embarrassed,sk-s-hi-hihst,reconstructs
 63,he/she is being born,hvsk-nh,reconstructs
-67,he/she is finding it out,sk-s-hihst,reconstructs
+67,he/she is finding it out,sk-s-hi-hihst,reconstructs
 70,he/she is going around a curve,oh-ol[inf2],reconstructs
-72,he/she is laying it down,i-a,reconstructs
-72,he/she is laying it down,i-a,reconstructs
+72,he/she is laying it down,glottal-sk,reconstructs
+72,he/she is laying it down,glottal-sk,reconstructs
 73,he/she is rising,ih-vh,reconstructs
 74,he/she is scattering it,glottal-sk,reconstructs
+74,he/she is scattering it,glottal-sk[inf2],reconstructs
 75,it’s scattering,become[inf3],reconstructs
 75,it’s scattering,become[inf3],reconstructs
 75,it’s scattering,become[inf3],reconstructs
@@ -61,8 +62,10 @@ corpus_id,definition,class,scope
 79,he/she is hiding,hvsk-han,reconstructs
 80,he/she is leaving it behind,glottal-sk,reconstructs
 80,he/she is leaving it behind,glottal-sk,reconstructs
+80,he/she is leaving it behind,glottal-sk[inf2],reconstructs
+80,he/she is leaving it behind,glottal-sk[inf2],reconstructs
 82,he/she is drinking it,sk-h[imp2],reconstructs
-85,he/she is scratching,sk-s-hst,reconstructs
+85,he/she is scratching,ohsk,reconstructs
 87,he/she is turning off the road,rev-e,reconstructs
 88,he/she is taking revenge against him/her,apl[imp3],reconstructs
 94,it’s pouring into a container,become[inf3],reconstructs
@@ -77,27 +80,34 @@ corpus_id,definition,class,scope
 95,he/she is drawing a liquid out of a container,ih-vh[inf2],reconstructs
 96,he/she is pouring a liquid into a container,cause,reconstructs
 96,he/she is pouring a liquid into a container,cause,reconstructs
-98,he/she is crying,ih-l-ka,reconstructs
-100,he/she is bragging,sk-s-hihst[imp4],reconstructs
+98,he/she is crying,h-ih-l-ka,reconstructs
 101,he/she is catching up with him/her,sk-h[imp2],reconstructs
 107,he/she is acting silly,ih-vnh,reconstructs
 109,he/she is preparing it,cause,reconstructs
-113,he/she is breaking it,sk-s-hst[imp6],reconstructs
-115,he/she is licking it,i-a,reconstructs
-115,he/she is licking it,i-a,reconstructs
+113,he/she is breaking it,sk-s-hst[imp5],reconstructs
+115,he/she is licking it,glottal-sk,reconstructs
+115,he/she is licking it,glottal-sk,reconstructs
 115,he/she is licking it,long,reconstructs
 115,he/she is licking it,long,reconstructs
 117,he/she is warming it,cause,reconstructs
-118,it’s getting warm,sk-s-hihst[imp3],reconstructs
-118,it’s getting warm,sk-s-hihst[imp3],reconstructs
-118,it’s getting warm,sk-s-hihst[imp3],reconstructs
-118,it’s getting warm,sk-s-hihst[imp3],reconstructs
-118,it’s getting warm,sk-s-hihst[imp3],reconstructs
-118,it’s getting warm,sk-s-hihst[imp3],reconstructs
-118,it’s getting warm,sk-s-hihst[imp3],reconstructs
-118,it’s getting warm,sk-s-hihst[imp3],reconstructs
-127,he/she is eating it,i-a,reconstructs
-127,he/she is eating it,i-a,reconstructs
+118,it’s getting warm,sk-s-hi-hihst,reconstructs
+118,it’s getting warm,sk-s-hi-hihst,reconstructs
+118,it’s getting warm,sk-s-hi-hihst,reconstructs
+118,it’s getting warm,sk-s-hi-hihst,reconstructs
+118,it’s getting warm,sk-s-hi-hihst,reconstructs
+118,it’s getting warm,sk-s-hi-hihst,reconstructs
+118,it’s getting warm,sk-s-hi-hihst,reconstructs
+118,it’s getting warm,sk-s-hi-hihst,reconstructs
+118,it’s getting warm,sk-s-hihst,reconstructs
+118,it’s getting warm,sk-s-hihst,reconstructs
+118,it’s getting warm,sk-s-hihst,reconstructs
+118,it’s getting warm,sk-s-hihst,reconstructs
+118,it’s getting warm,sk-s-hihst,reconstructs
+118,it’s getting warm,sk-s-hihst,reconstructs
+118,it’s getting warm,sk-s-hihst,reconstructs
+118,it’s getting warm,sk-s-hihst,reconstructs
+127,he/she is eating it,glottal-sk,reconstructs
+127,he/she is eating it,glottal-sk,reconstructs
 128,he/she is picking it up,rev-gi,reconstructs
 128,he/she is picking it up,rev-gi,reconstructs
 128,he/she is picking it up,rev-gi,reconstructs
@@ -112,8 +122,8 @@ corpus_id,definition,class,scope
 135,he/she is burning him/her,cause,reconstructs
 136,it’s burning,terminative,reconstructs
 136,it’s burning,terminative-no-o,reconstructs
-138,he/she is reading,rub,reconstructs
-138,he/she is reading,rub,reconstructs
+138,he/she is reading,e-a,reconstructs
+138,he/she is reading,e-a,reconstructs
 140,he/she is target practicing,ih-vh,reconstructs
 145,he/she is showing it to him/her,cause,reconstructs
 145,he/she is showing it to him/her,cause,reconstructs
@@ -124,9 +134,10 @@ corpus_id,definition,class,scope
 155,he/she is diverting him/her,rev-gi,reconstructs
 155,he/she is diverting him/her,rev-i,reconstructs
 158,he/she is smothering him/her,cause,reconstructs
-160,he/she is handling it,go-around,reconstructs
-160,he/she is handling it,go-around-weak,reconstructs
+160,he/she is handling it,be-at,reconstructs
+160,he/she is handling it,be-at-weak,reconstructs
 165,he/she is leaving it behind,glottal-sk,reconstructs
+165,he/she is leaving it behind,glottal-sk[inf2],reconstructs
 166,he/she is placing it on something,hvsk-nh[inf4],reconstructs
 166,he/she is placing it on something,hvsk-nh[inf4],reconstructs
 166,he/she is placing it on something,hvsk-nh[inf4],reconstructs
@@ -135,30 +146,30 @@ corpus_id,definition,class,scope
 169,he/she is making him/her fly,cause[perf3],reconstructs
 171,he/she is having a nightmare,rev-gi,reconstructs
 171,he/she is having a nightmare,rev-i,reconstructs
-172,it’s taking time,go-around,reconstructs
-172,it’s taking time,go-around,reconstructs
-172,it’s taking time,go-around,reconstructs
-172,it’s taking time,go-around,reconstructs
-172,it’s taking time,go-around,reconstructs
-172,it’s taking time,go-around,reconstructs
-172,it’s taking time,go-around,reconstructs
-172,it’s taking time,go-around,reconstructs
-172,it’s taking time,go-around,reconstructs
-172,it’s taking time,go-around,reconstructs
-172,it’s taking time,go-around,reconstructs
-172,it’s taking time,go-around,reconstructs
-172,it’s taking time,go-around-weak,reconstructs
-172,it’s taking time,go-around-weak,reconstructs
-172,it’s taking time,go-around-weak,reconstructs
-172,it’s taking time,go-around-weak,reconstructs
-172,it’s taking time,go-around-weak,reconstructs
-172,it’s taking time,go-around-weak,reconstructs
-172,it’s taking time,go-around-weak,reconstructs
-172,it’s taking time,go-around-weak,reconstructs
-172,it’s taking time,go-around-weak,reconstructs
-172,it’s taking time,go-around-weak,reconstructs
-172,it’s taking time,go-around-weak,reconstructs
-172,it’s taking time,go-around-weak,reconstructs
+172,it’s taking time,be-at,reconstructs
+172,it’s taking time,be-at,reconstructs
+172,it’s taking time,be-at,reconstructs
+172,it’s taking time,be-at,reconstructs
+172,it’s taking time,be-at,reconstructs
+172,it’s taking time,be-at,reconstructs
+172,it’s taking time,be-at,reconstructs
+172,it’s taking time,be-at,reconstructs
+172,it’s taking time,be-at,reconstructs
+172,it’s taking time,be-at,reconstructs
+172,it’s taking time,be-at,reconstructs
+172,it’s taking time,be-at,reconstructs
+172,it’s taking time,be-at-weak,reconstructs
+172,it’s taking time,be-at-weak,reconstructs
+172,it’s taking time,be-at-weak,reconstructs
+172,it’s taking time,be-at-weak,reconstructs
+172,it’s taking time,be-at-weak,reconstructs
+172,it’s taking time,be-at-weak,reconstructs
+172,it’s taking time,be-at-weak,reconstructs
+172,it’s taking time,be-at-weak,reconstructs
+172,it’s taking time,be-at-weak,reconstructs
+172,it’s taking time,be-at-weak,reconstructs
+172,it’s taking time,be-at-weak,reconstructs
+172,it’s taking time,be-at-weak,reconstructs
 172,it’s taking time,oh-ol[inf3],reconstructs
 172,it’s taking time,oh-ol[inf3],reconstructs
 172,it’s taking time,oh-ol[inf3],reconstructs
@@ -219,10 +230,10 @@ corpus_id,definition,class,scope
 179,it’s shattering,vsk-vnh-vna,reconstructs
 179,it’s shattering,vsk-vnh-vna,reconstructs
 180,he/she is shattering it,cause,reconstructs
-182,he/she is beating him/her at a game,sk-s-hihst,reconstructs
-182,he/she is beating him/her at a game,sk-s-hihst,reconstructs
-182,he/she is beating him/her at a game,sk-s-hihst,reconstructs
-182,he/she is beating him/her at a game,sk-s-hihst,reconstructs
+182,he/she is beating him/her at a game,sk-s-hi-hihst,reconstructs
+182,he/she is beating him/her at a game,sk-s-hi-hihst,reconstructs
+182,he/she is beating him/her at a game,sk-s-hi-hihst,reconstructs
+182,he/she is beating him/her at a game,sk-s-hi-hihst,reconstructs
 183,he/she is combing his/her hair,o,reconstructs
 185,he/she is moving,hvsk-nh[inf2],reconstructs
 185,he/she is moving,episodic,reconstructs
@@ -238,7 +249,7 @@ corpus_id,definition,class,scope
 196,he/she is leaving,rev-i,reconstructs
 197,he/she is starting it,cause,reconstructs
 198,he/she is carrying it on his/her shoulder,go,reconstructs
-200,he/she is putting it in liquid,i-a,reconstructs
+200,he/she is putting it in liquid,glottal-sk,reconstructs
 204,he/she is hitting him/her on the mouth,ih-l-ika,reconstructs
 205,he/she is moving it from one place to another,change,reconstructs
 206,he/she is setting it down,hvsk-nh,reconstructs
@@ -255,12 +266,12 @@ corpus_id,definition,class,scope
 206,he/she is setting it down,hvsk-nh[inf2],reconstructs
 207,he/she is finding him/her,ih-vh[inf2],reconstructs
 207,he/she is finding him/her,ih-vh[inf2],reconstructs
-208,he/she is visiting him/her,go-around,reconstructs
-208,he/she is visiting him/her,go-around,reconstructs
-208,he/she is visiting him/her,go-around-weak,reconstructs
-208,he/she is visiting him/her,go-around-weak,reconstructs
-210,he/she is planting it,sk-s-hst[imp2],reconstructs
-210,he/she is planting it,sk-s-hst[imp2],reconstructs
+208,he/she is visiting him/her,be-at,reconstructs
+208,he/she is visiting him/her,be-at,reconstructs
+208,he/she is visiting him/her,be-at-weak,reconstructs
+208,he/she is visiting him/her,be-at-weak,reconstructs
+210,he/she is planting it,sk-s-hst,reconstructs
+210,he/she is planting it,sk-s-hst,reconstructs
 215,he/she is calling him/her,ih-vh,reconstructs
 215,he/she is calling him/her,ih-vh,reconstructs
 216,he/she is taking it somewhere by hand,go,reconstructs
@@ -271,6 +282,7 @@ corpus_id,definition,class,scope
 219,he/she is making an incision,oh-al[imp2],reconstructs
 220,he/she is imitating him/her,i-is,reconstructs
 220,he/she is imitating him/her,i-is,reconstructs
+222,he/she is looking for him/her,oh-al,reconstructs
 222,he/she is looking for him/her,oh-al,reconstructs
 222,he/she is looking for him/her,oh-al,reconstructs
 223,he/she is swimming,go,reconstructs
@@ -300,8 +312,8 @@ corpus_id,definition,class,scope
 224,it’s thundering,o,reconstructs
 228,he/she is bending it,vsk[imp2],reconstructs
 228,he/she is bending it,vsk[imp2],reconstructs
-232,he/she is capturing him/her,i-a,reconstructs
-232,he/she is capturing him/her,i-a,reconstructs
+232,he/she is capturing him/her,glottal-sk,reconstructs
+232,he/she is capturing him/her,glottal-sk,reconstructs
 233,he/she is hitting him/her on the nose,hvsk-nh,reconstructs
 233,he/she is hitting him/her on the nose,hvsk-nh,reconstructs
 234,he/she is choking him/her,ih-vh,reconstructs
@@ -310,7 +322,7 @@ corpus_id,definition,class,scope
 238,it’s hatching,rev-'i,reconstructs
 239,he/she is dressing up,vsk-vnh-vna[inf2],reconstructs
 242,he/she is acting like him/her,vsk-vnh-vna,reconstructs
-244,he/she is spilling it,i-a[inf2],reconstructs
+244,he/she is spilling it,glottal-sk[inf2],reconstructs
 250,it’s blooming,vsk-vnh-a,reconstructs
 250,it’s blooming,vsk-vnh-a,reconstructs
 250,it’s blooming,vsk-vnh-a,reconstructs
@@ -337,26 +349,14 @@ corpus_id,definition,class,scope
 259,he/she is chasing him/her,go,reconstructs
 259,he/she is chasing him/her,go,reconstructs
 261,he/she is riding it,cause,reconstructs
-263,he/she is swallowing it,sk-s-hihst,reconstructs
-263,he/she is swallowing it,sk-s-hihst,reconstructs
+263,he/she is swallowing it,sk-s-hi-hihst,reconstructs
+263,he/she is swallowing it,sk-s-hi-hihst,reconstructs
 266,he/she is shovelling it,rev-e,reconstructs
 266,he/she is shovelling it,rev-e,reconstructs
 266,he/she is shovelling it,rev-e,reconstructs
 266,he/she is shovelling it,rev-e,reconstructs
-270,he/she is going down-hill,sk-s-hihst,reconstructs
-270,he/she is going down-hill,sk-s-hihst,reconstructs
-273,he/she knows how,scared,reconstructs
-273,he/she knows how,scared,reconstructs
-273,he/she knows how,scared,reconstructs
-273,he/she knows how,scared,reconstructs
-273,he/she knows how,scared,reconstructs
-273,he/she knows how,scared,reconstructs
-273,he/she knows how,scared,reconstructs
-273,he/she knows how,scared,reconstructs
-273,he/she knows how,scared,reconstructs
-273,he/she knows how,scared,reconstructs
-273,he/she knows how,scared,reconstructs
-273,he/she knows how,scared,reconstructs
+270,he/she is going down-hill,sk-s-hi-hihst,reconstructs
+270,he/she is going down-hill,sk-s-hi-hihst,reconstructs
 273,he/she knows how,aspectless,reconstructs
 273,he/she knows how,aspectless,reconstructs
 273,he/she knows how,aspectless,reconstructs
@@ -389,8 +389,8 @@ corpus_id,definition,class,scope
 280,he/she is looking around,oh-ol[inf3],reconstructs
 281,he/she is peeking through,cause[perf2],reconstructs
 288,he/she is looking at him/her,cause[pres2],reconstructs
-290,he/she is going through it,sk-s-hihst,reconstructs
-290,he/she is going through it,sk-s-hihst,reconstructs
+290,he/she is going through it,sk-s-hi-hihst,reconstructs
+290,he/she is going through it,sk-s-hi-hihst,reconstructs
 291,he/she is dipping liquid,rev-gi,reconstructs
 291,he/she is dipping liquid,rev-gi,reconstructs
 291,he/she is dipping liquid,rev-i,reconstructs
@@ -406,17 +406,9 @@ corpus_id,definition,class,scope
 307,he/she is stopping,cause,reconstructs
 308,he/she is stopping him/her,cause,reconstructs
 309,he/she is starting,ih-vh,reconstructs
-311,it’s boiling,ih-vh[inf3],reconstructs
-311,it’s boiling,ih-vh[inf3],reconstructs
-311,it’s boiling,ih-vh[inf3],reconstructs
-311,it’s boiling,ih-vh[inf3],reconstructs
-311,it’s boiling,ih-vh[inf3],reconstructs
-311,it’s boiling,ih-vh[inf3],reconstructs
-311,it’s boiling,ih-vh[inf3],reconstructs
-311,it’s boiling,ih-vh[inf3],reconstructs
 314,he/she is thanking him/her,apl[imp3],reconstructs
 315,he/she is happy,become,reconstructs
-317,he/she is exchanging it,i-a,reconstructs
+317,he/she is exchanging it,glottal-sk,reconstructs
 318,he/she is running away,rev-i,reconstructs
 320,he/she is taking his/her ring off,rev-gi,reconstructs
 320,he/she is taking his/her ring off,rev-i,reconstructs
@@ -430,7 +422,7 @@ corpus_id,definition,class,scope
 331,he/she is washing his/her hair,apl-active-a,reconstructs
 332,he/she is putting on a cap,i-vka,reconstructs
 334,he/she is taking a seat,husk,reconstructs
-335,he/she is shaking his/her head,ih-l-ka[inf2],reconstructs
+335,he/she is shaking his/her head,h-ih-l-ka[inf2],reconstructs
 336,he/she is dancing,rev-gi,reconstructs
 336,he/she is dancing,rev-i,reconstructs
 337,he/she is permitting him/her,apl,reconstructs
@@ -447,18 +439,6 @@ corpus_id,definition,class,scope
 339,it’s ending,glottal-sk,reconstructs
 339,it’s ending,glottal-sk,reconstructs
 339,it’s ending,glottal-sk,reconstructs
-339,it’s ending,i-a,reconstructs
-339,it’s ending,i-a,reconstructs
-339,it’s ending,i-a,reconstructs
-339,it’s ending,i-a,reconstructs
-339,it’s ending,i-a,reconstructs
-339,it’s ending,i-a,reconstructs
-339,it’s ending,i-a,reconstructs
-339,it’s ending,i-a,reconstructs
-339,it’s ending,i-a,reconstructs
-339,it’s ending,i-a,reconstructs
-339,it’s ending,i-a,reconstructs
-339,it’s ending,i-a,reconstructs
 339,it’s ending,long,reconstructs
 339,it’s ending,long,reconstructs
 339,it’s ending,long,reconstructs
@@ -489,9 +469,9 @@ corpus_id,definition,class,scope
 356,it’s lightning,ih-vh,reconstructs
 356,it’s lightning,ih-vh,reconstructs
 361,he/she is attempting it,cause,reconstructs
-362,he is getting married,i-a,reconstructs
+362,he is getting married,glottal-sk,reconstructs
 362,he is getting married,long,reconstructs
-363,he/she is remembering him/her,i-a,reconstructs
+363,he/she is remembering him/her,glottal-sk,reconstructs
 363,he/she is remembering him/her,long,reconstructs
 373,he/she is setting a trap,vsk[imp2],reconstructs
 373,he/she is setting a trap,vsk[imp2],reconstructs
@@ -537,10 +517,10 @@ corpus_id,definition,class,scope
 383,he/she is braiding it,oh-ol,reconstructs
 383,he/she is braiding it,oh-ol,reconstructs
 383,he/she is braiding it,oh-ol,reconstructs
-384,he/she is eating it,i-a,reconstructs
-384,he/she is eating it,i-a,reconstructs
-384,he/she is eating it,i-a,reconstructs
-384,he/she is eating it,i-a,reconstructs
+384,he/she is eating it,glottal-sk,reconstructs
+384,he/she is eating it,glottal-sk,reconstructs
+384,he/she is eating it,glottal-sk,reconstructs
+384,he/she is eating it,glottal-sk,reconstructs
 386,he/she is crushing it,o,reconstructs
 386,he/she is crushing it,o,reconstructs
 386,he/she is crushing it,o,reconstructs
@@ -567,23 +547,19 @@ corpus_id,definition,class,scope
 400,he/she is reprimanding him/her,become[inf3],reconstructs
 400,he/she is reprimanding him/her,become[inf3],reconstructs
 400,he/she is reprimanding him/her,become[inf3],reconstructs
-401,he/she is afraid,scared,reconstructs
-401,he/she is afraid,scared,reconstructs
-401,he/she is afraid,scared,reconstructs
-401,he/she is afraid,scared,reconstructs
 405,he/she is committing a crime,become[inf3],reconstructs
 405,he/she is committing a crime,become[inf3],reconstructs
 405,he/she is committing a crime,become[inf3],reconstructs
 405,he/she is committing a crime,become[inf3],reconstructs
-411,he/she is gnawing it,i-a,reconstructs
-411,he/she is gnawing it,i-a,reconstructs
-411,he/she is gnawing it,i-a,reconstructs
-411,he/she is gnawing it,i-a,reconstructs
-412,he/she is mourning for him/her,ih-l-ka,reconstructs
-412,he/she is mourning for him/her,ih-l-ka,reconstructs
-412,he/she is mourning for him/her,ih-l-ka,reconstructs
-412,he/she is mourning for him/her,ih-l-ka,reconstructs
-413,he/she is rubbing him/her,rub,reconstructs
+411,he/she is gnawing it,glottal-sk,reconstructs
+411,he/she is gnawing it,glottal-sk,reconstructs
+411,he/she is gnawing it,glottal-sk,reconstructs
+411,he/she is gnawing it,glottal-sk,reconstructs
+412,he/she is mourning for him/her,h-ih-l-ka,reconstructs
+412,he/she is mourning for him/her,h-ih-l-ka,reconstructs
+412,he/she is mourning for him/her,h-ih-l-ka,reconstructs
+412,he/she is mourning for him/her,h-ih-l-ka,reconstructs
+413,he/she is rubbing him/her,e-a,reconstructs
 416,it’s fading,become[inf3],reconstructs
 416,it’s fading,become[inf3],reconstructs
 416,it’s fading,become[inf3],reconstructs
@@ -596,11 +572,11 @@ corpus_id,definition,class,scope
 416,it’s fading,become[inf3],reconstructs
 416,it’s fading,become[inf3],reconstructs
 416,it’s fading,become[inf3],reconstructs
-417,he/she is digging it,sk-s-hst,reconstructs
-419,he/she is finishing it,i-a,reconstructs
-419,he/she is finishing it,i-a,reconstructs
-419,he/she is finishing it,i-a,reconstructs
-419,he/she is finishing it,i-a,reconstructs
+417,he/she is digging it,ohsk,reconstructs
+419,he/she is finishing it,glottal-sk,reconstructs
+419,he/she is finishing it,glottal-sk,reconstructs
+419,he/she is finishing it,glottal-sk,reconstructs
+419,he/she is finishing it,glottal-sk,reconstructs
 419,he/she is finishing it,long,reconstructs
 419,he/she is finishing it,long,reconstructs
 419,he/she is finishing it,long,reconstructs
@@ -613,30 +589,30 @@ corpus_id,definition,class,scope
 423,it’s getting shorter,become[inf3],reconstructs
 423,it’s getting shorter,become[inf3],reconstructs
 423,it’s getting shorter,become[inf3],reconstructs
-424,he/she is breaking it,sk-s-hst[imp5],reconstructs
-424,he/she is breaking it,sk-s-hst[imp5],reconstructs
-424,he/she is breaking it,sk-s-hst[imp5],reconstructs
-424,he/she is breaking it,sk-s-hst[imp5],reconstructs
+424,he/she is breaking it,sk-s-hst[imp4],reconstructs
+424,he/she is breaking it,sk-s-hst[imp4],reconstructs
+424,he/she is breaking it,sk-s-hst[imp4],reconstructs
+424,he/she is breaking it,sk-s-hst[imp4],reconstructs
 425,he/she is hitting him/her on the head with it,ih-l-ika,reconstructs
 425,he/she is hitting him/her on the head with it,ih-l-ika,reconstructs
 425,he/she is hitting him/her on the head with it,ih-l-ika,reconstructs
 425,he/she is hitting him/her on the head with it,ih-l-ika,reconstructs
-427,he/she is amazed,sk-s-hihst,reconstructs
-427,he/she is amazed,sk-s-hihst,reconstructs
-427,he/she is amazed,sk-s-hihst,reconstructs
-427,he/she is amazed,sk-s-hihst,reconstructs
+427,he/she is amazed,sk-s-hi-hihst,reconstructs
+427,he/she is amazed,sk-s-hi-hihst,reconstructs
+427,he/she is amazed,sk-s-hi-hihst,reconstructs
+427,he/she is amazed,sk-s-hi-hihst,reconstructs
 429,he/she is hitting him/her on the abdomen with it,ih-l-ika,reconstructs
 429,he/she is hitting him/her on the abdomen with it,ih-l-ika,reconstructs
 429,he/she is hitting him/her on the abdomen with it,ih-l-ika,reconstructs
 429,he/she is hitting him/her on the abdomen with it,ih-l-ika,reconstructs
-430,he/she is placing his/her hand on him/her,i-a,reconstructs
+430,he/she is placing his/her hand on him/her,glottal-sk,reconstructs
 430,he/she is placing his/her hand on him/her,long,reconstructs
 431,he/she is slapping him/her,ih-l-ika,reconstructs
 432,he/she is backing up,go,reconstructs
-436,he/she is roping him/her,i-a,reconstructs
-436,he/she is roping him/her,i-a,reconstructs
-436,he/she is roping him/her,i-a,reconstructs
-436,he/she is roping him/her,i-a,reconstructs
+436,he/she is roping him/her,glottal-sk,reconstructs
+436,he/she is roping him/her,glottal-sk,reconstructs
+436,he/she is roping him/her,glottal-sk,reconstructs
+436,he/she is roping him/her,glottal-sk,reconstructs
 436,he/she is roping him/her,long,reconstructs
 436,he/she is roping him/her,long,reconstructs
 436,he/she is roping him/her,long,reconstructs
@@ -650,10 +626,10 @@ corpus_id,definition,class,scope
 441,he/she is wounding him/her,vsk-vnh-vna[inf4],reconstructs
 441,he/she is wounding him/her,vsk-vnh-vna[inf4],reconstructs
 444,he/she is fishing,hvsk-nh,reconstructs
-445,he/she is painting it,sk-s-hst[imp3],reconstructs
-445,he/she is painting it,sk-s-hst[imp3],reconstructs
-445,he/she is painting it,sk-s-hst[imp3],reconstructs
-445,he/she is painting it,sk-s-hst[imp3],reconstructs
+445,he/she is painting it,sk-s-hst[imp2],reconstructs
+445,he/she is painting it,sk-s-hst[imp2],reconstructs
+445,he/she is painting it,sk-s-hst[imp2],reconstructs
+445,he/she is painting it,sk-s-hst[imp2],reconstructs
 446,he/she is changing his/her pants,change,reconstructs
 446,he/she is changing his/her pants,change-out,reconstructs
 446,he/she is changing his/her pants,change-out-flexible,reconstructs
@@ -690,16 +666,16 @@ corpus_id,definition,class,scope
 455,it smells,aspectless,reconstructs
 455,it smells,aspectless,reconstructs
 455,it smells,aspectless,reconstructs
-458,he/she is touching him/her,ih-l-ka,reconstructs
+458,he/she is touching him/her,h-ih-l-ka,reconstructs
 459,he/she is drinking it up,terminative-no-o,reconstructs
 459,he/she is drinking it up,terminative-no-o,reconstructs
 459,he/she is drinking it up,terminative-no-o,reconstructs
 459,he/she is drinking it up,terminative-no-o,reconstructs
 463,he/she is holding his/her breath,cause,reconstructs
-464,he/she is mooring a boat,i-a,reconstructs
-464,he/she is mooring a boat,i-a,reconstructs
-464,he/she is mooring a boat,i-a,reconstructs
-464,he/she is mooring a boat,i-a,reconstructs
+464,he/she is mooring a boat,glottal-sk,reconstructs
+464,he/she is mooring a boat,glottal-sk,reconstructs
+464,he/she is mooring a boat,glottal-sk,reconstructs
+464,he/she is mooring a boat,glottal-sk,reconstructs
 464,he/she is mooring a boat,long,reconstructs
 464,he/she is mooring a boat,long,reconstructs
 464,he/she is mooring a boat,long,reconstructs
@@ -731,20 +707,21 @@ corpus_id,definition,class,scope
 479,he/she is leading him/her,go[pres2],reconstructs
 480,he/she is arguing,h-ih-l,reconstructs
 483,he/she is racing,glottal-sk,reconstructs
+483,he/she is racing,glottal-sk[inf2],reconstructs
 486,he/she is loaning it to him/her,cause,reconstructs
-487,he/she is borrowing him/her,sk-s-hihst[imp2],reconstructs
-488,it’s flashing,sk-s-hst[imp2],reconstructs
-488,it’s flashing,sk-s-hst[imp2],reconstructs
-488,it’s flashing,sk-s-hst[imp2],reconstructs
-488,it’s flashing,sk-s-hst[imp2],reconstructs
-488,it’s flashing,sk-s-hst[imp2],reconstructs
-488,it’s flashing,sk-s-hst[imp2],reconstructs
-488,it’s flashing,sk-s-hst[imp2],reconstructs
-488,it’s flashing,sk-s-hst[imp2],reconstructs
-488,it’s flashing,sk-s-hst[imp2],reconstructs
-488,it’s flashing,sk-s-hst[imp2],reconstructs
-488,it’s flashing,sk-s-hst[imp2],reconstructs
-488,it’s flashing,sk-s-hst[imp2],reconstructs
+487,he/she is borrowing him/her,sk-s-hihst,reconstructs
+488,it’s flashing,sk-s-hst,reconstructs
+488,it’s flashing,sk-s-hst,reconstructs
+488,it’s flashing,sk-s-hst,reconstructs
+488,it’s flashing,sk-s-hst,reconstructs
+488,it’s flashing,sk-s-hst,reconstructs
+488,it’s flashing,sk-s-hst,reconstructs
+488,it’s flashing,sk-s-hst,reconstructs
+488,it’s flashing,sk-s-hst,reconstructs
+488,it’s flashing,sk-s-hst,reconstructs
+488,it’s flashing,sk-s-hst,reconstructs
+488,it’s flashing,sk-s-hst,reconstructs
+488,it’s flashing,sk-s-hst,reconstructs
 489,he/she is taking a bite,rev-e,reconstructs
 490,he/she is lying,'vsk,reconstructs
 491,he/she is taking a drink,rev-gi,reconstructs
@@ -758,7 +735,7 @@ corpus_id,definition,class,scope
 495,he/she is asking him/her a question,episodic,reconstructs
 496,he/she hears him/her,i-vka,reconstructs
 497,he/she is raising him/her,cause,reconstructs
-498,he/she is growing,sk-s-hihst,reconstructs
+498,he/she is growing,sk-s-hi-hihst,reconstructs
 502,he/she is inside,aspectless,reconstructs
 502,he/she is inside,aspectless,reconstructs
 502,he/she is inside,aspectless,reconstructs
@@ -803,10 +780,10 @@ corpus_id,definition,class,scope
 543,he/she is dodging,cause,reconstructs
 544,he/she is performing baptism,o,reconstructs
 544,he/she is performing baptism,o,reconstructs
-545,he/she is giving up,sk-s-hihst,reconstructs
-545,he/she is giving up,sk-s-hihst,reconstructs
-547,he/she is weeping,ih-l-ka,reconstructs
-547,he/she is weeping,ih-l-ka,reconstructs
+545,he/she is giving up,sk-s-hi-hihst,reconstructs
+545,he/she is giving up,sk-s-hi-hihst,reconstructs
+547,he/she is weeping,h-ih-l-ka,reconstructs
+547,he/she is weeping,h-ih-l-ka,reconstructs
 550,he/she is setting a price,cause,reconstructs
 550,he/she is setting a price,cause,reconstructs
 552,he/she is rocking,apl-active,reconstructs
@@ -815,8 +792,8 @@ corpus_id,definition,class,scope
 553,he/she is drawing a picture of him/her,cause,reconstructs
 554,he/she is conversing,apl-active-lh,reconstructs
 554,he/she is conversing,apl-active-lh,reconstructs
-555,he/she is jumping,go[perf2-inf2],reconstructs
-555,he/she is jumping,go[perf2-inf2],reconstructs
+555,he/she is jumping,go-alt,reconstructs
+555,he/she is jumping,go-alt,reconstructs
 557,he/she is changing clothes,change,reconstructs
 557,he/she is changing clothes,change,reconstructs
 557,he/she is changing clothes,change-out,reconstructs
@@ -829,10 +806,10 @@ corpus_id,definition,class,scope
 559,he/she is putting on clothes,o,reconstructs
 561,he/she is putting fuel into a fire,hvsk-han,reconstructs
 561,he/she is putting fuel into a fire,hvsk-han,reconstructs
-562,he/she is tickling him/her,i-a,reconstructs
-562,he/she is tickling him/her,i-a,reconstructs
-562,he/she is tickling him/her,i-a,reconstructs
-562,he/she is tickling him/her,i-a,reconstructs
+562,he/she is tickling him/her,glottal-sk,reconstructs
+562,he/she is tickling him/her,glottal-sk,reconstructs
+562,he/she is tickling him/her,glottal-sk,reconstructs
+562,he/she is tickling him/her,glottal-sk,reconstructs
 565,he/she is tying it,h-ih-l,reconstructs
 565,he/she is tying it,h-ih-l,reconstructs
 565,he/she is tying it,h-ih-l,reconstructs
@@ -841,14 +818,14 @@ corpus_id,definition,class,scope
 566,he/she is untying it,ih-vh[inf2],reconstructs
 566,he/she is untying it,ih-vh[inf2],reconstructs
 566,he/she is untying it,ih-vh[inf2],reconstructs
-567,he/she is looking after him/her,go-around,reconstructs
-567,he/she is looking after him/her,go-around,reconstructs
-567,he/she is looking after him/her,go-around,reconstructs
-567,he/she is looking after him/her,go-around,reconstructs
-567,he/she is looking after him/her,go-around-weak,reconstructs
-567,he/she is looking after him/her,go-around-weak,reconstructs
-567,he/she is looking after him/her,go-around-weak,reconstructs
-567,he/she is looking after him/her,go-around-weak,reconstructs
+567,he/she is looking after him/her,be-at,reconstructs
+567,he/she is looking after him/her,be-at,reconstructs
+567,he/she is looking after him/her,be-at,reconstructs
+567,he/she is looking after him/her,be-at,reconstructs
+567,he/she is looking after him/her,be-at-weak,reconstructs
+567,he/she is looking after him/her,be-at-weak,reconstructs
+567,he/she is looking after him/her,be-at-weak,reconstructs
+567,he/she is looking after him/her,be-at-weak,reconstructs
 568,he/she is becoming blind,become[inf2],reconstructs
 568,he/she is becoming blind,become[inf2],reconstructs
 568,he/she is becoming blind,become[inf2],reconstructs
@@ -857,8 +834,8 @@ corpus_id,definition,class,scope
 571,he/she is making smoke,cause,reconstructs
 571,he/she is making smoke,cause,reconstructs
 571,he/she is making smoke,cause,reconstructs
-572,he/she is blinking,sk-s-hst[imp6],reconstructs
-572,he/she is blinking,sk-s-hst[imp6],reconstructs
+572,he/she is blinking,sk-s-hst[imp5],reconstructs
+572,he/she is blinking,sk-s-hst[imp5],reconstructs
 573,he/she is closing his eyes,cause,reconstructs
 573,he/she is closing his eyes,cause,reconstructs
 574,he/she is attacking him/her,go,reconstructs
@@ -939,24 +916,24 @@ corpus_id,definition,class,scope
 605,he/she is splitting it,sk-yh,reconstructs
 605,he/she is splitting it,sk-yh,reconstructs
 605,he/she is splitting it,sk-yh,reconstructs
-606,he/she is sprinkling it,i-a,reconstructs
-606,he/she is sprinkling it,i-a,reconstructs
-606,he/she is sprinkling it,i-a,reconstructs
-606,he/she is sprinkling it,i-a,reconstructs
-606,he/she is sprinkling it,i-a,reconstructs
-606,he/she is sprinkling it,i-a,reconstructs
-606,he/she is sprinkling it,i-a,reconstructs
-606,he/she is sprinkling it,i-a,reconstructs
+606,he/she is sprinkling it,glottal-sk,reconstructs
+606,he/she is sprinkling it,glottal-sk,reconstructs
+606,he/she is sprinkling it,glottal-sk,reconstructs
+606,he/she is sprinkling it,glottal-sk,reconstructs
+606,he/she is sprinkling it,glottal-sk,reconstructs
+606,he/she is sprinkling it,glottal-sk,reconstructs
+606,he/she is sprinkling it,glottal-sk,reconstructs
+606,he/she is sprinkling it,glottal-sk,reconstructs
 607,he/she is counting it,h-ih-l,reconstructs
 607,he/she is counting it,h-ih-l,reconstructs
-608,he/she is cursing him/her,i-a,reconstructs
-608,he/she is cursing him/her,i-a,reconstructs
-608,he/she is cursing him/her,i-a,reconstructs
-608,he/she is cursing him/her,i-a,reconstructs
-608,he/she is cursing him/her,i-a,reconstructs
-608,he/she is cursing him/her,i-a,reconstructs
-608,he/she is cursing him/her,i-a,reconstructs
-608,he/she is cursing him/her,i-a,reconstructs
+608,he/she is cursing him/her,glottal-sk,reconstructs
+608,he/she is cursing him/her,glottal-sk,reconstructs
+608,he/she is cursing him/her,glottal-sk,reconstructs
+608,he/she is cursing him/her,glottal-sk,reconstructs
+608,he/she is cursing him/her,glottal-sk,reconstructs
+608,he/she is cursing him/her,glottal-sk,reconstructs
+608,he/she is cursing him/her,glottal-sk,reconstructs
+608,he/she is cursing him/her,glottal-sk,reconstructs
 608,he/she is cursing him/her,long,reconstructs
 608,he/she is cursing him/her,long,reconstructs
 608,he/she is cursing him/her,long,reconstructs
@@ -967,10 +944,10 @@ corpus_id,definition,class,scope
 608,he/she is cursing him/her,long,reconstructs
 609,he/she is clapping his/her hands,ih-l-ika,reconstructs
 609,he/she is clapping his/her hands,ih-l-ika,reconstructs
-610,he/she is getting exhausted,sk-s-hihst,reconstructs
-610,he/she is getting exhausted,sk-s-hihst,reconstructs
-611,it’s barking,sk-s-hst[imp3],reconstructs
-611,it’s barking,sk-s-hst[imp3],reconstructs
+610,he/she is getting exhausted,sk-s-hi-hihst,reconstructs
+610,he/she is getting exhausted,sk-s-hi-hihst,reconstructs
+611,it’s barking,sk-s-hst[imp2],reconstructs
+611,it’s barking,sk-s-hst[imp2],reconstructs
 612,he/she is scheduling a time,cause,reconstructs
 612,he/she is scheduling a time,cause,reconstructs
 612,he/she is scheduling a time,cause,reconstructs
@@ -979,18 +956,18 @@ corpus_id,definition,class,scope
 612,he/she is scheduling a time,cause,reconstructs
 612,he/she is scheduling a time,cause,reconstructs
 612,he/she is scheduling a time,cause,reconstructs
-618,he/she is releasing him/her,sk-s-hihst,reconstructs
-618,he/she is releasing him/her,sk-s-hihst,reconstructs
-618,he/she is releasing him/her,sk-s-hihst,reconstructs
-618,he/she is releasing him/her,sk-s-hihst,reconstructs
+618,he/she is releasing him/her,sk-s-hi-hihst,reconstructs
+618,he/she is releasing him/her,sk-s-hi-hihst,reconstructs
+618,he/she is releasing him/her,sk-s-hi-hihst,reconstructs
+618,he/she is releasing him/her,sk-s-hi-hihst,reconstructs
 620,he/she is slamming him/her,cause,reconstructs
 620,he/she is slamming him/her,cause,reconstructs
 620,he/she is slamming him/her,cause,reconstructs
 620,he/she is slamming him/her,cause,reconstructs
-621,he/she is crossing,sk-s-hihst,reconstructs
-621,he/she is crossing,sk-s-hihst,reconstructs
-621,he/she is crossing,sk-s-hihst,reconstructs
-621,he/she is crossing,sk-s-hihst,reconstructs
+621,he/she is crossing,sk-s-hi-hihst,reconstructs
+621,he/she is crossing,sk-s-hi-hihst,reconstructs
+621,he/she is crossing,sk-s-hi-hihst,reconstructs
+621,he/she is crossing,sk-s-hi-hihst,reconstructs
 622,he/she is advertising it,hvsk-han,reconstructs
 622,he/she is advertising it,hvsk-han,reconstructs
 622,he/she is advertising it,hvsk-han,reconstructs
@@ -1003,14 +980,14 @@ corpus_id,definition,class,scope
 625,he/she is explaining it,cause[perf2],reconstructs
 626,he/she is deciding,cause,reconstructs
 626,he/she is deciding,cause,reconstructs
-627,he/she is washing,rub,reconstructs
-627,he/she is washing,rub,reconstructs
+627,he/she is washing,e-a,reconstructs
+627,he/she is washing,e-a,reconstructs
 628,he/she is shelling,rev-i,reconstructs
 628,he/she is shelling,rev-i,reconstructs
-630,he/she is turning him/her over,go[perf2-inf2],reconstructs
-630,he/she is turning him/her over,go[perf2-inf2],reconstructs
-630,he/she is turning him/her over,go[perf2-inf2],reconstructs
-630,he/she is turning him/her over,go[perf2-inf2],reconstructs
+630,he/she is turning him/her over,go-alt,reconstructs
+630,he/she is turning him/her over,go-alt,reconstructs
+630,he/she is turning him/her over,go-alt,reconstructs
+630,he/she is turning him/her over,go-alt,reconstructs
 631,he/she is singing,rev-gi,reconstructs
 631,he/she is singing,rev-gi,reconstructs
 631,he/she is singing,rev-gi,reconstructs
@@ -1019,10 +996,10 @@ corpus_id,definition,class,scope
 631,he/she is singing,rev-i,reconstructs
 631,he/she is singing,rev-i,reconstructs
 631,he/she is singing,rev-i,reconstructs
-632,he/she is clawing him/her,sk-s-hst,reconstructs
-632,he/she is clawing him/her,sk-s-hst,reconstructs
-632,he/she is clawing him/her,sk-s-hst,reconstructs
-632,he/she is clawing him/her,sk-s-hst,reconstructs
+632,he/she is clawing him/her,ohsk,reconstructs
+632,he/she is clawing him/her,ohsk,reconstructs
+632,he/she is clawing him/her,ohsk,reconstructs
+632,he/she is clawing him/her,ohsk,reconstructs
 633,to come out of the nose,go[pres2],reconstructs
 633,to come out of the nose,go[pres2],reconstructs
 633,to come out of the nose,go[pres2],reconstructs
@@ -1119,38 +1096,6 @@ corpus_id,definition,class,scope
 633,to come out of the nose,cause[pres2],reconstructs
 633,to come out of the nose,cause[pres2],reconstructs
 633,to come out of the nose,cause[pres2],reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
-633,to come out of the nose,ih-l-ka,reconstructs
 633,to come out of the nose,ih-l-ika,reconstructs
 633,to come out of the nose,ih-l-ika,reconstructs
 633,to come out of the nose,ih-l-ika,reconstructs
@@ -1247,38 +1192,6 @@ corpus_id,definition,class,scope
 633,to come out of the nose,ih-vnh,reconstructs
 633,to come out of the nose,ih-vnh,reconstructs
 633,to come out of the nose,ih-vnh,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
-633,to come out of the nose,scared,reconstructs
 633,to come out of the nose,aspectless,reconstructs
 633,to come out of the nose,aspectless,reconstructs
 633,to come out of the nose,aspectless,reconstructs
@@ -1375,9 +1288,9 @@ corpus_id,definition,class,scope
 633,to come out of the nose,aspectless-s,reconstructs
 633,to come out of the nose,aspectless-s,reconstructs
 633,to come out of the nose,aspectless-s,reconstructs
-722,he/she is confronted with it,sk-s-hihst,reconstructs
+722,he/she is confronted with it,sk-s-hi-hihst,reconstructs
 724,he/she is staggering,cause,reconstructs
-725,he/she is getting a rash,sk-s-hst[imp4],reconstructs
+725,he/she is getting a rash,sk-s-hst[imp3],reconstructs
 726,he/she has horns,aspectless,reconstructs
 727,he/she is sneezing,sk-h,reconstructs
 727,he/she is sneezing,sk-h,reconstructs
@@ -1390,8 +1303,8 @@ corpus_id,definition,class,scope
 735,he/she is working,apl,reconstructs
 738,he/she is releasing it,cause,reconstructs
 739,he/she is tired,become,reconstructs
-740,he/she is releasing it,sk-s-hihst,reconstructs
-742,he/she is walking around,go-around-weak,reconstructs
+740,he/she is releasing it,sk-s-hi-hihst,reconstructs
+742,he/she is walking around,be-at-weak,reconstructs
 746,he/she lives,aspectless,reconstructs
 746,he/she lives,aspectless,reconstructs
 746,he/she lives,aspectless-h,reconstructs
@@ -1410,11 +1323,11 @@ corpus_id,definition,class,scope
 772,he/she is standing,aspectless,reconstructs
 775,he/she is pitying him/her,become,reconstructs
 776,he/she is dropping him/her,cause,reconstructs
-777,it is falling from a hanging position,sk-s-hihst,reconstructs
+777,it is falling from a hanging position,sk-s-hi-hihst,reconstructs
 784,he/she is baking it,hvsk-nh[inf2],reconstructs
 788,he/she is hanging up it,v'vsk[imp2],reconstructs
 788,he/she is hanging up it,'vsk,reconstructs
-791,he/she is rowing,sk-s-hst[imp4],reconstructs
+791,he/she is rowing,sk-s-hst[imp3],reconstructs
 796,he/she is pecking it,h-ih-l[imp2],reconstructs
 798,he/she is putting it into a container,cause,reconstructs
 798,he/she is putting it into a container,cause,reconstructs
@@ -1429,33 +1342,35 @@ corpus_id,definition,class,scope
 812,he/she is sleepy,vsk-vnh-vna[inf3],reconstructs
 813,he/she is taking it somewhere by hand,go,reconstructs
 813,he/she is taking it somewhere by hand,go,reconstructs
-815,he/she is handling it,go-around,reconstructs
-815,he/she is handling it,go-around,reconstructs
-815,he/she is handling it,go-around-weak,reconstructs
-815,he/she is handling it,go-around-weak,reconstructs
+815,he/she is handling it,be-at,reconstructs
+815,he/she is handling it,be-at,reconstructs
+815,he/she is handling it,be-at-weak,reconstructs
+815,he/she is handling it,be-at-weak,reconstructs
 818,he/she is eating it,e-aka,reconstructs
 818,he/she is eating it,e-aka,reconstructs
 820,he/she is ripping it,ih-vh,reconstructs
-821,he/she is scratching him/her,sk-s-hst,reconstructs
+821,he/she is scratching him/her,ohsk,reconstructs
 823,he/she is pricking him/her,h-ih-l[imp2],reconstructs
 824,he/she is wringing it out,cause,reconstructs
 825,he/she is stinging it,sk-h,reconstructs
 826,he/she is leaving a living thing behind,glottal-sk,reconstructs
 826,he/she is leaving a living thing behind,glottal-sk,reconstructs
+826,he/she is leaving a living thing behind,glottal-sk[inf2],reconstructs
+826,he/she is leaving a living thing behind,glottal-sk[inf2],reconstructs
 827,he/she is giving him/her a living thing,apl,reconstructs
 827,he/she is giving him/her a living thing,apl,reconstructs
 829,he/she is wrapping him/her,vsk-vnh-vna[inf2],reconstructs
 829,he/she is wrapping him/her,vsk-vnh-vna[inf2],reconstructs
-830,he/she is putting it in a container,i-a,reconstructs
-830,he/she is putting it in a container,i-a,reconstructs
+830,he/she is putting it in a container,glottal-sk,reconstructs
+830,he/she is putting it in a container,glottal-sk,reconstructs
 830,he/she is putting it in a container,long,reconstructs
 830,he/she is putting it in a container,long,reconstructs
 833,he/she is taking it out of a container,rev-e,reconstructs
 833,he/she is taking it out of a container,rev-e,reconstructs
-837,he/she is burning,sk-s-hihst,reconstructs
-837,he/she is burning,sk-s-hihst,reconstructs
-838,it is falling from an upright position,sk-s-hihst,reconstructs
-838,it is falling from an upright position,sk-s-hihst,reconstructs
+837,he/she is burning,sk-s-hi-hihst,reconstructs
+837,he/she is burning,sk-s-hi-hihst,reconstructs
+838,it is falling from an upright position,sk-s-hi-hihst,reconstructs
+838,it is falling from an upright position,sk-s-hi-hihst,reconstructs
 840,it is burning,become,reconstructs
 840,it is burning,become,reconstructs
 840,it is burning,become,reconstructs
@@ -1475,25 +1390,25 @@ corpus_id,definition,class,scope
 850,he/she is overtaking him/her,apl[imp2],reconstructs
 852,he/she is bluffing him/her,cause,reconstructs
 852,he/she is bluffing him/her,cause,reconstructs
-853,he/she is oiling it,rub,reconstructs
-853,he/she is oiling it,rub,reconstructs
+853,he/she is oiling it,e-a,reconstructs
+853,he/she is oiling it,e-a,reconstructs
 854,he/she is making him/her fall from an elevated position,cause,reconstructs
 854,he/she is making him/her fall from an elevated position,cause,reconstructs
 855,he/she is cheating,apl-active-lh,reconstructs
-856,he/she is passing by without stopping,sk-s-hihst,reconstructs
-856,he/she is passing by without stopping,sk-s-hihst,reconstructs
-857,he/she is falling from an elevated position,sk-s-hihst,reconstructs
-857,he/she is falling from an elevated position,sk-s-hihst,reconstructs
+856,he/she is passing by without stopping,sk-s-hi-hihst,reconstructs
+856,he/she is passing by without stopping,sk-s-hi-hihst,reconstructs
+857,he/she is falling from an elevated position,sk-s-hi-hihst,reconstructs
+857,he/she is falling from an elevated position,sk-s-hi-hihst,reconstructs
 859,it’s lacking,become,reconstructs
 859,it’s lacking,become,reconstructs
 862,he/she is chopping it,sk-h,reconstructs
 862,he/she is chopping it,sk-h,reconstructs
-864,he/she is beating him/her up,ih-l-ka,reconstructs
-864,he/she is beating him/her up,ih-l-ka,reconstructs
+864,he/she is beating him/her up,h-ih-l-ka,reconstructs
+864,he/she is beating him/her up,h-ih-l-ka,reconstructs
 870,he/she is putting it in a hole or a container,vsk[imp2],reconstructs
 870,he/she is putting it in a hole or a container,vsk[imp2],reconstructs
-871,he/she is selling it,go[perf2-inf2],reconstructs
-871,he/she is selling it,go[perf2-inf2],reconstructs
+871,he/she is selling it,go-alt,reconstructs
+871,he/she is selling it,go-alt,reconstructs
 873,he/she is hiring him/her,vsk[imp2],reconstructs
 873,he/she is hiring him/her,vsk[imp2],reconstructs
 876,he/she is finding it,ih-vh[inf2],reconstructs
@@ -1515,8 +1430,8 @@ corpus_id,definition,class,scope
 884,he/she is getting some liquid,rev-i,reconstructs
 885,he/she is taking liquid from him/her,apl,reconstructs
 885,he/she is taking liquid from him/her,apl,reconstructs
-886,he/she is bewitching him/her,i-a,reconstructs
-886,he/she is bewitching him/her,i-a,reconstructs
+886,he/she is bewitching him/her,glottal-sk,reconstructs
+886,he/she is bewitching him/her,glottal-sk,reconstructs
 887,he/she is holding it in his/her hand,aspectless,reconstructs
 887,he/she is holding it in his/her hand,aspectless,reconstructs
 887,he/she is holding it in his/her hand,aspectless,reconstructs
@@ -1524,23 +1439,24 @@ corpus_id,definition,class,scope
 887,he/she is holding it in his/her hand,aspectless-h,reconstructs
 887,he/she is holding it in his/her hand,aspectless-h,reconstructs
 888,he/she is leaving some liquid,glottal-sk,reconstructs
+888,he/she is leaving some liquid,glottal-sk[inf2],reconstructs
 890,he/she is finding some liquid,ih-vh[inf2],reconstructs
 891,he/she is taking some liquid somewhere,ih-vh,reconstructs
 893,he/she lives,aspectless,reconstructs
 893,he/she lives,aspectless,reconstructs
 893,he/she lives,aspectless,reconstructs
-895,it’s freezing,i-a,reconstructs
-895,it’s freezing,i-a,reconstructs
+895,it’s freezing,glottal-sk,reconstructs
+895,it’s freezing,glottal-sk,reconstructs
 895,it’s freezing,long,reconstructs
 895,it’s freezing,long,reconstructs
-896,it’s hailing,sk-s-hst[imp2],reconstructs
-896,it’s hailing,sk-s-hst[imp2],reconstructs
-896,it’s hailing,sk-s-hst[imp2],reconstructs
-896,it’s hailing,sk-s-hst[imp2],reconstructs
-896,it’s hailing,sk-s-hst[imp2],reconstructs
-896,it’s hailing,sk-s-hst[imp2],reconstructs
-896,it’s hailing,sk-s-hst[imp2],reconstructs
-896,it’s hailing,sk-s-hst[imp2],reconstructs
+896,it’s hailing,sk-s-hst,reconstructs
+896,it’s hailing,sk-s-hst,reconstructs
+896,it’s hailing,sk-s-hst,reconstructs
+896,it’s hailing,sk-s-hst,reconstructs
+896,it’s hailing,sk-s-hst,reconstructs
+896,it’s hailing,sk-s-hst,reconstructs
+896,it’s hailing,sk-s-hst,reconstructs
+896,it’s hailing,sk-s-hst,reconstructs
 899,he/she is lying down,aspectless,reconstructs
 899,he/she is lying down,aspectless,reconstructs
 899,he/she is lying down,aspectless,reconstructs
@@ -1559,24 +1475,24 @@ corpus_id,definition,class,scope
 903,he/she is holding some liquid,aspectless-h,reconstructs
 903,he/she is holding some liquid,aspectless-h,reconstructs
 903,he/she is holding some liquid,aspectless-h,reconstructs
-904,he/she is handling some liquid,go-around,reconstructs
-904,he/she is handling some liquid,go-around,reconstructs
-904,he/she is handling some liquid,go-around-weak,reconstructs
-904,he/she is handling some liquid,go-around-weak,reconstructs
-908,he/she is handling it,go-around,reconstructs
-908,he/she is handling it,go-around-weak,reconstructs
+904,he/she is handling some liquid,be-at,reconstructs
+904,he/she is handling some liquid,be-at,reconstructs
+904,he/she is handling some liquid,be-at-weak,reconstructs
+904,he/she is handling some liquid,be-at-weak,reconstructs
+908,he/she is handling it,be-at,reconstructs
+908,he/she is handling it,be-at-weak,reconstructs
 909,he/she hates him/her,ih-l-ika[perf2],reconstructs
 909,he/she hates him/her,ih-l-ika[perf2],reconstructs
-910,he/she is setting up a bed,i-a,reconstructs
-910,he/she is setting up a bed,i-a,reconstructs
+910,he/she is setting up a bed,glottal-sk,reconstructs
+910,he/she is setting up a bed,glottal-sk,reconstructs
 910,he/she is setting up a bed,long,reconstructs
 910,he/she is setting up a bed,long,reconstructs
-913,he/she is pleading,i-a,reconstructs
-913,he/she is pleading,i-a,reconstructs
+913,he/she is pleading,glottal-sk,reconstructs
+913,he/she is pleading,glottal-sk,reconstructs
 913,he/she is pleading,long,reconstructs
 913,he/she is pleading,long,reconstructs
-918,he/she is hunting,go-around,reconstructs
-918,he/she is hunting,go-around-weak,reconstructs
+918,he/she is hunting,be-at,reconstructs
+918,he/she is hunting,be-at-weak,reconstructs
 921,it’s flooding,i-vka,reconstructs
 921,it’s flooding,i-vka,reconstructs
 921,it’s flooding,i-vka,reconstructs
@@ -1615,8 +1531,8 @@ corpus_id,definition,class,scope
 932,he/she is exiting,become[imp2],reconstructs
 937,he/she is twisting him/her,oh-ol[inf3],reconstructs
 937,he/she is twisting him/her,oh-ol[inf3],reconstructs
-938,he/she is missing him/her,i-a,reconstructs
-938,he/she is missing him/her,i-a,reconstructs
+938,he/she is missing him/her,glottal-sk,reconstructs
+938,he/she is missing him/her,glottal-sk,reconstructs
 940,he/she is falling from an upright position,become[inf2],reconstructs
 940,he/she is falling from an upright position,become[inf2],reconstructs
 941,he/she is cleaning him/her,ih-vh,reconstructs
@@ -1625,10 +1541,10 @@ corpus_id,definition,class,scope
 942,he/she is hammering it,o,reconstructs
 946,he/she is tying up a leg,h-ih-l,reconstructs
 946,he/she is tying up a leg,h-ih-l,reconstructs
-949,he/she is tossing about,go-around,reconstructs
-949,he/she is tossing about,go-around,reconstructs
-949,he/she is tossing about,go-around-weak,reconstructs
-949,he/she is tossing about,go-around-weak,reconstructs
+949,he/she is tossing about,be-at,reconstructs
+949,he/she is tossing about,be-at,reconstructs
+949,he/she is tossing about,be-at-weak,reconstructs
+949,he/she is tossing about,be-at-weak,reconstructs
 950,he/she is giving him/her an object,apl,reconstructs
 950,he/she is giving him/her an object,apl,reconstructs
 955,he/she is pushing him/her,sk-yh,reconstructs
@@ -1653,21 +1569,21 @@ corpus_id,definition,class,scope
 980,he/she is replying,change-out,reconstructs
 981,he/she is lecturing him/her,cause,reconstructs
 981,he/she is lecturing him/her,cause,reconstructs
-986,he/she is sewing it,sk-s-hst[imp5],reconstructs
+986,he/she is sewing it,sk-s-hst[imp4],reconstructs
 993,he/she is howling,hvsk-nh[inf3],reconstructs
 1014,he/she is leading him/her by the hand,go,reconstructs
 1015,he/she is agreeing with him/her,apl,reconstructs
 1017,he/she is recognizing him/her,become[inf4],reconstructs
 1018,he/she understands it,become[inf4],reconstructs
-1021,he/she is getting full,sk-s-hihst,reconstructs
+1021,he/she is getting full,sk-s-hi-hihst,reconstructs
 1022,he/she is making it,vsk-vnh-vna[inf3],reconstructs
 1023,he/she is making it fall,cause,reconstructs
-1024,it’s falling,sk-s-hihst,reconstructs
+1024,it’s falling,sk-s-hi-hihst,reconstructs
 1027,he/she is writing it,i-vka,reconstructs
 1030,he/she is pulling a trigger,rev-e,reconstructs
 1038,he/she is batting it,ih-l-ika,reconstructs
 1040,he/she is saying to him/her,apl[imp2],reconstructs
-1041,it’s swelling,sk-s-hihst,reconstructs
+1041,it’s swelling,sk-s-hi-hihst,reconstructs
 1043,he/she is building a fire,hvsk-han,reconstructs
 1044,he/she is unhitching him/her,rev-e,reconstructs
 1045,he/she is hitching him/her up,vsk[imp2],reconstructs
@@ -1682,10 +1598,10 @@ corpus_id,definition,class,scope
 1061,it’s snowing,cause[perf2],reconstructs
 1061,it’s snowing,cause[perf2],reconstructs
 1063,he/she is sifting it,cause,reconstructs
-1064,it’s leaking,sk-s-hst[imp2],reconstructs
-1064,it’s leaking,sk-s-hst[imp2],reconstructs
-1064,it’s leaking,sk-s-hst[imp2],reconstructs
-1064,it’s leaking,sk-s-hst[imp2],reconstructs
+1064,it’s leaking,sk-s-hst,reconstructs
+1064,it’s leaking,sk-s-hst,reconstructs
+1064,it’s leaking,sk-s-hst,reconstructs
+1064,it’s leaking,sk-s-hst,reconstructs
 1067,he/she is alive,aspectless,reconstructs
 1067,he/she is alive,aspectless,reconstructs
 1067,he/she is alive,aspectless-h,reconstructs
@@ -1694,20 +1610,18 @@ corpus_id,definition,class,scope
 1071,he/she is cooking it,cause,reconstructs
 1076,he/she is frying it,hvsk-han,reconstructs
 1078,he/she is melting it,cause,reconstructs
-1079,it’s melting,sk-s-hihst,reconstructs
+1079,it’s melting,sk-s-hi-hihst,reconstructs
 1081,he/she is sweeping it,sk-h[imp2],reconstructs
-1082,it’s becoming done,sk-s-hihst,reconstructs
+1082,it’s becoming done,sk-s-hi-hihst,reconstructs
 1083,he/she is hiding it,hvsk-han,reconstructs
 1085,he/she is hiding him/her,vsk[imp2],reconstructs
 1086,he/she is cracking it,o,reconstructs
 1087,he/she is putting it into a fire,hvsk-han,reconstructs
 1088,he/she is soaking it,hvsk-han,reconstructs
-1221,he/she is ascending an incline,sk-s-hihst,reconstructs
-1221,he/she is ascending an incline,sk-s-hihst,reconstructs
+1221,he/she is ascending an incline,sk-s-hi-hihst,reconstructs
+1221,he/she is ascending an incline,sk-s-hi-hihst,reconstructs
 1224,he/she is making him/her angry,cause,reconstructs
 1224,he/she is making him/her angry,cause,reconstructs
-1227,he/she is rooting it out,ih-vh[inf3],reconstructs
-1227,he/she is rooting it out,ih-vh[inf3],reconstructs
 1229,he/she is cold,become,reconstructs
 1229,he/she is cold,become,reconstructs
 1230,he/she is speaking,become,reconstructs
@@ -1720,22 +1634,6 @@ corpus_id,definition,class,scope
 1233,it’s accumulating,become[inf2],reconstructs
 1234,he/she is mentioning it,cause,reconstructs
 1234,he/she is mentioning it,cause,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
-1235,it’s contaminated,scared,reconstructs
 1235,it’s contaminated,aspectless,reconstructs
 1235,it’s contaminated,aspectless,reconstructs
 1235,it’s contaminated,aspectless,reconstructs
@@ -1776,6 +1674,8 @@ corpus_id,definition,class,scope
 1246,he/she is telling it,apl-active-lh,reconstructs
 1247,he/she is omitting him/her,glottal-sk,reconstructs
 1247,he/she is omitting him/her,glottal-sk,reconstructs
+1247,he/she is omitting him/her,glottal-sk[inf2],reconstructs
+1247,he/she is omitting him/her,glottal-sk[inf2],reconstructs
 1249,he/she is fanning him/her,apl-active,reconstructs
 1249,he/she is fanning him/her,apl-active,reconstructs
 1254,he/she is straining it,cause,reconstructs
@@ -1788,12 +1688,12 @@ corpus_id,definition,class,scope
 1450,he/she is in prayer,aspectless[inf2],reconstructs
 1459,it’s wrinkled,aspectless-s,reconstructs
 1470,it’s in view,aspectless-h,reconstructs
-1471,he/she is throwing it,go[perf2-inf2],reconstructs
+1471,he/she is throwing it,go-alt,reconstructs
 1476,he/she is having a birthday,ih-vh,reconstructs
 1478,it’s hot,aspectless,reconstructs
 1478,it’s hot,aspectless,reconstructs
 1480,he/she is in hiding,aspectless-h,reconstructs
-1481,he/she is getting well,sk-s-hihst,reconstructs
+1481,he/she is getting well,sk-s-hi-hihst,reconstructs
 1483,there’s an opening,aspectless,reconstructs
 1483,there’s an opening,aspectless,reconstructs
 1483,there’s an opening,aspectless,reconstructs
@@ -1808,9 +1708,9 @@ corpus_id,definition,class,scope
 1505,he/she is standing in liquid,aspectless-s,reconstructs
 1507,he/she wants it,ih-vh,reconstructs
 1508,he/she is willing,aspectless,reconstructs
-1514,he/she is becoming warm,sk-s-hihst,reconstructs
+1514,he/she is becoming warm,sk-s-hi-hihst,reconstructs
 1523,he/she is late,become,reconstructs
-1524,it’s decaying,sk-s-hihst,reconstructs
+1524,it’s decaying,sk-s-hi-hihst,reconstructs
 1530,he/she has an object,aspectless,reconstructs
 1530,he/she has an object,aspectless-h,reconstructs
 1531,he/she is yawning,apl-active,reconstructs
@@ -1837,8 +1737,8 @@ corpus_id,definition,class,scope
 1554,he/she is in bed,aspectless,reconstructs
 1554,he/she is in bed,aspectless-h,reconstructs
 1557,he/she is wearing a shirt,aspectless,reconstructs
-1561,he/she is buying it,sk-s-hihst,reconstructs
-1561,he/she is buying it,sk-s-hihst,reconstructs
+1561,he/she is buying it,sk-s-hi-hihst,reconstructs
+1561,he/she is buying it,sk-s-hi-hihst,reconstructs
 1563,he/she is looking for it,oh-al,reconstructs
 1569,it is cold,aspectless,reconstructs
 1569,it is cold,aspectless,reconstructs
@@ -1884,11 +1784,11 @@ corpus_id,definition,class,scope
 1646,he/she knows it,aspectless-h,reconstructs
 1677,he/she is wearing pants,aspectless,reconstructs
 1683,he/she is thirsty,i-vka,reconstructs
-1684,he/she is becoming enraged,sk-s-hihst,reconstructs
+1684,he/she is becoming enraged,sk-s-hi-hihst,reconstructs
 1693,he/she is listening to him/her,aspectless[inf2],reconstructs
-1698,he/she is forgetting it,sk-s-hihst[imp2],reconstructs
+1698,he/she is forgetting it,sk-s-hihst,reconstructs
 1699,he/she is belching,become[inf2],reconstructs
-1700,he/she is shivering,i-a,reconstructs
+1700,he/she is shivering,glottal-sk,reconstructs
 1708,he/she smells it,become,reconstructs
 1709,he/she has an object,aspectless,reconstructs
 1710,he/she is aching,apl,reconstructs
@@ -1896,8 +1796,8 @@ corpus_id,definition,class,scope
 1730,he/she is sitting,aspectless,reconstructs
 1730,he/she is sitting,aspectless-h,reconstructs
 1741,he/she is losing it,apl[imp2],reconstructs
-1754,he/she is sending on object,i-a,reconstructs
-1754,he/she is sending on object,i-a,reconstructs
+1754,he/she is sending on object,glottal-sk,reconstructs
+1754,he/she is sending on object,glottal-sk,reconstructs
 1761,he/she is sending it,hvsk-nh,reconstructs
 1761,he/she is sending it,hvsk-nh,reconstructs
 1761,he/she is sending it,hvsk-nh,reconstructs
