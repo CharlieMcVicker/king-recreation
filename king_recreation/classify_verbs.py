@@ -262,11 +262,6 @@ def classify_verbs(classes_path=None):
         "corpus_id",
         "definition",
         "class",
-        "stem_final_match_present",
-        "stem_final_match_imperfective",
-        "stem_final_match_perfective",
-        "stem_final_match_imperative",
-        "stem_final_match_infinitive",
     ]
 
     with open(matches_path, mode="w", encoding="utf-8", newline="") as f:

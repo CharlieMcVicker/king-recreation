@@ -141,6 +141,50 @@ class ReconstructionEngine:
         return [{fn: set(opts or []) for fn, opts in form_options.items()}]
 
 
+def dedupe_roots(validated_verbs: list[ReconstructibleVerb]):
+    roots_by_corpus_id: dict[str, list[ReconstructibleVerb]] = {}
+    for verb in validated_verbs:
+        c_id = verb.corpus_id
+        if not c_id in roots_by_corpus_id:
+            roots_by_corpus_id[c_id] = [verb]
+        else:
+            roots_by_corpus_id[c_id].append(verb)
+
+    deduped_roots = []
+    dropped = []
+
+    for c_id, vl in roots_by_corpus_id.items():
+        lowest_len = None
+        lowest_v = None
+        if len(vl) == 1:
+            deduped_roots.append(vl[0])
+        else:
+            for v in vl:
+                len_v = len(v.h_grade_root)
+                if lowest_v is None or len_v < lowest_len:
+                    lowest_len = len_v
+                    lowest_v = v
+                elif lowest_v == len_v:
+                    print(
+                        "[WARNING]",
+                        v.class_name,
+                        lowest_v.class_name,
+                        "have same length root",
+                    )
+                    dropped.append(c_id)
+                    break
+            else:
+                # print(
+                #     "Lowest len root",
+                #     lowest_v["definition"],
+                #     lowest_v["h_grade_root"],
+                #     lowest_v["class_name"],
+                # )
+                deduped_roots.append(lowest_v)
+
+    return deduped_roots, dropped
+
+
 def main(classes_path=None):
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     derived_roots_path = os.path.join(
@@ -286,6 +330,13 @@ def main(classes_path=None):
 
     print(f"Validation Success: {success_count}/{len(reconstructible_verbs)}")
 
+    # Dedupe roots when one parse gives a strictly shorter root than all others
+    deduped_roots, dropped_items = dedupe_roots(validated_verbs)
+
+    print(
+        f"Root-deduping: {len(deduped_roots)} unique roots, {len(dropped_items)} ambiguous items dropped"
+    )
+
     # Export Artifacts
     reports_dir = os.path.join(base_dir, "artifacts", "reports")
     os.makedirs(reports_dir, exist_ok=True)
@@ -386,7 +437,7 @@ def main(classes_path=None):
         base_dir, "artifacts", "data", "reconstructable_verbs.json"
     )
     with open(reconstructable_output_path, "w", encoding="utf-8") as f:
-        json.dump(validated_verbs, f, cls=EnhancedJSONEncoder, indent=4)
+        json.dump(deduped_roots, f, cls=EnhancedJSONEncoder, indent=4)
 
     # Save classes used for reconstructions
     classes_expanded_path = os.path.join(

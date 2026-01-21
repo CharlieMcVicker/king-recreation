@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
-from typing import List, Dict, Optional
+from typing import List, Dict
 import itertools
-import re
 
 
 @dataclass(frozen=True)
@@ -11,7 +10,6 @@ class ExpandedClassPattern:
     """
 
     name: str
-    stem_finals: tuple
     present: str
     imperfective: str
     perfective: str
@@ -43,7 +41,6 @@ class ClassMacro:
     """
 
     name: str
-    stem_finals: List[str]
     present: List[str]
     imperfective: List[str]
     perfective: List[str]
@@ -54,8 +51,6 @@ class ClassMacro:
     @staticmethod
     def from_row(row: Dict[str, str]) -> "ClassMacro":
         name = row.get("class", "")
-        sf_raw = row.get("stem final", "")
-        sf_list = [s for s in sf_raw.split(";") if s] if sf_raw else [""]
 
         def parse_field(field_name):
             val = row.get(field_name, "")
@@ -63,7 +58,6 @@ class ClassMacro:
 
         return ClassMacro(
             name=name,
-            stem_finals=sf_list,
             present=parse_field("present"),
             imperfective=parse_field("imperfective"),
             perfective=parse_field("perfective"),
@@ -103,7 +97,6 @@ class ClassMacro:
 
             expanded_data = {
                 "name": self.name,
-                "stem_finals": tuple(self.stem_finals),
                 "_original_data": self._original_data,
             }
             suffixes = []
