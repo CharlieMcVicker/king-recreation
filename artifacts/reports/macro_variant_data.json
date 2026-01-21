@@ -1366,58 +1366,81 @@
             }
         ]
     },
-    "ih-vnh": {
+    "ih-vnh-a": {
         "available_options": {
-            "imp": 2,
-            "imperf": 2,
-            "inf": 3,
+            "imp": 1,
+            "imperf": 1,
+            "inf": 1,
             "perf": 1,
             "pres": 1
         },
-        "can_have_variants": true,
+        "can_have_variants": false,
         "combinations": {
-            "ih-vnh": 2,
-            "ih-vnh[imp2-inf2]": 1,
-            "ih-vnh[imperf2-imp2-inf3]": 1
+            "ih-vnh-a": 2
         },
         "slots": {
             "imp": {
-                "1": 2,
-                "2": 2
+                "1": 2
             },
             "imperf": {
-                "1": 3,
-                "2": 1
+                "1": 2
             },
             "inf": {
-                "1": 2,
-                "2": 1,
-                "3": 1
+                "1": 2
             },
             "perf": {
-                "1": 4
+                "1": 2
             },
             "pres": {
-                "1": 4
+                "1": 2
             }
         },
-        "total_matches": 4,
+        "total_matches": 2,
         "unused_options": [],
         "variant_stats": [
             {
                 "count": 2,
-                "percent": 50.0,
-                "variant": "ih-vnh"
+                "percent": 100.0,
+                "variant": "ih-vnh-a"
+            }
+        ]
+    },
+    "ih-vnh-vna": {
+        "available_options": {
+            "imp": 1,
+            "imperf": 1,
+            "inf": 1,
+            "perf": 1,
+            "pres": 1
+        },
+        "can_have_variants": false,
+        "combinations": {
+            "ih-vnh-vna": 1
+        },
+        "slots": {
+            "imp": {
+                "1": 1
             },
+            "imperf": {
+                "1": 1
+            },
+            "inf": {
+                "1": 1
+            },
+            "perf": {
+                "1": 1
+            },
+            "pres": {
+                "1": 1
+            }
+        },
+        "total_matches": 1,
+        "unused_options": [],
+        "variant_stats": [
             {
                 "count": 1,
-                "percent": 25.0,
-                "variant": "ih-vnh[imperf2-imp2-inf3]"
-            },
-            {
-                "count": 1,
-                "percent": 25.0,
-                "variant": "ih-vnh[imp2-inf2]"
+                "percent": 100.0,
+                "variant": "ih-vnh-vna"
             }
         ]
     },
