@@ -380,6 +380,144 @@ def plot_macro_variants(json_path, output_dir):
         plt.close()
 
 
+def plot_variant_match_histograms(csv_path, output_dir):
+    """Generates histograms for variant match statistics."""
+    if not os.path.exists(csv_path):
+        print(f"Warning: {csv_path} not found. Skipping variant match histograms.")
+        return
+
+    df = pd.read_csv(csv_path)
+    if df.empty:
+        return
+
+    # Filter out macro patterns with no subvariants
+    if "can_have_variants" in df.columns:
+        df = df[df["can_have_variants"] == True]
+
+    if df.empty:
+        print(
+            f"Warning: No variadic macros found in {csv_path}. Skipping variant histograms."
+        )
+        return
+
+    os.makedirs(output_dir, exist_ok=True)
+
+    # 1. Histogram of Total Match Counts (Absolute)
+    plt.figure(figsize=(10, 6))
+    sns.histplot(
+        df["match_count"], kde=False, bins=30, color="skyblue", edgecolor="black"
+    )
+    plt.title("Distribution of Variant Match Counts (Absolute)")
+    plt.xlabel("Number of Verbs Matched per Variant")
+    plt.ylabel("Number of Variants")
+    plt.tight_layout()
+    plt.savefig(os.path.join(output_dir, "variant_match_histogram_counts.png"))
+    plt.close()
+
+    # 2. Histogram of Match Percentages
+    plt.figure(figsize=(10, 6))
+    sns.histplot(
+        df["match_percent"], kde=False, bins=20, color="salmon", edgecolor="black"
+    )
+    plt.title("Distribution of Variant Match Percentages")
+    plt.xlabel("Percentage of Class Matches")
+    plt.ylabel("Number of Variants")
+    plt.tight_layout()
+    plt.savefig(os.path.join(output_dir, "variant_match_histogram_percent.png"))
+    plt.close()
+
+    # 3. Histogram of Average Variant Match Count per Class
+    # Group by class and calculate mean match count
+    class_averages = (
+        df.groupby("macro_class")["match_count"].mean().reset_index(name="avg_matches")
+    )
+
+    plt.figure(figsize=(10, 6))
+    sns.histplot(
+        class_averages["avg_matches"],
+        kde=False,
+        bins=20,
+        color="lightgreen",
+        edgecolor="black",
+    )
+    plt.title("Distribution of Average Variant Match Counts per Class")
+    plt.xlabel("Average Matches per Variant (by Class)")
+    plt.ylabel("Number of Macro Classes")
+    plt.tight_layout()
+    plt.savefig(os.path.join(output_dir, "variant_match_histogram_class_averages.png"))
+    plt.close()
+
+
+def plot_variation_match_histograms(csv_path, output_dir):
+    """Generates histograms for variation match statistics."""
+    if not os.path.exists(csv_path):
+        print(f"Warning: {csv_path} not found. Skipping variation match histograms.")
+        return
+
+    df = pd.read_csv(csv_path)
+    if df.empty:
+        return
+
+    # Filter out macro patterns with no subvariants
+    if "can_have_variants" in df.columns:
+        df = df[df["can_have_variants"] == True]
+
+    if df.empty:
+        print(
+            f"Warning: No variadic macros found in {csv_path}. Skipping variation histograms."
+        )
+        return
+
+    os.makedirs(output_dir, exist_ok=True)
+
+    # 1. Histogram of Total Match Counts (Absolute)
+    plt.figure(figsize=(10, 6))
+    sns.histplot(
+        df["match_count"], kde=False, bins=30, color="skyblue", edgecolor="black"
+    )
+    plt.title("Distribution of Variation Match Counts (Absolute)")
+    plt.xlabel("Number of Verbs Matched per Variation")
+    plt.ylabel("Number of Variations")
+    plt.tight_layout()
+    plt.savefig(os.path.join(output_dir, "variation_match_histogram_counts.png"))
+    plt.close()
+
+    # 2. Histogram of Match Percentages
+    plt.figure(figsize=(10, 6))
+    sns.histplot(
+        df["match_percent"], kde=False, bins=20, color="salmon", edgecolor="black"
+    )
+    plt.title("Distribution of Variation Match Percentages")
+    plt.xlabel("Percentage of Class Matches")
+    plt.ylabel("Number of Variations")
+    plt.tight_layout()
+    plt.savefig(os.path.join(output_dir, "variation_match_histogram_percent.png"))
+    plt.close()
+
+    # 3. Histogram of Average Variation Match Count per Class
+    # Group by class and calculate mean match count
+    class_averages = (
+        df.groupby("macro_class")["match_count"].mean().reset_index(name="avg_matches")
+    )
+
+    plt.figure(figsize=(10, 6))
+    sns.histplot(
+        class_averages["avg_matches"],
+        kde=False,
+        bins=20,
+        color="lightgreen",
+        edgecolor="black",
+    )
+    plt.title("Distribution of Average Variation Match Counts per Class")
+    plt.xlabel("Average Matches per Variation (by Class)")
+    plt.ylabel("Number of Macro Classes")
+    plt.tight_layout()
+    plt.savefig(
+        os.path.join(output_dir, "variation_match_histogram_class_averages.png")
+    )
+    plt.close()
+
+
 def run_all_visualizations():
     # Plots (images) go to visualizations
     output_dir = "artifacts/visualizations"
@@ -422,6 +560,18 @@ def run_all_visualizations():
     plot_macro_variants(
         os.path.join(input_dir, "macro_variant_data.json"),
         os.path.join(output_dir, "macro_variants"),
+    )
+
+    print("Generating Variant Match Histograms...")
+    plot_variant_match_histograms(
+        os.path.join(input_dir, "variant_match_counts.csv"),
+        os.path.join(output_dir, "variant_match_histograms"),
+    )
+
+    print("Generating Variation Match Histograms...")
+    plot_variation_match_histograms(
+        os.path.join(input_dir, "variation_match_counts.csv"),
+        os.path.join(output_dir, "variation_match_histograms"),
     )
 
 

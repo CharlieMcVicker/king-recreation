@@ -256,7 +256,7 @@ def _analyze_macro_variants(
             idx = int(match.group(i + 2) or 1)
             analysis[base_name]["slots"][slot][idx] += 1
 
-    # Identify unused options
+    # Identify unused options and calculate statistics
     for macro_name, data in analysis.items():
         unused = []
         for slot, count in data["available_options"].items():
@@ -264,6 +264,27 @@ def _analyze_macro_variants(
                 if data["slots"][slot][i] == 0:
                     unused.append(f"{slot}{i}" if i > 1 else f"{slot}(base)")
         data["unused_options"] = unused
+
+        # Calculate variant statistics
+        data["variant_stats"] = []
+        total_matches = data["total_matches"]
+        can_have_variants = any(
+            count > 1 for count in data["available_options"].values()
+        )
+        data["can_have_variants"] = can_have_variants
+
+        if total_matches > 0:
+            for variant, count in data["combinations"].items():
+                data["variant_stats"].append(
+                    {
+                        "variant": variant,
+                        "count": count,
+                        "percent": round(count / total_matches * 100, 2),
+                    }
+                )
+        else:
+            # Handle case with 0 matches (shouldn't happen given the loop check above, but for safety)
+            pass
 
     return analysis
 
@@ -286,6 +307,83 @@ def _identify_dead_variants(macro_variant_data: Dict[str, Any]) -> List[Dict[str
     # Sort by total matches (descending) then macro name
     dead_variants.sort(key=lambda x: (-x["total_matches"], x["macro"]))
     return dead_variants
+
+
+def _save_variant_match_csv(path: str, macro_variant_data: Dict[str, Any]) -> None:
+    flattened_data = []
+    for macro_name, data in macro_variant_data.items():
+        if "variant_stats" in data:
+            if data.get("can_have_variants", False):
+                for stat in data["variant_stats"]:
+                    flattened_data.append(
+                        {
+                            "macro_class": macro_name,
+                            "variant_name": stat["variant"],
+                            "match_count": stat["count"],
+                            "match_percent": stat["percent"],
+                            "can_have_variants": True,
+                        }
+                    )
+
+    # Sort by match count descending, then macro class
+    flattened_data.sort(key=lambda x: (-x["match_count"], x["macro_class"]))
+
+    save_csv(
+        path,
+        flattened_data,
+        [
+            "macro_class",
+            "variant_name",
+            "match_count",
+            "match_percent",
+            "can_have_variants",
+        ],
+    )
+
+
+def _save_variation_match_csv(path: str, macro_variant_data: Dict[str, Any]) -> None:
+    flattened_data = []
+    for macro_name, data in macro_variant_data.items():
+        if data.get("can_have_variants", False) and "slots" in data:
+            total_matches = data["total_matches"]
+            available_options = data.get("available_options", {})
+            for slot, counts in data["slots"].items():
+                # Only include slots with more than one variation (i.e., in competition)
+                if available_options.get(slot, 0) <= 1:
+                    continue
+
+                for idx, count in counts.items():
+                    if count > 0:
+                        variation_name = f"{slot}{idx}" if idx > 1 else f"{slot}(base)"
+                        percent = (
+                            round(count / total_matches * 100, 2)
+                            if total_matches > 0
+                            else 0
+                        )
+                        flattened_data.append(
+                            {
+                                "macro_class": macro_name,
+                                "variation_name": variation_name,
+                                "match_count": count,
+                                "match_percent": percent,
+                                "can_have_variants": True,
+                            }
+                        )
+
+    # Sort by match count descending, then macro class
+    flattened_data.sort(key=lambda x: (-x["match_count"], x["macro_class"]))
+
+    save_csv(
+        path,
+        flattened_data,
+        [
+            "macro_class",
+            "variation_name",
+            "match_count",
+            "match_percent",
+            "can_have_variants",
+        ],
+    )
 
 
 def analyze_matches(classes_path: Optional[str] = None):
@@ -360,6 +458,12 @@ def analyze_matches(classes_path: Optional[str] = None):
     if macro_variant_data:
         save_json(
             os.path.join(output_dir, "macro_variant_data.json"), macro_variant_data
+        )
+        _save_variant_match_csv(
+            os.path.join(output_dir, "variant_match_counts.csv"), macro_variant_data
+        )
+        _save_variation_match_csv(
+            os.path.join(output_dir, "variation_match_counts.csv"), macro_variant_data
         )
 
     if unused_variants_report is not None:
