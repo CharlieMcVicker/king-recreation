@@ -70,12 +70,12 @@ def plot_class_distribution(csv_path, output_prefix):
         (
             "all",
             [
-                "strict_full",
-                "strict_reconstructs",
+                "full",
+                "reconstructs",
             ],
-            "strict_reconstructs",  # Sort by reconstructions
+            "reconstructs",  # Sort by reconstructions
         ),
-        ("reconstructs", ["strict_reconstructs"], None),
+        ("reconstructs", ["reconstructs"], None),
     ]
 
     for prefix, vals, sort_col in plots:
@@ -177,9 +177,8 @@ def plot_near_miss_heatmap(csv_path, output_prefix):
 
     rate_cols = [c for c in df.columns if c.endswith("_rate")]
 
-    def create_heatmap(data, strictness_level, filtered):
-        # Base filter for strictness
-        subset = data[data["strictness"] == strictness_level].copy()
+    def create_heatmap(data, filtered):
+        subset = data.copy()
 
         if filtered:
             subset = subset[subset["match_count"] > 0]
@@ -188,10 +187,6 @@ def plot_near_miss_heatmap(csv_path, output_prefix):
         else:
             filter_suffix = "full"
             title_suffix = "(Full)"
-
-        if subset.empty:
-            print(f"No match data for {strictness_level} ({filter_suffix}). Skipping.")
-            return
 
         # Set index to class + count for labeling
         subset["label"] = (
@@ -207,19 +202,16 @@ def plot_near_miss_heatmap(csv_path, output_prefix):
         plt.figure(figsize=(12, height))
 
         sns.heatmap(subset, annot=True, cmap="YlGnBu", vmin=0, vmax=1)
-        plt.title(
-            f"Stem-Final Pass Rates - {strictness_level.capitalize()} {title_suffix}"
-        )
+        plt.title(f"Stem-Final Pass Rates {title_suffix}")
         plt.tight_layout()
 
-        output_filename = f"{output_prefix}_{strictness_level}_{filter_suffix}.png"
+        output_filename = f"{output_prefix}_{filter_suffix}.png"
         plt.savefig(output_filename)
         plt.close()
 
     # Generate 4 variations
-    for s in ["strict", "loose"]:
-        for f in [True, False]:
-            create_heatmap(df, s, f)
+    for filter_zeros in [True, False]:
+        create_heatmap(df, filter_zeros)
 
 
 def plot_root_ambiguity_histogram(csv_path, output_path):
@@ -275,7 +267,7 @@ def plot_class_match_histogram(csv_path, output_path):
     if df.empty:
         return
 
-    metric = "strict_reconstructs"
+    metric = "reconstructs"
     if metric not in df.columns:
         print(f"Column {metric} not found in {csv_path}")
         return

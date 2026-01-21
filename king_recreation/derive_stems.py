@@ -301,8 +301,6 @@ def main():
     with open(input_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            if not row["scope"] == "full":
-                continue
             ref = full_corpus.get(row["corpus_id"])
             derivations = deriver.derive_row(row, ref)
             if not derivations:

@@ -1,5 +1,5 @@
 {
-    "summary": "621/2165",
+    "summary": "639/2262",
     "failures": [
         {
             "definition": "it\u2019s bouncing",
@@ -492,6 +492,15 @@
             "definition": "he/she is shopping",
             "failed_forms": [
                 "perfective: expected 'utananehsvnh', got ['utananehsvhvh']",
+                "imperative: expected 'hatananehsvhvka', got ['hatananehsvhvha']"
+            ],
+            "class": "sk-h",
+            "corpus_id": 30
+        },
+        {
+            "definition": "he/she is shopping",
+            "failed_forms": [
+                "perfective: expected 'utananehsvnh', got ['utananehsvhvh']",
                 "imperative: expected 'hatananehsvhvka', got ['hatananehsvhv']"
             ],
             "class": "sk-h[imp3]",
@@ -684,6 +693,14 @@
                 "imperative: expected 'hatanvla', got ['hatana']"
             ],
             "class": "sk-s[imp4-inf2]",
+            "corpus_id": 46
+        },
+        {
+            "definition": "he/she is ordering it",
+            "failed_forms": [
+                "imperative: expected 'hatanvla', got ['hatanvha']"
+            ],
+            "class": "sk-s[imp6-inf2]",
             "corpus_id": 46
         },
         {
@@ -1105,6 +1122,14 @@
         {
             "definition": "he/she is scratching",
             "failed_forms": [
+                "imperative: expected 'hatlakola', got ['hatlakoha']"
+            ],
+            "class": "sk-s[imp6-inf2]",
+            "corpus_id": 85
+        },
+        {
+            "definition": "he/she is scratching",
+            "failed_forms": [
                 "imperative: expected 'hatlakola', got ['hatlako']"
             ],
             "class": "sk-s[imp3-inf2]",
@@ -1508,6 +1533,14 @@
             ],
             "class": "cause[pres2-perf3]",
             "corpus_id": 109
+        },
+        {
+            "definition": "he/she is breaking it",
+            "failed_forms": [
+                "imperative: expected 'hika'la', got ['hikalha']"
+            ],
+            "class": "sk-s[imp6-inf2]",
+            "corpus_id": 113
         },
         {
             "definition": "he/she is licking it",
@@ -2939,6 +2972,280 @@
             "corpus_id": 238
         },
         {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "infinitive: expected 'utsa'ihst', got [\"utsa''ihst\"]"
+            ],
+            "class": "rev-i[inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperative: expected 'hatsa'i', got [\"hatsa''i\"]"
+            ],
+            "class": "rev-i[imp2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperative: expected 'hatsa'i', got [\"hatsa''i\"]",
+                "infinitive: expected 'utsa'ihst', got [\"utsa''ihst\"]"
+            ],
+            "class": "rev-i[imp2-inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "perfective: expected 'utsa'ihs', got [\"utsa''ihs\"]"
+            ],
+            "class": "rev-i[perf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "perfective: expected 'utsa'ihs', got [\"utsa''ihs\"]",
+                "infinitive: expected 'utsa'ihst', got [\"utsa''ihst\"]"
+            ],
+            "class": "rev-i[perf2-inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "perfective: expected 'utsa'ihs', got [\"utsa''ihs\"]",
+                "imperative: expected 'hatsa'i', got [\"hatsa''i\"]"
+            ],
+            "class": "rev-i[perf2-imp2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "perfective: expected 'utsa'ihs', got [\"utsa''ihs\"]",
+                "imperative: expected 'hatsa'i', got [\"hatsa''i\"]",
+                "infinitive: expected 'utsa'ihst', got [\"utsa''ihst\"]"
+            ],
+            "class": "rev-i[perf2-imp2-inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got [\"atsa''ihsk\"]"
+            ],
+            "class": "rev-i[imperf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got [\"atsa''ihsk\"]",
+                "infinitive: expected 'utsa'ihst', got [\"utsa''ihst\"]"
+            ],
+            "class": "rev-i[imperf2-inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got [\"atsa''ihsk\"]",
+                "imperative: expected 'hatsa'i', got [\"hatsa''i\"]"
+            ],
+            "class": "rev-i[imperf2-imp2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got [\"atsa''ihsk\"]",
+                "imperative: expected 'hatsa'i', got [\"hatsa''i\"]",
+                "infinitive: expected 'utsa'ihst', got [\"utsa''ihst\"]"
+            ],
+            "class": "rev-i[imperf2-imp2-inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got [\"atsa''ihsk\"]",
+                "perfective: expected 'utsa'ihs', got [\"utsa''ihs\"]"
+            ],
+            "class": "rev-i[imperf2-perf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got [\"atsa''ihsk\"]",
+                "perfective: expected 'utsa'ihs', got [\"utsa''ihs\"]",
+                "infinitive: expected 'utsa'ihst', got [\"utsa''ihst\"]"
+            ],
+            "class": "rev-i[imperf2-perf2-inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got [\"atsa''ihsk\"]",
+                "perfective: expected 'utsa'ihs', got [\"utsa''ihs\"]",
+                "imperative: expected 'hatsa'i', got [\"hatsa''i\"]"
+            ],
+            "class": "rev-i[imperf2-perf2-imp2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got [\"atsa''ihsk\"]",
+                "perfective: expected 'utsa'ihs', got [\"utsa''ihs\"]",
+                "imperative: expected 'hatsa'i', got [\"hatsa''i\"]",
+                "infinitive: expected 'utsa'ihst', got [\"utsa''ihst\"]"
+            ],
+            "class": "rev-i[imperf2-perf2-imp2-inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got ['atsaihsk']",
+                "perfective: expected 'utsa'ihs', got ['utsaihs']",
+                "imperative: expected 'hatsa'i', got ['hatsai']",
+                "infinitive: expected 'utsa'ihst', got ['utsaihst']"
+            ],
+            "class": "rev-i[pres2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got ['atsaihsk']",
+                "perfective: expected 'utsa'ihs', got ['utsaihs']",
+                "imperative: expected 'hatsa'i', got ['hatsai']"
+            ],
+            "class": "rev-i[pres2-inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got ['atsaihsk']",
+                "perfective: expected 'utsa'ihs', got ['utsaihs']",
+                "infinitive: expected 'utsa'ihst', got ['utsaihst']"
+            ],
+            "class": "rev-i[pres2-imp2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got ['atsaihsk']",
+                "perfective: expected 'utsa'ihs', got ['utsaihs']"
+            ],
+            "class": "rev-i[pres2-imp2-inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got ['atsaihsk']",
+                "imperative: expected 'hatsa'i', got ['hatsai']",
+                "infinitive: expected 'utsa'ihst', got ['utsaihst']"
+            ],
+            "class": "rev-i[pres2-perf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got ['atsaihsk']",
+                "imperative: expected 'hatsa'i', got ['hatsai']"
+            ],
+            "class": "rev-i[pres2-perf2-inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got ['atsaihsk']",
+                "infinitive: expected 'utsa'ihst', got ['utsaihst']"
+            ],
+            "class": "rev-i[pres2-perf2-imp2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperfective: expected 'atsa'ihsk', got ['atsaihsk']"
+            ],
+            "class": "rev-i[pres2-perf2-imp2-inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "perfective: expected 'utsa'ihs', got ['utsaihs']",
+                "imperative: expected 'hatsa'i', got ['hatsai']",
+                "infinitive: expected 'utsa'ihst', got ['utsaihst']"
+            ],
+            "class": "rev-i[pres2-imperf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "perfective: expected 'utsa'ihs', got ['utsaihs']",
+                "imperative: expected 'hatsa'i', got ['hatsai']"
+            ],
+            "class": "rev-i[pres2-imperf2-inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "perfective: expected 'utsa'ihs', got ['utsaihs']",
+                "infinitive: expected 'utsa'ihst', got ['utsaihst']"
+            ],
+            "class": "rev-i[pres2-imperf2-imp2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "perfective: expected 'utsa'ihs', got ['utsaihs']"
+            ],
+            "class": "rev-i[pres2-imperf2-imp2-inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperative: expected 'hatsa'i', got ['hatsai']",
+                "infinitive: expected 'utsa'ihst', got ['utsaihst']"
+            ],
+            "class": "rev-i[pres2-imperf2-perf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "imperative: expected 'hatsa'i', got ['hatsai']"
+            ],
+            "class": "rev-i[pres2-imperf2-perf2-inf2]",
+            "corpus_id": 238
+        },
+        {
+            "definition": "it\u2019s hatching",
+            "failed_forms": [
+                "infinitive: expected 'utsa'ihst', got ['utsaihst']"
+            ],
+            "class": "rev-i[pres2-imperf2-perf2-imp2]",
+            "corpus_id": 238
+        },
+        {
             "definition": "he/she is dressing up",
             "failed_forms": [
                 "imperative: expected 'hatsanvna', got ['hatsana']",
@@ -3804,6 +4111,16 @@
             "definition": "he/she is putting his/her hat on",
             "failed_forms": [
                 "perfective: expected 'ulhskwethunh', got ['ulhskwethuhvh']",
+                "imperative: expected 'halhskwethuhvka', got ['halhskwethuhvha']",
+                "infinitive: expected 'ulhskwethuhst', got ['ulhskwethuhvhst']"
+            ],
+            "class": "sk-h",
+            "corpus_id": 342
+        },
+        {
+            "definition": "he/she is putting his/her hat on",
+            "failed_forms": [
+                "perfective: expected 'ulhskwethunh', got ['ulhskwethuhvh']",
                 "imperative: expected 'halhskwethuhvka', got ['halhskwethuhv']",
                 "infinitive: expected 'ulhskwethuhst', got ['ulhskwethuhvhst']"
             ],
@@ -4108,6 +4425,280 @@
                 "infinitive: expected 'uhstu'ihst', got [\"uhstu'hst\"]"
             ],
             "class": "glottal-sk[perf2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "infinitive: expected 'uhstu'ihst', got [\"uhstu''ihst\"]"
+            ],
+            "class": "rev-i[inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperative: expected 'hihstu'i', got [\"hihstu''i\"]"
+            ],
+            "class": "rev-i[imp2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperative: expected 'hihstu'i', got [\"hihstu''i\"]",
+                "infinitive: expected 'uhstu'ihst', got [\"uhstu''ihst\"]"
+            ],
+            "class": "rev-i[imp2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "perfective: expected 'uhstu'ihs', got [\"uhstu''ihs\"]"
+            ],
+            "class": "rev-i[perf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "perfective: expected 'uhstu'ihs', got [\"uhstu''ihs\"]",
+                "infinitive: expected 'uhstu'ihst', got [\"uhstu''ihst\"]"
+            ],
+            "class": "rev-i[perf2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "perfective: expected 'uhstu'ihs', got [\"uhstu''ihs\"]",
+                "imperative: expected 'hihstu'i', got [\"hihstu''i\"]"
+            ],
+            "class": "rev-i[perf2-imp2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "perfective: expected 'uhstu'ihs', got [\"uhstu''ihs\"]",
+                "imperative: expected 'hihstu'i', got [\"hihstu''i\"]",
+                "infinitive: expected 'uhstu'ihst', got [\"uhstu''ihst\"]"
+            ],
+            "class": "rev-i[perf2-imp2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got [\"ahstu''ihsk\"]"
+            ],
+            "class": "rev-i[imperf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got [\"ahstu''ihsk\"]",
+                "infinitive: expected 'uhstu'ihst', got [\"uhstu''ihst\"]"
+            ],
+            "class": "rev-i[imperf2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got [\"ahstu''ihsk\"]",
+                "imperative: expected 'hihstu'i', got [\"hihstu''i\"]"
+            ],
+            "class": "rev-i[imperf2-imp2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got [\"ahstu''ihsk\"]",
+                "imperative: expected 'hihstu'i', got [\"hihstu''i\"]",
+                "infinitive: expected 'uhstu'ihst', got [\"uhstu''ihst\"]"
+            ],
+            "class": "rev-i[imperf2-imp2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got [\"ahstu''ihsk\"]",
+                "perfective: expected 'uhstu'ihs', got [\"uhstu''ihs\"]"
+            ],
+            "class": "rev-i[imperf2-perf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got [\"ahstu''ihsk\"]",
+                "perfective: expected 'uhstu'ihs', got [\"uhstu''ihs\"]",
+                "infinitive: expected 'uhstu'ihst', got [\"uhstu''ihst\"]"
+            ],
+            "class": "rev-i[imperf2-perf2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got [\"ahstu''ihsk\"]",
+                "perfective: expected 'uhstu'ihs', got [\"uhstu''ihs\"]",
+                "imperative: expected 'hihstu'i', got [\"hihstu''i\"]"
+            ],
+            "class": "rev-i[imperf2-perf2-imp2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got [\"ahstu''ihsk\"]",
+                "perfective: expected 'uhstu'ihs', got [\"uhstu''ihs\"]",
+                "imperative: expected 'hihstu'i', got [\"hihstu''i\"]",
+                "infinitive: expected 'uhstu'ihst', got [\"uhstu''ihst\"]"
+            ],
+            "class": "rev-i[imperf2-perf2-imp2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got ['ahstuihsk']",
+                "perfective: expected 'uhstu'ihs', got ['uhstuihs']",
+                "imperative: expected 'hihstu'i', got ['hihstui']",
+                "infinitive: expected 'uhstu'ihst', got ['uhstuihst']"
+            ],
+            "class": "rev-i[pres2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got ['ahstuihsk']",
+                "perfective: expected 'uhstu'ihs', got ['uhstuihs']",
+                "imperative: expected 'hihstu'i', got ['hihstui']"
+            ],
+            "class": "rev-i[pres2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got ['ahstuihsk']",
+                "perfective: expected 'uhstu'ihs', got ['uhstuihs']",
+                "infinitive: expected 'uhstu'ihst', got ['uhstuihst']"
+            ],
+            "class": "rev-i[pres2-imp2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got ['ahstuihsk']",
+                "perfective: expected 'uhstu'ihs', got ['uhstuihs']"
+            ],
+            "class": "rev-i[pres2-imp2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got ['ahstuihsk']",
+                "imperative: expected 'hihstu'i', got ['hihstui']",
+                "infinitive: expected 'uhstu'ihst', got ['uhstuihst']"
+            ],
+            "class": "rev-i[pres2-perf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got ['ahstuihsk']",
+                "imperative: expected 'hihstu'i', got ['hihstui']"
+            ],
+            "class": "rev-i[pres2-perf2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got ['ahstuihsk']",
+                "infinitive: expected 'uhstu'ihst', got ['uhstuihst']"
+            ],
+            "class": "rev-i[pres2-perf2-imp2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperfective: expected 'ahstu'ihsk', got ['ahstuihsk']"
+            ],
+            "class": "rev-i[pres2-perf2-imp2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "perfective: expected 'uhstu'ihs', got ['uhstuihs']",
+                "imperative: expected 'hihstu'i', got ['hihstui']",
+                "infinitive: expected 'uhstu'ihst', got ['uhstuihst']"
+            ],
+            "class": "rev-i[pres2-imperf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "perfective: expected 'uhstu'ihs', got ['uhstuihs']",
+                "imperative: expected 'hihstu'i', got ['hihstui']"
+            ],
+            "class": "rev-i[pres2-imperf2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "perfective: expected 'uhstu'ihs', got ['uhstuihs']",
+                "infinitive: expected 'uhstu'ihst', got ['uhstuihst']"
+            ],
+            "class": "rev-i[pres2-imperf2-imp2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "perfective: expected 'uhstu'ihs', got ['uhstuihs']"
+            ],
+            "class": "rev-i[pres2-imperf2-imp2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperative: expected 'hihstu'i', got ['hihstui']",
+                "infinitive: expected 'uhstu'ihst', got ['uhstuihst']"
+            ],
+            "class": "rev-i[pres2-imperf2-perf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "imperative: expected 'hihstu'i', got ['hihstui']"
+            ],
+            "class": "rev-i[pres2-imperf2-perf2-inf2]",
+            "corpus_id": 390
+        },
+        {
+            "definition": "he/she is opening it",
+            "failed_forms": [
+                "infinitive: expected 'uhstu'ihst', got ['uhstuihst']"
+            ],
+            "class": "rev-i[pres2-imperf2-perf2-imp2]",
             "corpus_id": 390
         },
         {
@@ -4430,6 +5021,14 @@
         {
             "definition": "he/she is digging it",
             "failed_forms": [
+                "imperative: expected 'hahskola', got ['hahskoha']"
+            ],
+            "class": "sk-s[imp6-inf2]",
+            "corpus_id": 417
+        },
+        {
+            "definition": "he/she is digging it",
+            "failed_forms": [
                 "imperative: expected 'hahskola', got ['hahsko']"
             ],
             "class": "sk-s[imp3-inf2]",
@@ -4493,6 +5092,14 @@
                 "imperative: expected 'hihskwala', got ['hihskwalla']"
             ],
             "class": "sk-s[imp5-inf2]",
+            "corpus_id": 424
+        },
+        {
+            "definition": "he/she is breaking it",
+            "failed_forms": [
+                "imperative: expected 'hihskwala', got ['hihskwalha']"
+            ],
+            "class": "sk-s[imp6-inf2]",
             "corpus_id": 424
         },
         {
@@ -5494,6 +6101,15 @@
             "definition": "he/she is wounding him/her",
             "failed_forms": [
                 "perfective: expected 'uhsonvnh', got ['uhsonvh']",
+                "imperative: expected 'hihsonvna', got ['hihsonvha']"
+            ],
+            "class": "sk-h",
+            "corpus_id": 441
+        },
+        {
+            "definition": "he/she is wounding him/her",
+            "failed_forms": [
+                "perfective: expected 'uhsonvnh', got ['uhsonvh']",
                 "imperative: expected 'hihsonvna', got ['hihsonv']"
             ],
             "class": "sk-h[imp3]",
@@ -5928,6 +6544,14 @@
         {
             "definition": "he/she is drilling a hole",
             "failed_forms": [
+                "imperative: expected 'hithalaka', got ['hithaleha']"
+            ],
+            "class": "sk-s[imp6-inf2]",
+            "corpus_id": 465
+        },
+        {
+            "definition": "he/she is drilling a hole",
+            "failed_forms": [
                 "imperative: expected 'hithalaka', got ['hithale']"
             ],
             "class": "sk-s[imp3-inf2]",
@@ -6188,6 +6812,23 @@
                 "infinitive: expected 'utholhihst', got ['utholhst']"
             ],
             "class": "sk-s[imp5-inf2]",
+            "corpus_id": 487
+        },
+        {
+            "definition": "he/she is borrowing him/her",
+            "failed_forms": [
+                "imperative: expected 'hathola', got ['hatholha']"
+            ],
+            "class": "sk-s[imp6]",
+            "corpus_id": 487
+        },
+        {
+            "definition": "he/she is borrowing him/her",
+            "failed_forms": [
+                "imperative: expected 'hathola', got ['hatholha']",
+                "infinitive: expected 'utholhihst', got ['utholhst']"
+            ],
+            "class": "sk-s[imp6-inf2]",
             "corpus_id": 487
         },
         {
@@ -8701,6 +9342,14 @@
         {
             "definition": "he/she is clawing him/her",
             "failed_forms": [
+                "imperative: expected 'thinukola', got ['thinukoha', 'tihinukoha', 'tshinukoha']"
+            ],
+            "class": "sk-s[imp6-inf2]",
+            "corpus_id": 632
+        },
+        {
+            "definition": "he/she is clawing him/her",
+            "failed_forms": [
                 "imperative: expected 'thinukola', got ['thinuko', 'tihinuko', 'tshinuko']"
             ],
             "class": "sk-s[imp3-inf2]",
@@ -9331,6 +9980,14 @@
                 "imperative: expected 'hiyatsalikola', got ['hiyatsalika']"
             ],
             "class": "sk-s[imp4-inf2]",
+            "corpus_id": 821
+        },
+        {
+            "definition": "he/she is scratching him/her",
+            "failed_forms": [
+                "imperative: expected 'hiyatsalikola', got [\"hiyatsaliko'a\", 'hiyatsalikoa', 'hiyatsalikoha']"
+            ],
+            "class": "sk-s[imp6-inf2]",
             "corpus_id": 821
         },
         {
@@ -11312,6 +11969,14 @@
         {
             "definition": "he/she is sewing it",
             "failed_forms": [
+                "imperative: expected 'hiyewa', got ['hiyewha']"
+            ],
+            "class": "sk-s[imp6-inf2]",
+            "corpus_id": 986
+        },
+        {
+            "definition": "he/she is sewing it",
+            "failed_forms": [
                 "imperative: expected 'hiyewa', got ['hiyew']"
             ],
             "class": "sk-s[imp3-inf2]",
@@ -11333,6 +11998,15 @@
             ],
             "class": "around[perf2-imp2-inf3]",
             "corpus_id": 992
+        },
+        {
+            "definition": "he/she is howling",
+            "failed_forms": [
+                "perfective: expected 'uwelhunh', got ['uwelhuhvh']",
+                "imperative: expected 'helhuhvka', got ['helhuhvha']"
+            ],
+            "class": "sk-h",
+            "corpus_id": 993
         },
         {
             "definition": "he/she is howling",
@@ -11528,6 +12202,14 @@
             ],
             "class": "glottal-sk[perf2-inf2]",
             "corpus_id": 1030
+        },
+        {
+            "definition": "he/she is smoking it",
+            "failed_forms": [
+                "imperative: expected 'hoki', got ['hokhi']"
+            ],
+            "class": "sk-s[inf2]",
+            "corpus_id": 1033
         },
         {
             "definition": "he/she is smoking it",
@@ -12362,6 +13044,14 @@
             ],
             "class": "sk-s[imp3-inf2]",
             "corpus_id": 1079
+        },
+        {
+            "definition": "he/she is sweeping it",
+            "failed_forms": [
+                "imperative: expected 'hvnohsa', got ['hvnohsaha']"
+            ],
+            "class": "sk-h",
+            "corpus_id": 1081
         },
         {
             "definition": "it\u2019s becoming done",
@@ -13575,6 +14265,23 @@
                 "infinitive: expected 'uwakhewhihst', got ['uwakhewhst']"
             ],
             "class": "sk-s[imp4-inf2]",
+            "corpus_id": 1698
+        },
+        {
+            "definition": "he/she is forgetting it",
+            "failed_forms": [
+                "imperative: expected 'witsvkhewa', got ['witsvkhewha', 'wtsvkhewha']"
+            ],
+            "class": "sk-s[imp6]",
+            "corpus_id": 1698
+        },
+        {
+            "definition": "he/she is forgetting it",
+            "failed_forms": [
+                "imperative: expected 'witsvkhewa', got ['witsvkhewha', 'wtsvkhewha']",
+                "infinitive: expected 'uwakhewhihst', got ['uwakhewhst']"
+            ],
+            "class": "sk-s[imp6-inf2]",
             "corpus_id": 1698
         },
         {

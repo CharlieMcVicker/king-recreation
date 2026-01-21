@@ -315,13 +315,12 @@ def main(classes_path=None):
                     "corpus_id": verb.corpus_id,
                     "definition": d["definition"],
                     "class": d["class"],
-                    "strictness": "strict",
                     "scope": "reconstructs",
                 }
             )
 
     if validated_matches_data:
-        keys = ["corpus_id", "definition", "class", "strictness", "scope"]
+        keys = ["corpus_id", "definition", "class", "scope"]
         with open(matches_output_path, "w", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()

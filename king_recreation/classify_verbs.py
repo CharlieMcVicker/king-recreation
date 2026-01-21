@@ -7,13 +7,15 @@ import os
 from collections import defaultdict
 
 
-def normalize(s):
-    if s is None:
-        return ""
-    return s.replace("h", "")
+def match_alternated_endings(form_val: str, suffix: str, classname: str):
+    for alt in possible_alternates(suffix, fix_clusters=False):
+        if match_ending(recreate_C_glottal_clusters(form_val), alt):
+            return True
+
+    return False
 
 
-def match_ending(corpus_form, pattern_suffix, strict):
+def match_ending(corpus_form, pattern_suffix):
     # Policy: Vacuous Matching
     # If the corpus form is missing, it cannot contradict any pattern.
     if not corpus_form:
@@ -24,70 +26,7 @@ def match_ending(corpus_form, pattern_suffix, strict):
         pattern_suffix = ""
     literal_suffix = pattern_suffix.replace("*", "").replace("@", "")
 
-    if strict:
-        return corpus_form.endswith(literal_suffix)
-    else:
-        return normalize(corpus_form).endswith(normalize(literal_suffix))
-
-
-def calculate_stem_final_match(corpus_form, pattern_suffix, stem_finals, strict):
-    # Policy: Vacuous Matching
-    if not corpus_form:
-        return True
-
-    # 1. Identify literal ending
-    if pattern_suffix is None:
-        pattern_suffix = ""
-    literal_suffix = pattern_suffix.replace("*", "").replace("@", "")
-
-    # 2. Strip literal ending (if possible)
-    if not corpus_form.endswith(literal_suffix):
-        if not strict and normalize(corpus_form).endswith(normalize(literal_suffix)):
-            norm_form = normalize(corpus_form)
-            norm_suffix = normalize(literal_suffix)
-            candidate_stem_norm = (
-                norm_form[: -len(norm_suffix)] if len(norm_suffix) > 0 else norm_form
-            )
-        else:
-            return False
-    else:
-        candidate_stem_raw = (
-            corpus_form[: -len(literal_suffix)]
-            if len(literal_suffix) > 0
-            else corpus_form
-        )
-        candidate_stem_norm = normalize(candidate_stem_raw)
-
-    # 3. Adjust stem final based on modifiers
-    if not stem_finals:
-        stem_finals = [""]
-
-    match = False
-    for sf in stem_finals:
-        sf_adjusted = sf
-        if "*" in pattern_suffix:
-            if len(sf_adjusted) >= 1:
-                sf_adjusted = sf_adjusted[:-1]
-        elif "@" in pattern_suffix:
-            if len(sf_adjusted) >= 2:
-                sf_adjusted = sf_adjusted[:-2]
-
-        # 4. Verify candidate stem
-        sf_norm = normalize(sf_adjusted)
-        if strict:
-            candidate_stem_strict = (
-                corpus_form[: -len(literal_suffix)]
-                if len(literal_suffix) > 0
-                else corpus_form
-            )
-            if candidate_stem_strict.endswith(sf_adjusted):
-                match = True
-                break
-        else:
-            if candidate_stem_norm.endswith(sf_norm):
-                match = True
-                break
-    return match
+    return corpus_form.endswith(literal_suffix)
 
 
 def get_candidates_combined(verb, registry: PatternRegistry):
@@ -119,7 +58,11 @@ def get_candidates_combined(verb, registry: PatternRegistry):
     # So yes, Intersection is the way.
 
     for form in available_forms[1:]:
-        matches_for_form = set(registry.get_candidates(verb.get(form), form))
+        matches_for_form = set(
+            registry.get_candidates(
+                verb.get(form), form, allow_suffix_alternation=(form == "imperative")
+            )
+        )
         candidate_set.intersection_update(matches_for_form)
         if not candidate_set:
             break
@@ -166,47 +109,29 @@ def get_matches_for_verb(verb, registry: PatternRegistry):
         # 3. Matching
         for cls in candidates:
             class_id = cls.name
-            stem_finals = cls.stem_finals
 
-            for strictness in ["strict", "loose"]:
-                is_strict_bool = strictness == "strict"
+            # Check Ending Match (Already mostly done by lookup/intersect, but verifying specifics like * or @)
+            all_endings_match = True
+            for form in forms:
+                form_val = verb.get(form)
+                # Use existing match_ending helper which handles vacuous match
+                suffix = cls.get(form)
+                if not match_ending(form_val, suffix) and not (
+                    form == "imperative"
+                    and match_alternated_endings(form_val, suffix, classname=class_id)
+                ):
+                    all_endings_match = False
+                    break
 
-                # Check Ending Match (Already mostly done by lookup/intersect, but verifying specifics like * or @)
-                all_endings_match = True
-                for form in forms:
-                    form_val = verb.get(form)
-                    # Use existing match_ending helper which handles vacuous match
-                    if not match_ending(form_val, cls.get(form), is_strict_bool):
-                        all_endings_match = False
-                        break
+            if not all_endings_match:
+                continue
 
-                if not all_endings_match:
-                    continue
-
-                # Calculate Stem Final matches
-                sf_matches = {}
-                for form in forms:
-                    form_val = verb.get(form)
-                    sf_matches[f"stem_final_match_{form}"] = calculate_stem_final_match(
-                        form_val, cls.get(form), stem_finals, is_strict_bool
-                    )
-
-                all_sf_match = all(sf_matches.values())
-
-                if all_endings_match:
-                    scope = "ending"
-                    if all_sf_match:
-                        scope = "full"
-
-                    matches.append(
-                        {
-                            "definition": definition,
-                            "class": class_id,
-                            "strictness": strictness,
-                            "scope": scope,
-                            **sf_matches,
-                        }
-                    )
+            matches.append(
+                {
+                    "definition": definition,
+                    "class": class_id,
+                }
+            )
 
     return matches
 
@@ -254,101 +179,89 @@ def classify_verbs(classes_path=None):
         seen_class_def = set()
 
         for m in matches:
-            if m["strictness"] == "strict" and m["scope"] in [
-                "ending",
-                "full",
-                "reconstructs",
-            ]:
-                # Create stripped row
-                key = (m["definition"], m["class"])
-                if key in seen_class_def:
+            # Create stripped row
+            key = (m["definition"], m["class"])
+            if key in seen_class_def:
+                continue
+            seen_class_def.add(key)
+
+            cls_info = classes_map.get(m["class"])
+            if not cls_info:
+                continue
+
+            stripped_row = {
+                "corpus_id": verb.get("corpus_id", ""),
+                "definition": m["definition"],
+                "class": m["class"],
+                "present": "",
+                "present_1sg": "",
+                "imperfective": "",
+                "perfective": "",
+                "imperative": "",
+                "infinitive": "",
+            }
+
+            # Strip suffixes
+            forms = [
+                "present",
+                "present_1sg",
+                "imperfective",
+                "perfective",
+                "imperative",
+                "infinitive",
+            ]
+            for fn in forms:
+                form_val = verb.get(fn)
+                if not form_val:
                     continue
-                seen_class_def.add(key)
 
-                cls_info = classes_map.get(m["class"])
-                if not cls_info:
-                    continue
+                cls_pattern = cls_info.get(fn)
+                if fn == "present_1sg" and not cls_pattern:
+                    cls_pattern = cls_info.get("present")
 
-                stripped_row = {
-                    "corpus_id": verb.get("corpus_id", ""),
-                    "definition": m["definition"],
-                    "class": m["class"],
-                    "scope": m["scope"],
-                    "present": "",
-                    "present_1sg": "",
-                    "imperfective": "",
-                    "perfective": "",
-                    "imperative": "",
-                    "infinitive": "",
-                }
+                if cls_pattern is None:
+                    cls_pattern = ""
 
-                # Strip suffixes
-                forms = [
-                    "present",
-                    "present_1sg",
-                    "imperfective",
-                    "perfective",
-                    "imperative",
-                    "infinitive",
-                ]
-                for fn in forms:
-                    form_val = verb.get(fn)
-                    if not form_val:
-                        continue
+                # Strip Literal Suffix
+                literal_suffix = cls_pattern.replace("*", "").replace("@", "")
 
-                    cls_pattern = cls_info.get(fn)
-                    if fn == "present_1sg" and not cls_pattern:
-                        cls_pattern = cls_info.get("present")
+                if form_val.endswith(literal_suffix):
+                    stripped_stem = (
+                        form_val[: -len(literal_suffix)] if literal_suffix else form_val
+                    )
+                    stripped_row[fn] = stripped_stem
 
-                    if cls_pattern is None:
-                        cls_pattern = ""
-
-                    # Strip Literal Suffix
-                    literal_suffix = cls_pattern.replace("*", "").replace("@", "")
-
-                    if form_val.endswith(literal_suffix):
-                        stripped_stem = (
-                            form_val[: -len(literal_suffix)]
-                            if literal_suffix
-                            else form_val
-                        )
-                        stripped_row[fn] = stripped_stem
-
-                    # allow h alternates
-                    elif fn in ["present_1sg", "imperative"]:
-                        for hless_suffix in possible_alternates(
-                            literal_suffix, fix_clusters=False
-                        ):
-                            fixed_hless_suffix = prevent_C_glottal_cluster(hless_suffix)
-                            if form_val.endswith(fixed_hless_suffix):
+                # allow h alternates
+                elif fn in ["present_1sg", "imperative"]:
+                    for hless_suffix in possible_alternates(
+                        literal_suffix, fix_clusters=False
+                    ):
+                        fixed_hless_suffix = prevent_C_glottal_cluster(hless_suffix)
+                        if form_val.endswith(fixed_hless_suffix):
+                            stripped_stem = (
+                                form_val[: -len(fixed_hless_suffix)]
+                                if fixed_hless_suffix
+                                else form_val
+                            )
+                            stripped_row[fn] = stripped_stem
+                        elif hless_suffix.startswith("'"):
+                            form_with_glottals = recreate_C_glottal_clusters(form_val)
+                            if form_with_glottals.endswith(hless_suffix):
                                 stripped_stem = (
-                                    form_val[: -len(fixed_hless_suffix)]
-                                    if fixed_hless_suffix
-                                    else form_val
+                                    form_with_glottals[: -len(hless_suffix)]
+                                    if hless_suffix
+                                    else form_with_glottals
                                 )
-                                stripped_row[fn] = stripped_stem
-                            elif hless_suffix.startswith("'"):
-                                form_with_glottals = recreate_C_glottal_clusters(
-                                    form_val
+                                stripped_row[fn] = prevent_C_glottal_cluster(
+                                    stripped_stem
                                 )
-                                if form_with_glottals.endswith(hless_suffix):
-                                    stripped_stem = (
-                                        form_with_glottals[: -len(hless_suffix)]
-                                        if hless_suffix
-                                        else form_with_glottals
-                                    )
-                                    stripped_row[fn] = prevent_C_glottal_cluster(
-                                        stripped_stem
-                                    )
 
-                stripped_corpus_data.append(stripped_row)
+            stripped_corpus_data.append(stripped_row)
 
     fieldnames = [
         "corpus_id",
         "definition",
         "class",
-        "strictness",
-        "scope",
         "stem_final_match_present",
         "stem_final_match_imperfective",
         "stem_final_match_perfective",

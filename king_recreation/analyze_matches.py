@@ -33,7 +33,6 @@ def load_json(path: str) -> Any:
 def analyze_matches(classes_path: Optional[str] = None):
     matches_path = "artifacts/data/matches_initial.csv"
     corpus_path = "artifacts/data/corpus.csv"
-    stem_corpus_path = "artifacts/data/derived_roots.csv"
 
     if not os.path.exists(matches_path):
         print(f"Error: {matches_path} not found.")
@@ -47,14 +46,8 @@ def analyze_matches(classes_path: Optional[str] = None):
 
     matches = load_csv(matches_path)
     corpus = load_csv(corpus_path)
-    stem_corpus = load_csv(stem_corpus_path) if os.path.exists(stem_corpus_path) else []
     pattern_registry = PatternRegistry.get_instance()
     pattern_registry.load_from_csv(classes_path)
-
-    stem_corpus_map = {
-        (row["corpus_id"] if "corpus_id" in row else row["definition"]): row
-        for row in stem_corpus
-    }
 
     all_verbs = set(
         row["corpus_id"] if "corpus_id" in row else row["definition"] for row in corpus
@@ -67,19 +60,14 @@ def analyze_matches(classes_path: Optional[str] = None):
         verb = row["definition"]
         corpus_id = row.get("corpus_id", "")
         cls = row["class"]
-        strictness = row["strictness"]
-        scope = row["scope"]
-        key = (corpus_id if corpus_id else verb, cls, strictness)
+        row["scope"] = "ending"
+        key = (
+            corpus_id if corpus_id else verb,
+            cls,
+        )
 
         if key not in filtered_matches:
             filtered_matches[key] = row
-        else:
-            # Upgrade scope if better match found (reconstructs > full > ending)
-            # Ranking: reconstructs=3, full=2, ending=1
-            rank = {"reconstructs": 3, "full": 2, "ending": 1}
-            current_scope = filtered_matches[key]["scope"]
-            if rank.get(scope, 0) > rank.get(current_scope, 0):
-                filtered_matches[key] = row
 
     # Integrate Reconstructs (validated matches)
     validated_matches_path = "artifacts/data/matches_validated.csv"
@@ -89,48 +77,23 @@ def analyze_matches(classes_path: Optional[str] = None):
             verb = row["definition"]
             corpus_id = row.get("corpus_id", "")
             cls = row["class"]
-            strictness = row["strictness"]
-            scope = row["scope"]  # Should be 'reconstructs'
-            key = (corpus_id if corpus_id else verb, cls, strictness)
+            row["scope"] = "reconstructs"
+            key = (corpus_id if corpus_id else verb, cls)
 
             # Insert or upgrade
             filtered_matches[key] = row
-            # If we have a validated match, it implies full match + reconstruction success.
-            # We might need to ensure stem_final_match columns exist if we're overwriting a "matches.csv" row
-            # But the 'matches_validated.csv' usually doesn't have stem_final details.
-            # However, for the purpose of coverage stats (scope), this is sufficient.
-            # If we need stem_final details for near-miss analysis, we might technically lose them if we overwrite completely
-            # but usually a 'reconstructs' match was already a 'full' match in matches.csv, so we just want to promote the scope.
-            # Let's try to preserve other fields if updating an existing key.
-            # Actually, `matches_validated.csv` only has [definition,class,strictness,scope].
-            # If we just overwrite, we lose `stem_final_match_*`.
-            # We should UPDATE the existing entry if present, or create new.
 
-            # Since 'reconstructs' implies it was already found as a match (usually),
-            # let's check if it exists in filtered_matches (from matches.csv)
-            if key in filtered_matches:
-                filtered_matches[key]["scope"] = scope
-            else:
-                # If it wasn't in matches.csv (maybe a manual addition? or custom pipeline?), add it.
-                # We'll validly lack the stem_final columns, but that's okay for coverage counts.
-                filtered_matches[key] = row
-
-    class_counts = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
+    class_counts = defaultdict((lambda: defaultdict(int)))
     for row in filtered_matches.values():
-        class_counts[row["class"].split("[")[0]][row["strictness"]][row["scope"]] += 1
+        class_counts[row["class"].split("[")[0]][row["scope"]] += 1
 
     class_match_data = []
     for macro in pattern_registry.macros:
         class_match_data.append(
             {
                 "class": macro.name,
-                "strict_ending": class_counts[macro.name]["strict"]["ending"],
-                "strict_full": class_counts[macro.name]["strict"]["full"],
-                "strict_reconstructs": class_counts[macro.name]["strict"][
-                    "reconstructs"
-                ],
-                "loose_ending": class_counts[macro.name]["loose"]["ending"],
-                "loose_full": class_counts[macro.name]["loose"]["full"],
+                "ending": class_counts[macro.name]["ending"],
+                "reconstructs": class_counts[macro.name]["reconstructs"],
             }
         )
 
@@ -140,44 +103,27 @@ def analyze_matches(classes_path: Optional[str] = None):
     save_csv(
         os.path.join(output_dir, "class_match_counts.csv"),
         class_match_data,
-        [
-            "class",
-            "strict_ending",
-            "strict_full",
-            "strict_reconstructs",
-            "loose_ending",
-            "loose_full",
-        ],
+        ["class", "ending", "reconstructs"],
     )
 
     # 2. Verb Coverage Summary
     coverage_summary = {}
-    combos = [
-        ("strict", "reconstructs"),
-        ("strict", "full"),
-        ("loose", "full"),
-        ("strict", "ending"),
-        ("loose", "ending"),
-    ]
 
-    for strictness, scope_target in combos:
+    for scope_target in ["reconstructs", "ending"]:
         verb_match_counts = defaultdict(int)
         for key, row in filtered_matches.items():
-            id_val, cls, s = key
-            if s == strictness:
-                # Range matching: scope_target defines the MINIMUM level
-                # reconstructs tier
-                if scope_target == "reconstructs":
-                    if row["scope"] == "reconstructs":
-                        verb_match_counts[id_val] += 1
-                # full tier includes reconstructs
-                elif scope_target == "full":
-                    if row["scope"] in ["full", "reconstructs"]:
-                        verb_match_counts[id_val] += 1
-                # ending tier includes all
-                else:
-                    if row["scope"] in ["ending", "full", "reconstructs"]:
-                        verb_match_counts[id_val] += 1
+            id_val, cls = key
+
+            # Range matching: scope_target defines the MINIMUM level
+            # reconstructs tier
+            if scope_target == "reconstructs":
+                if row["scope"] == "reconstructs":
+                    verb_match_counts[id_val] += 1
+
+            # ending tier includes anything
+            else:
+                if row["scope"] in ["ending", "reconstructs"]:
+                    verb_match_counts[id_val] += 1
 
         matched_verbs = set(verb_match_counts.keys())
         zero = len(all_verbs - matched_verbs)
@@ -189,7 +135,7 @@ def analyze_matches(classes_path: Optional[str] = None):
             elif count > 1:
                 multiple += 1
 
-        coverage_summary[f"{strictness}_{scope_target}"] = {
+        coverage_summary[scope_target] = {
             "0": zero,
             "1": one,
             "2+": multiple,
@@ -213,35 +159,27 @@ def analyze_matches(classes_path: Optional[str] = None):
         "infinitive",
     ]
 
-    for strictness in ["strict", "loose"]:
-        target_set = set()
-        for key, row in filtered_matches.items():
-            verb, cls, s = key
-            # Unmatched here means "no full match" (or better)
-            if s == strictness and row["scope"] in ["full", "reconstructs"]:
-                target_set.add(verb)
+    target_set = set(verb for verb, _ in filtered_matches)
 
-        unmatched = list(all_verbs - target_set)
-        unmatched_data = []
-        for v in unmatched:
-            data = {
-                "corpus_id": v,
-            }
-            if v in verb_forms_map:
-                for field in form_fields:
-                    data[field] = verb_forms_map[v].get(field, "")
-            unmatched_data.append(data)
+    unmatched = list(all_verbs - target_set)
+    unmatched_data = []
+    for v in unmatched:
+        data = {
+            "corpus_id": v,
+        }
+        if v in verb_forms_map:
+            for field in form_fields:
+                data[field] = verb_forms_map[v].get(field, "")
+        unmatched_data.append(data)
 
-        # Sort by reversed perfective string to group by ending, then by verb for stability
-        unmatched_data.sort(
-            key=lambda x: (x.get("perfective", "")[::-1], x["corpus_id"])
-        )
+    # Sort by reversed perfective string to group by ending, then by verb for stability
+    unmatched_data.sort(key=lambda x: (x.get("perfective", "")[::-1], x["corpus_id"]))
 
-        save_csv(
-            os.path.join(output_dir, f"unmatched_verbs_{strictness}.csv"),
-            unmatched_data,
-            ["corpus_id"] + form_fields,
-        )
+    save_csv(
+        os.path.join(output_dir, f"unmatched_verbs.csv"),
+        unmatched_data,
+        ["corpus_id"] + form_fields,
+    )
 
     # Print summary to console
     print("\nVerb Class Coverage Summary:")
@@ -257,50 +195,6 @@ def analyze_matches(classes_path: Optional[str] = None):
         print(f"{key:<20} | {matched:<12} | {pct:>9}%")
     print("")
 
-    # 3. Class Near-Miss Analysis
-    near_miss_data = []
-    forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
-
-    near_miss_groups = defaultdict(list)
-    for row in filtered_matches.values():
-        if row["scope"] == "ending":
-            near_miss_groups[(row["class"], row["strictness"])].append(row)
-
-    for macro in pattern_registry.macros:
-        for s in ["strict", "loose"]:
-            group = near_miss_groups[(macro.name, s)]
-            match_count = len(group)
-            rates = {}
-            for form in forms:
-                if match_count > 0:
-                    col = f"stem_final_match_{form}"
-                    passed = sum(1 for r in group if r[col].lower() == "true")
-                    rate = round(passed / match_count, 3)
-                else:
-                    rate = 0.0
-                rates[f"{form}_rate"] = rate
-
-            data_row = {
-                "class": macro.name,
-                "strictness": s,
-                "match_count": match_count,
-                **rates,
-            }
-            near_miss_data.append(data_row)
-
-    near_miss_data.sort(
-        key=lambda x: (
-            (pattern_registry.key_for_pattern_name(x["class"])),
-            x["strictness"],
-        )
-    )
-
-    save_csv(
-        os.path.join(output_dir, "class_near_misses.csv"),
-        near_miss_data,
-        ["class", "strictness", "match_count"] + [f"{f}_rate" for f in forms],
-    )
-
     print(f"Analysis complete. Artifacts generated in {output_dir}/")
 
     # 4. Root Ambiguity Analysis
@@ -308,29 +202,53 @@ def analyze_matches(classes_path: Optional[str] = None):
     if os.path.exists(reconstructable_path):
         reconstructable_verbs = load_json(reconstructable_path)
 
-        # Group corpus_ids by (h_grade_root, glottal_grade_root)
-        root_groups = defaultdict(set)
+        # fun little check - do any verbs have matching h-grade roots but not glottal-grade roots?
+        glottal_grades_by_h_grade = defaultdict(set)
+        for verb in reconstructable_verbs:
+            h_grade = verb.get("h_grade_root")
+            glottal_grade = verb.get("glottal_grade_root")
+            glottal_grades_by_h_grade[h_grade].add(glottal_grade)
+
+        distinct_non_null_g_grades = {
+            k: v
+            for k, v in glottal_grades_by_h_grade.items()
+            if len([v1 for v1 in v if v1]) > 1
+        }
+
+        print("[INFO]", distinct_non_null_g_grades)
+
+        # Group corpus_ids by h_grade_root then glottal_grade
+        root_groups = defaultdict(lambda: defaultdict(set))
         for verb in reconstructable_verbs:
             h_grade = verb.get("h_grade_root")
             glottal_grade = verb.get("glottal_grade_root")
             corpus_id = verb.get("corpus_id")
 
-            # Handle potential None values for roots if any, though schema suggests strings or null
-            # Convert to tuple for hashing. Treat None as empty string or specific marker if needed.
-            # Based on user request "group by (h_grade, glottal_grade)"
-            key = (h_grade, glottal_grade)
-            root_groups[key].add(corpus_id)
+            root_groups[h_grade][glottal_grade].add(corpus_id)
+
+        # In the case that exactly one glottal grade root is attested
+        # combine verbs with unattested glottal grade into same grouping
+
+        for h_grade in root_groups:
+            if None in root_groups[h_grade] and len(root_groups[h_grade]) == 2:
+                attested_root = next(x for x in root_groups[h_grade] if x is not None)
+                root_groups[h_grade] = {
+                    attested_root: root_groups[h_grade][attested_root].union(
+                        root_groups[h_grade][None]
+                    )
+                }
 
         # Count unique corpus IDs for each root pair and export raw data
         root_ambiguity_data = []
-        for (h_grade, glottal_grade), corpus_ids in root_groups.items():
-            root_ambiguity_data.append(
-                {
-                    "h_grade": h_grade if h_grade is not None else "",
-                    "g_grade": glottal_grade if glottal_grade is not None else "",
-                    "count": len(corpus_ids),
-                }
-            )
+        for h_grade in root_groups:
+            for g_grade, corpus_ids in root_groups[h_grade].items():
+                root_ambiguity_data.append(
+                    {
+                        "h_grade": h_grade if h_grade is not None else "",
+                        "g_grade": g_grade if g_grade is not None else "",
+                        "count": len(corpus_ids),
+                    }
+                )
 
         # Sort for stability: count desc, then h_grade
         root_ambiguity_data.sort(key=lambda x: (-x["count"], x["h_grade"]))

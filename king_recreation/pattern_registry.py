@@ -1,10 +1,13 @@
-from dataclasses import dataclass
 from typing import List, Dict, Optional, Tuple
 import csv
 import os
 import re
 from collections import defaultdict
 from king_recreation.class_patterns import ClassMacro, ExpandedClassPattern
+from king_recreation.phonology_data import (
+    recreate_C_glottal_clusters,
+    possible_alternates,
+)
 
 CLASSES_PATH = "data/classes.csv"
 
@@ -67,6 +70,7 @@ class PatternRegistry:
 
         # Reset maps
         self.lookup_maps = defaultdict(lambda: defaultdict(list))
+        self.lookup_maps_alternated = defaultdict(lambda: defaultdict(list))
         self.valid_ending_lengths = defaultdict(set)
 
         with open(path, "r", encoding="utf-8") as f:
@@ -97,8 +101,12 @@ class PatternRegistry:
             self.lookup_maps[form][literal_suffix].append(pattern)
             self.valid_ending_lengths[form].add(len(literal_suffix))
 
+            for alt in possible_alternates(literal_suffix, fix_clusters=False):
+                self.lookup_maps_alternated[form][alt].append(pattern)
+                self.valid_ending_lengths[form].add(len(alt))
+
     def get_candidates(
-        self, verb_form: str, form_type: str
+        self, verb_form: str, form_type: str, allow_suffix_alternation: bool = False
     ) -> List[ExpandedClassPattern]:
         """
         Returns all patterns that match the ending of the verb_form for the given form_type.
@@ -128,5 +136,11 @@ class PatternRegistry:
             suffix = verb_form[-length:]
             if suffix in self.lookup_maps[form_type]:
                 candidates.extend(self.lookup_maps[form_type][suffix])
+            if allow_suffix_alternation:
+                suffix_alt = recreate_C_glottal_clusters(verb_form)[-length:]
+                if suffix_alt in self.lookup_maps_alternated[form_type]:
+                    candidates.extend(
+                        self.lookup_maps_alternated[form_type][suffix_alt]
+                    )
 
         return candidates
