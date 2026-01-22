@@ -10,19 +10,23 @@ export interface ReconstructableVerb {
   glottal_grade_root: string | null;
   class_name: string;
   corpus_id: number | null;
+  entry_no?: number; // [NEW] Added from JSON
   config: {
     pre: {
       translocutive: boolean;
+      translocutiveImpOnly?: boolean; // [NEW]
       partitive: boolean;
       distributive: boolean;
+      distributiveImpIsFutProg?: boolean; // [NEW]
     };
     pron: {
       set_type: string;
       stem_type: string;
       metathesis_strategy: string;
       use_ka_variant: boolean;
-      use_uwa_for_3rd_set_b: boolean;
+      long_start?: boolean; // [NEW]
       use_aki_for_1st_set_b: boolean;
+      uwa_replaces_v?: boolean; // [NEW]
       use_3rd_person_object: boolean;
     };
   };
@@ -37,6 +41,8 @@ export interface ReconstructableVerb {
 
 export interface ClassDefinition {
   class: string;
+  subclass: string; // [NEW] Added subclass column
+  macro_name?: string; // [NEW] Synthesized macro name
   "stem final": string;
   present: string;
   imperfective: string;
@@ -180,7 +186,24 @@ export async function getClasses(): Promise<ClassDefinition[]> {
     header: true,
     skipEmptyLines: true,
   });
-  return result.data;
+
+  // Post-process to generate macro names
+  return result.data.map((row) => {
+    const macroName = row.subclass ? `${row.class}-${row.subclass}` : row.class;
+    return { ...row, macro_name: macroName };
+  });
+}
+
+// [NEW] Helper to get a lookup map for classes
+export async function getClassLookup(): Promise<Map<string, ClassDefinition>> {
+  const classes = await getClasses();
+  const map = new Map<string, ClassDefinition>();
+  classes.forEach((c) => {
+    if (c.macro_name) {
+      map.set(c.macro_name, c);
+    }
+  });
+  return map;
 }
 
 export async function getDictionaryEntries(): Promise<DictionaryEntry[]> {
@@ -254,7 +277,17 @@ export function resolveClassEndings(
   const baseClassName = match[1];
   const modifiersStr = match[2];
 
-  const classDef = classes.find((c) => c.class === baseClassName);
+  // [UPDATED] Use logic that matched getClassLookup but inline or via passed classes
+  // The passed `classes` array should already have `macro_name` populated if it came from getClasses()
+  const classDef = classes.find(
+    (c) =>
+      c.macro_name === baseClassName ||
+      // Fallback: Check if we can construct the macro name on the fly if it's missing (shouldn't happen with updated getClasses)
+      (c.subclass
+        ? `${c.class}-${c.subclass}` === baseClassName
+        : c.class === baseClassName)
+  );
+
   if (!classDef) return null;
 
   const result: Record<string, string> = { ...classDef };

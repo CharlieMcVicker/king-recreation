@@ -1,6 +1,6 @@
 import {
   getClasses,
-  getInitialMatches,
+  getMatches,
   getNearMisses,
   getCorpus,
   getConsistencyAnalysis,
@@ -29,10 +29,25 @@ export default async function ExplorerPage({
   const params = await searchParams;
   const selectedClass = params.class;
   const classes = await getClasses();
-  const allMatchesData = await getInitialMatches();
+  const allMatchesData = await getMatches(); // [SWITCHED] from getInitialMatches
   const consistencyData = await getConsistencyAnalysis();
   const nearMisses = await getNearMisses();
   const corpus = await getCorpus();
+
+  // Group classes for NavSelect
+  const groupedClasses = classes.reduce((acc: any[], c: any) => {
+    const family = c.class;
+    let group = acc.find((g) => g.group === family);
+    if (!group) {
+      group = { group: family, items: [] };
+      acc.push(group);
+    }
+    group.items.push({
+      label: c.macro_name || c.class,
+      value: c.macro_name || c.class,
+    });
+    return acc;
+  }, []);
 
   const consistencyMap = consistencyData.reduce((acc: any, row: any) => {
     acc[`${row.definition}-${row.assigned_class}`] = row;
@@ -44,7 +59,7 @@ export default async function ExplorerPage({
     return {
       ...m,
       is_consistent: consistency
-        ? consistency.is_consistent.toLowerCase() === "true"
+        ? String(consistency.is_consistent).toLowerCase() === "true"
         : null,
       mismatch_details: consistency ? consistency.mismatch_details : null,
     };
@@ -100,10 +115,7 @@ export default async function ExplorerPage({
               name="class"
               defaultValue={selectedClass || ""}
               placeholder="Select a class..."
-              options={classes.map((c: any) => ({
-                label: c.class,
-                value: c.class,
-              }))}
+              options={groupedClasses}
               className="w-full bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
