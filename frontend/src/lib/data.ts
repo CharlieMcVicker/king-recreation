@@ -128,28 +128,57 @@ export async function getReconstructableVerbs(): Promise<
 
 export async function getRoots(): Promise<RootGroup[]> {
   const verbs = await getReconstructableVerbs();
-  const groups: Map<string, RootGroup> = new Map();
+
+  // 1. Group by h_grade_root -> glottal_grade_root
+  const hGroups: Map<
+    string,
+    Map<string | null, (ReconstructableVerb & { id: number })[]>
+  > = new Map();
 
   verbs.forEach((verb, idx) => {
-    // Primary Grouping: h_grade_root
-    // Secondary Splitting: If multiple glottal_grade_root values exist, they split.
-    // However, the spec says: "If all verbs share the same glottal_grade_root, they are displayed together.
-    // If there are multiple, split into separate sections."
-    // Let's group by BOTH initially to find the unique combinations.
-    const key = `${verb.h_grade_root}|${verb.glottal_grade_root}`;
-    if (!groups.has(key)) {
-      const slug = Buffer.from(key).toString("base64url");
-      groups.set(key, {
-        h_grade_root: verb.h_grade_root,
-        glottal_grade_root: verb.glottal_grade_root,
-        slug,
-        verbs: [],
-      });
+    if (!hGroups.has(verb.h_grade_root)) {
+      hGroups.set(verb.h_grade_root, new Map());
     }
-    groups.get(key)!.verbs.push({ ...verb, id: idx });
+    const gMap = hGroups.get(verb.h_grade_root)!;
+    if (!gMap.has(verb.glottal_grade_root)) {
+      gMap.set(verb.glottal_grade_root, []);
+    }
+    gMap.get(verb.glottal_grade_root)!.push({ ...verb, id: idx });
   });
 
-  return Array.from(groups.values()).sort((a, b) =>
+  const finalGroups: RootGroup[] = [];
+
+  // 2. Apply merging logic: if exactly 2 glottal grades and one is null, merge null into the other
+  for (const [h_grade_root, gMap] of hGroups.entries()) {
+    const glottalGrades = Array.from(gMap.keys());
+    const nullKey = glottalGrades.find((g) => g === null || g === "");
+
+    if (nullKey !== undefined && glottalGrades.length === 2) {
+      const attestedKey = glottalGrades.find((g) => g !== nullKey)!;
+      const mergedVerbs = [...gMap.get(attestedKey)!, ...gMap.get(nullKey)!];
+
+      const key = `${h_grade_root}|${attestedKey}`;
+      finalGroups.push({
+        h_grade_root,
+        glottal_grade_root: attestedKey,
+        slug: Buffer.from(key).toString("base64url"),
+        verbs: mergedVerbs,
+      });
+    } else {
+      // 3. Keep as separate groups
+      for (const [glottal_grade_root, verbs] of gMap.entries()) {
+        const key = `${h_grade_root}|${glottal_grade_root}`;
+        finalGroups.push({
+          h_grade_root,
+          glottal_grade_root,
+          slug: Buffer.from(key).toString("base64url"),
+          verbs,
+        });
+      }
+    }
+  }
+
+  return finalGroups.sort((a, b) =>
     a.h_grade_root.localeCompare(b.h_grade_root)
   );
 }
