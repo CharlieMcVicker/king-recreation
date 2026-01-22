@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Search } from "lucide-react";
-import { ReconstructableVerb } from "@/lib/data";
+import { ReconstructableVerb } from "@/lib/data-shared";
 import { ConfigFlags } from "./ConfigFlags";
 
 interface VerbListProps {
@@ -13,7 +13,9 @@ interface VerbListProps {
 export function VerbList({ verbs }: VerbListProps) {
   const [search, setSearch] = useState("");
 
+  // Map first to preserve original index, then filter
   const filtered = verbs
+    .map((v, i) => ({ ...v, originalIndex: i }))
     .filter((v) => {
       const term = search.toLowerCase();
       const configFlags = [];
@@ -33,10 +35,9 @@ export function VerbList({ verbs }: VerbListProps) {
         configFlags.some((f) => f.includes(term))
       );
     })
-    .map((v, originalIndex) => ({ ...v, originalIndex: verbs.indexOf(v) }))
     .sort((a, b) => (a.h_grade_root || "").localeCompare(b.h_grade_root || ""));
 
-  // Limit display to 50 items for performance if not searching specific thing
+  // Limit display to 100 items for performance if not searching specific thing
   const displayVerbs = filtered.slice(0, 100);
 
   return (

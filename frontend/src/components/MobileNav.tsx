@@ -88,6 +88,14 @@ export default function MobileNav() {
             Comparison Tool
           </Link>
           <Link
+            href="/roots"
+            onClick={toggle}
+            className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+          >
+            <BookA className="w-4 h-4" />
+            Root Dictionary
+          </Link>
+          <Link
             href="/reconstruction"
             onClick={() => setIsOpen(false)}
             className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-emerald-600 dark:text-emerald-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"

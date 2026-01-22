@@ -62,6 +62,13 @@ export default function RootLayout({
                 <GitCompare className="w-4 h-4" />
                 Comparison Tool
               </Link>
+              <Link
+                href="/roots"
+                className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-600 dark:text-zinc-400 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+              >
+                <BookA className="w-4 h-4" />
+                Root Dictionary
+              </Link>
 
               <Link
                 href="/failures"

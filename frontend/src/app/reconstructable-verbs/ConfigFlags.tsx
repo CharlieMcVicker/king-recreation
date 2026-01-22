@@ -1,5 +1,5 @@
 import React from "react";
-import { ReconstructableVerb } from "@/lib/data";
+import { ReconstructableVerb } from "@/lib/data-shared";
 
 interface ConfigFlagsProps {
   config: ReconstructableVerb["config"];

@@ -1,70 +1,17 @@
 import fs from "fs";
 import path from "path";
 import Papa from "papaparse";
+import {
+  ReconstructableVerb,
+  ClassDefinition,
+  DictionaryEntry,
+  RootGroup,
+  normalize,
+  resolveClassEndings,
+} from "./data-shared";
 
-// Define types based on the JSON and CSV structures
-
-export interface ReconstructableVerb {
-  definition: string;
-  h_grade_root: string;
-  glottal_grade_root: string | null;
-  class_name: string;
-  corpus_id: number | null;
-  entry_no?: number; // [NEW] Added from JSON
-  config: {
-    pre: {
-      translocutive: boolean;
-      translocutiveImpOnly?: boolean; // [NEW]
-      partitive: boolean;
-      distributive: boolean;
-      distributiveImpIsFutProg?: boolean; // [NEW]
-    };
-    pron: {
-      set_type: string;
-      stem_type: string;
-      metathesis_strategy: string;
-      use_ka_variant: boolean;
-      long_start?: boolean; // [NEW]
-      use_aki_for_1st_set_b: boolean;
-      uwa_replaces_v?: boolean; // [NEW]
-      use_3rd_person_object: boolean;
-    };
-  };
-  original_stems: {
-    present: string;
-    imperfective: string;
-    perfective: string;
-    imperative: string;
-    infinitive: string;
-  };
-}
-
-export interface ClassDefinition {
-  class: string;
-  subclass: string; // [NEW] Added subclass column
-  macro_name?: string; // [NEW] Synthesized macro name
-  "stem final": string;
-  present: string;
-  imperfective: string;
-  perfective: string;
-  imperative: string;
-  infinitive: string;
-  [key: string]: any; // Allow indexing
-}
-
-export interface DictionaryEntry {
-  "Entry No.": string;
-  Headword: string;
-  "No.": string;
-  Syllabary: string;
-  Practical: string;
-  "Part of speech": string;
-  "Translation 1A": string;
-  "Translation 1B": string;
-  "Translation 1C": string;
-  "Translation 1D": string;
-  // Add other fields as needed, these are the most critical
-}
+// Re-export shared types/functions if needed by other server components
+export * from "./data-shared";
 
 const DATA_DIR = path.join(process.cwd(), "../data");
 const ARTIFACTS_DATA_DIR = path.join(process.cwd(), "../artifacts/data");
@@ -179,6 +126,39 @@ export async function getReconstructableVerbs(): Promise<
   return JSON.parse(fileContent);
 }
 
+export async function getRoots(): Promise<RootGroup[]> {
+  const verbs = await getReconstructableVerbs();
+  const groups: Map<string, RootGroup> = new Map();
+
+  verbs.forEach((verb, idx) => {
+    // Primary Grouping: h_grade_root
+    // Secondary Splitting: If multiple glottal_grade_root values exist, they split.
+    // However, the spec says: "If all verbs share the same glottal_grade_root, they are displayed together.
+    // If there are multiple, split into separate sections."
+    // Let's group by BOTH initially to find the unique combinations.
+    const key = `${verb.h_grade_root}|${verb.glottal_grade_root}`;
+    if (!groups.has(key)) {
+      const slug = Buffer.from(key).toString("base64url");
+      groups.set(key, {
+        h_grade_root: verb.h_grade_root,
+        glottal_grade_root: verb.glottal_grade_root,
+        slug,
+        verbs: [],
+      });
+    }
+    groups.get(key)!.verbs.push({ ...verb, id: idx });
+  });
+
+  return Array.from(groups.values()).sort((a, b) =>
+    a.h_grade_root.localeCompare(b.h_grade_root)
+  );
+}
+
+export async function getRootBySlug(slug: string): Promise<RootGroup | null> {
+  const roots = await getRoots();
+  return roots.find((r) => r.slug === slug) || null;
+}
+
 export async function getClasses(): Promise<ClassDefinition[]> {
   const filePath = path.join(DATA_DIR, "classes.csv");
   const fileContent = fs.readFileSync(filePath, "utf-8");
@@ -261,85 +241,8 @@ export async function readCsv(dir: string, filename: string): Promise<any[]> {
   return result.data;
 }
 
-function normalize(s: string) {
-  if (!s) return "";
-  return s.trim().toLowerCase().replace(/['’]/g, "'");
-}
-
-export function resolveClassEndings(
-  classNameFull: string,
-  classes: ClassDefinition[]
-) {
-  // Parse "go[perf2-inf2]" -> base: "go", modifiers: { perfective: 2, infinitive: 2 }
-  const match = classNameFull.match(/^([^\[]+)(?:\[(.*)\])?$/);
-  if (!match) return null;
-
-  const baseClassName = match[1];
-  const modifiersStr = match[2];
-
-  // [UPDATED] Use logic that matched getClassLookup but inline or via passed classes
-  // The passed `classes` array should already have `macro_name` populated if it came from getClasses()
-  const classDef = classes.find(
-    (c) =>
-      c.macro_name === baseClassName ||
-      // Fallback: Check if we can construct the macro name on the fly if it's missing (shouldn't happen with updated getClasses)
-      (c.subclass
-        ? `${c.class}-${c.subclass}` === baseClassName
-        : c.class === baseClassName)
-  );
-
-  if (!classDef) return null;
-
-  const result: Record<string, string> = { ...classDef };
-
-  // Default selection (1st option) if not specified
-  // The CSV fields like 'perfective' contain "opt1;opt2"
-  // We need to resolve the specific option.
-
-  const columns = [
-    "present",
-    "imperfective",
-    "perfective",
-    "imperative",
-    "infinitive",
-  ];
-
-  // Map of modifier code to column index (1-based index of option)
-  const overrides: Record<string, number> = {};
-
-  if (modifiersStr) {
-    // modifiers like "perf2-inf2"
-    const mods = modifiersStr.split("-");
-    mods.forEach((mod) => {
-      if (mod.startsWith("perf"))
-        overrides["perfective"] = parseInt(mod.replace("perf", ""), 10);
-      if (mod.startsWith("inf"))
-        overrides["infinitive"] = parseInt(mod.replace("inf", ""), 10);
-      if (mod.startsWith("imp"))
-        overrides["imperative"] = parseInt(mod.replace("imp", ""), 10);
-      // Add others if they exist (pres/impf usually don't have alts but could)
-    });
-  }
-
-  columns.forEach((col) => {
-    const options = (classDef[col as keyof ClassDefinition] || "").split(";");
-    const index = (overrides[col] || 1) - 1; // 0-based
-    // Handle the asterisk or other simplified markers if present?
-    // CSV has things like ";*". "sv;invs;es".
-    // Let's just pick the option at index.
-    if (index >= 0 && index < options.length) {
-      result[col] = options[index];
-    } else {
-      result[col] = options[0]; // Fallback
-    }
-  });
-
-  return result;
-}
-
 function findCorpusEntries(definition: string, dictionary: DictionaryEntry[]) {
   // 1. Find the entry that matches definition
-  // Trying exact match on Translation 1A/B...
   // Clean definition (trim, lowercase?)
 
   const target = normalize(definition);
