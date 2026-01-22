@@ -5,6 +5,7 @@ from king_recreation.classify_verbs import classify_verbs
 from king_recreation.analyze_matches import analyze_matches
 from king_recreation.visualize_analysis import run_all_visualizations
 from king_recreation.reconstruct_from_roots import main as reconstruct_from_roots
+from king_recreation.analyze_connections import analyze_connections
 
 
 def main():
@@ -26,10 +27,17 @@ def main():
     print("\n[4/6] Reconstructing from Roots...")
     reconstruct_from_roots(args.classes)
 
-    print("\n[5/6] Analyzing Matches...")
+    print("\n[5/7] Analyzing Root Connections...")
+    analyze_connections(
+        "artifacts/data/reconstructable_verbs.json",
+        "artifacts/data/root_connections.json",
+        args.classes,
+    )
+
+    print("\n[6/7] Analyzing Matches...")
     analyze_matches(args.classes)
 
-    print("\n[6/6] Visualizing Analysis...")
+    print("\n[7/7] Visualizing Analysis...")
     run_all_visualizations()
 
     print("\nPipeline Complete!")
