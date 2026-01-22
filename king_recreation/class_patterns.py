@@ -9,6 +9,7 @@ class ExpandedClassPattern:
     Represents a single, fully resolved pattern (no lists).
     """
 
+    parent_name: str
     name: str
     present: str
     imperfective: str
@@ -40,6 +41,7 @@ class ClassMacro:
     Represents a raw row from the CSV where fields can contain multiple options (semicolon-separated).
     """
 
+    parent_name: str
     name: str
     present: List[str]
     imperfective: List[str]
@@ -50,13 +52,19 @@ class ClassMacro:
 
     @staticmethod
     def from_row(row: Dict[str, str]) -> "ClassMacro":
-        name = row.get("class", "")
+        parent_name = row.get("class", "")
+        subname = row.get("subclass", "")
+        if subname:
+            name = f"{parent_name}-{subname}"
+        else:
+            name = parent_name
 
         def parse_field(field_name):
             val = row.get(field_name, "")
             return [v.strip() for v in val.split(";")]
 
         return ClassMacro(
+            parent_name=parent_name,
             name=name,
             present=parse_field("present"),
             imperfective=parse_field("imperfective"),
@@ -96,6 +104,7 @@ class ClassMacro:
             # combo is a list of (index, value) tuples corresponding to form_fields order
 
             expanded_data = {
+                "parent_name": self.parent_name,
                 "name": self.name,
                 "_original_data": self._original_data,
             }

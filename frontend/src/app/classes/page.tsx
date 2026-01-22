@@ -47,7 +47,7 @@ export default async function ClassesPage() {
 
   // Sort verbs within each class by definition for consistent display
   Object.keys(verbsByClass).forEach((key) => {
-    verbsByClass[key].sort((a, b) => a.definition.localeCompare(b.definition));
+    verbsByClass[key].sort((a, b) => a.subvariant.localeCompare(b.subvariant));
   });
 
   return <ClassBrowser data={verbsByClass} />;

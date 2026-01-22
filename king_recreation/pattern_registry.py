@@ -18,6 +18,7 @@ class PatternRegistry:
     def __init__(self):
         self.macros: List[ClassMacro] = []
         self.macros_order = {}
+        self.macros_by_parent = defaultdict(list)
         self.expanded_patterns: List[ExpandedClassPattern] = []
         # Map[form_type, Map[ending_string, List[ExpandedClassPattern]]]
         self.lookup_maps: Dict[str, Dict[str, List[ExpandedClassPattern]]] = (
@@ -66,6 +67,7 @@ class PatternRegistry:
 
         self.macros = []
         self.macros_order = {}
+        self.macros_by_parent = defaultdict(list)
         self.expanded_patterns = []
 
         # Reset maps
@@ -80,6 +82,7 @@ class PatternRegistry:
                 macro = ClassMacro.from_row(row)
                 self.macros.append(macro)
                 self.macros_order[macro.name] = i
+                self.macros_by_parent[macro.parent_name].append(macro)
 
                 # Expand and Index
                 expanded = macro.expand()

@@ -3,7 +3,7 @@
         "definition": "it\u2019s bouncing",
         "h_grade_root": "atat",
         "glottal_grade_root": "atat",
-        "class_name": "go-alt",
+        "class_name": "go-in",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -37,7 +37,7 @@
         "definition": "he/she is limping",
         "h_grade_root": "atat",
         "glottal_grade_root": "atat",
-        "class_name": "go-alt[perf2]",
+        "class_name": "go-in[perf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -105,7 +105,7 @@
         "definition": "he/she is putting on a belt",
         "h_grade_root": "atatlo",
         "glottal_grade_root": "atatlo",
-        "class_name": "h-ih-l",
+        "class_name": "hih-lh",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -680,6 +680,40 @@
         }
     },
     {
+        "definition": "he/she is ordering it",
+        "h_grade_root": "atanv",
+        "glottal_grade_root": "atanv",
+        "class_name": "sk-s-la",
+        "config": {
+            "pre": {
+                "translocutive": false,
+                "translocutiveImpOnly": false,
+                "partitive": false,
+                "distributive": false,
+                "distributiveImpIsFutProg": false
+            },
+            "pron": {
+                "set_type": "a",
+                "stem_type": "vowel_a",
+                "metathesis_strategy": "none",
+                "use_ka_variant": false,
+                "long_start": false,
+                "use_aki_for_1st_set_b": false,
+                "uwa_replaces_v": false,
+                "use_3rd_person_object": false
+            }
+        },
+        "corpus_id": 46,
+        "entry_no": 50,
+        "original_stems": {
+            "present": "atanv",
+            "imperfective": "atanv",
+            "perfective": "atanv",
+            "imperative": "atanv",
+            "infinitive": "atanv"
+        }
+    },
+    {
         "definition": "he/she is cooking a meal",
         "h_grade_root": "atahstay",
         "glottal_grade_root": "atahstay",
@@ -847,40 +881,6 @@
             "perfective": "t",
             "imperative": "t",
             "infinitive": "t"
-        }
-    },
-    {
-        "definition": "he/she is learning",
-        "h_grade_root": "atelhohkwa",
-        "glottal_grade_root": "atelohkwa",
-        "class_name": "glottal-sk[perf2]",
-        "config": {
-            "pre": {
-                "translocutive": false,
-                "translocutiveImpOnly": false,
-                "partitive": false,
-                "distributive": false,
-                "distributiveImpIsFutProg": false
-            },
-            "pron": {
-                "set_type": "a",
-                "stem_type": "vowel_a",
-                "metathesis_strategy": "none",
-                "use_ka_variant": false,
-                "long_start": false,
-                "use_aki_for_1st_set_b": false,
-                "uwa_replaces_v": false,
-                "use_3rd_person_object": false
-            }
-        },
-        "corpus_id": 60,
-        "entry_no": 64,
-        "original_stems": {
-            "present": "atelhohkwa",
-            "imperfective": "atelhohkwa",
-            "perfective": "atelhohkwa",
-            "imperative": "atelhohkw",
-            "infinitive": "atelhohkwa"
         }
     },
     {
@@ -1055,9 +1055,9 @@
     },
     {
         "definition": "he/she is laying it down",
-        "h_grade_root": "ti",
-        "glottal_grade_root": "ti",
-        "class_name": "glottal-sk",
+        "h_grade_root": "",
+        "glottal_grade_root": "",
+        "class_name": "long-no-a",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -1080,11 +1080,11 @@
         "corpus_id": 72,
         "entry_no": 76,
         "original_stems": {
-            "present": "ti",
-            "imperfective": "ti",
-            "perfective": "t",
-            "imperative": "t",
-            "infinitive": "ti"
+            "present": "",
+            "imperfective": "",
+            "perfective": "",
+            "imperative": "",
+            "infinitive": ""
         }
     },
     {
@@ -1159,7 +1159,7 @@
         "definition": "it\u2019s scattering",
         "h_grade_root": "tikaleyo",
         "glottal_grade_root": null,
-        "class_name": "become[inf3]",
+        "class_name": "become-ki[inf3]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -1227,7 +1227,7 @@
         "definition": "he/she is saying it",
         "h_grade_root": "at",
         "glottal_grade_root": "at",
-        "class_name": "ih-vnh-a",
+        "class_name": "vnh-ih-a",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -1327,9 +1327,9 @@
     },
     {
         "definition": "he/she is leaving it behind",
-        "h_grade_root": "tihsiya",
-        "glottal_grade_root": "tihsiya",
-        "class_name": "glottal-sk",
+        "h_grade_root": "tihs",
+        "glottal_grade_root": "tihs",
+        "class_name": "leaving",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -1352,11 +1352,11 @@
         "corpus_id": 80,
         "entry_no": 84,
         "original_stems": {
-            "present": "tihsiya",
-            "imperfective": "tihsiya",
-            "perfective": "tihsiy",
-            "imperative": "tihsiy",
-            "infinitive": "tihsiya"
+            "present": "tihs",
+            "imperfective": "tihs",
+            "perfective": "tihs",
+            "imperative": "tihs",
+            "infinitive": "tihs"
         }
     },
     {
@@ -1395,9 +1395,9 @@
     },
     {
         "definition": "he/she is scratching",
-        "h_grade_root": "atlak",
-        "glottal_grade_root": "atlak",
-        "class_name": "ohsk",
+        "h_grade_root": "atlako",
+        "glottal_grade_root": "atlako",
+        "class_name": "sk-s-la",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -1420,11 +1420,11 @@
         "corpus_id": 85,
         "entry_no": 89,
         "original_stems": {
-            "present": "atlak",
-            "imperfective": "atlak",
-            "perfective": "atlak",
-            "imperative": "atlak",
-            "infinitive": "atlak"
+            "present": "atlako",
+            "imperfective": "atlako",
+            "perfective": "atlako",
+            "imperative": "atlako",
+            "infinitive": "atlako"
         }
     },
     {
@@ -1499,7 +1499,7 @@
         "definition": "it\u2019s pouring into a container",
         "h_grade_root": "tli",
         "glottal_grade_root": null,
-        "class_name": "become[inf3]",
+        "class_name": "become-ki[inf3]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -1601,7 +1601,7 @@
         "definition": "he/she is crying",
         "h_grade_root": "atloy",
         "glottal_grade_root": "atloy",
-        "class_name": "h-ih-l-ka",
+        "class_name": "hih-hil",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -1669,7 +1669,7 @@
         "definition": "he/she is acting silly",
         "h_grade_root": "atvnel",
         "glottal_grade_root": "atvnel",
-        "class_name": "ih-vnh-a",
+        "class_name": "vnh-ih-a",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -1731,40 +1731,6 @@
             "perfective": "atvnv'ihst",
             "imperative": "atvnv'ihst",
             "infinitive": "atvnv'ihst"
-        }
-    },
-    {
-        "definition": "he/she is breaking it",
-        "h_grade_root": "kal",
-        "glottal_grade_root": "kal",
-        "class_name": "sk-s-hst[imp5]",
-        "config": {
-            "pre": {
-                "translocutive": false,
-                "translocutiveImpOnly": false,
-                "partitive": false,
-                "distributive": false,
-                "distributiveImpIsFutProg": false
-            },
-            "pron": {
-                "set_type": "a",
-                "stem_type": "con",
-                "metathesis_strategy": "none",
-                "use_ka_variant": false,
-                "long_start": false,
-                "use_aki_for_1st_set_b": false,
-                "uwa_replaces_v": false,
-                "use_3rd_person_object": true
-            }
-        },
-        "corpus_id": 113,
-        "entry_no": 117,
-        "original_stems": {
-            "present": "kal",
-            "imperfective": "kal",
-            "perfective": "kal",
-            "imperative": "kal",
-            "infinitive": "kal"
         }
     },
     {
@@ -1941,7 +1907,7 @@
         "definition": "he/she is in agony",
         "h_grade_root": "kilhiyo",
         "glottal_grade_root": "kiliyo",
-        "class_name": "become",
+        "class_name": "become-ki",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -2381,9 +2347,9 @@
     },
     {
         "definition": "he/she is leaving it behind",
-        "h_grade_root": "hiya",
-        "glottal_grade_root": "'iya",
-        "class_name": "glottal-sk",
+        "h_grade_root": "h",
+        "glottal_grade_root": "'",
+        "class_name": "leaving",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -2406,11 +2372,11 @@
         "corpus_id": 165,
         "entry_no": 171,
         "original_stems": {
-            "present": "hiya",
-            "imperfective": "hiya",
-            "perfective": "hiy",
-            "imperative": "hiy",
-            "infinitive": "hiya"
+            "present": "h",
+            "imperfective": "h",
+            "perfective": "h",
+            "imperative": "h",
+            "infinitive": "h"
         }
     },
     {
@@ -2723,7 +2689,7 @@
         "definition": "it\u2019s shattering",
         "h_grade_root": "lhkhot",
         "glottal_grade_root": null,
-        "class_name": "vsk-vnh",
+        "class_name": "vnh-vsk",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -2995,7 +2961,7 @@
         "definition": "he/she is wrestling",
         "h_grade_root": "anhe",
         "glottal_grade_root": "anhe",
-        "class_name": "h-ih-l",
+        "class_name": "hih-lh",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -3197,9 +3163,9 @@
     },
     {
         "definition": "he/she is putting it in liquid",
-        "h_grade_root": "huti",
-        "glottal_grade_root": "'uti",
-        "class_name": "glottal-sk",
+        "h_grade_root": "hu",
+        "glottal_grade_root": "'u",
+        "class_name": "long-no-a",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -3222,18 +3188,18 @@
         "corpus_id": 200,
         "entry_no": 206,
         "original_stems": {
-            "present": "huti",
-            "imperfective": "huti",
-            "perfective": "hut",
-            "imperative": "hut",
-            "infinitive": "huti"
+            "present": "hu",
+            "imperfective": "hu",
+            "perfective": "hu",
+            "imperative": "hu",
+            "infinitive": "hu"
         }
     },
     {
         "definition": "he/she is hitting him/her on the mouth",
         "h_grade_root": "hulvn",
         "glottal_grade_root": "'ulvn",
-        "class_name": "ih-l-ika",
+        "class_name": "ih-l",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -3267,7 +3233,7 @@
         "definition": "he/she is moving it from one place to another",
         "h_grade_root": "h",
         "glottal_grade_root": "'",
-        "class_name": "change",
+        "class_name": "v-vhs",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -3571,9 +3537,9 @@
     },
     {
         "definition": "he/she is imitating him/her",
-        "h_grade_root": "yhel",
-        "glottal_grade_root": "yel",
-        "class_name": "i-is",
+        "h_grade_root": "yheli",
+        "glottal_grade_root": "yeli",
+        "class_name": "glottal-sk[perf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -3596,11 +3562,11 @@
         "corpus_id": 220,
         "entry_no": 226,
         "original_stems": {
-            "present": "yhel",
-            "imperfective": "yhel",
-            "perfective": "yhel",
+            "present": "yheli",
+            "imperfective": "yheli",
+            "perfective": "yheli",
             "imperative": "yel",
-            "infinitive": "yhel"
+            "infinitive": "yheli"
         }
     },
     {
@@ -3741,9 +3707,9 @@
     },
     {
         "definition": "he/she is capturing him/her",
-        "h_grade_root": "yhvkhiti",
-        "glottal_grade_root": "yvkhiti",
-        "class_name": "glottal-sk",
+        "h_grade_root": "yhvkhi",
+        "glottal_grade_root": "yvkhi",
+        "class_name": "long-no-a",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -3766,11 +3732,11 @@
         "corpus_id": 232,
         "entry_no": 238,
         "original_stems": {
-            "present": "yhvkhiti",
-            "imperfective": "yhvkhiti",
-            "perfective": "yhvkhit",
-            "imperative": "yvkhit",
-            "infinitive": "yhvkhiti"
+            "present": "yhvkhi",
+            "imperfective": "yhvkhi",
+            "perfective": "yhvkhi",
+            "imperative": "yvkhi",
+            "infinitive": "yhvkhi"
         }
     },
     {
@@ -3879,7 +3845,7 @@
         "definition": "he/she is dressing up",
         "h_grade_root": "atsan",
         "glottal_grade_root": "atsan",
-        "class_name": "vsk-vnh[inf2]",
+        "class_name": "vnh-vsk[inf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -3913,7 +3879,7 @@
         "definition": "he/she is acting like him/her",
         "h_grade_root": "atsel",
         "glottal_grade_root": "atsel",
-        "class_name": "vsk-vnh",
+        "class_name": "vnh-vsk",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -3944,44 +3910,10 @@
         }
     },
     {
-        "definition": "he/she is spilling it",
-        "h_grade_root": "atsewi",
-        "glottal_grade_root": "atsewi",
-        "class_name": "glottal-sk[inf2]",
-        "config": {
-            "pre": {
-                "translocutive": false,
-                "translocutiveImpOnly": false,
-                "partitive": false,
-                "distributive": false,
-                "distributiveImpIsFutProg": false
-            },
-            "pron": {
-                "set_type": "a",
-                "stem_type": "vowel_a",
-                "metathesis_strategy": "none",
-                "use_ka_variant": false,
-                "long_start": false,
-                "use_aki_for_1st_set_b": false,
-                "uwa_replaces_v": false,
-                "use_3rd_person_object": false
-            }
-        },
-        "corpus_id": 244,
-        "entry_no": 250,
-        "original_stems": {
-            "present": "atsewi",
-            "imperfective": "atsewi",
-            "perfective": "atsew",
-            "imperative": "atsew",
-            "infinitive": "atsew"
-        }
-    },
-    {
         "definition": "it\u2019s blooming",
         "h_grade_root": "tsil",
         "glottal_grade_root": null,
-        "class_name": "vsk-vnh",
+        "class_name": "vnh-vsk",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -4321,7 +4253,7 @@
         "definition": "he/she is turning back",
         "h_grade_root": "akhthah",
         "glottal_grade_root": "akathah",
-        "class_name": "change",
+        "class_name": "v-vhs",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -4763,7 +4695,7 @@
         "definition": "he/she is taking a step",
         "h_grade_root": "alahsk",
         "glottal_grade_root": "alahsk",
-        "class_name": "change",
+        "class_name": "v-vhs",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -5001,7 +4933,7 @@
         "definition": "he/she is happy",
         "h_grade_root": "aliheli",
         "glottal_grade_root": "ali'eli",
-        "class_name": "become",
+        "class_name": "become-ki",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -5033,9 +4965,9 @@
     },
     {
         "definition": "he/she is exchanging it",
-        "h_grade_root": "ali'iti",
-        "glottal_grade_root": "ali'iti",
-        "class_name": "glottal-sk",
+        "h_grade_root": "ali'i",
+        "glottal_grade_root": "ali'i",
+        "class_name": "long-no-a",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -5058,11 +4990,11 @@
         "corpus_id": 317,
         "entry_no": 324,
         "original_stems": {
-            "present": "ali'iti",
-            "imperfective": "ali'iti",
-            "perfective": "ali'it",
-            "imperative": "ali'it",
-            "infinitive": "ali'iti"
+            "present": "ali'i",
+            "imperfective": "ali'i",
+            "perfective": "ali'i",
+            "imperative": "ali'i",
+            "infinitive": "ali'i"
         }
     },
     {
@@ -5443,7 +5375,7 @@
         "definition": "he/she is shaking his/her head",
         "h_grade_root": "alhstvn",
         "glottal_grade_root": "alihstvn",
-        "class_name": "h-ih-l-ka[inf2]",
+        "class_name": "hih-hil[inf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -5545,7 +5477,7 @@
         "definition": "he/she is nodding his/her head",
         "h_grade_root": "alhsku",
         "glottal_grade_root": "alihsku",
-        "class_name": "sk-yh",
+        "class_name": "sk-h-yh",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -5987,7 +5919,7 @@
         "definition": "it\u2019s becoming crisp",
         "h_grade_root": "hstakayv",
         "glottal_grade_root": null,
-        "class_name": "h-ih-l",
+        "class_name": "hih-lh",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -6395,7 +6327,7 @@
         "definition": "he/she is reprimanding him/her",
         "h_grade_root": "hska",
         "glottal_grade_root": "hska",
-        "class_name": "become[inf3]",
+        "class_name": "become-ki[inf3]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -6429,7 +6361,7 @@
         "definition": "he/she is committing a crime",
         "h_grade_root": "hskanv",
         "glottal_grade_root": "hskanv",
-        "class_name": "become[inf3]",
+        "class_name": "become-ki[inf3]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -6497,7 +6429,7 @@
         "definition": "he/she is mourning for him/her",
         "h_grade_root": "hskon",
         "glottal_grade_root": "hskon",
-        "class_name": "h-ih-l-ka",
+        "class_name": "hih-hil",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -6565,7 +6497,7 @@
         "definition": "it\u2019s fading",
         "h_grade_root": "hskolv",
         "glottal_grade_root": null,
-        "class_name": "become[inf3]",
+        "class_name": "become-ki[inf3]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -6597,9 +6529,9 @@
     },
     {
         "definition": "he/she is digging it",
-        "h_grade_root": "ahsk",
-        "glottal_grade_root": "ahsk",
-        "class_name": "ohsk",
+        "h_grade_root": "ahsko",
+        "glottal_grade_root": "ahsko",
+        "class_name": "sk-s-la",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -6622,11 +6554,11 @@
         "corpus_id": 417,
         "entry_no": 424,
         "original_stems": {
-            "present": "ahsk",
-            "imperfective": "ahsk",
-            "perfective": "ahsk",
-            "imperative": "ahsk",
-            "infinitive": "ahsk"
+            "present": "ahsko",
+            "imperfective": "ahsko",
+            "perfective": "ahsko",
+            "imperative": "ahsko",
+            "infinitive": "ahsko"
         }
     },
     {
@@ -6701,7 +6633,7 @@
         "definition": "it\u2019s getting shorter",
         "h_grade_root": "hskwalo",
         "glottal_grade_root": "hskwalo",
-        "class_name": "become[inf3]",
+        "class_name": "become-ki[inf3]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -6769,7 +6701,7 @@
         "definition": "he/she is hitting him/her on the head with it",
         "h_grade_root": "hskwalvn",
         "glottal_grade_root": "hskwalvn",
-        "class_name": "ih-l-ika",
+        "class_name": "ih-l",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -6837,7 +6769,7 @@
         "definition": "he/she is hitting him/her on the abdomen with it",
         "h_grade_root": "hskwohalvn",
         "glottal_grade_root": "hskwohalvn",
-        "class_name": "ih-l-ika",
+        "class_name": "ih-l",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -6905,7 +6837,7 @@
         "definition": "he/she is slapping him/her",
         "h_grade_root": "ahsihthvn",
         "glottal_grade_root": "ahsihthvn",
-        "class_name": "ih-l-ika",
+        "class_name": "ih-l",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -7109,7 +7041,7 @@
         "definition": "he/she is wounding him/her",
         "h_grade_root": "hson",
         "glottal_grade_root": "hson",
-        "class_name": "vsk-vnh[inf4]",
+        "class_name": "vnh-vsk[inf4]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -7313,7 +7245,7 @@
         "definition": "he/she is quitting",
         "h_grade_root": "hsuliko",
         "glottal_grade_root": "hsuliko",
-        "class_name": "become[imp2]",
+        "class_name": "become-'i",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -7449,7 +7381,7 @@
         "definition": "it smells",
         "h_grade_root": "hsv",
         "glottal_grade_root": "hsv",
-        "class_name": "become",
+        "class_name": "become-ki",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -7483,7 +7415,7 @@
         "definition": "he/she is touching him/her",
         "h_grade_root": "ahsvn",
         "glottal_grade_root": "ahsvn",
-        "class_name": "h-ih-l-ka",
+        "class_name": "hih-hil",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -7687,7 +7619,7 @@
         "definition": "he/she is kissing him/her",
         "h_grade_root": "thaweto",
         "glottal_grade_root": "taweto",
-        "class_name": "'vsk",
+        "class_name": "vsk-post-v",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -7721,7 +7653,7 @@
         "definition": "he/she is asking for it",
         "h_grade_root": "thayo",
         "glottal_grade_root": "thayo",
-        "class_name": "h-ih-l[imp2]",
+        "class_name": "hih-lh[imp2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -7823,7 +7755,7 @@
         "definition": "he/she is arguing",
         "h_grade_root": "athiyo",
         "glottal_grade_root": "a'tiyo",
-        "class_name": "h-ih-l",
+        "class_name": "hih-lh",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -7855,9 +7787,9 @@
     },
     {
         "definition": "he/she is racing",
-        "h_grade_root": "athohkiya",
-        "glottal_grade_root": "athohkiya",
-        "class_name": "glottal-sk",
+        "h_grade_root": "athohk",
+        "glottal_grade_root": "athohk",
+        "class_name": "leaving",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -7880,11 +7812,11 @@
         "corpus_id": 483,
         "entry_no": 490,
         "original_stems": {
-            "present": "athohkiya",
-            "imperfective": "athohkiya",
-            "perfective": "athohkiy",
-            "imperative": "athohkiy",
-            "infinitive": "athohkiya"
+            "present": "athohk",
+            "imperfective": "athohk",
+            "perfective": "athohk",
+            "imperative": "athohk",
+            "infinitive": "athohk"
         }
     },
     {
@@ -7925,7 +7857,7 @@
         "definition": "he/she is borrowing him/her",
         "h_grade_root": "athol",
         "glottal_grade_root": "athol",
-        "class_name": "sk-s-hihst",
+        "class_name": "sk-s-a-hihst",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -8027,7 +7959,7 @@
         "definition": "he/she is lying",
         "h_grade_root": "atsko",
         "glottal_grade_root": "atsihsko",
-        "class_name": "'vsk",
+        "class_name": "vsk-post-v",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -8333,7 +8265,7 @@
         "definition": "he/she is distributing it",
         "h_grade_root": "yatho",
         "glottal_grade_root": "yatho",
-        "class_name": "h-ih-l[imp3-inf2]",
+        "class_name": "hih-lh[imp3-inf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -8367,7 +8299,7 @@
         "definition": "he/she is waking up",
         "h_grade_root": "ye",
         "glottal_grade_root": "ye",
-        "class_name": "become[inf2]",
+        "class_name": "become-ki[inf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -8503,7 +8435,7 @@
         "definition": "it\u2019s breaking",
         "h_grade_root": "yo",
         "glottal_grade_root": "yo",
-        "class_name": "become[inf3]",
+        "class_name": "become-ki[inf3]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -8537,7 +8469,7 @@
         "definition": "he/she is shooting him/her",
         "h_grade_root": "yo",
         "glottal_grade_root": "yo",
-        "class_name": "h-ih-l[imp2]",
+        "class_name": "hih-lh[imp2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -8605,7 +8537,7 @@
         "definition": "he/she is greeting him/her",
         "h_grade_root": "yol",
         "glottal_grade_root": "yol",
-        "class_name": "ih-l-ika",
+        "class_name": "ih-l",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -8707,7 +8639,7 @@
         "definition": "he/she is entering it",
         "h_grade_root": "yv",
         "glottal_grade_root": "yv",
-        "class_name": "h-ih-l[imp2]",
+        "class_name": "hih-lh[imp2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -8877,7 +8809,7 @@
         "definition": "he/she is accepting him/her",
         "h_grade_root": "atanilv",
         "glottal_grade_root": "atanilv",
-        "class_name": "become",
+        "class_name": "become-ki",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -9013,7 +8945,7 @@
         "definition": "he/she is weeping",
         "h_grade_root": "atloy",
         "glottal_grade_root": "atloy",
-        "class_name": "h-ih-l-ka",
+        "class_name": "hih-hil",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -9183,7 +9115,7 @@
         "definition": "he/she is jumping",
         "h_grade_root": "alhthat",
         "glottal_grade_root": "alithat",
-        "class_name": "go-alt",
+        "class_name": "go-in",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -9387,7 +9319,7 @@
         "definition": "he/she is tying it",
         "h_grade_root": "khane",
         "glottal_grade_root": "kane",
-        "class_name": "h-ih-l",
+        "class_name": "hih-lh",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -9489,7 +9421,7 @@
         "definition": "he/she is becoming blind",
         "h_grade_root": "khewa",
         "glottal_grade_root": "'kewa",
-        "class_name": "become[inf2]",
+        "class_name": "become-ki[inf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -9551,40 +9483,6 @@
             "perfective": "khsvhst",
             "imperative": "khsvhst",
             "infinitive": "khsvhst"
-        }
-    },
-    {
-        "definition": "he/she is blinking",
-        "h_grade_root": "akhthanaw",
-        "glottal_grade_root": "akathanaw",
-        "class_name": "sk-s-hst[imp5]",
-        "config": {
-            "pre": {
-                "translocutive": false,
-                "translocutiveImpOnly": false,
-                "partitive": false,
-                "distributive": true,
-                "distributiveImpIsFutProg": false
-            },
-            "pron": {
-                "set_type": "a",
-                "stem_type": "vowel_a",
-                "metathesis_strategy": "none",
-                "use_ka_variant": false,
-                "long_start": false,
-                "use_aki_for_1st_set_b": false,
-                "uwa_replaces_v": false,
-                "use_3rd_person_object": false
-            }
-        },
-        "corpus_id": 572,
-        "entry_no": 582,
-        "original_stems": {
-            "present": "akhthanaw",
-            "imperfective": "akhthanaw",
-            "perfective": "akhthanaw",
-            "imperative": "akhthanaw",
-            "infinitive": "akhthanaw"
         }
     },
     {
@@ -10101,7 +9999,7 @@
         "definition": "he/she is putting on his/her socks",
         "h_grade_root": "aliyo",
         "glottal_grade_root": "aliyo",
-        "class_name": "h-ih-l",
+        "class_name": "hih-lh",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -10271,7 +10169,7 @@
         "definition": "he/she is shooting at him/her",
         "h_grade_root": "hstayo",
         "glottal_grade_root": "hstayo",
-        "class_name": "h-ih-l[imp2]",
+        "class_name": "hih-lh[imp2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -10305,7 +10203,7 @@
         "definition": "he/she is splitting it",
         "h_grade_root": "hstlu",
         "glottal_grade_root": "hstlu",
-        "class_name": "sk-yh",
+        "class_name": "sk-h-yh",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -10373,7 +10271,7 @@
         "definition": "he/she is counting it",
         "h_grade_root": "ahse",
         "glottal_grade_root": "ahse",
-        "class_name": "h-ih-l",
+        "class_name": "hih-lh",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -10441,7 +10339,7 @@
         "definition": "he/she is clapping his/her hands",
         "h_grade_root": "ahsihthvn",
         "glottal_grade_root": "ahsihthvn",
-        "class_name": "ih-l-ika",
+        "class_name": "ih-l",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -10713,7 +10611,7 @@
         "definition": "he/she is crossing it",
         "h_grade_root": "hsoh",
         "glottal_grade_root": "hsoh",
-        "class_name": "become[inf4]",
+        "class_name": "become-ki[inf4]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -10883,7 +10781,7 @@
         "definition": "he/she is turning him/her over",
         "h_grade_root": "lhihkwat",
         "glottal_grade_root": "lihkwat",
-        "class_name": "go-alt",
+        "class_name": "go-in",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -10949,9 +10847,9 @@
     },
     {
         "definition": "he/she is clawing him/her",
-        "h_grade_root": "nhuk",
-        "glottal_grade_root": "nuk",
-        "class_name": "ohsk",
+        "h_grade_root": "nhuko",
+        "glottal_grade_root": "nuko",
+        "class_name": "sk-s-la",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -10974,11 +10872,11 @@
         "corpus_id": 632,
         "entry_no": 643,
         "original_stems": {
-            "present": "nhuk",
-            "imperfective": "nhuk",
-            "perfective": "nhuk",
-            "imperative": "nuk",
-            "infinitive": "nhuk"
+            "present": "nhuko",
+            "imperfective": "nhuko",
+            "perfective": "nhuko",
+            "imperative": "nuko",
+            "infinitive": "nhuko"
         }
     },
     {
@@ -11393,7 +11291,7 @@
         "definition": "he/she is tired",
         "h_grade_root": "yawe",
         "glottal_grade_root": null,
-        "class_name": "become",
+        "class_name": "become-ki",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -11527,9 +11425,9 @@
     },
     {
         "definition": "he/she thinks so",
-        "h_grade_root": "el",
-        "glottal_grade_root": "el",
-        "class_name": "i-is",
+        "h_grade_root": "eli",
+        "glottal_grade_root": "eli",
+        "class_name": "glottal-sk[perf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -11552,11 +11450,11 @@
         "corpus_id": 752,
         "entry_no": 776,
         "original_stems": {
-            "present": "el",
-            "imperfective": "el",
-            "perfective": "el",
+            "present": "eli",
+            "imperfective": "eli",
+            "perfective": "eli",
             "imperative": "el",
-            "infinitive": "el"
+            "infinitive": "eli"
         }
     },
     {
@@ -11767,7 +11665,7 @@
         "definition": "he/she is strapping it",
         "h_grade_root": "tlo",
         "glottal_grade_root": "tlo",
-        "class_name": "h-ih-l",
+        "class_name": "hih-lh",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -11835,7 +11733,7 @@
         "definition": "he/she is pitying him/her",
         "h_grade_root": "toli",
         "glottal_grade_root": "toli",
-        "class_name": "become",
+        "class_name": "become-ki",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -11971,7 +11869,7 @@
         "definition": "he/she is hanging up it",
         "h_grade_root": "at",
         "glottal_grade_root": "at",
-        "class_name": "v'vsk[imp2]",
+        "class_name": "vsk-long[imp2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -12039,7 +11937,7 @@
         "definition": "he/she is pecking it",
         "h_grade_root": "kwayo",
         "glottal_grade_root": "kwayo",
-        "class_name": "h-ih-l[imp2]",
+        "class_name": "hih-lh[imp2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -12209,7 +12107,7 @@
         "definition": "he/she is sleepy",
         "h_grade_root": "lh",
         "glottal_grade_root": "'l",
-        "class_name": "vsk-vnh[inf3]",
+        "class_name": "vnh-vsk[inf3]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -12377,9 +12275,9 @@
     },
     {
         "definition": "he/she is scratching him/her",
-        "h_grade_root": "tsalik",
-        "glottal_grade_root": "tsalik",
-        "class_name": "ohsk",
+        "h_grade_root": "tsaliko",
+        "glottal_grade_root": "tsaliko",
+        "class_name": "sk-s-la",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -12402,18 +12300,18 @@
         "corpus_id": 821,
         "entry_no": 851,
         "original_stems": {
-            "present": "tsalik",
-            "imperfective": "tsalik",
-            "perfective": "tsalik",
-            "imperative": "tsalik",
-            "infinitive": "tsalik"
+            "present": "tsaliko",
+            "imperfective": "tsaliko",
+            "perfective": "tsaliko",
+            "imperative": "tsaliko",
+            "infinitive": "tsaliko"
         }
     },
     {
         "definition": "he/she is pricking him/her",
         "h_grade_root": "tsayo",
         "glottal_grade_root": "tsayo",
-        "class_name": "h-ih-l[imp2]",
+        "class_name": "hih-lh[imp2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -12513,9 +12411,9 @@
     },
     {
         "definition": "he/she is leaving a living thing behind",
-        "h_grade_root": "khahiya",
-        "glottal_grade_root": "khahiya",
-        "class_name": "glottal-sk",
+        "h_grade_root": "khah",
+        "glottal_grade_root": "khah",
+        "class_name": "leaving",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -12538,11 +12436,11 @@
         "corpus_id": 826,
         "entry_no": 856,
         "original_stems": {
-            "present": "khahiya",
-            "imperfective": "khahiya",
-            "perfective": "khahiy",
-            "imperative": "khahiy",
-            "infinitive": "khahiya"
+            "present": "khah",
+            "imperfective": "khah",
+            "perfective": "khah",
+            "imperative": "khah",
+            "infinitive": "khah"
         }
     },
     {
@@ -12583,7 +12481,7 @@
         "definition": "he/she is wrapping him/her",
         "h_grade_root": "kwhen",
         "glottal_grade_root": "kwhen",
-        "class_name": "vsk-vnh[inf2]",
+        "class_name": "vnh-vsk[inf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -12753,7 +12651,7 @@
         "definition": "it is burning",
         "h_grade_root": "li",
         "glottal_grade_root": null,
-        "class_name": "become",
+        "class_name": "become-ki",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -12787,7 +12685,7 @@
         "definition": "it is dying",
         "h_grade_root": "liwho",
         "glottal_grade_root": "liwo",
-        "class_name": "become",
+        "class_name": "become-ki",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -13127,7 +13025,7 @@
         "definition": "it\u2019s lacking",
         "h_grade_root": "lulo",
         "glottal_grade_root": "lulo",
-        "class_name": "become",
+        "class_name": "become-ki",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -13195,7 +13093,7 @@
         "definition": "he/she is beating him/her up",
         "h_grade_root": "lvn",
         "glottal_grade_root": "lvn",
-        "class_name": "h-ih-l-ka",
+        "class_name": "hih-hil",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -13263,7 +13161,7 @@
         "definition": "he/she is selling it",
         "h_grade_root": "nat",
         "glottal_grade_root": "nat",
-        "class_name": "go-alt",
+        "class_name": "go-in",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -13601,9 +13499,9 @@
     },
     {
         "definition": "he/she is bewitching him/her",
-        "h_grade_root": "nekuti",
-        "glottal_grade_root": "nekuti",
-        "class_name": "glottal-sk",
+        "h_grade_root": "neku",
+        "glottal_grade_root": "neku",
+        "class_name": "long-no-a",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -13626,11 +13524,11 @@
         "corpus_id": 886,
         "entry_no": 916,
         "original_stems": {
-            "present": "nekuti",
-            "imperfective": "nekuti",
-            "perfective": "nekut",
-            "imperative": "nekut",
-            "infinitive": "nekuti"
+            "present": "neku",
+            "imperfective": "neku",
+            "perfective": "neku",
+            "imperative": "neku",
+            "infinitive": "neku"
         }
     },
     {
@@ -13669,9 +13567,9 @@
     },
     {
         "definition": "he/she is leaving some liquid",
-        "h_grade_root": "nehiya",
-        "glottal_grade_root": "ne'iya",
-        "class_name": "glottal-sk",
+        "h_grade_root": "neh",
+        "glottal_grade_root": "ne'",
+        "class_name": "leaving",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -13694,11 +13592,11 @@
         "corpus_id": 888,
         "entry_no": 918,
         "original_stems": {
-            "present": "nehiya",
-            "imperfective": "nehiya",
-            "perfective": "nehiy",
-            "imperative": "nehiy",
-            "infinitive": "nehiya"
+            "present": "neh",
+            "imperfective": "neh",
+            "perfective": "neh",
+            "imperative": "neh",
+            "infinitive": "neh"
         }
     },
     {
@@ -14079,7 +13977,7 @@
         "definition": "he/she hates him/her",
         "h_grade_root": "nikwath",
         "glottal_grade_root": "nikwath",
-        "class_name": "ih-l-ika[perf2]",
+        "class_name": "ih-l[perf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -14249,7 +14147,7 @@
         "definition": "it is blowing",
         "h_grade_root": "nol",
         "glottal_grade_root": null,
-        "class_name": "v'vsk",
+        "class_name": "vsk-long",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -14317,7 +14215,7 @@
         "definition": "he/she is sinking",
         "h_grade_root": "noyv",
         "glottal_grade_root": "noyv",
-        "class_name": "become[inf2]",
+        "class_name": "become-ki[inf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -14419,7 +14317,7 @@
         "definition": "he/she is exiting",
         "h_grade_root": "nuko",
         "glottal_grade_root": "nuko",
-        "class_name": "become[imp2]",
+        "class_name": "become-'i",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -14485,9 +14383,9 @@
     },
     {
         "definition": "he/she is missing him/her",
-        "h_grade_root": "nvti",
-        "glottal_grade_root": "nvti",
-        "class_name": "glottal-sk",
+        "h_grade_root": "nv",
+        "glottal_grade_root": "nv",
+        "class_name": "long-no-a",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -14510,18 +14408,18 @@
         "corpus_id": 938,
         "entry_no": 968,
         "original_stems": {
-            "present": "nvti",
-            "imperfective": "nvti",
-            "perfective": "nvt",
-            "imperative": "nvt",
-            "infinitive": "nvti"
+            "present": "nv",
+            "imperfective": "nv",
+            "perfective": "nv",
+            "imperative": "nv",
+            "infinitive": "nv"
         }
     },
     {
         "definition": "he/she is falling from an upright position",
         "h_grade_root": "nv",
         "glottal_grade_root": "nv",
-        "class_name": "become[inf2]",
+        "class_name": "become-ki[inf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -14623,7 +14521,7 @@
         "definition": "he/she is tying up a leg",
         "h_grade_root": "nvlho",
         "glottal_grade_root": "nvlho",
-        "class_name": "h-ih-l",
+        "class_name": "hih-lh",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -14725,7 +14623,7 @@
         "definition": "he/she is pushing him/her",
         "h_grade_root": "hsato",
         "glottal_grade_root": "hsato",
-        "class_name": "sk-yh",
+        "class_name": "sk-h-yh",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -14759,7 +14657,7 @@
         "definition": "he/she is rolling him/her",
         "h_grade_root": "hsakwale",
         "glottal_grade_root": "hsakwale",
-        "class_name": "h-ih-l",
+        "class_name": "hih-lh",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -14895,7 +14793,7 @@
         "definition": "he/she is stabbing him/her",
         "h_grade_root": "th",
         "glottal_grade_root": "th",
-        "class_name": "ih-l-ika[perf2]",
+        "class_name": "ih-l[perf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -14963,7 +14861,7 @@
         "definition": "he/she is joking",
         "h_grade_root": "welh",
         "glottal_grade_root": "welh",
-        "class_name": "ih-vnh-vna",
+        "class_name": "vnh-ih-vna",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -15235,7 +15133,7 @@
         "definition": "he/she is recognizing him/her",
         "h_grade_root": "olh",
         "glottal_grade_root": "oli",
-        "class_name": "become[inf4]",
+        "class_name": "become-ki[inf4]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -15269,7 +15167,7 @@
         "definition": "he/she understands it",
         "h_grade_root": "olh",
         "glottal_grade_root": "oli",
-        "class_name": "become[inf4]",
+        "class_name": "become-ki[inf4]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -15337,7 +15235,7 @@
         "definition": "he/she is making it",
         "h_grade_root": "olh",
         "glottal_grade_root": "olh",
-        "class_name": "vsk-vnh[inf3]",
+        "class_name": "vnh-vsk[inf3]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -15507,7 +15405,7 @@
         "definition": "he/she is batting it",
         "h_grade_root": "ohstvn",
         "glottal_grade_root": "ohstvn",
-        "class_name": "ih-l-ika",
+        "class_name": "ih-l",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -16051,7 +15949,7 @@
         "definition": "he/she is hitting him/her",
         "h_grade_root": "vnh",
         "glottal_grade_root": "vn",
-        "class_name": "ih-l-ika[inf2]",
+        "class_name": "ih-l[inf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -16527,7 +16425,7 @@
         "definition": "he/she is cold",
         "h_grade_root": "nhawo",
         "glottal_grade_root": "nawo",
-        "class_name": "become",
+        "class_name": "become-ki",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -16561,7 +16459,7 @@
         "definition": "he/she is speaking",
         "h_grade_root": "nhe",
         "glottal_grade_root": "ne",
-        "class_name": "become",
+        "class_name": "become-ki",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -16663,7 +16561,7 @@
         "definition": "it\u2019s accumulating",
         "h_grade_root": "nhehkwo",
         "glottal_grade_root": null,
-        "class_name": "become[inf2]",
+        "class_name": "become-ki[inf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -16865,9 +16763,9 @@
     },
     {
         "definition": "he/she is omitting him/her",
-        "h_grade_root": "nhohiya",
-        "glottal_grade_root": "nohiya",
-        "class_name": "glottal-sk",
+        "h_grade_root": "nhoh",
+        "glottal_grade_root": "noh",
+        "class_name": "leaving",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -16890,11 +16788,11 @@
         "corpus_id": 1247,
         "entry_no": 1298,
         "original_stems": {
-            "present": "nhohiya",
-            "imperfective": "nhohiya",
-            "perfective": "nhohiy",
-            "imperative": "nohiy",
-            "infinitive": "nhohiya"
+            "present": "nhoh",
+            "imperfective": "nhoh",
+            "perfective": "nhoh",
+            "imperative": "noh",
+            "infinitive": "nhoh"
         }
     },
     {
@@ -17207,7 +17105,7 @@
         "definition": "he/she is throwing it",
         "h_grade_root": "at",
         "glottal_grade_root": null,
-        "class_name": "go-alt",
+        "class_name": "go-in",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -17445,7 +17343,7 @@
         "definition": "he/she is taking revenge",
         "h_grade_root": "atle",
         "glottal_grade_root": null,
-        "class_name": "become[inf2]",
+        "class_name": "become-ki[inf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -17649,7 +17547,7 @@
         "definition": "he/she is late",
         "h_grade_root": "konhiyo",
         "glottal_grade_root": null,
-        "class_name": "become",
+        "class_name": "become-ki",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -17921,7 +17819,7 @@
         "definition": "he/she is becoming angry",
         "h_grade_root": "nhalv",
         "glottal_grade_root": null,
-        "class_name": "become[inf2]",
+        "class_name": "become-ki[inf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -18431,7 +18329,7 @@
         "definition": "he/she is losing his/her way",
         "h_grade_root": "alena",
         "glottal_grade_root": null,
-        "class_name": "h-ih-l",
+        "class_name": "hih-lh",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -19043,7 +18941,7 @@
         "definition": "he/she is forgetting it",
         "h_grade_root": "vkhew",
         "glottal_grade_root": null,
-        "class_name": "sk-s-hihst",
+        "class_name": "sk-s-a-hihst",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -19077,7 +18975,7 @@
         "definition": "he/she is belching",
         "h_grade_root": "khule",
         "glottal_grade_root": null,
-        "class_name": "become[inf2]",
+        "class_name": "become-ki[inf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -19145,7 +19043,7 @@
         "definition": "he/she smells it",
         "h_grade_root": "whsv",
         "glottal_grade_root": null,
-        "class_name": "become",
+        "class_name": "become-ki",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -19347,9 +19245,9 @@
     },
     {
         "definition": "he/she is sending on object",
-        "h_grade_root": "ti",
-        "glottal_grade_root": "ti",
-        "class_name": "glottal-sk",
+        "h_grade_root": "",
+        "glottal_grade_root": "",
+        "class_name": "long-no-a",
         "config": {
             "pre": {
                 "translocutive": true,
@@ -19372,11 +19270,11 @@
         "corpus_id": 1754,
         "entry_no": 1823,
         "original_stems": {
-            "present": "ti",
-            "imperfective": "ti",
-            "perfective": "t",
-            "imperative": "t",
-            "infinitive": "ti"
+            "present": "",
+            "imperfective": "",
+            "perfective": "",
+            "imperative": "",
+            "infinitive": ""
         }
     },
     {
@@ -19451,7 +19349,7 @@
         "definition": "he/she is sending it",
         "h_grade_root": "n",
         "glottal_grade_root": "n",
-        "class_name": "v'vsk[imp2]",
+        "class_name": "vsk-long[imp2]",
         "config": {
             "pre": {
                 "translocutive": true,
@@ -19485,7 +19383,7 @@
         "definition": "he/she is going out of sight",
         "h_grade_root": "ateli",
         "glottal_grade_root": null,
-        "class_name": "become",
+        "class_name": "become-ki",
         "config": {
             "pre": {
                 "translocutive": true,

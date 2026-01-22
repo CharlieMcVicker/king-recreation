@@ -386,6 +386,66 @@ def _save_variation_match_csv(path: str, macro_variant_data: Dict[str, Any]) -> 
     )
 
 
+def _analyze_roots_by_macro(registry: PatternRegistry):
+    input_path = "artifacts/data/reconstructable_verbs.json"
+    output_path = "artifacts/root_macro_distribtuion.csv"
+
+    if not os.path.exists(input_path):
+        print(f"Error: {input_path} not found.")
+        return
+
+    with open(input_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    classes_to_parents = {
+        pattern.name: parent
+        for parent in registry.macros_by_parent
+        for pattern in registry.macros_by_parent[parent]
+    }
+
+    final_letters_by_class = defaultdict(set)
+
+    for entry in data:
+        class_name = entry.get("class_name").split("[")[0]
+        h_grade_root = entry.get("h_grade_root")
+        key = (
+            classes_to_parents[class_name],
+            class_name,
+        )
+
+        if class_name and h_grade_root:
+            # Get the last character of the h_grade_root
+            final_letter = h_grade_root[-1]
+            final_letters_by_class[key].add(final_letter)
+
+    # Convert sets to sorted lists for JSON serialization and easier diffing
+    vowels = {"a", "e", "i", "o", "u", "v"}
+    rows = [
+        {
+            "parent": parent,
+            "class": class_name,
+            "letters": ";".join(sorted(list(letters))),
+            "only_vowels": all(l in vowels for l in letters),
+            "only_laryngeal": all(l in {"h", "'"} for l in letters),
+            "only_consonants": all(l not in vowels for l in letters),
+        }
+        for (parent, class_name), letters in sorted(final_letters_by_class.items())
+    ]
+
+    save_csv(
+        output_path,
+        rows,
+        fieldnames=[
+            "parent",
+            "class",
+            "only_vowels",
+            "only_consonants",
+            "only_laryngeal",
+            "letters",
+        ],
+    )
+
+
 def analyze_matches(classes_path: Optional[str] = None):
     matches_path = "artifacts/data/matches_initial.csv"
     corpus_path = "artifacts/data/corpus.csv"
@@ -422,6 +482,7 @@ def analyze_matches(classes_path: Optional[str] = None):
     root_ambiguity_data = _analyze_root_ambiguity(reconstructable_path)
     macro_variant_data = _analyze_macro_variants(reconstructable_path, pattern_registry)
     unused_variants_report = _identify_dead_variants(macro_variant_data)
+    _analyze_roots_by_macro(registry=pattern_registry)
 
     # 3. Output Data to Disk
     os.makedirs(output_dir, exist_ok=True)

@@ -1,5 +1,6 @@
 {
     "glottal-sk": {
+        "parent_name": "glottal-sk",
         "name": "glottal-sk",
         "present": "'",
         "imperfective": "hsk",
@@ -8,63 +9,35 @@
         "infinitive": "hst",
         "_original_data": {
             "class": "glottal-sk",
+            "subclass": "",
             "present": "'",
             "imperfective": "hsk",
-            "perfective": "*;'",
+            "perfective": "*;hs",
             "imperative": "*a",
-            "infinitive": "hst;*ahst"
-        }
-    },
-    "glottal-sk[inf2]": {
-        "name": "glottal-sk[inf2]",
-        "present": "'",
-        "imperfective": "hsk",
-        "perfective": "*",
-        "imperative": "*a",
-        "infinitive": "*ahst",
-        "_original_data": {
-            "class": "glottal-sk",
-            "present": "'",
-            "imperfective": "hsk",
-            "perfective": "*;'",
-            "imperative": "*a",
-            "infinitive": "hst;*ahst"
+            "infinitive": "hst"
         }
     },
     "glottal-sk[perf2]": {
+        "parent_name": "glottal-sk",
         "name": "glottal-sk[perf2]",
         "present": "'",
         "imperfective": "hsk",
-        "perfective": "'",
+        "perfective": "hs",
         "imperative": "*a",
         "infinitive": "hst",
         "_original_data": {
             "class": "glottal-sk",
+            "subclass": "",
             "present": "'",
             "imperfective": "hsk",
-            "perfective": "*;'",
+            "perfective": "*;hs",
             "imperative": "*a",
-            "infinitive": "hst;*ahst"
+            "infinitive": "hst"
         }
     },
-    "glottal-sk[perf2-inf2]": {
-        "name": "glottal-sk[perf2-inf2]",
-        "present": "'",
-        "imperfective": "hsk",
-        "perfective": "'",
-        "imperative": "*a",
-        "infinitive": "*ahst",
-        "_original_data": {
-            "class": "glottal-sk",
-            "present": "'",
-            "imperfective": "hsk",
-            "perfective": "*;'",
-            "imperative": "*a",
-            "infinitive": "hst;*ahst"
-        }
-    },
-    "become": {
-        "name": "become",
+    "become-ki": {
+        "parent_name": "become",
+        "name": "become-ki",
         "present": "k",
         "imperfective": "k",
         "perfective": "ts",
@@ -72,15 +45,17 @@
         "infinitive": "hst",
         "_original_data": {
             "class": "become",
+            "subclass": "ki",
             "present": "k",
             "imperfective": "k",
             "perfective": "ts",
-            "imperative": "ki;'i",
+            "imperative": "ki",
             "infinitive": "hst;'ihst;yhst;ihst"
         }
     },
-    "become[inf2]": {
-        "name": "become[inf2]",
+    "become-ki[inf2]": {
+        "parent_name": "become",
+        "name": "become-ki[inf2]",
         "present": "k",
         "imperfective": "k",
         "perfective": "ts",
@@ -88,15 +63,17 @@
         "infinitive": "'ihst",
         "_original_data": {
             "class": "become",
+            "subclass": "ki",
             "present": "k",
             "imperfective": "k",
             "perfective": "ts",
-            "imperative": "ki;'i",
+            "imperative": "ki",
             "infinitive": "hst;'ihst;yhst;ihst"
         }
     },
-    "become[inf3]": {
-        "name": "become[inf3]",
+    "become-ki[inf3]": {
+        "parent_name": "become",
+        "name": "become-ki[inf3]",
         "present": "k",
         "imperfective": "k",
         "perfective": "ts",
@@ -104,15 +81,17 @@
         "infinitive": "yhst",
         "_original_data": {
             "class": "become",
+            "subclass": "ki",
             "present": "k",
             "imperfective": "k",
             "perfective": "ts",
-            "imperative": "ki;'i",
+            "imperative": "ki",
             "infinitive": "hst;'ihst;yhst;ihst"
         }
     },
-    "become[inf4]": {
-        "name": "become[inf4]",
+    "become-ki[inf4]": {
+        "parent_name": "become",
+        "name": "become-ki[inf4]",
         "present": "k",
         "imperfective": "k",
         "perfective": "ts",
@@ -120,15 +99,17 @@
         "infinitive": "ihst",
         "_original_data": {
             "class": "become",
+            "subclass": "ki",
             "present": "k",
             "imperfective": "k",
             "perfective": "ts",
-            "imperative": "ki;'i",
+            "imperative": "ki",
             "infinitive": "hst;'ihst;yhst;ihst"
         }
     },
-    "become[imp2]": {
-        "name": "become[imp2]",
+    "become-'i": {
+        "parent_name": "become",
+        "name": "become-'i",
         "present": "k",
         "imperfective": "k",
         "perfective": "ts",
@@ -136,62 +117,16 @@
         "infinitive": "hst",
         "_original_data": {
             "class": "become",
+            "subclass": "'i",
             "present": "k",
             "imperfective": "k",
             "perfective": "ts",
-            "imperative": "ki;'i",
-            "infinitive": "hst;'ihst;yhst;ihst"
-        }
-    },
-    "become[imp2-inf2]": {
-        "name": "become[imp2-inf2]",
-        "present": "k",
-        "imperfective": "k",
-        "perfective": "ts",
-        "imperative": "'i",
-        "infinitive": "'ihst",
-        "_original_data": {
-            "class": "become",
-            "present": "k",
-            "imperfective": "k",
-            "perfective": "ts",
-            "imperative": "ki;'i",
-            "infinitive": "hst;'ihst;yhst;ihst"
-        }
-    },
-    "become[imp2-inf3]": {
-        "name": "become[imp2-inf3]",
-        "present": "k",
-        "imperfective": "k",
-        "perfective": "ts",
-        "imperative": "'i",
-        "infinitive": "yhst",
-        "_original_data": {
-            "class": "become",
-            "present": "k",
-            "imperfective": "k",
-            "perfective": "ts",
-            "imperative": "ki;'i",
-            "infinitive": "hst;'ihst;yhst;ihst"
-        }
-    },
-    "become[imp2-inf4]": {
-        "name": "become[imp2-inf4]",
-        "present": "k",
-        "imperfective": "k",
-        "perfective": "ts",
-        "imperative": "'i",
-        "infinitive": "ihst",
-        "_original_data": {
-            "class": "become",
-            "present": "k",
-            "imperfective": "k",
-            "perfective": "ts",
-            "imperative": "ki;'i",
-            "infinitive": "hst;'ihst;yhst;ihst"
+            "imperative": "'i",
+            "infinitive": "hst"
         }
     },
     "sk-s-hi-hihst": {
+        "parent_name": "sk-s",
         "name": "sk-s-hi-hihst",
         "present": "hsk",
         "imperfective": "hsk",
@@ -199,7 +134,8 @@
         "imperative": "hi",
         "infinitive": "hihst",
         "_original_data": {
-            "class": "sk-s-hi-hihst",
+            "class": "sk-s",
+            "subclass": "hi-hihst",
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "hs",
@@ -207,15 +143,17 @@
             "infinitive": "hihst"
         }
     },
-    "sk-s-hihst": {
-        "name": "sk-s-hihst",
+    "sk-s-a-hihst": {
+        "parent_name": "sk-s",
+        "name": "sk-s-a-hihst",
         "present": "hsk",
         "imperfective": "hsk",
         "perfective": "hs",
         "imperative": "a",
         "infinitive": "hihst",
         "_original_data": {
-            "class": "sk-s-hihst",
+            "class": "sk-s",
+            "subclass": "a-hihst",
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "hs",
@@ -224,6 +162,7 @@
         }
     },
     "sk-s-hst": {
+        "parent_name": "sk-s",
         "name": "sk-s-hst",
         "present": "hsk",
         "imperfective": "hsk",
@@ -231,15 +170,17 @@
         "imperative": "",
         "infinitive": "hst",
         "_original_data": {
-            "class": "sk-s-hst",
+            "class": "sk-s",
+            "subclass": "hst",
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "hs",
-            "imperative": ";*a;hi;a;ha",
+            "imperative": ";*a;hi;a",
             "infinitive": "hst"
         }
     },
     "sk-s-hst[imp2]": {
+        "parent_name": "sk-s",
         "name": "sk-s-hst[imp2]",
         "present": "hsk",
         "imperfective": "hsk",
@@ -247,15 +188,17 @@
         "imperative": "*a",
         "infinitive": "hst",
         "_original_data": {
-            "class": "sk-s-hst",
+            "class": "sk-s",
+            "subclass": "hst",
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "hs",
-            "imperative": ";*a;hi;a;ha",
+            "imperative": ";*a;hi;a",
             "infinitive": "hst"
         }
     },
     "sk-s-hst[imp3]": {
+        "parent_name": "sk-s",
         "name": "sk-s-hst[imp3]",
         "present": "hsk",
         "imperfective": "hsk",
@@ -263,15 +206,17 @@
         "imperative": "hi",
         "infinitive": "hst",
         "_original_data": {
-            "class": "sk-s-hst",
+            "class": "sk-s",
+            "subclass": "hst",
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "hs",
-            "imperative": ";*a;hi;a;ha",
+            "imperative": ";*a;hi;a",
             "infinitive": "hst"
         }
     },
     "sk-s-hst[imp4]": {
+        "parent_name": "sk-s",
         "name": "sk-s-hst[imp4]",
         "present": "hsk",
         "imperfective": "hsk",
@@ -279,47 +224,35 @@
         "imperative": "a",
         "infinitive": "hst",
         "_original_data": {
-            "class": "sk-s-hst",
+            "class": "sk-s",
+            "subclass": "hst",
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "hs",
-            "imperative": ";*a;hi;a;ha",
+            "imperative": ";*a;hi;a",
             "infinitive": "hst"
         }
     },
-    "sk-s-hst[imp5]": {
-        "name": "sk-s-hst[imp5]",
+    "sk-s-la": {
+        "parent_name": "sk-s",
+        "name": "sk-s-la",
         "present": "hsk",
         "imperfective": "hsk",
         "perfective": "hs",
-        "imperative": "ha",
+        "imperative": "la",
         "infinitive": "hst",
         "_original_data": {
-            "class": "sk-s-hst",
+            "class": "sk-s",
+            "subclass": "la",
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "hs",
-            "imperative": ";*a;hi;a;ha",
+            "imperative": "la",
             "infinitive": "hst"
         }
     },
-    "ohsk": {
-        "name": "ohsk",
-        "present": "ohsk",
-        "imperfective": "ohsk",
-        "perfective": "ohs",
-        "imperative": "ola",
-        "infinitive": "ohst",
-        "_original_data": {
-            "class": "ohsk",
-            "present": "ohsk",
-            "imperfective": "ohsk",
-            "perfective": "ohs",
-            "imperative": "ola",
-            "infinitive": "ohst"
-        }
-    },
     "sk-h": {
+        "parent_name": "sk-h",
         "name": "sk-h",
         "present": "hsk",
         "imperfective": "hsk",
@@ -328,6 +261,7 @@
         "infinitive": "hst",
         "_original_data": {
             "class": "sk-h",
+            "subclass": "",
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "h",
@@ -336,6 +270,7 @@
         }
     },
     "sk-h[imp2]": {
+        "parent_name": "sk-h",
         "name": "sk-h[imp2]",
         "present": "hsk",
         "imperfective": "hsk",
@@ -344,6 +279,7 @@
         "infinitive": "hst",
         "_original_data": {
             "class": "sk-h",
+            "subclass": "",
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "h",
@@ -351,15 +287,17 @@
             "infinitive": "hst"
         }
     },
-    "sk-yh": {
-        "name": "sk-yh",
+    "sk-h-yh": {
+        "parent_name": "sk-h",
+        "name": "sk-h-yh",
         "present": "hsk",
         "imperfective": "hsk",
         "perfective": "yh",
         "imperative": "yha",
         "infinitive": "hst",
         "_original_data": {
-            "class": "sk-yh",
+            "class": "sk-h",
+            "subclass": "yh",
             "present": "hsk",
             "imperfective": "hsk",
             "perfective": "yh",
@@ -368,6 +306,7 @@
         }
     },
     "hvsk-han": {
+        "parent_name": "hvsk",
         "name": "hvsk-han",
         "present": "hvhsk",
         "imperfective": "hvhsk",
@@ -375,7 +314,8 @@
         "imperative": "hvka",
         "infinitive": "ht",
         "_original_data": {
-            "class": "hvsk-han",
+            "class": "hvsk",
+            "subclass": "han",
             "present": "hvhsk",
             "imperfective": "hvhsk",
             "perfective": "han",
@@ -384,6 +324,7 @@
         }
     },
     "hvsk-han[inf2]": {
+        "parent_name": "hvsk",
         "name": "hvsk-han[inf2]",
         "present": "hvhsk",
         "imperfective": "hvhsk",
@@ -391,7 +332,8 @@
         "imperative": "hvka",
         "infinitive": "hvhst",
         "_original_data": {
-            "class": "hvsk-han",
+            "class": "hvsk",
+            "subclass": "han",
             "present": "hvhsk",
             "imperfective": "hvhsk",
             "perfective": "han",
@@ -400,6 +342,7 @@
         }
     },
     "hvsk-nh": {
+        "parent_name": "hvsk",
         "name": "hvsk-nh",
         "present": "hvhsk",
         "imperfective": "hvhsk",
@@ -407,7 +350,8 @@
         "imperative": "hvka",
         "infinitive": "ht",
         "_original_data": {
-            "class": "hvsk-nh",
+            "class": "hvsk",
+            "subclass": "nh",
             "present": "hvhsk",
             "imperfective": "hvhsk",
             "perfective": "nh",
@@ -416,6 +360,7 @@
         }
     },
     "hvsk-nh[inf2]": {
+        "parent_name": "hvsk",
         "name": "hvsk-nh[inf2]",
         "present": "hvhsk",
         "imperfective": "hvhsk",
@@ -423,7 +368,8 @@
         "imperative": "hvka",
         "infinitive": "*ht",
         "_original_data": {
-            "class": "hvsk-nh",
+            "class": "hvsk",
+            "subclass": "nh",
             "present": "hvhsk",
             "imperfective": "hvhsk",
             "perfective": "nh",
@@ -432,6 +378,7 @@
         }
     },
     "hvsk-nh[inf3]": {
+        "parent_name": "hvsk",
         "name": "hvsk-nh[inf3]",
         "present": "hvhsk",
         "imperfective": "hvhsk",
@@ -439,7 +386,8 @@
         "imperative": "hvka",
         "infinitive": "hvhst",
         "_original_data": {
-            "class": "hvsk-nh",
+            "class": "hvsk",
+            "subclass": "nh",
             "present": "hvhsk",
             "imperfective": "hvhsk",
             "perfective": "nh",
@@ -448,6 +396,7 @@
         }
     },
     "hvsk-nh[inf4]": {
+        "parent_name": "hvsk",
         "name": "hvsk-nh[inf4]",
         "present": "hvhsk",
         "imperfective": "hvhsk",
@@ -455,7 +404,8 @@
         "imperative": "hvka",
         "infinitive": "*oht",
         "_original_data": {
-            "class": "hvsk-nh",
+            "class": "hvsk",
+            "subclass": "nh",
             "present": "hvhsk",
             "imperfective": "hvhsk",
             "perfective": "nh",
@@ -464,6 +414,7 @@
         }
     },
     "husk": {
+        "parent_name": "husk",
         "name": "husk",
         "present": "huhsk",
         "imperfective": "huhsk",
@@ -472,6 +423,7 @@
         "infinitive": "huhst",
         "_original_data": {
             "class": "husk",
+            "subclass": "",
             "present": "huhsk",
             "imperfective": "huhsk",
             "perfective": "hun",
@@ -480,6 +432,7 @@
         }
     },
     "episodic": {
+        "parent_name": "episodic",
         "name": "episodic",
         "present": "vhvhsk",
         "imperfective": "vhvhsk",
@@ -488,6 +441,7 @@
         "infinitive": "ht",
         "_original_data": {
             "class": "episodic",
+            "subclass": "",
             "present": "vhvhsk",
             "imperfective": "vhvhsk",
             "perfective": "vnh",
@@ -496,6 +450,7 @@
         }
     },
     "episodic[inf2]": {
+        "parent_name": "episodic",
         "name": "episodic[inf2]",
         "present": "vhvhsk",
         "imperfective": "vhvhsk",
@@ -504,6 +459,7 @@
         "infinitive": "vhvhst",
         "_original_data": {
             "class": "episodic",
+            "subclass": "",
             "present": "vhvhsk",
             "imperfective": "vhvhsk",
             "perfective": "vnh",
@@ -512,6 +468,7 @@
         }
     },
     "episodic[imp2]": {
+        "parent_name": "episodic",
         "name": "episodic[imp2]",
         "present": "vhvhsk",
         "imperfective": "vhvhsk",
@@ -520,6 +477,7 @@
         "infinitive": "ht",
         "_original_data": {
             "class": "episodic",
+            "subclass": "",
             "present": "vhvhsk",
             "imperfective": "vhvhsk",
             "perfective": "vnh",
@@ -528,6 +486,7 @@
         }
     },
     "episodic[imp2-inf2]": {
+        "parent_name": "episodic",
         "name": "episodic[imp2-inf2]",
         "present": "vhvhsk",
         "imperfective": "vhvhsk",
@@ -536,6 +495,7 @@
         "infinitive": "vhvhst",
         "_original_data": {
             "class": "episodic",
+            "subclass": "",
             "present": "vhvhsk",
             "imperfective": "vhvhsk",
             "perfective": "vnh",
@@ -544,6 +504,7 @@
         }
     },
     "terminative": {
+        "parent_name": "terminative",
         "name": "terminative",
         "present": "ohvhsk",
         "imperfective": "ohvhsk",
@@ -552,6 +513,7 @@
         "infinitive": "ohvhst",
         "_original_data": {
             "class": "terminative",
+            "subclass": "",
             "present": "ohvhsk",
             "imperfective": "ohvhsk",
             "perfective": "onh",
@@ -560,6 +522,7 @@
         }
     },
     "terminative-no-o": {
+        "parent_name": "terminative",
         "name": "terminative-no-o",
         "present": "hvhsk",
         "imperfective": "hvhsk",
@@ -567,7 +530,8 @@
         "imperative": "nha",
         "infinitive": "hvhst",
         "_original_data": {
-            "class": "terminative-no-o",
+            "class": "terminative",
+            "subclass": "no-o",
             "present": "hvhsk",
             "imperfective": "hvhsk",
             "perfective": "nh",
@@ -576,6 +540,7 @@
         }
     },
     "e-aka": {
+        "parent_name": "e-aka",
         "name": "e-aka",
         "present": "e'",
         "imperfective": "ehsk",
@@ -584,6 +549,7 @@
         "infinitive": "ehst",
         "_original_data": {
             "class": "e-aka",
+            "subclass": "",
             "present": "e'",
             "imperfective": "ehsk",
             "perfective": "a'",
@@ -592,6 +558,7 @@
         }
     },
     "e-a": {
+        "parent_name": "e-a",
         "name": "e-a",
         "present": "e'",
         "imperfective": "ehsk",
@@ -600,6 +567,7 @@
         "infinitive": "et",
         "_original_data": {
             "class": "e-a",
+            "subclass": "",
             "present": "e'",
             "imperfective": "ehsk",
             "perfective": "e'",
@@ -608,6 +576,7 @@
         }
     },
     "apl-active": {
+        "parent_name": "apl-active",
         "name": "apl-active",
         "present": "eh",
         "imperfective": "ehsk",
@@ -616,6 +585,7 @@
         "infinitive": "eht",
         "_original_data": {
             "class": "apl-active",
+            "subclass": "",
             "present": "eh",
             "imperfective": "ehsk",
             "perfective": "eh",
@@ -624,6 +594,7 @@
         }
     },
     "apl-active-lh": {
+        "parent_name": "apl-active",
         "name": "apl-active-lh",
         "present": "eh",
         "imperfective": "ehsk",
@@ -631,7 +602,8 @@
         "imperative": "vla",
         "infinitive": "eht",
         "_original_data": {
-            "class": "apl-active-lh",
+            "class": "apl-active",
+            "subclass": "lh",
             "present": "eh",
             "imperfective": "ehsk",
             "perfective": "elh",
@@ -640,6 +612,7 @@
         }
     },
     "apl-active-a": {
+        "parent_name": "apl-active",
         "name": "apl-active-a",
         "present": "eh",
         "imperfective": "ehsk",
@@ -647,7 +620,8 @@
         "imperative": "a",
         "infinitive": "ht",
         "_original_data": {
-            "class": "apl-active-a",
+            "class": "apl-active",
+            "subclass": "a",
             "present": "eh",
             "imperfective": "ehsk",
             "perfective": "eh",
@@ -656,6 +630,7 @@
         }
     },
     "apl": {
+        "parent_name": "apl",
         "name": "apl",
         "present": "eh",
         "imperfective": "eh",
@@ -664,6 +639,7 @@
         "infinitive": "eht",
         "_original_data": {
             "class": "apl",
+            "subclass": "",
             "present": "eh",
             "imperfective": "eh",
             "perfective": "el",
@@ -672,6 +648,7 @@
         }
     },
     "apl[imp2]": {
+        "parent_name": "apl",
         "name": "apl[imp2]",
         "present": "eh",
         "imperfective": "eh",
@@ -680,6 +657,7 @@
         "infinitive": "eht",
         "_original_data": {
             "class": "apl",
+            "subclass": "",
             "present": "eh",
             "imperfective": "eh",
             "perfective": "el",
@@ -688,6 +666,7 @@
         }
     },
     "apl[imp3]": {
+        "parent_name": "apl",
         "name": "apl[imp3]",
         "present": "eh",
         "imperfective": "eh",
@@ -696,6 +675,7 @@
         "infinitive": "eht",
         "_original_data": {
             "class": "apl",
+            "subclass": "",
             "present": "eh",
             "imperfective": "eh",
             "perfective": "el",
@@ -704,6 +684,7 @@
         }
     },
     "apl[imp4]": {
+        "parent_name": "apl",
         "name": "apl[imp4]",
         "present": "eh",
         "imperfective": "eh",
@@ -712,6 +693,7 @@
         "infinitive": "eht",
         "_original_data": {
             "class": "apl",
+            "subclass": "",
             "present": "eh",
             "imperfective": "eh",
             "perfective": "el",
@@ -720,6 +702,7 @@
         }
     },
     "go": {
+        "parent_name": "go",
         "name": "go",
         "present": "ek",
         "imperfective": "ek",
@@ -728,6 +711,7 @@
         "infinitive": "vhst",
         "_original_data": {
             "class": "go",
+            "subclass": "",
             "present": "ek;",
             "imperfective": "ek",
             "perfective": "vhs",
@@ -736,6 +720,7 @@
         }
     },
     "go[pres2]": {
+        "parent_name": "go",
         "name": "go[pres2]",
         "present": "",
         "imperfective": "ek",
@@ -744,6 +729,7 @@
         "infinitive": "vhst",
         "_original_data": {
             "class": "go",
+            "subclass": "",
             "present": "ek;",
             "imperfective": "ek",
             "perfective": "vhs",
@@ -751,15 +737,17 @@
             "infinitive": "vhst"
         }
     },
-    "go-alt": {
-        "name": "go-alt",
+    "go-in": {
+        "parent_name": "go",
+        "name": "go-in",
         "present": "ek",
         "imperfective": "ek",
         "perfective": "invhs",
         "imperative": "uka",
         "infinitive": "invt",
         "_original_data": {
-            "class": "go-alt",
+            "class": "go",
+            "subclass": "in",
             "present": "ek",
             "imperfective": "ek",
             "perfective": "invhs;ehs",
@@ -767,15 +755,17 @@
             "infinitive": "invt"
         }
     },
-    "go-alt[perf2]": {
-        "name": "go-alt[perf2]",
+    "go-in[perf2]": {
+        "parent_name": "go",
+        "name": "go-in[perf2]",
         "present": "ek",
         "imperfective": "ek",
         "perfective": "ehs",
         "imperative": "uka",
         "infinitive": "invt",
         "_original_data": {
-            "class": "go-alt",
+            "class": "go",
+            "subclass": "in",
             "present": "ek",
             "imperfective": "ek",
             "perfective": "invhs;ehs",
@@ -784,6 +774,7 @@
         }
     },
     "cause": {
+        "parent_name": "cause",
         "name": "cause",
         "present": "ih",
         "imperfective": "ihsk",
@@ -792,6 +783,7 @@
         "infinitive": "oht",
         "_original_data": {
             "class": "cause",
+            "subclass": "",
             "present": "ih;",
             "imperfective": "ihsk",
             "perfective": "han;anh;an",
@@ -800,6 +792,7 @@
         }
     },
     "cause[perf2]": {
+        "parent_name": "cause",
         "name": "cause[perf2]",
         "present": "ih",
         "imperfective": "ihsk",
@@ -808,6 +801,7 @@
         "infinitive": "oht",
         "_original_data": {
             "class": "cause",
+            "subclass": "",
             "present": "ih;",
             "imperfective": "ihsk",
             "perfective": "han;anh;an",
@@ -816,6 +810,7 @@
         }
     },
     "cause[perf3]": {
+        "parent_name": "cause",
         "name": "cause[perf3]",
         "present": "ih",
         "imperfective": "ihsk",
@@ -824,6 +819,7 @@
         "infinitive": "oht",
         "_original_data": {
             "class": "cause",
+            "subclass": "",
             "present": "ih;",
             "imperfective": "ihsk",
             "perfective": "han;anh;an",
@@ -832,6 +828,7 @@
         }
     },
     "cause[pres2]": {
+        "parent_name": "cause",
         "name": "cause[pres2]",
         "present": "",
         "imperfective": "ihsk",
@@ -840,6 +837,7 @@
         "infinitive": "oht",
         "_original_data": {
             "class": "cause",
+            "subclass": "",
             "present": "ih;",
             "imperfective": "ihsk",
             "perfective": "han;anh;an",
@@ -848,6 +846,7 @@
         }
     },
     "cause[pres2-perf2]": {
+        "parent_name": "cause",
         "name": "cause[pres2-perf2]",
         "present": "",
         "imperfective": "ihsk",
@@ -856,6 +855,7 @@
         "infinitive": "oht",
         "_original_data": {
             "class": "cause",
+            "subclass": "",
             "present": "ih;",
             "imperfective": "ihsk",
             "perfective": "han;anh;an",
@@ -864,6 +864,7 @@
         }
     },
     "cause[pres2-perf3]": {
+        "parent_name": "cause",
         "name": "cause[pres2-perf3]",
         "present": "",
         "imperfective": "ihsk",
@@ -872,6 +873,7 @@
         "infinitive": "oht",
         "_original_data": {
             "class": "cause",
+            "subclass": "",
             "present": "ih;",
             "imperfective": "ihsk",
             "perfective": "han;anh;an",
@@ -879,15 +881,17 @@
             "infinitive": "oht"
         }
     },
-    "ih-l-ika": {
-        "name": "ih-l-ika",
+    "ih-l": {
+        "parent_name": "ih-l",
+        "name": "ih-l",
         "present": "ih",
         "imperfective": "ih",
         "perfective": "il",
         "imperative": "ika",
         "infinitive": "ihst",
         "_original_data": {
-            "class": "ih-l-ika",
+            "class": "ih-l",
+            "subclass": "",
             "present": "ih",
             "imperfective": "ih",
             "perfective": "il;ilh",
@@ -895,15 +899,17 @@
             "infinitive": "ihst;*hst"
         }
     },
-    "ih-l-ika[inf2]": {
-        "name": "ih-l-ika[inf2]",
+    "ih-l[inf2]": {
+        "parent_name": "ih-l",
+        "name": "ih-l[inf2]",
         "present": "ih",
         "imperfective": "ih",
         "perfective": "il",
         "imperative": "ika",
         "infinitive": "*hst",
         "_original_data": {
-            "class": "ih-l-ika",
+            "class": "ih-l",
+            "subclass": "",
             "present": "ih",
             "imperfective": "ih",
             "perfective": "il;ilh",
@@ -911,15 +917,17 @@
             "infinitive": "ihst;*hst"
         }
     },
-    "ih-l-ika[perf2]": {
-        "name": "ih-l-ika[perf2]",
+    "ih-l[perf2]": {
+        "parent_name": "ih-l",
+        "name": "ih-l[perf2]",
         "present": "ih",
         "imperfective": "ih",
         "perfective": "ilh",
         "imperative": "ika",
         "infinitive": "ihst",
         "_original_data": {
-            "class": "ih-l-ika",
+            "class": "ih-l",
+            "subclass": "",
             "present": "ih",
             "imperfective": "ih",
             "perfective": "il;ilh",
@@ -927,15 +935,17 @@
             "infinitive": "ihst;*hst"
         }
     },
-    "ih-l-ika[perf2-inf2]": {
-        "name": "ih-l-ika[perf2-inf2]",
+    "ih-l[perf2-inf2]": {
+        "parent_name": "ih-l",
+        "name": "ih-l[perf2-inf2]",
         "present": "ih",
         "imperfective": "ih",
         "perfective": "ilh",
         "imperative": "ika",
         "infinitive": "*hst",
         "_original_data": {
-            "class": "ih-l-ika",
+            "class": "ih-l",
+            "subclass": "",
             "present": "ih",
             "imperfective": "ih",
             "perfective": "il;ilh",
@@ -943,15 +953,17 @@
             "infinitive": "ihst;*hst"
         }
     },
-    "h-ih-l-ka": {
-        "name": "h-ih-l-ka",
+    "hih-hil": {
+        "parent_name": "hih",
+        "name": "hih-hil",
         "present": "hih",
         "imperfective": "hih",
         "perfective": "hil",
         "imperative": "hka",
         "infinitive": "hst",
         "_original_data": {
-            "class": "h-ih-l-ka",
+            "class": "hih",
+            "subclass": "hil",
             "present": "hih",
             "imperfective": "hih",
             "perfective": "hil",
@@ -959,15 +971,17 @@
             "infinitive": "hst;ht"
         }
     },
-    "h-ih-l-ka[inf2]": {
-        "name": "h-ih-l-ka[inf2]",
+    "hih-hil[inf2]": {
+        "parent_name": "hih",
+        "name": "hih-hil[inf2]",
         "present": "hih",
         "imperfective": "hih",
         "perfective": "hil",
         "imperative": "hka",
         "infinitive": "ht",
         "_original_data": {
-            "class": "h-ih-l-ka",
+            "class": "hih",
+            "subclass": "hil",
             "present": "hih",
             "imperfective": "hih",
             "perfective": "hil",
@@ -975,15 +989,17 @@
             "infinitive": "hst;ht"
         }
     },
-    "h-ih-l": {
-        "name": "h-ih-l",
+    "hih-lh": {
+        "parent_name": "hih",
+        "name": "hih-lh",
         "present": "hih",
         "imperfective": "hih",
         "perfective": "lh",
         "imperative": "ka",
         "infinitive": "hst",
         "_original_data": {
-            "class": "h-ih-l",
+            "class": "hih",
+            "subclass": "lh",
             "present": "hih",
             "imperfective": "hih",
             "perfective": "lh",
@@ -991,15 +1007,17 @@
             "infinitive": "hst;hihst"
         }
     },
-    "h-ih-l[inf2]": {
-        "name": "h-ih-l[inf2]",
+    "hih-lh[inf2]": {
+        "parent_name": "hih",
+        "name": "hih-lh[inf2]",
         "present": "hih",
         "imperfective": "hih",
         "perfective": "lh",
         "imperative": "ka",
         "infinitive": "hihst",
         "_original_data": {
-            "class": "h-ih-l",
+            "class": "hih",
+            "subclass": "lh",
             "present": "hih",
             "imperfective": "hih",
             "perfective": "lh",
@@ -1007,15 +1025,17 @@
             "infinitive": "hst;hihst"
         }
     },
-    "h-ih-l[imp2]": {
-        "name": "h-ih-l[imp2]",
+    "hih-lh[imp2]": {
+        "parent_name": "hih",
+        "name": "hih-lh[imp2]",
         "present": "hih",
         "imperfective": "hih",
         "perfective": "lh",
         "imperative": "ha",
         "infinitive": "hst",
         "_original_data": {
-            "class": "h-ih-l",
+            "class": "hih",
+            "subclass": "lh",
             "present": "hih",
             "imperfective": "hih",
             "perfective": "lh",
@@ -1023,15 +1043,17 @@
             "infinitive": "hst;hihst"
         }
     },
-    "h-ih-l[imp2-inf2]": {
-        "name": "h-ih-l[imp2-inf2]",
+    "hih-lh[imp2-inf2]": {
+        "parent_name": "hih",
+        "name": "hih-lh[imp2-inf2]",
         "present": "hih",
         "imperfective": "hih",
         "perfective": "lh",
         "imperative": "ha",
         "infinitive": "hihst",
         "_original_data": {
-            "class": "h-ih-l",
+            "class": "hih",
+            "subclass": "lh",
             "present": "hih",
             "imperfective": "hih",
             "perfective": "lh",
@@ -1039,15 +1061,17 @@
             "infinitive": "hst;hihst"
         }
     },
-    "h-ih-l[imp3]": {
-        "name": "h-ih-l[imp3]",
+    "hih-lh[imp3]": {
+        "parent_name": "hih",
+        "name": "hih-lh[imp3]",
         "present": "hih",
         "imperfective": "hih",
         "perfective": "lh",
         "imperative": "hi",
         "infinitive": "hst",
         "_original_data": {
-            "class": "h-ih-l",
+            "class": "hih",
+            "subclass": "lh",
             "present": "hih",
             "imperfective": "hih",
             "perfective": "lh",
@@ -1055,15 +1079,17 @@
             "infinitive": "hst;hihst"
         }
     },
-    "h-ih-l[imp3-inf2]": {
-        "name": "h-ih-l[imp3-inf2]",
+    "hih-lh[imp3-inf2]": {
+        "parent_name": "hih",
+        "name": "hih-lh[imp3-inf2]",
         "present": "hih",
         "imperfective": "hih",
         "perfective": "lh",
         "imperative": "hi",
         "infinitive": "hihst",
         "_original_data": {
-            "class": "h-ih-l",
+            "class": "hih",
+            "subclass": "lh",
             "present": "hih",
             "imperfective": "hih",
             "perfective": "lh",
@@ -1072,6 +1098,7 @@
         }
     },
     "ih-vh": {
+        "parent_name": "ih-vh",
         "name": "ih-vh",
         "present": "ih",
         "imperfective": "ihsk",
@@ -1080,6 +1107,7 @@
         "infinitive": "ht",
         "_original_data": {
             "class": "ih-vh",
+            "subclass": "",
             "present": "ih",
             "imperfective": "ihsk;ih",
             "perfective": "vh",
@@ -1088,6 +1116,7 @@
         }
     },
     "ih-vh[inf2]": {
+        "parent_name": "ih-vh",
         "name": "ih-vh[inf2]",
         "present": "ih",
         "imperfective": "ihsk",
@@ -1096,6 +1125,7 @@
         "infinitive": "vht",
         "_original_data": {
             "class": "ih-vh",
+            "subclass": "",
             "present": "ih",
             "imperfective": "ihsk;ih",
             "perfective": "vh",
@@ -1104,6 +1134,7 @@
         }
     },
     "ih-vh[imperf2]": {
+        "parent_name": "ih-vh",
         "name": "ih-vh[imperf2]",
         "present": "ih",
         "imperfective": "ih",
@@ -1112,6 +1143,7 @@
         "infinitive": "ht",
         "_original_data": {
             "class": "ih-vh",
+            "subclass": "",
             "present": "ih",
             "imperfective": "ihsk;ih",
             "perfective": "vh",
@@ -1120,6 +1152,7 @@
         }
     },
     "ih-vh[imperf2-inf2]": {
+        "parent_name": "ih-vh",
         "name": "ih-vh[imperf2-inf2]",
         "present": "ih",
         "imperfective": "ih",
@@ -1128,6 +1161,7 @@
         "infinitive": "vht",
         "_original_data": {
             "class": "ih-vh",
+            "subclass": "",
             "present": "ih",
             "imperfective": "ihsk;ih",
             "perfective": "vh",
@@ -1135,15 +1169,17 @@
             "infinitive": "ht;vht"
         }
     },
-    "ih-vnh-a": {
-        "name": "ih-vnh-a",
+    "vnh-ih-a": {
+        "parent_name": "vnh",
+        "name": "vnh-ih-a",
         "present": "ih",
         "imperfective": "ihsk",
         "perfective": "vnh",
         "imperative": "a",
         "infinitive": "ht",
         "_original_data": {
-            "class": "ih-vnh-a",
+            "class": "vnh",
+            "subclass": "ih-a",
             "present": "ih",
             "imperfective": "ihsk",
             "perfective": "vnh",
@@ -1151,15 +1187,17 @@
             "infinitive": "ht"
         }
     },
-    "ih-vnh-vna": {
-        "name": "ih-vnh-vna",
+    "vnh-ih-vna": {
+        "parent_name": "vnh",
+        "name": "vnh-ih-vna",
         "present": "ih",
         "imperfective": "ihsk",
         "perfective": "vnh",
         "imperative": "vna",
         "infinitive": "vht",
         "_original_data": {
-            "class": "ih-vnh-vna",
+            "class": "vnh",
+            "subclass": "ih-vna",
             "present": "ih",
             "imperfective": "ihsk",
             "perfective": "vnh",
@@ -1167,15 +1205,17 @@
             "infinitive": "vht"
         }
     },
-    "vsk-vnh": {
-        "name": "vsk-vnh",
+    "vnh-vsk": {
+        "parent_name": "vnh",
+        "name": "vnh-vsk",
         "present": "vhsk",
         "imperfective": "vhsk",
         "perfective": "vnh",
         "imperative": "vna",
         "infinitive": "ht",
         "_original_data": {
-            "class": "vsk-vnh",
+            "class": "vnh",
+            "subclass": "vsk",
             "present": "vhsk",
             "imperfective": "vhsk",
             "perfective": "vnh",
@@ -1183,15 +1223,17 @@
             "infinitive": "ht;vht;vnht;vhst"
         }
     },
-    "vsk-vnh[inf2]": {
-        "name": "vsk-vnh[inf2]",
+    "vnh-vsk[inf2]": {
+        "parent_name": "vnh",
+        "name": "vnh-vsk[inf2]",
         "present": "vhsk",
         "imperfective": "vhsk",
         "perfective": "vnh",
         "imperative": "vna",
         "infinitive": "vht",
         "_original_data": {
-            "class": "vsk-vnh",
+            "class": "vnh",
+            "subclass": "vsk",
             "present": "vhsk",
             "imperfective": "vhsk",
             "perfective": "vnh",
@@ -1199,15 +1241,17 @@
             "infinitive": "ht;vht;vnht;vhst"
         }
     },
-    "vsk-vnh[inf3]": {
-        "name": "vsk-vnh[inf3]",
+    "vnh-vsk[inf3]": {
+        "parent_name": "vnh",
+        "name": "vnh-vsk[inf3]",
         "present": "vhsk",
         "imperfective": "vhsk",
         "perfective": "vnh",
         "imperative": "vna",
         "infinitive": "vnht",
         "_original_data": {
-            "class": "vsk-vnh",
+            "class": "vnh",
+            "subclass": "vsk",
             "present": "vhsk",
             "imperfective": "vhsk",
             "perfective": "vnh",
@@ -1215,15 +1259,17 @@
             "infinitive": "ht;vht;vnht;vhst"
         }
     },
-    "vsk-vnh[inf4]": {
-        "name": "vsk-vnh[inf4]",
+    "vnh-vsk[inf4]": {
+        "parent_name": "vnh",
+        "name": "vnh-vsk[inf4]",
         "present": "vhsk",
         "imperfective": "vhsk",
         "perfective": "vnh",
         "imperative": "vna",
         "infinitive": "vhst",
         "_original_data": {
-            "class": "vsk-vnh",
+            "class": "vnh",
+            "subclass": "vsk",
             "present": "vhsk",
             "imperfective": "vhsk",
             "perfective": "vnh",
@@ -1231,39 +1277,8 @@
             "infinitive": "ht;vht;vnht;vhst"
         }
     },
-    "long": {
-        "name": "long",
-        "present": "ati'",
-        "imperfective": "atihsk",
-        "perfective": "at",
-        "imperative": "ata",
-        "infinitive": "atihst",
-        "_original_data": {
-            "class": "long",
-            "present": "ati'",
-            "imperfective": "atihsk",
-            "perfective": "at",
-            "imperative": "ata",
-            "infinitive": "atihst"
-        }
-    },
-    "i-is": {
-        "name": "i-is",
-        "present": "i'",
-        "imperfective": "ihsk",
-        "perfective": "ihs",
-        "imperative": "a",
-        "infinitive": "ihst",
-        "_original_data": {
-            "class": "i-is",
-            "present": "i'",
-            "imperfective": "ihsk",
-            "perfective": "ihs",
-            "imperative": "a",
-            "infinitive": "ihst"
-        }
-    },
     "i-vka": {
+        "parent_name": "i-vka",
         "name": "i-vka",
         "present": "i'",
         "imperfective": "ihsk",
@@ -1272,6 +1287,7 @@
         "infinitive": "ot",
         "_original_data": {
             "class": "i-vka",
+            "subclass": "",
             "present": "i'",
             "imperfective": "ihsk",
             "perfective": "an",
@@ -1280,6 +1296,7 @@
         }
     },
     "o": {
+        "parent_name": "o",
         "name": "o",
         "present": "o'",
         "imperfective": "ohsk",
@@ -1288,6 +1305,7 @@
         "infinitive": "ohst",
         "_original_data": {
             "class": "o",
+            "subclass": "",
             "present": "o'",
             "imperfective": "ohsk",
             "perfective": "o'",
@@ -1296,6 +1314,7 @@
         }
     },
     "be-at": {
+        "parent_name": "be-at",
         "name": "be-at",
         "present": "itoh",
         "imperfective": "itoh",
@@ -1304,6 +1323,7 @@
         "infinitive": "itahst",
         "_original_data": {
             "class": "be-at",
+            "subclass": "",
             "present": "itoh",
             "imperfective": "itoh",
             "perfective": "itol",
@@ -1312,6 +1332,7 @@
         }
     },
     "be-at-weak": {
+        "parent_name": "be-at",
         "name": "be-at-weak",
         "present": "oh",
         "imperfective": "oh",
@@ -1319,7 +1340,8 @@
         "imperative": "a",
         "infinitive": "ahst",
         "_original_data": {
-            "class": "be-at-weak",
+            "class": "be-at",
+            "subclass": "weak",
             "present": "oh",
             "imperfective": "oh",
             "perfective": "ol",
@@ -1328,6 +1350,7 @@
         }
     },
     "oh-al": {
+        "parent_name": "oh",
         "name": "oh-al",
         "present": "hoh",
         "imperfective": "hoh",
@@ -1335,7 +1358,8 @@
         "imperative": "hka",
         "infinitive": "hst",
         "_original_data": {
-            "class": "oh-al",
+            "class": "oh",
+            "subclass": "al",
             "present": "hoh",
             "imperfective": "hoh",
             "perfective": "hal",
@@ -1344,6 +1368,7 @@
         }
     },
     "oh-al[imp2]": {
+        "parent_name": "oh",
         "name": "oh-al[imp2]",
         "present": "hoh",
         "imperfective": "hoh",
@@ -1351,7 +1376,8 @@
         "imperative": "aka",
         "infinitive": "hst",
         "_original_data": {
-            "class": "oh-al",
+            "class": "oh",
+            "subclass": "al",
             "present": "hoh",
             "imperfective": "hoh",
             "perfective": "hal",
@@ -1360,6 +1386,7 @@
         }
     },
     "oh-ol": {
+        "parent_name": "oh",
         "name": "oh-ol",
         "present": "oh",
         "imperfective": "oh",
@@ -1367,7 +1394,8 @@
         "imperative": "aka",
         "infinitive": "ot",
         "_original_data": {
-            "class": "oh-ol",
+            "class": "oh",
+            "subclass": "ol",
             "present": "oh",
             "imperfective": "oh",
             "perfective": "ol",
@@ -1376,6 +1404,7 @@
         }
     },
     "oh-ol[inf2]": {
+        "parent_name": "oh",
         "name": "oh-ol[inf2]",
         "present": "oh",
         "imperfective": "oh",
@@ -1383,7 +1412,8 @@
         "imperative": "aka",
         "infinitive": "hst",
         "_original_data": {
-            "class": "oh-ol",
+            "class": "oh",
+            "subclass": "ol",
             "present": "oh",
             "imperfective": "oh",
             "perfective": "ol",
@@ -1392,6 +1422,7 @@
         }
     },
     "oh-ol[inf3]": {
+        "parent_name": "oh",
         "name": "oh-ol[inf3]",
         "present": "oh",
         "imperfective": "oh",
@@ -1399,7 +1430,8 @@
         "imperative": "aka",
         "infinitive": "ahst",
         "_original_data": {
-            "class": "oh-ol",
+            "class": "oh",
+            "subclass": "ol",
             "present": "oh",
             "imperfective": "oh",
             "perfective": "ol",
@@ -1407,15 +1439,17 @@
             "infinitive": "ot;hst;ahst"
         }
     },
-    "change": {
-        "name": "change",
+    "v-vhs": {
+        "parent_name": "v-vhs",
+        "name": "v-vhs",
         "present": "v'",
         "imperfective": "vhsk",
         "perfective": "vhs",
         "imperative": "vna",
         "infinitive": "vhst",
         "_original_data": {
-            "class": "change",
+            "class": "v-vhs",
+            "subclass": "",
             "present": "v'",
             "imperfective": "vhsk",
             "perfective": "vhs",
@@ -1423,39 +1457,8 @@
             "infinitive": "vhst"
         }
     },
-    "change-out": {
-        "name": "change-out",
-        "present": "iyv'",
-        "imperfective": "iyvhsk",
-        "perfective": "iyvhs",
-        "imperative": "iyvna",
-        "infinitive": "iyvhst",
-        "_original_data": {
-            "class": "change-out",
-            "present": "iyv'",
-            "imperfective": "iyvhsk",
-            "perfective": "iyvhs",
-            "imperative": "iyvna",
-            "infinitive": "iyvhst"
-        }
-    },
-    "change-out-flexible": {
-        "name": "change-out-flexible",
-        "present": "a'iyv'",
-        "imperfective": "a'iyvhsk",
-        "perfective": "a'iyvhs",
-        "imperative": "a'iyvna",
-        "infinitive": "a'iyvhst",
-        "_original_data": {
-            "class": "change-out-flexible",
-            "present": "a'iyv'",
-            "imperfective": "a'iyvhsk",
-            "perfective": "a'iyvhs",
-            "imperative": "a'iyvna",
-            "infinitive": "a'iyvhst"
-        }
-    },
     "vsk": {
+        "parent_name": "vsk",
         "name": "vsk",
         "present": "vhsk",
         "imperfective": "vhsk",
@@ -1464,6 +1467,7 @@
         "infinitive": "vt",
         "_original_data": {
             "class": "vsk",
+            "subclass": "",
             "present": "vhsk",
             "imperfective": "vhsk",
             "perfective": "vn",
@@ -1472,6 +1476,7 @@
         }
     },
     "vsk[imp2]": {
+        "parent_name": "vsk",
         "name": "vsk[imp2]",
         "present": "vhsk",
         "imperfective": "vhsk",
@@ -1480,6 +1485,7 @@
         "infinitive": "vt",
         "_original_data": {
             "class": "vsk",
+            "subclass": "",
             "present": "vhsk",
             "imperfective": "vhsk",
             "perfective": "vn",
@@ -1487,15 +1493,17 @@
             "infinitive": "vt"
         }
     },
-    "v'vsk": {
-        "name": "v'vsk",
+    "vsk-long": {
+        "parent_name": "vsk",
+        "name": "vsk-long",
         "present": "v'vhsk",
         "imperfective": "v'vhsk",
         "perfective": "vn",
         "imperative": "vka",
         "infinitive": "vt",
         "_original_data": {
-            "class": "v'vsk",
+            "class": "vsk",
+            "subclass": "long",
             "present": "v'vhsk",
             "imperfective": "v'vhsk",
             "perfective": "vn",
@@ -1503,15 +1511,17 @@
             "infinitive": "vt"
         }
     },
-    "v'vsk[imp2]": {
-        "name": "v'vsk[imp2]",
+    "vsk-long[imp2]": {
+        "parent_name": "vsk",
+        "name": "vsk-long[imp2]",
         "present": "v'vhsk",
         "imperfective": "v'vhsk",
         "perfective": "vn",
         "imperative": "v'vka",
         "infinitive": "vt",
         "_original_data": {
-            "class": "v'vsk",
+            "class": "vsk",
+            "subclass": "long",
             "present": "v'vhsk",
             "imperfective": "v'vhsk",
             "perfective": "vn",
@@ -1519,15 +1529,17 @@
             "infinitive": "vt"
         }
     },
-    "'vsk": {
-        "name": "'vsk",
+    "vsk-post-v": {
+        "parent_name": "vsk",
+        "name": "vsk-post-v",
         "present": "'vhsk",
         "imperfective": "'vhsk",
         "perfective": "n",
         "imperative": "'vka",
         "infinitive": "t",
         "_original_data": {
-            "class": "'vsk",
+            "class": "vsk",
+            "subclass": "post-v",
             "present": "'vhsk",
             "imperfective": "'vhsk",
             "perfective": "n",
@@ -1535,71 +1547,8 @@
             "infinitive": "t"
         }
     },
-    "rev-gi": {
-        "name": "rev-gi",
-        "present": "ki'",
-        "imperfective": "kihsk",
-        "perfective": "kihs",
-        "imperative": "ki",
-        "infinitive": "kihst",
-        "_original_data": {
-            "class": "rev-gi",
-            "present": "ki'",
-            "imperfective": "kihsk",
-            "perfective": "kihs",
-            "imperative": "ki",
-            "infinitive": "kihst"
-        }
-    },
-    "rev-i": {
-        "name": "rev-i",
-        "present": "i'",
-        "imperfective": "ihsk",
-        "perfective": "ihs",
-        "imperative": "i",
-        "infinitive": "ihst",
-        "_original_data": {
-            "class": "rev-i",
-            "present": "i'",
-            "imperfective": "ihsk",
-            "perfective": "ihs",
-            "imperative": "i",
-            "infinitive": "ihst"
-        }
-    },
-    "rev-'i": {
-        "name": "rev-'i",
-        "present": "'i'",
-        "imperfective": "'ihsk",
-        "perfective": "'ihs",
-        "imperative": "'i",
-        "infinitive": "'ihst",
-        "_original_data": {
-            "class": "rev-'i",
-            "present": "'i'",
-            "imperfective": "'ihsk",
-            "perfective": "'ihs",
-            "imperative": "'i",
-            "infinitive": "'ihst"
-        }
-    },
-    "rev-e": {
-        "name": "rev-e",
-        "present": "e'",
-        "imperfective": "ehsk",
-        "perfective": "ehs",
-        "imperative": "aki",
-        "infinitive": "ehst",
-        "_original_data": {
-            "class": "rev-e",
-            "present": "e'",
-            "imperfective": "ehsk",
-            "perfective": "ehs",
-            "imperative": "aki",
-            "infinitive": "ehst"
-        }
-    },
     "aspectless": {
+        "parent_name": "aspectless",
         "name": "aspectless",
         "present": "",
         "imperfective": "",
@@ -1608,6 +1557,7 @@
         "infinitive": "ht",
         "_original_data": {
             "class": "aspectless",
+            "subclass": "",
             "present": "",
             "imperfective": "",
             "perfective": "",
@@ -1616,6 +1566,7 @@
         }
     },
     "aspectless[inf2]": {
+        "parent_name": "aspectless",
         "name": "aspectless[inf2]",
         "present": "",
         "imperfective": "",
@@ -1624,6 +1575,7 @@
         "infinitive": "oht",
         "_original_data": {
             "class": "aspectless",
+            "subclass": "",
             "present": "",
             "imperfective": "",
             "perfective": "",
@@ -1632,6 +1584,7 @@
         }
     },
     "aspectless-h": {
+        "parent_name": "aspectless",
         "name": "aspectless-h",
         "present": "h",
         "imperfective": "h",
@@ -1639,7 +1592,8 @@
         "imperative": "hehsti",
         "infinitive": "ht",
         "_original_data": {
-            "class": "aspectless-h",
+            "class": "aspectless",
+            "subclass": "h",
             "present": "h",
             "imperfective": "h",
             "perfective": "h",
@@ -1648,6 +1602,7 @@
         }
     },
     "aspectless-s": {
+        "parent_name": "aspectless",
         "name": "aspectless-s",
         "present": "h",
         "imperfective": "hs",
@@ -1655,12 +1610,175 @@
         "imperative": "hsehsti",
         "infinitive": "ht",
         "_original_data": {
-            "class": "aspectless-s",
+            "class": "aspectless",
+            "subclass": "s",
             "present": "h",
             "imperfective": "hs",
             "perfective": "hs",
             "imperative": "hsehsti",
             "infinitive": "ht"
+        }
+    },
+    "rev-gi": {
+        "parent_name": "rev",
+        "name": "rev-gi",
+        "present": "ki'",
+        "imperfective": "kihsk",
+        "perfective": "kihs",
+        "imperative": "ki",
+        "infinitive": "kihst",
+        "_original_data": {
+            "class": "rev",
+            "subclass": "gi",
+            "present": "ki'",
+            "imperfective": "kihsk",
+            "perfective": "kihs",
+            "imperative": "ki",
+            "infinitive": "kihst"
+        }
+    },
+    "rev-i": {
+        "parent_name": "rev",
+        "name": "rev-i",
+        "present": "i'",
+        "imperfective": "ihsk",
+        "perfective": "ihs",
+        "imperative": "i",
+        "infinitive": "ihst",
+        "_original_data": {
+            "class": "rev",
+            "subclass": "i",
+            "present": "i'",
+            "imperfective": "ihsk",
+            "perfective": "ihs",
+            "imperative": "i",
+            "infinitive": "ihst"
+        }
+    },
+    "rev-'i": {
+        "parent_name": "rev",
+        "name": "rev-'i",
+        "present": "'i'",
+        "imperfective": "'ihsk",
+        "perfective": "'ihs",
+        "imperative": "'i",
+        "infinitive": "'ihst",
+        "_original_data": {
+            "class": "rev",
+            "subclass": "'i",
+            "present": "'i'",
+            "imperfective": "'ihsk",
+            "perfective": "'ihs",
+            "imperative": "'i",
+            "infinitive": "'ihst"
+        }
+    },
+    "rev-e": {
+        "parent_name": "rev",
+        "name": "rev-e",
+        "present": "e'",
+        "imperfective": "ehsk",
+        "perfective": "ehs",
+        "imperative": "aki",
+        "infinitive": "ehst",
+        "_original_data": {
+            "class": "rev",
+            "subclass": "e",
+            "present": "e'",
+            "imperfective": "ehsk",
+            "perfective": "ehs",
+            "imperative": "aki",
+            "infinitive": "ehst"
+        }
+    },
+    "change-out": {
+        "parent_name": "change-out",
+        "name": "change-out",
+        "present": "iyv'",
+        "imperfective": "iyvhsk",
+        "perfective": "iyvhs",
+        "imperative": "iyvna",
+        "infinitive": "iyvhst",
+        "_original_data": {
+            "class": "change-out",
+            "subclass": "",
+            "present": "iyv'",
+            "imperfective": "iyvhsk",
+            "perfective": "iyvhs",
+            "imperative": "iyvna",
+            "infinitive": "iyvhst"
+        }
+    },
+    "change-out-flexible": {
+        "parent_name": "change-out",
+        "name": "change-out-flexible",
+        "present": "a'iyv'",
+        "imperfective": "a'iyvhsk",
+        "perfective": "a'iyvhs",
+        "imperative": "a'iyvna",
+        "infinitive": "a'iyvhst",
+        "_original_data": {
+            "class": "change-out",
+            "subclass": "flexible",
+            "present": "a'iyv'",
+            "imperfective": "a'iyvhsk",
+            "perfective": "a'iyvhs",
+            "imperative": "a'iyvna",
+            "infinitive": "a'iyvhst"
+        }
+    },
+    "leaving": {
+        "parent_name": "leaving",
+        "name": "leaving",
+        "present": "iya'",
+        "imperfective": "iyahsk",
+        "perfective": "iy",
+        "imperative": "iya",
+        "infinitive": "iyahst",
+        "_original_data": {
+            "class": "leaving",
+            "subclass": "",
+            "present": "iya'",
+            "imperfective": "iyahsk",
+            "perfective": "iy",
+            "imperative": "iya",
+            "infinitive": "iyahst"
+        }
+    },
+    "long": {
+        "parent_name": "long",
+        "name": "long",
+        "present": "ati'",
+        "imperfective": "atihsk",
+        "perfective": "at",
+        "imperative": "ata",
+        "infinitive": "atihst",
+        "_original_data": {
+            "class": "long",
+            "subclass": "",
+            "present": "ati'",
+            "imperfective": "atihsk",
+            "perfective": "at",
+            "imperative": "ata",
+            "infinitive": "atihst"
+        }
+    },
+    "long-no-a": {
+        "parent_name": "long",
+        "name": "long-no-a",
+        "present": "ti'",
+        "imperfective": "tihsk",
+        "perfective": "t",
+        "imperative": "ta",
+        "infinitive": "tihst",
+        "_original_data": {
+            "class": "long",
+            "subclass": "no-a",
+            "present": "ti'",
+            "imperfective": "tihsk",
+            "perfective": "t",
+            "imperative": "ta",
+            "infinitive": "tihst"
         }
     }
 }

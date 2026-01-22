@@ -4,17 +4,19 @@ corpus_id,definition,class,present,present_1sg,imperfective,perfective,imperativ
 42,he/she is making noise,cause[pres2],atanoyhvlhihstih,katanoyvlihstih,atanoyhvlhihst,utanoyhvlhihst,hatanoyhvlhihst,utanoyhvlhihst
 42,he/she is making noise,cause[pres2-perf3],atanoyhvlhihstih,katanoyvlihstih,atanoyhvlhihst,utanoyhvlhihsth,hatanoyhvlhihst,utanoyhvlhihst
 45,he/she is moving from one place to another,glottal-sk,atanv,kata'nv,ata'nv,uta'nvhs,hata'nvn,uta'nv
-45,he/she is moving from one place to another,change,atan,kata'n,ata'n,uta'n,hata'n,uta'n
+45,he/she is moving from one place to another,glottal-sk[perf2],atanv,kata'nv,ata'nv,uta'nv,hata'nvn,uta'nv
+45,he/she is moving from one place to another,v-vhs,atan,kata'n,ata'n,uta'n,hata'n,uta'n
 113,he/she is breaking it,sk-s-hst[imp2],akal,tsikal,akal,ukal,hika'l,ukal
 113,he/she is breaking it,sk-s-hst[imp4],akal,tsikal,akal,ukal,hika'l,ukal
+113,he/she is breaking it,sk-s-la,akal,tsikal,akal,ukal,hika',ukal
 113,he/she is breaking it,sk-s-hst,akal,tsikal,akal,ukal,hika'la,ukal
 166,he/she is placing it on something,hvsk-nh,alha,tsilha,alha,ulha,hilha,ulho
 166,he/she is placing it on something,hvsk-nh[inf2],alha,tsilha,alha,ulha,hilha,ulho
 190,he/she is giving it to him/her,apl,anh,tsin,anh,unh,hi'v,unh
 190,he/she is giving it to him/her,apl[imp2],anh,tsin,anh,unh,hi'v,unh
 209,he/she is taking it somewhere,ih-vh,awhit,tsiwit,awhit,uwhit,hiwhit,uwit
-217,he/she is holding it in his/her hand,aspectless,ayheh,tsiyeh,ayheh,ayheh,,
 217,he/she is holding it in his/her hand,aspectless-h,ayhe,tsiye,ayhe,ayhe,,
+217,he/she is holding it in his/her hand,aspectless,ayheh,tsiyeh,ayheh,ayheh,,
 230,he/she is kicking him/her,rev-e,ayhvhth,tsiyayvhth,ayhvhth,uyhvhth,hiyayhth,uyhvhth
 235,he/she is walking,aspectless,a',ka',a'ihs,a'ihs,,
 355,they are gathering,cause[perf2],anatalhihs,otsatalhihs,anatalhihs,unatalhihs,itsatalhihs,unatalhihs
@@ -30,8 +32,9 @@ corpus_id,definition,class,present,present_1sg,imperfective,perfective,imperativ
 470,he/she is exploding it,cause[pres2-perf3],athahskihstih,tsithahskihstih,athahskihst,uthahskihsth,hathahskihst,uthahskihst
 475,he/she is joining,glottal-sk,athelati,kate'lati,athelati,uthelat,hathelat,uthelati
 475,he/she is joining,long,athel,kate'l,athel,uthel,hathel,uthel
-482,he/she is running,aspectless,atlh,katitlh,atlhihs,,,
+475,he/she is joining,long-no-a,athela,kate'la,athela,uthela,hathela,uthela
 482,he/she is running,aspectless-s,atl,katitl,atlhi,,,
+482,he/she is running,aspectless,atlh,katitlh,atlhihs,,,
 517,he/she is taking a break,cause,ayohihst,tsi'yohihst,ayohihst,uyohihst,hiyohihst,uyohihst
 517,he/she is taking a break,cause[perf3],ayohihst,tsi'yohihst,ayohihst,uyohihsth,hiyohihst,uyohihst
 517,he/she is taking a break,cause[pres2],ayohihstih,tsi'yohihstih,ayohihst,uyohihst,hiyohihst,uyohihst
@@ -51,34 +54,31 @@ corpus_id,definition,class,present,present_1sg,imperfective,perfective,imperativ
 597,they are meeting,sk-s-hst[imp3],tanatlo,totsatlo,tanatlo,tunatlo,titsatlo,tsunatlohi
 597,they are meeting,sk-s-hst,tanatlo,totsatlo,tanatlo,tunatlo,titsatlohi,tsunatlohi
 598,they are separating,ih-vh,tanakalen,tohstakalen,tanakalen,tunakalen,tihstakalen,tsunakalen
-601,they’re having church services,become,tanilawi,totsilawi,tanilawi,tunilawi,titsilawi,tsunilawi
-601,they’re having church services,become[inf4],tanilawi,totsilawi,tanilawi,tunilawi,titsilawi,tsunilaw
+601,they’re having church services,become-ki,tanilawi,totsilawi,tanilawi,tunilawi,titsilawi,tsunilawi
+601,they’re having church services,become-ki[inf4],tanilawi,totsilawi,tanilawi,tunilawi,titsilawi,tsunilaw
 603,they are adjourning,sk-s-hi-hihst,taniyeli,totsiyeli,taniyeli,tuniyeli,titsiyeli,tsuniyeli
 603,they are adjourning,sk-s-hst[imp3],taniyeli,totsiyeli,taniyeli,tuniyeli,titsiyeli,tsuniyelihi
 603,they are adjourning,sk-s-hst,taniyeli,totsiyeli,taniyeli,tuniyeli,titsiyelihi,tsuniyelihi
 613,he/she is ironing,sk-s-hst[imp2],tathe,tetsithe,tathe,tuthe,thithvl,tsuthe
 613,he/she is ironing,sk-s-hst[imp4],tathe,tetsithe,tathe,tuthe,thithvl,tsuthe
-613,he/she is ironing,sk-s-hst[imp5],tathe,tetsithe,tathe,tuthe,thithvl,tsuthe
+613,he/she is ironing,sk-s-la,tathe,tetsithe,tathe,tuthe,thithv,tsuthe
 613,he/she is ironing,sk-s-hst,tathe,tetsithe,tathe,tuthe,thithvla,tsuthe
 634,he/she is washing,glottal-sk,tekhkilo,tekvkilo,tekhkilo,tuhkilo',thvhkilots,tsuhkilo
-634,he/she is washing,glottal-sk[perf2],tekhkilo,tekvkilo,tekhkilo,tuhkilo,thvhkilots,tsuhkilo
 634,he/she is washing,o,tekhkil,tekvkil,tekhkil,tuhkil,thvhkil,tsuhkil
 818,he/she is eating it,glottal-sk,kayhe,tsiyaye,kayhe,uwayha',hiyayak,uwayhe
-818,he/she is eating it,glottal-sk[perf2],kayhe,tsiyaye,kayhe,uwayha,hiyayak,uwayhe
 834,he/she is climbing it,go,ka'l,tsi'l,ka'l,ul,hi'l,ul
 834,he/she is climbing it,go[pres2],ka'lek,tsi'lek,ka'l,ul,hi'l,ul
 839,he/she is climbing around,be-at,ka'l,tsi'l,ka'l,ul,hi'l,ul
 839,he/she is climbing around,be-at-weak,ka'lit,tsi'lit,ka'lit,ulit,hi'lit,ulit
 841,he/she is taking it out of a container,ih-vh,kal,,kal,ul,hil,ul
-844,he/she is spanking him/her,h-ih-l-ka,kali'vn,tsili'vn,kal'vn,uli'vn,hili'vn,uli'vn
-858,he/she is arriving,become,ka'luh,tsi'luh,ka'luh,uluh,hi'luh,uluhi
-858,he/she is arriving,become[inf4],ka'luh,tsi'luh,ka'luh,uluh,hi'luh,uluh
+844,he/she is spanking him/her,hih-hil,kali'vn,tsili'vn,kal'vn,uli'vn,hili'vn,uli'vn
+858,he/she is arriving,become-ki,ka'luh,tsi'luh,ka'luh,uluh,hi'luh,uluhi
+858,he/she is arriving,become-ki[inf4],ka'luh,tsi'luh,ka'luh,uluh,hi'luh,uluh
 889,he/she is giving him/her some liquid,apl,kanenh,tsinen,kanenh,unenh,hine'v,unenh
 889,he/she is giving him/her some liquid,apl[imp2],kanenh,tsinen,kanenh,unenh,hine'v,unenh
 914,he/she is burying him/her,cause[perf2],ka'nihs,tsinihs,ka'nihs,unihs,hinihs,unihs
 914,he/she is burying him/her,cause[pres2-perf2],ka'nihsih,tsinihsih,ka'nihs,unihs,hinihs,unihs
 915,he/she is leaving it,glottal-sk,ka'niha,tsi'niya,ka'niya,uniy,hiniy,uniya
-915,he/she is leaving it,glottal-sk[inf2],ka'niha,tsi'niya,ka'niya,uniy,hiniy,uniy
 916,he/she is catching him/her,ih-vh,ka'niy,tsiniy,kaniy,uniy,hiniy,uniy
 922,he/she is causing it to sound,cause,kanoyhvlhihst,tsinoyvlihst,kanoyhvlhihst,unoyhvlhihst,hinoyhvlhihst,unoyhvlhihst
 922,he/she is causing it to sound,cause[perf3],kanoyhvlhihst,tsinoyvlihst,kanoyhvlhihst,unoyhvlhihsth,hinoyhvlhihst,unoyhvlhihst
@@ -88,17 +88,18 @@ corpus_id,definition,class,present,present_1sg,imperfective,perfective,imperativ
 978,he/she is resting him/her,cause[perf3],kawehsolvhst,tsiyawehsolvhst,kawehsolvhst,uyawehsolvhsth,hiyawehsolvhst,uyawehsolvhst
 978,he/she is resting him/her,cause[pres2],kawehsolvhstih,tsiyawehsolvhstih,kawehsolvhst,uyawehsolvhst,hiyawehsolvhst,uyawehsolvhst
 978,he/she is resting him/her,cause[pres2-perf3],kawehsolvhstih,tsiyawehsolvhstih,kawehsolvhst,uyawehsolvhsth,hiyawehsolvhst,uyawehsolvhst
-1119,he/she is returning,become,ika'luh,itsi'luh,ika'luh,v'uluh,tsihi'luh,
+1119,he/she is returning,become-ki,ika'luh,itsi'luh,ika'luh,v'uluh,tsihi'luh,
 1258,he/she is breathing,rev-e,khawolat,ka'wolat,khawolat,uwholat,hawholat,uwholat
-1261,he/she is parting with him/her,become,khte,tsiyvte,khte,uwhte,hiyvte,uwhte'i
-1261,he/she is parting with him/her,become[inf2],khte,tsiyvte,khte,uwhte,hiyvte,uwhte
-1261,he/she is parting with him/her,become[inf4],khte,tsiyvte,khte,uwhte,hiyvte,uwhte'
+1261,he/she is parting with him/her,become-ki,khte,tsiyvte,khte,uwhte,hiyvte,uwhte'i
+1261,he/she is parting with him/her,become-ki[inf2],khte,tsiyvte,khte,uwhte,hiyvte,uwhte
+1261,he/she is parting with him/her,become-ki[inf4],khte,tsiyvte,khte,uwhte,hiyvte,uwhte'
 1262,he/she is using it,cause,kht,kvt,kht,uwht,hvht,uwht
 1262,he/she is using it,cause[perf3],kht,kvt,kht,uwhth,hvht,uwht
 1262,he/she is using it,cause[pres2],khtih,kvtih,kht,uwht,hvht,uwht
 1262,he/she is using it,cause[pres2-perf3],khtih,kvtih,kht,uwhth,hvht,uwht
 1263,he/she is putting out a fire,glottal-sk,khtlati,kvtlati,khtlati,uwhtlat,hvhtlat,uwhtlati
 1263,he/she is putting out a fire,long,khtl,kvtl,khtl,uwhtl,hvhtl,uwhtl
+1263,he/she is putting out a fire,long-no-a,khtla,kvtla,khtla,uwhtla,hvhtla,uwhtla
 1264,he/she is sharpening it,ih-vh,khtl,kvtl,khtl,uwhtl,hvhtl,uwhtlv
 1264,he/she is sharpening it,ih-vh[inf2],khtl,kvtl,khtl,uwhtl,hvhtl,uwhtl
 1265,it is going out,sk-s-hi-hihst,khtlo,,khtlo,uwhtlo,hvhtlo,uwhtlo
@@ -106,24 +107,26 @@ corpus_id,definition,class,present,present_1sg,imperfective,perfective,imperativ
 1265,it is going out,sk-s-hst,khtlo,,khtlo,uwhtlo,hvhtlohi,uwhtlohi
 1266,he/she is putting it into a fire,vsk,khtv',kvtv',khtv',uwht,hvhtv',uwht
 1266,he/she is putting it into a fire,vsk[imp2],khtv',kvtv',khtv',uwht,hvht,uwht
-1266,he/she is putting it into a fire,v'vsk,kht,kvt,kht,uwht,hvhtv',uwht
-1266,he/she is putting it into a fire,v'vsk[imp2],kht,kvt,kht,uwht,hvht,uwht
-1266,he/she is putting it into a fire,'vsk,khtv,kvtv,khtv,uwhtv,hvhtv,uwhtv
+1266,he/she is putting it into a fire,vsk-long,kht,kvt,kht,uwht,hvhtv',uwht
+1266,he/she is putting it into a fire,vsk-long[imp2],kht,kvt,kht,uwht,hvht,uwht
+1266,he/she is putting it into a fire,vsk-post-v,khtv,kvtv,khtv,uwhtv,hvhtv,uwhtv
 1267,he/she is mingling with a group,be-at,khelat,ke'lat,khelat,uwhelat,helat,uwhelat
 1267,he/she is mingling with a group,be-at-weak,khelatit,ke'latit,khelatit,uwhelatit,helatit,uwhelatit
 1270,he/she is linking it,hvsk-han,khil,kv'il,khil,uwhil,hvhil,uwhil
 1285,it is hanging,aspectless,khtho',,khtho',,hatho',
 1286,he/she is hanging it up,glottal-sk,khthohsati,kathohsati,khthohsati,uwhthohsat,hathohsat,uwhthohsati
 1286,he/she is hanging it up,long,khthohs,kathohs,khthohs,uwhthohs,hathohs,uwhthohs
+1286,he/she is hanging it up,long-no-a,khthohsa,kathohsa,khthohsa,uwhthohsa,hathohsa,uwhthohsa
 1301,there are,aspectless,nani',notsi',nani',,nitsi',
 1570,he/she has a cold,ih-vh,uyhvtla uniy,uyhvtla aki'niy,uyhvtla uniy,uyhvtla uniy,uyhvtla witsa'niy,uyhvtla uniy
-1632,they are together,aspectless,unalikoh,okalikoh,unalikohs,unalikohs,itsalikohs,
 1632,they are together,aspectless-s,unaliko,okaliko,unaliko,unaliko,itsaliko,
+1632,they are together,aspectless,unalikoh,okalikoh,unalikohs,unalikohs,itsalikohs,
 1664,he/she is receiving punishment,glottal-sk,uhstvti,akhstvti,uhstvti,uhstvt,tstvt,uhstvti
+1664,he/she is receiving punishment,long-no-a,uhstv,akhstv,uhstv,uhstv,tstv,uhstv
 1671,he/she is coughing,sk-h[imp2],uhsiwha,akhsiwha,uhsiwha,uhsiwha,tsiwhahi,uhsiwhahi
-1681,he/she is going to bed,h-ih-l[imp2],uhsv,akhsv,uhsv,uhsv,tsv,uhsv
-1719,he/she has it,aspectless,uwekhah,akikhah,uwekhah,uwekhah,tsekhah,
+1681,he/she is going to bed,hih-lh[imp2],uhsv,akhsv,uhsv,uhsv,tsv,uhsv
 1719,he/she has it,aspectless-h,uwekha,akikha,uwekha,uwekha,tsekha,
-1765,he/she is heading in the direction of,aspectless,wakhth,witsikath,wakhth,wakhth,whikhth,
+1719,he/she has it,aspectless,uwekhah,akikhah,uwekhah,uwekhah,tsekhah,
 1765,he/she is heading in the direction of,aspectless-h,wakht,witsikat,wakht,wakht,whikht,
+1765,he/she is heading in the direction of,aspectless,wakhth,witsikath,wakhth,wakhth,whikhth,
 1774,he/she is sending it,hvsk-han,wikakha,witsiyakha,wikakha,wuwak,whiyakha,wuwakho
