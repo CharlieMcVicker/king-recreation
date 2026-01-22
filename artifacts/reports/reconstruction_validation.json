@@ -1,5 +1,5 @@
 {
-    "summary": "1799/3816",
+    "summary": "1797/3813",
     "failures": [
         {
             "definition": "he/she is bouncing it",
@@ -5660,7 +5660,7 @@
         {
             "definition": "he/she is borrowing him/her",
             "failed_forms": [
-                "imperative: expected 'hathola', got ['hathoa']",
+                "imperative: expected 'hiyathola', got ['hiyathoa']",
                 "infinitive: expected 'utholhihst', got ['utholhst']"
             ],
             "class": "sk-s-hst[imp2]",
@@ -5677,7 +5677,7 @@
         {
             "definition": "he/she is borrowing him/her",
             "failed_forms": [
-                "imperative: expected 'hathola', got ['hatholla']",
+                "imperative: expected 'hiyathola', got ['hiyatholla']",
                 "infinitive: expected 'utholhihst', got ['utholhst']"
             ],
             "class": "sk-s-la",
@@ -5686,7 +5686,7 @@
         {
             "definition": "he/she is borrowing him/her",
             "failed_forms": [
-                "imperative: expected 'hathola', got ['hathol']",
+                "imperative: expected 'hiyathola', got ['hiyathol']",
                 "infinitive: expected 'utholhihst', got ['utholhst']"
             ],
             "class": "sk-s-hst",
@@ -10640,33 +10640,6 @@
             ],
             "class": "hvsk-nh[inf2]",
             "corpus_id": 784
-        },
-        {
-            "definition": "he/she is hanging up it",
-            "failed_forms": [
-                "perfective: expected 'utvn', got [\"utv'vn\"]",
-                "infinitive: expected 'utvt', got [\"utv'vt\"]"
-            ],
-            "class": "vsk",
-            "corpus_id": 788
-        },
-        {
-            "definition": "he/she is hanging up it",
-            "failed_forms": [
-                "perfective: expected 'utvn', got [\"utv'vn\"]",
-                "imperative: expected 'hatv'vka', got [\"hatv'v'vka\"]",
-                "infinitive: expected 'utvt', got [\"utv'vt\"]"
-            ],
-            "class": "vsk[imp2]",
-            "corpus_id": 788
-        },
-        {
-            "definition": "he/she is hanging up it",
-            "failed_forms": [
-                "imperative: expected 'hatv'vka', got ['hatvka']"
-            ],
-            "class": "vsk-long",
-            "corpus_id": 788
         },
         {
             "definition": "he/she is rowing",
@@ -17309,7 +17282,23 @@
         {
             "definition": "he/she is lonesome",
             "failed_forms": [
+                "imperative: expected 'tsahihsohtahsi', got ['tshahhsohtahsi']"
+            ],
+            "class": "apl",
+            "corpus_id": 1536
+        },
+        {
+            "definition": "he/she is lonesome",
+            "failed_forms": [
                 "imperative: expected 'tsahihsohtahsi', got ['tsahihsohthsi']"
+            ],
+            "class": "apl[imp2]",
+            "corpus_id": 1536
+        },
+        {
+            "definition": "he/she is lonesome",
+            "failed_forms": [
+                "imperative: expected 'tsahihsohtahsi', got ['tshahhsohthsi']"
             ],
             "class": "apl[imp2]",
             "corpus_id": 1536

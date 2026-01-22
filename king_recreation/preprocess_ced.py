@@ -163,90 +163,39 @@ def process_cn_dict(file_path, output_path):
                 verb_data["definition"] = gloss
                 break
 
-        # Dictionary to store the best form found so far for each slot
-        # Structure: slot_name -> (form, priority)
-        # Priority: 2 = animate/3rd person object, 1 = inanimate, 0 = generic/unspecified
-        best_forms = {
-            "present": ("", -1),
-            "present_1sg": ("", -1),
-            "imperfective": ("", -1),
-            "perfective": ("", -1),
-            "imperative": ("", -1),
-            "infinitive": ("", -1),
-        }
+        # Determine forms using best-match logic (matching frontend getCorpusForm)
+        def get_priority(sub):
+            if "animate" in sub and "inanimate" not in sub:
+                return 3
+            if "animate" in sub:
+                return 2
+            if "inanimate" in sub:
+                return 1
+            return 0
 
-        # Helper to update best form
-        def update_form(slot, form, sub_entry_text):
-            priority = 0
-            sub_lower = sub_entry_text.lower()
-            if "animate" in sub_lower and "inanimate" not in sub_lower:
-                priority = 2
-            elif "animate" in sub_lower:
-                # "animate/ inanimate" usually means generic or covers both, treat as high priority if explicit purely animate isn't splitting
-                # But looking at conflicts "animate" vs "inanimate", usually "animate" is better.
-                # "1st person singular with animate object" vs "1st person singular with inanimate object"
-                if "with animate object" in sub_lower:
-                    priority = 2
-                elif "animate/ inanimate" in sub_lower:
-                    # This is effectively generic or combined.
-                    # Let's say: strictly animate > animate/inanimate > inanimate > unknown
-                    priority = 1.5
-            elif "inanimate" in sub_lower:
-                priority = 1
+        def select_form(predicate):
+            best_form = ""
+            best_priority = -1
+            for row in rows:
+                sub = row.get("Grammar sub entry", "").strip().lower()
+                if predicate(sub):
+                    p = get_priority(sub)
+                    if p > best_priority:
+                        best_form = row.get("Practical", "").strip()
+                        best_priority = p
+            return clean_string(best_form)
 
-            # 3rd person object check (user request) - usually covered by 'animate' but just in case
-            if "3rd person object" in sub_lower:
-                priority = 2
-
-            current_form, current_priority = best_forms[slot]
-            if priority > current_priority:
-                best_forms[slot] = (form, priority)
-            elif priority == current_priority:
-                # If equal priority, maybe prefer the one that doesn't say "inanimate" if we haven't distinguished?
-                # For now, first come first serve or overwrite?
-                # Let's overwrite to be safe, or stick with first.
-                # Actually, usually there's a clear winner. If priorities are equal (e.g. both generic), it doesn't matter much.
-                best_forms[slot] = (form, priority)
-
-        # Map forms based on "Grammar sub entry"
-        for row in rows:
-            sub_entry = row.get("Grammar sub entry", "").strip().lower()
-            practical_form = row.get("Practical", "").strip()
-
-            if not practical_form:
-                continue
-
-            clean_form = clean_string(practical_form)
-
-            # Mapping logic with loose matching
-            if sub_entry.startswith("3rd person singular"):
-                # Distinguish from potential other 3rd person forms if any, but usually this is present
-                # Exclude explicit past/habitual/infinitive which start with same prefix
-                if "habitual" in sub_entry:
-                    update_form("imperfective", clean_form, sub_entry)
-                elif "remote past" in sub_entry:
-                    update_form("perfective", clean_form, sub_entry)
-                elif "infinitive" in sub_entry:
-                    update_form("infinitive", clean_form, sub_entry)
-                else:
-                    # Pure 3rd person singular (present)
-                    update_form("present", clean_form, sub_entry)
-
-            elif sub_entry.startswith("1st person singular"):
-                update_form("present_1sg", clean_form, sub_entry)
-
-            elif "imperative" in sub_entry and "2nd person" not in sub_entry:
-                # Sometimes just "imperative ...", sometimes "2nd person imperative"?
-                # In CN dict, it looks like "imperative with ..."
-                update_form("imperative", clean_form, sub_entry)
-
-        # Extract final forms from best_forms
-        verb_data["present"] = best_forms["present"][0]
-        verb_data["present_1sg"] = best_forms["present_1sg"][0]
-        verb_data["imperfective"] = best_forms["imperfective"][0]
-        verb_data["perfective"] = best_forms["perfective"][0]
-        verb_data["imperative"] = best_forms["imperative"][0]
-        verb_data["infinitive"] = best_forms["infinitive"][0]
+        verb_data["present"] = select_form(
+            lambda s: s.startswith("3rd person singular")
+            and not any(x in s for x in ["habitual", "past", "infinitive"])
+        )
+        verb_data["present_1sg"] = select_form(
+            lambda s: s.startswith("1st person singular")
+        )
+        verb_data["perfective"] = select_form(lambda s: "remote past" in s)
+        verb_data["imperfective"] = select_form(lambda s: "habitual" in s)
+        verb_data["imperative"] = select_form(lambda s: "imperative" in s)
+        verb_data["infinitive"] = select_form(lambda s: "infinitive" in s)
 
         # Apply the final suffix stripping logic (clean_row logic) to the extracted values
         # Since clean_row expects raw values with suffixes, and clean_string does initial cleaning,
