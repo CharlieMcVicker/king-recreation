@@ -63,11 +63,53 @@ class ReconstructionEngine:
                 candidates.append(res)
         return candidates
 
-    def reconstruct_verb(self, verb: ReconstructibleVerb) -> List[Dict[str, str]]:
-        base_stems = {}
+    def get_base_stems_for_form(self, verb: ReconstructibleVerb, form_name: str):
         class_info = self.classes.get(verb.class_name)
         if not class_info:
             return []
+
+        ending_pattern = class_info.get(form_name, "")
+        if form_name == "present_1sg" and not ending_pattern:
+            ending_pattern = class_info.present
+
+        literal_ending = ending_pattern.replace("*", "").replace("@", "")
+
+        # Determine Grade
+        # Default: h-grade
+        glottal_grade_form = use_glottal_grade(form_name, verb.config.pron)
+        root_to_use = (
+            verb.glottal_grade_root if glottal_grade_form else verb.h_grade_root
+        )
+
+        if glottal_grade_form and root_to_use is None:
+            # Missing required root for this form
+            return None
+
+        if root_to_use is None:
+            return None
+
+        modified_root = root_to_use
+        if "*" in ending_pattern:
+            if len(modified_root) >= 1:
+                modified_root = modified_root[:-1]
+        elif "@" in ending_pattern:
+            if len(modified_root) >= 2:
+                modified_root = modified_root[:-2]
+
+        # if we need to /h/ alternate but there wasnt an h in the h grade root
+        # we need to try to drop it from the ending
+        if glottal_grade_form and not "h" in verb.h_grade_root:
+            return [
+                prevent_C_glottal_cluster(modified_root + literal_ending)
+                for literal_ending in possible_alternates(
+                    literal_ending, fix_clusters=False
+                )
+            ]
+        else:
+            return [modified_root + literal_ending]
+
+    def get_base_stems(self, verb: ReconstructibleVerb):
+        base_stems = {}
 
         for form_name in [
             "present",
@@ -77,45 +119,14 @@ class ReconstructionEngine:
             "imperative",
             "infinitive",
         ]:
-            ending_pattern = class_info.get(form_name, "")
-            if form_name == "present_1sg" and not ending_pattern:
-                ending_pattern = class_info.present
+            stems = self.get_base_stems_for_form(verb, form_name)
+            if stems:
+                base_stems[form_name] = stems
 
-            literal_ending = ending_pattern.replace("*", "").replace("@", "")
+        return base_stems
 
-            # Determine Grade
-            # Default: h-grade
-            glottal_grade_form = use_glottal_grade(form_name, verb.config.pron)
-            root_to_use = (
-                verb.glottal_grade_root if glottal_grade_form else verb.h_grade_root
-            )
-
-            if glottal_grade_form and root_to_use is None:
-                # Missing required root for this form
-                continue
-
-            if root_to_use is None:
-                continue
-
-            modified_root = root_to_use
-            if "*" in ending_pattern:
-                if len(modified_root) >= 1:
-                    modified_root = modified_root[:-1]
-            elif "@" in ending_pattern:
-                if len(modified_root) >= 2:
-                    modified_root = modified_root[:-2]
-
-            # if we need to /h/ alternate but there wasnt an h in the h grade root
-            # we need to try to drop it from the ending
-            if glottal_grade_form and not "h" in verb.h_grade_root:
-                base_stems[form_name] = [
-                    prevent_C_glottal_cluster(modified_root + literal_ending)
-                    for literal_ending in possible_alternates(
-                        literal_ending, fix_clusters=False
-                    )
-                ]
-            else:
-                base_stems[form_name] = modified_root + literal_ending
+    def reconstruct_verb(self, verb: ReconstructibleVerb) -> List[Dict[str, str]]:
+        base_stems = self.get_base_stems(verb)
 
         form_options = {}
         for fn, stems in base_stems.items():
