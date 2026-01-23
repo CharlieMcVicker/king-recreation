@@ -254,46 +254,7 @@
             }
         ]
     },
-    "become-'i": {
-        "available_options": {
-            "imp": 1,
-            "imperf": 1,
-            "inf": 1,
-            "perf": 1,
-            "pres": 1
-        },
-        "can_have_variants": false,
-        "combinations": {
-            "become-'i": 2
-        },
-        "slots": {
-            "imp": {
-                "1": 2
-            },
-            "imperf": {
-                "1": 2
-            },
-            "inf": {
-                "1": 2
-            },
-            "perf": {
-                "1": 2
-            },
-            "pres": {
-                "1": 2
-            }
-        },
-        "total_matches": 2,
-        "unused_options": [],
-        "variant_stats": [
-            {
-                "count": 2,
-                "percent": 100.0,
-                "variant": "become-'i"
-            }
-        ]
-    },
-    "become-ki": {
+    "become": {
         "available_options": {
             "imp": 1,
             "imperf": 1,
@@ -303,10 +264,10 @@
         },
         "can_have_variants": true,
         "combinations": {
-            "become-ki": 14,
-            "become-ki[inf2]": 8,
-            "become-ki[inf3]": 7,
-            "become-ki[inf4]": 3
+            "become": 14,
+            "become[inf2]": 8,
+            "become[inf3]": 7,
+            "become[inf4]": 3
         },
         "slots": {
             "imp": {
@@ -334,22 +295,22 @@
             {
                 "count": 7,
                 "percent": 21.88,
-                "variant": "become-ki[inf3]"
+                "variant": "become[inf3]"
             },
             {
                 "count": 14,
                 "percent": 43.75,
-                "variant": "become-ki"
+                "variant": "become"
             },
             {
                 "count": 8,
                 "percent": 25.0,
-                "variant": "become-ki[inf2]"
+                "variant": "become[inf2]"
             },
             {
                 "count": 3,
                 "percent": 9.38,
-                "variant": "become-ki[inf4]"
+                "variant": "become[inf4]"
             }
         ]
     },
@@ -619,52 +580,6 @@
                 "count": 1,
                 "percent": 16.67,
                 "variant": "episodic[imp2]"
-            }
-        ]
-    },
-    "glottal-sk": {
-        "available_options": {
-            "imp": 1,
-            "imperf": 1,
-            "inf": 1,
-            "perf": 2,
-            "pres": 1
-        },
-        "can_have_variants": true,
-        "combinations": {
-            "glottal-sk": 8,
-            "glottal-sk[perf2]": 2
-        },
-        "slots": {
-            "imp": {
-                "1": 10
-            },
-            "imperf": {
-                "1": 10
-            },
-            "inf": {
-                "1": 10
-            },
-            "perf": {
-                "1": 8,
-                "2": 2
-            },
-            "pres": {
-                "1": 10
-            }
-        },
-        "total_matches": 10,
-        "unused_options": [],
-        "variant_stats": [
-            {
-                "count": 8,
-                "percent": 80.0,
-                "variant": "glottal-sk"
-            },
-            {
-                "count": 2,
-                "percent": 20.0,
-                "variant": "glottal-sk[perf2]"
             }
         ]
     },
@@ -1005,6 +920,52 @@
             }
         ]
     },
+    "i-a": {
+        "available_options": {
+            "imp": 1,
+            "imperf": 1,
+            "inf": 1,
+            "perf": 2,
+            "pres": 1
+        },
+        "can_have_variants": true,
+        "combinations": {
+            "i-a": 7,
+            "i-a[perf2]": 2
+        },
+        "slots": {
+            "imp": {
+                "1": 9
+            },
+            "imperf": {
+                "1": 9
+            },
+            "inf": {
+                "1": 9
+            },
+            "perf": {
+                "1": 7,
+                "2": 2
+            },
+            "pres": {
+                "1": 9
+            }
+        },
+        "total_matches": 9,
+        "unused_options": [],
+        "variant_stats": [
+            {
+                "count": 7,
+                "percent": 77.78,
+                "variant": "i-a"
+            },
+            {
+                "count": 2,
+                "percent": 22.22,
+                "variant": "i-a[perf2]"
+            }
+        ]
+    },
     "i-vka": {
         "available_options": {
             "imp": 1,
@@ -1041,6 +1002,45 @@
                 "count": 13,
                 "percent": 100.0,
                 "variant": "i-vka"
+            }
+        ]
+    },
+    "ih-ihi": {
+        "available_options": {
+            "imp": 1,
+            "imperf": 1,
+            "inf": 1,
+            "perf": 1,
+            "pres": 1
+        },
+        "can_have_variants": false,
+        "combinations": {
+            "ih-ihi": 2
+        },
+        "slots": {
+            "imp": {
+                "1": 2
+            },
+            "imperf": {
+                "1": 2
+            },
+            "inf": {
+                "1": 2
+            },
+            "perf": {
+                "1": 2
+            },
+            "pres": {
+                "1": 2
+            }
+        },
+        "total_matches": 2,
+        "unused_options": [],
+        "variant_stats": [
+            {
+                "count": 2,
+                "percent": 100.0,
+                "variant": "ih-ihi"
             }
         ]
     },
@@ -1147,6 +1147,45 @@
                 "count": 1,
                 "percent": 3.12,
                 "variant": "ih-vh[imperf2-inf2]"
+            }
+        ]
+    },
+    "ko-kots": {
+        "available_options": {
+            "imp": 1,
+            "imperf": 1,
+            "inf": 1,
+            "perf": 1,
+            "pres": 1
+        },
+        "can_have_variants": false,
+        "combinations": {
+            "ko-kots": 2
+        },
+        "slots": {
+            "imp": {
+                "1": 2
+            },
+            "imperf": {
+                "1": 2
+            },
+            "inf": {
+                "1": 2
+            },
+            "perf": {
+                "1": 2
+            },
+            "pres": {
+                "1": 2
+            }
+        },
+        "total_matches": 2,
+        "unused_options": [],
+        "variant_stats": [
+            {
+                "count": 2,
+                "percent": 100.0,
+                "variant": "ko-kots"
             }
         ]
     },
@@ -2139,45 +2178,6 @@
                 "count": 2,
                 "percent": 100.0,
                 "variant": "vnh-ih-a"
-            }
-        ]
-    },
-    "vnh-ih-vna": {
-        "available_options": {
-            "imp": 1,
-            "imperf": 1,
-            "inf": 1,
-            "perf": 1,
-            "pres": 1
-        },
-        "can_have_variants": false,
-        "combinations": {
-            "vnh-ih-vna": 1
-        },
-        "slots": {
-            "imp": {
-                "1": 1
-            },
-            "imperf": {
-                "1": 1
-            },
-            "inf": {
-                "1": 1
-            },
-            "perf": {
-                "1": 1
-            },
-            "pres": {
-                "1": 1
-            }
-        },
-        "total_matches": 1,
-        "unused_options": [],
-        "variant_stats": [
-            {
-                "count": 1,
-                "percent": 100.0,
-                "variant": "vnh-ih-vna"
             }
         ]
     },
