@@ -1685,42 +1685,49 @@
             }
         ]
     },
-    "sk-s-a-hihst": {
+    "sk-s-a": {
         "available_options": {
             "imp": 1,
             "imperf": 1,
-            "inf": 1,
+            "inf": 2,
             "perf": 1,
             "pres": 1
         },
-        "can_have_variants": false,
+        "can_have_variants": true,
         "combinations": {
-            "sk-s-a-hihst": 2
+            "sk-s-a": 2,
+            "sk-s-a[inf2]": 2
         },
         "slots": {
             "imp": {
-                "1": 2
+                "1": 4
             },
             "imperf": {
-                "1": 2
+                "1": 4
             },
             "inf": {
-                "1": 2
+                "1": 2,
+                "2": 2
             },
             "perf": {
-                "1": 2
+                "1": 4
             },
             "pres": {
-                "1": 2
+                "1": 4
             }
         },
-        "total_matches": 2,
+        "total_matches": 4,
         "unused_options": [],
         "variant_stats": [
             {
                 "count": 2,
-                "percent": 100.0,
-                "variant": "sk-s-a-hihst"
+                "percent": 50.0,
+                "variant": "sk-s-a[inf2]"
+            },
+            {
+                "count": 2,
+                "percent": 50.0,
+                "variant": "sk-s-a"
             }
         ]
     },
@@ -1765,7 +1772,7 @@
     },
     "sk-s-hst": {
         "available_options": {
-            "imp": 4,
+            "imp": 2,
             "imperf": 1,
             "inf": 1,
             "perf": 1,
@@ -1774,52 +1781,77 @@
         "can_have_variants": true,
         "combinations": {
             "sk-s-hst": 4,
-            "sk-s-hst[imp2]": 2,
-            "sk-s-hst[imp3]": 2,
-            "sk-s-hst[imp4]": 2
+            "sk-s-hst[imp2]": 2
         },
         "slots": {
             "imp": {
                 "1": 4,
-                "2": 2,
-                "3": 2,
-                "4": 2
+                "2": 2
             },
             "imperf": {
-                "1": 10
+                "1": 6
             },
             "inf": {
-                "1": 10
+                "1": 6
             },
             "perf": {
-                "1": 10
+                "1": 6
             },
             "pres": {
-                "1": 10
+                "1": 6
             }
         },
-        "total_matches": 10,
+        "total_matches": 6,
         "unused_options": [],
         "variant_stats": [
             {
                 "count": 4,
-                "percent": 40.0,
+                "percent": 66.67,
                 "variant": "sk-s-hst"
             },
             {
                 "count": 2,
-                "percent": 20.0,
-                "variant": "sk-s-hst[imp4]"
-            },
-            {
-                "count": 2,
-                "percent": 20.0,
+                "percent": 33.33,
                 "variant": "sk-s-hst[imp2]"
+            }
+        ]
+    },
+    "sk-s-i-a": {
+        "available_options": {
+            "imp": 1,
+            "imperf": 1,
+            "inf": 1,
+            "perf": 1,
+            "pres": 1
+        },
+        "can_have_variants": false,
+        "combinations": {
+            "sk-s-i-a": 2
+        },
+        "slots": {
+            "imp": {
+                "1": 2
             },
+            "imperf": {
+                "1": 2
+            },
+            "inf": {
+                "1": 2
+            },
+            "perf": {
+                "1": 2
+            },
+            "pres": {
+                "1": 2
+            }
+        },
+        "total_matches": 2,
+        "unused_options": [],
+        "variant_stats": [
             {
                 "count": 2,
-                "percent": 20.0,
-                "variant": "sk-s-hst[imp3]"
+                "percent": 100.0,
+                "variant": "sk-s-i-a"
             }
         ]
     },
