@@ -959,7 +959,7 @@
             }
         ]
     },
-    "i-a": {
+    "i-a-i": {
         "available_options": {
             "imp": 1,
             "imperf": 1,
@@ -969,8 +969,8 @@
         },
         "can_have_variants": true,
         "combinations": {
-            "i-a": 7,
-            "i-a[perf2]": 2
+            "i-a-i": 7,
+            "i-a-i[perf2]": 2
         },
         "slots": {
             "imp": {
@@ -996,12 +996,51 @@
             {
                 "count": 7,
                 "percent": 77.78,
-                "variant": "i-a"
+                "variant": "i-a-i"
             },
             {
                 "count": 2,
                 "percent": 22.22,
-                "variant": "i-a[perf2]"
+                "variant": "i-a-i[perf2]"
+            }
+        ]
+    },
+    "i-a-ihsk": {
+        "available_options": {
+            "imp": 1,
+            "imperf": 1,
+            "inf": 1,
+            "perf": 1,
+            "pres": 1
+        },
+        "can_have_variants": false,
+        "combinations": {
+            "i-a-ihsk": 2
+        },
+        "slots": {
+            "imp": {
+                "1": 2
+            },
+            "imperf": {
+                "1": 2
+            },
+            "inf": {
+                "1": 2
+            },
+            "perf": {
+                "1": 2
+            },
+            "pres": {
+                "1": 2
+            }
+        },
+        "total_matches": 2,
+        "unused_options": [],
+        "variant_stats": [
+            {
+                "count": 2,
+                "percent": 100.0,
+                "variant": "i-a-ihsk"
             }
         ]
     },
@@ -1735,37 +1774,37 @@
         "can_have_variants": true,
         "combinations": {
             "sk-s-a": 2,
-            "sk-s-a[inf2]": 2
+            "sk-s-a[inf2]": 4
         },
         "slots": {
             "imp": {
-                "1": 4
+                "1": 6
             },
             "imperf": {
-                "1": 4
+                "1": 6
             },
             "inf": {
                 "1": 2,
-                "2": 2
+                "2": 4
             },
             "perf": {
-                "1": 4
+                "1": 6
             },
             "pres": {
-                "1": 4
+                "1": 6
             }
         },
-        "total_matches": 4,
+        "total_matches": 6,
         "unused_options": [],
         "variant_stats": [
             {
-                "count": 2,
-                "percent": 50.0,
+                "count": 4,
+                "percent": 66.67,
                 "variant": "sk-s-a[inf2]"
             },
             {
                 "count": 2,
-                "percent": 50.0,
+                "percent": 33.33,
                 "variant": "sk-s-a"
             }
         ]
@@ -1819,78 +1858,39 @@
         },
         "can_have_variants": true,
         "combinations": {
-            "sk-s-hst": 4,
+            "sk-s-hst": 2,
             "sk-s-hst[imp2]": 2
         },
         "slots": {
             "imp": {
-                "1": 4,
+                "1": 2,
                 "2": 2
             },
             "imperf": {
-                "1": 6
+                "1": 4
             },
             "inf": {
-                "1": 6
+                "1": 4
             },
             "perf": {
-                "1": 6
+                "1": 4
             },
             "pres": {
-                "1": 6
+                "1": 4
             }
         },
-        "total_matches": 6,
+        "total_matches": 4,
         "unused_options": [],
         "variant_stats": [
             {
-                "count": 4,
-                "percent": 66.67,
+                "count": 2,
+                "percent": 50.0,
                 "variant": "sk-s-hst"
             },
             {
                 "count": 2,
-                "percent": 33.33,
+                "percent": 50.0,
                 "variant": "sk-s-hst[imp2]"
-            }
-        ]
-    },
-    "sk-s-i-a": {
-        "available_options": {
-            "imp": 1,
-            "imperf": 1,
-            "inf": 1,
-            "perf": 1,
-            "pres": 1
-        },
-        "can_have_variants": false,
-        "combinations": {
-            "sk-s-i-a": 2
-        },
-        "slots": {
-            "imp": {
-                "1": 2
-            },
-            "imperf": {
-                "1": 2
-            },
-            "inf": {
-                "1": 2
-            },
-            "perf": {
-                "1": 2
-            },
-            "pres": {
-                "1": 2
-            }
-        },
-        "total_matches": 2,
-        "unused_options": [],
-        "variant_stats": [
-            {
-                "count": 2,
-                "percent": 100.0,
-                "variant": "sk-s-i-a"
             }
         ]
     },
