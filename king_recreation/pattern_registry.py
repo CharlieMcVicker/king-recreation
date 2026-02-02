@@ -137,13 +137,28 @@ class PatternRegistry:
                 continue
 
             suffix = verb_form[-length:]
+
+            suffix = verb_form[-length:]
+
+            # Determine preceding text for precondition check
+            preceding_text = verb_form[:-length]
+
             if suffix in self.lookup_maps[form_type]:
-                candidates.extend(self.lookup_maps[form_type][suffix])
+                for cand in self.lookup_maps[form_type][suffix]:
+                    if cand.check_preconditions(
+                        preceding_text, suffix_val=cand.get(form_type)
+                    ):
+                        candidates.append(cand)
+
             if allow_suffix_alternation:
-                suffix_alt = recreate_C_glottal_clusters(verb_form)[-length:]
+                verb_form_alt = recreate_C_glottal_clusters(verb_form)
+                suffix_alt = verb_form_alt[-length:]
+                preceding_text_alt = verb_form_alt[:-length]
                 if suffix_alt in self.lookup_maps_alternated[form_type]:
-                    candidates.extend(
-                        self.lookup_maps_alternated[form_type][suffix_alt]
-                    )
+                    for cand in self.lookup_maps_alternated[form_type][suffix_alt]:
+                        if cand.check_preconditions(
+                            preceding_text_alt, suffix_val=cand.get(form_type)
+                        ):
+                            candidates.append(cand)
 
         return candidates
