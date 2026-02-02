@@ -775,6 +775,47 @@
             }
         ]
     },
+    "hitting": {
+        "available_options": {
+            "imp": 1,
+            "imperf": 1,
+            "inf": 2,
+            "perf": 1,
+            "pres": 1
+        },
+        "can_have_variants": true,
+        "combinations": {
+            "hitting": 6
+        },
+        "slots": {
+            "imp": {
+                "1": 6
+            },
+            "imperf": {
+                "1": 6
+            },
+            "inf": {
+                "1": 6
+            },
+            "perf": {
+                "1": 6
+            },
+            "pres": {
+                "1": 6
+            }
+        },
+        "total_matches": 6,
+        "unused_options": [
+            "inf2"
+        ],
+        "variant_stats": [
+            {
+                "count": 6,
+                "percent": 100.0,
+                "variant": "hitting"
+            }
+        ]
+    },
     "husk": {
         "available_options": {
             "imp": 1,
@@ -1132,45 +1173,45 @@
         },
         "can_have_variants": true,
         "combinations": {
-            "ih-l": 7,
+            "ih-l": 1,
             "ih-l[inf2]": 1,
             "ih-l[perf2]": 2
         },
         "slots": {
             "imp": {
-                "1": 10
+                "1": 4
             },
             "imperf": {
-                "1": 10
+                "1": 4
             },
             "inf": {
-                "1": 9,
+                "1": 3,
                 "2": 1
             },
             "perf": {
-                "1": 8,
+                "1": 2,
                 "2": 2
             },
             "pres": {
-                "1": 10
+                "1": 4
             }
         },
-        "total_matches": 10,
+        "total_matches": 4,
         "unused_options": [],
         "variant_stats": [
             {
-                "count": 7,
-                "percent": 70.0,
+                "count": 1,
+                "percent": 25.0,
                 "variant": "ih-l"
             },
             {
                 "count": 2,
-                "percent": 20.0,
+                "percent": 50.0,
                 "variant": "ih-l[perf2]"
             },
             {
                 "count": 1,
-                "percent": 10.0,
+                "percent": 25.0,
                 "variant": "ih-l[inf2]"
             }
         ]
