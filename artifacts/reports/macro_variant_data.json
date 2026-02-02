@@ -779,11 +779,11 @@
         "available_options": {
             "imp": 1,
             "imperf": 1,
-            "inf": 1,
+            "inf": 2,
             "perf": 1,
             "pres": 1
         },
-        "can_have_variants": false,
+        "can_have_variants": true,
         "combinations": {
             "hitting": 6
         },
@@ -805,7 +805,9 @@
             }
         },
         "total_matches": 6,
-        "unused_options": [],
+        "unused_options": [
+            "inf2"
+        ],
         "variant_stats": [
             {
                 "count": 6,
