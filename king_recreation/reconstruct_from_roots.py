@@ -15,6 +15,7 @@ from king_recreation.phonology_data import (
     attach_prefix,
     apply_prepronominal,
     use_glottal_grade,
+    attach_middle_voice,
 )
 from king_recreation.pattern_registry import PatternRegistry
 
@@ -130,10 +131,15 @@ class ReconstructionEngine:
 
         form_options = {}
         for fn, stems in base_stems.items():
-            # Apply Prepronominals
+            # Apply Middle Voice
+            mv_stems = []
+            for stem in stems if isinstance(stems, list) else [stems]:
+                mv_stems.append(attach_middle_voice(stem, verb.config.mv))
+
+            # Apply Pronominals
             layered_candidates = []
 
-            for stem in stems if isinstance(stems, list) else [stems]:
+            for stem in mv_stems:
                 set_name = get_pronominal_set_name(fn, verb.config.pron)
                 if not set_name:
                     candidates = [stem]
@@ -153,10 +159,30 @@ class ReconstructionEngine:
 
 
 def dedupe_roots(validated_verbs: list[ReconstructibleVerb]):
-    roots_by_corpus_id: dict[str, list[ReconstructibleVerb]] = {}
+    from king_recreation.phonology_data import MiddleVoiceInfix
+
+    # Pass 1: Collect all (root, class) pairs that are attested WITHOUT middle voice
+    attested_plain_verbs: Set[Tuple[str, str]] = set()
     for verb in validated_verbs:
+        if verb.config.mv.infix == MiddleVoiceInfix.NONE:
+            attested_plain_verbs.add((verb.h_grade_root, verb.class_name))
+
+    # Pass 2: Filter out middle voice candidates that don't have a plain counterpart
+    filtered_candidates: List[ReconstructibleVerb] = []
+    for verb in validated_verbs:
+        if verb.config.mv.infix == MiddleVoiceInfix.NONE:
+            filtered_candidates.append(verb)
+        else:
+            if (verb.h_grade_root, verb.class_name) in attested_plain_verbs:
+                filtered_candidates.append(verb)
+            else:
+                # This middle voice parse is not attested as a plain verb, skip it
+                pass
+
+    roots_by_corpus_id: dict[int, list[ReconstructibleVerb]] = {}
+    for verb in filtered_candidates:
         c_id = verb.corpus_id
-        if not c_id in roots_by_corpus_id:
+        if c_id not in roots_by_corpus_id:
             roots_by_corpus_id[c_id] = [verb]
         else:
             roots_by_corpus_id[c_id].append(verb)
@@ -175,7 +201,14 @@ def dedupe_roots(validated_verbs: list[ReconstructibleVerb]):
                 if lowest_v is None or len_v < lowest_len:
                     lowest_len = len_v
                     lowest_v = v
-                elif lowest_v == len_v:
+                elif lowest_v.h_grade_root == v.h_grade_root:
+                    # Same root length/content, check if one is plain and other is MV
+                    # If we have both, we favor plain? No, the logic above already ensured
+                    # that MV is only kept if plain is also present.
+                    # But here vl is for a single corpus_id.
+                    # If a single word can be parsed as both plain and MV, we might have a conflict.
+                    pass
+                elif lowest_len == len_v:
                     print(
                         "[WARNING]",
                         v.class_name,
@@ -185,12 +218,6 @@ def dedupe_roots(validated_verbs: list[ReconstructibleVerb]):
                     dropped.append(c_id)
                     break
             else:
-                # print(
-                #     "Lowest len root",
-                #     lowest_v["definition"],
-                #     lowest_v["h_grade_root"],
-                #     lowest_v["class_name"],
-                # )
                 deduped_roots.append(lowest_v)
 
     return deduped_roots, dropped

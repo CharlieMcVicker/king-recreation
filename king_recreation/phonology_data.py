@@ -45,6 +45,13 @@ class MetathesisStrategy(Enum):
     VOWEL = "vowel"  # kh- / h- / uhw- / ...
 
 
+class MiddleVoiceInfix(Enum):
+    NONE = "none"
+    AT = "at"  # at- / atat-
+    ATA = "ata"  # ata-
+    ALI = "ali"  # ali- / al-
+
+
 class Condition(Enum):
     VOWEL_AE = "vowel_ae"
     VOWEL = "vowel"
@@ -136,16 +143,37 @@ class PronominalConfig:
 
 
 @dataclass(frozen=True)
+class MiddleVoiceConfig:
+    infix: MiddleVoiceInfix = MiddleVoiceInfix.NONE
+    long_form: bool = False  # for 'atat' vs 'at'
+
+    @staticmethod
+    def from_row(row: dict[str, str]):
+        return MiddleVoiceConfig(
+            infix=MiddleVoiceInfix(row.get("middle_voice", "none")),
+            long_form=row.get("mv_long") == "True",
+        )
+
+    def to_row(self):
+        return {
+            "middle_voice": self.infix.value,
+            "mv_long": str(self.long_form),
+        }
+
+
+@dataclass(frozen=True)
 class VerbConfig:
     pre: PrePronominalConfig
     pron: PronominalConfig
+    mv: MiddleVoiceConfig = MiddleVoiceConfig()
 
     @staticmethod
     def from_row(stem_row: dict[str, str]) -> "VerbConfig":
         pre_config = PrePronominalConfig.from_row(stem_row)
         pron_config = PronominalConfig.from_row(stem_row)
+        mv_config = MiddleVoiceConfig.from_row(stem_row)
 
-        return VerbConfig(pre=pre_config, pron=pron_config)
+        return VerbConfig(pre=pre_config, pron=pron_config, mv=mv_config)
 
 
 def get_vowel_set():
@@ -530,3 +558,54 @@ def grades_are_compatible(*, h: str, glottal: str) -> bool:
             return True
 
     return False
+
+
+def attach_middle_voice(root: str, config: MiddleVoiceConfig) -> str:
+    if config.infix == MiddleVoiceInfix.NONE:
+        return root
+
+    if config.infix == MiddleVoiceInfix.ATA:
+        return "ata" + root
+
+    if config.infix == MiddleVoiceInfix.AT:
+        infix = "atat" if config.long_form else "at"
+        return infix + root
+
+    if config.infix == MiddleVoiceInfix.ALI:
+        if root.startswith("h"):
+            return "al" + root
+        return "ali" + root
+
+    return root
+
+
+def detach_middle_voice(stem: str, config: MiddleVoiceConfig) -> Optional[str]:
+    if config.infix == MiddleVoiceInfix.NONE:
+        return stem
+
+    if config.infix == MiddleVoiceInfix.ATA:
+        if stem.startswith("ata"):
+            return stem[3:]
+        return None
+
+    if config.infix == MiddleVoiceInfix.AT:
+        if config.long_form:
+            if stem.startswith("atat"):
+                return stem[4:]
+            return None
+        if stem.startswith("at"):
+            if stem.startswith("atat"):
+                return None
+            return stem[2:]
+        return None
+
+    if config.infix == MiddleVoiceInfix.ALI:
+        if stem.startswith("ali"):
+            return stem[3:]
+        if stem.startswith("al") and (
+            not stem[2:3] or stem[2:3] in ["h", "y", "l", "n"]
+        ):
+            return stem[2:]
+        return None
+
+    return None

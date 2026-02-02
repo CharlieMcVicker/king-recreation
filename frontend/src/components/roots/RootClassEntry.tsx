@@ -51,7 +51,7 @@ export default function RootClassEntry({
                   {verb.definition}
                 </div>
 
-                <ConfigFlags config={verb.config} />
+                <ConfigFlags config={verb.config} verb={verb} />
               </div>
 
               {/* Forms Slot */}

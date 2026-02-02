@@ -11,10 +11,13 @@ from king_recreation.phonology_data import (
     grades_are_compatible,
     StemType,
     MetathesisStrategy,
+    MiddleVoiceInfix,
+    MiddleVoiceConfig,
     PrePronominalConfig,
     PronominalConfig,
     get_prefix_details,
     detach_prefix,
+    detach_middle_voice,
 )
 
 
@@ -22,6 +25,7 @@ from king_recreation.phonology_data import (
 class Derivation:
     pre_config: PrePronominalConfig
     pron_config: PronominalConfig
+    mv_config: MiddleVoiceConfig
     consensus_stem: str
     stems: Dict[str, str]  # form_name -> stripped_stem (pronominal base)
     metathesis_involved: bool = False
@@ -36,6 +40,7 @@ class Derivation:
         row["metathesis_involved"] = str(self.metathesis_involved)
         row.update(**self.pron_config.to_row())
         row.update(**self.pre_config.to_row())
+        row.update(**self.mv_config.to_row())
 
         return row
 
@@ -110,7 +115,10 @@ def strip_prepronominals(
 
 
 def derive_pronominals(
-    intermediate_forms: Dict[str, str], pron_config: PronominalConfig, log=False
+    intermediate_forms: Dict[str, str],
+    pron_config: PronominalConfig,
+    mv_config: MiddleVoiceConfig,
+    log=False,
 ) -> Optional[Derivation]:
 
     derived_stems = {}
@@ -123,6 +131,11 @@ def derive_pronominals(
         if stem is None:
             return None
 
+        # Detach Middle Voice
+        root = detach_middle_voice(stem, mv_config)
+        if root is None:
+            return None
+
         # Check if metathesis was actually involved
         if condition in [Condition.METATHESIS_H_CONS, Condition.METATHESIS_VOWEL]:
             metathesis_used = True
@@ -131,17 +144,21 @@ def derive_pronominals(
         if clean_pref == "ka" and word.startswith("kh"):
             metathesis_used = True
 
-        derived_stems[fn] = stem
+        derived_stems[fn] = root
     h_grade = stems_are_consistent(derived_stems, pron_config, log=log)
     if h_grade is not None:
         # Metathesis must be used if strategy is not none
-        if pron_config.stem_type.is_valid_for_stem(h_grade) and (
+        if (
+            mv_config.infix != MiddleVoiceInfix.NONE
+            or pron_config.stem_type.is_valid_for_stem(h_grade)
+        ) and (
             not metathesis_used
             == (pron_config.metathesis_strategy == MetathesisStrategy.NONE)
         ):
             return Derivation(
                 pre_config=None,
                 pron_config=pron_config,
+                mv_config=mv_config,
                 consensus_stem=h_grade,
                 stems=derived_stems,
                 metathesis_involved=metathesis_used,
@@ -265,38 +282,50 @@ class StemDeriver:
             )
             for use_3rd in [False, True]:
                 for meta in MetathesisStrategy:
-                    for s_type in StemType:
-                        uwa_opts = [False]
-                        if s_type == StemType.VOWEL_V:
-                            uwa_opts = (
-                                [b3sg_starts_uwa]
-                                if b3sg_starts_uwa is None
-                                else [False, True]
+                    for mv_infix in MiddleVoiceInfix:
+                        mv_opts = (
+                            [False, True]
+                            if mv_infix == MiddleVoiceInfix.AT
+                            else [False]
+                        )
+                        for mv_long in mv_opts:
+                            mv_config = MiddleVoiceConfig(mv_infix, mv_long)
+                            s_types = (
+                                [StemType.VOWEL_A]
+                                if mv_infix != MiddleVoiceInfix.NONE
+                                else StemType
                             )
-                        for uwa in uwa_opts:
-                            for long_start in long_start_options:
-                                pron_config = PronominalConfig(
-                                    set_type=set_type,
-                                    stem_type=s_type,
-                                    metathesis_strategy=meta,
-                                    use_ka_variant=ka,
-                                    long_start=long_start,
-                                    uwa_replaces_v=uwa,
-                                    use_aki_for_1st_set_b=aki,
-                                    use_3rd_person_object=use_3rd,
-                                )
-                                res = derive_pronominals(
-                                    intermediate,
-                                    pron_config,
-                                    # log="calling" in row["definition"],
-                                )
-                                if res:
-                                    res.pre_config = pre_config
-                                    valid_derivations.append(res)
+                            for s_type in s_types:
+                                uwa_opts = [False]
+                                if s_type == StemType.VOWEL_V:
+                                    uwa_opts = (
+                                        [b3sg_starts_uwa]
+                                        if b3sg_starts_uwa is None
+                                        else [False, True]
+                                    )
+                                for uwa in uwa_opts:
+                                    for long_start in long_start_options:
+                                        pron_config = PronominalConfig(
+                                            set_type=set_type,
+                                            stem_type=s_type,
+                                            metathesis_strategy=meta,
+                                            use_ka_variant=ka,
+                                            long_start=long_start,
+                                            uwa_replaces_v=uwa,
+                                            use_aki_for_1st_set_b=aki,
+                                            use_3rd_person_object=use_3rd,
+                                        )
+                                        res = derive_pronominals(
+                                            intermediate, pron_config, mv_config
+                                        )
+                                        if res:
+                                            res.pre_config = pre_config
+                                            valid_derivations.append(res)
         if not valid_derivations:
             return []
         valid_derivations.sort(
             key=lambda d: (
+                d.mv_config.infix != MiddleVoiceInfix.NONE,
                 d.pron_config.use_3rd_person_object,
                 d.pron_config.metathesis_strategy != MetathesisStrategy.NONE,
                 d.pron_config.use_ka_variant,
