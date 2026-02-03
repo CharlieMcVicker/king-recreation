@@ -86,6 +86,8 @@ def analyze_connections(input_path: str, output_path: str, classes_path: str = N
     open_forms_map: Dict[str, List[Dict]] = {}
 
     for key, group in root_groups.items():
+        if group["class"].startswith("stative"):
+            continue
         # We use the first verb in the group to get base stems
         # since they share the same root and class
         sample_verb = group["verbs"][0]
