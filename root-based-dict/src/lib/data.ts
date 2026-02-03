@@ -157,13 +157,28 @@ export async function getRoots(): Promise<RootGroup[]> {
 
     // Ensure verbs have IDs (using global index for uniqueness across the app if needed,
     // though previously it was index in the flat list)
-    const classes = root.classes.map((cls) => ({
-      ...cls,
-      verbs: cls.verbs.map((v) => {
-        const vWithId = { ...v, id: v.corpus_id ?? verbIndex };
+    const addIds = (
+      verbs: ReconstructableVerb[],
+    ): (ReconstructableVerb & { id: number })[] => {
+      return verbs.map((v) => {
+        const vWithId = {
+          ...v,
+          id: v.corpus_id ?? verbIndex,
+          derivations: v.derivations
+            ? (addIds(v.derivations) as any[])
+            : undefined,
+          middle_voice: v.middle_voice
+            ? (addIds(v.middle_voice) as any[])
+            : undefined,
+        };
         verbIndex++;
         return vWithId;
-      }),
+      });
+    };
+
+    const classes = root.classes.map((cls) => ({
+      ...cls,
+      verbs: addIds(cls.verbs),
     }));
 
     return {

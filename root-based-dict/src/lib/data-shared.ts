@@ -35,6 +35,8 @@ export interface ReconstructableVerb {
     imperative: string;
     infinitive: string;
   };
+  derivations?: ReconstructableVerb[];
+  middle_voice?: ReconstructableVerb[];
 }
 
 export interface ClassDefinition {
