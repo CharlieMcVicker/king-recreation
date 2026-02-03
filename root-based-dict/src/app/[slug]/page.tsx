@@ -37,6 +37,39 @@ export default async function RootDetailPage({
   const entryNos = new Set(
     rootGroup.verbs.map((v) => v.entry_no).filter(Boolean),
   );
+
+  // Also include entry numbers for connected verbs
+  const rootCorpusIds = new Set(
+    rootGroup.verbs
+      .map((v) => v.corpus_id)
+      .filter((id): id is number => id !== null),
+  );
+
+  const relevantConnections = connections.filter((conn) => {
+    const toIds = String(conn.to_corpus_ids)
+      .split(";")
+      .map((id) => parseInt(id.trim(), 10));
+    return toIds.some((id) => rootCorpusIds.has(id));
+  });
+
+  const connectedCorpusIds = new Set<number>();
+  relevantConnections.forEach((conn) => {
+    String(conn.from_corpus_ids)
+      .split(";")
+      .forEach((s) => {
+        const id = parseInt(s.trim(), 10);
+        if (!isNaN(id)) connectedCorpusIds.add(id);
+      });
+  });
+
+  const connectedVerbs = allVerbs.filter(
+    (v) => v.corpus_id !== null && connectedCorpusIds.has(v.corpus_id),
+  );
+
+  connectedVerbs.forEach((v) => {
+    if (v.entry_no) entryNos.add(v.entry_no);
+  });
+
   const rootDictionary = dictionary.filter((e) =>
     entryNos.has(Number(e["No."])),
   );
