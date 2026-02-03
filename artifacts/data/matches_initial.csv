@@ -33,6 +33,7 @@ corpus_id,definition,class
 32,he/she is taking off running,cause[perf3]
 32,he/she is taking off running,cause[pres2]
 32,he/she is taking off running,cause[pres2-perf3]
+33,he/she is changing,a
 33,he/she is changing,v-vhs
 33,he/she is changing,change-out
 34,he/she is taking turns with him/her,cause
@@ -40,6 +41,7 @@ corpus_id,definition,class
 34,he/she is taking turns with him/her,cause[pres2]
 34,he/she is taking turns with him/her,cause[pres2-perf3]
 39,he/she is thinking,apl-active-h
+41,he/she is pondering,a
 41,he/she is pondering,o
 42,he/she is making noise,cause
 42,he/she is making noise,cause[perf3]
@@ -47,20 +49,24 @@ corpus_id,definition,class
 42,he/she is making noise,cause[pres2-perf3]
 43,he/she is crawling,go[pres2]
 44,it’s twisting,oh-ol
+45,he/she is moving from one place to another,a
 45,he/she is moving from one place to another,v-vhs
 46,he/she is ordering it,sk-s-la
 46,he/she is ordering it,sk-s-hst
 48,he/she is cooking a meal,hvsk-nh[inf2]
 48,he/she is cooking a meal,episodic
+51,it’s burning,a
 51,it’s burning,i-a-i
 54,he/she is resting,cause
 54,he/she is resting,cause[perf3]
 54,he/she is resting,cause[pres2]
 54,he/she is resting,cause[pres2-perf3]
+56,he/she is bathing,a
 56,he/she is bathing,o
 59,he/she is giving him/her it,apl
 59,he/she is giving him/her it,apl[imp2]
 59,he/she is giving him/her it,apl[imp3]
+60,he/she is learning,a
 61,he/she is embarrassing him/her,cause
 61,he/she is embarrassing him/her,cause[perf3]
 61,he/she is embarrassing him/her,cause[pres2]
@@ -74,9 +80,11 @@ corpus_id,definition,class
 67,he/she is finding it out,sk-s-hst[imp2]
 67,he/she is finding it out,sk-s-hst
 70,he/she is going around a curve,oh-ol[inf2]
+72,he/she is laying it down,a
 72,he/she is laying it down,i-a-i
 72,he/she is laying it down,long-no-a
 73,he/she is rising,ih-vh
+74,he/she is scattering it,a
 75,it’s scattering,become
 75,it’s scattering,become[inf3]
 76,he/she is spinning,oh-ol[inf2]
@@ -86,15 +94,18 @@ corpus_id,definition,class
 78,he/she is running over him/her,cause[pres2]
 78,he/she is running over him/her,cause[pres2-perf3]
 79,he/she is hiding,hvsk-han
+80,he/she is leaving it behind,a
 80,he/she is leaving it behind,leaving
 82,he/she is drinking it,sk-h
 82,he/she is drinking it,sk-h[imp2]
 85,he/she is scratching,sk-s-la
 85,he/she is scratching,sk-s-hst
+87,he/she is turning off the road,a
 87,he/she is turning off the road,rev-e
 88,he/she is taking revenge against him/her,apl
 88,he/she is taking revenge against him/her,apl[imp2]
 88,he/she is taking revenge against him/her,apl[imp3]
+92,he/she is pouring liquid into a container,a
 92,he/she is pouring liquid into a container,i-a-i
 94,it’s pouring into a container,become
 94,it’s pouring into a container,become[inf3]
@@ -116,6 +127,7 @@ corpus_id,definition,class
 109,he/she is preparing it,cause[pres2-perf3]
 112,it is shining,ih-ihi
 113,he/she is breaking it,sk-s-a[inf2]
+115,he/she is licking it,a
 115,he/she is licking it,i-a-i
 115,he/she is licking it,long
 115,he/she is licking it,long-no-a
@@ -126,10 +138,13 @@ corpus_id,definition,class
 118,it’s getting warm,sk-s-hi-hihst
 118,it’s getting warm,sk-s-hst
 119,it’s raining,stative
+127,he/she is eating it,a
 127,he/she is eating it,i-a-i
+128,he/she is picking it up,a
 128,he/she is picking it up,rev-gi
 128,he/she is picking it up,rev-i
 130,he/she is in agony,become
+133,he/she is chewing it,a
 133,he/she is chewing it,o
 135,he/she is burning him/her,cause
 135,he/she is burning him/her,cause[perf3]
@@ -149,7 +164,9 @@ corpus_id,definition,class
 149,he/she is chopping it up,sk-h[imp2]
 152,he/she is scolding him/her,vsk
 152,he/she is scolding him/her,vsk[imp2]
+153,he/she is washing his face,a
 153,he/she is washing his face,o
+155,he/she is diverting him/her,a
 155,he/she is diverting him/her,rev-gi
 155,he/she is diverting him/her,rev-i
 158,he/she is smothering him/her,cause
@@ -159,6 +176,7 @@ corpus_id,definition,class
 160,he/she is handling it,be-at
 160,he/she is handling it,be-at-weak
 161,he/she is killing him/her,hih-lh
+165,he/she is leaving it behind,a
 165,he/she is leaving it behind,leaving
 166,he/she is placing it on something,hvsk-nh
 166,he/she is placing it on something,hvsk-nh[inf2]
@@ -166,12 +184,14 @@ corpus_id,definition,class
 167,he/she is taking off flying,ih-vh
 169,he/she is making him/her fly,cause[perf3]
 169,he/she is making him/her fly,cause[pres2-perf3]
+171,he/she is having a nightmare,a
 171,he/she is having a nightmare,rev-gi
 171,he/she is having a nightmare,rev-i
 172,it’s taking time,be-at
 172,it’s taking time,be-at-weak
 172,it’s taking time,oh-ol[inf2]
 172,it’s taking time,oh-ol[inf3]
+173,he/she is measuring it,a
 173,he/she is measuring it,o
 175,it’s bending,vsk
 176,he/she is snorting,cause
@@ -189,13 +209,17 @@ corpus_id,definition,class
 182,he/she is beating him/her at a game,sk-s-hi-hihst
 182,he/she is beating him/her at a game,sk-s-hst[imp2]
 182,he/she is beating him/her at a game,sk-s-hst
+183,he/she is combing his/her hair,a
 183,he/she is combing his/her hair,o
 185,he/she is moving,hvsk-nh[inf2]
 185,he/she is moving,episodic
+186,he/she is changing his/her shirt,a
 186,he/she is changing his/her shirt,v-vhs
 186,he/she is changing his/her shirt,change-out
 186,he/she is changing his/her shirt,change-out-flexible
+187,he/she is taking his/her shirt off,a
 187,he/she is taking his/her shirt off,rev-e
+189,he/she is putting on a shirt,a
 189,he/she is putting on a shirt,o
 190,he/she is giving it to him/her,apl
 190,he/she is giving it to him/her,apl[imp2]
@@ -206,6 +230,7 @@ corpus_id,definition,class
 192,he/she is interpreting it,cause[pres2-perf3]
 195,he/she is building a house,apl-active
 195,he/she is building a house,apl-active-a
+196,he/she is leaving,a
 196,he/she is leaving,rev-gi
 196,he/she is leaving,rev-i
 197,he/she is starting it,cause
@@ -214,10 +239,12 @@ corpus_id,definition,class
 197,he/she is starting it,cause[pres2-perf3]
 198,he/she is carrying it on his/her shoulder,go
 198,he/she is carrying it on his/her shoulder,go[pres2]
+200,he/she is putting it in liquid,a
 200,he/she is putting it in liquid,i-a-i
 200,he/she is putting it in liquid,long-no-a
 204,he/she is hitting him/her on the mouth,ih-l
 204,he/she is hitting him/her on the mouth,hitting-il
+205,he/she is moving it from one place to another,a
 205,he/she is moving it from one place to another,v-vhs
 206,he/she is setting it down,hvsk-nh
 206,he/she is setting it down,hvsk-nh[inf2]
@@ -240,27 +267,33 @@ corpus_id,definition,class
 218,he/she is quilting it,hvsk-han
 219,he/she is making an incision,oh-al
 219,he/she is making an incision,oh-al[imp2]
+220,he/she is imitating him/her,a
 220,he/she is imitating him/her,i-a-i[perf2]
 220,he/she is imitating him/her,i-a-i
 222,he/she is looking for him/her,oh-al
 223,he/she is swimming,go
 223,he/she is swimming,go[pres2]
+224,it’s thundering,a
 224,it’s thundering,o
 228,he/she is bending it,vsk
 228,he/she is bending it,vsk[imp2]
+230,he/she is kicking him/her,a
 230,he/she is kicking him/her,rev-e
+232,he/she is capturing him/her,a
 232,he/she is capturing him/her,i-a-i
 232,he/she is capturing him/her,long-no-a
 233,he/she is hitting him/her on the nose,hvsk-nh
 233,he/she is hitting him/her on the nose,hvsk-nh[inf2]
 234,he/she is choking him/her,ih-vh
 235,he/she is walking,stative
+238,it’s hatching,a
 238,it’s hatching,rev-i
 238,it’s hatching,rev-'i
 239,he/she is dressing up,vnh-vsk
 239,he/she is dressing up,vnh-vsk[inf2]
 240,he/she is getting in,vsk-post-v
 242,he/she is acting like him/her,vnh-vsk
+244,he/she is spilling it,a
 250,it’s blooming,vnh-vsk
 250,it’s blooming,stative
 253,he/she is lighting a fire,hvsk-han[inf2]
@@ -276,12 +309,14 @@ corpus_id,definition,class
 263,he/she is swallowing it,sk-s-hi-hihst
 263,he/she is swallowing it,sk-s-hst[imp2]
 263,he/she is swallowing it,sk-s-hst
+266,he/she is shovelling it,a
 266,he/she is shovelling it,rev-e
 270,he/she is going down-hill,sk-s-hi-hihst
 270,he/she is going down-hill,sk-s-hst[imp2]
 270,he/she is going down-hill,sk-s-hst
 273,he/she knows how,stative-h
 273,he/she knows how,stative
+276,he/she is turning back,a
 276,he/she is turning back,v-vhs
 277,he/she is winking,cause
 277,he/she is winking,cause[perf3]
@@ -302,6 +337,7 @@ corpus_id,definition,class
 290,he/she is going through it,sk-s-hi-hihst
 290,he/she is going through it,sk-s-hst[imp2]
 290,he/she is going through it,sk-s-hst
+291,he/she is dipping liquid,a
 291,he/she is dipping liquid,rev-gi
 291,he/she is dipping liquid,rev-i
 293,he/she is paying it,ih-vh
@@ -311,6 +347,7 @@ corpus_id,definition,class
 297,he/she is stepping on him/her,vsk
 297,he/she is stepping on him/her,vsk[imp2]
 298,he/she is playing ball,ih-vh
+300,he/she is taking a step,a
 300,he/she is taking a step,v-vhs
 305,he/she is placing it in an upright position,cause
 305,he/she is placing it in an upright position,cause[perf3]
@@ -334,9 +371,12 @@ corpus_id,definition,class
 314,he/she is thanking him/her,apl[imp3]
 315,he/she is happy,become
 315,he/she is happy,become[inf4]
+317,he/she is exchanging it,a
 317,he/she is exchanging it,i-a-i
 317,he/she is exchanging it,long-no-a
+318,he/she is running away,a
 318,he/she is running away,rev-i
+320,he/she is taking his/her ring off,a
 320,he/she is taking his/her ring off,rev-gi
 320,he/she is taking his/her ring off,rev-i
 322,he/she is putting a ring on his/her finger,hvsk-han[inf2]
@@ -346,10 +386,12 @@ corpus_id,definition,class
 327,he/she is eating a meal,hvsk-nh[inf2]
 327,he/she is eating a meal,episodic
 329,he/she is helping,ih-vh
+330,he/she is taking off his/her cap,a
 330,he/she is taking off his/her cap,rev-e
 331,he/she is washing his/her hair,apl-active-a
 332,he/she is putting on a cap,i-vka
 334,he/she is taking a seat,husk
+336,he/she is dancing,a
 336,he/she is dancing,rev-gi
 336,he/she is dancing,rev-i
 337,he/she is permitting him/her,apl
@@ -357,10 +399,12 @@ corpus_id,definition,class
 338,he/she is nodding his/her head,sk-h
 338,he/she is nodding his/her head,sk-h-yh
 338,he/she is nodding his/her head,sk-h[imp2]
+339,it’s ending,a
 339,it’s ending,i-a-i
 339,it’s ending,long
 339,it’s ending,long-no-a
 340,he/she is sticking his/her head out,i-vka
+341,he/she is taking his/her hat off,a
 341,he/she is taking his/her hat off,rev-gi
 341,he/she is taking his/her hat off,rev-i
 342,he/she is putting his/her hat on,sk-h
@@ -382,9 +426,11 @@ corpus_id,definition,class
 361,he/she is attempting it,cause[perf3]
 361,he/she is attempting it,cause[pres2]
 361,he/she is attempting it,cause[pres2-perf3]
+362,he is getting married,a
 362,he is getting married,i-a-i
 362,he is getting married,long
 362,he is getting married,long-no-a
+363,he/she is remembering him/her,a
 363,he/she is remembering him/her,i-a-i
 363,he/she is remembering him/her,long
 363,he/she is remembering him/her,long-no-a
@@ -406,9 +452,12 @@ corpus_id,definition,class
 381,he/she is following him/her,go[pres2]
 382,he/she is helping him/her,ih-vh
 383,he/she is braiding it,oh-ol
+384,he/she is eating it,a
 384,he/she is eating it,i-a-i
+386,he/she is crushing it,a
 386,he/she is crushing it,o
 388,he/she is trimming it,apl-active-a
+390,he/she is opening it,a
 390,he/she is opening it,rev-i
 390,he/she is opening it,rev-'i
 392,he/she is sandwiching it,hvsk-han
@@ -425,17 +474,21 @@ corpus_id,definition,class
 400,he/she is reprimanding him/her,become[inf3]
 405,he/she is committing a crime,become
 405,he/she is committing a crime,become[inf3]
+411,he/she is gnawing it,a
 411,he/she is gnawing it,i-a-i
 412,he/she is mourning for him/her,hih-hil
 413,he/she is rubbing him/her,e-a
+414,he/she is erasing it,a
 414,he/she is erasing it,i-a-i
 416,it’s fading,become
 416,it’s fading,become[inf3]
 417,he/she is digging it,sk-s-la
 417,he/she is digging it,sk-s-hst
+419,he/she is finishing it,a
 419,he/she is finishing it,i-a-i
 419,he/she is finishing it,long
 419,he/she is finishing it,long-no-a
+421,he/she is catching him/her,a
 421,he/she is catching him/her,rev-e
 423,it’s getting shorter,become
 423,it’s getting shorter,become[inf3]
@@ -447,6 +500,7 @@ corpus_id,definition,class
 427,he/she is amazed,sk-s-hst
 429,he/she is hitting him/her on the abdomen with it,ih-l
 429,he/she is hitting him/her on the abdomen with it,hitting-il
+430,he/she is placing his/her hand on him/her,a
 430,he/she is placing his/her hand on him/her,i-a-i
 430,he/she is placing his/her hand on him/her,long
 430,he/she is placing his/her hand on him/her,long-no-a
@@ -454,10 +508,12 @@ corpus_id,definition,class
 431,he/she is slapping him/her,hitting-il
 432,he/she is backing up,go
 432,he/she is backing up,go[pres2]
+436,he/she is roping him/her,a
 436,he/she is roping him/her,i-a-i
 436,he/she is roping him/her,long
 436,he/she is roping him/her,long-no-a
 437,he/she is building a fence,oh-al
+439,he/she is waving his/her hand,a
 439,he/she is waving his/her hand,rev-gi
 439,he/she is waving his/her hand,rev-i
 440,he/she is pressing down on him/her,cause
@@ -467,16 +523,20 @@ corpus_id,definition,class
 441,he/she is wounding him/her,sk-h
 441,he/she is wounding him/her,sk-h[imp2]
 441,he/she is wounding him/her,vnh-vsk[inf4]
+443,he/she is sopping it,a
 444,he/she is fishing,hvsk-nh
 444,he/she is fishing,hvsk-nh[inf2]
 445,he/she is painting it,sk-s-hst
 445,he/she is painting it,i-a-ihsk
+446,he/she is changing his/her pants,a
 446,he/she is changing his/her pants,v-vhs
 446,he/she is changing his/her pants,change-out
 446,he/she is changing his/her pants,change-out-flexible
+447,he/she is taking his/her pants off,a
 447,he/she is taking his/her pants off,rev-e
 448,he/she is putting his/her pants on,i-vka
 449,he/she is quitting,ko-kots
+452,he/she is choosing him/her,a
 452,he/she is choosing him/her,rev-e
 453,he/she is stirring it,apl-active
 453,he/she is stirring it,apl-active-a
@@ -494,12 +554,14 @@ corpus_id,definition,class
 463,he/she is holding his/her breath,cause[perf3]
 463,he/she is holding his/her breath,cause[pres2]
 463,he/she is holding his/her breath,cause[pres2-perf3]
+464,he/she is mooring a boat,a
 464,he/she is mooring a boat,i-a-i
 464,he/she is mooring a boat,long
 464,he/she is mooring a boat,long-no-a
 465,he/she is drilling a hole,sk-s-hst
 467,it’s steaming,go
 467,it’s steaming,go[pres2]
+469,it’s exploding,a
 469,it’s exploding,rev-gi
 469,it’s exploding,rev-i
 470,he/she is exploding it,cause
@@ -507,8 +569,10 @@ corpus_id,definition,class
 470,he/she is exploding it,cause[pres2]
 470,he/she is exploding it,cause[pres2-perf3]
 472,he/she is kissing him/her,vsk-post-v
+473,he/she is combing someone’s hair,a
 473,he/she is combing someone’s hair,o
 474,he/she is asking for it,hih-lh[imp2]
+475,he/she is joining,a
 475,he/she is joining,i-a-i
 475,he/she is joining,long
 475,he/she is joining,long-no-a
@@ -518,6 +582,7 @@ corpus_id,definition,class
 480,he/she is arguing,hih-lh
 482,he/she is running,stative-s
 482,he/she is running,stative
+483,he/she is racing,a
 483,he/she is racing,leaving
 486,he/she is loaning it to him/her,cause
 486,he/she is loaning it to him/her,cause[perf3]
@@ -525,8 +590,10 @@ corpus_id,definition,class
 486,he/she is loaning it to him/her,cause[pres2-perf3]
 487,he/she is borrowing him/her,sk-s-a
 488,it’s flashing,sk-s-a[inf2]
+489,he/she is taking a bite,a
 489,he/she is taking a bite,rev-e
 490,he/she is lying,vsk-post-v
+491,he/she is taking a drink,a
 491,he/she is taking a drink,rev-gi
 491,he/she is taking a drink,rev-i
 493,he/she is promising,cause
@@ -589,12 +656,14 @@ corpus_id,definition,class
 539,he/she is making an X,cause[perf3]
 539,he/she is making an X,cause[pres2]
 539,he/she is making an X,cause[pres2-perf3]
+541,he/she is conjuring,a
 541,he/she is conjuring,e-aka
 542,he/she is accepting him/her,become
 543,he/she is dodging,cause
 543,he/she is dodging,cause[perf3]
 543,he/she is dodging,cause[pres2]
 543,he/she is dodging,cause[pres2-perf3]
+544,he/she is performing baptism,a
 544,he/she is performing baptism,o
 545,he/she is giving up,sk-s-hi-hihst
 545,he/she is giving up,sk-s-hst[imp2]
@@ -619,12 +688,16 @@ corpus_id,definition,class
 553,he/she is drawing a picture of him/her,cause[pres2-perf3]
 554,he/she is conversing,apl-active-h
 555,he/she is jumping,go-in
+557,he/she is changing clothes,a
 557,he/she is changing clothes,v-vhs
 557,he/she is changing clothes,change-out
 557,he/she is changing clothes,change-out-flexible
+558,he/she is undressing,a
 558,he/she is undressing,rev-e
+559,he/she is putting on clothes,a
 559,he/she is putting on clothes,o
 561,he/she is putting fuel into a fire,hvsk-han
+562,he/she is tickling him/her,a
 562,he/she is tickling him/her,i-a-i
 564,he/she is squatting,husk
 565,he/she is tying it,hih-lh
@@ -646,17 +719,21 @@ corpus_id,definition,class
 573,he/she is closing his eyes,cause[pres2-perf3]
 574,he/she is attacking him/her,go
 574,he/she is attacking him/her,go[pres2]
+575,he/she is taking off his/her glasses,a
 575,he/she is taking off his/her glasses,rev-e
 576,he/she is putting on glasses,hvsk-han
 577,he/she is shelling corn,ih-vh
 577,he/she is shelling corn,ih-vh[inf2]
+578,he/she is snoring,a
 578,he/she is snoring,rev-gi
 578,he/she is snoring,rev-i
 579,he/she is sprinkling it,vsk-post-v
 582,he/she is putting on shoes,hvsk-han
+583,he/she is changing shoes,a
 583,he/she is changing shoes,v-vhs
 583,he/she is changing shoes,change-out
 583,he/she is changing shoes,change-out-flexible
+584,he/she is taking off his/her shoes,a
 584,he/she is taking off his/her shoes,rev-e
 585,he/she is helping him/her up,cause
 585,he/she is helping him/her up,cause[perf3]
@@ -666,8 +743,10 @@ corpus_id,definition,class
 586,he/she is recuperating,cause[pres2-perf2]
 587,he/she is getting up,hvsk-nh
 587,he/she is getting up,hvsk-nh[inf2]
+589,he/she is taking off his/her gloves,a
 589,he/she is taking off his/her gloves,rev-e
 590,he/she is putting on his/her gloves,i-vka
+591,he/she is taking off his/her socks,a
 591,he/she is taking off his/her socks,rev-gi
 591,he/she is taking off his/her socks,rev-i
 592,he/she is putting on his/her socks,hih-lh
@@ -697,8 +776,10 @@ corpus_id,definition,class
 605,he/she is splitting it,sk-h
 605,he/she is splitting it,sk-h-yh
 605,he/she is splitting it,sk-h[imp2]
+606,he/she is sprinkling it,a
 606,he/she is sprinkling it,i-a-i
 607,he/she is counting it,hih-lh
+608,he/she is cursing him/her,a
 608,he/she is cursing him/her,i-a-i
 608,he/she is cursing him/her,long
 608,he/she is cursing him/her,long-no-a
@@ -733,8 +814,10 @@ corpus_id,definition,class
 626,he/she is deciding,cause[pres2]
 626,he/she is deciding,cause[pres2-perf3]
 627,he/she is washing,e-a
+628,he/she is shelling,a
 628,he/she is shelling,rev-i
 630,he/she is turning him/her over,go-in
+631,he/she is singing,a
 631,he/she is singing,rev-gi
 631,he/she is singing,rev-i
 632,he/she is clawing him/her,sk-s-la
@@ -748,6 +831,7 @@ corpus_id,definition,class
 633,to come out of the nose,ih-ihi
 633,to come out of the nose,stative-h
 633,to come out of the nose,stative
+634,he/she is washing,a
 634,he/she is washing,o
 722,he/she is confronted with it,sk-s-hi-hihst
 722,he/she is confronted with it,sk-s-hst[imp2]
@@ -786,12 +870,14 @@ corpus_id,definition,class
 742,he/she is walking around,be-at-weak
 746,he/she lives,stative-h
 746,he/she lives,stative
+752,he/she thinks so,a
 752,he/she thinks so,i-a-i[perf2]
 752,he/she thinks so,i-a-i
 757,he/she is straightening it,cause[perf2]
 757,he/she is straightening it,cause[pres2-perf2]
 759,it is hanging,stative
 764,he/she is plowing it,i-vka
+766,he/she is removing it from a hanging position,a
 766,he/she is removing it from a hanging position,rev-e
 767,he/she is turning it,cause
 767,he/she is turning it,cause[perf3]
@@ -837,6 +923,7 @@ corpus_id,definition,class
 813,he/she is taking it somewhere by hand,go[pres2]
 815,he/she is handling it,be-at
 815,he/she is handling it,be-at-weak
+818,he/she is eating it,a
 818,he/she is eating it,e-aka
 820,he/she is ripping it,ih-vh
 821,he/she is scratching him/her,sk-s-la
@@ -848,14 +935,17 @@ corpus_id,definition,class
 824,he/she is wringing it out,cause[pres2-perf3]
 825,he/she is stinging it,sk-h
 825,he/she is stinging it,sk-h[imp2]
+826,he/she is leaving a living thing behind,a
 826,he/she is leaving a living thing behind,leaving
 827,he/she is giving him/her a living thing,apl
 827,he/she is giving him/her a living thing,apl[imp2]
 829,he/she is wrapping him/her,vnh-vsk
 829,he/she is wrapping him/her,vnh-vsk[inf2]
+830,he/she is putting it in a container,a
 830,he/she is putting it in a container,i-a-i
 830,he/she is putting it in a container,long
 830,he/she is putting it in a container,long-no-a
+833,he/she is taking it out of a container,a
 833,he/she is taking it out of a container,rev-e
 834,he/she is climbing it,go
 834,he/she is climbing it,go[pres2]
@@ -912,21 +1002,26 @@ corpus_id,definition,class
 876,he/she is finding it,ih-vh
 876,he/she is finding it,ih-vh[inf2]
 877,he/she is taking it somewhere,ih-vh
+879,he/she is getting it,a
 879,he/she is getting it,rev-e
+880,he/she is changing it,a
 880,he/she is changing it,v-vhs
 880,he/she is changing it,change-out
 882,he/she is taking it somewhere by hand,go
 882,he/she is taking it somewhere by hand,go[pres2]
 883,he/she is peeling him/her,ih-vh
+884,he/she is getting some liquid,a
 884,he/she is getting some liquid,rev-gi
 884,he/she is getting some liquid,rev-i
 885,he/she is taking liquid from him/her,apl
 885,he/she is taking liquid from him/her,apl[imp2]
 885,he/she is taking liquid from him/her,apl[imp3]
+886,he/she is bewitching him/her,a
 886,he/she is bewitching him/her,i-a-i
 886,he/she is bewitching him/her,long-no-a
 887,he/she is holding it in his/her hand,stative-h
 887,he/she is holding it in his/her hand,stative
+888,he/she is leaving some liquid,a
 888,he/she is leaving some liquid,leaving
 889,he/she is giving him/her some liquid,apl
 889,he/she is giving him/her some liquid,apl[imp2]
@@ -934,6 +1029,7 @@ corpus_id,definition,class
 890,he/she is finding some liquid,ih-vh[inf2]
 891,he/she is taking some liquid somewhere,ih-vh
 893,he/she lives,stative
+895,it’s freezing,a
 895,it’s freezing,i-a-i
 895,it’s freezing,long
 895,it’s freezing,long-no-a
@@ -951,14 +1047,17 @@ corpus_id,definition,class
 908,he/she is handling it,be-at
 908,he/she is handling it,be-at-weak
 909,he/she hates him/her,hih-hilh
+910,he/she is setting up a bed,a
 910,he/she is setting up a bed,i-a-i
 910,he/she is setting up a bed,long
 910,he/she is setting up a bed,long-no-a
+913,he/she is pleading,a
 913,he/she is pleading,i-a-i
 913,he/she is pleading,long
 913,he/she is pleading,long-no-a
 914,he/she is burying him/her,cause[perf2]
 914,he/she is burying him/her,cause[pres2-perf2]
+915,he/she is leaving it,a
 916,he/she is catching him/her,ih-vh
 918,he/she is hunting,be-at
 918,he/she is hunting,be-at-weak
@@ -971,11 +1070,13 @@ corpus_id,definition,class
 924,it is blowing,vsk
 924,it is blowing,vsk-long
 924,it is blowing,vsk-post-v
+925,he/she is stealing it,a
 925,he/she is stealing it,rev-gi
 925,he/she is stealing it,rev-i
 928,he/she is sinking,become
 928,he/she is sinking,become[inf2]
 928,he/she is sinking,become[inf4]
+929,he/she is pulling him/her,a
 929,he/she is pulling him/her,rev-e
 931,he/she is dragging him/her,go
 931,he/she is dragging him/her,go[pres2]
@@ -983,12 +1084,14 @@ corpus_id,definition,class
 937,he/she is twisting him/her,be-at-weak
 937,he/she is twisting him/her,oh-ol[inf2]
 937,he/she is twisting him/her,oh-ol[inf3]
+938,he/she is missing him/her,a
 938,he/she is missing him/her,i-a-i
 938,he/she is missing him/her,long-no-a
 940,he/she is falling from an upright position,become
 940,he/she is falling from an upright position,become[inf2]
 940,he/she is falling from an upright position,become[inf4]
 941,he/she is cleaning him/her,ih-vh
+942,he/she is hammering it,a
 942,he/she is hammering it,o
 946,he/she is tying up a leg,hih-lh
 949,he/she is tossing about,be-at
@@ -1011,7 +1114,9 @@ corpus_id,definition,class
 978,he/she is resting him/her,cause[perf3]
 978,he/she is resting him/her,cause[pres2]
 978,he/she is resting him/her,cause[pres2-perf3]
+979,he/she is bathing him/her,a
 979,he/she is bathing him/her,o
+980,he/she is replying,a
 980,he/she is replying,v-vhs
 980,he/she is replying,change-out
 981,he/she is lecturing him/her,cause
@@ -1045,6 +1150,7 @@ corpus_id,definition,class
 1024,it’s falling,sk-s-hst[imp2]
 1024,it’s falling,sk-s-hst
 1027,he/she is writing it,i-vka
+1030,he/she is pulling a trigger,a
 1030,he/she is pulling a trigger,rev-e
 1038,he/she is batting it,ih-l
 1038,he/she is batting it,hitting-il
@@ -1054,10 +1160,12 @@ corpus_id,definition,class
 1041,it’s swelling,sk-s-hst[imp2]
 1041,it’s swelling,sk-s-hst
 1043,he/she is building a fire,hvsk-han
+1044,he/she is unhitching him/her,a
 1044,he/she is unhitching him/her,rev-e
 1045,he/she is hitching him/her up,vsk
 1045,he/she is hitching him/her up,vsk[imp2]
 1050,he/she is putting a handle on a tool,hvsk-han
+1052,he/she is washing it,a
 1052,he/she is washing it,o
 1053,he/she is accusing him/her,cause
 1053,he/she is accusing him/her,cause[perf3]
@@ -1067,6 +1175,7 @@ corpus_id,definition,class
 1055,he/she is covering it,vsk[imp2]
 1056,he/she is putting it in water,hvsk-nh
 1056,he/she is putting it in water,hvsk-nh[inf2]
+1060,he/she is picking him/her up,a
 1060,he/she is picking him/her up,rev-e
 1061,it’s snowing,cause[perf2]
 1061,it’s snowing,cause[pres2-perf2]
@@ -1098,6 +1207,7 @@ corpus_id,definition,class
 1083,he/she is hiding it,hvsk-han
 1085,he/she is hiding him/her,vsk
 1085,he/she is hiding him/her,vsk[imp2]
+1086,he/she is cracking it,a
 1086,he/she is cracking it,o
 1087,he/she is putting it into a fire,hvsk-han
 1088,he/she is soaking it,hvsk-han
@@ -1113,6 +1223,7 @@ corpus_id,definition,class
 1229,he/she is cold,become
 1230,he/she is speaking,become
 1231,he/she is prying it,ih-vh
+1232,he/she is accumulating it,a
 1232,he/she is accumulating it,o
 1233,it’s accumulating,become
 1233,it’s accumulating,become[inf2]
@@ -1126,9 +1237,11 @@ corpus_id,definition,class
 1236,he/she is contaminating it,hvsk-han
 1241,he/she is collecting from him/her,hvsk-han
 1246,he/she is telling it,apl-active-h
+1247,he/she is omitting him/her,a
 1247,he/she is omitting him/her,leaving
 1249,he/she is fanning him/her,apl-active
 1249,he/she is fanning him/her,apl-active-a
+1253,it’s misting,a
 1253,it’s misting,i-a-i
 1253,it’s misting,long-no-a
 1254,he/she is straining it,cause
@@ -1136,6 +1249,7 @@ corpus_id,definition,class
 1254,he/she is straining it,cause[pres2]
 1254,he/she is straining it,cause[pres2-perf3]
 1256,he/she is curing him/her,i-vka
+1258,he/she is breathing,a
 1258,he/she is breathing,rev-e
 1261,he/she is parting with him/her,become
 1261,he/she is parting with him/her,become[inf2]
@@ -1144,6 +1258,7 @@ corpus_id,definition,class
 1262,he/she is using it,cause[perf3]
 1262,he/she is using it,cause[pres2]
 1262,he/she is using it,cause[pres2-perf3]
+1263,he/she is putting out a fire,a
 1263,he/she is putting out a fire,i-a-i
 1263,he/she is putting out a fire,long
 1263,he/she is putting out a fire,long-no-a
@@ -1161,10 +1276,13 @@ corpus_id,definition,class
 1267,he/she is mingling with a group,be-at-weak
 1270,he/she is linking it,hvsk-han
 1285,it is hanging,stative
+1286,he/she is hanging it up,a
 1286,he/she is hanging it up,i-a-i
 1286,he/she is hanging it up,long
 1286,he/she is hanging it up,long-no-a
 1301,there are,stative
+1306,he/she is saying it,a
+1308,he/she is taking it off,a
 1308,he/she is taking it off,rev-e
 1309,he/she is putting it on,cause
 1309,he/she is putting it on,cause[perf3]
@@ -1227,6 +1345,7 @@ corpus_id,definition,class
 1544,he/she is becoming angry,become[inf4]
 1545,he/she is angry,stative-s
 1545,he/she is angry,stative
+1548,he/she is stubbing his/her toe,a
 1548,he/she is stubbing his/her toe,o
 1551,he/she has a chill,cause
 1551,he/she has a chill,cause[perf3]
@@ -1241,6 +1360,7 @@ corpus_id,definition,class
 1563,he/she is looking for it,oh-al
 1569,it is cold,stative
 1570,he/she has a cold,ih-vh
+1572,he/she is getting drunk,a
 1572,he/she is getting drunk,e-aka
 1576,he/she is inside it,stative
 1592,it’s sticking out,stative-h
@@ -1278,6 +1398,7 @@ corpus_id,definition,class
 1642,he/she has a liquid,stative
 1646,he/she knows it,stative-h
 1646,he/she knows it,stative
+1664,he/she is receiving punishment,a
 1664,he/she is receiving punishment,i-a-i
 1664,he/she is receiving punishment,long-no-a
 1671,he/she is coughing,sk-h[imp2]
@@ -1293,6 +1414,7 @@ corpus_id,definition,class
 1699,he/she is belching,become
 1699,he/she is belching,become[inf2]
 1699,he/she is belching,become[inf4]
+1700,he/she is shivering,a
 1700,he/she is shivering,i-a-i
 1708,he/she smells it,become
 1709,he/she has an object,stative
@@ -1300,12 +1422,15 @@ corpus_id,definition,class
 1710,he/she is aching,apl[imp2]
 1719,he/she has it,stative-h
 1719,he/she has it,stative
+1721,he/she is worried,a
 1729,he/she is confident,stative-s
 1729,he/she is confident,stative
 1730,he/she is sitting,stative-h
 1730,he/she is sitting,stative
+1740,he/she is itching,a
 1741,he/she is losing it,apl
 1741,he/she is losing it,apl[imp2]
+1754,he/she is sending on object,a
 1754,he/she is sending on object,i-a-i
 1754,he/she is sending on object,long-no-a
 1761,he/she is sending it,hvsk-nh
