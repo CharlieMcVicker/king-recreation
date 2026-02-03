@@ -86,12 +86,12 @@ def main():
 
     # Add Root Connections (Derivational)
     for row in root_connections:
-        if row.get("user_approved", None):
+        if row.get("user_approved", None) == "x":
             add_connection(row["from_corpus_ids"], row["to_corpus_ids"], "derivation")
 
     # Add Middle Voice Connections
     for row in mv_connections:
-        if row.get("user_approved", None):
+        if row.get("user_approved", None) == "x":
             add_connection(row["from_corpus_ids"], row["to_corpus_ids"], "middle_voice")
 
     # 3. Identify Top Level Nodes
