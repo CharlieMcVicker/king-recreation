@@ -336,7 +336,7 @@
         "class_name": "cause",
         "connected_to": [
             {
-                "class_name": "become-ki[inf2]",
+                "class_name": "become[inf2]",
                 "definition": "he/she is waking up",
                 "entry_no": 514,
                 "form_type": "infinitive",
@@ -471,7 +471,7 @@
         "class_name": "cause",
         "connected_to": [
             {
-                "class_name": "become-ki",
+                "class_name": "become",
                 "definition": "it smells",
                 "entry_no": 462,
                 "form_type": "infinitive",
@@ -558,6 +558,24 @@
         "verb_id": 815
     },
     {
+        "class_name": "apl",
+        "connected_to": [
+            {
+                "class_name": "hvsk-n",
+                "definition": "he/she is sending it",
+                "entry_no": 1845,
+                "form_type": "perfective",
+                "root": "kha",
+                "stem": "khan",
+                "verb_id": 1774
+            }
+        ],
+        "definition": "he/she is giving him/her a living thing",
+        "entry_no": 857,
+        "root": "khan",
+        "verb_id": 827
+    },
+    {
         "class_name": "cause",
         "connected_to": [
             {
@@ -583,24 +601,6 @@
         "entry_no": 878,
         "root": "lohihst",
         "verb_id": 848
-    },
-    {
-        "class_name": "hih-hil",
-        "connected_to": [
-            {
-                "class_name": "vsk[imp2]",
-                "definition": "he/she is putting it in a hole or a container",
-                "entry_no": 900,
-                "form_type": "perfective",
-                "root": "l",
-                "stem": "lvn",
-                "verb_id": 870
-            }
-        ],
-        "definition": "he/she is beating him/her up",
-        "entry_no": 894,
-        "root": "lvn",
-        "verb_id": 864
     },
     {
         "class_name": "leaving",
@@ -660,7 +660,7 @@
         "class_name": "be-at",
         "connected_to": [
             {
-                "class_name": "become-ki[inf2]",
+                "class_name": "become[inf2]",
                 "definition": "he/she is falling from an upright position",
                 "entry_no": 970,
                 "form_type": "perfective",
@@ -693,7 +693,34 @@
         "verb_id": 950
     },
     {
-        "class_name": "become-ki[inf4]",
+        "class_name": "hih-hilh",
+        "connected_to": [
+            {
+                "class_name": "long-no-a",
+                "definition": "he/she is laying it down",
+                "entry_no": 76,
+                "form_type": "perfective",
+                "root": "",
+                "stem": "t",
+                "verb_id": 72
+            },
+            {
+                "class_name": "long-no-a",
+                "definition": "he/she is sending on object",
+                "entry_no": 1823,
+                "form_type": "perfective",
+                "root": "",
+                "stem": "t",
+                "verb_id": 1754
+            }
+        ],
+        "definition": "he/she is stabbing him/her",
+        "entry_no": 1003,
+        "root": "t",
+        "verb_id": 973
+    },
+    {
+        "class_name": "become[inf4]",
         "connected_to": [
             {
                 "class_name": "stative-h",
@@ -711,7 +738,7 @@
         "verb_id": 1017
     },
     {
-        "class_name": "become-ki[inf4]",
+        "class_name": "become[inf4]",
         "connected_to": [
             {
                 "class_name": "stative-h",
@@ -765,7 +792,7 @@
         "verb_id": 1063
     },
     {
-        "class_name": "ih-l[inf2]",
+        "class_name": "ih-l-VCh",
         "connected_to": [
             {
                 "class_name": "stative-h",

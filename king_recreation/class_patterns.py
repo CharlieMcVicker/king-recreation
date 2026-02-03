@@ -1,6 +1,8 @@
+from king_recreation.phonology_data import possible_alternates
 from dataclasses import dataclass, field
-from typing import List, Dict
+from typing import List, Dict, Optional, Tuple
 import itertools
+from king_recreation.phonology_data import VOWEL_SET
 
 
 @dataclass(frozen=True)
@@ -16,6 +18,8 @@ class ExpandedClassPattern:
     perfective: str
     imperative: str
     infinitive: str
+
+    preconditions: Tuple[str, ...] = field(default_factory=tuple)
 
     # Store original row just in case we need extra fields later without breaking changes
     _original_data: Dict[str, str] = field(default=None, hash=False, compare=False)
@@ -34,6 +38,53 @@ class ExpandedClassPattern:
             return val if val is not None else default
         return default
 
+    def check_preconditions(
+        self, preceding_text: str, suffix_val: str = "", h_alternated_form: bool = False
+    ) -> bool:
+        if "*" in suffix_val or "@" in suffix_val:
+            return True
+
+        if not self.preconditions or not len(self.preconditions):
+            return True
+
+        # Vacuous match if no preceding text (suffix consumes entire string)
+        if not preceding_text:
+            return True
+
+        for p in self.preconditions:
+            if self._match_sequence(p, preceding_text, h_alternated_form):
+                return True
+
+        return False
+
+    def _match_sequence(
+        self, sequence: str, text: str, h_alternated_form: bool
+    ) -> bool:
+        if len(text) < len(sequence):
+            return False
+
+        if h_alternated_form:
+            for seq in possible_alternates(sequence):
+                if self._match_sequence(seq, text, False):
+                    return True
+            else:
+                return False
+
+        for i in range(1, len(sequence) + 1):
+            s_char = sequence[-i]
+            t_char = text[-i]
+            if s_char == "V":
+                if t_char not in VOWEL_SET:
+                    return False
+            elif s_char == "C":
+                if t_char in VOWEL_SET:
+                    return False
+            else:
+                # Literal match
+                if t_char != s_char:
+                    return False
+        return True
+
 
 @dataclass
 class ClassMacro:
@@ -48,6 +99,9 @@ class ClassMacro:
     perfective: List[str]
     imperative: List[str]
     infinitive: List[str]
+
+    preconditions: List[str]
+
     _original_data: Dict[str, str] = field(default_factory=dict)
 
     @staticmethod
@@ -71,6 +125,7 @@ class ClassMacro:
             perfective=parse_field("perfective"),
             imperative=parse_field("imperative"),
             infinitive=parse_field("infinitive"),
+            preconditions=[p for p in parse_field("preconditions") if p],
             _original_data=row,
         )
 
@@ -106,6 +161,7 @@ class ClassMacro:
             expanded_data = {
                 "parent_name": self.parent_name,
                 "name": self.name,
+                "preconditions": tuple(self.preconditions),
                 "_original_data": self._original_data,
             }
             suffixes = []
