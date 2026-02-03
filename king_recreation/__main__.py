@@ -7,6 +7,7 @@ from king_recreation.visualize_analysis import run_all_visualizations
 from king_recreation.reconstruct_from_roots import main as reconstruct_from_roots
 from king_recreation.analyze_middle_voice import analyze_middle_voice
 from king_recreation.analyze_connections import analyze_connections
+from king_recreation.group_hierarchical import main as group_hierarchical
 
 
 def main():
@@ -41,10 +42,13 @@ def main():
         args.classes,
     )
 
-    print("\n[7/7] Analyzing Matches...")
+    print("\n[7/8] Grouping Dictionary Hierarchically...")
+    group_hierarchical()
+
+    print("\n[8/8] Analyzing Matches...")
     analyze_matches(args.classes)
 
-    print("\n[8/8] Visualizing Analysis...")
+    print("\n[9/9] Visualizing Analysis...")
     run_all_visualizations()
 
     print("\nPipeline Complete!")
