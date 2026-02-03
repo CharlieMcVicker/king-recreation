@@ -30,7 +30,7 @@ def main():
     print("\n[5/7] Analyzing Root Connections...")
     analyze_connections(
         "artifacts/data/reconstructable_verbs.json",
-        "artifacts/data/root_connections.json",
+        "artifacts/data/root_connections.csv",
         args.classes,
     )
 

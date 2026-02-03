@@ -22,6 +22,23 @@ def analyze_connections(input_path: str, output_path: str, classes_path: str = N
         print(f"Error: Input file {input_path} not found.")
         return
 
+    # Load existing approvals if they exist
+    existing_approvals: Dict[Tuple[str, str, str, str, str, str], str] = {}
+    if os.path.exists(output_path) and output_path.endswith(".csv"):
+        with open(output_path, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                # Key: (from_h, from_class, to_h, to_class, to_type, to_stem)
+                key = (
+                    row.get("from_h_grade", ""),
+                    row.get("from_class", ""),
+                    row.get("to_h_grade", ""),
+                    row.get("to_class", ""),
+                    row.get("to_form_type", ""),
+                    row.get("to_stem", ""),
+                )
+                existing_approvals[key] = row.get("user_approved", "")
+
     with open(input_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
@@ -45,9 +62,9 @@ def analyze_connections(input_path: str, output_path: str, classes_path: str = N
         root_groups[key]["verbs"].append(verb)
 
     # Write roots_by_class.csv
-    csv_path = "artifacts/data/roots_by_class.csv"
-    os.makedirs(os.path.dirname(csv_path), exist_ok=True)
-    with open(csv_path, "w", encoding="utf-8", newline="") as f:
+    csv_mapping_path = "artifacts/data/roots_by_class.csv"
+    os.makedirs(os.path.dirname(csv_mapping_path), exist_ok=True)
+    with open(csv_mapping_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(
             f, fieldnames=["h_grade", "g_grade", "class", "corpus_ids"]
         )
@@ -92,7 +109,24 @@ def analyze_connections(input_path: str, output_path: str, classes_path: str = N
                     }
                 )
 
-    connections = []
+    fieldnames = [
+        "user_approved",
+        "from_h_grade",
+        "from_g_grade",
+        "from_class",
+        "from_corpus_ids",
+        "to_h_grade",
+        "to_g_grade",
+        "to_class",
+        "to_corpus_ids",
+        "to_form_type",
+        "to_stem",
+    ]
+
+    # Ensure the directory exists
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+    rows = []
     for key, group in root_groups.items():
         # Check against h_grade root
         root = group["h_grade"]
@@ -100,8 +134,6 @@ def analyze_connections(input_path: str, output_path: str, classes_path: str = N
             continue
 
         if root in open_forms_map:
-            # Filter matches
-            matches = []
             for m in open_forms_map[root]:
                 # Avoid self-reference: if the matched group is the current group
                 if (m["h_grade"], m["g_grade"], m["class_name"]) == key:
@@ -110,33 +142,46 @@ def analyze_connections(input_path: str, output_path: str, classes_path: str = N
                 # Heuristic logic
                 is_cause = group["class"].startswith("cause")
                 if is_cause or m["form_type"] == "perfective":
-                    matches.append(m)
+                    # Determine existing approval status
+                    approval_key = (
+                        group["h_grade"],
+                        group["class"],
+                        m["h_grade"],
+                        m["class_name"],
+                        m["form_type"],
+                        m["stem"],
+                    )
+                    user_approved = existing_approvals.get(approval_key, "")
 
-            if matches:
-                connections.append(
-                    {
-                        "corpus_ids": group["corpus_ids"],
-                        "h_grade": group["h_grade"],
-                        "g_grade": group["g_grade"],
-                        "class_name": group["class"],
-                        "connected_to": matches,
-                    }
-                )
+                    rows.append(
+                        {
+                            "user_approved": user_approved,
+                            "from_h_grade": group["h_grade"],
+                            "from_g_grade": group["g_grade"],
+                            "from_class": group["class"],
+                            "from_corpus_ids": ";".join(group["corpus_ids"]),
+                            "to_h_grade": m["h_grade"],
+                            "to_g_grade": m["g_grade"],
+                            "to_class": m["class_name"],
+                            "to_corpus_ids": m["corpus_ids"],
+                            "to_form_type": m["form_type"],
+                            "to_stem": m["stem"],
+                        }
+                    )
 
-    # Ensure the directory exists
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
-    with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(connections, f, indent=4, sort_keys=True)
+    with open(output_path, "w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(rows)
 
     with open("artifacts/reports/open_forms.json", "w", encoding="utf-8") as f:
         json.dump(open_forms_map, f, indent=4, sort_keys=True)
 
     print(
-        f"Analyzed {len(root_groups)} root groups ({len(verbs)} verbs). Found {len(connections)} connections."
+        f"Analyzed {len(root_groups)} root groups ({len(verbs)} verbs). Found {len(rows)} connections."
     )
     print(f"Results written to {output_path}")
-    print(f"Root-class mapping written to {csv_path}")
+    print(f"Root-class mapping written to {csv_mapping_path}")
 
 
 if __name__ == "__main__":
@@ -150,8 +195,8 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--output",
-        default="artifacts/data/root_connections.json",
-        help="Path to output JSON",
+        default="artifacts/data/root_connections.csv",
+        help="Path to output CSV",
     )
     parser.add_argument("--classes", help="Path to classes CSV")
     args = parser.parse_args()
