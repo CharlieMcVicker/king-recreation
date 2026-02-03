@@ -649,22 +649,41 @@
             "infinitive": "eht"
         }
     },
-    "apl-active-lh": {
+    "apl-active-h": {
         "parent_name": "apl-active",
-        "name": "apl-active-lh",
+        "name": "apl-active-h",
+        "present": "heh",
+        "imperfective": "hehsk",
+        "perfective": "helh",
+        "imperative": "hvla",
+        "infinitive": "heht",
+        "preconditions": [],
+        "_original_data": {
+            "class": "apl-active",
+            "subclass": "h",
+            "preconditions": "",
+            "present": "heh",
+            "imperfective": "hehsk",
+            "perfective": "helh",
+            "imperative": "hvla",
+            "infinitive": "heht"
+        }
+    },
+    "apl-active-'": {
+        "parent_name": "apl-active",
+        "name": "apl-active-'",
         "present": "eh",
         "imperfective": "ehsk",
         "perfective": "elh",
         "imperative": "vla",
         "infinitive": "eht",
         "preconditions": [
-            "h",
             "'"
         ],
         "_original_data": {
             "class": "apl-active",
-            "subclass": "lh",
-            "preconditions": "h;'",
+            "subclass": "'",
+            "preconditions": "'",
             "present": "eh",
             "imperfective": "ehsk",
             "perfective": "elh",
