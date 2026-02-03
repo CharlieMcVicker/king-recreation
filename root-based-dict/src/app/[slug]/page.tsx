@@ -1,4 +1,10 @@
-import { getRootBySlug, getClasses, getDictionaryEntries } from "@/lib/data";
+import {
+  getRootBySlug,
+  getClasses,
+  getDictionaryEntries,
+  getConnections,
+  getReconstructableVerbs,
+} from "@/lib/data";
 import RootDetailContent from "@/components/roots/RootDetailContent";
 import Link from "next/link";
 
@@ -10,6 +16,8 @@ export default async function RootDetailPage({
   const { slug } = await params;
   const rootGroup = await getRootBySlug(slug);
   const classes = await getClasses();
+  const connections = await getConnections();
+  const allVerbs = await getReconstructableVerbs();
 
   if (!rootGroup) {
     return (
@@ -38,6 +46,8 @@ export default async function RootDetailPage({
       rootGroup={rootGroup}
       classes={classes}
       dictionary={rootDictionary}
+      connections={connections}
+      allVerbs={allVerbs}
     />
   );
 }

@@ -7,6 +7,7 @@ import {
   DictionaryEntry,
   RootGroup,
   EndingGroup,
+  RootConnection,
   normalize,
   resolveClassEndings,
 } from "./data-shared";
@@ -125,6 +126,18 @@ export async function getReconstructableVerbs(): Promise<
   const filePath = path.join(ARTIFACTS_DATA_DIR, "reconstructable_verbs.json");
   const fileContent = fs.readFileSync(filePath, "utf-8");
   return JSON.parse(fileContent);
+}
+
+export async function getConnections(): Promise<RootConnection[]> {
+  const filePath = path.join(ARTIFACTS_DATA_DIR, "root_connections.csv");
+  if (!fs.existsSync(filePath)) return [];
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const result = Papa.parse(fileContent, {
+    header: true,
+    skipEmptyLines: true,
+    dynamicTyping: true,
+  });
+  return result.data as any[];
 }
 
 export async function getRoots(): Promise<RootGroup[]> {

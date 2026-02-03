@@ -1,7 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { RootGroup, ClassDefinition, DictionaryEntry } from "@/lib/data-shared";
+import {
+  RootGroup,
+  ClassDefinition,
+  DictionaryEntry,
+  RootConnection,
+  ReconstructableVerb,
+} from "@/lib/data-shared";
 import RootClassEntry from "@/components/roots/RootClassEntry";
 import SubvariantFilter from "@/components/roots/SubvariantFilter";
 import Link from "next/link";
@@ -11,12 +17,16 @@ interface RootDetailContentProps {
   rootGroup: RootGroup;
   classes: ClassDefinition[];
   dictionary: DictionaryEntry[];
+  connections: RootConnection[];
+  allVerbs: ReconstructableVerb[];
 }
 
 export default function RootDetailContent({
   rootGroup,
   classes,
   dictionary,
+  connections,
+  allVerbs,
 }: RootDetailContentProps) {
   const [selectedVariant, setSelectedVariant] = useState("All");
 
@@ -28,15 +38,15 @@ export default function RootDetailContent({
           const match = v.class_name.match(/\[(.*)\]/);
           return match ? match[1] : null;
         })
-        .filter((v): v is string => v !== null)
-    )
+        .filter((v): v is string => v !== null),
+    ),
   ).sort();
 
   const filteredVerbs =
     selectedVariant === "All"
       ? rootGroup.verbs
       : rootGroup.verbs.filter((v) =>
-          v.class_name.includes(`[${selectedVariant}]`)
+          v.class_name.includes(`[${selectedVariant}]`),
         );
 
   return (
@@ -72,18 +82,23 @@ export default function RootDetailContent({
         <div className="grid grid-cols-1 gap-6 mt-4">
           {filteredVerbs.length > 0 ? (
             Object.entries(
-              filteredVerbs.reduce((acc, verb) => {
-                const key = verb.class_name;
-                if (!acc[key]) acc[key] = [];
-                acc[key].push(verb);
-                return acc;
-              }, {} as Record<string, typeof filteredVerbs>)
+              filteredVerbs.reduce(
+                (acc, verb) => {
+                  const key = verb.class_name;
+                  if (!acc[key]) acc[key] = [];
+                  acc[key].push(verb);
+                  return acc;
+                },
+                {} as Record<string, typeof filteredVerbs>,
+              ),
             ).map(([className, verbs]) => (
               <RootClassEntry
                 key={className}
                 verbs={verbs}
                 classes={classes}
                 dictionary={dictionary}
+                allVerbs={allVerbs}
+                connections={connections}
               />
             ))
           ) : (

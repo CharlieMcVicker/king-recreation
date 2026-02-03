@@ -137,6 +137,20 @@ export interface EndingGroup {
   }[];
 }
 
+export interface RootConnection {
+  user_approved: string;
+  from_h_grade: string;
+  from_g_grade: string;
+  from_class: string;
+  from_corpus_ids: string;
+  to_h_grade: string;
+  to_g_grade: string;
+  to_class: string;
+  to_corpus_ids: string;
+  to_form_type: string;
+  to_stem: string;
+}
+
 export function normalize(s: string) {
   if (!s) return "";
   return s.trim().toLowerCase().replace(/['’]/g, "'");
