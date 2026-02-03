@@ -30,6 +30,13 @@ class ReconstructibleVerb:
     entry_no: Optional[int] = None
     original_stems: Dict[str, str] = field(default_factory=dict)
 
+    @staticmethod
+    def from_dict(data: dict) -> "ReconstructibleVerb":
+        clean_data = data.copy()
+        if "config" in clean_data:
+            clean_data["config"] = VerbConfig.from_dict(clean_data["config"])
+        return ReconstructibleVerb(**clean_data)
+
 
 class EnhancedJSONEncoder(json.JSONEncoder):
     def default(self, o):

@@ -25,29 +25,9 @@ def analyze_connections(input_path: str, output_path: str, classes_path: str = N
     with open(input_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    verbs: List[ReconstructibleVerb] = []
-    for item in data:
-        # Reconstruct VerbConfig from nested dict
-        if "config" in item:
-            pre_data = item["config"].get("pre", {})
-            pron_data = item["config"].get("pron", {})
-
-            # Since from_row expects a flat row and we have nested structures,
-            # we can manually construct it or fix how we call it.
-            # However, VerbConfig(pre=..., pron=...) is easier
-            pre = PrePronominalConfig(**pre_data)
-
-            # PronominalConfig has an enum StemType and MetathesisStrategy
-            if "stem_type" in pron_data:
-                pron_data["stem_type"] = StemType(pron_data["stem_type"])
-            if "metathesis_strategy" in pron_data:
-                pron_data["metathesis_strategy"] = MetathesisStrategy(
-                    pron_data["metathesis_strategy"]
-                )
-
-            pron = PronominalConfig(**pron_data)
-            item["config"] = VerbConfig(pre=pre, pron=pron)
-        verbs.append(ReconstructibleVerb(**item))
+    verbs: List[ReconstructibleVerb] = [
+        ReconstructibleVerb.from_dict(item) for item in data
+    ]
 
     engine = ReconstructionEngine(classes_path)
 

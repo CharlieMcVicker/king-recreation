@@ -76,6 +76,10 @@ class PrePronominalConfig:
             distributiveImpIsFutProg=row["distributive_fut_prog"] == "True",
         )
 
+    @staticmethod
+    def from_dict(data: dict) -> "PrePronominalConfig":
+        return PrePronominalConfig(**data)
+
     def to_row(self) -> dict[str, str]:
         row = {}
 
@@ -120,6 +124,20 @@ class PronominalConfig:
             use_3rd_person_object=row["3rd_person_object"] == "True",
         )
 
+    @staticmethod
+    def from_dict(data: dict) -> "PronominalConfig":
+        # Handle Enums
+        clean_data = data.copy()
+        if "stem_type" in clean_data and isinstance(clean_data["stem_type"], str):
+            clean_data["stem_type"] = StemType(clean_data["stem_type"])
+        if "metathesis_strategy" in clean_data and isinstance(
+            clean_data["metathesis_strategy"], str
+        ):
+            clean_data["metathesis_strategy"] = MetathesisStrategy(
+                clean_data["metathesis_strategy"]
+            )
+        return PronominalConfig(**clean_data)
+
     def to_row(self):
         row = {}
 
@@ -146,6 +164,13 @@ class VerbConfig:
         pron_config = PronominalConfig.from_row(stem_row)
 
         return VerbConfig(pre=pre_config, pron=pron_config)
+
+    @staticmethod
+    def from_dict(data: dict) -> "VerbConfig":
+        return VerbConfig(
+            pre=PrePronominalConfig.from_dict(data.get("pre", {})),
+            pron=PronominalConfig.from_dict(data.get("pron", {})),
+        )
 
 
 def get_vowel_set():
