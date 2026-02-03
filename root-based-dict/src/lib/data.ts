@@ -141,60 +141,37 @@ export async function getConnections(): Promise<RootConnection[]> {
 }
 
 export async function getRoots(): Promise<RootGroup[]> {
-  const verbs = await getReconstructableVerbs();
+  const filePath = path.join(ARTIFACTS_DATA_DIR, "hierarchical-dict.json");
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const roots: RootGroup[] = JSON.parse(fileContent);
 
-  // 1. Group by h_grade_root -> glottal_grade_root
-  const hGroups: Map<
-    string,
-    Map<string | null, (ReconstructableVerb & { id: number })[]>
-  > = new Map();
+  // Post-process to add slugs and ensure verb IDs if missing
+  let verbIndex = 0;
+  return roots.map((root) => {
+    // Generate slug from key
+    // Distinguish null (unattested/none) from empty string (actually empty or merged)
+    const gGrade =
+      root.glottal_grade_root === null ? "__null__" : root.glottal_grade_root;
+    const key = `${root.h_grade_root}|${gGrade}`;
+    const slug = Buffer.from(key).toString("base64url");
 
-  verbs.forEach((verb, idx) => {
-    if (!hGroups.has(verb.h_grade_root)) {
-      hGroups.set(verb.h_grade_root, new Map());
-    }
-    const gMap = hGroups.get(verb.h_grade_root)!;
-    if (!gMap.has(verb.glottal_grade_root)) {
-      gMap.set(verb.glottal_grade_root, []);
-    }
-    gMap.get(verb.glottal_grade_root)!.push({ ...verb, id: idx });
+    // Ensure verbs have IDs (using global index for uniqueness across the app if needed,
+    // though previously it was index in the flat list)
+    const classes = root.classes.map((cls) => ({
+      ...cls,
+      verbs: cls.verbs.map((v) => {
+        const vWithId = { ...v, id: v.corpus_id ?? verbIndex };
+        verbIndex++;
+        return vWithId;
+      }),
+    }));
+
+    return {
+      ...root,
+      slug,
+      classes,
+    };
   });
-
-  const finalGroups: RootGroup[] = [];
-
-  // 2. Apply merging logic: if exactly 2 glottal grades and one is null, merge null into the other
-  for (const [h_grade_root, gMap] of hGroups.entries()) {
-    const glottalGrades = Array.from(gMap.keys());
-    const nullKey = glottalGrades.find((g) => g === null || g === "");
-
-    if (nullKey !== undefined && glottalGrades.length === 2) {
-      const attestedKey = glottalGrades.find((g) => g !== nullKey)!;
-      const mergedVerbs = [...gMap.get(attestedKey)!, ...gMap.get(nullKey)!];
-
-      const key = `${h_grade_root}|${attestedKey}`;
-      finalGroups.push({
-        h_grade_root,
-        glottal_grade_root: attestedKey,
-        slug: Buffer.from(key).toString("base64url"),
-        verbs: mergedVerbs,
-      });
-    } else {
-      // 3. Keep as separate groups
-      for (const [glottal_grade_root, verbs] of gMap.entries()) {
-        const key = `${h_grade_root}|${glottal_grade_root}`;
-        finalGroups.push({
-          h_grade_root,
-          glottal_grade_root,
-          slug: Buffer.from(key).toString("base64url"),
-          verbs,
-        });
-      }
-    }
-  }
-
-  return finalGroups.sort((a, b) =>
-    a.h_grade_root.localeCompare(b.h_grade_root),
-  );
 }
 
 export async function getRootBySlug(slug: string): Promise<RootGroup | null> {
@@ -203,83 +180,68 @@ export async function getRootBySlug(slug: string): Promise<RootGroup | null> {
 }
 
 export async function getEndingGroups(): Promise<EndingGroup[]> {
-  const verbs = await getReconstructableVerbs();
   const classes = await getClasses();
   const roots = await getRoots();
 
-  // Map verb index to its root slug
-  const verbIndexToRootSlug: Map<number, string> = new Map();
-  roots.forEach((r) => {
-    r.verbs.forEach((v) => {
-      verbIndexToRootSlug.set(v.id, r.slug);
-    });
-  });
-
   const groups: Map<string, EndingGroup> = new Map();
 
-  for (const verb of verbs) {
-    const verbIdx = verbs.indexOf(verb);
-    const endings = resolveClassEndings(verb.class_name, classes);
-    if (!endings) continue;
+  for (const root of roots) {
+    for (const cls of root.classes) {
+      const endings = resolveClassEndings(cls.class_name, classes);
+      if (!endings) continue;
 
-    const endingKeys = [
-      "present",
-      "imperfective",
-      "perfective",
-      "imperative",
-      "infinitive",
-    ];
-    const endingValues = endingKeys.map((k) => endings[k]);
-    const groupKey = endingValues.join("|");
+      const endingKeys = [
+        "present",
+        "imperfective",
+        "perfective",
+        "imperative",
+        "infinitive",
+      ];
+      const endingValues = endingKeys.map((k) => endings[k]);
+      const groupKey = endingValues.join("|");
 
-    if (!groups.has(groupKey)) {
-      const slug = Buffer.from(groupKey).toString("base64url");
-      const endingsMap: Record<string, string> = {};
-      endingKeys.forEach((k, i) => {
-        endingsMap[k] = endingValues[i];
+      if (!groups.has(groupKey)) {
+        const slug = Buffer.from(groupKey).toString("base64url");
+        const endingsMap: Record<string, string> = {};
+        endingKeys.forEach((k, i) => {
+          endingsMap[k] = endingValues[i];
+        });
+
+        groups.set(groupKey, {
+          endings: endingsMap,
+          slug,
+          roots: [],
+        });
+      }
+
+      const group = groups.get(groupKey)!;
+
+      // Find or create root in this group
+      let groupRoot = group.roots.find(
+        (r) =>
+          r.h_grade_root === root.h_grade_root &&
+          r.glottal_grade_root === root.glottal_grade_root,
+      );
+
+      if (!groupRoot) {
+        groupRoot = {
+          h_grade_root: root.h_grade_root,
+          glottal_grade_root: root.glottal_grade_root,
+          root_slug: root.slug,
+          configs: [],
+        };
+        group.roots.push(groupRoot);
+      }
+
+      // Add this class config
+      groupRoot.configs.push({
+        class_name: cls.class_name,
+        verbs: cls.verbs,
       });
-
-      groups.set(groupKey, {
-        endings: endingsMap,
-        slug,
-        roots: [],
-      });
     }
-
-    const group = groups.get(groupKey)!;
-
-    // Find or create root in this group
-    let root = group.roots.find(
-      (r) =>
-        r.h_grade_root === verb.h_grade_root &&
-        r.glottal_grade_root === verb.glottal_grade_root,
-    );
-
-    if (!root) {
-      root = {
-        h_grade_root: verb.h_grade_root,
-        glottal_grade_root: verb.glottal_grade_root,
-        root_slug: verbIndexToRootSlug.get(verbIdx) || "",
-        configs: [],
-      };
-      group.roots.push(root);
-    }
-
-    // Find or create config (class) in this root
-    let configArr = root.configs.find((c) => c.class_name === verb.class_name);
-    if (!configArr) {
-      configArr = {
-        class_name: verb.class_name,
-        verbs: [],
-      };
-      root.configs.push(configArr);
-    }
-
-    configArr.verbs.push({ ...verb, id: verbIdx });
   }
 
   return Array.from(groups.values()).sort((a, b) => {
-    // Sort by present ending set
     return a.endings.present.localeCompare(b.endings.present);
   });
 }

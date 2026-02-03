@@ -34,13 +34,13 @@ export default async function RootDetailPage({
   }
 
   const dictionary = await getDictionaryEntries();
-  const entryNos = new Set(
-    rootGroup.verbs.map((v) => v.entry_no).filter(Boolean),
-  );
+  const allRootVerbs = rootGroup.classes.flatMap((c) => c.verbs);
+
+  const entryNos = new Set(allRootVerbs.map((v) => v.entry_no).filter(Boolean));
 
   // Also include entry numbers for connected verbs
   const rootCorpusIds = new Set(
-    rootGroup.verbs
+    allRootVerbs
       .map((v) => v.corpus_id)
       .filter((id): id is number => id !== null),
   );

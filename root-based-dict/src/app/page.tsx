@@ -20,25 +20,31 @@ export default async function RootsPage() {
 
         {/* Root List Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {roots.map((root) => (
-            <Link
-              key={root.slug}
-              href={`/${root.slug}`}
-              className="group bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl p-6 hover:border-indigo-500 dark:hover:border-indigo-400 transition-all shadow-sm flex flex-col items-center text-center"
-            >
-              <div className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
-                {root.h_grade_root}
-              </div>
-              {root.glottal_grade_root && (
-                <div className="text-sm text-gray-500 dark:text-zinc-500 italic">
-                  ({root.glottal_grade_root})
+          {roots.map((root) => {
+            const verbCount = root.classes.reduce(
+              (acc, cls) => acc + cls.verbs.length,
+              0,
+            );
+            return (
+              <Link
+                key={root.slug}
+                href={`/${root.slug}`}
+                className="group bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl p-6 hover:border-indigo-500 dark:hover:border-indigo-400 transition-all shadow-sm flex flex-col items-center text-center"
+              >
+                <div className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-1 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                  {root.h_grade_root}
                 </div>
-              )}
-              <div className="mt-4 text-xs font-medium text-gray-400 uppercase tracking-wider">
-                {root.verbs.length} {root.verbs.length === 1 ? "verb" : "verbs"}
-              </div>
-            </Link>
-          ))}
+                {root.glottal_grade_root && (
+                  <div className="text-sm text-gray-500 dark:text-zinc-500 italic">
+                    ({root.glottal_grade_root})
+                  </div>
+                )}
+                <div className="mt-4 text-xs font-medium text-gray-400 uppercase tracking-wider">
+                  {verbCount} {verbCount === 1 ? "verb" : "verbs"}
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </div>

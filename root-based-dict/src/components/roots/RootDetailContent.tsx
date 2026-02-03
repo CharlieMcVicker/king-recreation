@@ -30,23 +30,23 @@ export default function RootDetailContent({
 }: RootDetailContentProps) {
   const [selectedVariant, setSelectedVariant] = useState("All");
 
-  // Get unique subvariants from all verbs in this root group
+  // Get unique subvariants from all classes in this root group
   const subvariants = Array.from(
     new Set(
-      rootGroup.verbs
-        .map((v) => {
-          const match = v.class_name.match(/\[(.*)\]/);
+      rootGroup.classes
+        .map((c) => {
+          const match = c.class_name.match(/\[(.*)\]/);
           return match ? match[1] : null;
         })
         .filter((v): v is string => v !== null),
     ),
   ).sort();
 
-  const filteredVerbs =
+  const filteredClasses =
     selectedVariant === "All"
-      ? rootGroup.verbs
-      : rootGroup.verbs.filter((v) =>
-          v.class_name.includes(`[${selectedVariant}]`),
+      ? rootGroup.classes
+      : rootGroup.classes.filter((c) =>
+          c.class_name.includes(`[${selectedVariant}]`),
         );
 
   return (
@@ -80,21 +80,11 @@ export default function RootDetailContent({
         </div>
 
         <div className="grid grid-cols-1 gap-6 mt-4">
-          {filteredVerbs.length > 0 ? (
-            Object.entries(
-              filteredVerbs.reduce(
-                (acc, verb) => {
-                  const key = verb.class_name;
-                  if (!acc[key]) acc[key] = [];
-                  acc[key].push(verb);
-                  return acc;
-                },
-                {} as Record<string, typeof filteredVerbs>,
-              ),
-            ).map(([className, verbs]) => (
+          {filteredClasses.length > 0 ? (
+            filteredClasses.map((cls) => (
               <RootClassEntry
-                key={className}
-                verbs={verbs}
+                key={cls.class_name}
+                verbs={cls.verbs}
                 classes={classes}
                 dictionary={dictionary}
                 allVerbs={allVerbs}

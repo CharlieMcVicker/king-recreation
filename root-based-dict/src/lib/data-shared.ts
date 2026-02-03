@@ -120,7 +120,10 @@ export interface RootGroup {
   h_grade_root: string;
   glottal_grade_root: string | null;
   slug: string;
-  verbs: (ReconstructableVerb & { id: number })[];
+  classes: {
+    class_name: string;
+    verbs: (ReconstructableVerb & { id: number })[];
+  }[];
 }
 
 export interface EndingGroup {
