@@ -3942,53 +3942,6 @@
     ]
   },
   {
-    "h_grade_root": "alhstvn",
-    "glottal_grade_root": "alihstvn",
-    "classes": [
-      {
-        "class_name": "hih-hil[inf2]",
-        "verbs": [
-          {
-            "definition": "he/she is shaking his/her head",
-            "h_grade_root": "alhstvn",
-            "glottal_grade_root": "alihstvn",
-            "class_name": "hih-hil[inf2]",
-            "config": {
-              "pre": {
-                "translocutive": false,
-                "translocutiveImpOnly": false,
-                "partitive": false,
-                "distributive": false,
-                "distributiveImpIsFutProg": false
-              },
-              "pron": {
-                "set_type": "a",
-                "stem_type": "vowel_a",
-                "metathesis_strategy": "none",
-                "use_ka_variant": false,
-                "long_start": false,
-                "use_aki_for_1st_set_b": false,
-                "uwa_replaces_v": false,
-                "use_3rd_person_object": false
-              }
-            },
-            "corpus_id": 335,
-            "entry_no": 342,
-            "original_stems": {
-              "present": "alhstvn",
-              "imperfective": "alhstvn",
-              "perfective": "alhstvn",
-              "imperative": "alhstvn",
-              "infinitive": "alhstvn"
-            },
-            "derivations": [],
-            "middle_voice": []
-          }
-        ]
-      }
-    ]
-  },
-  {
     "h_grade_root": "alhthat",
     "glottal_grade_root": "alithat",
     "classes": [
@@ -6820,6 +6773,53 @@
               "perfective": "atawelak",
               "imperative": "atawelak",
               "infinitive": "atawelak"
+            },
+            "derivations": [],
+            "middle_voice": []
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "h_grade_root": "atay",
+    "glottal_grade_root": "atay",
+    "classes": [
+      {
+        "class_name": "hih-hil[imp2]",
+        "verbs": [
+          {
+            "definition": "he/she is denying him/her",
+            "h_grade_root": "atay",
+            "glottal_grade_root": "atay",
+            "class_name": "hih-hil[imp2]",
+            "config": {
+              "pre": {
+                "translocutive": false,
+                "translocutiveImpOnly": false,
+                "partitive": false,
+                "distributive": false,
+                "distributiveImpIsFutProg": false
+              },
+              "pron": {
+                "set_type": "a",
+                "stem_type": "vowel_a",
+                "metathesis_strategy": "none",
+                "use_ka_variant": false,
+                "long_start": false,
+                "use_aki_for_1st_set_b": false,
+                "uwa_replaces_v": false,
+                "use_3rd_person_object": true
+              }
+            },
+            "corpus_id": 21,
+            "entry_no": 25,
+            "original_stems": {
+              "present": "atay",
+              "imperfective": "atay",
+              "perfective": "atay",
+              "imperative": "atay",
+              "infinitive": "atay"
             },
             "derivations": [],
             "middle_voice": []
@@ -23035,6 +23035,47 @@
     "glottal_grade_root": "vn",
     "classes": [
       {
+        "class_name": "hih-hil[imp2]",
+        "verbs": [
+          {
+            "definition": "he/she is hitting him/her",
+            "h_grade_root": "vn",
+            "glottal_grade_root": "vn",
+            "class_name": "hih-hil[imp2]",
+            "config": {
+              "pre": {
+                "translocutive": false,
+                "translocutiveImpOnly": false,
+                "partitive": false,
+                "distributive": false,
+                "distributiveImpIsFutProg": false
+              },
+              "pron": {
+                "set_type": "a",
+                "stem_type": "vowel_v",
+                "metathesis_strategy": "none",
+                "use_ka_variant": true,
+                "long_start": true,
+                "use_aki_for_1st_set_b": false,
+                "uwa_replaces_v": true,
+                "use_3rd_person_object": true
+              }
+            },
+            "corpus_id": 1070,
+            "entry_no": 1101,
+            "original_stems": {
+              "present": "vn",
+              "imperfective": "vn",
+              "perfective": "vn",
+              "imperative": "vn",
+              "infinitive": "vn"
+            },
+            "derivations": [],
+            "middle_voice": []
+          }
+        ]
+      },
+      {
         "class_name": "sk-s-hi-hihst",
         "verbs": [
           {
@@ -23241,53 +23282,6 @@
               "perfective": "vnawo",
               "imperative": "vnawo",
               "infinitive": "vnawo"
-            },
-            "derivations": [],
-            "middle_voice": []
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "h_grade_root": "vnh",
-    "glottal_grade_root": "vn",
-    "classes": [
-      {
-        "class_name": "ih-l-VCh",
-        "verbs": [
-          {
-            "definition": "he/she is hitting him/her",
-            "h_grade_root": "vnh",
-            "glottal_grade_root": "vn",
-            "class_name": "ih-l-VCh",
-            "config": {
-              "pre": {
-                "translocutive": false,
-                "translocutiveImpOnly": false,
-                "partitive": false,
-                "distributive": false,
-                "distributiveImpIsFutProg": false
-              },
-              "pron": {
-                "set_type": "a",
-                "stem_type": "vowel_v",
-                "metathesis_strategy": "none",
-                "use_ka_variant": true,
-                "long_start": true,
-                "use_aki_for_1st_set_b": false,
-                "uwa_replaces_v": true,
-                "use_3rd_person_object": true
-              }
-            },
-            "corpus_id": 1070,
-            "entry_no": 1101,
-            "original_stems": {
-              "present": "vnh",
-              "imperfective": "vnh",
-              "perfective": "vnh",
-              "imperative": "vn",
-              "infinitive": "vn"
             },
             "derivations": [],
             "middle_voice": []
