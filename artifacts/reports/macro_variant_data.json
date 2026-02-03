@@ -685,107 +685,177 @@
         },
         "can_have_variants": true,
         "combinations": {
-            "hih-hil": 5,
+            "hih-hil": 3,
             "hih-hil[inf2]": 1
         },
         "slots": {
             "imp": {
-                "1": 6
+                "1": 4
             },
             "imperf": {
-                "1": 6
+                "1": 4
             },
             "inf": {
-                "1": 5,
+                "1": 3,
                 "2": 1
             },
             "perf": {
-                "1": 6
+                "1": 4
             },
             "pres": {
-                "1": 6
+                "1": 4
             }
         },
-        "total_matches": 6,
+        "total_matches": 4,
         "unused_options": [],
         "variant_stats": [
             {
-                "count": 5,
-                "percent": 83.33,
+                "count": 3,
+                "percent": 75.0,
                 "variant": "hih-hil"
             },
             {
                 "count": 1,
-                "percent": 16.67,
+                "percent": 25.0,
                 "variant": "hih-hil[inf2]"
+            }
+        ]
+    },
+    "hih-hilh": {
+        "available_options": {
+            "imp": 1,
+            "imperf": 1,
+            "inf": 1,
+            "perf": 1,
+            "pres": 1
+        },
+        "can_have_variants": false,
+        "combinations": {
+            "hih-hilh": 2
+        },
+        "slots": {
+            "imp": {
+                "1": 2
+            },
+            "imperf": {
+                "1": 2
+            },
+            "inf": {
+                "1": 2
+            },
+            "perf": {
+                "1": 2
+            },
+            "pres": {
+                "1": 2
+            }
+        },
+        "total_matches": 2,
+        "unused_options": [],
+        "variant_stats": [
+            {
+                "count": 2,
+                "percent": 100.0,
+                "variant": "hih-hilh"
             }
         ]
     },
     "hih-lh": {
         "available_options": {
-            "imp": 3,
+            "imp": 2,
             "imperf": 1,
-            "inf": 2,
+            "inf": 1,
             "perf": 1,
             "pres": 1
         },
         "can_have_variants": true,
         "combinations": {
             "hih-lh": 11,
-            "hih-lh[imp2]": 6,
-            "hih-lh[imp3-inf2]": 1
+            "hih-lh[imp2]": 6
         },
         "slots": {
             "imp": {
                 "1": 11,
-                "2": 6,
-                "3": 1
+                "2": 6
             },
             "imperf": {
-                "1": 18
+                "1": 17
             },
             "inf": {
-                "1": 17,
-                "2": 1
+                "1": 17
             },
             "perf": {
-                "1": 18
+                "1": 17
             },
             "pres": {
-                "1": 18
+                "1": 17
             }
         },
-        "total_matches": 18,
+        "total_matches": 17,
         "unused_options": [],
         "variant_stats": [
             {
                 "count": 11,
-                "percent": 61.11,
+                "percent": 64.71,
                 "variant": "hih-lh"
             },
             {
                 "count": 6,
-                "percent": 33.33,
+                "percent": 35.29,
                 "variant": "hih-lh[imp2]"
-            },
-            {
-                "count": 1,
-                "percent": 5.56,
-                "variant": "hih-lh[imp3-inf2]"
             }
         ]
     },
-    "hitting": {
+    "hitting-hil": {
         "available_options": {
             "imp": 1,
             "imperf": 1,
-            "inf": 2,
+            "inf": 1,
             "perf": 1,
             "pres": 1
         },
-        "can_have_variants": true,
+        "can_have_variants": false,
         "combinations": {
-            "hitting": 6
+            "hitting-hil": 2
+        },
+        "slots": {
+            "imp": {
+                "1": 2
+            },
+            "imperf": {
+                "1": 2
+            },
+            "inf": {
+                "1": 2
+            },
+            "perf": {
+                "1": 2
+            },
+            "pres": {
+                "1": 2
+            }
+        },
+        "total_matches": 2,
+        "unused_options": [],
+        "variant_stats": [
+            {
+                "count": 2,
+                "percent": 100.0,
+                "variant": "hitting-hil"
+            }
+        ]
+    },
+    "hitting-il": {
+        "available_options": {
+            "imp": 1,
+            "imperf": 1,
+            "inf": 1,
+            "perf": 1,
+            "pres": 1
+        },
+        "can_have_variants": false,
+        "combinations": {
+            "hitting-il": 6
         },
         "slots": {
             "imp": {
@@ -805,14 +875,12 @@
             }
         },
         "total_matches": 6,
-        "unused_options": [
-            "inf2"
-        ],
+        "unused_options": [],
         "variant_stats": [
             {
                 "count": 6,
                 "percent": 100.0,
-                "variant": "hitting"
+                "variant": "hitting-il"
             }
         ]
     },
@@ -1167,52 +1235,77 @@
         "available_options": {
             "imp": 1,
             "imperf": 1,
-            "inf": 2,
-            "perf": 2,
+            "inf": 1,
+            "perf": 1,
             "pres": 1
         },
-        "can_have_variants": true,
+        "can_have_variants": false,
         "combinations": {
-            "ih-l": 1,
-            "ih-l[inf2]": 1,
-            "ih-l[perf2]": 2
+            "ih-l": 1
         },
         "slots": {
             "imp": {
-                "1": 4
+                "1": 1
             },
             "imperf": {
-                "1": 4
+                "1": 1
             },
             "inf": {
-                "1": 3,
-                "2": 1
+                "1": 1
             },
             "perf": {
-                "1": 2,
-                "2": 2
+                "1": 1
             },
             "pres": {
-                "1": 4
+                "1": 1
             }
         },
-        "total_matches": 4,
+        "total_matches": 1,
         "unused_options": [],
         "variant_stats": [
             {
                 "count": 1,
-                "percent": 25.0,
+                "percent": 100.0,
                 "variant": "ih-l"
+            }
+        ]
+    },
+    "ih-l-VCh": {
+        "available_options": {
+            "imp": 1,
+            "imperf": 1,
+            "inf": 1,
+            "perf": 1,
+            "pres": 1
+        },
+        "can_have_variants": false,
+        "combinations": {
+            "ih-l-VCh": 1
+        },
+        "slots": {
+            "imp": {
+                "1": 1
             },
-            {
-                "count": 2,
-                "percent": 50.0,
-                "variant": "ih-l[perf2]"
+            "imperf": {
+                "1": 1
             },
+            "inf": {
+                "1": 1
+            },
+            "perf": {
+                "1": 1
+            },
+            "pres": {
+                "1": 1
+            }
+        },
+        "total_matches": 1,
+        "unused_options": [],
+        "variant_stats": [
             {
                 "count": 1,
-                "percent": 25.0,
-                "variant": "ih-l[inf2]"
+                "percent": 100.0,
+                "variant": "ih-l-VCh"
             }
         ]
     },

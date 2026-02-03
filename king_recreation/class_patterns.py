@@ -1,3 +1,4 @@
+from king_recreation.phonology_data import possible_alternates
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Tuple
 import itertools
@@ -37,7 +38,9 @@ class ExpandedClassPattern:
             return val if val is not None else default
         return default
 
-    def check_preconditions(self, preceding_text: str, suffix_val: str = "") -> bool:
+    def check_preconditions(
+        self, preceding_text: str, suffix_val: str = "", h_alternated_form: bool = False
+    ) -> bool:
         if "*" in suffix_val or "@" in suffix_val:
             return True
 
@@ -49,14 +52,23 @@ class ExpandedClassPattern:
             return True
 
         for p in self.preconditions:
-            if self._match_sequence(p, preceding_text):
+            if self._match_sequence(p, preceding_text, h_alternated_form):
                 return True
 
         return False
 
-    def _match_sequence(self, sequence: str, text: str) -> bool:
+    def _match_sequence(
+        self, sequence: str, text: str, h_alternated_form: bool
+    ) -> bool:
         if len(text) < len(sequence):
             return False
+
+        if h_alternated_form:
+            for seq in possible_alternates(sequence):
+                if self._match_sequence(seq, text, False):
+                    return True
+            else:
+                return False
 
         for i in range(1, len(sequence) + 1):
             s_char = sequence[-i]

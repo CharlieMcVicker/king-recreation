@@ -146,7 +146,9 @@ class PatternRegistry:
             if suffix in self.lookup_maps[form_type]:
                 for cand in self.lookup_maps[form_type][suffix]:
                     if cand.check_preconditions(
-                        preceding_text, suffix_val=cand.get(form_type)
+                        preceding_text,
+                        suffix_val=cand.get(form_type),
+                        h_alternated_form=form_type in ["imperative", "present_1sg"],
                     ):
                         candidates.append(cand)
 
