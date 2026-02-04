@@ -152,7 +152,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--output",
-        default="artifacts/data/root_connections.csv",
+        default="artifacts/connections/root_connections.csv",
         help="Path to output CSV",
     )
     parser.add_argument("--classes", help="Path to classes CSV")

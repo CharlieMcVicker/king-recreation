@@ -62,9 +62,9 @@ def load_all_data() -> Tuple[
     List[Dict[str, str]],
 ]:
     verbs_path = "artifacts/data/reconstructable_verbs.json"
-    root_conn_path = "artifacts/data/root_connections.csv"
-    mv_connections_path = "artifacts/data/middle_voice_connections.csv"
-    post_root_conn_path = "artifacts/data/post_root_connections.csv"
+    root_conn_path = "artifacts/connections/root_connections.csv"
+    mv_connections_path = "artifacts/connections/middle_voice_connections.csv"
+    post_root_conn_path = "artifacts/connections/post_root_connections.csv"
 
     all_verbs_raw = load_json(verbs_path)
     all_verbs = [ReconstructibleVerb.from_dict(v) for v in all_verbs_raw]
@@ -274,7 +274,9 @@ def build_final_hierarchy(
             node.post_root_derivations.append(format_node(child_key))
 
         # Sort children by h-grade
-        node.post_root_derivations.sort(key=lambda x: x.h_grade_root)
+        node.post_root_derivations.sort(
+            key=lambda x: f"{x.h_grade_root}|{x.glottal_grade_root}"
+        )
 
         return node
 

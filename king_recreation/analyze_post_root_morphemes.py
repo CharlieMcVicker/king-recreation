@@ -149,7 +149,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--output",
-        default="artifacts/data/post_root_connections.csv",
+        default="artifacts/connections/post_root_connections.csv",
         help="Output path",
     )
     args = parser.parse_args()

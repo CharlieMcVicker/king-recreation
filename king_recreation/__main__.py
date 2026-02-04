@@ -47,7 +47,7 @@ def main():
     print("      -> [5.1] Analyzing Middle Voice Connections...")
     analyze_middle_voice(
         reconstructable_json,
-        "artifacts/data/middle_voice_connections.csv",
+        "artifacts/connections/middle_voice_connections.csv",
         verbs=verbs,
         root_groups=root_groups,
     )
@@ -55,7 +55,7 @@ def main():
     print("      -> [5.2] Analyzing Root Connections...")
     analyze_connections(
         reconstructable_json,
-        "artifacts/data/root_connections.csv",
+        "artifacts/connections/root_connections.csv",
         args.classes,
         verbs=verbs,
         root_groups=root_groups,
@@ -65,7 +65,7 @@ def main():
     analyze_post_root_morphemes(
         reconstructable_json,
         "data/post_root_morphemes.csv",
-        "artifacts/data/post_root_connections.csv",
+        "artifacts/connections/post_root_connections.csv",
         verbs=verbs,
         root_groups=root_groups,
     )

@@ -17,6 +17,10 @@ export * from "./data-shared";
 
 const DATA_DIR = path.join(process.cwd(), "../data");
 const ARTIFACTS_DATA_DIR = path.join(process.cwd(), "../artifacts/data");
+const CONNECTIONS_DATA_DIR = path.join(
+  process.cwd(),
+  "../artifacts/connections",
+);
 const REPORTS_DIR = path.join(process.cwd(), "../artifacts/reports");
 
 export async function getVerbCoverage(): Promise<any> {
@@ -129,7 +133,7 @@ export async function getReconstructableVerbs(): Promise<
 }
 
 export async function getConnections(): Promise<RootConnection[]> {
-  const filePath = path.join(ARTIFACTS_DATA_DIR, "root_connections.csv");
+  const filePath = path.join(CONNECTIONS_DATA_DIR, "root_connections.csv");
   if (!fs.existsSync(filePath)) return [];
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const result = Papa.parse(fileContent, {

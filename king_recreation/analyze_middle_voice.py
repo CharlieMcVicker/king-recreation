@@ -147,7 +147,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--output",
-        default="artifacts/data/middle_voice_connections.csv",
+        default="artifacts/connections/middle_voice_connections.csv",
         help="Path to output CSV",
     )
     args = parser.parse_args()
