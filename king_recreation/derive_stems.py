@@ -1,3 +1,4 @@
+from king_recreation.phonology_data import MiddleVoice
 from collections import defaultdict
 import os
 import csv
@@ -22,7 +23,8 @@ from king_recreation.phonology_data import (
 class Derivation:
     pre_config: PrePronominalConfig
     pron_config: PronominalConfig
-    consensus_stem: str
+    h_grade: str
+    g_grade: Optional[str]
     stems: Dict[str, str]  # form_name -> stripped_stem (pronominal base)
     metathesis_involved: bool = False
 
@@ -32,7 +34,8 @@ class Derivation:
         for fn, stem in self.stems.items():
             row[fn] = stem
 
-        row["consensus_root"] = self.consensus_stem
+        row["h_grade"] = self.h_grade
+        row["g_grade"] = self.g_grade
         row["metathesis_involved"] = str(self.metathesis_involved)
         row.update(**self.pron_config.to_row())
         row.update(**self.pre_config.to_row())
@@ -132,8 +135,9 @@ def derive_pronominals(
             metathesis_used = True
 
         derived_stems[fn] = stem
-    h_grade = stems_are_consistent(derived_stems, pron_config, log=log)
-    if h_grade is not None:
+    res = stems_are_consistent(derived_stems, pron_config, log=log)
+    if res is not None:
+        h_grade, g_grade = res
         # Metathesis must be used if strategy is not none
         if pron_config.stem_type.is_valid_for_stem(h_grade) and (
             not metathesis_used
@@ -142,7 +146,8 @@ def derive_pronominals(
             return Derivation(
                 pre_config=None,
                 pron_config=pron_config,
-                consensus_stem=h_grade,
+                h_grade=h_grade,
+                g_grade=g_grade,
                 stems=derived_stems,
                 metathesis_involved=metathesis_used,
             )
@@ -152,9 +157,35 @@ def derive_pronominals(
         return None
 
 
+def derive_middle(der: Derivation) -> List[Derivation]:
+    der_dict = asdict(der)
+    der_dict["pre_config"] = PrePronominalConfig(**der_dict["pre_config"])
+    pron_dict = asdict(der.pron_config)
+    options = []
+    for middle_voice, (h_grade, g_grade) in MiddleVoice.identify_middle_voice(
+        der.h_grade, der.g_grade
+    ):
+        der_dict["h_grade"] = h_grade
+        der_dict["g_grade"] = g_grade
+
+        der_dict["stems"] = {
+            fn: middle_voice.try_strip_form(form) if form else None
+            for fn, form in der_dict["stems"].items()
+        }
+
+        pron_dict["middle_voice"] = middle_voice
+        der_dict["pron_config"] = PronominalConfig(**pron_dict)
+        options.append(
+            Derivation(
+                **der_dict,
+            )
+        )
+    return options
+
+
 def stems_are_consistent(
     derived_stems: dict[str, str], pron_config: PronominalConfig, log=False
-) -> Optional[str]:
+) -> Optional[Tuple[str, str]]:
     """
     Check if a set of derived stems are consistent.
 
@@ -205,7 +236,7 @@ def stems_are_consistent(
     if g_candidate and not grades_are_compatible(h=h_candidate, glottal=g_candidate):
         return None
 
-    return h_candidate
+    return h_candidate, g_candidate
 
 
 def iter_pre_configs(forms):
@@ -292,9 +323,10 @@ class StemDeriver:
                                 )
                                 if res:
                                     res.pre_config = pre_config
-                                    valid_derivations.append(res)
+                                    valid_derivations.extend(derive_middle(res))
         if not valid_derivations:
             return []
+
         valid_derivations.sort(
             key=lambda d: (
                 d.pron_config.use_3rd_person_object,

@@ -86,17 +86,17 @@ class ReconstructionEngine:
 
         # Determine Grade
         # Default: h-grade
-        glottal_grade_form = use_glottal_grade(form_name, verb.config.pron)
-        root_to_use = (
-            verb.glottal_grade_root if glottal_grade_form else verb.h_grade_root
-        )
+        is_glottal_grade = use_glottal_grade(form_name, verb.config.pron)
+        root_to_use = verb.glottal_grade_root if is_glottal_grade else verb.h_grade_root
 
-        if glottal_grade_form and root_to_use is None:
+        if is_glottal_grade and root_to_use is None:
             # Missing required root for this form
             return None
 
         if root_to_use is None:
             return None
+
+        root_to_use = verb.config.pron.middle_voice.apply(root_to_use, is_glottal_grade)
 
         modified_root = root_to_use
         if "*" in ending_pattern:
@@ -108,7 +108,7 @@ class ReconstructionEngine:
 
         # if we need to /h/ alternate but there wasnt an h in the h grade root
         # we need to try to drop it from the ending
-        if glottal_grade_form and not "h" in verb.h_grade_root:
+        if is_glottal_grade and not "h" in verb.h_grade_root:
             return [
                 prevent_C_glottal_cluster(modified_root + literal_ending)
                 for literal_ending in possible_alternates(

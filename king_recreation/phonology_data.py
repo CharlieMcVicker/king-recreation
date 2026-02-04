@@ -39,6 +39,78 @@ class StemType(Enum):
             raise Exception("Unreachable")
 
 
+class MiddleVoice(Enum):
+    NONE = "none"
+    AT = "at"
+    ATA = "ata"
+    ATAT = "atat"
+    ALI = "ali"
+    AL_ALI = "al_ali"
+
+    def try_strip_form(self, form: str):
+        """
+        messy bad, no good h alt checking
+        """
+
+        test_h, test_g = self.get_form()
+
+        if form.startswith(test_g):
+            return form[len(test_g) :]
+        elif form.startswith(test_h):
+            return form[len(test_h) :]
+        else:
+            return None
+
+    def try_strip(
+        self, h_grade: str, g_grade: Optional[str]
+    ) -> Optional[Tuple[str, Optional[str]]]:
+
+        test_h, test_g = self.get_form()
+
+        if h_grade.startswith(test_h) and (
+            g_grade is None or g_grade.startswith(test_g)
+        ):
+            return (
+                h_grade[len(test_h) :],
+                g_grade[len(test_g) :] if g_grade is not None else None,
+            )
+        else:
+            return None
+
+    def apply(self, stem: str, is_glottal_grade: bool):
+        h_grade, g_grade = self.get_form()
+        if is_glottal_grade:
+            return g_grade + stem
+        else:
+            return h_grade + stem
+
+    def get_form(self):
+        return MiddleVoice.form_maps()[self]
+
+    @staticmethod
+    def form_maps():
+        return {
+            MiddleVoice.NONE: ("", ""),
+            MiddleVoice.AT: ("at", "at"),
+            MiddleVoice.ATA: ("ata", "ata"),
+            MiddleVoice.ATAT: ("atat", "atat"),
+            MiddleVoice.ALI: ("ali", "ali"),
+            MiddleVoice.AL_ALI: ("al", "ali"),
+        }
+
+    @staticmethod
+    def identify_middle_voice(
+        h_grade: str, g_grade: Optional[str]
+    ) -> List[Tuple["MiddleVoice", Tuple[str, Optional[str]]]]:
+        possibilities = []
+        for voice in MiddleVoice:
+            res = voice.try_strip(h_grade, g_grade)
+            if res:
+                possibilities.append((voice, res))
+
+        return possibilities
+
+
 class MetathesisStrategy(Enum):
     NONE = "none"
     H_CONS = "h_cons"  # kha- / tsha- / akhi-
@@ -97,6 +169,7 @@ class PronominalConfig:
     set_type: str  # 'a' or 'b'
     stem_type: StemType
     metathesis_strategy: MetathesisStrategy = MetathesisStrategy.NONE
+    middle_voice: MiddleVoice = MiddleVoice.NONE
 
     # Flags for prefix variants
     use_ka_variant: bool = False  # 3rd Set A: ka-/k- (True) vs a-/ø (False)
@@ -117,6 +190,7 @@ class PronominalConfig:
             set_type=row["set_a_b"],
             stem_type=StemType(row["stem_type"]),
             metathesis_strategy=MetathesisStrategy(row["metathesis_strategy"]),
+            middle_voice=MiddleVoice(row["middle_voice"]),
             use_ka_variant=row["ka_variant"] == "True",
             long_start=row["long_start"] == "True",
             use_aki_for_1st_set_b=row["aki_1st"] == "True",
@@ -136,6 +210,8 @@ class PronominalConfig:
             clean_data["metathesis_strategy"] = MetathesisStrategy(
                 clean_data["metathesis_strategy"]
             )
+        if "middle_voice" in clean_data and isinstance(clean_data["middle_voice"], str):
+            clean_data["middle_voice"] = MiddleVoice(clean_data["middle_voice"])
         return PronominalConfig(**clean_data)
 
     def to_row(self):
@@ -144,6 +220,7 @@ class PronominalConfig:
         row["set_a_b"] = self.set_type
         row["stem_type"] = self.stem_type.value
         row["metathesis_strategy"] = self.metathesis_strategy.value
+        row["middle_voice"] = self.middle_voice.value
         row["ka_variant"] = str(self.use_ka_variant)
         row["long_start"] = str(self.long_start)
         row["aki_1st"] = str(self.use_aki_for_1st_set_b)
