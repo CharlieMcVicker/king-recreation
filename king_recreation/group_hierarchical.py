@@ -30,12 +30,14 @@ def load_all_data() -> (
     verbs_path = "artifacts/data/reconstructable_verbs.json"
     root_conn_path = "artifacts/data/root_connections.csv"
     mv_conn_path = "artifacts/data/middle_voice_connections.csv"
+    post_root_conn_path = "artifacts/data/post_root_connections.csv"
 
     all_verbs = load_json(verbs_path)
     root_connections = load_csv(root_conn_path)
     mv_connections = load_csv(mv_conn_path)
+    post_root_connections = load_csv(post_root_conn_path)
 
-    return all_verbs, root_connections, mv_connections
+    return all_verbs, root_connections, mv_connections, post_root_connections
 
 
 def build_verb_index(all_verbs: List[Dict[str, Any]]) -> Dict[int, Dict[str, Any]]:
@@ -49,6 +51,7 @@ def build_verb_index(all_verbs: List[Dict[str, Any]]) -> Dict[int, Dict[str, Any
 def build_connection_graphs(
     root_connections: List[Dict[str, str]],
     mv_connections: List[Dict[str, str]],
+    post_root_connections: List[Dict[str, str]],
     verbs_by_id: Dict[int, Dict[str, Any]],
 ) -> Tuple[Dict[int, int], DefaultDict[int, List[Dict[str, Any]]]]:
     parent_map = {}
@@ -86,6 +89,37 @@ def build_connection_graphs(
     for row in mv_connections:
         if row.get("user_approved", None) == "x":
             add_connection(row["from_corpus_ids"], row["to_corpus_ids"], "middle_voice")
+
+    return parent_map, children_map
+
+
+def build_root_graph(
+    post_root_connections: List[Dict[str, str]],
+) -> Tuple[
+    Dict[Tuple[str, str], Tuple[str, str]],
+    DefaultDict[Tuple[str, str], List[Tuple[str, str]]],
+]:
+    # Map ChildRoot -> ParentRoot
+    # Root Key: (h_grade, g_grade or "")
+    parent_map = {}
+    children_map = defaultdict(list)
+
+    for row in post_root_connections:
+        if row.get("user_approved", None) == "x":
+            child_h = row["from_h_grade"]
+            child_g = row["from_g_grade"]
+            parent_h = row["to_h_grade"]
+            parent_g = row["to_g_grade"]
+
+            child_key = (child_h, child_g)
+            parent_key = (parent_h, parent_g)
+
+            # Prevent cycles
+            if child_key in parent_map:
+                continue
+
+            parent_map[child_key] = parent_key
+            children_map[parent_key].append(child_key)
 
     return parent_map, children_map
 
@@ -131,8 +165,16 @@ def group_roots_initial(
     all_verbs: List[Dict[str, Any]],
     verbs_by_id: Dict[int, Dict[str, Any]],
     children_map: DefaultDict[int, List[Dict[str, Any]]],
-) -> DefaultDict[Tuple[str, Optional[str]], DefaultDict[str, List[Dict[str, Any]]]]:
-    root_groups = defaultdict(lambda: defaultdict(list))
+) -> DefaultDict[Tuple[str, str], Dict[str, Any]]:
+    # Returns Dict: (h, g) -> { "classes": {name: [verbs...]}, "post_root_derivations": [] }
+    # Note: g can be empty string for consistency with build_root_graph
+
+    root_groups = defaultdict(
+        lambda: {"classes": defaultdict(list), "post_root_derivations": []}
+    )
+
+    def get_key(h, g):
+        return (h, g if g else "")
 
     # Process graph-based top level verbs
     for vid in top_level_ids:
@@ -142,7 +184,7 @@ def group_roots_initial(
         cls = verb["class_name"]
 
         tree_node = build_tree_node(vid, verbs_by_id, children_map)
-        root_groups[(h, g)][cls].append(tree_node)
+        root_groups[get_key(h, g)]["classes"][cls].append(tree_node)
 
     # Process verbs with null corpus_ids (always top level, no children)
     for verb in all_verbs:
@@ -151,64 +193,150 @@ def group_roots_initial(
             g = verb["glottal_grade_root"]
             cls = verb["class_name"]
             node = {**verb, "derivations": [], "middle_voice": []}
-            root_groups[(h, g)][cls].append(node)
+            root_groups[get_key(h, g)]["classes"][cls].append(node)
 
     return root_groups
 
 
 def merge_compatible_groups(
-    root_groups: DefaultDict[
-        Tuple[str, Optional[str]], DefaultDict[str, List[Dict[str, Any]]]
-    ],
-) -> DefaultDict[Tuple[str, Optional[str]], DefaultDict[str, List[Dict[str, Any]]]]:
-    # We want to merge (h, None) into (h, g) if (h, g) exists and is unique.
+    root_groups: DefaultDict[Tuple[str, str], Dict[str, Any]],
+) -> DefaultDict[Tuple[str, str], Dict[str, Any]]:
+    # We want to merge (h, "") into (h, g) if (h, g) exists and is unique.
     all_keys = list(root_groups.keys())
 
-    # Map h_grade to list of full keys (h, g) where g is NOT None
+    # Map h_grade to list of full keys (h, g) where g is NOT empty
     h_to_keys_map = defaultdict(list)
     for h, g in all_keys:
-        if g is not None:
+        if g:
             h_to_keys_map[h].append((h, g))
 
-    # Process floaters (g is None)
+    # Process floaters (g is empty)
     for h, g in all_keys:
-        if g is None:
+        if not g:
             candidates = h_to_keys_map.get(h, [])
             if len(candidates) == 1:
                 target_key = candidates[0]
                 # Merge content from source to target
-                source_map = root_groups[(h, None)]
-                target_map = root_groups[target_key]
+                source_data = root_groups[(h, "")]
+                target_data = root_groups[target_key]
 
-                for cls_name, verbs in source_map.items():
-                    target_map[cls_name].extend(verbs)
+                # Merge classes
+                for cls_name, verbs in source_data["classes"].items():
+                    target_data["classes"][cls_name].extend(verbs)
+
+                # Merge post_root_derivations (though unlikely to exist yet at this stage)
+                target_data["post_root_derivations"].extend(
+                    source_data["post_root_derivations"]
+                )
 
                 # Remove source
-                del root_groups[(h, None)]
+                del root_groups[(h, "")]
 
     return root_groups
 
 
-def format_output(
-    root_groups: DefaultDict[
-        Tuple[str, Optional[str]], DefaultDict[str, List[Dict[str, Any]]]
-    ],
+def format_root_recursive(
+    h: str,
+    g: str,
+    root_data: Dict[str, Any],
+) -> Dict[str, Any]:
+    # Format classes
+    classes_list = []
+    for cls_name, verbs in root_data["classes"].items():
+        classes_list.append({"class_name": cls_name, "verbs": verbs})
+    classes_list.sort(key=lambda x: x["class_name"])
+
+    # Format children (already nested in construct_root_hierarchy, but we need to ensure they are formatted?)
+    # Actually, construct_root_hierarchy builds the structure using references to root_groups values.
+    # So if we format recursively here, we might need to be careful.
+    # A better approach: construct_root_hierarchy builds the 'logical' nesting using the dicts.
+    # This function converts that dict-based tree into the final JSON list format.
+
+    formatted_children = []
+    for child in root_data["post_root_derivations"]:
+        # Child is a dict {child_h, child_g, classes, post_root_derivations}
+        # We need to format it strictly.
+        # But wait, the child in 'post_root_derivations' is the raw root_data reference?
+        # Yes, see construct_root_hierarchy below.
+
+        # We need to reconstruct the h/g from somewhere?
+        # The root_data doesn't store its own h/g keys inside itself explicitly until formatting.
+        # We should probably store h/g inside the root_group value during creation or iteration.
+        # Let's assume passed-in 'child' is the formatted object or the raw data?
+        # Let's handle formatting in a unified pass.
+        pass
+
+    return {
+        "h_grade_root": h,
+        "glottal_grade_root": g,
+        "classes": classes_list,
+        "post_root_derivations": [],  # Placeholder, will fill
+    }
+
+
+def build_final_hierarchy(
+    root_groups: Dict[Tuple[str, str], Dict[str, Any]],
+    root_parent_map: Dict[Tuple[str, str], Tuple[str, str]],
+    root_children_map: DefaultDict[Tuple[str, str], List[Tuple[str, str]]],
 ) -> List[Dict[str, Any]]:
-    final_output = []
 
-    for (h, g), class_map in root_groups.items():
+    # helper to format a single root node
+    def format_node(key: Tuple[str, str]) -> Dict[str, Any]:
+        h, g = key
+        data = root_groups.get(key)
+        # If data is missing (e.g. root exists in graph but no verbs in it?), create empty
+        if not data:
+            data = {"classes": {}, "post_root_derivations": []}
+
         classes_list = []
-        for cls_name, verbs in class_map.items():
+        for cls_name, verbs in data["classes"].items():
             classes_list.append({"class_name": cls_name, "verbs": verbs})
-
-        # Sort classes by name
         classes_list.sort(key=lambda x: x["class_name"])
 
-        final_output.append(
-            {"h_grade_root": h, "glottal_grade_root": g, "classes": classes_list}
-        )
+        node = {
+            "h_grade_root": h,
+            "glottal_grade_root": g,
+            "classes": classes_list,
+            "post_root_derivations": [],
+        }
 
-    # Sort roots
+        # Recurse children
+        children_keys = root_children_map.get(key, [])
+        for child_key in children_keys:
+            node["post_root_derivations"].append(format_node(child_key))
+
+        # Sort children by h-grade
+        node["post_root_derivations"].sort(key=lambda x: x["h_grade_root"])
+
+        return node
+
+    final_output = []
+
+    # Identify top level roots
+    # A root is top level if it's in root_groups AND not in root_parent_map
+    # However, root_groups might contain roots that ARE in root_parent_map (children).
+    # We only want to process roots that are NOT children as top-level.
+
+    # Also, we must include roots that are in root_parent_map but NOT in root_groups?
+    # (Intermediate roots that have no verbs but connect things?)
+    # Generally, we iterate keys in root_groups.
+
+    # Valid Top Level:
+    # 1. Any key in root_groups that is NOT a child in root_parent_map.
+    # 2. Any key in root_children_map that is a parent but NOT a child (roots with no verbs but have children).
+
+    all_known_roots = (
+        set(root_groups.keys())
+        | set(root_parent_map.keys())
+        | set(root_parent_map.values())
+    )
+
+    for key in all_known_roots:
+        if key not in root_parent_map:
+            # Top level
+            final_output.append(format_node(key))
+
+    # Sort final output
     final_output.sort(key=lambda x: x["h_grade_root"])
     return final_output
 
@@ -224,27 +352,34 @@ def main() -> None:
     output_path = "artifacts/data/hierarchical-dict.json"
 
     # 1. Load Data
-    all_verbs, root_connections, mv_connections = load_all_data()
+    all_verbs, root_connections, mv_connections, post_root_connections = load_all_data()
 
-    # 2. Build Index and Graph
+    # 2. Build Verb Graphs
     verbs_by_id = build_verb_index(all_verbs)
     parent_map, children_map = build_connection_graphs(
-        root_connections, mv_connections, verbs_by_id
+        root_connections, mv_connections, post_root_connections, verbs_by_id
     )
 
-    # 3. Identify Top Level Nodes
+    # 3. Build Root Graphs
+    root_parent_map, root_children_map = build_root_graph(post_root_connections)
+
+    # 4. Identify Top Level Verbs
     top_level_ids = identify_top_level_nodes(all_verbs, parent_map)
 
-    # 4. Construct Hierarchy & Group
+    # 5. Group Verbs into Roots
     root_groups = group_roots_initial(
         top_level_ids, all_verbs, verbs_by_id, children_map
     )
 
-    # 5. Merge Compatible Groups
+    # 6. Merge Compatible Groups
     root_groups = merge_compatible_groups(root_groups)
 
-    # 6. Format and Save
-    final_output = format_output(root_groups)
+    # 7. Construct Final Hierarchy
+    final_output = build_final_hierarchy(
+        root_groups, root_parent_map, root_children_map
+    )
+
+    # 8. Save
     save_output(final_output, output_path)
 
 

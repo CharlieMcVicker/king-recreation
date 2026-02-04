@@ -7,6 +7,7 @@ from king_recreation.visualize_analysis import run_all_visualizations
 from king_recreation.reconstruct_from_roots import main as reconstruct_from_roots
 from king_recreation.analyze_middle_voice import analyze_middle_voice
 from king_recreation.analyze_connections import analyze_connections
+from king_recreation.analyze_post_root_morphemes import analyze_post_root_morphemes
 from king_recreation.group_hierarchical import main as group_hierarchical
 
 
@@ -35,20 +36,27 @@ def main():
         "artifacts/data/middle_voice_connections.csv",
     )
 
-    print("\n[6/7] Analyzing Root Connections...")
+    print("\n[6/8] Analyzing Root Connections...")
     analyze_connections(
         "artifacts/data/reconstructable_verbs.json",
         "artifacts/data/root_connections.csv",
         args.classes,
     )
 
-    print("\n[7/8] Grouping Dictionary Hierarchically...")
+    print("\n[7/8] Analyzing Post-Root Morphemes...")
+    analyze_post_root_morphemes(
+        "artifacts/data/reconstructable_verbs.json",
+        "data/post_root_morphemes.csv",
+        "artifacts/data/post_root_connections.csv",
+    )
+
+    print("\n[8/9] Grouping Dictionary Hierarchically...")
     group_hierarchical()
 
-    print("\n[8/8] Analyzing Matches...")
+    print("\n[9/9] Analyzing Matches...")
     analyze_matches(args.classes)
 
-    print("\n[9/9] Visualizing Analysis...")
+    print("\n[10/10] Visualizing Analysis...")
     run_all_visualizations()
 
     print("\nPipeline Complete!")
