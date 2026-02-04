@@ -100,33 +100,33 @@ export default function RootDetailContent({
 
         {rootGroup.post_root_derivations &&
           rootGroup.post_root_derivations.length > 0 && (
-            <div className="mt-12">
-              <div className="border-t border-gray-200 dark:border-zinc-800 pt-8 mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                  Post-root Derivations
-                </h2>
-                <p className="text-sm text-gray-500 dark:text-zinc-500 mt-1">
-                  Roots that are derived from this root
-                </p>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {rootGroup.post_root_derivations.map((derivation) => (
-                  <Link
-                    key={derivation.slug}
-                    href={`/roots/${derivation.slug}`}
-                    className="p-4 bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800 rounded-xl hover:border-indigo-500 transition-all hover:shadow-md group"
-                  >
-                    <div className="font-semibold text-gray-900 dark:text-gray-100 group-hover:text-indigo-600 transition-colors">
+            <div className="mt-12 flex flex-col gap-12">
+              {rootGroup.post_root_derivations.map((derivation) => (
+                <div key={derivation.slug}>
+                  <div className="border-t border-gray-200 dark:border-zinc-800 pt-8 mb-6">
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
                       {derivation.h_grade_root}
-                    </div>
-                    {derivation.glottal_grade_root && (
-                      <div className="text-sm text-gray-500 dark:text-zinc-500 italic">
-                        ({derivation.glottal_grade_root})
-                      </div>
-                    )}
-                  </Link>
-                ))}
-              </div>
+                    </h2>
+                    <p className="text-sm text-gray-500 dark:text-zinc-500 mt-1">
+                      Derived via {derivation.morpheme_name}{" "}
+                      {derivation.morpheme_subcase &&
+                        `(${derivation.morpheme_subcase})`}
+                    </p>
+                  </div>
+                  <div className="grid grid-cols-1 gap-6">
+                    {derivation.classes.map((cls) => (
+                      <RootClassEntry
+                        key={cls.class_name}
+                        verbs={cls.verbs}
+                        classes={classes}
+                        dictionary={dictionary}
+                        allVerbs={allVerbs}
+                        connections={connections}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           )}
       </div>

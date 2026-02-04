@@ -34,11 +34,23 @@ export default async function RootDetailPage({
   }
 
   const dictionary = await getDictionaryEntries();
-  const allRootVerbs = rootGroup.classes.flatMap((c) => c.verbs);
 
-  const entryNos = new Set(allRootVerbs.map((v) => v.entry_no).filter(Boolean));
+  const entryNos = new Set<number>();
+  const collectEntryNos = (group: any) => {
+    group.classes.forEach((c: any) => {
+      c.verbs.forEach((v: any) => {
+        if (v.entry_no) entryNos.add(Number(v.entry_no));
+      });
+    });
+    if (group.post_root_derivations) {
+      group.post_root_derivations.forEach(collectEntryNos);
+    }
+  };
+
+  collectEntryNos(rootGroup);
 
   // Also include entry numbers for connected verbs
+  const allRootVerbs = rootGroup.classes.flatMap((c) => c.verbs);
   const rootCorpusIds = new Set(
     allRootVerbs
       .map((v) => v.corpus_id)
