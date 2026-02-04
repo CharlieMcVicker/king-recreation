@@ -30,6 +30,8 @@ class ReconstructibleVerb:
     corpus_id: Optional[int] = None
     entry_no: Optional[int] = None
     original_stems: Dict[str, str] = field(default_factory=dict)
+    derivations: List["ReconstructibleVerb"] = field(default_factory=list)
+    middle_voice: List["ReconstructibleVerb"] = field(default_factory=list)
 
     @staticmethod
     def from_dict(data: dict) -> "ReconstructibleVerb":
