@@ -25,6 +25,8 @@ class RootNode:
     slug: str
     classes: List[RootClassNode] = field(default_factory=list)
     post_root_derivations: List["RootNode"] = field(default_factory=list)
+    morpheme_name: Optional[str] = None
+    morpheme_subcase: Optional[str] = None
 
 
 def get_root_slug(h_grade: str, g_grade: Optional[str]) -> str:
@@ -132,11 +134,13 @@ def build_root_graph(
 ) -> Tuple[
     Dict[Tuple[str, str], Tuple[str, str]],
     DefaultDict[Tuple[str, str], List[Tuple[str, str]]],
+    Dict[Tuple[str, str], Dict[str, str]],
 ]:
     # Map ChildRoot -> ParentRoot
     # Root Key: (h_grade, g_grade or "")
     parent_map = {}
     children_map = defaultdict(list)
+    morpheme_info = {}
 
     for row in post_root_connections:
         if row.get("user_approved", None) == "x":
@@ -154,8 +158,12 @@ def build_root_graph(
 
             parent_map[child_key] = parent_key
             children_map[parent_key].append(child_key)
+            morpheme_info[child_key] = {
+                "name": row.get("morpheme_name", ""),
+                "subcase": row.get("morpheme_subcase", ""),
+            }
 
-    return parent_map, children_map
+    return parent_map, children_map, morpheme_info
 
 
 def identify_top_level_nodes(
@@ -233,6 +241,7 @@ def build_final_hierarchy(
     root_groups: Dict[Tuple[str, str], Any],
     root_parent_map: Dict[Tuple[str, str], Tuple[str, str]],
     root_children_map: DefaultDict[Tuple[str, str], List[Tuple[str, str]]],
+    morpheme_info: Dict[Tuple[str, str], Dict[str, str]],
 ) -> List[RootNode]:
 
     # helper to format a single root node
@@ -248,11 +257,15 @@ def build_final_hierarchy(
             classes_list.append(RootClassNode(class_name=cls_name, verbs=verbs))
         classes_list.sort(key=lambda x: x.class_name)
 
+        minfo = morpheme_info.get(key, {})
+
         node = RootNode(
             h_grade_root=h,
             glottal_grade_root=g,
             slug=get_root_slug(h, g),
             classes=classes_list,
+            morpheme_name=minfo.get("name"),
+            morpheme_subcase=minfo.get("subcase"),
         )
 
         # Recurse children
@@ -303,7 +316,9 @@ def main() -> None:
     )
 
     # 3. Build Root Graphs
-    root_parent_map, root_children_map = build_root_graph(post_root_connections)
+    root_parent_map, root_children_map, morpheme_info = build_root_graph(
+        post_root_connections
+    )
 
     # 4. Identify Top Level Verbs
     top_level_ids = identify_top_level_nodes(all_verbs, parent_map)
@@ -315,7 +330,7 @@ def main() -> None:
 
     # 8. Construct Final Hierarchy
     final_output = build_final_hierarchy(
-        root_groups, root_parent_map, root_children_map
+        root_groups, root_parent_map, root_children_map, morpheme_info
     )
 
     # 9. Save

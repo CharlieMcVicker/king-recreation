@@ -127,6 +127,8 @@ export interface RootGroup {
     verbs: (ReconstructableVerb & { id: number })[];
   }[];
   post_root_derivations: RootGroup[];
+  morpheme_name?: string;
+  morpheme_subcase?: string;
 }
 
 export interface EndingGroup {

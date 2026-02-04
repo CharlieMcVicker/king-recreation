@@ -182,6 +182,8 @@ export async function getRoots(): Promise<RootGroup[]> {
       post_root_derivations: (root.post_root_derivations || []).map(
         processRoot,
       ),
+      morpheme_name: root.morpheme_name,
+      morpheme_subcase: root.morpheme_subcase,
     };
   };
 
@@ -190,7 +192,19 @@ export async function getRoots(): Promise<RootGroup[]> {
 
 export async function getRootBySlug(slug: string): Promise<RootGroup | null> {
   const roots = await getRoots();
-  return roots.find((r) => r.slug === slug) || null;
+
+  const findRoot = (list: RootGroup[]): RootGroup | null => {
+    for (const r of list) {
+      if (r.slug === slug) return r;
+      if (r.post_root_derivations) {
+        const found = findRoot(r.post_root_derivations);
+        if (found) return found;
+      }
+    }
+    return null;
+  };
+
+  return findRoot(roots);
 }
 
 export async function getEndingGroups(): Promise<EndingGroup[]> {
@@ -264,6 +278,63 @@ export async function getEndingGroupBySlug(
   slug: string,
 ): Promise<EndingGroup | null> {
   const groups = await getEndingGroups();
+  return groups.find((g) => g.slug === slug) || null;
+}
+
+export interface MorphemeGroup {
+  name: string;
+  slug: string;
+  subcases: {
+    subcase: string;
+    roots: RootGroup[];
+  }[];
+  total_roots: number;
+}
+
+export async function getMorphemeGroups(): Promise<MorphemeGroup[]> {
+  const roots = await getRoots();
+  const groupsMap: Map<string, Map<string, RootGroup[]>> = new Map();
+
+  const collectMorphemes = (root: RootGroup) => {
+    if (root.morpheme_name) {
+      if (!groupsMap.has(root.morpheme_name)) {
+        groupsMap.set(root.morpheme_name, new Map());
+      }
+      const subcaseMap = groupsMap.get(root.morpheme_name)!;
+      const subcase = root.morpheme_subcase || "default";
+      if (!subcaseMap.has(subcase)) {
+        subcaseMap.set(subcase, []);
+      }
+      subcaseMap.get(subcase)!.push(root);
+    }
+    root.post_root_derivations.forEach(collectMorphemes);
+  };
+
+  roots.forEach(collectMorphemes);
+
+  return Array.from(groupsMap.entries())
+    .map(([name, subcaseMap]) => {
+      const subcases = Array.from(subcaseMap.entries()).map(
+        ([subcase, roots]) => ({
+          subcase,
+          roots,
+        }),
+      );
+      const total_roots = subcases.reduce((acc, s) => acc + s.roots.length, 0);
+      return {
+        name,
+        slug: Buffer.from(name).toString("base64url"),
+        subcases,
+        total_roots,
+      };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+export async function getMorphemeGroupBySlug(
+  slug: string,
+): Promise<MorphemeGroup | null> {
+  const groups = await getMorphemeGroups();
   return groups.find((g) => g.slug === slug) || null;
 }
 
