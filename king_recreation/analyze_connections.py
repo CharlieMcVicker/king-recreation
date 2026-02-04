@@ -1,84 +1,48 @@
 import json
 import os
-import csv
 from typing import List, Dict, Set, Tuple
 from king_recreation.reconstruct_from_roots import (
     ReconstructibleVerb,
     ReconstructionEngine,
-    VerbConfig,
 )
-from king_recreation.phonology_data import (
-    possible_alternates,
-    prevent_C_glottal_cluster,
-    PrePronominalConfig,
-    PronominalConfig,
-    StemType,
-    MetathesisStrategy,
+from king_recreation.utils import (
+    load_verbs,
+    group_verbs_by_root,
+    load_existing_approvals,
+    save_csv_artifact,
 )
 
 
-def analyze_connections(input_path: str, output_path: str, classes_path: str = None):
-    if not os.path.exists(input_path):
-        print(f"Error: Input file {input_path} not found.")
-        return
+def analyze_connections(
+    input_path: str,
+    output_path: str,
+    classes_path: str = None,
+    verbs: List = None,
+    root_groups: Dict = None,
+):
+    if verbs is None or root_groups is None:
+        if not os.path.exists(input_path):
+            print(f"Error: Input file {input_path} not found.")
+            return
+        verbs = load_verbs(input_path)
+        root_groups = group_verbs_by_root(verbs)
 
-    # Load existing approvals if they exist
-    existing_approvals: Dict[Tuple[str, str, str, str, str, str], str] = {}
-    if os.path.exists(output_path) and output_path.endswith(".csv"):
-        with open(output_path, "r", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                # Key: (from_h, from_class, to_h, to_class, to_type, to_stem)
-                key = (
-                    row.get("from_h_grade", ""),
-                    row.get("from_class", ""),
-                    row.get("to_h_grade", ""),
-                    row.get("to_class", ""),
-                    row.get("to_form_type", ""),
-                    row.get("to_stem", ""),
-                )
-                existing_approvals[key] = row.get("user_approved", "")
-
-    with open(input_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    verbs: List[ReconstructibleVerb] = [
-        ReconstructibleVerb.from_dict(item) for item in data
+    # Load existing approvals
+    approval_key_fields = [
+        "from_h_grade",
+        "from_class",
+        "to_h_grade",
+        "to_class",
+        "to_form_type",
+        "to_stem",
     ]
-
-    # Group verbs by (h_grade, g_grade, class)
-    root_groups: Dict[Tuple[str, str, str], Dict] = {}
-    for verb in verbs:
-        key = (verb.h_grade_root, verb.glottal_grade_root or "", verb.class_name)
-        if key not in root_groups:
-            root_groups[key] = {
-                "h_grade": verb.h_grade_root,
-                "g_grade": verb.glottal_grade_root or "",
-                "class": verb.class_name,
-                "corpus_ids": [],
-                "verbs": [],
-            }
-        root_groups[key]["corpus_ids"].append(str(verb.corpus_id))
-        root_groups[key]["verbs"].append(verb)
+    existing_approvals = load_existing_approvals(output_path, approval_key_fields)
 
     # Write roots_by_class.csv
     csv_mapping_path = "artifacts/data/roots_by_class.csv"
-    os.makedirs(os.path.dirname(csv_mapping_path), exist_ok=True)
-    with open(csv_mapping_path, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(
-            f, fieldnames=["h_grade", "g_grade", "class", "corpus_ids"]
-        )
-        writer.writeheader()
-        for key in sorted(root_groups.keys()):
-            group = root_groups[key]
-            writer.writerow(
-                {
-                    "h_grade": group["h_grade"],
-                    "g_grade": group["g_grade"],
-                    "class": group["class"],
-                    "corpus_ids": ";".join(group["corpus_ids"]),
-                }
-            )
+    from king_recreation.utils import save_root_mapping
+
+    save_root_mapping(root_groups, csv_mapping_path)
 
     engine = ReconstructionEngine(classes_path)
 
@@ -88,8 +52,7 @@ def analyze_connections(input_path: str, output_path: str, classes_path: str = N
     for key, group in root_groups.items():
         if group["class"].startswith("stative"):
             continue
-        # We use the first verb in the group to get base stems
-        # since they share the same root and class
+
         sample_verb = group["verbs"][0]
         for form_type in ["perfective", "infinitive"]:
             base_stems = engine.get_base_stems_for_form(sample_verb, form_type)
@@ -111,23 +74,6 @@ def analyze_connections(input_path: str, output_path: str, classes_path: str = N
                     }
                 )
 
-    fieldnames = [
-        "user_approved",
-        "from_h_grade",
-        "from_g_grade",
-        "from_class",
-        "from_corpus_ids",
-        "to_h_grade",
-        "to_g_grade",
-        "to_class",
-        "to_corpus_ids",
-        "to_form_type",
-        "to_stem",
-    ]
-
-    # Ensure the directory exists
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-
     rows = []
     for key, group in root_groups.items():
         # Check against h_grade root
@@ -137,14 +83,13 @@ def analyze_connections(input_path: str, output_path: str, classes_path: str = N
 
         if root in open_forms_map:
             for m in open_forms_map[root]:
-                # Avoid self-reference: if the matched group is the current group
+                # Avoid self-reference
                 if (m["h_grade"], m["g_grade"], m["class_name"]) == key:
                     continue
 
                 # Heuristic logic
                 is_cause = group["class"].startswith("cause")
                 if is_cause or m["form_type"] == "perfective":
-                    # Determine existing approval status
                     approval_key = (
                         group["h_grade"],
                         group["class"],
@@ -171,10 +116,20 @@ def analyze_connections(input_path: str, output_path: str, classes_path: str = N
                         }
                     )
 
-    with open(output_path, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
+    fieldnames = [
+        "user_approved",
+        "from_h_grade",
+        "from_g_grade",
+        "from_class",
+        "from_corpus_ids",
+        "to_h_grade",
+        "to_g_grade",
+        "to_class",
+        "to_corpus_ids",
+        "to_form_type",
+        "to_stem",
+    ]
+    save_csv_artifact(output_path, fieldnames, rows)
 
     with open("artifacts/reports/open_forms.json", "w", encoding="utf-8") as f:
         json.dump(open_forms_map, f, indent=4, sort_keys=True)

@@ -1,72 +1,43 @@
-import json
-import os
 import csv
+import os
 from typing import List, Dict, Set, Tuple, Optional
-from king_recreation.reconstruct_from_roots import ReconstructibleVerb
+from king_recreation.utils import (
+    load_verbs,
+    group_verbs_by_root,
+    load_existing_approvals,
+    save_csv_artifact,
+)
 
 
 def analyze_post_root_morphemes(
-    reconstructable_path: str, morphemes_path: str, output_path: str
+    reconstructable_path: str,
+    morphemes_path: str,
+    output_path: str,
+    verbs: List = None,
+    root_groups: Dict = None,
 ):
-    if not os.path.exists(reconstructable_path):
-        print(f"Error: Input file {reconstructable_path} not found.")
-        return
+    if verbs is None or root_groups is None:
+        if not os.path.exists(reconstructable_path):
+            print(f"Error: Input file {reconstructable_path} not found.")
+            return
+        verbs = load_verbs(reconstructable_path)
+        root_groups = group_verbs_by_root(verbs)
 
     if not os.path.exists(morphemes_path):
         print(f"Error: Morphemes file {morphemes_path} not found.")
         return
 
     # Load existing approvals
-    existing_approvals: Dict[Tuple[str, str, str, str], str] = {}
-    if os.path.exists(output_path):
-        with open(output_path, "r", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                # Key: (from_h, from_class, to_h)
-                key = (
-                    row.get("from_h_grade", ""),
-                    row.get("from_class", ""),
-                    row.get("to_h_grade", ""),
-                )
-                existing_approvals[key] = row.get("user_approved", "")
-
-    # Load Verbs
-    with open(reconstructable_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    verbs: List[ReconstructibleVerb] = [
-        ReconstructibleVerb.from_dict(item) for item in data
-    ]
-
-    # Group verbs by (h_grade, g_grade, class)
-    # Using (h, g, class) as unique identifier for a group of verbs (same morphology)
-    root_groups: Dict[Tuple[str, str, str], Dict] = {}
-
-    # Also index groups by (h_grade) for loose matching if needed,
-    # but strictly we usually match h_grade and g_grade (stripped).
-    # Since the morpheme removal might affect g-grade unpredictably (or we ignore it),
-    # we will focus on h-grade modification as the primary key.
+    approval_key_fields = ["from_h_grade", "from_class", "to_h_grade"]
+    existing_approvals = load_existing_approvals(output_path, approval_key_fields)
 
     # Base lookup: h_grade -> list of groups
     base_lookup: Dict[str, List[Dict]] = {}
-
-    for verb in verbs:
-        key = (verb.h_grade_root, verb.glottal_grade_root or "", verb.class_name)
-        if key not in root_groups:
-            group = {
-                "h_grade": verb.h_grade_root,
-                "g_grade": verb.glottal_grade_root or "",
-                "class": verb.class_name,
-                "corpus_ids": [],
-            }
-            root_groups[key] = group
-
-            h = verb.h_grade_root
-            if h not in base_lookup:
-                base_lookup[h] = []
-            base_lookup[h].append(group)
-
-        root_groups[key]["corpus_ids"].append(str(verb.corpus_id))
+    for group in root_groups.values():
+        h = group["h_grade"]
+        if h not in base_lookup:
+            base_lookup[h] = []
+        base_lookup[h].append(group)
 
     # Load Morphemes
     morphemes = []
@@ -85,10 +56,7 @@ def analyze_post_root_morphemes(
         # Check against all morpheme patterns
         for morpheme in morphemes:
             suffix = morpheme["form"]
-            target_classes = morpheme["classes"].split(
-                ";"
-            )  # semi-colon separated just in case
-            target_classes = [c.strip() for c in target_classes]
+            target_classes = [c.strip() for c in morpheme["classes"].split(";")]
 
             # check class match
             if cls not in target_classes:
@@ -99,19 +67,10 @@ def analyze_post_root_morphemes(
                 # Candidate found!
                 # Attempt to find base
                 base_h = h_root[: -len(suffix)]
-
-                # We need to find if this base exists in the corpus
-                # The user requirement: "check if roots have 1. the right ending and 2. end with the sequence given by the form column"
-                # (I interpreted 'ending' as class-based ending logic, but here it seems we are just stripping the string suffix)
-
                 candidate_bases = base_lookup.get(base_h, [])
-
-                # Filter candidate bases?
-                # For now, just link to all matches or flag if none.
 
                 if not candidate_bases:
                     # No base found - Flag it
-                    # Key for no match: (from_h, from_class, to_h_candidate)
                     row_data = {
                         "user_approved": existing_approvals.get(
                             (h_root, cls, base_h), ""
@@ -122,13 +81,12 @@ def analyze_post_root_morphemes(
                         "from_g_grade": group["g_grade"],
                         "from_class": cls,
                         "from_corpus_ids": ";".join(group["corpus_ids"]),
-                        "to_h_grade": base_h,  # The theoretical base
+                        "to_h_grade": base_h,
                         "to_g_grade": "",
                     }
                     rows.append(row_data)
                 else:
                     # Collect unique target roots (h_grade, g_grade)
-                    # We might have multiple classes for the same root, but we only care about the root itself now.
                     target_roots = set()
                     for base in candidate_bases:
                         target_roots.add((base["h_grade"], base["g_grade"]))
@@ -139,7 +97,6 @@ def analyze_post_root_morphemes(
                             continue
 
                         approval_key = (h_root, cls, t_h)
-
                         row_data = {
                             "user_approved": existing_approvals.get(approval_key, ""),
                             "morpheme_name": morpheme["name"],
@@ -165,15 +122,10 @@ def analyze_post_root_morphemes(
         "from_g_grade",
         "from_class",
         "from_corpus_ids",
-        "to_h_grade",  # The base root
+        "to_h_grade",
         "to_g_grade",
     ]
-
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    with open(output_path, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
+    save_csv_artifact(output_path, fieldnames, rows)
 
     print(
         f"Analyzed post-root morphemes. Found {len(rows)} connections (including potential orphans)."

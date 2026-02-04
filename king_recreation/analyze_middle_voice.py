@@ -1,74 +1,45 @@
-import json
 import os
-import csv
 from typing import List, Dict, Set, Tuple
-from king_recreation.reconstruct_from_roots import ReconstructibleVerb
+from king_recreation.utils import (
+    load_verbs,
+    group_verbs_by_root,
+    load_existing_approvals,
+    save_csv_artifact,
+)
 
 
-def analyze_middle_voice(input_path: str, output_path: str):
-    if not os.path.exists(input_path):
-        print(f"Error: Input file {input_path} not found.")
-        return
+def analyze_middle_voice(
+    input_path: str, output_path: str, verbs: List = None, root_groups: Dict = None
+):
+    if verbs is None or root_groups is None:
+        if not os.path.exists(input_path):
+            print(f"Error: Input file {input_path} not found.")
+            return
+        verbs = load_verbs(input_path)
+        root_groups = group_verbs_by_root(verbs)
 
-    # Load existing approvals if they exist
-    existing_approvals: Dict[Tuple[str, str, str, str, str, str], str] = {}
-    if os.path.exists(output_path) and output_path.endswith(".csv"):
-        with open(output_path, "r", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                # Key: (from_h, from_g, from_class, to_h, to_g, prefix)
-                # Using tuple key to match current row for preservation
-                key = (
-                    row.get("from_h_grade", ""),
-                    row.get("from_g_grade", ""),
-                    row.get("from_class", ""),
-                    row.get("to_h_grade", ""),
-                    row.get("to_g_grade", ""),
-                    row.get("prefix_type", ""),
-                )
-                existing_approvals[key] = row.get("user_approved", "")
-
-    with open(input_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    verbs: List[ReconstructibleVerb] = [
-        ReconstructibleVerb.from_dict(item) for item in data
+    # Load existing approvals
+    approval_key_fields = [
+        "from_h_grade",
+        "from_g_grade",
+        "from_class",
+        "to_h_grade",
+        "to_g_grade",
+        "prefix_type",
     ]
+    existing_approvals = load_existing_approvals(output_path, approval_key_fields)
 
-    # Group verbs by (h_grade, g_grade, class)
-    # We need to map (h, g) -> List of groups to find potential bases ignoring class?
-    # User said: "all forms should match exactly for both h and glottal root... no other extra rules"
-    # This implies we match h and g roots exactly. Class might differ.
-
-    # 1. Group all verbs
-    root_groups: Dict[Tuple[str, str, str], Dict] = {}
-
-    # 2. Also build a lookup map for bases: (h_root, g_root) -> List[GroupDict]
+    # lookup map for bases: (h_root, g_root) -> List[GroupDict]
     base_lookup: Dict[Tuple[str, str], List[Dict]] = {}
-
-    for verb in verbs:
-        key = (verb.h_grade_root, verb.glottal_grade_root or "", verb.class_name)
-        if key not in root_groups:
-            group = {
-                "h_grade": verb.h_grade_root,
-                "g_grade": verb.glottal_grade_root or "",
-                "class": verb.class_name,
-                "corpus_ids": [],
-            }
-            root_groups[key] = group
-
-            base_key = (verb.h_grade_root, verb.glottal_grade_root or "")
-            if base_key not in base_lookup:
-                base_lookup[base_key] = []
-            base_lookup[base_key].append(group)
-
-        root_groups[key]["corpus_ids"].append(str(verb.corpus_id))
+    for group in root_groups.values():
+        base_key = (group["h_grade"], group["g_grade"])
+        if base_key not in base_lookup:
+            base_lookup[base_key] = []
+        base_lookup[base_key].append(group)
 
     rows = []
 
     # Prefixes to check
-    # special pair: al, ali
-    # normal pairs: at, ata, atat (match both h and g)
     normal_prefixes = ["at", "ata", "atat"]
 
     for key, group in root_groups.items():
@@ -83,12 +54,10 @@ def analyze_middle_voice(input_path: str, output_path: str):
         prefix_type = ""
 
         # Check 'ali' special case
-        # h_root starts with 'al', g_root starts with 'ali'
         if h_root.startswith("al") and g_root.startswith("ali"):
             pot_base_h = h_root[2:]
             pot_base_g = g_root[3:]
 
-            # Look up if this base exists
             if (pot_base_h, pot_base_g) in base_lookup:
                 matched_bases = base_lookup[(pot_base_h, pot_base_g)]
                 prefix_type = "ali"
@@ -107,7 +76,7 @@ def analyze_middle_voice(input_path: str, output_path: str):
 
         if matched_bases:
             for base in matched_bases:
-                # Avoid self-match (though unlikely with length diff)
+                # Avoid self-match
                 if base == group:
                     continue
 
@@ -137,8 +106,7 @@ def analyze_middle_voice(input_path: str, output_path: str):
                     }
                 )
 
-    # Sort rows for stability
-    # Sort by from_h, from_class, to_h, to_class
+    # Sort rows
     rows.sort(
         key=lambda x: (
             x["from_h_grade"],
@@ -160,12 +128,7 @@ def analyze_middle_voice(input_path: str, output_path: str):
         "to_corpus_ids",
         "prefix_type",
     ]
-
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    with open(output_path, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(rows)
+    save_csv_artifact(output_path, fieldnames, rows)
 
     print(
         f"Analyzed {len(root_groups)} root groups for middle voice. Found {len(rows)} candidates."
