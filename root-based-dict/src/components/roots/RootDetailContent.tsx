@@ -54,7 +54,7 @@ export default function RootDetailContent({
     <div className="max-w-4xl mx-auto py-8">
       <div className="flex flex-col gap-6">
         <Link
-          href="/roots"
+          href="/"
           className="flex items-center gap-1 text-sm text-gray-500 hover:text-indigo-600 transition-colors w-fit"
         >
           <ChevronLeft className="w-4 h-4" />
