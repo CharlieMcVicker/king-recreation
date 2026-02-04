@@ -182,6 +182,16 @@ export function getEndingSlug(endings: Record<string, string>): string {
     .replace(/=+$/, "");
 }
 
+export function getMorphemeSlug(name: string): string {
+  // Browser-safe base64url for UTF-8
+  const utf8Bytes = new TextEncoder().encode(name);
+  const binString = String.fromCodePoint(...utf8Bytes);
+  return btoa(binString)
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+}
+
 export function getPronominalSetName(
   formName: string,
   config: ReconstructableVerb["config"]["pron"],

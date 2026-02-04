@@ -7,6 +7,7 @@ import {
   DictionaryEntry,
   RootConnection,
   ReconstructableVerb,
+  getMorphemeSlug,
 } from "@/lib/data-shared";
 import RootClassEntry from "@/components/roots/RootClassEntry";
 import SubvariantFilter from "@/components/roots/SubvariantFilter";
@@ -108,7 +109,13 @@ export default function RootDetailContent({
                       {derivation.h_grade_root}
                     </h2>
                     <p className="text-sm text-gray-500 dark:text-zinc-500 mt-1">
-                      Derived via {derivation.morpheme_name}{" "}
+                      Derived via{" "}
+                      <Link
+                        href={`/morphemes/${getMorphemeSlug(derivation.morpheme_name!)}`}
+                        className="text-indigo-600 dark:text-indigo-400 hover:underline font-medium"
+                      >
+                        {derivation.morpheme_name}
+                      </Link>{" "}
                       {derivation.morpheme_subcase &&
                         `(${derivation.morpheme_subcase})`}
                     </p>
