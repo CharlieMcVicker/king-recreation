@@ -295,7 +295,11 @@ export async function getMorphemeGroups(): Promise<MorphemeGroup[]> {
   const roots = await getRoots();
   const groupsMap: Map<string, Map<string, RootGroup[]>> = new Map();
 
-  const collectMorphemes = (root: RootGroup) => {
+  const collectMorphemes = (
+    root: RootGroup,
+    absoluteParent: RootGroup | null = null,
+  ) => {
+    const parent = absoluteParent || root;
     if (root.morpheme_name) {
       if (!groupsMap.has(root.morpheme_name)) {
         groupsMap.set(root.morpheme_name, new Map());
@@ -305,12 +309,15 @@ export async function getMorphemeGroups(): Promise<MorphemeGroup[]> {
       if (!subcaseMap.has(subcase)) {
         subcaseMap.set(subcase, []);
       }
-      subcaseMap.get(subcase)!.push(root);
+      subcaseMap.get(subcase)!.push({
+        ...root,
+        absolute_parent_root: parent,
+      } as any);
     }
-    root.post_root_derivations.forEach(collectMorphemes);
+    root.post_root_derivations.forEach((r) => collectMorphemes(r, parent));
   };
 
-  roots.forEach(collectMorphemes);
+  roots.forEach((root) => collectMorphemes(root));
 
   return Array.from(groupsMap.entries())
     .map(([name, subcaseMap]) => {
