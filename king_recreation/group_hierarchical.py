@@ -198,43 +198,6 @@ def group_roots_initial(
     return root_groups
 
 
-def merge_compatible_groups(
-    root_groups: DefaultDict[Tuple[str, str], Dict[str, Any]],
-) -> DefaultDict[Tuple[str, str], Dict[str, Any]]:
-    # We want to merge (h, "") into (h, g) if (h, g) exists and is unique.
-    all_keys = list(root_groups.keys())
-
-    # Map h_grade to list of full keys (h, g) where g is NOT empty
-    h_to_keys_map = defaultdict(list)
-    for h, g in all_keys:
-        if g:
-            h_to_keys_map[h].append((h, g))
-
-    # Process floaters (g is empty)
-    for h, g in all_keys:
-        if not g:
-            candidates = h_to_keys_map.get(h, [])
-            if len(candidates) == 1:
-                target_key = candidates[0]
-                # Merge content from source to target
-                source_data = root_groups[(h, "")]
-                target_data = root_groups[target_key]
-
-                # Merge classes
-                for cls_name, verbs in source_data["classes"].items():
-                    target_data["classes"][cls_name].extend(verbs)
-
-                # Merge post_root_derivations (though unlikely to exist yet at this stage)
-                target_data["post_root_derivations"].extend(
-                    source_data["post_root_derivations"]
-                )
-
-                # Remove source
-                del root_groups[(h, "")]
-
-    return root_groups
-
-
 def format_root_recursive(
     h: str,
     g: str,
@@ -371,15 +334,12 @@ def main() -> None:
         top_level_ids, all_verbs, verbs_by_id, children_map
     )
 
-    # 6. Merge Compatible Groups
-    root_groups = merge_compatible_groups(root_groups)
-
-    # 7. Construct Final Hierarchy
+    # 8. Construct Final Hierarchy
     final_output = build_final_hierarchy(
         root_groups, root_parent_map, root_children_map
     )
 
-    # 8. Save
+    # 9. Save
     save_output(final_output, output_path)
 
 

@@ -155,21 +155,6 @@ def _analyze_root_ambiguity(reconstructable_path: str) -> List[Dict[str, Any]]:
 
     reconstructable_verbs = load_json(reconstructable_path)
 
-    # h-grade vs glottal-grade check
-    glottal_grades_by_h_grade = defaultdict(set)
-    for verb in reconstructable_verbs:
-        h_grade = verb.get("h_grade_root")
-        glottal_grade = verb.get("glottal_grade_root")
-        glottal_grades_by_h_grade[h_grade].add(glottal_grade)
-
-    distinct_non_null_g_grades = {
-        k: v
-        for k, v in glottal_grades_by_h_grade.items()
-        if len([v1 for v1 in v if v1]) > 1
-    }
-    if distinct_non_null_g_grades:
-        print("[INFO]", distinct_non_null_g_grades)
-
     # Group corpus_ids by h_grade_root then glottal_grade
     root_groups = defaultdict(lambda: defaultdict(set))
     for verb in reconstructable_verbs:
@@ -177,16 +162,6 @@ def _analyze_root_ambiguity(reconstructable_path: str) -> List[Dict[str, Any]]:
         glottal_grade = verb.get("glottal_grade_root")
         corpus_id = verb.get("corpus_id")
         root_groups[h_grade][glottal_grade].add(corpus_id)
-
-    # Combine unattested glottal grades if only one attested exists
-    for h_grade in root_groups:
-        if None in root_groups[h_grade] and len(root_groups[h_grade]) == 2:
-            attested_root = next(x for x in root_groups[h_grade] if x is not None)
-            root_groups[h_grade] = {
-                attested_root: root_groups[h_grade][attested_root].union(
-                    root_groups[h_grade][None]
-                )
-            }
 
     root_ambiguity_data = []
     for h_grade in root_groups:

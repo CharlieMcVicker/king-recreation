@@ -7,6 +7,7 @@ import dataclasses
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import List, Dict, Set, Optional, Tuple
+from collections import defaultdict
 from king_recreation.phonology_data import (
     get_pronominal_set_name,
     PronominalConfig,
@@ -201,6 +202,33 @@ def dedupe_roots(validated_verbs: list[ReconstructibleVerb]):
                 deduped_roots.append(lowest_v)
 
     return deduped_roots, dropped
+
+
+def enrich_glottal_grades(verbs: List[ReconstructibleVerb]):
+    """
+    If an h_grade_root has exactly one attested glottal_grade_root across all verbs,
+    apply that glottal_grade_root to any verbs sharing the same h_grade_root
+    that are currently missing it.
+    """
+    # h_grade -> set of non-null glottal_grade_root values
+    g_grades_by_h = defaultdict(set)
+    for v in verbs:
+        if v.glottal_grade_root is not None:
+            g_grades_by_h[v.h_grade_root].add(v.glottal_grade_root)
+
+    # h_grade -> single non-null g_grade if it's the only one
+    enrichment_map = {
+        h: next(iter(gs)) for h, gs in g_grades_by_h.items() if len(gs) == 1
+    }
+
+    enriched_count = 0
+    for v in verbs:
+        if v.glottal_grade_root is None and v.h_grade_root in enrichment_map:
+            v.glottal_grade_root = enrichment_map[v.h_grade_root]
+            enriched_count += 1
+
+    if enriched_count > 0:
+        print(f"[INFO] Enriched {enriched_count} verbs with inferred glottal grades.")
 
 
 def main(classes_path=None):
@@ -449,6 +477,9 @@ def main(classes_path=None):
         )
         writer.writeheader()
         writer.writerows(failures_csv_data)
+
+    # Enrich missing glottal grades before final serialization
+    enrich_glottal_grades(deduped_roots)
 
     # Save Fully Serialized Verbs
     reconstructable_output_path = os.path.join(
