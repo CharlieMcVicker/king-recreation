@@ -143,23 +143,16 @@ export async function getConnections(): Promise<RootConnection[]> {
 export async function getRoots(): Promise<RootGroup[]> {
   const filePath = path.join(ARTIFACTS_DATA_DIR, "hierarchical-dict.json");
   const fileContent = fs.readFileSync(filePath, "utf-8");
-  const roots: RootGroup[] = JSON.parse(fileContent);
+  const rawRoots: any[] = JSON.parse(fileContent);
 
-  // Post-process to add slugs and ensure verb IDs if missing
   let verbIndex = 0;
-  return roots.map((root) => {
-    // Generate slug from key
-    // Distinguish null (unattested/none) from empty string (actually empty or merged)
-    const gGrade =
-      root.glottal_grade_root === null ? "__null__" : root.glottal_grade_root;
-    const key = `${root.h_grade_root}|${gGrade}`;
-    const slug = Buffer.from(key).toString("base64url");
 
-    // Ensure verbs have IDs (using global index for uniqueness across the app if needed,
-    // though previously it was index in the flat list)
+  const processRoot = (root: any): RootGroup => {
+    // Ensure verbs have IDs
     const addIds = (
       verbs: ReconstructableVerb[],
     ): (ReconstructableVerb & { id: number })[] => {
+      if (!verbs) return [];
       return verbs.map((v) => {
         const vWithId = {
           ...v,
@@ -176,17 +169,23 @@ export async function getRoots(): Promise<RootGroup[]> {
       });
     };
 
-    const classes = root.classes.map((cls) => ({
+    const classes = root.classes.map((cls: any) => ({
       ...cls,
       verbs: addIds(cls.verbs),
     }));
 
     return {
       ...root,
-      slug,
+      // Use slug from JSON
+      slug: root.slug,
       classes,
+      post_root_derivations: (root.post_root_derivations || []).map(
+        processRoot,
+      ),
     };
-  });
+  };
+
+  return rawRoots.map(processRoot);
 }
 
 export async function getRootBySlug(slug: string): Promise<RootGroup | null> {

@@ -126,6 +126,7 @@ export interface RootGroup {
     class_name: string;
     verbs: (ReconstructableVerb & { id: number })[];
   }[];
+  post_root_derivations: RootGroup[];
 }
 
 export interface EndingGroup {
