@@ -7,7 +7,6 @@ from king_recreation.visualize_analysis import run_all_visualizations
 from king_recreation.reconstruct_from_roots import (
     main as reconstruct_from_roots,
 )
-from king_recreation.analyze_middle_voice import analyze_middle_voice
 from king_recreation.analyze_connections import analyze_connections
 from king_recreation.analyze_post_root_morphemes import (
     analyze_post_root_morphemes,
@@ -44,15 +43,7 @@ def main():
     verbs = load_verbs(reconstructable_json)
     root_groups = group_verbs_by_root(verbs)
 
-    print("      -> [5.1] Analyzing Middle Voice Connections...")
-    analyze_middle_voice(
-        reconstructable_json,
-        "artifacts/connections/middle_voice_connections.csv",
-        verbs=verbs,
-        root_groups=root_groups,
-    )
-
-    print("      -> [5.2] Analyzing Root Connections...")
+    print("      -> [5.1] Analyzing Root Connections...")
     analyze_connections(
         reconstructable_json,
         "artifacts/connections/root_connections.csv",
@@ -61,7 +52,7 @@ def main():
         root_groups=root_groups,
     )
 
-    print("      -> [5.3] Analyzing Post-Root Morphemes...")
+    print("      -> [5.2] Analyzing Post-Root Morphemes...")
     analyze_post_root_morphemes(
         reconstructable_json,
         "data/post_root_morphemes.csv",
