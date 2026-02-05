@@ -519,59 +519,68 @@ def plot_variation_match_histograms(csv_path, output_dir):
     plt.close()
 
 
+from king_recreation.paths import (
+    class_match_counts_path,
+    class_near_misses_path,
+    macro_variant_data_path,
+    root_ambiguity_counts_path,
+    variant_match_counts_path,
+    variation_match_counts_path,
+    verb_coverage_path,
+    visualizations_path,
+)
+
+
 def run_all_visualizations():
     # Plots (images) go to visualizations
-    output_dir = "artifacts/visualizations"
+    output_dir = visualizations_path
     os.makedirs(output_dir, exist_ok=True)
-
-    # Data comes from reports
-    input_dir = "artifacts/reports"
 
     print("Generating Class Distribution plots...")
     plot_class_distribution(
-        os.path.join(input_dir, "class_match_counts.csv"),
+        class_match_counts_path,
         os.path.join(output_dir, "class_distribution"),
     )
 
     print("Generating Verb Coverage plot...")
     plot_verb_coverage(
-        os.path.join(input_dir, "verb_coverage.json"),
+        verb_coverage_path,
         os.path.join(output_dir, "verb_coverage.png"),
     )
 
     print("Generating Near-Miss Heatmap plots...")
     plot_near_miss_heatmap(
-        os.path.join(input_dir, "class_near_misses.csv"),
+        class_near_misses_path,
         os.path.join(output_dir, "near_miss_heatmap"),
     )
 
     print("Generating Root Ambiguity Histogram...")
     plot_root_ambiguity_histogram(
-        os.path.join(input_dir, "root_ambiguity_counts.csv"),
+        root_ambiguity_counts_path,
         os.path.join(output_dir, "root_ambiguity_histogram.png"),
     )
 
     print("Generating Class Match Histogram...")
     plot_class_match_histogram(
-        os.path.join(input_dir, "class_match_counts.csv"),
+        class_match_counts_path,
         os.path.join(output_dir, "class_match_histogram.png"),
     )
 
     print("Generating Macro Variant plots...")
     plot_macro_variants(
-        os.path.join(input_dir, "macro_variant_data.json"),
+        macro_variant_data_path,
         os.path.join(output_dir, "macro_variants"),
     )
 
     print("Generating Variant Match Histograms...")
     plot_variant_match_histograms(
-        os.path.join(input_dir, "variant_match_counts.csv"),
+        variant_match_counts_path,
         os.path.join(output_dir, "variant_match_histograms"),
     )
 
     print("Generating Variation Match Histograms...")
     plot_variation_match_histograms(
-        os.path.join(input_dir, "variation_match_counts.csv"),
+        variation_match_counts_path,
         os.path.join(output_dir, "variation_match_histograms"),
     )
 
@@ -585,4 +594,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     run_all_visualizations()
-    print("Visualizations saved to artifacts/visualizations/")
+    print(f"Visualizations saved to {visualizations_path}/")

@@ -40,4 +40,6 @@ def find_conflicts(file_path):
 
 
 if __name__ == "__main__":
-    find_conflicts("data/cherokee_nation_dictionary.csv")
+    from king_recreation.paths import cherokee_nation_dictionary_path
+
+    find_conflicts(cherokee_nation_dictionary_path)

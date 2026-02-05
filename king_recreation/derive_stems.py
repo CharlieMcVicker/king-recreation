@@ -13,6 +13,12 @@ from king_recreation.morphemes.pronominals import (
     detach_prefix,
     use_glottal_grade,
 )
+from king_recreation.paths import (
+    corpus_path,
+    derived_roots_path,
+    pre_parsing_failures_path,
+    stripped_path,
+)
 
 
 @dataclass
@@ -331,16 +337,6 @@ class StemDeriver:
 
 
 def main():
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    input_path = os.path.join(
-        base_dir, "artifacts", "data", "endings_stripped_corpus.csv"
-    )
-    corpus_path = os.path.join(base_dir, "artifacts", "data", "corpus.csv")
-    output_path = os.path.join(base_dir, "artifacts", "data", "derived_roots.csv")
-    failures_path = os.path.join(
-        base_dir, "artifacts", "reports", "stem_derivation_failures.csv"
-    )
-
     full_corpus = {}
     with open(corpus_path, "r", encoding="utf-8") as f:
         for r in csv.DictReader(f):
@@ -349,7 +345,7 @@ def main():
     deriver = StemDeriver()
     labeled_data = []
     failures = []
-    with open(input_path, "r", encoding="utf-8") as f:
+    with open(stripped_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             ref = full_corpus.get(row["corpus_id"])
@@ -365,13 +361,13 @@ def main():
 
     if labeled_data:
         keys = labeled_data[0].keys()
-        with open(output_path, "w", encoding="utf-8") as f:
+        with open(derived_roots_path, "w", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()
             writer.writerows(labeled_data)
     if failures:
         keys = failures[0].keys()
-        with open(failures_path, "w", encoding="utf-8") as f:
+        with open(pre_parsing_failures_path, "w", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()
             writer.writerows(failures)

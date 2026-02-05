@@ -2,6 +2,12 @@ import json
 import os
 from typing import Dict, List, Set, Tuple
 
+from king_recreation.paths import (
+    open_forms_report_path,
+    reconstructable_verbs_path,
+    root_connections_path,
+    roots_by_class_path,
+)
 from king_recreation.reconstruct_from_roots import (
     ReconstructibleVerb,
     ReconstructionEngine,
@@ -40,7 +46,7 @@ def analyze_connections(
     existing_approvals = load_existing_approvals(output_path, approval_key_fields)
 
     # Write roots_by_class.csv
-    csv_mapping_path = "artifacts/data/roots_by_class.csv"
+    csv_mapping_path = roots_by_class_path
     from king_recreation.utils import save_root_mapping
 
     save_root_mapping(root_groups, csv_mapping_path)
@@ -132,7 +138,7 @@ def analyze_connections(
     ]
     save_csv_artifact(output_path, fieldnames, rows)
 
-    with open("artifacts/reports/open_forms.json", "w", encoding="utf-8") as f:
+    with open(open_forms_report_path, "w", encoding="utf-8") as f:
         json.dump(open_forms_map, f, indent=4, sort_keys=True)
 
     print(
@@ -148,12 +154,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Analyze root connections.")
     parser.add_argument(
         "--input",
-        default="artifacts/data/reconstructable_verbs.json",
+        default=reconstructable_verbs_path,
         help="Path to reconstructable verbs JSON",
     )
     parser.add_argument(
         "--output",
-        default="artifacts/connections/root_connections.csv",
+        default=root_connections_path,
         help="Path to output CSV",
     )
     parser.add_argument("--classes", help="Path to classes CSV")

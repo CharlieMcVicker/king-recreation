@@ -19,6 +19,18 @@ from king_recreation.morphemes.pronominals import (
     get_pronominal_set_name,
     use_glottal_grade,
 )
+from king_recreation.paths import (
+    classes_expanded_path,
+    consistency_analysis_path,
+    corpus_path,
+    derived_roots_path,
+    reconstructable_verbs_path,
+    reconstruction_failures_path,
+    reconstruction_report_path,
+    reconstruction_validation_path,
+    reports_path,
+    validated_matches_path,
+)
 from king_recreation.pattern_registry import PatternRegistry
 
 
@@ -270,15 +282,6 @@ def enrich_glottal_grades(verbs: List[ReconstructibleVerb]):
 
 def main(classes_path=None):
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    derived_roots_path = os.path.join(
-        base_dir, "artifacts", "data", "derived_roots.csv"
-    )
-    corpus_path = os.path.join(base_dir, "artifacts", "data", "corpus.csv")
-
-    # We output valid matches here
-    matches_output_path = os.path.join(
-        base_dir, "artifacts", "data", "matches_validated.csv"
-    )
 
     engine = ReconstructionEngine(classes_path)
 
@@ -420,14 +423,6 @@ def main(classes_path=None):
         f"Root-deduping: {len(deduped_roots)} unique roots, {len(dropped_items)} ambiguous items dropped"
     )
 
-    # Export Artifacts
-    reports_dir = os.path.join(base_dir, "artifacts", "reports")
-    os.makedirs(reports_dir, exist_ok=True)
-
-    analysis_path = os.path.join(reports_dir, "consistency_analysis.csv")
-    report_path = os.path.join(reports_dir, "reconstruction_report.csv")
-    validation_path = os.path.join(reports_dir, "reconstruction_validation.json")
-
     # Save Consistency Analysis
     analysis_fields = [
         "definition",
@@ -435,7 +430,7 @@ def main(classes_path=None):
         "is_consistent",
         "mismatch_details",
     ] + [f"root_{fn}" for fn in forms]
-    with open(analysis_path, "w", encoding="utf-8", newline="") as f:
+    with open(consistency_analysis_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=analysis_fields)
         writer.writeheader()
         writer.writerows(consistency_analysis)
@@ -455,13 +450,13 @@ def main(classes_path=None):
 
     if validated_matches_data:
         keys = ["corpus_id", "definition", "class", "scope"]
-        with open(matches_output_path, "w", encoding="utf-8", newline="") as f:
+        with open(validated_matches_path, "w", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()
             writer.writerows(validated_matches_data)
 
     # Save Reconstruction Report
-    with open(report_path, "w", encoding="utf-8", newline="") as f:
+    with open(reconstruction_report_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(
             f,
             fieldnames=[
@@ -476,7 +471,7 @@ def main(classes_path=None):
         writer.writeheader()
         writer.writerows(report_data)
 
-    with open(validation_path, "w", encoding="utf-8") as f:
+    with open(reconstruction_validation_path, "w", encoding="utf-8") as f:
         json.dump(
             {
                 "summary": f"{success_count}/{len(reconstructible_verbs)}",
@@ -487,9 +482,6 @@ def main(classes_path=None):
         )
 
     # Save Reconstruction Failures CSV
-    reconstruction_failures_path = os.path.join(
-        reports_dir, "reconstruction_failures.csv"
-    )
     # failure format: {"definition": ..., "failed_forms": [...], "class": ...}
     failures_csv_data = []
     for fail in failures:
@@ -519,20 +511,14 @@ def main(classes_path=None):
     enrich_glottal_grades(deduped_roots)
 
     # Save Fully Serialized Verbs
-    reconstructable_output_path = os.path.join(
-        base_dir, "artifacts", "data", "reconstructable_verbs.json"
-    )
-    with open(reconstructable_output_path, "w", encoding="utf-8") as f:
+    with open(reconstructable_verbs_path, "w", encoding="utf-8") as f:
         json.dump(deduped_roots, f, cls=EnhancedJSONEncoder, indent=4)
 
     # Save classes used for reconstructions
-    classes_expanded_path = os.path.join(
-        base_dir, "artifacts", "data", "classes_expanded.json"
-    )
     with open(classes_expanded_path, "w", encoding="utf-8") as f:
         json.dump(engine.classes, f, cls=EnhancedJSONEncoder, indent=4)
 
-    print(f"Artifacts saved to {reports_dir}")
+    print(f"Artifacts saved to {reports_path}")
 
 
 if __name__ == "__main__":

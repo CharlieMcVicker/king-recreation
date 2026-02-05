@@ -56,6 +56,15 @@ def parse_ids(id_str: str) -> List[int]:
     return [int(x.strip()) for x in id_str.split(";") if x.strip().isdigit()]
 
 
+from king_recreation.paths import (
+    hierarchical_dict_path,
+    post_root_connections_path,
+    reconstructable_verbs_path,
+    root_connections_path,
+    root_ids_path,
+)
+
+
 def load_all_data() -> Tuple[
     List[ReconstructibleVerb],
     List[Dict[str, str]],
@@ -63,16 +72,16 @@ def load_all_data() -> Tuple[
     List[Dict[str, str]],
     List[Dict[str, str]],
 ]:
-    verbs_path = "artifacts/data/reconstructable_verbs.json"
-    root_conn_path = "artifacts/connections/root_connections.csv"
-    post_root_conn_path = "artifacts/connections/post_root_connections.csv"
-    root_ids_path = "artifacts/data/root_ids.csv"
+    verbs_path = reconstructable_verbs_path
+    root_conn_path = root_connections_path
+    post_root_conn_path = post_root_connections_path
+    r_ids_path = root_ids_path
 
     all_verbs_raw = load_json(verbs_path)
     all_verbs = [ReconstructibleVerb.from_dict(v) for v in all_verbs_raw]
     root_connections = load_csv(root_conn_path)
     post_root_connections = load_csv(post_root_conn_path)
-    root_ids = load_csv(root_ids_path)
+    root_ids = load_csv(r_ids_path)
 
     return (
         all_verbs,
@@ -315,7 +324,7 @@ def sync_root_ids(
         )
 
     # Save the CSV
-    root_ids_path = "artifacts/data/root_ids.csv"
+    r_ids_path = root_ids_path
     fieldnames = [
         "corpus_id",
         "definition",
@@ -325,7 +334,7 @@ def sync_root_ids(
         "proposed_root_id",
         "user_approved",
     ]
-    with open(root_ids_path, "w", encoding="utf-8", newline="") as f:
+    with open(r_ids_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(csv_rows)
@@ -503,7 +512,7 @@ def save_output(data: Any, path: str) -> None:
 
 def main() -> None:
     print("Grouping verbs hierarchically...")
-    output_path = "artifacts/data/hierarchical-dict.json"
+    output_path = hierarchical_dict_path
 
     # 1. Load Data
     (

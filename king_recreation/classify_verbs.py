@@ -7,6 +7,7 @@ from king_recreation.h_alternation import (
     prevent_C_glottal_cluster,
     recreate_C_glottal_clusters,
 )
+from king_recreation.paths import corpus_path, matches_path, stripped_path
 from king_recreation.pattern_registry import PatternRegistry
 
 
@@ -140,17 +141,6 @@ def get_matches_for_verb(verb, registry: PatternRegistry):
 
 
 def classify_verbs(classes_path=None):
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    corpus_path = os.path.join(base_dir, "artifacts", "data", "corpus.csv")
-    matches_path = os.path.join(base_dir, "artifacts", "data", "matches_initial.csv")
-    stripped_path = os.path.join(
-        base_dir, "artifacts", "data", "endings_stripped_corpus.csv"
-    )
-
-    if not os.path.exists(corpus_path):
-        print(f"Error: {corpus_path} not found.")
-        return
-
     # Load classes via Registry
     registry = PatternRegistry.get_instance()
     registry.load_from_csv(classes_path)

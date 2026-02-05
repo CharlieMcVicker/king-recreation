@@ -2,6 +2,11 @@ import csv
 import os
 from typing import Dict, List, Optional, Set, Tuple
 
+from king_recreation.paths import (
+    post_root_connections_path,
+    post_root_morphemes_path,
+    reconstructable_verbs_path,
+)
 from king_recreation.utils import (
     group_verbs_by_root,
     load_existing_approvals,
@@ -140,17 +145,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Analyze post-root morphemes.")
     parser.add_argument(
         "--verbs",
-        default="artifacts/data/reconstructable_verbs.json",
+        default=reconstructable_verbs_path,
         help="Path to verbs JSON",
     )
     parser.add_argument(
         "--morphemes",
-        default="data/post_root_morphemes.csv",
+        default=post_root_morphemes_path,
         help="Path to morphemes CSV",
     )
     parser.add_argument(
         "--output",
-        default="artifacts/connections/post_root_connections.csv",
+        default=post_root_connections_path,
         help="Output path",
     )
     args = parser.parse_args()

@@ -6,6 +6,22 @@ import re
 from collections import Counter, defaultdict
 from typing import Any, Dict, List, Optional
 
+from king_recreation.paths import (
+    class_match_counts_path,
+    corpus_path,
+    macro_variant_data_path,
+    matches_path,
+    reconstructable_verbs_path,
+    reports_path,
+    root_ambiguity_counts_path,
+    root_macro_distribution_path,
+    unmatched_verbs_path,
+    unused_variants_path,
+    validated_matches_path,
+    variant_match_counts_path,
+    variation_match_counts_path,
+    verb_coverage_path,
+)
 from king_recreation.pattern_registry import PatternRegistry
 
 
@@ -362,8 +378,8 @@ def _save_variation_match_csv(path: str, macro_variant_data: Dict[str, Any]) -> 
 
 
 def _analyze_roots_by_macro(registry: PatternRegistry):
-    input_path = "artifacts/data/reconstructable_verbs.json"
-    output_path = "artifacts/root_macro_distribtuion.csv"
+    input_path = reconstructable_verbs_path
+    output_path = root_macro_distribution_path
 
     if not os.path.exists(input_path):
         print(f"Error: {input_path} not found.")
@@ -422,11 +438,6 @@ def _analyze_roots_by_macro(registry: PatternRegistry):
 
 
 def analyze_matches(classes_path: Optional[str] = None):
-    matches_path = "artifacts/data/matches_initial.csv"
-    corpus_path = "artifacts/data/corpus.csv"
-    validated_matches_path = "artifacts/data/matches_validated.csv"
-    reconstructable_path = "artifacts/data/reconstructable_verbs.json"
-    output_dir = "artifacts/reports"
 
     # 1. Validation and Setup
     if not os.path.exists(matches_path):
@@ -454,21 +465,23 @@ def analyze_matches(classes_path: Optional[str] = None):
     class_match_data = _analyze_class_matches(filtered_matches, pattern_registry)
     coverage_summary = _analyze_verb_coverage(filtered_matches, all_verbs)
     unmatched_verbs_data = _get_unmatched_verbs(filtered_matches, all_verbs, corpus)
-    root_ambiguity_data = _analyze_root_ambiguity(reconstructable_path)
-    macro_variant_data = _analyze_macro_variants(reconstructable_path, pattern_registry)
+    root_ambiguity_data = _analyze_root_ambiguity(reconstructable_verbs_path)
+    macro_variant_data = _analyze_macro_variants(
+        reconstructable_verbs_path, pattern_registry
+    )
     unused_variants_report = _identify_dead_variants(macro_variant_data)
     _analyze_roots_by_macro(registry=pattern_registry)
 
     # 3. Output Data to Disk
-    os.makedirs(output_dir, exist_ok=True)
+    os.makedirs(reports_path, exist_ok=True)
 
     save_csv(
-        os.path.join(output_dir, "class_match_counts.csv"),
+        class_match_counts_path,
         class_match_data,
         ["class", "ending", "reconstructs"],
     )
 
-    save_json(os.path.join(output_dir, "verb_coverage.json"), coverage_summary)
+    save_json(verb_coverage_path, coverage_summary)
 
     form_fields = [
         "definition",
@@ -479,33 +492,25 @@ def analyze_matches(classes_path: Optional[str] = None):
         "infinitive",
     ]
     save_csv(
-        os.path.join(output_dir, "unmatched_verbs.csv"),
+        unmatched_verbs_path,
         unmatched_verbs_data,
         ["corpus_id"] + form_fields,
     )
 
     if root_ambiguity_data:
         save_csv(
-            os.path.join(output_dir, "root_ambiguity_counts.csv"),
+            root_ambiguity_counts_path,
             root_ambiguity_data,
             ["h_grade", "g_grade", "count"],
         )
 
     if macro_variant_data:
-        save_json(
-            os.path.join(output_dir, "macro_variant_data.json"), macro_variant_data
-        )
-        _save_variant_match_csv(
-            os.path.join(output_dir, "variant_match_counts.csv"), macro_variant_data
-        )
-        _save_variation_match_csv(
-            os.path.join(output_dir, "variation_match_counts.csv"), macro_variant_data
-        )
+        save_json(macro_variant_data_path, macro_variant_data)
+        _save_variant_match_csv(variant_match_counts_path, macro_variant_data)
+        _save_variation_match_csv(variation_match_counts_path, macro_variant_data)
 
     if unused_variants_report is not None:
-        save_json(
-            os.path.join(output_dir, "unused_variants.json"), unused_variants_report
-        )
+        save_json(unused_variants_path, unused_variants_report)
 
     # 4. Console Summary
     print("\nVerb Class Coverage Summary:")
@@ -521,10 +526,10 @@ def analyze_matches(classes_path: Optional[str] = None):
         print(f"{key:<20} | {matched:<12} | {pct:>9}%")
     print("")
 
-    print(f"Analysis complete. Artifacts generated in {output_dir}/")
+    print(f"Analysis complete. Artifacts generated in {reports_path}/")
     if root_ambiguity_data:
         print(
-            f"Root ambiguity counts saved to {os.path.join(output_dir, 'root_ambiguity_counts.csv')}"
+            f"Root ambiguity counts saved to {os.path.join(reports_path, 'root_ambiguity_counts.csv')}"
         )
 
 

@@ -93,6 +93,13 @@ def clean_row(row):
     }
 
 
+from king_recreation.paths import (
+    ced_data_original_path,
+    cherokee_nation_dictionary_path,
+    corpus_path,
+)
+
+
 def process_cn_dict(file_path, output_path):
     print(f"Processing Cherokee Nation dictionary from {file_path}")
 
@@ -257,11 +264,9 @@ def process_cn_dict(file_path, output_path):
 
 
 def process_ced():
-    input_path = "data/ced_data_original.csv"
-    output_dir = "artifacts"
-    # The instruction implies a base_dir, but it's not defined.
-    # Assuming the intent is to place it within 'artifacts/data/' relative to the script.
-    output_path = os.path.join(output_dir, "data", "corpus.csv")
+    # Use centralized paths
+    input_path = ced_data_original_path
+    output_path = corpus_path
 
     # Ensure the full directory path exists for the output file
     output_data_dir = os.path.dirname(output_path)
@@ -308,8 +313,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.new_source:
-        process_cn_dict(
-            "data/cherokee_nation_dictionary.csv", "artifacts/data/corpus.csv"
-        )
+        process_cn_dict(cherokee_nation_dictionary_path, corpus_path)
     else:
         process_ced()

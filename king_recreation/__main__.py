@@ -6,6 +6,14 @@ from king_recreation.analyze_post_root_morphemes import analyze_post_root_morphe
 from king_recreation.classify_verbs import classify_verbs
 from king_recreation.derive_stems import main as derive_stems
 from king_recreation.group_hierarchical import main as group_hierarchical
+from king_recreation.paths import (
+    cherokee_nation_dictionary_path,
+    corpus_path,
+    post_root_connections_path,
+    post_root_morphemes_path,
+    reconstructable_verbs_path,
+    root_connections_path,
+)
 from king_recreation.preprocess_ced import process_cn_dict
 from king_recreation.reconstruct_from_roots import main as reconstruct_from_roots
 from king_recreation.utils import group_verbs_by_root, load_verbs
@@ -20,7 +28,7 @@ def main():
     print("Starting King Recreation Pipeline...")
 
     print("\n[1/10] Preprocessing CED Data...")
-    process_cn_dict("data/cherokee_nation_dictionary.csv", "artifacts/data/corpus.csv")
+    process_cn_dict(cherokee_nation_dictionary_path, corpus_path)
 
     print("\n[2/10] Classifying Verbs and Stripping Endings...")
     classify_verbs(args.classes)
@@ -33,15 +41,14 @@ def main():
 
     print("\n[5/10] Analyzing Connections...")
 
-    reconstructable_json = "artifacts/data/reconstructable_verbs.json"
     print("      -> Loading reconstructable verbs...")
-    verbs = load_verbs(reconstructable_json)
+    verbs = load_verbs(reconstructable_verbs_path)
     root_groups = group_verbs_by_root(verbs)
 
     print("      -> [5.1] Analyzing Root Connections...")
     analyze_connections(
-        reconstructable_json,
-        "artifacts/connections/root_connections.csv",
+        reconstructable_verbs_path,
+        root_connections_path,
         args.classes,
         verbs=verbs,
         root_groups=root_groups,
@@ -49,9 +56,9 @@ def main():
 
     print("      -> [5.2] Analyzing Post-Root Morphemes...")
     analyze_post_root_morphemes(
-        reconstructable_json,
-        "data/post_root_morphemes.csv",
-        "artifacts/connections/post_root_connections.csv",
+        reconstructable_verbs_path,
+        post_root_morphemes_path,
+        post_root_connections_path,
         verbs=verbs,
         root_groups=root_groups,
     )

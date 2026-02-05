@@ -2,6 +2,7 @@ import csv
 import sys
 
 from king_recreation.derive_stems import Derivation, StemDeriver
+from king_recreation.paths import corpus_path
 from king_recreation.phonology_data import (
     PronominalConfig,
     StemType,
@@ -14,7 +15,7 @@ def debug_derivation(target_definition):
     row = None
 
     # Find the row in corpus.csv
-    with open("artifacts/data/corpus.csv", "r", encoding="utf-8") as f:
+    with open(corpus_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for r in reader:
             if r["definition"] == target_definition:
