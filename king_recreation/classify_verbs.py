@@ -7,7 +7,7 @@ from king_recreation.h_alternation import (
     prevent_C_glottal_cluster,
     recreate_C_glottal_clusters,
 )
-from king_recreation.paths import corpus_path, matches_path, stripped_path
+from king_recreation.paths import corpus_no_asp_path, corpus_path, matches_path
 from king_recreation.pattern_registry import PatternRegistry
 
 
@@ -266,13 +266,13 @@ def classify_verbs(classes_path=None):
         keys = ["corpus_id"] + [
             k for k in stripped_corpus_data[0].keys() if k != "corpus_id"
         ]
-        with open(stripped_path, mode="w", encoding="utf-8", newline="") as f:
+        with open(corpus_no_asp_path, mode="w", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()
             writer.writerows(stripped_corpus_data)
 
     print(f"Matches written to {matches_path}")
-    print(f"Endings Stripped Corpus written to {stripped_path}")
+    print(f"Endings Stripped Corpus written to {corpus_no_asp_path}")
 
 
 if __name__ == "__main__":

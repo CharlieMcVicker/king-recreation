@@ -7,6 +7,7 @@ DATA_DIR = "data"
 ARTIFACTS_DIR = "artifacts"
 
 ARTIFACTS_DATA_DIR = os.path.join(ARTIFACTS_DIR, "data")
+ARTIFACTS_CORPORA_DIR = os.path.join(ARTIFACTS_DIR, "corpora")
 CONNECTIONS_DIR = os.path.join(ARTIFACTS_DIR, "connections")
 REPORTS_DIR = os.path.join(ARTIFACTS_DIR, "reports")
 VISUALIZATIONS_DIR = os.path.join(ARTIFACTS_DIR, "visualizations")
@@ -26,9 +27,11 @@ classes_data_path = os.path.join(DATA_DIR, "classes.csv")
 # -----------------------------------------------------------------------------
 # 2. Intermediate Corpora & Analysis Data
 # -----------------------------------------------------------------------------
-corpus_path = os.path.join(ARTIFACTS_DATA_DIR, "corpus.csv")
-stripped_path = os.path.join(ARTIFACTS_DATA_DIR, "endings_stripped_corpus.csv")
-derived_roots_path = os.path.join(ARTIFACTS_DATA_DIR, "derived_roots.csv")
+corpus_path = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus.csv")
+corpus_no_asp_path = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus_no_asp.csv")
+corpus_no_pre_no_asp_path = os.path.join(
+    ARTIFACTS_CORPORA_DIR, "corpus_no_pre_no_asp.csv"
+)
 
 # Match Data
 matches_path = os.path.join(ARTIFACTS_DATA_DIR, "matches_initial.csv")

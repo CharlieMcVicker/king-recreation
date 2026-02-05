@@ -14,10 +14,10 @@ from king_recreation.morphemes.pronominals import (
     use_glottal_grade,
 )
 from king_recreation.paths import (
+    corpus_no_asp_path,
+    corpus_no_pre_no_asp_path,
     corpus_path,
-    derived_roots_path,
     pre_parsing_failures_path,
-    stripped_path,
 )
 
 
@@ -345,7 +345,7 @@ def main():
     deriver = StemDeriver()
     labeled_data = []
     failures = []
-    with open(stripped_path, "r", encoding="utf-8") as f:
+    with open(corpus_no_asp_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             ref = full_corpus.get(row["corpus_id"])
@@ -361,7 +361,7 @@ def main():
 
     if labeled_data:
         keys = labeled_data[0].keys()
-        with open(derived_roots_path, "w", encoding="utf-8") as f:
+        with open(corpus_no_pre_no_asp_path, "w", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()
             writer.writerows(labeled_data)

@@ -22,8 +22,8 @@ from king_recreation.morphemes.pronominals import (
 from king_recreation.paths import (
     classes_expanded_path,
     consistency_analysis_path,
+    corpus_no_pre_no_asp_path,
     corpus_path,
-    derived_roots_path,
     reconstructable_verbs_path,
     reconstruction_failures_path,
     reconstruction_report_path,
@@ -287,11 +287,11 @@ def main(classes_path=None):
 
     # Load Derived Roots
     derived_roots = []
-    if os.path.exists(derived_roots_path):
-        with open(derived_roots_path, "r", encoding="utf-8") as f:
+    if os.path.exists(corpus_no_pre_no_asp_path):
+        with open(corpus_no_pre_no_asp_path, "r", encoding="utf-8") as f:
             derived_roots = list(csv.DictReader(f))
     else:
-        print(f"Error: {derived_roots_path} not found.")
+        print(f"Error: {corpus_no_pre_no_asp_path} not found.")
         return
 
     # Load raw Corpus

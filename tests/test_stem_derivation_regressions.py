@@ -8,7 +8,7 @@ from king_recreation.derive_stems import (
     is_strict_compatible,
     strip_prepronominals,
 )
-from king_recreation.paths import stripped_path
+from king_recreation.paths import corpus_no_asp_path
 from king_recreation.phonology_data import (
     VOWEL_SET,
     Condition,
@@ -31,12 +31,12 @@ class TestStemDerivations(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-        if os.path.exists(stripped_path):
-            with open(stripped_path, "r", encoding="utf-8") as f:
+        if os.path.exists(corpus_no_asp_path):
+            with open(corpus_no_asp_path, "r", encoding="utf-8") as f:
                 reader = csv.DictReader(f)
                 cls.corpus_rows = list(reader)
         else:
-            print(f"Warning: Corpus file not found at {stripped_path}")
+            print(f"Warning: Corpus file not found at {corpus_no_asp_path}")
 
     def diagnose_derivation(self, row, target_pron, target_pre):
         print(
