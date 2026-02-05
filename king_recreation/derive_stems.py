@@ -170,8 +170,11 @@ def derive_middle(der: Derivation) -> List[Derivation]:
 
         der_dict["stems"] = {
             fn: middle_voice.try_strip_form(form) if form else None
-            for fn, form in der_dict["stems"].items()
+            for fn, form in der.stems.items()
         }
+
+        if der.h_grade.endswith("whahthvh"):
+            print(der.h_grade, der.g_grade, middle_voice, der_dict["stems"])
 
         pron_dict["middle_voice"] = middle_voice
         der_dict["pron_config"] = PronominalConfig(**pron_dict)

@@ -73,50 +73,64 @@ class ReconstructionEngine:
                 candidates.append(res)
         return candidates
 
+    def root_for_form(
+        self, verb: ReconstructibleVerb, glottal_grade: bool
+    ) -> Optional[str]:
+        # Determine Grade
+        # Default: h-grade
+        root = verb.glottal_grade_root if glottal_grade else verb.h_grade_root
+
+        if glottal_grade and root is None:
+            # Missing required root for this form
+            return None
+
+        if root is None:
+            return None
+
+        # apply middle voice
+        root = verb.config.pron.middle_voice.apply(root, glottal_grade)
+
+        return root
+
     def get_base_stems_for_form(self, verb: ReconstructibleVerb, form_name: str):
         class_info = self.classes.get(verb.class_name)
         if not class_info:
             return []
 
+        glottal_grade = use_glottal_grade(form_name, verb.config.pron)
+        root = self.root_for_form(verb, glottal_grade)
+
+        if root is None:
+            return None
+
+        # apply aspect suffix
+
         ending_pattern = class_info.get(form_name, "")
         if form_name == "present_1sg" and not ending_pattern:
             ending_pattern = class_info.present
 
+        # just phonological content of ending
         literal_ending = ending_pattern.replace("*", "").replace("@", "")
 
-        # Determine Grade
-        # Default: h-grade
-        is_glottal_grade = use_glottal_grade(form_name, verb.config.pron)
-        root_to_use = verb.glottal_grade_root if is_glottal_grade else verb.h_grade_root
-
-        if is_glottal_grade and root_to_use is None:
-            # Missing required root for this form
-            return None
-
-        if root_to_use is None:
-            return None
-
-        root_to_use = verb.config.pron.middle_voice.apply(root_to_use, is_glottal_grade)
-
-        modified_root = root_to_use
+        # truncate if pattern calls for it
         if "*" in ending_pattern:
-            if len(modified_root) >= 1:
-                modified_root = modified_root[:-1]
+            if len(root) >= 1:
+                root = root[:-1]
         elif "@" in ending_pattern:
-            if len(modified_root) >= 2:
-                modified_root = modified_root[:-2]
+            if len(root) >= 2:
+                root = root[:-2]
 
         # if we need to /h/ alternate but there wasnt an h in the h grade root
         # we need to try to drop it from the ending
-        if is_glottal_grade and not "h" in verb.h_grade_root:
+        if glottal_grade and not "h" in verb.h_grade_root:
             return [
-                prevent_C_glottal_cluster(modified_root + literal_ending)
+                prevent_C_glottal_cluster(root + literal_ending)
                 for literal_ending in possible_alternates(
                     literal_ending, fix_clusters=False
                 )
             ]
         else:
-            return [modified_root + literal_ending]
+            return [root + literal_ending]
 
     def get_base_stems(self, verb: ReconstructibleVerb):
         base_stems = {}
@@ -132,6 +146,13 @@ class ReconstructionEngine:
             stems = self.get_base_stems_for_form(verb, form_name)
             if stems:
                 base_stems[form_name] = stems
+        if verb.corpus_id == 18:
+            print(
+                verb.config.pron.middle_voice,
+                verb.h_grade_root,
+                verb.glottal_grade_root,
+                base_stems,
+            )
 
         return base_stems
 

@@ -919,6 +919,26 @@
             "stem": "alenh"
         }
     ],
+    "alenht": [
+        {
+            "class_name": "ih-vh",
+            "corpus_ids": "309",
+            "form_type": "infinitive",
+            "g_grade": "alen",
+            "h_grade": "alen",
+            "stem": "alenht"
+        }
+    ],
+    "alenvh": [
+        {
+            "class_name": "ih-vh",
+            "corpus_ids": "309",
+            "form_type": "perfective",
+            "g_grade": "alen",
+            "h_grade": "alen",
+            "stem": "alenvh"
+        }
+    ],
     "alewhihsthan": [
         {
             "class_name": "cause",
@@ -1377,26 +1397,6 @@
             "g_grade": "",
             "h_grade": "alhstanh",
             "stem": "alhstanhel"
-        }
-    ],
-    "alhstayht": [
-        {
-            "class_name": "episodic",
-            "corpus_ids": "327",
-            "form_type": "infinitive",
-            "g_grade": "hstay",
-            "h_grade": "hstay",
-            "stem": "alhstayht"
-        }
-    ],
-    "alhstayvnh": [
-        {
-            "class_name": "episodic",
-            "corpus_ids": "327",
-            "form_type": "perfective",
-            "g_grade": "hstay",
-            "h_grade": "hstay",
-            "stem": "alhstayvnh"
         }
     ],
     "alhstelht": [
@@ -2122,20 +2122,20 @@
     "atahstayht": [
         {
             "class_name": "episodic",
-            "corpus_ids": "48",
+            "corpus_ids": "48;327",
             "form_type": "infinitive",
-            "g_grade": "ahstay",
-            "h_grade": "ahstay",
+            "g_grade": "hstay",
+            "h_grade": "hstay",
             "stem": "atahstayht"
         }
     ],
     "atahstayvnh": [
         {
             "class_name": "episodic",
-            "corpus_ids": "48",
+            "corpus_ids": "48;327",
             "form_type": "perfective",
-            "g_grade": "ahstay",
-            "h_grade": "ahstay",
+            "g_grade": "hstay",
+            "h_grade": "hstay",
             "stem": "atahstayvnh"
         }
     ],
@@ -2144,8 +2144,8 @@
             "class_name": "apl-active",
             "corpus_ids": "27",
             "form_type": "perfective",
-            "g_grade": "akh",
-            "h_grade": "akh",
+            "g_grade": "kh",
+            "h_grade": "kh",
             "stem": "atakheh"
         }
     ],
@@ -2154,28 +2154,28 @@
             "class_name": "apl-active",
             "corpus_ids": "27",
             "form_type": "infinitive",
-            "g_grade": "akh",
-            "h_grade": "akh",
+            "g_grade": "kh",
+            "h_grade": "kh",
             "stem": "atakheht"
         }
     ],
     "atalenht": [
         {
             "class_name": "ih-vh",
-            "corpus_ids": "29;309",
+            "corpus_ids": "29",
             "form_type": "infinitive",
-            "g_grade": "alen",
-            "h_grade": "alen",
+            "g_grade": "",
+            "h_grade": "len",
             "stem": "atalenht"
         }
     ],
     "atalenvh": [
         {
             "class_name": "ih-vh",
-            "corpus_ids": "29;309",
+            "corpus_ids": "29",
             "form_type": "perfective",
-            "g_grade": "alen",
-            "h_grade": "alen",
+            "g_grade": "",
+            "h_grade": "len",
             "stem": "atalenvh"
         }
     ],
@@ -2184,8 +2184,8 @@
             "class_name": "episodic[inf2]",
             "corpus_ids": "30",
             "form_type": "infinitive",
-            "g_grade": "ananehs",
-            "h_grade": "ananehs",
+            "g_grade": "nanehs",
+            "h_grade": "nanehs",
             "stem": "atananehsvhvhst"
         }
     ],
@@ -2194,8 +2194,8 @@
             "class_name": "episodic[inf2]",
             "corpus_ids": "30",
             "form_type": "perfective",
-            "g_grade": "ananehs",
-            "h_grade": "ananehs",
+            "g_grade": "nanehs",
+            "h_grade": "nanehs",
             "stem": "atananehsvnh"
         }
     ],
@@ -2204,8 +2204,8 @@
             "class_name": "cause",
             "corpus_ids": "32",
             "form_type": "perfective",
-            "g_grade": "anawhst",
-            "h_grade": "anawhst",
+            "g_grade": "nawhst",
+            "h_grade": "nawhst",
             "stem": "atanawhsthan"
         }
     ],
@@ -2214,28 +2214,28 @@
             "class_name": "cause",
             "corpus_ids": "32",
             "form_type": "infinitive",
-            "g_grade": "anawhst",
-            "h_grade": "anawhst",
+            "g_grade": "nawhst",
+            "h_grade": "nawhst",
             "stem": "atanawhstoht"
         }
     ],
     "atanetliyvhs": [
         {
             "class_name": "v-vhs",
-            "corpus_ids": "33",
+            "corpus_ids": "33;880",
             "form_type": "perfective",
-            "g_grade": "anetliy",
-            "h_grade": "anetliy",
+            "g_grade": "netliy",
+            "h_grade": "netliy",
             "stem": "atanetliyvhs"
         }
     ],
     "atanetliyvhst": [
         {
             "class_name": "v-vhs",
-            "corpus_ids": "33",
+            "corpus_ids": "33;880",
             "form_type": "infinitive",
-            "g_grade": "anetliy",
-            "h_grade": "anetliy",
+            "g_grade": "netliy",
+            "h_grade": "netliy",
             "stem": "atanetliyvhst"
         }
     ],
@@ -2244,8 +2244,8 @@
             "class_name": "cause",
             "corpus_ids": "34",
             "form_type": "perfective",
-            "g_grade": "anetliyvhst",
-            "h_grade": "anetliyvhst",
+            "g_grade": "netliyvhst",
+            "h_grade": "netliyvhst",
             "stem": "atanetliyvhsthan"
         }
     ],
@@ -2254,8 +2254,8 @@
             "class_name": "cause",
             "corpus_ids": "34",
             "form_type": "infinitive",
-            "g_grade": "anetliyvhst",
-            "h_grade": "anetliyvhst",
+            "g_grade": "netliyvhst",
+            "h_grade": "netliyvhst",
             "stem": "atanetliyvhstoht"
         }
     ],
@@ -2264,8 +2264,8 @@
             "class_name": "cause",
             "corpus_ids": "539",
             "form_type": "perfective",
-            "g_grade": "anawhst",
-            "h_grade": "anhawhst",
+            "g_grade": "nawhst",
+            "h_grade": "nhawhst",
             "stem": "atanhawhsthan"
         }
     ],
@@ -2274,8 +2274,8 @@
             "class_name": "cause",
             "corpus_ids": "539",
             "form_type": "infinitive",
-            "g_grade": "anawhst",
-            "h_grade": "anhawhst",
+            "g_grade": "nawhst",
+            "h_grade": "nhawhst",
             "stem": "atanhawhstoht"
         }
     ],
@@ -2284,8 +2284,8 @@
             "class_name": "e-aka",
             "corpus_ids": "541",
             "form_type": "perfective",
-            "g_grade": "anehs",
-            "h_grade": "anhehs",
+            "g_grade": "nehs",
+            "h_grade": "nhehs",
             "stem": "atanhehsa'"
         }
     ],
@@ -2294,28 +2294,28 @@
             "class_name": "e-aka",
             "corpus_ids": "541",
             "form_type": "infinitive",
-            "g_grade": "anehs",
-            "h_grade": "anhehs",
+            "g_grade": "nehs",
+            "h_grade": "nhehs",
             "stem": "atanhehsehst"
         }
     ],
     "atanhoyeh": [
         {
             "class_name": "apl-active",
-            "corpus_ids": "16",
+            "corpus_ids": "16;1249",
             "form_type": "perfective",
-            "g_grade": "anoy",
-            "h_grade": "anhoy",
+            "g_grade": "noy",
+            "h_grade": "nhoy",
             "stem": "atanhoyeh"
         }
     ],
     "atanhoyeht": [
         {
             "class_name": "apl-active",
-            "corpus_ids": "16",
+            "corpus_ids": "16;1249",
             "form_type": "infinitive",
-            "g_grade": "anoy",
-            "h_grade": "anhoy",
+            "g_grade": "noy",
+            "h_grade": "nhoy",
             "stem": "atanhoyeht"
         }
     ],
@@ -2324,8 +2324,8 @@
             "class_name": "go[pres2]",
             "corpus_ids": "43",
             "form_type": "perfective",
-            "g_grade": "anahsin",
-            "h_grade": "anhsin",
+            "g_grade": "nahsin",
+            "h_grade": "nhsin",
             "stem": "atanhsinvhs"
         }
     ],
@@ -2334,8 +2334,8 @@
             "class_name": "go[pres2]",
             "corpus_ids": "43",
             "form_type": "infinitive",
-            "g_grade": "anahsin",
-            "h_grade": "anhsin",
+            "g_grade": "nahsin",
+            "h_grade": "nhsin",
             "stem": "atanhsinvhst"
         }
     ],
@@ -2344,8 +2344,8 @@
             "class_name": "o",
             "corpus_ids": "41",
             "form_type": "perfective",
-            "g_grade": "anvthehil",
-            "h_grade": "anhthehil",
+            "g_grade": "nvthehil",
+            "h_grade": "nhthehil",
             "stem": "atanhthehilo'"
         }
     ],
@@ -2354,8 +2354,8 @@
             "class_name": "o",
             "corpus_ids": "41",
             "form_type": "infinitive",
-            "g_grade": "anvthehil",
-            "h_grade": "anhthehil",
+            "g_grade": "nvthehil",
+            "h_grade": "nhthehil",
             "stem": "atanhthehilohst"
         }
     ],
@@ -2364,8 +2364,8 @@
             "class_name": "apl-active-h",
             "corpus_ids": "39",
             "form_type": "infinitive",
-            "g_grade": "anvt",
-            "h_grade": "anht",
+            "g_grade": "nvt",
+            "h_grade": "nht",
             "stem": "atanhtheht"
         }
     ],
@@ -2374,8 +2374,8 @@
             "class_name": "apl-active-h",
             "corpus_ids": "39",
             "form_type": "perfective",
-            "g_grade": "anvt",
-            "h_grade": "anht",
+            "g_grade": "nvt",
+            "h_grade": "nht",
             "stem": "atanhthelh"
         }
     ],
@@ -2384,8 +2384,8 @@
             "class_name": "become",
             "corpus_ids": "542",
             "form_type": "infinitive",
-            "g_grade": "anilv",
-            "h_grade": "anilv",
+            "g_grade": "nilv",
+            "h_grade": "nilv",
             "stem": "atanilvhst"
         }
     ],
@@ -2394,8 +2394,8 @@
             "class_name": "become",
             "corpus_ids": "542",
             "form_type": "perfective",
-            "g_grade": "anilv",
-            "h_grade": "anilv",
+            "g_grade": "nilv",
+            "h_grade": "nilv",
             "stem": "atanilvts"
         }
     ],
@@ -2404,8 +2404,8 @@
             "class_name": "oh-ol",
             "corpus_ids": "44",
             "form_type": "perfective",
-            "g_grade": "anuthey",
-            "h_grade": "anuthey",
+            "g_grade": "nuthey",
+            "h_grade": "nuthey",
             "stem": "atanutheyol"
         }
     ],
@@ -2414,8 +2414,8 @@
             "class_name": "oh-ol",
             "corpus_ids": "44",
             "form_type": "infinitive",
-            "g_grade": "anuthey",
-            "h_grade": "anuthey",
+            "g_grade": "nuthey",
+            "h_grade": "nuthey",
             "stem": "atanutheyot"
         }
     ],
@@ -2424,8 +2424,8 @@
             "class_name": "sk-s-la",
             "corpus_ids": "46",
             "form_type": "perfective",
-            "g_grade": "anv",
-            "h_grade": "anv",
+            "g_grade": "nv",
+            "h_grade": "nv",
             "stem": "atanvhs"
         }
     ],
@@ -2434,8 +2434,8 @@
             "class_name": "sk-s-la",
             "corpus_ids": "46",
             "form_type": "infinitive",
-            "g_grade": "anv",
-            "h_grade": "anv",
+            "g_grade": "nv",
+            "h_grade": "nv",
             "stem": "atanvhst"
         }
     ],
@@ -2444,8 +2444,8 @@
             "class_name": "cause",
             "corpus_ids": "543",
             "form_type": "perfective",
-            "g_grade": "anvtihst",
-            "h_grade": "anvtihst",
+            "g_grade": "nvtihst",
+            "h_grade": "nvtihst",
             "stem": "atanvtihsthan"
         }
     ],
@@ -2454,8 +2454,8 @@
             "class_name": "cause",
             "corpus_ids": "543",
             "form_type": "infinitive",
-            "g_grade": "anvtihst",
-            "h_grade": "anvtihst",
+            "g_grade": "nvtihst",
+            "h_grade": "nvtihst",
             "stem": "atanvtihstoht"
         }
     ],
@@ -2500,20 +2500,20 @@
     "atatinvthan": [
         {
             "class_name": "cause",
-            "corpus_ids": "6",
+            "corpus_ids": "6;78",
             "form_type": "perfective",
-            "g_grade": "atinvt",
-            "h_grade": "atinvt",
+            "g_grade": "invt",
+            "h_grade": "invt",
             "stem": "atatinvthan"
         }
     ],
     "atatinvtoht": [
         {
             "class_name": "cause",
-            "corpus_ids": "6",
+            "corpus_ids": "6;78",
             "form_type": "infinitive",
-            "g_grade": "atinvt",
-            "h_grade": "atinvt",
+            "g_grade": "invt",
+            "h_grade": "invt",
             "stem": "atatinvtoht"
         }
     ],
@@ -2522,8 +2522,8 @@
             "class_name": "hih-lh",
             "corpus_ids": "7",
             "form_type": "infinitive",
-            "g_grade": "atlo",
-            "h_grade": "atlo",
+            "g_grade": "lo",
+            "h_grade": "lo",
             "stem": "atatlohst"
         }
     ],
@@ -2532,8 +2532,8 @@
             "class_name": "hih-lh",
             "corpus_ids": "7",
             "form_type": "perfective",
-            "g_grade": "atlo",
-            "h_grade": "atlo",
+            "g_grade": "lo",
+            "h_grade": "lo",
             "stem": "atatlolh"
         }
     ],
@@ -2542,8 +2542,8 @@
             "class_name": "cause",
             "corpus_ids": "10",
             "form_type": "perfective",
-            "g_grade": "atolihst",
-            "h_grade": "atolihst",
+            "g_grade": "olihst",
+            "h_grade": "olihst",
             "stem": "atatolihsthan"
         }
     ],
@@ -2552,8 +2552,8 @@
             "class_name": "cause",
             "corpus_ids": "10",
             "form_type": "infinitive",
-            "g_grade": "atolihst",
-            "h_grade": "atolihst",
+            "g_grade": "olihst",
+            "h_grade": "olihst",
             "stem": "atatolihstoht"
         }
     ],
@@ -2562,8 +2562,8 @@
             "class_name": "ih-vh",
             "corpus_ids": "25",
             "form_type": "infinitive",
-            "g_grade": "atsakal",
-            "h_grade": "atsakal",
+            "g_grade": "sakal",
+            "h_grade": "sakal",
             "stem": "atatsakalht"
         }
     ],
@@ -2572,8 +2572,8 @@
             "class_name": "ih-vh",
             "corpus_ids": "25",
             "form_type": "perfective",
-            "g_grade": "atsakal",
-            "h_grade": "atsakal",
+            "g_grade": "sakal",
+            "h_grade": "sakal",
             "stem": "atatsakalvh"
         }
     ],
@@ -2582,8 +2582,8 @@
             "class_name": "cause",
             "corpus_ids": "54",
             "form_type": "perfective",
-            "g_grade": "awehsolvhst",
-            "h_grade": "awehsolvhst",
+            "g_grade": "wehsolvhst",
+            "h_grade": "wehsolvhst",
             "stem": "atawehsolvhsthan"
         }
     ],
@@ -2592,8 +2592,8 @@
             "class_name": "cause",
             "corpus_ids": "54",
             "form_type": "infinitive",
-            "g_grade": "awehsolvhst",
-            "h_grade": "awehsolvhst",
+            "g_grade": "wehsolvhst",
+            "h_grade": "wehsolvhst",
             "stem": "atawehsolvhstoht"
         }
     ],
@@ -2602,8 +2602,8 @@
             "class_name": "i-a-i",
             "corpus_ids": "51",
             "form_type": "perfective",
-            "g_grade": "awelak",
-            "h_grade": "awelak",
+            "g_grade": "welak",
+            "h_grade": "welak",
             "stem": "atawelak"
         }
     ],
@@ -2612,48 +2612,48 @@
             "class_name": "i-a-i",
             "corpus_ids": "51",
             "form_type": "infinitive",
-            "g_grade": "awelak",
-            "h_grade": "awelak",
+            "g_grade": "welak",
+            "h_grade": "welak",
             "stem": "atawelakihst"
         }
     ],
     "atawhahthvhitahst": [
         {
             "class_name": "be-at",
-            "corpus_ids": "18",
+            "corpus_ids": "18;208",
             "form_type": "infinitive",
-            "g_grade": "awahthvh",
-            "h_grade": "awhahthvh",
+            "g_grade": "wahthvh",
+            "h_grade": "whahthvh",
             "stem": "atawhahthvhitahst"
         }
     ],
     "atawhahthvhitol": [
         {
             "class_name": "be-at",
-            "corpus_ids": "18",
+            "corpus_ids": "18;208",
             "form_type": "perfective",
-            "g_grade": "awahthvh",
-            "h_grade": "awhahthvh",
+            "g_grade": "wahthvh",
+            "h_grade": "whahthvh",
             "stem": "atawhahthvhitol"
         }
     ],
     "atawo'": [
         {
             "class_name": "o",
-            "corpus_ids": "56;544;979",
+            "corpus_ids": "56;544",
             "form_type": "perfective",
-            "g_grade": "aw",
-            "h_grade": "aw",
+            "g_grade": "w",
+            "h_grade": "w",
             "stem": "atawo'"
         }
     ],
     "atawohst": [
         {
             "class_name": "o",
-            "corpus_ids": "56;544;979",
+            "corpus_ids": "56;544",
             "form_type": "infinitive",
-            "g_grade": "aw",
-            "h_grade": "aw",
+            "g_grade": "w",
+            "h_grade": "w",
             "stem": "atawohst"
         }
     ],
@@ -2662,8 +2662,8 @@
             "class_name": "cause",
             "corpus_ids": "19",
             "form_type": "perfective",
-            "g_grade": "ayahst",
-            "h_grade": "ayhahst",
+            "g_grade": "yahst",
+            "h_grade": "yhahst",
             "stem": "atayhahsthan"
         }
     ],
@@ -2672,8 +2672,8 @@
             "class_name": "cause",
             "corpus_ids": "19",
             "form_type": "infinitive",
-            "g_grade": "ayahst",
-            "h_grade": "ayhahst",
+            "g_grade": "yahst",
+            "h_grade": "yhahst",
             "stem": "atayhahstoht"
         }
     ],
@@ -2682,8 +2682,8 @@
             "class_name": "hih-hil[imp2]",
             "corpus_ids": "21",
             "form_type": "perfective",
-            "g_grade": "ay",
-            "h_grade": "ay",
+            "g_grade": "y",
+            "h_grade": "y",
             "stem": "atayhil"
         }
     ],
@@ -2692,8 +2692,8 @@
             "class_name": "apl[imp4]",
             "corpus_ids": "22",
             "form_type": "infinitive",
-            "g_grade": "ayon",
-            "h_grade": "ayhon",
+            "g_grade": "yon",
+            "h_grade": "yhon",
             "stem": "atayhoneht"
         }
     ],
@@ -2702,8 +2702,8 @@
             "class_name": "apl[imp4]",
             "corpus_ids": "22",
             "form_type": "perfective",
-            "g_grade": "ayon",
-            "h_grade": "ayhon",
+            "g_grade": "yon",
+            "h_grade": "yhon",
             "stem": "atayhonel"
         }
     ],
@@ -2712,28 +2712,28 @@
             "class_name": "hih-hil[imp2]",
             "corpus_ids": "21",
             "form_type": "infinitive",
-            "g_grade": "ay",
-            "h_grade": "ay",
+            "g_grade": "y",
+            "h_grade": "y",
             "stem": "atayhst"
         }
     ],
     "atayohihst": [
         {
             "class_name": "sk-s-hi-hihst",
-            "corpus_ids": "545",
+            "corpus_ids": "545;618;740",
             "form_type": "infinitive",
-            "g_grade": "ayo",
-            "h_grade": "ayo",
+            "g_grade": "yo",
+            "h_grade": "yo",
             "stem": "atayohihst"
         }
     ],
     "atayohs": [
         {
             "class_name": "sk-s-hi-hihst",
-            "corpus_ids": "545",
+            "corpus_ids": "545;618;740",
             "form_type": "perfective",
-            "g_grade": "ayo",
-            "h_grade": "ayo",
+            "g_grade": "yo",
+            "h_grade": "yo",
             "stem": "atayohs"
         }
     ],
@@ -3305,26 +3305,6 @@
             "stem": "atikwalvteyol"
         }
     ],
-    "atinvthan": [
-        {
-            "class_name": "cause",
-            "corpus_ids": "78",
-            "form_type": "perfective",
-            "g_grade": "invt",
-            "h_grade": "invt",
-            "stem": "atinvthan"
-        }
-    ],
-    "atinvtoht": [
-        {
-            "class_name": "cause",
-            "corpus_ids": "78",
-            "form_type": "infinitive",
-            "g_grade": "invt",
-            "h_grade": "invt",
-            "stem": "atinvtoht"
-        }
-    ],
     "atithah": [
         {
             "class_name": "sk-h[imp2]",
@@ -3835,6 +3815,16 @@
             "stem": "atvnv'ihstoht"
         }
     ],
+    "awo'": [
+        {
+            "class_name": "o",
+            "corpus_ids": "979",
+            "form_type": "perfective",
+            "g_grade": "aw",
+            "h_grade": "aw",
+            "stem": "awo'"
+        }
+    ],
     "awohiliyvhs": [
         {
             "class_name": "v-vhs",
@@ -3853,6 +3843,16 @@
             "g_grade": "awo'iliy",
             "h_grade": "awohiliy",
             "stem": "awohiliyvhst"
+        }
+    ],
+    "awohst": [
+        {
+            "class_name": "o",
+            "corpus_ids": "979",
+            "form_type": "infinitive",
+            "g_grade": "aw",
+            "h_grade": "aw",
+            "stem": "awohst"
         }
     ],
     "ayhu'invhs": [
@@ -6563,26 +6563,6 @@
             "stem": "nenh"
         }
     ],
-    "netliyvhs": [
-        {
-            "class_name": "v-vhs",
-            "corpus_ids": "880",
-            "form_type": "perfective",
-            "g_grade": "netliy",
-            "h_grade": "netliy",
-            "stem": "netliyvhs"
-        }
-    ],
-    "netliyvhst": [
-        {
-            "class_name": "v-vhs",
-            "corpus_ids": "880",
-            "form_type": "infinitive",
-            "g_grade": "netliy",
-            "h_grade": "netliy",
-            "stem": "netliyvhst"
-        }
-    ],
     "newhahthvh": [
         {
             "class_name": "ih-vh[inf2]",
@@ -6991,26 +6971,6 @@
             "g_grade": "no",
             "h_grade": "nho",
             "stem": "nhokihst"
-        }
-    ],
-    "nhoyeh": [
-        {
-            "class_name": "apl-active",
-            "corpus_ids": "1249",
-            "form_type": "perfective",
-            "g_grade": "noy",
-            "h_grade": "nhoy",
-            "stem": "nhoyeh"
-        }
-    ],
-    "nhoyeht": [
-        {
-            "class_name": "apl-active",
-            "corpus_ids": "1249",
-            "form_type": "infinitive",
-            "g_grade": "noy",
-            "h_grade": "nhoy",
-            "stem": "nhoyeht"
         }
     ],
     "nhsanehs": [
@@ -9021,26 +8981,6 @@
             "stem": "whahthvh"
         }
     ],
-    "whahthvhitahst": [
-        {
-            "class_name": "be-at",
-            "corpus_ids": "208",
-            "form_type": "infinitive",
-            "g_grade": "wahthvh",
-            "h_grade": "whahthvh",
-            "stem": "whahthvhitahst"
-        }
-    ],
-    "whahthvhitol": [
-        {
-            "class_name": "be-at",
-            "corpus_ids": "208",
-            "form_type": "perfective",
-            "g_grade": "wahthvh",
-            "h_grade": "whahthvh",
-            "stem": "whahthvhitol"
-        }
-    ],
     "whahthvht": [
         {
             "class_name": "ih-vh[inf2]",
@@ -9559,26 +9499,6 @@
             "g_grade": "",
             "h_grade": "yhvtakwal",
             "stem": "yhvtakwalohst"
-        }
-    ],
-    "yohihst": [
-        {
-            "class_name": "sk-s-hi-hihst",
-            "corpus_ids": "618;740",
-            "form_type": "infinitive",
-            "g_grade": "yo",
-            "h_grade": "yo",
-            "stem": "yohihst"
-        }
-    ],
-    "yohs": [
-        {
-            "class_name": "sk-s-hi-hihst",
-            "corpus_ids": "618;740",
-            "form_type": "perfective",
-            "g_grade": "yo",
-            "h_grade": "yo",
-            "stem": "yohs"
         }
     ],
     "yohst": [
