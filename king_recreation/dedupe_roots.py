@@ -47,12 +47,13 @@ def dedupe_roots(validated_verbs: list[ReconstructibleVerb]):
         else:
             # Check for user override
             selected = [v for v in vl if getattr(v, "user_selected", False)]
-            if len(selected) > 1:
+            unique_selected_roots = {v.h_grade_root for v in selected}
+            if len(unique_selected_roots) > 1:
                 print(
-                    f"[ERROR] Multiple user_selected rows for corpus_id {c_id}: {[v.h_grade_root for v in selected]}"
+                    f"[ERROR] Multiple conflicting user_selected roots for corpus_id {c_id}: {list(unique_selected_roots)}"
                 )
                 exit(1)
-            elif len(selected) == 1:
+            elif len(unique_selected_roots) == 1:
                 deduped_roots.append(selected[0])
                 continue
 

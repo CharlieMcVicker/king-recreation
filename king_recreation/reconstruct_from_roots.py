@@ -363,7 +363,23 @@ def main(classes_path=None):
                     r.get("class", ""),
                     r.get("h_grade", ""),
                     r.get("g_grade", ""),
-                    r.get("post_root_morpheme", "") or "",  # handle None vs "" match
+                    r.get("post_root_morpheme", "") or "",
+                    # Add all configuration fields to be specific
+                    r.get("metathesis_involved", ""),
+                    r.get("set_a_b", ""),
+                    r.get("stem_type", ""),
+                    r.get("metathesis_strategy", ""),
+                    r.get("middle_voice", ""),
+                    r.get("ka_variant", ""),
+                    r.get("long_start", ""),
+                    r.get("aki_1st", ""),
+                    r.get("uwa_v", ""),
+                    r.get("3rd_person_object", ""),
+                    r.get("translocutive", ""),
+                    r.get("translocutive_imp_only", ""),
+                    r.get("partitive", ""),
+                    r.get("distributive", ""),
+                    r.get("distributive_fut_prog", ""),
                 )
 
             current_key = get_identity_key(verb.original_data)
@@ -487,6 +503,22 @@ def main(classes_path=None):
                 r.get("h_grade", ""),
                 r.get("g_grade", ""),
                 r.get("post_root_morpheme", "") or "",
+                # Add all configuration fields to be specific
+                r.get("metathesis_involved", ""),
+                r.get("set_a_b", ""),
+                r.get("stem_type", ""),
+                r.get("metathesis_strategy", ""),
+                r.get("middle_voice", ""),
+                r.get("ka_variant", ""),
+                r.get("long_start", ""),
+                r.get("aki_1st", ""),
+                r.get("uwa_v", ""),
+                r.get("3rd_person_object", ""),
+                r.get("translocutive", ""),
+                r.get("translocutive_imp_only", ""),
+                r.get("partitive", ""),
+                r.get("distributive", ""),
+                r.get("distributive_fut_prog", ""),
             )
 
         generated_keys = {get_identity_key_simple(r) for r in validated_rows}
