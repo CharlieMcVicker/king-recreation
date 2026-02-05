@@ -236,6 +236,18 @@ def main(classes_path=None):
         print(f"Error: {corpus_no_pre_no_asp_path} not found.")
         return
 
+    # Load existing validated roots to persist user selections
+    user_selected_rows = []
+    if os.path.exists(validated_reconstructable_roots_path):
+        with open(validated_reconstructable_roots_path, "r", encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            if "user_selected" in reader.fieldnames:
+                for row in reader:
+                    if row.get("user_selected") == "x":
+                        user_selected_rows.append(row)
+
+    print(f"Loaded {len(user_selected_rows)} user-selected rows for persistence.")
+
     # Load raw Corpus
     full_corpus_map = {}
     with open(corpus_path, "r", encoding="utf-8") as f:
@@ -331,6 +343,44 @@ def main(classes_path=None):
             # Inject entry_no into original_data so it persists to the CSV
             if verb.entry_no is not None:
                 verb.original_data["entry_no"] = verb.entry_no
+
+            # Check if this matches a user selected row
+            # We match on all fields except user_selected and entry_no to be safe,
+            # or simply use the fact that original_data might match if it hasn't changed.
+            # However, ReconstructibleVerb reconstructs data which might differ slightly if logic changes.
+            # But the requirement is: "fail when rewriting if we would drop a row that was user marked"
+            # This implies the row must be EXACTLY valid as per current logic.
+            # So we check if the currently generated `verb.original_data` (augmented with keys)
+            # matches the critical fields of a saved user_selection.
+
+            # Let's match on specific identity fields to be robust:
+            # corpus_id, definition, class, h_grade, g_grade, post_root_morpheme
+
+            def get_identity_key(r):
+                return (
+                    str(r.get("corpus_id", "")),
+                    r.get("definition", ""),
+                    r.get("class", ""),
+                    r.get("h_grade", ""),
+                    r.get("g_grade", ""),
+                    r.get("post_root_morpheme", "") or "",  # handle None vs "" match
+                )
+
+            current_key = get_identity_key(verb.original_data)
+
+            # This implementation is O(N*M) which is fine for small N, M (~2000 rows).
+            # If slow, optimize to set lookup.
+            is_selected = False
+            for usr_row in user_selected_rows:
+                if get_identity_key(usr_row) == current_key:
+                    is_selected = True
+                    break
+
+            if is_selected:
+                verb.original_data["user_selected"] = "x"
+            else:
+                verb.original_data["user_selected"] = ""
+
             validated_rows.append(verb.original_data)
         else:
             failures.append(
@@ -424,11 +474,69 @@ def main(classes_path=None):
         all_keys = set()
         for row in validated_rows:
             all_keys.update(row.keys())
+
+        # Verify all user selections were preserved
+        missing_selections = []
+
+        # Build set of generated identity keys
+        def get_identity_key_simple(r):
+            return (
+                str(r.get("corpus_id", "")),
+                r.get("definition", ""),
+                r.get("class", ""),
+                r.get("h_grade", ""),
+                r.get("g_grade", ""),
+                r.get("post_root_morpheme", "") or "",
+            )
+
+        generated_keys = {get_identity_key_simple(r) for r in validated_rows}
+
+        for usr_row in user_selected_rows:
+            if get_identity_key_simple(usr_row) not in generated_keys:
+                missing_selections.append(usr_row)
+
+        if missing_selections:
+            print(
+                "[ERROR] The following user-selected rows are no longer valid or generated:"
+            )
+            for row in missing_selections:
+                print(f"  - ID: {row.get('corpus_id')}, Root: {row.get('h_grade')}")
+            print("Aborting save to prevent data loss.")
+            exit(1)
+
         # Sort keys to keep deterministic order, but maybe prefer original order?
-        # Let's take original keys + entry_no
-        fieldnames = list(validated_rows[0].keys())
-        if "entry_no" not in fieldnames and "entry_no" in all_keys:
-            fieldnames.append("entry_no")
+        # Let's take original keys + entry_no + user_selected
+        fieldnames = [
+            "corpus_id",
+            "entry_no",
+            "user_selected",
+            "definition",
+            "class",
+            "post_root_morpheme",
+            "h_grade",
+            "g_grade",
+            "metathesis_involved",
+            "set_a_b",
+            "stem_type",
+            "metathesis_strategy",
+            "middle_voice",
+            "ka_variant",
+            "long_start",
+            "aki_1st",
+            "uwa_v",
+            "3rd_person_object",
+            "translocutive",
+            "translocutive_imp_only",
+            "partitive",
+            "distributive",
+            "distributive_fut_prog",
+        ]
+
+        # Ensure standard order of important columns if possible, but taking from first row is standard here
+        # Make sure optional columns are present
+        for col in ["entry_no", "user_selected"]:
+            if col not in fieldnames and col in all_keys:
+                fieldnames.append(col)
 
         with open(
             validated_reconstructable_roots_path, "w", encoding="utf-8", newline=""

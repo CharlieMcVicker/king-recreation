@@ -45,6 +45,18 @@ def dedupe_roots(validated_verbs: list[ReconstructibleVerb]):
         if len(vl) == 1:
             deduped_roots.append(vl[0])
         else:
+            # Check for user override
+            selected = [v for v in vl if getattr(v, "user_selected", False)]
+            if len(selected) > 1:
+                print(
+                    f"[ERROR] Multiple user_selected rows for corpus_id {c_id}: {[v.h_grade_root for v in selected]}"
+                )
+                exit(1)
+            elif len(selected) == 1:
+                deduped_roots.append(selected[0])
+                continue
+
+            # Default logic
             for v in vl:
                 len_v = len(v.h_grade_root)
                 if lowest_v is None or len_v < lowest_len:
@@ -142,6 +154,8 @@ def main():
                 entry_no=entry_no,
                 original_data=row,  # Keep it if we want to pass it further, though JSON serialization dumps fields
             )
+            # Monkey-patch or attach user_selected for use in dedupe
+            verb.user_selected = row.get("user_selected") == "x"
             validated_verbs.append(verb)
 
     print(f"Loaded {len(validated_verbs)} validated verbs.")
