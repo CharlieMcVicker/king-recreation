@@ -1,4 +1,4 @@
-from king_recreation.phonology_data import MiddleVoice
+from king_recreation.morphemes.middle_voice import MiddleVoice
 from collections import defaultdict
 import os
 import csv
