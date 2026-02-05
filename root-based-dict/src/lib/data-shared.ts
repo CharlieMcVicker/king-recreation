@@ -17,6 +17,7 @@ export interface ReconstructableVerb {
       set_type: string;
       stem_type: string;
       metathesis_strategy: string;
+      middle_voice: string;
       use_ka_variant: boolean;
       long_start?: boolean;
       use_aki_for_1st_set_b: boolean;

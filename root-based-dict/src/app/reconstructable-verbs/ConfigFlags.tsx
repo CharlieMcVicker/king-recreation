@@ -6,6 +6,17 @@ interface ConfigFlagsProps {
   className?: string;
 }
 
+function middleVoiceFlare({
+  pron: { middle_voice },
+}: ReconstructableVerb["config"]) {
+  return {
+    label: middle_voice.replace("_", "/"),
+    active: middle_voice !== "none",
+    title: `Middle voice (${middle_voice.toLowerCase()})`,
+    color: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
+  };
+}
+
 export function ConfigFlags({
   config,
   verb,
@@ -53,6 +64,7 @@ export function ConfigFlags({
           ? "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300"
           : "bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-300",
     },
+    middleVoiceFlare(config),
   ];
 
   return (
