@@ -5,7 +5,7 @@ import {
   RootGroup,
   ClassDefinition,
   DictionaryEntry,
-  RootConnection,
+  DerivationalConnection,
   ReconstructableVerb,
   getMorphemeSlug,
 } from "@/lib/data-shared";
@@ -18,7 +18,7 @@ interface RootDetailContentProps {
   rootGroup: RootGroup;
   classes: ClassDefinition[];
   dictionary: DictionaryEntry[];
-  connections: RootConnection[];
+  connections: DerivationalConnection[];
   allVerbs: ReconstructableVerb[];
 }
 

@@ -139,7 +139,7 @@ export interface EndingGroup {
   }[];
 }
 
-export interface RootConnection {
+export interface DerivationalConnection {
   user_approved: string;
   from_h_grade: string;
   from_g_grade: string;

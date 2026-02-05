@@ -38,7 +38,9 @@ matches_path = os.path.join(ARTIFACTS_DATA_DIR, "matches_initial.csv")
 validated_matches_path = os.path.join(ARTIFACTS_DATA_DIR, "matches_validated.csv")
 
 # Connections (Manual & Automated)
-root_connections_path = os.path.join(CONNECTIONS_DIR, "root_connections.csv")
+derivational_connections_path = os.path.join(
+    CONNECTIONS_DIR, "derivational_suffix_connections.csv"
+)
 
 
 # -----------------------------------------------------------------------------

@@ -53,9 +53,9 @@ def parse_ids(id_str: str) -> List[int]:
 
 
 from king_recreation.paths import (
+    derivational_connections_path,
     hierarchical_dict_path,
     reconstructable_verbs_path,
-    root_connections_path,
     root_ids_path,
 )
 
@@ -66,17 +66,17 @@ def load_all_data() -> Tuple[
     List[Dict[str, str]],
 ]:
     verbs_path = reconstructable_verbs_path
-    root_conn_path = root_connections_path
+    deriv_conn_path = derivational_connections_path
     r_ids_path = root_ids_path
 
     all_verbs_raw = load_json(verbs_path)
     all_verbs = [ReconstructibleVerb.from_dict(v) for v in all_verbs_raw]
-    root_connections = load_csv(root_conn_path)
+    derivational_connections = load_csv(deriv_conn_path)
     root_ids = load_csv(r_ids_path)
 
     return (
         all_verbs,
-        root_connections,
+        derivational_connections,
         root_ids,
     )
 
@@ -92,7 +92,7 @@ def build_verb_index(
 
 
 def build_connection_graphs(
-    root_connections: List[Dict[str, str]],
+    derivational_connections: List[Dict[str, str]],
     verbs_by_id: Dict[int, ReconstructibleVerb],
 ) -> Tuple[Dict[int, int], DefaultDict[int, List[Dict[str, Any]]]]:
     parent_map = {}
@@ -121,8 +121,8 @@ def build_connection_graphs(
                 parent_map[child_id] = parent_id
                 children_map[parent_id].append({"id": child_id, "type": conn_type})
 
-    # Add Root Connections (Derivational)
-    for row in root_connections:
+    # Add Derivational Connections
+    for row in derivational_connections:
         if row.get("user_approved", None) == "x":
             add_connection(row["from_corpus_ids"], row["to_corpus_ids"], "derivation")
 
@@ -433,13 +433,15 @@ def main() -> None:
     # 1. Load Data
     (
         all_verbs,
-        root_connections,
+        derivational_connections,
         existing_root_ids,
     ) = load_all_data()
 
     # 2. Build Verb Graphs
     verbs_by_id = build_verb_index(all_verbs)
-    parent_map, children_map = build_connection_graphs(root_connections, verbs_by_id)
+    parent_map, children_map = build_connection_graphs(
+        derivational_connections, verbs_by_id
+    )
 
     # 3. Sync Root IDs
     # We need to assign stable IDs to verbs and group them accordingly

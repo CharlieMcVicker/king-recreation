@@ -4,7 +4,7 @@ import {
   ReconstructableVerb,
   ClassDefinition,
   DictionaryEntry,
-  RootConnection,
+  DerivationalConnection,
   resolveClassEndings,
   getEndingSlug,
   getPronominalSetName,
@@ -17,7 +17,7 @@ interface RootClassEntryProps {
   verbs: (ReconstructableVerb & { id: number })[];
   classes: ClassDefinition[];
   dictionary: DictionaryEntry[];
-  connections: RootConnection[];
+  connections: DerivationalConnection[];
   allVerbs: ReconstructableVerb[];
 }
 

@@ -3,15 +3,12 @@ import os
 from typing import Dict, List, Set, Tuple
 
 from king_recreation.paths import (
+    derivational_connections_path,
     open_forms_report_path,
     reconstructable_verbs_path,
-    root_connections_path,
     roots_by_class_path,
 )
-from king_recreation.reconstruct_from_roots import (
-    ReconstructibleVerb,
-    ReconstructionEngine,
-)
+from king_recreation.reconstruct_from_roots import ReconstructionEngine
 from king_recreation.utils import (
     group_verbs_by_root,
     load_existing_approvals,
@@ -159,7 +156,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--output",
-        default=root_connections_path,
+        default=derivational_connections_path,
         help="Path to output CSV",
     )
     parser.add_argument("--classes", help="Path to classes CSV")

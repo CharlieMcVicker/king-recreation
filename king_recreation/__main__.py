@@ -8,8 +8,8 @@ from king_recreation.group_hierarchical import main as group_hierarchical
 from king_recreation.paths import (
     cherokee_nation_dictionary_path,
     corpus_path,
+    derivational_connections_path,
     reconstructable_verbs_path,
-    root_connections_path,
 )
 from king_recreation.preprocess_ced import process_cn_dict
 from king_recreation.reconstruct_from_roots import main as reconstruct_from_roots
@@ -42,10 +42,10 @@ def main():
     verbs = load_verbs(reconstructable_verbs_path)
     root_groups = group_verbs_by_root(verbs)
 
-    print("      -> [5.1] Analyzing Root Connections...")
+    print("      -> [5.1] Analyzing Derivational Suffix Connections...")
     analyze_connections(
         reconstructable_verbs_path,
-        root_connections_path,
+        derivational_connections_path,
         args.classes,
         verbs=verbs,
         root_groups=root_groups,
