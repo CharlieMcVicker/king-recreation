@@ -167,13 +167,6 @@ class ReconstructionEngine:
             stems = self.get_base_stems_for_form(verb, form_name)
             if stems:
                 base_stems[form_name] = stems
-        if verb.corpus_id == 18:
-            print(
-                verb.config.pron.middle_voice,
-                verb.h_grade_root,
-                verb.glottal_grade_root,
-                base_stems,
-            )
 
         return base_stems
 
