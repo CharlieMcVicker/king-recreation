@@ -1,6 +1,7 @@
 import csv
 import os
 from collections import defaultdict
+from dataclasses import asdict, dataclass
 
 from king_recreation.h_alternation import (
     possible_alternates,
@@ -140,6 +141,24 @@ def get_matches_for_verb(verb, registry: PatternRegistry):
     return matches
 
 
+@dataclass
+class StrippedVerbRow:
+    corpus_id: str
+    definition: str
+    verb_class: str
+    present: str = ""
+    present_1sg: str = ""
+    imperfective: str = ""
+    perfective: str = ""
+    imperative: str = ""
+    infinitive: str = ""
+
+    def to_dict(self):
+        d = asdict(self)
+        d["class"] = d.pop("verb_class")
+        return d
+
+
 def create_stripped_row(verb, classes_map, match):
     # Create stripped row
 
@@ -147,17 +166,11 @@ def create_stripped_row(verb, classes_map, match):
     if not cls_info:
         return None
 
-    stripped_row = {
-        "corpus_id": verb.get("corpus_id", ""),
-        "definition": match["definition"],
-        "class": match["class"],
-        "present": "",
-        "present_1sg": "",
-        "imperfective": "",
-        "perfective": "",
-        "imperative": "",
-        "infinitive": "",
-    }
+    stripped_row = StrippedVerbRow(
+        corpus_id=verb.get("corpus_id", ""),
+        definition=match["definition"],
+        verb_class=match["class"],
+    )
 
     # Strip suffixes
     forms = [
@@ -187,7 +200,7 @@ def create_stripped_row(verb, classes_map, match):
             stripped_stem = (
                 form_val[: -len(literal_suffix)] if literal_suffix else form_val
             )
-            stripped_row[fn] = stripped_stem
+            setattr(stripped_row, fn, stripped_stem)
 
         # allow h alternates
         elif fn in ["present_1sg", "imperative"]:
@@ -199,7 +212,7 @@ def create_stripped_row(verb, classes_map, match):
                         if fixed_hless_suffix
                         else form_val
                     )
-                    stripped_row[fn] = stripped_stem
+                    setattr(stripped_row, fn, stripped_stem)
                 elif hless_suffix.startswith("'"):
                     form_with_glottals = recreate_C_glottal_clusters(form_val)
                     if form_with_glottals.endswith(hless_suffix):
@@ -208,7 +221,9 @@ def create_stripped_row(verb, classes_map, match):
                             if hless_suffix
                             else form_with_glottals
                         )
-                        stripped_row[fn] = prevent_C_glottal_cluster(stripped_stem)
+                        setattr(
+                            stripped_row, fn, prevent_C_glottal_cluster(stripped_stem)
+                        )
 
     return stripped_row
 
@@ -266,13 +281,22 @@ def classify_verbs(classes_path=None):
         writer.writerows(matches_data)
 
     if stripped_corpus_data:
-        keys = ["corpus_id"] + [
-            k for k in stripped_corpus_data[0].keys() if k != "corpus_id"
+        stripped_dicts = [x.to_dict() for x in stripped_corpus_data]
+        keys = [
+            "corpus_id",
+            "definition",
+            "class",
+            "present",
+            "present_1sg",
+            "imperfective",
+            "perfective",
+            "imperative",
+            "infinitive",
         ]
         with open(corpus_no_asp_path, mode="w", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()
-            writer.writerows(stripped_corpus_data)
+            writer.writerows(stripped_dicts)
 
     print(f"Matches written to {matches_path}")
     print(f"Endings Stripped Corpus written to {corpus_no_asp_path}")
