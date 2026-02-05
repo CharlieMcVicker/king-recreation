@@ -1,23 +1,42 @@
-from king_recreation.phonology_data import prevent_C_glottal_cluster
-from king_recreation.phonology_data import possible_alternates
+from king_recreation.morphemes.prepronominals import PrePronominalConfig
+from king_recreation.h_alternation import prevent_C_glottal_cluster, possible_alternates
 import os
 import csv
 import json
 import dataclasses
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import List, Dict, Set, Optional, Tuple
+from typing import List, Dict, Optional
 from collections import defaultdict
-from king_recreation.phonology_data import (
+from king_recreation.morphemes.pronominals import (
     get_pronominal_set_name,
-    PronominalConfig,
-    VerbConfig,
     get_prefix_details,
     attach_prefix,
-    apply_prepronominal,
     use_glottal_grade,
+    PronominalConfig,
 )
+from king_recreation.morphemes.prepronominals import apply_prepronominal
 from king_recreation.pattern_registry import PatternRegistry
+
+
+@dataclass(frozen=True)
+class VerbConfig:
+    pre: PrePronominalConfig
+    pron: PronominalConfig
+
+    @staticmethod
+    def from_row(stem_row: dict[str, str]) -> "VerbConfig":
+        pre_config = PrePronominalConfig.from_row(stem_row)
+        pron_config = PronominalConfig.from_row(stem_row)
+
+        return VerbConfig(pre=pre_config, pron=pron_config)
+
+    @staticmethod
+    def from_dict(data: dict) -> "VerbConfig":
+        return VerbConfig(
+            pre=PrePronominalConfig.from_dict(data.get("pre", {})),
+            pron=PronominalConfig.from_dict(data.get("pron", {})),
+        )
 
 
 @dataclass

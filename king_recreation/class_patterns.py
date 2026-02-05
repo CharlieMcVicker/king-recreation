@@ -1,4 +1,4 @@
-from king_recreation.phonology_data import possible_alternates
+from king_recreation.h_alternation import possible_alternates
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional, Tuple
 import itertools

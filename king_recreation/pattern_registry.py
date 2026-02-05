@@ -4,7 +4,7 @@ import os
 import re
 from collections import defaultdict
 from king_recreation.class_patterns import ClassMacro, ExpandedClassPattern
-from king_recreation.phonology_data import (
+from king_recreation.h_alternation import (
     recreate_C_glottal_clusters,
     possible_alternates,
 )
