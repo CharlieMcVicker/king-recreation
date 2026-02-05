@@ -7,13 +7,10 @@ from king_recreation.h_alternation import grades_are_compatible
 from king_recreation.morphemes.middle_voice import MiddleVoice
 from king_recreation.morphemes.prepronominals import PrePronominalConfig
 from king_recreation.morphemes.pronominals import (
-    Condition,
     MetathesisStrategy,
     PronominalConfig,
     StemType,
     detach_prefix,
-    get_prefix_details,
-    get_pronominal_set_name,
     use_glottal_grade,
 )
 
@@ -118,20 +115,10 @@ def derive_pronominals(
     derived_stems = {}
     metathesis_used = False
     for fn, word in intermediate_forms.items():
-        set_name = get_pronominal_set_name(fn, pron_config)
-        prefix, condition = get_prefix_details(set_name, pron_config)
-
-        stem = detach_prefix(word, prefix, condition, pron_config.metathesis_strategy)
+        stem, fn_metathesis_used = detach_prefix(word, fn, pron_config)
+        metathesis_used = metathesis_used or fn_metathesis_used
         if stem is None:
             return None
-
-        # Check if metathesis was actually involved
-        if condition in [Condition.METATHESIS_H_CONS, Condition.METATHESIS_VOWEL]:
-            metathesis_used = True
-
-        clean_pref = prefix.replace("-", "")
-        if clean_pref == "ka" and word.startswith("kh"):
-            metathesis_used = True
 
         derived_stems[fn] = stem
     res = stems_are_consistent(derived_stems, pron_config, log=log)

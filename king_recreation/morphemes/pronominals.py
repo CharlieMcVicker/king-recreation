@@ -292,11 +292,10 @@ def attach_prefix(stem: str, prefix: str, condition: Condition) -> str:
     return clean_prefix + stem
 
 
-def detach_prefix(
+def _detach_prefix(
     word: str,
     prefix: str,
     condition: Condition,
-    metathesis_strategy: MetathesisStrategy = MetathesisStrategy.NONE,
 ) -> Optional[str]:
     # Derivation stripping logic
     clean_pref = prefix.replace("-", "")
@@ -349,6 +348,25 @@ def detach_prefix(
             return None
 
     return stem
+
+
+def detach_prefix(word: str, form_name: str, config: PronominalConfig):
+    set_name = get_pronominal_set_name(form_name, config)
+    prefix, condition = get_prefix_details(set_name, config)
+
+    stem = _detach_prefix(word, prefix, condition)
+
+    metathesis_used = False
+
+    # Check if metathesis was actually involved
+    if condition in [Condition.METATHESIS_H_CONS, Condition.METATHESIS_VOWEL]:
+        metathesis_used = True
+
+    clean_pref = prefix.replace("-", "")
+    if clean_pref == "ka" and word.startswith("kh"):
+        metathesis_used = True
+
+    return stem, metathesis_used
 
 
 def use_glottal_grade_for_set(set_name: str) -> bool:
