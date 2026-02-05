@@ -120,7 +120,13 @@ def process_cn_dict(file_path, output_path):
     grouped_entries = {}
 
     with open(file_path, mode="r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
+        # Some CND files may have a BOM
+        content = f.read()
+        if content.startswith("\ufeff"):
+            content = content[1:]
+        import io
+
+        reader = csv.DictReader(io.StringIO(content))
         for row in reader:
             entry_no = row.get("No.", "").strip()
             if not entry_no:
@@ -131,10 +137,12 @@ def process_cn_dict(file_path, output_path):
             grouped_entries[entry_no].append(row)
 
     processed_data = []
+    mapping_data = []
 
     for idx, (entry_no, rows) in enumerate(grouped_entries.items()):
         # Build a single verb dictionary from the rows
         verb_data = {
+            "corpus_id": idx,
             "entry_no": entry_no,
             "definition": "",
             "present": "",
@@ -145,13 +153,17 @@ def process_cn_dict(file_path, output_path):
             "infinitive": "",
         }
 
-        # We need to find the definition. Usually in the first row or headword row.
-        # But we can just take the first definition found or specific one.
-        # Using "English gloss 1" seems appropriate from the requested file view.
-        # Or "Translation 1A". Let's stick to accumulating forms first.
+        mapping_entry = {
+            "corpus_id": idx,
+            "present": "",
+            "present_1sg": "",
+            "imperfective": "",
+            "perfective": "",
+            "imperative": "",
+            "infinitive": "",
+        }
 
         # Determine if this group is a verb.
-        # Check "Part of speech" column for any row.
         is_verb = False
         parts_of_speech = set()
         for row in rows:
@@ -182,6 +194,7 @@ def process_cn_dict(file_path, output_path):
 
         def select_form(predicate):
             best_form = ""
+            best_entry_no = ""
             best_priority = -1
             for row in rows:
                 sub = row.get("Grammar sub entry", "").strip().lower()
@@ -189,59 +202,55 @@ def process_cn_dict(file_path, output_path):
                     p = get_priority(sub)
                     if p > best_priority:
                         best_form = row.get("Practical", "").strip()
+                        best_entry_no = row.get("Entry No.", "").strip()
                         best_priority = p
-            return clean_string(best_form)
+            return clean_string(best_form), best_entry_no
 
-        verb_data["present"] = select_form(
+        # Present
+        form, cnd_no = select_form(
             lambda s: s.startswith("3rd person singular")
             and not any(x in s for x in ["habitual", "past", "infinitive"])
         )
-        verb_data["present_1sg"] = select_form(
-            lambda s: s.startswith("1st person singular")
-        )
-        verb_data["perfective"] = select_form(lambda s: "remote past" in s)
-        verb_data["imperfective"] = select_form(lambda s: "habitual" in s)
-        verb_data["imperative"] = select_form(lambda s: "imperative" in s)
-        verb_data["infinitive"] = select_form(lambda s: "infinitive" in s)
-
-        # Apply the final suffix stripping logic (clean_row logic) to the extracted values
-        # Since clean_row expects raw values with suffixes, and clean_string does initial cleaning,
-        # we might need to adjust. clean_row logic:
-        # present: rstrip i or a (or ia)
-        # imperfective: rstrip oi
-        # perfective: rstrip vi
-        # infinitive: rstrip i
-        # NOTE: clean_string is already applied. We just need to apply the suffix stripping now.
-
-        # Present
-        p = verb_data["present"]
-        if p.endswith("i") or p.endswith("a"):
-            verb_data["present"] = p[:-1]
+        if form.endswith("i") or form.endswith("a"):
+            form = form[:-1]
+        verb_data["present"] = form
+        mapping_entry["present"] = cnd_no
 
         # Present 1sg
-        p1 = verb_data["present_1sg"]
-        if p1.endswith("i") or p1.endswith("a"):
-            verb_data["present_1sg"] = p1[:-1]
-
-        # Imperfective
-        imp = verb_data["imperfective"]
-        if imp.endswith("o'i"):
-            verb_data["imperfective"] = imp[:-3]
+        form, cnd_no = select_form(lambda s: s.startswith("1st person singular"))
+        if form.endswith("i") or form.endswith("a"):
+            form = form[:-1]
+        verb_data["present_1sg"] = form
+        mapping_entry["present_1sg"] = cnd_no
 
         # Perfective
-        perf = verb_data["perfective"]
-        if perf.endswith("v'i"):
-            verb_data["perfective"] = perf[:-3]
+        form, cnd_no = select_form(lambda s: "remote past" in s)
+        if form.endswith("v'i"):
+            form = form[:-3]
+        verb_data["perfective"] = form
+        mapping_entry["perfective"] = cnd_no
+
+        # Imperfective
+        form, cnd_no = select_form(lambda s: "habitual" in s)
+        if form.endswith("o'i"):
+            form = form[:-3]
+        verb_data["imperfective"] = form
+        mapping_entry["imperfective"] = cnd_no
+
+        # Imperative
+        form, cnd_no = select_form(lambda s: "imperative" in s)
+        verb_data["imperative"] = form
+        mapping_entry["imperative"] = cnd_no
 
         # Infinitive
-        inf = verb_data["infinitive"]
-        if inf.endswith("i"):
-            verb_data["infinitive"] = inf[:-1]
+        form, cnd_no = select_form(lambda s: "infinitive" in s)
+        if form.endswith("i"):
+            form = form[:-1]
+        verb_data["infinitive"] = form
+        mapping_entry["infinitive"] = cnd_no
 
-        # Only add if we have at least a present form or something substantial?
-        # The existing logic doesn't explicitly filter but empty strings result in empty columns.
-        verb_data["corpus_id"] = idx
         processed_data.append(verb_data)
+        mapping_data.append(mapping_entry)
 
     fieldnames = [
         "corpus_id",
@@ -260,7 +269,25 @@ def process_cn_dict(file_path, output_path):
         writer.writeheader()
         writer.writerows(processed_data)
 
+    # Write mapping CSV
+    from king_recreation.paths import corpus_to_cnd_path
+
+    mapping_fieldnames = [
+        "corpus_id",
+        "present",
+        "present_1sg",
+        "imperfective",
+        "perfective",
+        "imperative",
+        "infinitive",
+    ]
+    with open(corpus_to_cnd_path, mode="w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=mapping_fieldnames)
+        writer.writeheader()
+        writer.writerows(mapping_data)
+
     print(f"Processed CN data written to {output_path}")
+    print(f"Mapping CND data written to {corpus_to_cnd_path}")
 
 
 def process_ced():

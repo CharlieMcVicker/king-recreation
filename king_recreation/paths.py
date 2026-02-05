@@ -35,6 +35,7 @@ corpus_no_pre_no_asp_path = os.path.join(
 validated_reconstructable_roots_path = os.path.join(
     ARTIFACTS_CORPORA_DIR, "validated_reconstructable_roots.csv"
 )
+corpus_to_cnd_path = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus_to_cnd.csv")
 
 # Match Data
 matches_path = os.path.join(ARTIFACTS_DATA_DIR, "matches_initial.csv")
