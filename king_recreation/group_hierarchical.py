@@ -2,10 +2,9 @@ import base64
 import csv
 import json
 import os
-import sys
 from collections import defaultdict
 from dataclasses import dataclass, field
-from typing import Any, DefaultDict, Dict, List, Optional, Set, Tuple
+from typing import Any, DefaultDict, Dict, List, Optional, Tuple
 
 from king_recreation.reconstruct_from_roots import (
     EnhancedJSONEncoder,
@@ -25,9 +24,6 @@ class RootNode:
     glottal_grade_root: Optional[str]
     slug: str
     classes: List[RootClassNode] = field(default_factory=list)
-    post_root_derivations: List["RootNode"] = field(default_factory=list)
-    morpheme_name: Optional[str] = None
-    morpheme_subcase: Optional[str] = None
 
 
 def get_root_slug(h_grade: str, g_grade: Optional[str]) -> str:
@@ -58,7 +54,6 @@ def parse_ids(id_str: str) -> List[int]:
 
 from king_recreation.paths import (
     hierarchical_dict_path,
-    post_root_connections_path,
     reconstructable_verbs_path,
     root_connections_path,
     root_ids_path,
@@ -69,24 +64,19 @@ def load_all_data() -> Tuple[
     List[ReconstructibleVerb],
     List[Dict[str, str]],
     List[Dict[str, str]],
-    List[Dict[str, str]],
-    List[Dict[str, str]],
 ]:
     verbs_path = reconstructable_verbs_path
     root_conn_path = root_connections_path
-    post_root_conn_path = post_root_connections_path
     r_ids_path = root_ids_path
 
     all_verbs_raw = load_json(verbs_path)
     all_verbs = [ReconstructibleVerb.from_dict(v) for v in all_verbs_raw]
     root_connections = load_csv(root_conn_path)
-    post_root_connections = load_csv(post_root_conn_path)
     root_ids = load_csv(r_ids_path)
 
     return (
         all_verbs,
         root_connections,
-        post_root_connections,
         root_ids,
     )
 
@@ -137,43 +127,6 @@ def build_connection_graphs(
             add_connection(row["from_corpus_ids"], row["to_corpus_ids"], "derivation")
 
     return parent_map, children_map
-
-
-def build_root_graph(
-    post_root_connections: List[Dict[str, str]],
-) -> Tuple[
-    Dict[Tuple[str, str], Tuple[str, str]],
-    DefaultDict[Tuple[str, str], List[Tuple[str, str]]],
-    Dict[Tuple[str, str], Dict[str, str]],
-]:
-    # Map ChildRoot -> ParentRoot
-    # Root Key: (h_grade, g_grade or "")
-    parent_map = {}
-    children_map = defaultdict(list)
-    morpheme_info = {}
-
-    for row in post_root_connections:
-        if row.get("user_approved", None) == "x":
-            child_h = row["from_h_grade"]
-            child_g = row["from_g_grade"]
-            parent_h = row["to_h_grade"]
-            parent_g = row["to_g_grade"]
-
-            child_key = (child_h, child_g)
-            parent_key = (parent_h, parent_g)
-
-            # Prevent cycles
-            if child_key in parent_map:
-                continue
-
-            parent_map[child_key] = parent_key
-            children_map[parent_key].append(child_key)
-            morpheme_info[child_key] = {
-                "name": row.get("morpheme_name", ""),
-                "subcase": row.get("morpheme_subcase", ""),
-            }
-
-    return parent_map, children_map, morpheme_info
 
 
 def identify_top_level_nodes(
@@ -247,7 +200,6 @@ def get_base_root_key(
     verb: ReconstructibleVerb,
     verbs_by_id: Dict[int, ReconstructibleVerb],
     verb_parent_map: Dict[int, int],
-    root_parent_map: Dict[Tuple[str, str], Tuple[str, str]],
 ) -> Tuple[str, str]:
     # 1. Traversed verb connections to find the top verb ancestor
     curr_vid = verb.corpus_id
@@ -260,14 +212,6 @@ def get_base_root_key(
         top_verb = verbs_by_id[curr_vid]
         curr_root = (top_verb.h_grade_root, top_verb.glottal_grade_root or "")
 
-    # 2. Traverse root-to-root connections to find the base root ancestor
-    visited = set()
-    while curr_root in root_parent_map:
-        if curr_root in visited:
-            break
-        visited.add(curr_root)
-        curr_root = root_parent_map[curr_root]
-
     return curr_root
 
 
@@ -275,7 +219,6 @@ def sync_root_ids(
     all_verbs: List[ReconstructibleVerb],
     verbs_by_id: Dict[int, ReconstructibleVerb],
     verb_parent_map: Dict[int, int],
-    root_parent_map: Dict[Tuple[str, str], Tuple[str, str]],
     existing_root_ids: List[Dict[str, str]],
 ) -> Tuple[Dict[int, str], Dict[str, str]]:
     # Map from corpus_id (or synthetic negative ID for null-id verbs) to RootID
@@ -294,9 +237,7 @@ def sync_root_ids(
     csv_rows = []
 
     for i, verb in enumerate(all_verbs):
-        base_h, base_g = get_base_root_key(
-            verb, verbs_by_id, verb_parent_map, root_parent_map
-        )
+        base_h, base_g = get_base_root_key(verb, verbs_by_id, verb_parent_map)
         default_id = f"{base_h}|{base_g}"
 
         cid_key = (
@@ -432,9 +373,6 @@ def group_roots_final(
 
 def build_final_hierarchy(
     root_groups: Dict[str, Any],
-    root_parent_map: Dict[Tuple[str, str], Tuple[str, str]],
-    root_children_map: DefaultDict[Tuple[str, str], List[Tuple[str, str]]],
-    morpheme_info: Dict[Tuple[str, str], Dict[str, str]],
 ) -> List[RootNode]:
 
     # helper to format a single root node
@@ -455,32 +393,11 @@ def build_final_hierarchy(
             classes_list.append(RootClassNode(class_name=cls_name, verbs=verbs))
         classes_list.sort(key=lambda x: x.class_name)
 
-        minfo = morpheme_info.get(key, {})
-
         node = RootNode(
             h_grade_root=data["h"],
             glottal_grade_root=data["g"],
             slug=get_root_slug_from_id(root_id),
             classes=classes_list,
-            morpheme_name=minfo.get("name"),
-            morpheme_subcase=minfo.get("subcase"),
-        )
-
-        # Recurse children
-        # Note: Root children are currently linked by (h, g).
-        # We need to decide how to handle splitting children.
-        # For now, if a root is split, its children stay with it unless they themselves are reassigned?
-        # Actually, if a root is split into ID1 and ID2, both have the same (h, g).
-        # The children will be linked to (h, g) in the connections.
-        # This means BOTH ID1 and ID2 will show the same children?
-        # That's probably correct for now, as splitting children is harder.
-        children_keys = root_children_map.get(key, [])
-        for child_key in children_keys:
-            node.post_root_derivations.append(format_node(child_key))
-
-        # Sort children by h-grade
-        node.post_root_derivations.sort(
-            key=lambda x: f"{x.h_grade_root}|{x.glottal_grade_root}"
         )
 
         return node
@@ -488,11 +405,10 @@ def build_final_hierarchy(
     final_output = []
 
     # Identify top-level root IDs
-    # A root ID is top-level if its (h, g) is not a child in root_parent_map
+    # Now that we removed root-to-root logic, all grouped roots are "top level" in this context
     for root_id, data in root_groups.items():
         h, g = data["h"], data.get("g", "")
-        if (h, g) not in root_parent_map:
-            final_output.append(format_node((h, g), override_root_id=root_id))
+        final_output.append(format_node((h, g), override_root_id=root_id))
 
     # Sort final output
     final_output.sort(key=lambda x: x.h_grade_root)
@@ -518,7 +434,6 @@ def main() -> None:
     (
         all_verbs,
         root_connections,
-        post_root_connections,
         existing_root_ids,
     ) = load_all_data()
 
@@ -526,22 +441,17 @@ def main() -> None:
     verbs_by_id = build_verb_index(all_verbs)
     parent_map, children_map = build_connection_graphs(root_connections, verbs_by_id)
 
-    # 3. Build Root Graphs
-    root_parent_map, root_children_map, morpheme_info = build_root_graph(
-        post_root_connections
-    )
-
-    # 4. Sync Root IDs
+    # 3. Sync Root IDs
     # We need to assign stable IDs to verbs and group them accordingly
     # This also saves the root_ids.csv for user maintenance
     verb_to_root_id, synthetic_to_root_id = sync_root_ids(
-        all_verbs, verbs_by_id, parent_map, root_parent_map, existing_root_ids
+        all_verbs, verbs_by_id, parent_map, existing_root_ids
     )
 
-    # 5. Identify Top Level Verbs
+    # 4. Identify Top Level Verbs
     top_level_ids = identify_top_level_nodes(all_verbs, parent_map)
 
-    # 6. Group Verbs into Roots by ID
+    # 5. Group Verbs into Roots by ID
     root_groups = group_roots_final(
         top_level_ids,
         all_verbs,
@@ -551,12 +461,10 @@ def main() -> None:
         synthetic_to_root_id,
     )
 
-    # 8. Construct Final Hierarchy
-    final_output = build_final_hierarchy(
-        root_groups, root_parent_map, root_children_map, morpheme_info
-    )
+    # 6. Construct Final Hierarchy
+    final_output = build_final_hierarchy(root_groups)
 
-    # 9. Save
+    # 7. Save
     save_output(final_output, output_path)
 
 

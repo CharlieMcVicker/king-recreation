@@ -2,15 +2,12 @@ import argparse
 
 from king_recreation.analyze_connections import analyze_connections
 from king_recreation.analyze_matches import analyze_matches
-from king_recreation.analyze_post_root_morphemes import analyze_post_root_morphemes
 from king_recreation.classify_verbs import classify_verbs
 from king_recreation.derive_stems import main as derive_stems
 from king_recreation.group_hierarchical import main as group_hierarchical
 from king_recreation.paths import (
     cherokee_nation_dictionary_path,
     corpus_path,
-    post_root_connections_path,
-    post_root_morphemes_path,
     reconstructable_verbs_path,
     root_connections_path,
 )
@@ -50,15 +47,6 @@ def main():
         reconstructable_verbs_path,
         root_connections_path,
         args.classes,
-        verbs=verbs,
-        root_groups=root_groups,
-    )
-
-    print("      -> [5.2] Analyzing Post-Root Morphemes...")
-    analyze_post_root_morphemes(
-        reconstructable_verbs_path,
-        post_root_morphemes_path,
-        post_root_connections_path,
         verbs=verbs,
         root_groups=root_groups,
     )
