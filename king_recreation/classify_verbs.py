@@ -140,6 +140,79 @@ def get_matches_for_verb(verb, registry: PatternRegistry):
     return matches
 
 
+def create_stripped_row(verb, classes_map, match):
+    # Create stripped row
+
+    cls_info = classes_map.get(match["class"])
+    if not cls_info:
+        return None
+
+    stripped_row = {
+        "corpus_id": verb.get("corpus_id", ""),
+        "definition": match["definition"],
+        "class": match["class"],
+        "present": "",
+        "present_1sg": "",
+        "imperfective": "",
+        "perfective": "",
+        "imperative": "",
+        "infinitive": "",
+    }
+
+    # Strip suffixes
+    forms = [
+        "present",
+        "present_1sg",
+        "imperfective",
+        "perfective",
+        "imperative",
+        "infinitive",
+    ]
+    for fn in forms:
+        form_val = verb.get(fn)
+        if not form_val:
+            continue
+
+        cls_pattern = cls_info.get(fn)
+        if fn == "present_1sg" and not cls_pattern:
+            cls_pattern = cls_info.get("present")
+
+        if cls_pattern is None:
+            cls_pattern = ""
+
+        # Strip Literal Suffix
+        literal_suffix = cls_pattern.replace("*", "").replace("@", "")
+
+        if form_val.endswith(literal_suffix):
+            stripped_stem = (
+                form_val[: -len(literal_suffix)] if literal_suffix else form_val
+            )
+            stripped_row[fn] = stripped_stem
+
+        # allow h alternates
+        elif fn in ["present_1sg", "imperative"]:
+            for hless_suffix in possible_alternates(literal_suffix, fix_clusters=False):
+                fixed_hless_suffix = prevent_C_glottal_cluster(hless_suffix)
+                if form_val.endswith(fixed_hless_suffix):
+                    stripped_stem = (
+                        form_val[: -len(fixed_hless_suffix)]
+                        if fixed_hless_suffix
+                        else form_val
+                    )
+                    stripped_row[fn] = stripped_stem
+                elif hless_suffix.startswith("'"):
+                    form_with_glottals = recreate_C_glottal_clusters(form_val)
+                    if form_with_glottals.endswith(hless_suffix):
+                        stripped_stem = (
+                            form_with_glottals[: -len(hless_suffix)]
+                            if hless_suffix
+                            else form_with_glottals
+                        )
+                        stripped_row[fn] = prevent_C_glottal_cluster(stripped_stem)
+
+    return stripped_row
+
+
 def classify_verbs(classes_path=None):
     # Load classes via Registry
     registry = PatternRegistry.get_instance()
@@ -171,85 +244,15 @@ def classify_verbs(classes_path=None):
         # Identify candidates for stripping
         seen_class_def = set()
 
-        for m in matches:
-            # Create stripped row
-            key = (m["definition"], m["class"])
+        for match in matches:
+            key = (match["definition"], match["class"])
             if key in seen_class_def:
                 continue
             seen_class_def.add(key)
 
-            cls_info = classes_map.get(m["class"])
-            if not cls_info:
-                continue
-
-            stripped_row = {
-                "corpus_id": verb.get("corpus_id", ""),
-                "definition": m["definition"],
-                "class": m["class"],
-                "present": "",
-                "present_1sg": "",
-                "imperfective": "",
-                "perfective": "",
-                "imperative": "",
-                "infinitive": "",
-            }
-
-            # Strip suffixes
-            forms = [
-                "present",
-                "present_1sg",
-                "imperfective",
-                "perfective",
-                "imperative",
-                "infinitive",
-            ]
-            for fn in forms:
-                form_val = verb.get(fn)
-                if not form_val:
-                    continue
-
-                cls_pattern = cls_info.get(fn)
-                if fn == "present_1sg" and not cls_pattern:
-                    cls_pattern = cls_info.get("present")
-
-                if cls_pattern is None:
-                    cls_pattern = ""
-
-                # Strip Literal Suffix
-                literal_suffix = cls_pattern.replace("*", "").replace("@", "")
-
-                if form_val.endswith(literal_suffix):
-                    stripped_stem = (
-                        form_val[: -len(literal_suffix)] if literal_suffix else form_val
-                    )
-                    stripped_row[fn] = stripped_stem
-
-                # allow h alternates
-                elif fn in ["present_1sg", "imperative"]:
-                    for hless_suffix in possible_alternates(
-                        literal_suffix, fix_clusters=False
-                    ):
-                        fixed_hless_suffix = prevent_C_glottal_cluster(hless_suffix)
-                        if form_val.endswith(fixed_hless_suffix):
-                            stripped_stem = (
-                                form_val[: -len(fixed_hless_suffix)]
-                                if fixed_hless_suffix
-                                else form_val
-                            )
-                            stripped_row[fn] = stripped_stem
-                        elif hless_suffix.startswith("'"):
-                            form_with_glottals = recreate_C_glottal_clusters(form_val)
-                            if form_with_glottals.endswith(hless_suffix):
-                                stripped_stem = (
-                                    form_with_glottals[: -len(hless_suffix)]
-                                    if hless_suffix
-                                    else form_with_glottals
-                                )
-                                stripped_row[fn] = prevent_C_glottal_cluster(
-                                    stripped_stem
-                                )
-
-            stripped_corpus_data.append(stripped_row)
+            stripped_row = create_stripped_row(verb, classes_map, match)
+            if stripped_row:
+                stripped_corpus_data.append(stripped_row)
 
     fieldnames = [
         "corpus_id",
