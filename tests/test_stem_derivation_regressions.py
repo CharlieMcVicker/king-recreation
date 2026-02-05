@@ -1,25 +1,26 @@
-import unittest
 import csv
 import os
+import unittest
+
 from king_recreation.derive_stems import (
-    StemDeriver,
     Derivation,
-    strip_prepronominals,
+    StemDeriver,
     is_strict_compatible,
+    strip_prepronominals,
 )
 from king_recreation.phonology_data import (
-    StemType,
-    MetathesisStrategy,
-    PronominalConfig,
-    PrePronominalConfig,
-    get_pronominal_set_name,
-    use_glottal_grade,
-    _drop_first_h,
-    _is_compatible_with_vowel_restoration,
-    get_prefix_details,
-    detach_prefix,
     VOWEL_SET,
     Condition,
+    MetathesisStrategy,
+    PrePronominalConfig,
+    PronominalConfig,
+    StemType,
+    _drop_first_h,
+    _is_compatible_with_vowel_restoration,
+    detach_prefix,
+    get_prefix_details,
+    get_pronominal_set_name,
+    use_glottal_grade,
 )
 
 

@@ -1,14 +1,15 @@
-import json
+import base64
 import csv
+import json
 import os
 import sys
-import base64
 from collections import defaultdict
-from typing import List, Dict, Any, Optional, Tuple, DefaultDict, Set
 from dataclasses import dataclass, field
+from typing import Any, DefaultDict, Dict, List, Optional, Set, Tuple
+
 from king_recreation.reconstruct_from_roots import (
-    ReconstructibleVerb,
     EnhancedJSONEncoder,
+    ReconstructibleVerb,
 )
 
 

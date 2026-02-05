@@ -1,4 +1,5 @@
 import unittest
+
 from king_recreation.pattern_registry import PatternRegistry
 
 

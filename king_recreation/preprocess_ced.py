@@ -1,6 +1,6 @@
 import csv
-import re
 import os
+import re
 
 
 def respell_consonants(s):

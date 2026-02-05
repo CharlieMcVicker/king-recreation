@@ -1,20 +1,21 @@
-from king_recreation.morphemes.middle_voice import MiddleVoice
-import os
 import csv
-from dataclasses import dataclass, asdict
-from typing import List, Dict, Optional, Tuple
+import os
+from dataclasses import asdict, dataclass
+from typing import Dict, List, Optional, Tuple
+
+from king_recreation.h_alternation import grades_are_compatible
+from king_recreation.morphemes.middle_voice import MiddleVoice
+from king_recreation.morphemes.prepronominals import PrePronominalConfig
 from king_recreation.morphemes.pronominals import (
     Condition,
-    get_pronominal_set_name,
-    use_glottal_grade,
-    StemType,
     MetathesisStrategy,
     PronominalConfig,
-    get_prefix_details,
+    StemType,
     detach_prefix,
+    get_prefix_details,
+    get_pronominal_set_name,
+    use_glottal_grade,
 )
-from king_recreation.morphemes.prepronominals import PrePronominalConfig
-from king_recreation.h_alternation import grades_are_compatible
 
 
 @dataclass

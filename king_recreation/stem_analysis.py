@@ -1,9 +1,7 @@
-from typing import List, Dict, Optional, Tuple
-from king_recreation.phonology_data import (
-    use_glottal_grade,
-    VerbConfig,
-)
+from typing import Dict, List, Optional, Tuple
+
 from king_recreation.class_patterns import ExpandedClassPattern
+from king_recreation.phonology_data import VerbConfig, use_glottal_grade
 
 
 def get_root_candidate(stem: str, ending_pattern: str) -> Optional[str]:

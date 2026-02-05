@@ -1,9 +1,10 @@
-from king_recreation.phonology_data import VOWEL_SET
-from king_recreation.morphemes.middle_voice import MiddleVoice
+import re
 from dataclasses import dataclass
 from enum import Enum
 from typing import Optional, Tuple
-import re
+
+from king_recreation.morphemes.middle_voice import MiddleVoice
+from king_recreation.phonology_data import VOWEL_SET
 
 
 class StemType(Enum):

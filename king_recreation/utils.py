@@ -1,10 +1,10 @@
-import time
 import atexit
+import csv
 import json
 import os
-import csv
-from functools import wraps, partial
-from typing import List, Dict, Tuple, Optional
+import time
+from functools import partial, wraps
+from typing import Dict, List, Optional, Tuple
 
 
 class track_performance:

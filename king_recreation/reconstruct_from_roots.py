@@ -1,21 +1,24 @@
-from king_recreation.morphemes.prepronominals import PrePronominalConfig
-from king_recreation.h_alternation import prevent_C_glottal_cluster, possible_alternates
-import os
 import csv
-import json
 import dataclasses
+import json
+import os
+from collections import defaultdict
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import List, Dict, Optional
-from collections import defaultdict
-from king_recreation.morphemes.pronominals import (
-    get_pronominal_set_name,
-    get_prefix_details,
-    attach_prefix,
-    use_glottal_grade,
-    PronominalConfig,
+from typing import Dict, List, Optional
+
+from king_recreation.h_alternation import possible_alternates, prevent_C_glottal_cluster
+from king_recreation.morphemes.prepronominals import (
+    PrePronominalConfig,
+    apply_prepronominal,
 )
-from king_recreation.morphemes.prepronominals import apply_prepronominal
+from king_recreation.morphemes.pronominals import (
+    PronominalConfig,
+    attach_prefix,
+    get_prefix_details,
+    get_pronominal_set_name,
+    use_glottal_grade,
+)
 from king_recreation.pattern_registry import PatternRegistry
 
 

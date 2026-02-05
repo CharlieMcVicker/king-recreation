@@ -1,5 +1,6 @@
-import io
 import csv
+import io
+
 from king_recreation.class_patterns import ClassPatterns
 
 
@@ -10,8 +11,8 @@ hvsk,,hvsk,hvsk,nh;han,hvka,ht;*ht;hvst
 """
 
     # We need to mock the file reading part or use a temporary file
-    import tempfile
     import os
+    import tempfile
 
     with tempfile.NamedTemporaryFile(mode="w", suffix=".csv", delete=False) as f:
         f.write(csv_content)

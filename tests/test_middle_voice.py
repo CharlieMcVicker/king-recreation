@@ -1,5 +1,6 @@
-import unittest
 import os
+import unittest
+
 from king_recreation.phonology_data import MiddleVoice
 
 

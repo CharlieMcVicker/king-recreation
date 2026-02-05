@@ -1,10 +1,11 @@
 import csv
 import sys
-from king_recreation.derive_stems import StemDeriver, Derivation
+
+from king_recreation.derive_stems import Derivation, StemDeriver
 from king_recreation.phonology_data import (
-    get_pronominal_set_name,
     PronominalConfig,
     StemType,
+    get_pronominal_set_name,
 )
 
 

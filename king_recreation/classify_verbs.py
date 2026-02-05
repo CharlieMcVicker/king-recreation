@@ -1,12 +1,13 @@
-from king_recreation.h_alternation import (
-    prevent_C_glottal_cluster,
-    recreate_C_glottal_clusters,
-    possible_alternates,
-)
-from king_recreation.pattern_registry import PatternRegistry
 import csv
 import os
 from collections import defaultdict
+
+from king_recreation.h_alternation import (
+    possible_alternates,
+    prevent_C_glottal_cluster,
+    recreate_C_glottal_clusters,
+)
+from king_recreation.pattern_registry import PatternRegistry
 
 
 def match_alternated_endings(form_val: str, suffix: str, classname: str):

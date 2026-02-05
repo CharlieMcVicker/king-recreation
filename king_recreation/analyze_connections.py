@@ -1,14 +1,15 @@
 import json
 import os
-from typing import List, Dict, Set, Tuple
+from typing import Dict, List, Set, Tuple
+
 from king_recreation.reconstruct_from_roots import (
     ReconstructibleVerb,
     ReconstructionEngine,
 )
 from king_recreation.utils import (
-    load_verbs,
     group_verbs_by_root,
     load_existing_approvals,
+    load_verbs,
     save_csv_artifact,
 )
 

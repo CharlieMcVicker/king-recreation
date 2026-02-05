@@ -1,8 +1,9 @@
-import unittest
 import os
+import unittest
+
 from king_recreation.derive_stems import StemDeriver
-from king_recreation.reconstruct_from_roots import ReconstructionEngine
 from king_recreation.phonology_data import get_pronominal_set_name
+from king_recreation.reconstruct_from_roots import ReconstructionEngine
 
 
 class TestHDroppingGeneralized(unittest.TestCase):

@@ -1,5 +1,5 @@
-from typing import Tuple, Optional, List
 from enum import Enum
+from typing import List, Optional, Tuple
 
 
 class MiddleVoice(Enum):

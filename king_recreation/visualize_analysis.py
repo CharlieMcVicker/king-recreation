@@ -1,10 +1,11 @@
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+import argparse
 import json
 import os
-import argparse
 import shutil
+
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 
 
 def _plot_class_distribution(

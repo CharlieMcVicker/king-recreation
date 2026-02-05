@@ -1,5 +1,6 @@
-from king_recreation.phonology_data import VOWEL_SET
 import re
+
+from king_recreation.phonology_data import VOWEL_SET
 
 
 def _drop_first_h(h_grade: str) -> str:

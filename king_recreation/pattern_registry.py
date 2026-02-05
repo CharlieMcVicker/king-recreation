@@ -1,12 +1,13 @@
-from typing import List, Dict, Optional, Tuple
 import csv
 import os
 import re
 from collections import defaultdict
+from typing import Dict, List, Optional, Tuple
+
 from king_recreation.class_patterns import ClassMacro, ExpandedClassPattern
 from king_recreation.h_alternation import (
-    recreate_C_glottal_clusters,
     possible_alternates,
+    recreate_C_glottal_clusters,
 )
 
 CLASSES_PATH = "data/classes.csv"

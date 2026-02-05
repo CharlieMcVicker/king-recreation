@@ -1,20 +1,15 @@
 import argparse
-from king_recreation.preprocess_ced import process_cn_dict
-from king_recreation.derive_stems import main as derive_stems
-from king_recreation.classify_verbs import classify_verbs
-from king_recreation.analyze_matches import analyze_matches
-from king_recreation.visualize_analysis import run_all_visualizations
-from king_recreation.reconstruct_from_roots import (
-    main as reconstruct_from_roots,
-)
+
 from king_recreation.analyze_connections import analyze_connections
-from king_recreation.analyze_post_root_morphemes import (
-    analyze_post_root_morphemes,
-)
-from king_recreation.group_hierarchical import (
-    main as group_hierarchical,
-)
-from king_recreation.utils import load_verbs, group_verbs_by_root
+from king_recreation.analyze_matches import analyze_matches
+from king_recreation.analyze_post_root_morphemes import analyze_post_root_morphemes
+from king_recreation.classify_verbs import classify_verbs
+from king_recreation.derive_stems import main as derive_stems
+from king_recreation.group_hierarchical import main as group_hierarchical
+from king_recreation.preprocess_ced import process_cn_dict
+from king_recreation.reconstruct_from_roots import main as reconstruct_from_roots
+from king_recreation.utils import group_verbs_by_root, load_verbs
+from king_recreation.visualize_analysis import run_all_visualizations
 
 
 def main():

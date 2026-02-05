@@ -1,11 +1,12 @@
-import unittest
-from king_recreation.derive_stems import StemDeriver
-from king_recreation.reconstruct_from_roots import (
-    ReconstructionEngine,
-    ReconstructibleVerb,
-)
-from king_recreation.phonology_data import get_pronominal_set_name
 import os
+import unittest
+
+from king_recreation.derive_stems import StemDeriver
+from king_recreation.phonology_data import get_pronominal_set_name
+from king_recreation.reconstruct_from_roots import (
+    ReconstructibleVerb,
+    ReconstructionEngine,
+)
 
 
 class TestHMetathesis(unittest.TestCase):

@@ -1,5 +1,6 @@
 import unittest
-from king_recreation.preprocess_ced import clean_string, clean_row
+
+from king_recreation.preprocess_ced import clean_row, clean_string
 
 
 class TestPreprocessCed(unittest.TestCase):

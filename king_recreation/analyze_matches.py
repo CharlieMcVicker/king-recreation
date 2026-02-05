@@ -1,11 +1,11 @@
-import json
-import os
 import argparse
 import csv
-from collections import defaultdict, Counter
-from typing import Optional, List, Dict, Any
-
+import json
+import os
 import re
+from collections import Counter, defaultdict
+from typing import Any, Dict, List, Optional
+
 from king_recreation.pattern_registry import PatternRegistry
 
 

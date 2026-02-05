@@ -1,5 +1,6 @@
 import unittest
-from king_recreation.derive_stems import StemDeriver, is_strict_compatible, drop_first_h
+
+from king_recreation.derive_stems import StemDeriver, drop_first_h, is_strict_compatible
 
 
 class TestHAlternationExtended(unittest.TestCase):
