@@ -5,6 +5,7 @@ from typing import Dict, List, Optional, Tuple
 
 from king_recreation.h_alternation import grades_are_compatible
 from king_recreation.morphemes.middle_voice import MiddleVoice
+from king_recreation.morphemes.post_root_morphemes import match_post_root_morphemes
 from king_recreation.morphemes.prepronominals import PrePronominalConfig
 from king_recreation.morphemes.pronominals import (
     MetathesisStrategy,
@@ -357,7 +358,7 @@ def main():
                 for d in derivations:
                     # copy row
                     stripped_row = {**row, **d.to_row()}
-                    labeled_data.append(stripped_row)
+                    labeled_data.extend(match_post_root_morphemes(stripped_row))
 
     if labeled_data:
         keys = labeled_data[0].keys()

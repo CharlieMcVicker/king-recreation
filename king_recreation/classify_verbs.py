@@ -10,7 +10,6 @@ from king_recreation.h_alternation import (
     recreate_C_glottal_clusters,
 )
 from king_recreation.morphemes.aspect.strip import StrippedVerbRow, create_stripped_row
-from king_recreation.morphemes.post_root_morphemes import match_post_root_morphemes
 from king_recreation.paths import corpus_no_asp_path, corpus_path, matches_path
 from king_recreation.pattern_registry import PatternRegistry
 
@@ -183,7 +182,7 @@ def classify_verbs(classes_path=None):
 
             stripped_row = create_stripped_row(verb, classes_map, match["class"])
             if stripped_row:
-                stripped_corpus_data.extend(match_post_root_morphemes(stripped_row))
+                stripped_corpus_data.append(stripped_row)
 
     fieldnames = [
         "corpus_id",

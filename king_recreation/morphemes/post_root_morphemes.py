@@ -56,7 +56,7 @@ class PostRootMorphemeRegistry:
         return class_map
 
 
-def match_post_root_morphemes(row: StrippedVerbRow) -> List[StrippedVerbRow]:
+def match_post_root_morphemes(row: dict[str, str]) -> List[dict[str, str]]:
     reg = PostRootMorphemeRegistry.get_instance()
     rows = [row]
     forms = [
@@ -67,18 +67,18 @@ def match_post_root_morphemes(row: StrippedVerbRow) -> List[StrippedVerbRow]:
         "imperative",
         "infinitive",
     ]
-    if row.verb_class in reg.class_map:
-        morphemes = reg.class_map[row.verb_class]
+    if row["class"] in reg.class_map:
+        morphemes = reg.class_map[row["class"]]
         for m_name in morphemes:
             morpheme = reg.morphemes_by_name[m_name]
 
             match_row = row.copy()
-            match_row.post_root_morpheme = morpheme.name
+            match_row["post_root_morpheme"] = morpheme.name
 
             for form in forms:
-                form_val = getattr(match_row, form)
+                form_val = match_row[form]
                 if form_val.endswith(morpheme.form):
-                    setattr(match_row, form, form_val[: -len(morpheme.form)])
+                    match_row[form] = form_val[: -len(morpheme.form)]
                 else:
                     break
             else:
