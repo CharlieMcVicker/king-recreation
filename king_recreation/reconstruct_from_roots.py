@@ -31,6 +31,7 @@ from king_recreation.paths import (
     reconstruction_validation_path,
     reports_path,
     validated_matches_path,
+    validated_reconstructable_roots_path,
 )
 from king_recreation.pattern_registry import PatternRegistry
 
@@ -66,6 +67,9 @@ class ReconstructibleVerb:
     corpus_id: Optional[int] = None
     entry_no: Optional[int] = None
     derivations: List["ReconstructibleVerb"] = field(default_factory=list)
+    original_data: dict = field(
+        default_factory=dict, repr=False, hash=False, compare=False
+    )
 
     @staticmethod
     def from_dict(data: dict) -> "ReconstructibleVerb":
@@ -218,77 +222,6 @@ class ReconstructionEngine:
         return [{fn: set(opts or []) for fn, opts in form_options.items()}]
 
 
-def dedupe_roots(validated_verbs: list[ReconstructibleVerb]):
-    roots_by_corpus_id: dict[str, list[ReconstructibleVerb]] = {}
-    for verb in validated_verbs:
-        c_id = verb.corpus_id
-        if not c_id in roots_by_corpus_id:
-            roots_by_corpus_id[c_id] = [verb]
-        else:
-            roots_by_corpus_id[c_id].append(verb)
-
-    deduped_roots = []
-    dropped = []
-
-    for c_id, vl in roots_by_corpus_id.items():
-        lowest_len = None
-        lowest_v = None
-        if len(vl) == 1:
-            deduped_roots.append(vl[0])
-        else:
-            for v in vl:
-                len_v = len(v.h_grade_root)
-                if lowest_v is None or len_v < lowest_len:
-                    lowest_len = len_v
-                    lowest_v = v
-                elif lowest_v == len_v:
-                    print(
-                        "[WARNING]",
-                        v.class_name,
-                        lowest_v.class_name,
-                        "have same length root",
-                    )
-                    dropped.append(c_id)
-                    break
-            else:
-                # print(
-                #     "Lowest len root",
-                #     lowest_v["definition"],
-                #     lowest_v["h_grade_root"],
-                #     lowest_v["class_name"],
-                # )
-                deduped_roots.append(lowest_v)
-
-    return deduped_roots, dropped
-
-
-def enrich_glottal_grades(verbs: List[ReconstructibleVerb]):
-    """
-    If an h_grade_root has exactly one attested glottal_grade_root across all verbs,
-    apply that glottal_grade_root to any verbs sharing the same h_grade_root
-    that are currently missing it.
-    """
-    # h_grade -> set of non-null glottal_grade_root values
-    g_grades_by_h = defaultdict(set)
-    for v in verbs:
-        if v.glottal_grade_root is not None:
-            g_grades_by_h[v.h_grade_root].add(v.glottal_grade_root)
-
-    # h_grade -> single non-null g_grade if it's the only one
-    enrichment_map = {
-        h: next(iter(gs)) for h, gs in g_grades_by_h.items() if len(gs) == 1
-    }
-
-    enriched_count = 0
-    for v in verbs:
-        if v.glottal_grade_root is None and v.h_grade_root in enrichment_map:
-            v.glottal_grade_root = enrichment_map[v.h_grade_root]
-            enriched_count += 1
-
-    if enriched_count > 0:
-        print(f"[INFO] Enriched {enriched_count} verbs with inferred glottal grades.")
-
-
 def main(classes_path=None):
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -342,6 +275,7 @@ def main(classes_path=None):
             post_root_morpheme=post_root_morpheme,
             config=config,
             corpus_id=int(stem_row["corpus_id"]) if "corpus_id" in stem_row else None,
+            original_data=stem_row,
         )
         reconstructible_verbs.append(verb)
 
@@ -354,6 +288,7 @@ def main(classes_path=None):
     failures = []
     report_data = []
     validated_verbs: List[ReconstructibleVerb] = []
+    validated_rows: List[dict] = []
 
     for verb in reconstructible_verbs:
         generated_sets = engine.reconstruct_verb(verb)
@@ -393,6 +328,10 @@ def main(classes_path=None):
         if matches_all:
             success_count += 1
             validated_verbs.append(verb)
+            # Inject entry_no into original_data so it persists to the CSV
+            if verb.entry_no is not None:
+                verb.original_data["entry_no"] = verb.entry_no
+            validated_rows.append(verb.original_data)
         else:
             failures.append(
                 {
@@ -419,13 +358,6 @@ def main(classes_path=None):
         )
 
     print(f"Validation Success: {success_count}/{len(reconstructible_verbs)}")
-
-    # Dedupe roots when one parse gives a strictly shorter root than all others
-    deduped_roots, dropped_items = dedupe_roots(validated_verbs)
-
-    print(
-        f"Root-deduping: {len(deduped_roots)} unique roots, {len(dropped_items)} ambiguous items dropped"
-    )
 
     # Save Consistency Analysis
     analysis_fields = [
@@ -485,6 +417,26 @@ def main(classes_path=None):
             indent=4,
         )
 
+    # Save Validated Roots CSV
+    if validated_rows:
+        # Re-determine fieldnames to include entry_no if it was added
+        # (It effectively merges keys from all rows to handle optional entry_no)
+        all_keys = set()
+        for row in validated_rows:
+            all_keys.update(row.keys())
+        # Sort keys to keep deterministic order, but maybe prefer original order?
+        # Let's take original keys + entry_no
+        fieldnames = list(validated_rows[0].keys())
+        if "entry_no" not in fieldnames and "entry_no" in all_keys:
+            fieldnames.append("entry_no")
+
+        with open(
+            validated_reconstructable_roots_path, "w", encoding="utf-8", newline=""
+        ) as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(validated_rows)
+
     # Save Reconstruction Failures CSV
     # failure format: {"definition": ..., "failed_forms": [...], "class": ...}
     failures_csv_data = []
@@ -510,17 +462,6 @@ def main(classes_path=None):
         )
         writer.writeheader()
         writer.writerows(failures_csv_data)
-
-    # Enrich missing glottal grades before final serialization
-    enrich_glottal_grades(deduped_roots)
-
-    # Save Fully Serialized Verbs
-    with open(reconstructable_verbs_path, "w", encoding="utf-8") as f:
-        json.dump(deduped_roots, f, cls=EnhancedJSONEncoder, indent=4)
-
-    # Save classes used for reconstructions
-    with open(classes_expanded_path, "w", encoding="utf-8") as f:
-        json.dump(engine.classes, f, cls=EnhancedJSONEncoder, indent=4)
 
     print(f"Artifacts saved to {reports_path}")
 

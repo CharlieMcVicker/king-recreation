@@ -3,6 +3,7 @@ import argparse
 from king_recreation.analyze_connections import analyze_connections
 from king_recreation.analyze_matches import analyze_matches
 from king_recreation.classify_verbs import classify_verbs
+from king_recreation.dedupe_roots import main as dedupe_roots
 from king_recreation.derive_stems import main as derive_stems
 from king_recreation.group_hierarchical import main as group_hierarchical
 from king_recreation.paths import (
@@ -35,6 +36,9 @@ def main():
 
     print("\n[4/10] Reconstructing from Roots...")
     reconstruct_from_roots(args.classes)
+
+    print("\n[4.5/10] Deduping Roots...")
+    dedupe_roots()
 
     print("\n[5/10] Analyzing Connections...")
 
