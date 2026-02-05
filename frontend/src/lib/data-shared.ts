@@ -24,13 +24,6 @@ export interface ReconstructableVerb {
       use_3rd_person_object: boolean;
     };
   };
-  original_stems: {
-    present: string;
-    imperfective: string;
-    perfective: string;
-    imperative: string;
-    infinitive: string;
-  };
 }
 
 export interface ClassDefinition {
@@ -64,7 +57,7 @@ export interface DictionaryEntry {
 export function getCorpusForm(
   entries: DictionaryEntry[],
   entryNo: number | undefined,
-  formKey: string
+  formKey: string,
 ): string | null {
   if (!entryNo) return null;
   const group = entries.filter((e) => Number(e["No."]) === entryNo);
@@ -72,7 +65,7 @@ export function getCorpusForm(
 
   const findBest = (predicate: (sub: string) => boolean) => {
     const matches = group.filter((e) =>
-      predicate((e["Grammar sub entry"] || "").toLowerCase())
+      predicate((e["Grammar sub entry"] || "").toLowerCase()),
     );
     if (matches.length === 0) return null;
 
@@ -95,7 +88,7 @@ export function getCorpusForm(
           s.startsWith("3rd person singular") &&
           !s.includes("habitual") &&
           !s.includes("past") &&
-          !s.includes("infinitive")
+          !s.includes("infinitive"),
       );
     case "present_1sg":
       return findBest((s) => s.startsWith("1st person singular"));
@@ -126,7 +119,7 @@ export function normalize(s: string) {
 
 export function getPronominalSetName(
   formName: string,
-  config: ReconstructableVerb["config"]["pron"]
+  config: ReconstructableVerb["config"]["pron"],
 ): string | null {
   const { set_type, use_3rd_person_object } = config;
 
@@ -140,22 +133,22 @@ export function getPronominalSetName(
     return use_3rd_person_object
       ? "2nd to 3rd"
       : ["Set A", "a"].includes(set_type)
-      ? "2nd Set A"
-      : "2nd Set B";
+        ? "2nd Set A"
+        : "2nd Set B";
   }
   if (formName === "present_1sg") {
     return use_3rd_person_object
       ? "1st to 3rd"
       : ["Set A", "a"].includes(set_type)
-      ? "1st Set A"
-      : "1st Set B";
+        ? "1st Set A"
+        : "1st Set B";
   }
   return null;
 }
 
 export function resolveClassEndings(
   classNameFull: string,
-  classes: ClassDefinition[]
+  classes: ClassDefinition[],
 ) {
   const match = classNameFull.match(/^([^\[]+)(?:\[(.*)\])?$/);
   if (!match) return null;
@@ -168,7 +161,7 @@ export function resolveClassEndings(
       c.macro_name === baseClassName ||
       (c.subclass
         ? `${c.class}-${c.subclass}` === baseClassName
-        : c.class === baseClassName)
+        : c.class === baseClassName),
   );
 
   if (!classDef) return null;

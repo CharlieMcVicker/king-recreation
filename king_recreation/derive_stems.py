@@ -360,12 +360,24 @@ def main():
                     stripped_row = {**row, **d.to_row()}
                     labeled_data.extend(match_post_root_morphemes(stripped_row))
 
+    form_names = [
+        # "present",
+        # "present_1sg",
+        # "imperfective",
+        # "perfective",
+        # "imperative",
+        # "infinitive",
+    ]
+
     if labeled_data:
         keys = labeled_data[0].keys()
+        keys = [k for k in keys if not k in form_names]
         with open(corpus_no_pre_no_asp_path, "w", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()
-            writer.writerows(labeled_data)
+            writer.writerows(
+                {k: v for k, v in row.items() if k in keys} for row in labeled_data
+            )
     if failures:
         keys = failures[0].keys()
         with open(pre_parsing_failures_path, "w", encoding="utf-8") as f:

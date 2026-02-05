@@ -26,13 +26,6 @@ export interface ReconstructableVerb {
       use_3rd_person_object: boolean;
     };
   };
-  original_stems: {
-    present: string;
-    imperfective: string;
-    perfective: string;
-    imperative: string;
-    infinitive: string;
-  };
   derivations?: ReconstructableVerb[];
 }
 

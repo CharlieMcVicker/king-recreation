@@ -25,28 +25,23 @@ export default function CorpusTable({ verb, dictionary }: CorpusTableProps) {
     {
       label: "Present-1sg",
       key: "present_1sg",
-      stem: verb.original_stems.present,
     },
-    { label: "Present", key: "present", stem: verb.original_stems.present },
+    { label: "Present", key: "present" },
     {
       label: "Infinitive",
       key: "infinitive",
-      stem: verb.original_stems.infinitive,
     },
     {
       label: "Imperative",
       key: "imperative",
-      stem: verb.original_stems.imperative,
     },
     {
       label: "Imperfective",
       key: "imperfective",
-      stem: verb.original_stems.imperfective,
     },
     {
       label: "Perfective",
       key: "perfective",
-      stem: verb.original_stems.perfective,
     },
   ];
 
@@ -97,7 +92,7 @@ export default function CorpusTable({ verb, dictionary }: CorpusTableProps) {
               <div className="flex flex-col">
                 <span
                   className={`text-sm font-medium ${getPronounColor(
-                    getPronominalSetName("present_1sg", verb.config.pron)
+                    getPronominalSetName("present_1sg", verb.config.pron),
                   )}`}
                 >
                   {getCorpusLabel("present_1sg") || "-"}
@@ -113,7 +108,7 @@ export default function CorpusTable({ verb, dictionary }: CorpusTableProps) {
               <div className="flex flex-col">
                 <span
                   className={`text-sm font-medium ${getPronounColor(
-                    getPronominalSetName("present", verb.config.pron)
+                    getPronominalSetName("present", verb.config.pron),
                   )}`}
                 >
                   {getCorpusLabel("present") || "-"}
@@ -129,7 +124,7 @@ export default function CorpusTable({ verb, dictionary }: CorpusTableProps) {
               <div className="flex flex-col">
                 <span
                   className={`text-sm font-medium ${getPronounColor(
-                    getPronominalSetName("infinitive", verb.config.pron)
+                    getPronominalSetName("infinitive", verb.config.pron),
                   )}`}
                 >
                   {getCorpusLabel("infinitive") || "-"}
@@ -158,7 +153,7 @@ export default function CorpusTable({ verb, dictionary }: CorpusTableProps) {
               <div className="flex flex-col">
                 <span
                   className={`text-sm font-medium ${getPronounColor(
-                    getPronominalSetName("imperative", verb.config.pron)
+                    getPronominalSetName("imperative", verb.config.pron),
                   )}`}
                 >
                   {getCorpusLabel("imperative") || "-"}
@@ -174,7 +169,7 @@ export default function CorpusTable({ verb, dictionary }: CorpusTableProps) {
               <div className="flex flex-col">
                 <span
                   className={`text-sm font-medium ${getPronounColor(
-                    getPronominalSetName("imperfective", verb.config.pron)
+                    getPronominalSetName("imperfective", verb.config.pron),
                   )}`}
                 >
                   {getCorpusLabel("imperfective") || "-"}
@@ -190,7 +185,7 @@ export default function CorpusTable({ verb, dictionary }: CorpusTableProps) {
               <div className="flex flex-col">
                 <span
                   className={`text-sm font-medium ${getPronounColor(
-                    getPronominalSetName("perfective", verb.config.pron)
+                    getPronominalSetName("perfective", verb.config.pron),
                   )}`}
                 >
                   {getCorpusLabel("perfective") || "-"}

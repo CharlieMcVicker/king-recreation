@@ -65,7 +65,6 @@ class ReconstructibleVerb:
     config: VerbConfig
     corpus_id: Optional[int] = None
     entry_no: Optional[int] = None
-    original_stems: Dict[str, str] = field(default_factory=dict)
     derivations: List["ReconstructibleVerb"] = field(default_factory=list)
 
     @staticmethod
@@ -349,9 +348,6 @@ def main(classes_path=None):
             post_root_morpheme=post_root_morpheme,
             config=config,
             corpus_id=int(stem_row["corpus_id"]) if "corpus_id" in stem_row else None,
-            original_stems={
-                fn: stem_row.get(fn, "") for fn in forms
-            },  # These are roots now
         )
         reconstructible_verbs.append(verb)
 
