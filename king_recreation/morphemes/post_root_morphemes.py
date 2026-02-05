@@ -1,0 +1,86 @@
+import csv
+from dataclasses import asdict, dataclass
+from typing import Dict, List, Set
+
+from king_recreation.morphemes.aspect.strip import StrippedVerbRow
+from king_recreation.paths import post_root_morphemes_path
+
+
+@dataclass
+class PostRootMorpheme:
+    name: str
+    form: str
+    classes: List[str]
+
+    @staticmethod
+    def from_row(row):
+        return PostRootMorpheme(
+            name=f'{row["name"]}[{row["subcase"]}]' if row["subcase"] else row["name"],
+            form=row["form"],
+            classes=row["classes"].split(";"),
+        )
+
+
+def load_post_root_morphemes():
+    # Load Morphemes
+    morphemes = []
+    with open(post_root_morphemes_path, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            morphemes.append(PostRootMorpheme.from_row(row))
+
+    return morphemes
+
+
+class PostRootMorphemeRegistry:
+    _instance = None
+
+    def __init__(self):
+        self.morphemes: List[PostRootMorpheme] = load_post_root_morphemes()
+        self.morphemes_by_name = {m.name: m for m in self.morphemes}
+        self.class_map = self.create_class_map()
+
+    @classmethod
+    def get_instance(cls) -> "PostRootMorphemeRegistry":
+        if cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
+
+    def create_class_map(self):
+        class_map: Dict[str, Set[str]] = {}
+        for prm in self.morphemes:
+            for verb_class in prm.classes:
+                if verb_class not in class_map:
+                    class_map[verb_class] = set()
+                class_map[verb_class].add(prm.name)
+        return class_map
+
+
+def match_post_root_morphemes(row: StrippedVerbRow) -> List[StrippedVerbRow]:
+    reg = PostRootMorphemeRegistry.get_instance()
+    rows = [row]
+    forms = [
+        "present",
+        "present_1sg",
+        "imperfective",
+        "perfective",
+        "imperative",
+        "infinitive",
+    ]
+    if row.verb_class in reg.class_map:
+        morphemes = reg.class_map[row.verb_class]
+        for m_name in morphemes:
+            morpheme = reg.morphemes_by_name[m_name]
+
+            match_row = row.copy()
+            match_row.post_root_morpheme = morpheme.name
+
+            for form in forms:
+                form_val = getattr(match_row, form)
+                if form_val.endswith(morpheme.form):
+                    setattr(match_row, form, form_val[: -len(morpheme.form)])
+                else:
+                    break
+            else:
+                rows.append(match_row)
+    return rows

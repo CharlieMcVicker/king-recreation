@@ -8,6 +8,7 @@ from enum import Enum
 from typing import Dict, List, Optional
 
 from king_recreation.h_alternation import possible_alternates, prevent_C_glottal_cluster
+from king_recreation.morphemes.post_root_morphemes import PostRootMorphemeRegistry
 from king_recreation.morphemes.prepronominals import (
     PrePronominalConfig,
     apply_prepronominal,
@@ -59,6 +60,7 @@ class ReconstructibleVerb:
     definition: str
     h_grade_root: str
     glottal_grade_root: Optional[str]
+    post_root_morpheme: Optional[str]
     class_name: str
     config: VerbConfig
     corpus_id: Optional[int] = None
@@ -71,6 +73,10 @@ class ReconstructibleVerb:
         clean_data = data.copy()
         if "config" in clean_data:
             clean_data["config"] = VerbConfig.from_dict(clean_data["config"])
+        if "post_root_morpheme" in clean_data:
+            val = clean_data["post_root_morpheme"]
+            # turn "" to None
+            clean_data["post_root_morpheme"] = val if val else None
         return ReconstructibleVerb(**clean_data)
 
 
@@ -122,6 +128,10 @@ class ReconstructionEngine:
 
         # apply middle voice
         root = verb.config.pron.middle_voice.apply(root, glottal_grade)
+
+        if verb.post_root_morpheme:
+            reg = PostRootMorphemeRegistry.get_instance()
+            root = root + reg.morphemes_by_name[verb.post_root_morpheme].form
 
         return root
 
@@ -328,11 +338,15 @@ def main(classes_path=None):
         # Optional: We could re-verify consistency here, but derive_stems checks it.
         # We assume if it's in derived_roots, it passed basic consistency.
 
+        post_root_morpheme = stem_row["post_root_morpheme"]
+        post_root_morpheme = post_root_morpheme if post_root_morpheme else None
+
         verb = ReconstructibleVerb(
             definition=definition,
             h_grade_root=h_root,
             glottal_grade_root=glottal_root,
             class_name=cls_name,
+            post_root_morpheme=post_root_morpheme,
             config=config,
             corpus_id=int(stem_row["corpus_id"]) if "corpus_id" in stem_row else None,
             original_stems={

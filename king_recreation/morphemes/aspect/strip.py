@@ -14,6 +14,7 @@ class StrippedVerbRow:
     corpus_id: str
     definition: str
     verb_class: str
+    post_root_morpheme: Optional[str] = None
     present: str = ""
     present_1sg: str = ""
     imperfective: str = ""
@@ -27,6 +28,7 @@ class StrippedVerbRow:
             "corpus_id",
             "definition",
             "class",
+            "post_root_morpheme",
             "present",
             "present_1sg",
             "imperfective",
@@ -48,18 +50,21 @@ class StrippedVerbRow:
         d["class"] = d.pop("verb_class")
         return d
 
+    def copy(self):
+        return StrippedVerbRow(**asdict(self))
 
-def create_stripped_row(verb, classes_map, match) -> Optional[StrippedVerbRow]:
+
+def create_stripped_row(verb, classes_map, verb_class) -> Optional[StrippedVerbRow]:
     # Create stripped row
 
-    cls_info = classes_map.get(match["class"])
+    cls_info = classes_map.get(verb_class)
     if not cls_info:
         return None
 
     stripped_row = StrippedVerbRow(
         corpus_id=verb.get("corpus_id", ""),
-        definition=match["definition"],
-        verb_class=match["class"],
+        definition=verb.get("definition", ""),
+        verb_class=verb_class,
     )
 
     # Strip suffixes
