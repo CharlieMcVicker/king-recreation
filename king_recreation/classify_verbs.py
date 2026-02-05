@@ -2,12 +2,14 @@ import csv
 import os
 from collections import defaultdict
 from dataclasses import asdict, dataclass
+from typing import List
 
 from king_recreation.h_alternation import (
     possible_alternates,
     prevent_C_glottal_cluster,
     recreate_C_glottal_clusters,
 )
+from king_recreation.morphemes.aspect.strip import StrippedVerbRow, create_stripped_row
 from king_recreation.paths import corpus_no_asp_path, corpus_path, matches_path
 from king_recreation.pattern_registry import PatternRegistry
 
@@ -141,93 +143,6 @@ def get_matches_for_verb(verb, registry: PatternRegistry):
     return matches
 
 
-@dataclass
-class StrippedVerbRow:
-    corpus_id: str
-    definition: str
-    verb_class: str
-    present: str = ""
-    present_1sg: str = ""
-    imperfective: str = ""
-    perfective: str = ""
-    imperative: str = ""
-    infinitive: str = ""
-
-    def to_dict(self):
-        d = asdict(self)
-        d["class"] = d.pop("verb_class")
-        return d
-
-
-def create_stripped_row(verb, classes_map, match):
-    # Create stripped row
-
-    cls_info = classes_map.get(match["class"])
-    if not cls_info:
-        return None
-
-    stripped_row = StrippedVerbRow(
-        corpus_id=verb.get("corpus_id", ""),
-        definition=match["definition"],
-        verb_class=match["class"],
-    )
-
-    # Strip suffixes
-    forms = [
-        "present",
-        "present_1sg",
-        "imperfective",
-        "perfective",
-        "imperative",
-        "infinitive",
-    ]
-    for fn in forms:
-        form_val = verb.get(fn)
-        if not form_val:
-            continue
-
-        cls_pattern = cls_info.get(fn)
-        if fn == "present_1sg" and not cls_pattern:
-            cls_pattern = cls_info.get("present")
-
-        if cls_pattern is None:
-            cls_pattern = ""
-
-        # Strip Literal Suffix
-        literal_suffix = cls_pattern.replace("*", "").replace("@", "")
-
-        if form_val.endswith(literal_suffix):
-            stripped_stem = (
-                form_val[: -len(literal_suffix)] if literal_suffix else form_val
-            )
-            setattr(stripped_row, fn, stripped_stem)
-
-        # allow h alternates
-        elif fn in ["present_1sg", "imperative"]:
-            for hless_suffix in possible_alternates(literal_suffix, fix_clusters=False):
-                fixed_hless_suffix = prevent_C_glottal_cluster(hless_suffix)
-                if form_val.endswith(fixed_hless_suffix):
-                    stripped_stem = (
-                        form_val[: -len(fixed_hless_suffix)]
-                        if fixed_hless_suffix
-                        else form_val
-                    )
-                    setattr(stripped_row, fn, stripped_stem)
-                elif hless_suffix.startswith("'"):
-                    form_with_glottals = recreate_C_glottal_clusters(form_val)
-                    if form_with_glottals.endswith(hless_suffix):
-                        stripped_stem = (
-                            form_with_glottals[: -len(hless_suffix)]
-                            if hless_suffix
-                            else form_with_glottals
-                        )
-                        setattr(
-                            stripped_row, fn, prevent_C_glottal_cluster(stripped_stem)
-                        )
-
-    return stripped_row
-
-
 def classify_verbs(classes_path=None):
     # Load classes via Registry
     registry = PatternRegistry.get_instance()
@@ -248,7 +163,7 @@ def classify_verbs(classes_path=None):
             corpus_rows.append(row)
 
     matches_data = []
-    stripped_corpus_data = []
+    stripped_corpus_data: List[StrippedVerbRow] = []
 
     for verb in corpus_rows:
         matches = get_matches_for_verb(verb, registry)
@@ -281,22 +196,7 @@ def classify_verbs(classes_path=None):
         writer.writerows(matches_data)
 
     if stripped_corpus_data:
-        stripped_dicts = [x.to_dict() for x in stripped_corpus_data]
-        keys = [
-            "corpus_id",
-            "definition",
-            "class",
-            "present",
-            "present_1sg",
-            "imperfective",
-            "perfective",
-            "imperative",
-            "infinitive",
-        ]
-        with open(corpus_no_asp_path, mode="w", encoding="utf-8", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=keys)
-            writer.writeheader()
-            writer.writerows(stripped_dicts)
+        StrippedVerbRow.write_csv(corpus_no_asp_path, stripped_corpus_data)
 
     print(f"Matches written to {matches_path}")
     print(f"Endings Stripped Corpus written to {corpus_no_asp_path}")
