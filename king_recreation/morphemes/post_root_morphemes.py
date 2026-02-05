@@ -60,12 +60,8 @@ def match_post_root_morphemes(row: dict[str, str]) -> List[dict[str, str]]:
     reg = PostRootMorphemeRegistry.get_instance()
     rows = [row]
     forms = [
-        "present",
-        "present_1sg",
-        "imperfective",
-        "perfective",
-        "imperative",
-        "infinitive",
+        "h_grade",
+        "g_grade",
     ]
     if row["class"] in reg.class_map:
         morphemes = reg.class_map[row["class"]]

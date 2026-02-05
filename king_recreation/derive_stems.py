@@ -358,20 +358,21 @@ def main():
                 for d in derivations:
                     # copy row
                     stripped_row = {**row, **d.to_row()}
+                    # labeled_data.append({**d.to_row()})
                     labeled_data.extend(match_post_root_morphemes(stripped_row))
 
     form_names = [
-        # "present",
-        # "present_1sg",
-        # "imperfective",
-        # "perfective",
-        # "imperative",
-        # "infinitive",
+        "present",
+        "present_1sg",
+        "imperfective",
+        "perfective",
+        "imperative",
+        "infinitive",
     ]
 
     if labeled_data:
         keys = labeled_data[0].keys()
-        keys = [k for k in keys if not k in form_names]
+        keys = [k for k in keys if k not in form_names]
         with open(corpus_no_pre_no_asp_path, "w", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()

@@ -317,28 +317,22 @@ def main(classes_path=None):
         definition = stem_row["definition"]
         cls_name = stem_row["class"]
 
-        # In derived_roots context, the columns like 'present', 'present_1sg' are already stripped roots
-        h_root = stem_row.get("consensus_root")
-        if h_root is None:
-            # Fallback if consensus_root not written (e.g. absent from row? derived_stems writes it)
-            h_root = stem_row.get("present")
-
         config = VerbConfig.from_row(stem_row)
-
-        # Glottal root: If 1sg is glottal (Set A), use the derived 1sg root.
-        glottal_root = None
-        if use_glottal_grade("present_1sg", config.pron):
-            ref_word = full_corpus_map.get(stem_row.get("corpus_id"), {}).get(
-                "present_1sg"
-            )
-            if ref_word:
-                glottal_root = stem_row.get("present_1sg")
 
         # Optional: We could re-verify consistency here, but derive_stems checks it.
         # We assume if it's in derived_roots, it passed basic consistency.
 
         post_root_morpheme = stem_row["post_root_morpheme"]
         post_root_morpheme = post_root_morpheme if post_root_morpheme else None
+
+        h_root = stem_row["h_grade"]
+
+        glottal_root = None
+        if use_glottal_grade("present_1sg", config.pron):
+            glottal_root = stem_row["g_grade"]
+
+            if glottal_root == "" and not h_root == "":
+                glottal_root = None
 
         verb = ReconstructibleVerb(
             definition=definition,
