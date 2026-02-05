@@ -30,9 +30,7 @@ interface VerbRowProps {
 
 function VerbRow({ verb, dictionary, depth = 0, label }: VerbRowProps) {
   // Recursive render of children
-  const hasChildren =
-    (verb.middle_voice && verb.middle_voice.length > 0) ||
-    (verb.derivations && verb.derivations.length > 0);
+  const hasChildren = verb.derivations && verb.derivations.length > 0;
 
   return (
     <div className={`flex flex-col gap-6 ${depth > 0 ? "mt-6" : ""}`}>
@@ -45,7 +43,7 @@ function VerbRow({ verb, dictionary, depth = 0, label }: VerbRowProps) {
         )}
 
         <h4 className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest leading-none">
-          With [{getPronominalSetName("present", verb.config.pron)}]
+          With <ConfigFlags config={verb.config} verb={verb} />
         </h4>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -54,8 +52,6 @@ function VerbRow({ verb, dictionary, depth = 0, label }: VerbRowProps) {
             <div className="text-lg font-medium text-gray-900 dark:text-gray-100">
               {verb.definition}
             </div>
-
-            <ConfigFlags config={verb.config} verb={verb} />
           </div>
 
           {/* Forms Slot */}
@@ -68,21 +64,6 @@ function VerbRow({ verb, dictionary, depth = 0, label }: VerbRowProps) {
       {/* Children Section */}
       {hasChildren && (
         <div className="pl-6 border-l-2 border-indigo-50 dark:border-indigo-900/30 flex flex-col gap-8">
-          {/* Middle Voice Children */}
-          {verb.middle_voice && verb.middle_voice.length > 0 && (
-            <div className="flex flex-col gap-6">
-              {verb.middle_voice.map((child) => (
-                <VerbRow
-                  key={child.entry_no ?? child.definition} // Fallback key
-                  verb={child as ReconstructableVerb & { id: number }}
-                  dictionary={dictionary}
-                  depth={depth + 1}
-                  label="Middle Voice"
-                />
-              ))}
-            </div>
-          )}
-
           {/* Derivation Children */}
           {verb.derivations && verb.derivations.length > 0 && (
             <div className="flex flex-col gap-6">

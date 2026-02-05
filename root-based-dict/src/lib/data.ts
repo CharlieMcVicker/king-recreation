@@ -164,9 +164,6 @@ export async function getRoots(): Promise<RootGroup[]> {
           derivations: v.derivations
             ? (addIds(v.derivations) as any[])
             : undefined,
-          middle_voice: v.middle_voice
-            ? (addIds(v.middle_voice) as any[])
-            : undefined,
         };
         verbIndex++;
         return vWithId;

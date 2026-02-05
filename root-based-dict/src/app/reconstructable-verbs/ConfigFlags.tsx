@@ -1,5 +1,5 @@
 import React from "react";
-import { ReconstructableVerb, getMiddleVoiceFlair } from "@/lib/data-shared";
+import { ReconstructableVerb } from "@/lib/data-shared";
 
 interface ConfigFlagsProps {
   config: ReconstructableVerb["config"];
@@ -11,15 +11,7 @@ export function ConfigFlags({
   verb,
   className = "",
 }: ConfigFlagsProps & { verb?: ReconstructableVerb }) {
-  const mvFlair = verb ? getMiddleVoiceFlair(verb) : null;
   const flags = [
-    {
-      label: mvFlair || "",
-      active: !!mvFlair,
-      title: "Middle Voice",
-      color:
-        "bg-fuchsia-100 text-fuchsia-700 dark:bg-fuchsia-900/30 dark:text-fuchsia-300",
-    },
     {
       label: "TR",
       active: config.pre.translocutive,

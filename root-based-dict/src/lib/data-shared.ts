@@ -23,10 +23,6 @@ export interface ReconstructableVerb {
       uwa_replaces_v?: boolean;
       use_3rd_person_object: boolean;
     };
-    mv?: {
-      infix: string;
-      long_form: boolean;
-    };
   };
   original_stems: {
     present: string;
@@ -36,7 +32,6 @@ export interface ReconstructableVerb {
     infinitive: string;
   };
   derivations?: ReconstructableVerb[];
-  middle_voice?: ReconstructableVerb[];
 }
 
 export interface ClassDefinition {
@@ -217,20 +212,6 @@ export function getPronominalSetName(
       : ["Set A", "a"].includes(set_type)
         ? "1st Set A"
         : "1st Set B";
-  }
-  return null;
-}
-
-export function getMiddleVoiceFlair(verb: ReconstructableVerb): string | null {
-  const mv = verb.config.mv;
-  if (!mv || mv.infix === "none") return null;
-
-  if (mv.infix === "ata") return "ata-";
-  if (mv.infix === "at") {
-    return mv.long_form ? "atat-" : "at-";
-  }
-  if (mv.infix === "ali") {
-    return "ali-";
   }
   return null;
 }
