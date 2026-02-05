@@ -196,84 +196,107 @@ def group_roots_initial(
     return root_groups
 
 
-def get_base_root_key(
-    verb: ReconstructibleVerb,
-    verbs_by_id: Dict[int, ReconstructibleVerb],
-    verb_parent_map: Dict[int, int],
-) -> Tuple[str, str]:
-    # 1. Traversed verb connections to find the top verb ancestor
-    curr_vid = verb.corpus_id
-    if curr_vid is None:
-        # Verbs with no ID are always top level in their root
-        curr_root = (verb.h_grade_root, verb.glottal_grade_root or "")
-    else:
-        while curr_vid in verb_parent_map:
-            curr_vid = verb_parent_map[curr_vid]
-        top_verb = verbs_by_id[curr_vid]
-        curr_root = (top_verb.h_grade_root, top_verb.glottal_grade_root or "")
-
-    return curr_root
-
-
 def sync_root_ids(
     all_verbs: List[ReconstructibleVerb],
     verbs_by_id: Dict[int, ReconstructibleVerb],
     verb_parent_map: Dict[int, int],
     existing_root_ids: List[Dict[str, str]],
 ) -> Tuple[Dict[int, str], Dict[str, str]]:
-    # Map from corpus_id (or synthetic negative ID for null-id verbs) to RootID
+
+    # 1. Parse existing root_ids.csv to find user overrides
+    # We need to handle the previous format where 'corpus_ids' was a list
+    # and map EACH corpus_id to the override if 'user_edited' was set.
+    overrides = {}  # corpus_id_str -> root_id
+
+    for row in existing_root_ids:
+        # Check if this is a user edited row
+        if row.get("user_edited") == "x":
+            rid = row.get("root_id")
+            # Old format (or intermediate format) had 'corpus_ids' column
+            if "corpus_ids" in row:
+                cids = [x.strip() for x in row["corpus_ids"].split(";") if x.strip()]
+                for cid in cids:
+                    overrides[cid] = rid
+            # Check for new format (corpus_id column) just in case we run this on already-migrated file
+            elif "corpus_id" in row:
+                overrides[row["corpus_id"]] = rid
+
+    # 2. Build rows for every verb
+    csv_rows = []
     verb_to_root_id = {}
     synthetic_to_root_id = {}
 
-    # Map existing approvals: (corpus_id) -> approved_id
-    approved_map = {}
-    for row in existing_root_ids:
-        cid_str = row.get("corpus_id")
-        if cid_str and row.get("user_approved") == "x":
-            approved_map[cid_str] = row.get("proposed_root_id")
-
-    # We need to assign IDs to every verb.
-    # For verbs without corpus_id, we'll use their index in all_verbs as a temporary identifier for the CSV
-    csv_rows = []
+    # Helper to clean strings
+    def clean(s):
+        return s if s is not None else ""
 
     for i, verb in enumerate(all_verbs):
-        base_h, base_g = get_base_root_key(verb, verbs_by_id, verb_parent_map)
-        default_id = f"{base_h}|{base_g}"
+        h = verb.h_grade_root
+        g = verb.glottal_grade_root
+        cls = verb.class_name
+        morph = verb.post_root_morpheme
+        defn = verb.definition
 
-        cid_key = (
-            str(verb.corpus_id) if verb.corpus_id is not None else f"synthetic-{i}"
-        )
-
-        assigned_id = approved_map.get(cid_key, default_id)
-
+        # Determine Corpus ID Key
         if verb.corpus_id is not None:
-            verb_to_root_id[verb.corpus_id] = assigned_id
+            cid_key = str(verb.corpus_id)
         else:
-            synthetic_to_root_id[cid_key] = assigned_id
+            cid_key = f"synthetic-{i}"
 
-        # Prepare CSV row
+        # Determine Root ID
+        default_id = f"{h}|{g or ''}"
+
+        # Check override
+        root_id = default_id
+        is_edited = ""
+
+        if cid_key in overrides:
+            root_id = overrides[cid_key]
+            is_edited = "x"
+
+        # Populate Maps
+        if verb.corpus_id is not None:
+            verb_to_root_id[verb.corpus_id] = root_id
+        else:
+            synthetic_to_root_id[cid_key] = root_id
+
+        # Add to CSV rows
         csv_rows.append(
             {
-                "definition": verb.definition,
-                "verb_root": f"{verb.h_grade_root}|{verb.glottal_grade_root or ''}",
                 "corpus_id": cid_key,
-                "base_root_h": base_h,
-                "base_root_g": base_g,
-                "proposed_root_id": assigned_id,
-                "user_approved": "x" if cid_key in approved_map else "",
+                "definition": defn,
+                "h_grade": h,
+                "g_grade": clean(g),
+                "class": cls,
+                "post_root_morpheme": clean(morph),
+                "root_id": root_id,
+                "user_edited": is_edited,
             }
         )
 
-    # Save the CSV
+    # 3. Sort rows for stability
+    # Sort by (h_grade, g_grade, class, corpus_id)
+    csv_rows.sort(
+        key=lambda x: (
+            x["h_grade"] or "",
+            x["g_grade"] or "",
+            x["class"] or "",
+            # Handle synthetic IDs in sort carefully? using string sort is fine
+            x["corpus_id"],
+        )
+    )
+
+    # 4. Save CSV
     r_ids_path = root_ids_path
     fieldnames = [
         "corpus_id",
         "definition",
-        "verb_root",
-        "base_root_h",
-        "base_root_g",
-        "proposed_root_id",
-        "user_approved",
+        "h_grade",
+        "g_grade",
+        "class",
+        "post_root_morpheme",
+        "root_id",
+        "user_edited",
     ]
     with open(r_ids_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
