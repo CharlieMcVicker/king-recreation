@@ -180,11 +180,6 @@ export async function getRoots(): Promise<RootGroup[]> {
       // Use slug from JSON
       slug: root.slug,
       classes,
-      post_root_derivations: (root.post_root_derivations || []).map(
-        processRoot,
-      ),
-      morpheme_name: root.morpheme_name,
-      morpheme_subcase: root.morpheme_subcase,
     };
   };
 
@@ -193,19 +188,7 @@ export async function getRoots(): Promise<RootGroup[]> {
 
 export async function getRootBySlug(slug: string): Promise<RootGroup | null> {
   const roots = await getRoots();
-
-  const findRoot = (list: RootGroup[]): RootGroup | null => {
-    for (const r of list) {
-      if (r.slug === slug) return r;
-      if (r.post_root_derivations) {
-        const found = findRoot(r.post_root_derivations);
-        if (found) return found;
-      }
-    }
-    return null;
-  };
-
-  return findRoot(roots);
+  return roots.find((r) => r.slug === slug) || null;
 }
 
 export async function getEndingGroups(): Promise<EndingGroup[]> {
@@ -296,29 +279,70 @@ export async function getMorphemeGroups(): Promise<MorphemeGroup[]> {
   const roots = await getRoots();
   const groupsMap: Map<string, Map<string, RootGroup[]>> = new Map();
 
-  const collectMorphemes = (
-    root: RootGroup,
-    absoluteParent: RootGroup | null = null,
-  ) => {
-    const parent = absoluteParent || root;
-    if (root.morpheme_name) {
-      if (!groupsMap.has(root.morpheme_name)) {
-        groupsMap.set(root.morpheme_name, new Map());
+  // Helper to extract morpheme info from "name[subcase]" format
+  const parseMorpheme = (tag: string) => {
+    const match = tag.match(/^([^\[]+)(?:\[(.*)\])?$/);
+    if (!match) return { name: tag, subcase: "default" };
+    return { name: match[1], subcase: match[2] || "default" };
+  };
+
+  roots.forEach((root) => {
+    // 1. Group verbs by morpheme for this specific root
+    // Key: "name|subcase" -> Map<ClassName, Verbs[]>
+    const morphemeVerbs = new Map<
+      string,
+      Map<string, (typeof root.classes)[0]["verbs"]>
+    >();
+
+    root.classes.forEach((cls) => {
+      cls.verbs.forEach((verb) => {
+        if (verb.post_root_morpheme) {
+          const { name, subcase } = parseMorpheme(verb.post_root_morpheme);
+          const key = `${name}|${subcase}`;
+
+          if (!morphemeVerbs.has(key)) {
+            morphemeVerbs.set(key, new Map()); // ClassName -> Verbs
+          }
+          const classMap = morphemeVerbs.get(key)!;
+
+          if (!classMap.has(cls.class_name)) {
+            classMap.set(cls.class_name, []);
+          }
+          classMap.get(cls.class_name)!.push(verb);
+        }
+      });
+    });
+
+    // 2. Distribute to the global groups map
+    morphemeVerbs.forEach((classMap, key) => {
+      const [name, subcase] = key.split("|");
+
+      if (!groupsMap.has(name)) {
+        groupsMap.set(name, new Map());
       }
-      const subcaseMap = groupsMap.get(root.morpheme_name)!;
-      const subcase = root.morpheme_subcase || "default";
+
+      const subcaseMap = groupsMap.get(name)!;
       if (!subcaseMap.has(subcase)) {
         subcaseMap.set(subcase, []);
       }
-      subcaseMap.get(subcase)!.push({
-        ...root,
-        absolute_parent_root: parent,
-      } as any);
-    }
-    root.post_root_derivations.forEach((r) => collectMorphemes(r, parent));
-  };
 
-  roots.forEach((root) => collectMorphemes(root));
+      // Construct a "Filtered Root" that only contains the relevant verbs
+      // We verify the root effectively "has" these classes
+      const filteredClasses = Array.from(classMap.entries()).map(
+        ([className, verbs]) => ({
+          class_name: className,
+          verbs: verbs,
+        }),
+      );
+
+      const filteredRoot: RootGroup = {
+        ...root,
+        classes: filteredClasses,
+      };
+
+      subcaseMap.get(subcase)!.push(filteredRoot);
+    });
+  });
 
   return Array.from(groupsMap.entries())
     .map(([name, subcaseMap]) => {

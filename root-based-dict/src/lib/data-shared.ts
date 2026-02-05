@@ -3,6 +3,7 @@ export interface ReconstructableVerb {
   h_grade_root: string;
   glottal_grade_root: string | null;
   class_name: string;
+  post_root_morpheme: string | null;
   corpus_id: number | null;
   entry_no?: number;
   config: {
@@ -122,9 +123,6 @@ export interface RootGroup {
     class_name: string;
     verbs: (ReconstructableVerb & { id: number })[];
   }[];
-  post_root_derivations: RootGroup[];
-  morpheme_name?: string;
-  morpheme_subcase?: string;
 }
 
 export interface EndingGroup {

@@ -42,9 +42,6 @@ export default async function RootDetailPage({
         if (v.entry_no) entryNos.add(Number(v.entry_no));
       });
     });
-    if (group.post_root_derivations) {
-      group.post_root_derivations.forEach(collectEntryNos);
-    }
   };
 
   collectEntryNos(rootGroup);
