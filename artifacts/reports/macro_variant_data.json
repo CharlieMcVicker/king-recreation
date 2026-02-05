@@ -1843,39 +1843,78 @@
         },
         "can_have_variants": true,
         "combinations": {
-            "stative": 19,
+            "stative": 15,
             "stative[inf2]": 3
         },
         "slots": {
             "imp": {
-                "1": 22
+                "1": 18
             },
             "imperf": {
-                "1": 22
+                "1": 18
             },
             "inf": {
-                "1": 19,
+                "1": 15,
                 "2": 3
             },
             "perf": {
-                "1": 22
+                "1": 18
             },
             "pres": {
-                "1": 22
+                "1": 18
             }
         },
-        "total_matches": 22,
+        "total_matches": 18,
         "unused_options": [],
         "variant_stats": [
             {
-                "count": 19,
-                "percent": 86.36,
+                "count": 15,
+                "percent": 83.33,
                 "variant": "stative"
             },
             {
                 "count": 3,
-                "percent": 13.64,
+                "percent": 16.67,
                 "variant": "stative[inf2]"
+            }
+        ]
+    },
+    "stative-a'": {
+        "available_options": {
+            "imp": 1,
+            "imperf": 1,
+            "inf": 1,
+            "perf": 1,
+            "pres": 1
+        },
+        "can_have_variants": false,
+        "combinations": {
+            "stative-a'": 4
+        },
+        "slots": {
+            "imp": {
+                "1": 4
+            },
+            "imperf": {
+                "1": 4
+            },
+            "inf": {
+                "1": 4
+            },
+            "perf": {
+                "1": 4
+            },
+            "pres": {
+                "1": 4
+            }
+        },
+        "total_matches": 4,
+        "unused_options": [],
+        "variant_stats": [
+            {
+                "count": 4,
+                "percent": 100.0,
+                "variant": "stative-a'"
             }
         ]
     },
