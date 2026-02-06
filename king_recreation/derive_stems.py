@@ -287,36 +287,38 @@ class StemDeriver:
             long_start_options = (
                 [b3sg_starts_uwa] if b3sg_starts_uwa is not None else [False, True]
             )
-            for use_3rd in [False, True]:
-                for meta in MetathesisStrategy:
-                    for s_type in StemType:
-                        uwa_opts = [False]
-                        if s_type == StemType.VOWEL_V:
-                            uwa_opts = (
-                                [b3sg_starts_uwa]
-                                if b3sg_starts_uwa is None
-                                else [False, True]
-                            )
-                        for uwa in uwa_opts:
-                            for long_start in long_start_options:
-                                pron_config = PronominalConfig(
-                                    set_type=set_type,
-                                    stem_type=s_type,
-                                    metathesis_strategy=meta,
-                                    use_ka_variant=ka,
-                                    long_start=long_start,
-                                    uwa_replaces_v=uwa,
-                                    use_aki_for_1st_set_b=aki,
-                                    use_3rd_person_object=use_3rd,
+            for plural in [False, True]:
+                for use_3rd in [False, True]:
+                    for meta in MetathesisStrategy:
+                        for s_type in StemType:
+                            uwa_opts = [False]
+                            if s_type == StemType.VOWEL_V:
+                                uwa_opts = (
+                                    [b3sg_starts_uwa]
+                                    if b3sg_starts_uwa is None
+                                    else [False, True]
                                 )
-                                res = derive_pronominals(
-                                    intermediate,
-                                    pron_config,
-                                    # log="calling" in row["definition"],
-                                )
-                                if res:
-                                    res.pre_config = pre_config
-                                    valid_derivations.extend(derive_middle(res))
+                            for uwa in uwa_opts:
+                                for long_start in long_start_options:
+                                    pron_config = PronominalConfig(
+                                        set_type=set_type,
+                                        stem_type=s_type,
+                                        metathesis_strategy=meta,
+                                        plural_pronouns=plural,
+                                        use_ka_variant=ka,
+                                        long_start=long_start,
+                                        uwa_replaces_v=uwa,
+                                        use_aki_for_1st_set_b=aki,
+                                        use_3rd_person_object=use_3rd,
+                                    )
+                                    res = derive_pronominals(
+                                        intermediate,
+                                        pron_config,
+                                        # log="calling" in row["definition"],
+                                    )
+                                    if res:
+                                        res.pre_config = pre_config
+                                        valid_derivations.extend(derive_middle(res))
         if not valid_derivations:
             return []
 

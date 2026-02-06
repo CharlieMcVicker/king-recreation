@@ -1,7 +1,7 @@
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
-from typing import Optional, Tuple
+from typing import Dict, Optional, Tuple
 
 from king_recreation.morphemes.middle_voice import MiddleVoice
 from king_recreation.phonology_data import VOWEL_SET
@@ -69,6 +69,7 @@ class PronominalConfig:
     middle_voice: MiddleVoice = MiddleVoice.NONE
 
     # Flags for prefix variants
+    plural_pronouns: bool = False
     use_ka_variant: bool = False  # 3rd Set A: ka-/k- (True) vs a-/ø (False)
     long_start: bool = (
         False  # 3rd Set B: uwa- vs u- (on consonants), tsiya- vs tsi- on person-person
@@ -88,6 +89,7 @@ class PronominalConfig:
             stem_type=StemType(row["stem_type"]),
             metathesis_strategy=MetathesisStrategy(row["metathesis_strategy"]),
             middle_voice=MiddleVoice(row["middle_voice"]),
+            plural_pronouns=row["plural"] == "True",
             use_ka_variant=row["ka_variant"] == "True",
             long_start=row["long_start"] == "True",
             use_aki_for_1st_set_b=row["aki_1st"] == "True",
@@ -118,6 +120,7 @@ class PronominalConfig:
         row["stem_type"] = self.stem_type.value
         row["metathesis_strategy"] = self.metathesis_strategy.value
         row["middle_voice"] = self.middle_voice.value
+        row["plural"] = str(self.plural_pronouns)
         row["ka_variant"] = str(self.use_ka_variant)
         row["long_start"] = str(self.long_start)
         row["aki_1st"] = str(self.use_aki_for_1st_set_b)
@@ -132,22 +135,55 @@ def get_pronominal_set_name(form_name: str, config: PronominalConfig) -> Optiona
     use_3rd_person_object = config.use_3rd_person_object
 
     if form_name == "present" or form_name == "imperfective":
-        return "3rd Set A" if set_type in ["Set A", "a"] else "3rd Set B"
+        if config.plural_pronouns:
+            return "3pl Set A" if set_type in ["Set A", "a"] else "3pl Set B"
+        else:
+            return "3rd Set A" if set_type in ["Set A", "a"] else "3rd Set B"
     if form_name == "perfective" or form_name == "infinitive":
-        return "3rd Set B"
+        if config.plural_pronouns:
+            return "3pl Set B"
+        else:
+            return "3rd Set B"
     if form_name == "imperative":
-        return (
-            "2nd to 3rd"
-            if use_3rd_person_object
-            else ("2nd Set A" if set_type in ["Set A", "a"] else "2nd Set B")
-        )
+        if config.plural_pronouns:
+            return "2pl Set A" if set_type in ["Set A", "a"] else "2pl Set B"
+        else:
+            return (
+                "2nd to 3rd"
+                if use_3rd_person_object
+                else ("2nd Set A" if set_type in ["Set A", "a"] else "2nd Set B")
+            )
     if form_name == "present_1sg":
-        return (
-            "1st to 3rd"
-            if use_3rd_person_object
-            else ("1st Set A" if set_type in ["Set A", "a"] else "1st Set B")
-        )
+        if config.plural_pronouns:
+            return "1pl Set A" if set_type in ["Set A", "a"] else "1pl Set B"
+        else:
+            return (
+                "1st to 3rd"
+                if use_3rd_person_object
+                else ("1st Set A" if set_type in ["Set A", "a"] else "1st Set B")
+            )
     return None
+
+
+@dataclass
+class PartlyConfiguredPrefix:
+    form: str
+    condition: Optional[Condition] = None
+
+    def configure(self, stem: StemType):
+        if self.condition:
+            return ConfiguredPrefix(self.form, self.condition)
+        elif stem == StemType.ASPIRATED:
+            return ConfiguredPrefix(self.form, Condition.ASPIRATED)
+        elif stem == StemType.CONSONANT:
+            return ConfiguredPrefix(self.form, Condition.CONSONANT)
+        elif stem == StemType.S_STEM:
+            return ConfiguredPrefix(self.form, Condition.S_STEM)
+        elif stem == StemType.VOWEL_A:
+            return ConfiguredPrefix(self.form, Condition.VOWEL_AE)
+        elif stem == StemType.VOWEL_E:
+            return ConfiguredPrefix(self.form, Condition.VOWEL_AE)
+        return ConfiguredPrefix(self.form, Condition.VOWEL_NO_A)
 
 
 @dataclass
@@ -239,8 +275,43 @@ class ConfiguredPrefix:
 
 
 def get_prefix_details(set_name: str, config: PronominalConfig) -> ConfiguredPrefix:
-    form, condition = _get_prefix_details(set_name, config)
-    return ConfiguredPrefix(form, condition)
+    res = _get_prefix_details(set_name, config)
+    if isinstance(res, PrefixForms):
+        return res.select(config.stem_type)
+    elif res == None:
+        print(set_name)
+    else:
+        form, condition = res
+        return ConfiguredPrefix(form, condition)
+
+
+@dataclass
+class PrefixForms:
+    consonant: PartlyConfiguredPrefix
+    vowel: PartlyConfiguredPrefix
+    vowel_overrides: Dict[str, PartlyConfiguredPrefix] = field(default_factory=dict)
+    aspirated: Optional[PartlyConfiguredPrefix] = None
+    s: Optional[PartlyConfiguredPrefix] = None
+
+    def _select(self, stem: StemType) -> PartlyConfiguredPrefix:
+        if stem == StemType.ASPIRATED:
+            return self.aspirated if self.aspirated is not None else self.consonant
+        elif stem == StemType.S_STEM:
+            return self.s if self.s is not None else self.consonant
+        elif stem == StemType.CONSONANT:
+            return self.consonant
+
+        # vowel stuff
+        vowel = stem.value.split("_")[1]
+
+        if vowel in self.vowel_overrides:
+            return self.vowel_overrides[vowel]
+        else:
+            return self.vowel
+
+    def select(self, stem: StemType) -> ConfiguredPrefix:
+        s = self._select(stem)
+        return s.configure(stem)
 
 
 def _get_prefix_details(
@@ -270,84 +341,131 @@ def _get_prefix_details(
                 # where 'h' follows the resonant.
                 else ("uwh", Condition.METATHESIS_VOWEL)
             )
-        if set_name == "2nd Set A":
-            return "h", Condition.VOWEL
 
-    if set_name == "3rd Set A":
-        if config.use_ka_variant:
-            return ("ka", Condition.CONSONANT) if is_con else ("k", Condition.VOWEL)
-        # Some H-stems take k- even if not 'ka-variant' in the traditional sense?
-        # No, let's keep it strict. If it works, it works.
-        if is_con:
-            return "a", Condition.CONSONANT
-        return "", Condition.VOWEL_AE
+    if set_name == "1st Set B":
+        return PrefixForms(
+            aspirated=PartlyConfiguredPrefix("akh"),
+            s=PartlyConfiguredPrefix("akh"),
+            consonant=(
+                PartlyConfiguredPrefix("aki")
+                if config.use_aki_for_1st_set_b
+                else PartlyConfiguredPrefix("ak")
+            ),
+            vowel=PartlyConfiguredPrefix("akw"),
+        )
 
-    if set_name == "3rd Set B":
-        if s_type == StemType.VOWEL_A:
-            return "u", Condition.A_REPLACE
-        if s_type == StemType.VOWEL_V:
-            return (
-                ("uwa", Condition.V_REPLACE)
-                if config.uwa_replaces_v
-                else ("uw", Condition.VOWEL_NO_A)
-            )
-        if s_type in [
-            StemType.VOWEL_E,
-            StemType.VOWEL_O,
-            StemType.VOWEL_U,
-        ]:
-            return "uw", Condition.VOWEL_NO_A
-        return (
-            ("uwa", Condition.CONSONANT)
-            if config.long_start
-            else ("u", Condition.CONSONANT)
+    if set_name == "1pl Set B":
+        return PrefixForms(
+            consonant=(PartlyConfiguredPrefix("oki")),
+            vowel=PartlyConfiguredPrefix("og"),
         )
 
     if set_name == "2nd Set B":
-        if s_type == StemType.ASPIRATED:
-            return "ts", Condition.ASPIRATED
-        if s_type == StemType.S_STEM:
-            return "t", Condition.S_STEM
-        if is_con:
-            return "tsa", Condition.CONSONANT
-        return "ts", Condition.VOWEL
+        return PrefixForms(
+            aspirated=PartlyConfiguredPrefix(
+                "ts",
+            ),
+            s=PartlyConfiguredPrefix(
+                "t",
+            ),
+            consonant=PartlyConfiguredPrefix(
+                "tsa",
+            ),
+            vowel=PartlyConfiguredPrefix("ts"),
+        )
 
-    if set_name == "2nd Set A":
-        return ("hi", Condition.CONSONANT) if is_con else ("h", Condition.VOWEL)
+    if set_name == "2pl Set B":
+        return PrefixForms(
+            consonant=(PartlyConfiguredPrefix("itsi")),
+            vowel=PartlyConfiguredPrefix("its"),
+        )
 
-    if set_name == "2nd to 3rd":
-        if not is_con:
-            return ("hiy", Condition.VOWEL)
-        elif config.long_start:
-            return ("hiya", Condition.CONSONANT)
-        else:
-            return ("hi", Condition.CONSONANT)
+    if set_name == "3rd Set B":
+        return PrefixForms(
+            consonant=(
+                PartlyConfiguredPrefix("uwa", Condition.CONSONANT)
+                if config.long_start
+                else PartlyConfiguredPrefix("u", Condition.CONSONANT)
+            ),
+            vowel=PartlyConfiguredPrefix("uw"),
+            vowel_overrides={
+                "a": PartlyConfiguredPrefix("u", Condition.A_REPLACE),
+                "v": (
+                    PartlyConfiguredPrefix("uwa", Condition.V_REPLACE)
+                    if config.uwa_replaces_v
+                    else PartlyConfiguredPrefix("uw", Condition.VOWEL_NO_A)
+                ),
+            },
+        )
+
+    if set_name == "3pl Set B":
+        return PrefixForms(
+            consonant=PartlyConfiguredPrefix("uni"),
+            vowel=PartlyConfiguredPrefix("un"),
+        )
 
     if set_name == "1st Set A":
-        return ("tsi", Condition.CONSONANT) if is_con else ("k", Condition.VOWEL)
+        return PrefixForms(
+            consonant=PartlyConfiguredPrefix("tsi"), vowel=PartlyConfiguredPrefix("k")
+        )
 
-    if set_name == "1st Set B":
-        if s_type == StemType.ASPIRATED:
-            return "akh", Condition.ASPIRATED
-        if s_type == StemType.S_STEM:
-            return "akh", Condition.S_STEM
-        if is_con:
-            return (
-                ("aki", Condition.CONSONANT)
-                if config.use_aki_for_1st_set_b
-                else ("ak", Condition.CONSONANT)
+    if set_name == "1pl Set A":
+        return PrefixForms(
+            consonant=PartlyConfiguredPrefix("otsi"),
+            vowel=PartlyConfiguredPrefix("ots"),
+        )
+
+    if set_name == "2nd Set A":
+        return PrefixForms(
+            consonant=PartlyConfiguredPrefix("hi"), vowel=PartlyConfiguredPrefix("h")
+        )
+
+    if set_name == "2pl Set A":
+        return PrefixForms(
+            consonant=PartlyConfiguredPrefix("itsi"),
+            vowel=PartlyConfiguredPrefix("its"),
+        )
+
+    if set_name == "3rd Set A":
+        if config.use_ka_variant:
+            return PrefixForms(
+                consonant=PartlyConfiguredPrefix("ka"),
+                vowel=PartlyConfiguredPrefix("k"),
             )
-        return "akw", Condition.VOWEL
+        # Some H-stems take k- even if not 'ka-variant' in the traditional sense?
+        # No, let's keep it strict. If it works, it works.
+        return PrefixForms(
+            consonant=PartlyConfiguredPrefix("a"),
+            vowel=PartlyConfiguredPrefix(""),
+        )
+
+    if set_name == "3pl Set A":
+        return PrefixForms(
+            consonant=PartlyConfiguredPrefix("ani"),
+            vowel=PartlyConfiguredPrefix("an"),
+        )
 
     if set_name == "1st to 3rd":
-        if not is_con:
-            return ("tsiy", Condition.VOWEL)
-        elif config.long_start:
-            return ("tsiya", Condition.CONSONANT)
-        else:
-            return ("tsi", Condition.CONSONANT)
+        return PrefixForms(
+            consonant=(
+                PartlyConfiguredPrefix("tsiya")
+                if config.long_start
+                else PartlyConfiguredPrefix("tsi")
+            ),
+            vowel=PartlyConfiguredPrefix("tsiy"),
+        )
 
-    return "", Condition.CONSONANT
+    if set_name == "2nd to 3rd":
+        return PrefixForms(
+            consonant=(
+                PartlyConfiguredPrefix("hiya")
+                if config.long_start
+                else PartlyConfiguredPrefix("hi")
+            ),
+            vowel=PartlyConfiguredPrefix("hiy"),
+        )
+
+    return None
 
 
 def detach_prefix(word: str, form_name: str, config: PronominalConfig):

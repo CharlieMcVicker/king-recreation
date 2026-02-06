@@ -552,6 +552,7 @@ def main(classes_path=None):
             "stem_type",
             "metathesis_strategy",
             "middle_voice",
+            "plural",
             "ka_variant",
             "long_start",
             "aki_1st",
