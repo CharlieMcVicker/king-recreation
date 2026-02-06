@@ -15,7 +15,6 @@ from king_recreation.morphemes.prepronominals import (
 )
 from king_recreation.morphemes.pronominals import (
     PronominalConfig,
-    attach_prefix,
     get_prefix_details,
     get_pronominal_set_name,
     use_glottal_grade,
@@ -104,13 +103,13 @@ class ReconstructionEngine:
     def generate_pronominal_forms(
         self, stem: str, set_name: str, config: PronominalConfig
     ) -> List[str]:
-        prefix, condition = get_prefix_details(set_name, config)
+        prefix = get_prefix_details(set_name, config)
 
         stems_to_try = [(stem, False)]
 
         candidates = []
-        for s, dropped in stems_to_try:
-            res = attach_prefix(s, prefix, condition)
+        for stem, dropped in stems_to_try:
+            res = prefix.attach(stem)
             if res:
                 candidates.append(res)
         return candidates
@@ -206,6 +205,7 @@ class ReconstructionEngine:
             for stem in stems if isinstance(stems, list) else [stems]:
                 set_name = get_pronominal_set_name(fn, verb.config.pron)
                 if not set_name:
+                    raise Exception("WAHH")
                     candidates = [stem]
                 else:
                     candidates = self.generate_pronominal_forms(
