@@ -6,8 +6,9 @@ from typing import Dict, List, Optional, Tuple
 from king_recreation.h_alternation import grades_are_compatible
 from king_recreation.morphemes.middle_voice import MiddleVoice
 from king_recreation.morphemes.post_root_morphemes import match_post_root_morphemes
-from king_recreation.morphemes.prepronominals import PrePronominalConfig
-from king_recreation.morphemes.pronominals import (
+from king_recreation.morphemes.prefixes import PrefixConfig
+from king_recreation.morphemes.prefixes.prepronominals import PrePronominalConfig
+from king_recreation.morphemes.prefixes.pronominals import (
     MetathesisStrategy,
     PronominalConfig,
     StemType,
@@ -24,8 +25,7 @@ from king_recreation.paths import (
 
 @dataclass
 class Derivation:
-    pre_config: PrePronominalConfig
-    pron_config: PronominalConfig
+    config: PrefixConfig
     h_grade: str
     g_grade: Optional[str]
     stems: Dict[str, str]  # form_name -> stripped_stem (pronominal base)
@@ -40,8 +40,7 @@ class Derivation:
         row["h_grade"] = self.h_grade
         row["g_grade"] = self.g_grade
         row["metathesis_involved"] = str(self.metathesis_involved)
-        row.update(**self.pron_config.to_row())
-        row.update(**self.pre_config.to_row())
+        row.update(**self.config.to_row())
 
         return row
 
@@ -61,7 +60,7 @@ def is_strict_compatible(s1: str, s2: str) -> bool:
 
 
 def strip_prepronominals(
-    forms: Dict[str, str], config: PrePronominalConfig
+    forms: Dict[str, str], config: PrePronominalConfig, stative: bool
 ) -> Optional[Dict[str, str]]:
     stripped = {}
     for fn, word in forms.items():
@@ -93,11 +92,11 @@ def strip_prepronominals(
                 else:
                     return None
         if config.distributive:
-            if fn == "infinitive" or (
-                fn == "imperative" and not config.distributiveImpIsFutProg
-            ):
+            if fn == "infinitive" or (fn == "imperative" and not stative):
                 if current.startswith("ts"):
                     current = current[2:]
+                # fixed by tone... if ti21, we need to not strip
+                # only strip if ti2
                 elif current.startswith("ti"):
                     current = current[2:]
                 elif current.startswith("t"):
@@ -116,19 +115,22 @@ def strip_prepronominals(
 
 
 def derive_pronominals(
-    intermediate_forms: Dict[str, str], pron_config: PronominalConfig, log=False
+    intermediate_forms: Dict[str, str],
+    pron_config: PronominalConfig,
+    stative: bool,
+    log=False,
 ) -> Optional[Derivation]:
 
     derived_stems = {}
     metathesis_used = False
     for fn, word in intermediate_forms.items():
-        stem, fn_metathesis_used = detach_prefix(word, fn, pron_config)
+        stem, fn_metathesis_used = detach_prefix(word, fn, pron_config, stative)
         metathesis_used = metathesis_used or fn_metathesis_used
         if stem is None:
             return None
 
         derived_stems[fn] = stem
-    res = stems_are_consistent(derived_stems, pron_config, log=log)
+    res = stems_are_consistent(derived_stems, pron_config, stative, log=log)
     if res is not None:
         h_grade, g_grade = res
         # Metathesis must be used if strategy is not none
@@ -137,8 +139,7 @@ def derive_pronominals(
             == (pron_config.metathesis_strategy == MetathesisStrategy.NONE)
         ):
             return Derivation(
-                pre_config=None,
-                pron_config=pron_config,
+                config=PrefixConfig(pre=None, pron=pron_config, stative=stative),
                 h_grade=h_grade,
                 g_grade=g_grade,
                 stems=derived_stems,
@@ -152,8 +153,7 @@ def derive_pronominals(
 
 def derive_middle(der: Derivation) -> List[Derivation]:
     der_dict = asdict(der)
-    der_dict["pre_config"] = PrePronominalConfig(**der_dict["pre_config"])
-    pron_dict = asdict(der.pron_config)
+    pron_dict = asdict(der.config.pron)
     options = []
     for middle_voice, (h_grade, g_grade) in MiddleVoice.identify_middle_voice(
         der.h_grade, der.g_grade
@@ -167,7 +167,13 @@ def derive_middle(der: Derivation) -> List[Derivation]:
         }
 
         pron_dict["middle_voice"] = middle_voice
-        der_dict["pron_config"] = PronominalConfig(**pron_dict)
+
+        der_dict["config"] = PrefixConfig(
+            pre=der.config.pre,
+            pron=PronominalConfig(**pron_dict),
+            stative=der.config.stative,
+        )
+
         options.append(
             Derivation(
                 **der_dict,
@@ -177,7 +183,10 @@ def derive_middle(der: Derivation) -> List[Derivation]:
 
 
 def stems_are_consistent(
-    derived_stems: dict[str, str], pron_config: PronominalConfig, log=False
+    derived_stems: dict[str, str],
+    pron_config: PronominalConfig,
+    stative: bool,
+    log=False,
 ) -> Optional[Tuple[str, str]]:
     """
     Check if a set of derived stems are consistent.
@@ -200,7 +209,7 @@ def stems_are_consistent(
     # check that h and g grades are consistent within grades
     passing = True
     for fn, s in derived_stems.items():
-        if use_glottal_grade(fn, pron_config) and g_candidate is not None:
+        if use_glottal_grade(fn, pron_config, stative) and g_candidate is not None:
             check = is_strict_compatible(s, g_candidate)
             passing &= check
             if log:
@@ -241,14 +250,13 @@ def iter_pre_configs(forms):
         for t2 in t2_opts:
             for p in [False, True]:
                 for d in [False, True]:
-                    d2_opts = [False, True] if d else [False]
-                    for d2 in d2_opts:
-                        pre_config = PrePronominalConfig(t, t2, p, d, d2)
-                        intermediate = strip_prepronominals(forms, pre_config)
+                    for stative in [False, True] if d else [False]:
+                        pre_config = PrePronominalConfig(t, t2, p, d)
+                        intermediate = strip_prepronominals(forms, pre_config, stative)
                         if intermediate is None:
                             continue
                         else:
-                            yield pre_config, intermediate
+                            yield pre_config, stative, intermediate
 
 
 class StemDeriver:
@@ -272,7 +280,7 @@ class StemDeriver:
 
         valid_derivations: list[Derivation] = []
 
-        for pre_config, intermediate in iter_pre_configs(forms):
+        for pre_config, stative, intermediate in iter_pre_configs(forms):
             set_type = "b" if intermediate["present"].startswith("u") else "a"
             ka = intermediate["present"].startswith("k")
             aki = intermediate.get("present_1sg", "").startswith("aki")
@@ -314,24 +322,25 @@ class StemDeriver:
                                     res = derive_pronominals(
                                         intermediate,
                                         pron_config,
+                                        stative,
                                         # log="calling" in row["definition"],
                                     )
                                     if res:
-                                        res.pre_config = pre_config
+                                        res.config.pre = pre_config
                                         valid_derivations.extend(derive_middle(res))
         if not valid_derivations:
             return []
 
         valid_derivations.sort(
             key=lambda d: (
-                d.pron_config.use_3rd_person_object,
-                d.pron_config.metathesis_strategy != MetathesisStrategy.NONE,
-                d.pron_config.use_ka_variant,
+                d.config.pron.use_3rd_person_object,
+                d.config.pron.metathesis_strategy != MetathesisStrategy.NONE,
+                d.config.pron.use_ka_variant,
                 sum(
                     [
-                        d.pre_config.translocutive,
-                        d.pre_config.partitive,
-                        d.pre_config.distributive,
+                        d.config.pre.translocutive,
+                        d.config.pre.partitive,
+                        d.config.pre.distributive,
                     ]
                 ),
             )

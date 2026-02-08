@@ -9,11 +9,8 @@ from typing import Dict, List, Optional
 
 from king_recreation.h_alternation import possible_alternates, prevent_C_glottal_cluster
 from king_recreation.morphemes.post_root_morphemes import PostRootMorphemeRegistry
-from king_recreation.morphemes.prepronominals import (
-    PrePronominalConfig,
-    apply_prepronominal,
-)
-from king_recreation.morphemes.pronominals import (
+from king_recreation.morphemes.prefixes import PrefixConfig
+from king_recreation.morphemes.prefixes.pronominals import (
     PronominalConfig,
     get_prefix_details,
     get_pronominal_set_name,
@@ -35,26 +32,6 @@ from king_recreation.paths import (
 from king_recreation.pattern_registry import PatternRegistry
 
 
-@dataclass(frozen=True)
-class VerbConfig:
-    pre: PrePronominalConfig
-    pron: PronominalConfig
-
-    @staticmethod
-    def from_row(stem_row: dict[str, str]) -> "VerbConfig":
-        pre_config = PrePronominalConfig.from_row(stem_row)
-        pron_config = PronominalConfig.from_row(stem_row)
-
-        return VerbConfig(pre=pre_config, pron=pron_config)
-
-    @staticmethod
-    def from_dict(data: dict) -> "VerbConfig":
-        return VerbConfig(
-            pre=PrePronominalConfig.from_dict(data.get("pre", {})),
-            pron=PronominalConfig.from_dict(data.get("pron", {})),
-        )
-
-
 @dataclass
 class ReconstructibleVerb:
     definition: str
@@ -62,7 +39,7 @@ class ReconstructibleVerb:
     glottal_grade_root: Optional[str]
     post_root_morpheme: Optional[str]
     class_name: str
-    config: VerbConfig
+    config: PrefixConfig
     corpus_id: Optional[int] = None
     entry_no: Optional[int] = None
     derivations: List["ReconstructibleVerb"] = field(default_factory=list)
@@ -70,11 +47,12 @@ class ReconstructibleVerb:
         default_factory=dict, repr=False, hash=False, compare=False
     )
 
+    # TODO: IS THIS DEAD?
     @staticmethod
     def from_dict(data: dict) -> "ReconstructibleVerb":
         clean_data = data.copy()
         if "config" in clean_data:
-            clean_data["config"] = VerbConfig.from_dict(clean_data["config"])
+            clean_data["config"] = PrefixConfig.from_dict(clean_data["config"])
         if "post_root_morpheme" in clean_data:
             val = clean_data["post_root_morpheme"]
             # turn "" to None
@@ -142,7 +120,9 @@ class ReconstructionEngine:
         if not class_info:
             return []
 
-        glottal_grade = use_glottal_grade(form_name, verb.config.pron)
+        glottal_grade = use_glottal_grade(
+            form_name, verb.config.pron, verb.config.stative
+        )
         root = self.root_for_form(verb, glottal_grade)
 
         if root is None:
@@ -203,7 +183,9 @@ class ReconstructionEngine:
             layered_candidates = []
 
             for stem in stems if isinstance(stems, list) else [stems]:
-                set_name = get_pronominal_set_name(fn, verb.config.pron)
+                set_name = get_pronominal_set_name(
+                    fn, verb.config.pron, verb.config.stative
+                )
                 if not set_name:
                     raise Exception("WAHH")
                     candidates = [stem]
@@ -214,7 +196,7 @@ class ReconstructionEngine:
 
                 for c in candidates:
                     layered_candidates.extend(
-                        apply_prepronominal(c, verb.config.pre, fn)
+                        verb.config.apply_prepronominals(c, fn)
                     )
 
                 form_options[fn] = layered_candidates
@@ -262,7 +244,7 @@ def main(classes_path=None):
         definition = stem_row["definition"]
         cls_name = stem_row["class"]
 
-        config = VerbConfig.from_row(stem_row)
+        config = PrefixConfig.from_row(stem_row)
 
         # Optional: We could re-verify consistency here, but derive_stems checks it.
         # We assume if it's in derived_roots, it passed basic consistency.
@@ -273,7 +255,7 @@ def main(classes_path=None):
         h_root = stem_row["h_grade"]
 
         glottal_root = None
-        if use_glottal_grade("present_1sg", config.pron):
+        if use_glottal_grade("present_1sg", config.pron, config.stative):
             glottal_root = stem_row["g_grade"]
 
             if glottal_root == "" and not h_root == "":
@@ -536,13 +518,12 @@ def main(classes_path=None):
             print("Aborting save to prevent data loss.")
             exit(1)
 
-        # Sort keys to keep deterministic order, but maybe prefer original order?
-        # Let's take original keys + entry_no + user_selected
         fieldnames = [
             "corpus_id",
             "entry_no",
             "user_selected",
             "definition",
+            "stative",
             "class",
             "post_root_morpheme",
             "h_grade",

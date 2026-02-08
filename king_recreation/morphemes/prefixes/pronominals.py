@@ -130,37 +130,49 @@ class PronominalConfig:
         return row
 
 
-def get_pronominal_set_name(form_name: str, config: PronominalConfig) -> Optional[str]:
+def get_pronominal_set_name(
+    form_name: str, config: PronominalConfig, stative: bool
+) -> Optional[str]:
     set_type = config.set_type
     use_3rd_person_object = config.use_3rd_person_object
 
+    set_a = set_type in ["Set A", "a"]
+
     if form_name == "present" or form_name == "imperfective":
         if config.plural_pronouns:
-            return "3pl Set A" if set_type in ["Set A", "a"] else "3pl Set B"
+            return "3pl Set A" if set_a else "3pl Set B"
         else:
-            return "3rd Set A" if set_type in ["Set A", "a"] else "3rd Set B"
+            return "3rd Set A" if set_a else "3rd Set B"
     if form_name == "perfective" or form_name == "infinitive":
         if config.plural_pronouns:
-            return "3pl Set B"
+            return (
+                "3pl Set A"
+                if set_a and stative and not form_name == "infinitive"
+                else "3pl Set B"
+            )
         else:
-            return "3rd Set B"
+            return (
+                "3rd Set A"
+                if set_a and stative and not form_name == "infinitive"
+                else "3rd Set B"
+            )
     if form_name == "imperative":
         if config.plural_pronouns:
-            return "2pl Set A" if set_type in ["Set A", "a"] else "2pl Set B"
+            return "2pl Set A" if set_a else "2pl Set B"
         else:
             return (
                 "2nd to 3rd"
                 if use_3rd_person_object
-                else ("2nd Set A" if set_type in ["Set A", "a"] else "2nd Set B")
+                else ("2nd Set A" if set_a else "2nd Set B")
             )
     if form_name == "present_1sg":
         if config.plural_pronouns:
-            return "1pl Set A" if set_type in ["Set A", "a"] else "1pl Set B"
+            return "1pl Set A" if set_a else "1pl Set B"
         else:
             return (
                 "1st to 3rd"
                 if use_3rd_person_object
-                else ("1st Set A" if set_type in ["Set A", "a"] else "1st Set B")
+                else ("1st Set A" if set_a else "1st Set B")
             )
     return None
 
@@ -468,8 +480,8 @@ def _get_prefix_details(
     return None
 
 
-def detach_prefix(word: str, form_name: str, config: PronominalConfig):
-    set_name = get_pronominal_set_name(form_name, config)
+def detach_prefix(word: str, form_name: str, config: PronominalConfig, stative: bool):
+    set_name = get_pronominal_set_name(form_name, config, stative)
     prefix = get_prefix_details(set_name, config)
 
     stem = prefix.detach(word)
@@ -491,5 +503,5 @@ def use_glottal_grade_for_set(set_name: str) -> bool:
     return set_name in ["2nd to 3rd", "1st to 3rd", "1st Set A"]
 
 
-def use_glottal_grade(form: str, config: PronominalConfig) -> bool:
-    return use_glottal_grade_for_set(get_pronominal_set_name(form, config))
+def use_glottal_grade(form: str, config: PronominalConfig, stative: bool) -> bool:
+    return use_glottal_grade_for_set(get_pronominal_set_name(form, config, stative))

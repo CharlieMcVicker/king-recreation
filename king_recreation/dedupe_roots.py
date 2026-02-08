@@ -3,17 +3,16 @@ import dataclasses
 import json
 import os
 from collections import defaultdict
-from dataclasses import asdict
 from enum import Enum
 from typing import List
 
-from king_recreation.morphemes.pronominals import use_glottal_grade
+from king_recreation.morphemes.prefixes import PrefixConfig
+from king_recreation.morphemes.prefixes.pronominals import use_glottal_grade
 from king_recreation.paths import (
     reconstructable_verbs_path,
-    reports_path,
     validated_reconstructable_roots_path,
 )
-from king_recreation.reconstruct_from_roots import ReconstructibleVerb, VerbConfig
+from king_recreation.reconstruct_from_roots import ReconstructibleVerb
 
 
 class EnhancedJSONEncoder(json.JSONEncoder):
@@ -115,7 +114,7 @@ def main():
         reader = csv.DictReader(f)
         for row in reader:
             # Reconstruct ReconstructibleVerb object
-            config = VerbConfig.from_row(row)
+            config = PrefixConfig.from_row(row)
 
             # Logic to reconstruct h_root/glottal_root/post_root if not directly in row?
             # The row is the original derived root row.
@@ -134,7 +133,7 @@ def main():
             # actually row has "g_grade".
 
             glottal_root = None
-            if use_glottal_grade("present_1sg", config.pron):
+            if use_glottal_grade("present_1sg", config.pron, config.stative):
                 glottal_root = row["g_grade"]
                 if glottal_root == "" and not h_root == "":
                     glottal_root = None
