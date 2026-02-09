@@ -24,7 +24,7 @@ def main():
     parser.add_argument("--classes", help="Path to custom classes CSV file")
     args = parser.parse_args()
     print("[1/11] Preprocessing Cherokee Nation Dictionary...")
-    process_cn_dict(cherokee_nation_dictionary_path)
+    process_cn_dict(cherokee_nation_dictionary_path, corpus_path)
 
     print("\n[2/11] Classifying Verbs...")
     classify_verbs(args.classes)
@@ -39,7 +39,7 @@ def main():
     reconstruct_from_roots()
 
     print("\n[6/11] Loading and Grouping Verbs...")
-    verbs = load_verbs(corpus_path)
+    verbs = load_verbs(reconstructable_verbs_path)
     root_groups = group_verbs_by_root(verbs)
 
     print("\n[7/11] Analyzing Derivational Suffix Connections...")
