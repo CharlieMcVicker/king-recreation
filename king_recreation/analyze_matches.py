@@ -6,6 +6,7 @@ import re
 from collections import Counter, defaultdict
 from typing import Any, Dict, List, Optional
 
+from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
 from king_recreation.paths import (
     class_match_counts_path,
     corpus_no_asp_path,
@@ -26,7 +27,6 @@ from king_recreation.paths import (
     variation_match_counts_path,
     verb_coverage_path,
 )
-from king_recreation.pattern_registry import PatternRegistry
 
 
 def load_csv(path: str) -> List[Dict[str, str]]:

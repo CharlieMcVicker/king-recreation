@@ -1,92 +1,25 @@
 import csv
 import os
 from collections import defaultdict
-from dataclasses import asdict, dataclass
 from typing import List
 
-from king_recreation.h_alternation import (
-    possible_alternates,
-    prevent_C_glottal_cluster,
-    recreate_C_glottal_clusters,
-)
+from king_recreation.morphemes.aspect.class_patterns import ExpandedClassPattern
+from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
 from king_recreation.morphemes.aspect.strip import StrippedVerbRow, create_stripped_row
 from king_recreation.paths import corpus_no_asp_path, corpus_path, matches_path
-from king_recreation.pattern_registry import PatternRegistry
 
 
-def match_alternated_endings(form_val: str, suffix: str, classname: str):
-    for alt in possible_alternates(suffix, fix_clusters=False):
-        if match_ending(recreate_C_glottal_clusters(form_val), alt):
-            return True
-
-    return False
-
-
-def match_ending(corpus_form, pattern_suffix):
-    # Policy: Vacuous Matching
-    # If the corpus form is missing, it cannot contradict any pattern.
-    if not corpus_form:
-        return True
-
-    # Literal characters only, ignore * or @
-    if pattern_suffix is None:
-        pattern_suffix = ""
-    literal_suffix = pattern_suffix.replace("*", "").replace("@", "")
-
-    return corpus_form.endswith(literal_suffix)
-
-
-def get_candidates_combined(verb, registry: PatternRegistry):
-    """
-    Get initial candidates by intersecting matches from available forms.
-    Returns a set of unique ExpandedClassPattern objects.
-    """
+def group_matches_by_macro(
+    registry: PatternRegistry,
+    candidate_patterns: set[ExpandedClassPattern],
+    verb: dict[str, str],
+):
     forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
-
-    # Identify available forms
-    available_forms = [f for f in forms if verb.get(f)]
-
-    if not available_forms:
-        return (
-            set()
-        )  # No forms to match against? Or should we return all? Return none seems safer.
-
-    # Start with candidates from the first available form (usually present)
-    primary_form = available_forms[0]
-    candidate_set = set(registry.get_candidates(verb.get(primary_form), primary_form))
-
-    # Intersect with other forms to narrow down
-    # Optimization: Only intersect if candidate_set is large?
-    # For correctness, we must intersect or just union?
-    # WAIT. If a pattern matches Present but mismatches Imperfective, it is NOT a match.
-    # So intersection is correct for finding patterns that are consistent with ALL present forms.
-    # PatternRegistry.get_candidates returns patterns whose LITERAL SUFFIX matches the verb form.
-    # If a pattern has Imperfective suffix "abc" and verb has "xyz", it won't be returned by get_candidates(imperf).
-    # So yes, Intersection is the way.
-
-    for form in available_forms[1:]:
-        matches_for_form = set(
-            registry.get_candidates(
-                verb.get(form), form, allow_suffix_alternation=(form == "imperative")
-            )
-        )
-        candidate_set.intersection_update(matches_for_form)
-        if not candidate_set:
-            break
-
-    return candidate_set
-
-
-def get_matches_for_verb(verb, registry: PatternRegistry):
-    forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
-    matches = []
-
-    definition = verb.get("definition", "unknown")
     present_verb_forms = [f for f in forms if verb.get(f)]
 
-    # 1. OPTIMIZED LOOKUP
-    candidate_patterns = get_candidates_combined(verb, registry)
+    definition = verb.get("definition", "unknown")
 
+    matches = []
     # Group by Macro for preference logic
     macro_groups = defaultdict(list)
     for p in sorted(candidate_patterns, key=lambda p: registry.key_for_pattern(p)):
@@ -120,12 +53,8 @@ def get_matches_for_verb(verb, registry: PatternRegistry):
             # Check Ending Match (Already mostly done by lookup/intersect, but verifying specifics like * or @)
             all_endings_match = True
             for form in forms:
-                form_val = verb.get(form)
-                # Use existing match_ending helper which handles vacuous match
-                suffix = cls.get(form)
-                if not match_ending(form_val, suffix) and not (
-                    form == "imperative"
-                    and match_alternated_endings(form_val, suffix, classname=class_id)
+                if not cls.match_ending(verb, form) and not (
+                    form == "imperative" and cls.match_alternated_endings(verb, form)
                 ):
                     all_endings_match = False
                     break
@@ -139,6 +68,15 @@ def get_matches_for_verb(verb, registry: PatternRegistry):
                     "class": class_id,
                 }
             )
+
+    return matches
+
+
+def get_matches_for_verb(verb, registry: PatternRegistry):
+    # 1. OPTIMIZED LOOKUP
+    candidate_patterns = registry.get_candidates_combined(verb)
+
+    matches = group_matches_by_macro(registry, candidate_patterns, verb)
 
     return matches
 

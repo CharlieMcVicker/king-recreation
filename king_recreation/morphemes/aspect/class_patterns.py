@@ -2,7 +2,10 @@ import itertools
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 
-from king_recreation.h_alternation import possible_alternates
+from king_recreation.h_alternation import (
+    possible_alternates,
+    recreate_C_glottal_clusters,
+)
 from king_recreation.phonology_data import VOWEL_SET
 
 
@@ -85,6 +88,33 @@ class ExpandedClassPattern:
                 if t_char != s_char:
                     return False
         return True
+
+    def match_alternated_endings(self, forms: dict[str, str], form_name: str):
+        suffix = self.get(form_name)
+        form_val = forms.get(form_name)
+        for alt_suffix in possible_alternates(suffix, fix_clusters=False):
+            if self._match_ending(recreate_C_glottal_clusters(form_val), alt_suffix):
+                return True
+
+        return False
+
+    def match_ending(self, forms: dict[str, str], form_name: str):
+        return self._match_ending(
+            suffix=self.get(form_name), form_val=forms.get(form_name)
+        )
+
+    def _match_ending(self, form_val: str, suffix: str):
+        # Policy: Vacuous Matching
+        # If the corpus form is missing, it cannot contradict any pattern.
+        if not form_val:
+            return True
+
+        # Literal characters only, ignore * or @
+        if suffix is None:
+            suffix = ""
+        literal_suffix = suffix.replace("*", "").replace("@", "")
+
+        return form_val.endswith(literal_suffix)
 
 
 @dataclass

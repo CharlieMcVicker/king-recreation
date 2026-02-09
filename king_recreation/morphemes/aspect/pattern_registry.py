@@ -4,10 +4,13 @@ import re
 from collections import defaultdict
 from typing import Dict, List, Optional, Tuple
 
-from king_recreation.class_patterns import ClassMacro, ExpandedClassPattern
 from king_recreation.h_alternation import (
     possible_alternates,
     recreate_C_glottal_clusters,
+)
+from king_recreation.morphemes.aspect.class_patterns import (
+    ClassMacro,
+    ExpandedClassPattern,
 )
 
 CLASSES_PATH = "data/classes.csv"
@@ -165,3 +168,45 @@ class PatternRegistry:
                             candidates.append(cand)
 
         return candidates
+
+    def get_candidates_combined(self, verb):
+        """
+        Get initial candidates by intersecting matches from available forms.
+        Returns a set of unique ExpandedClassPattern objects.
+        """
+        forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
+
+        # Identify available forms
+        available_forms = [f for f in forms if verb.get(f)]
+
+        if not available_forms:
+            return (
+                set()
+            )  # No forms to match against? Or should we return all? Return none seems safer.
+
+        # Start with candidates from the first available form (usually present)
+        primary_form = available_forms[0]
+        candidate_set = set(self.get_candidates(verb.get(primary_form), primary_form))
+
+        # Intersect with other forms to narrow down
+        # Optimization: Only intersect if candidate_set is large?
+        # For correctness, we must intersect or just union?
+        # WAIT. If a pattern matches Present but mismatches Imperfective, it is NOT a match.
+        # So intersection is correct for finding patterns that are consistent with ALL present forms.
+        # PatternRegistry.get_candidates returns patterns whose LITERAL SUFFIX matches the verb form.
+        # If a pattern has Imperfective suffix "abc" and verb has "xyz", it won't be returned by get_candidates(imperf).
+        # So yes, Intersection is the way.
+
+        for form in available_forms[1:]:
+            matches_for_form = set(
+                self.get_candidates(
+                    verb.get(form),
+                    form,
+                    allow_suffix_alternation=(form == "imperative"),
+                )
+            )
+            candidate_set.intersection_update(matches_for_form)
+            if not candidate_set:
+                break
+
+        return candidate_set

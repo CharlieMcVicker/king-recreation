@@ -1,7 +1,7 @@
 import csv
 import io
 
-from king_recreation.class_patterns import ClassPatterns
+from king_recreation.morphemes.aspect.class_patterns import ClassPatterns
 
 
 def test_macro_expansion():

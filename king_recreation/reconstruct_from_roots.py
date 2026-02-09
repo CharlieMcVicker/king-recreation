@@ -8,6 +8,7 @@ from enum import Enum
 from typing import Dict, List, Optional
 
 from king_recreation.h_alternation import possible_alternates, prevent_C_glottal_cluster
+from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
 from king_recreation.morphemes.post_root_morphemes import PostRootMorphemeRegistry
 from king_recreation.morphemes.prefixes import PrefixConfig
 from king_recreation.morphemes.prefixes.pronominals import (
@@ -29,7 +30,6 @@ from king_recreation.paths import (
     validated_matches_path,
     validated_reconstructable_roots_path,
 )
-from king_recreation.pattern_registry import PatternRegistry
 
 
 @dataclass
@@ -195,9 +195,7 @@ class ReconstructionEngine:
                     )
 
                 for c in candidates:
-                    layered_candidates.extend(
-                        verb.config.apply_prepronominals(c, fn)
-                    )
+                    layered_candidates.extend(verb.config.apply_prepronominals(c, fn))
 
                 form_options[fn] = layered_candidates
 
