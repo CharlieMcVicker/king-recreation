@@ -334,7 +334,6 @@ def main(classes_path=None):
                 else:
                     segmented = desegmented_forms[fn][ref_word]
                     segmented_forms[fn] = segmented
-                    print(ref_word, segmented)
 
         if matches_all:
             success_count += 1
