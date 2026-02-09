@@ -156,6 +156,12 @@ def main():
             )
             # Monkey-patch or attach user_selected for use in dedupe
             verb.user_selected = row.get("user_selected") == "x"
+            # Deserialize segmented_forms
+            if "segmented_forms" in row and row["segmented_forms"]:
+                try:
+                    verb.segmented_forms = json.loads(row["segmented_forms"])
+                except json.JSONDecodeError:
+                    verb.segmented_forms = {}
             validated_verbs.append(verb)
 
     print(f"Loaded {len(validated_verbs)} validated verbs.")

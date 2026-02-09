@@ -1,5 +1,5 @@
 {
-    "summary": "1847/3583",
+    "summary": "1841/3581",
     "failures": [
         {
             "definition": "he/she is bouncing it",
@@ -3258,6 +3258,7 @@
         {
             "definition": "he/she is taking it somewhere by hand",
             "failed_forms": [
+                "present_1sg: expected 'tsiyek', got []",
                 "imperative: expected 'hiyhuka', got []"
             ],
             "class": "go",
@@ -3328,6 +3329,7 @@
         {
             "definition": "he/she is looking for him/her",
             "failed_forms": [
+                "present_1sg: expected 'tsiyoh', got []",
                 "imperative: expected 'hiyhka', got []"
             ],
             "class": "oh-al",
@@ -6429,6 +6431,38 @@
             "corpus_id": 498
         },
         {
+            "definition": "he/she is inside",
+            "failed_forms": [
+                "present_1sg: expected 'tsiya'', got []"
+            ],
+            "class": "stative-a'",
+            "corpus_id": 502
+        },
+        {
+            "definition": "he/she is inside",
+            "failed_forms": [
+                "present_1sg: expected 'tsiya'', got []"
+            ],
+            "class": "stative-a'",
+            "corpus_id": 502
+        },
+        {
+            "definition": "he/she is inside",
+            "failed_forms": [
+                "present_1sg: expected 'tsiya'', got []"
+            ],
+            "class": "stative-a'",
+            "corpus_id": 502
+        },
+        {
+            "definition": "he/she is inside",
+            "failed_forms": [
+                "present_1sg: expected 'tsiya'', got []"
+            ],
+            "class": "stative-a'",
+            "corpus_id": 502
+        },
+        {
             "definition": "he/she is waking up",
             "failed_forms": [
                 "infinitive: expected 'uye'ihst', got ['uyehst']"
@@ -6583,6 +6617,7 @@
         {
             "definition": "he/she is getting it",
             "failed_forms": [
+                "present_1sg: expected 'tsiyi'', got []",
                 "imperative: expected 'hiya', got []"
             ],
             "class": "ih-vh",
@@ -8167,6 +8202,7 @@
         {
             "definition": "he/she is getting a rash",
             "failed_forms": [
+                "present_1sg: expected 'takikwenothihsk', got ['takhikenothihsk', 'teakhikenothihsk']",
                 "imperative: expected 'titsakwenothihi', got ['titshakenothihi', 'tstshakenothihi', 'ttshakenothihi']",
                 "infinitive: expected 'tsukwenothihst', got ['tiukwenothihihst', 'tsukwenothihihst', 'tukwenothihihst']"
             ],
@@ -8176,6 +8212,7 @@
         {
             "definition": "he/she is getting a rash",
             "failed_forms": [
+                "present_1sg: expected 'takikwenothihsk', got ['takhikenothihsk', 'teakhikenothihsk']",
                 "imperative: expected 'titsakwenothihi', got ['titshakenothihi', 'tstshakenothihi', 'ttshakenothihi']"
             ],
             "class": "sk-s-hst[imp2]",
@@ -8192,6 +8229,7 @@
         {
             "definition": "he/she is getting a rash",
             "failed_forms": [
+                "present_1sg: expected 'takikwenothihsk', got ['takhikenothihsk', 'teakhikenothihsk']",
                 "imperative: expected 'titsakwenothihi', got ['titshakenothi', 'tstshakenothi', 'ttshakenothi']"
             ],
             "class": "sk-s-hst",
@@ -8200,6 +8238,7 @@
         {
             "definition": "he/she has horns",
             "failed_forms": [
+                "present_1sg: expected 'takilhk', got ['takhilk', 'teakhilk']",
                 "imperative: expected 'tetsalhkehsti', got ['tetshalkehsti', 'ttshalkehsti']"
             ],
             "class": "stative-k",
@@ -8208,6 +8247,7 @@
         {
             "definition": "he/she has horns",
             "failed_forms": [
+                "present_1sg: expected 'takilhk', got ['takhilk', 'teakhilk']",
                 "imperative: expected 'tetsalhkehsti', got ['tetshalkehsti', 'ttshalkehsti']"
             ],
             "class": "stative-k",
@@ -8216,6 +8256,7 @@
         {
             "definition": "he/she has horns",
             "failed_forms": [
+                "present_1sg: expected 'takilhk', got ['takhilk', 'teakhilk']",
                 "imperative: expected 'tetsalhkehsti', got ['tetshalkehsti', 'ttshalkehsti']"
             ],
             "class": "stative",
@@ -8224,6 +8265,7 @@
         {
             "definition": "he/she has horns",
             "failed_forms": [
+                "present_1sg: expected 'takilhk', got ['takhilk', 'teakhilk']",
                 "imperative: expected 'tetsalhkehsti', got ['tetshalkehsti', 'ttshalkehsti']"
             ],
             "class": "stative",
@@ -8248,6 +8290,7 @@
         {
             "definition": "he/she is vomiting",
             "failed_forms": [
+                "present_1sg: expected 'takikhstih', got ['takhikstih', 'teakhikstih']",
                 "imperative: expected 'titsakhsta', got ['titshaksta', 'tstshaksta', 'ttshaksta']"
             ],
             "class": "cause",
@@ -8256,6 +8299,7 @@
         {
             "definition": "he/she is vomiting",
             "failed_forms": [
+                "present_1sg: expected 'takikhstih', got ['takhikstih', 'teakhikstih']",
                 "imperative: expected 'titsakhsta', got ['titshaksta', 'tstshaksta', 'ttshaksta']"
             ],
             "class": "cause",
@@ -8272,6 +8316,7 @@
         {
             "definition": "he/she is vomiting",
             "failed_forms": [
+                "present_1sg: expected 'takikhstih', got ['takhikstih', 'teakhikstih']",
                 "perfective: expected 'tukhsthan', got ['teukhstan', 'tukhstan']",
                 "imperative: expected 'titsakhsta', got ['titshaksta', 'tstshaksta', 'ttshaksta']"
             ],
@@ -8281,6 +8326,7 @@
         {
             "definition": "he/she is vomiting",
             "failed_forms": [
+                "present_1sg: expected 'takikhstih', got ['takhikstih', 'teakhikstih']",
                 "perfective: expected 'tukhsthan', got ['teukhstan', 'tukhstan']",
                 "imperative: expected 'titsakhsta', got ['titshaksta', 'tstshaksta', 'ttshaksta']"
             ],
@@ -8301,6 +8347,7 @@
         {
             "definition": "he/she is vomiting",
             "failed_forms": [
+                "present_1sg: expected 'takikhstih', got ['takhikstih', 'teakhikstih']",
                 "imperfective: expected 'tukhstihsk', got ['teukhstihihsk', 'tukhstihihsk']",
                 "perfective: expected 'tukhsthan', got ['teukhstihhan', 'tukhstihhan']",
                 "imperative: expected 'titsakhsta', got ['titshakstiha', 'tstshakstiha', 'ttshakstiha']",
@@ -8312,6 +8359,7 @@
         {
             "definition": "he/she is vomiting",
             "failed_forms": [
+                "present_1sg: expected 'takikhstih', got ['takhikstih', 'teakhikstih']",
                 "imperfective: expected 'tukhstihsk', got ['teukhstihihsk', 'tukhstihihsk']",
                 "perfective: expected 'tukhsthan', got ['teukhstihhan', 'tukhstihhan']",
                 "imperative: expected 'titsakhsta', got ['titshakstiha', 'tstshakstiha', 'ttshakstiha']",
@@ -8334,6 +8382,7 @@
         {
             "definition": "he/she is vomiting",
             "failed_forms": [
+                "present_1sg: expected 'takikhstih', got ['takhikstih', 'teakhikstih']",
                 "imperfective: expected 'tukhstihsk', got ['teukhstihihsk', 'tukhstihihsk']",
                 "perfective: expected 'tukhsthan', got ['teukhstihan', 'tukhstihan']",
                 "imperative: expected 'titsakhsta', got ['titshakstiha', 'tstshakstiha', 'ttshakstiha']",
@@ -8345,6 +8394,7 @@
         {
             "definition": "he/she is vomiting",
             "failed_forms": [
+                "present_1sg: expected 'takikhstih', got ['takhikstih', 'teakhikstih']",
                 "imperfective: expected 'tukhstihsk', got ['teukhstihihsk', 'tukhstihihsk']",
                 "perfective: expected 'tukhsthan', got ['teukhstihan', 'tukhstihan']",
                 "imperative: expected 'titsakhsta', got ['titshakstiha', 'tstshakstiha', 'ttshakstiha']",
@@ -8364,6 +8414,7 @@
         {
             "definition": "he/she is working",
             "failed_forms": [
+                "present_1sg: expected 'takilvwhihstaneh', got ['takhilwhihstaneh', 'teakhilwhihstaneh']",
                 "imperative: expected 'titsalvwhihstahsi', got ['titshalwhihstahsi', 'tstshalwhihstahsi', 'ttshalwhihstahsi']"
             ],
             "class": "apl",
@@ -8380,6 +8431,7 @@
         {
             "definition": "he/she is working",
             "failed_forms": [
+                "present_1sg: expected 'takilvwhihstaneh', got ['takhilwhihstaneh', 'teakhilwhihstaneh']",
                 "imperative: expected 'titsalvwhihstahsi', got ['titshalwhihsthsi', 'tstshalwhihsthsi', 'ttshalwhihsthsi']"
             ],
             "class": "apl[imp2]",
@@ -8418,6 +8470,7 @@
         {
             "definition": "he/she is tired",
             "failed_forms": [
+                "present_1sg: expected 'takiyawek', got ['takhiywek', 'teakhiywek']",
                 "imperative: expected 'titsayaweki', got ['titshayweki', 'tstshayweki', 'ttshayweki']"
             ],
             "class": "become",
@@ -8426,6 +8479,7 @@
         {
             "definition": "he/she is releasing it",
             "failed_forms": [
+                "present_1sg: expected 'takiyohsk', got ['takhiyhsk', 'teakhiyhsk']",
                 "imperative: expected 'titsayohi', got ['titshayhi', 'tstshayhi', 'ttshayhi']"
             ],
             "class": "sk-s-hi-hihst",
@@ -8442,6 +8496,7 @@
         {
             "definition": "he/she is releasing it",
             "failed_forms": [
+                "present_1sg: expected 'takiyohsk', got ['takhiyhsk', 'teakhiyhsk']",
                 "imperative: expected 'titsayohi', got ['titshayhi', 'tstshayhi', 'ttshayhi']",
                 "infinitive: expected 'tsuyohihst', got ['tiuyohst', 'tsuyohst', 'tuyohst']"
             ],
@@ -8460,6 +8515,7 @@
         {
             "definition": "he/she is releasing it",
             "failed_forms": [
+                "present_1sg: expected 'takiyohsk', got ['takhiyhsk', 'teakhiyhsk']",
                 "imperative: expected 'titsayohi', got ['titshay', 'tstshay', 'ttshay']",
                 "infinitive: expected 'tsuyohihst', got ['tiuyohst', 'tsuyohst', 'tuyohst']"
             ],
@@ -14721,6 +14777,7 @@
         {
             "definition": "he/she is becoming warm",
             "failed_forms": [
+                "present_1sg: expected 'akikanawohsk', got ['akhiknawohsk']",
                 "imperative: expected 'tsakanawohi', got ['tshaknawohi']"
             ],
             "class": "sk-s-hi-hihst",
@@ -14737,6 +14794,7 @@
         {
             "definition": "he/she is becoming warm",
             "failed_forms": [
+                "present_1sg: expected 'akikanawohsk', got ['akhiknawohsk']",
                 "imperative: expected 'tsakanawohi', got ['tshaknawohi']",
                 "infinitive: expected 'ukanawohihst', got ['ukanawohst']"
             ],
@@ -14755,6 +14813,7 @@
         {
             "definition": "he/she is becoming warm",
             "failed_forms": [
+                "present_1sg: expected 'akikanawohsk', got ['akhiknawohsk']",
                 "imperative: expected 'tsakanawohi', got ['tshaknawo']",
                 "infinitive: expected 'ukanawohihst', got ['ukanawohst']"
             ],
@@ -14783,6 +14842,7 @@
         {
             "definition": "he/she is late",
             "failed_forms": [
+                "present_1sg: expected 'akikonhiyok', got ['akhiknhiyok']",
                 "imperative: expected 'tsakonhiyoki', got ['tshaknhiyoki']"
             ],
             "class": "become",
@@ -14791,6 +14851,7 @@
         {
             "definition": "it\u2019s decaying",
             "failed_forms": [
+                "present_1sg: expected 'akikohsk', got ['akhikhsk']",
                 "imperative: expected 'tsakohi', got ['tshakhi']"
             ],
             "class": "sk-s-hi-hihst",
@@ -14807,6 +14868,7 @@
         {
             "definition": "it\u2019s decaying",
             "failed_forms": [
+                "present_1sg: expected 'akikohsk', got ['akhikhsk']",
                 "imperative: expected 'tsakohi', got ['tshakhi']",
                 "infinitive: expected 'ukohihst', got ['ukohst']"
             ],
@@ -14825,6 +14887,7 @@
         {
             "definition": "it\u2019s decaying",
             "failed_forms": [
+                "present_1sg: expected 'akikohsk', got ['akhikhsk']",
                 "imperative: expected 'tsakohi', got ['tshak']",
                 "infinitive: expected 'ukohihst', got ['ukohst']"
             ],
@@ -14834,6 +14897,7 @@
         {
             "definition": "he/she has an object",
             "failed_forms": [
+                "present_1sg: expected 'akih', got ['akhih']",
                 "imperative: expected 'tsahehsti', got ['tshahhsti']"
             ],
             "class": "stative-h",
@@ -14842,6 +14906,7 @@
         {
             "definition": "he/she has an object",
             "failed_forms": [
+                "present_1sg: expected 'akih', got ['akhih']",
                 "imperative: expected 'tsahehsti', got ['tshahhsti']"
             ],
             "class": "stative-h",
@@ -14850,6 +14915,7 @@
         {
             "definition": "he/she has an object",
             "failed_forms": [
+                "present_1sg: expected 'akih', got ['akhih']",
                 "imperative: expected 'tsahehsti', got ['tshahhsti']"
             ],
             "class": "stative-h",
@@ -14858,6 +14924,7 @@
         {
             "definition": "he/she has an object",
             "failed_forms": [
+                "present_1sg: expected 'akih', got ['akhih']",
                 "imperative: expected 'tsahehsti', got ['tshahhsti']"
             ],
             "class": "stative",
@@ -14875,6 +14942,7 @@
         {
             "definition": "he/she is having trouble breathing",
             "failed_forms": [
+                "present_1sg: expected 'akihawohstih', got ['akhihwohstih']",
                 "imperative: expected 'tsahawohsta', got ['tshahwohsta']"
             ],
             "class": "cause",
@@ -14891,6 +14959,7 @@
         {
             "definition": "he/she is having trouble breathing",
             "failed_forms": [
+                "present_1sg: expected 'akihawohstih', got ['akhihwohstih']",
                 "perfective: expected 'uhawohsthan', got ['uhawohstan']",
                 "imperative: expected 'tsahawohsta', got ['tshahwohsta']"
             ],
@@ -14911,6 +14980,7 @@
         {
             "definition": "he/she is having trouble breathing",
             "failed_forms": [
+                "present_1sg: expected 'akihawohstih', got ['akhihwohstih']",
                 "imperfective: expected 'uhawohstihsk', got ['uhawohstihihsk']",
                 "perfective: expected 'uhawohsthan', got ['uhawohstihhan']",
                 "imperative: expected 'tsahawohsta', got ['tshahwohstiha']",
@@ -14933,6 +15003,7 @@
         {
             "definition": "he/she is having trouble breathing",
             "failed_forms": [
+                "present_1sg: expected 'akihawohstih', got ['akhihwohstih']",
                 "imperfective: expected 'uhawohstihsk', got ['uhawohstihihsk']",
                 "perfective: expected 'uhawohsthan', got ['uhawohstihan']",
                 "imperative: expected 'tsahawohsta', got ['tshahwohstiha']",
@@ -14944,6 +15015,7 @@
         {
             "definition": "there is dew",
             "failed_forms": [
+                "present_1sg: expected 'akihihsath', got ['akhihhsath']",
                 "imperative: expected 'tsahihsathehsti', got ['tshahhsathehsti']"
             ],
             "class": "stative-h",
@@ -14952,6 +15024,7 @@
         {
             "definition": "there is dew",
             "failed_forms": [
+                "present_1sg: expected 'akihihsath', got ['akhihhsath']",
                 "imperative: expected 'tsahihsathehsti', got ['tshahhsathehsti']"
             ],
             "class": "stative",
@@ -14960,6 +15033,7 @@
         {
             "definition": "he/she is lonesome",
             "failed_forms": [
+                "present_1sg: expected 'akihihsohtaneh', got ['akhihhsohtaneh']",
                 "imperative: expected 'tsahihsohtahsi', got ['tshahhsohtahsi']"
             ],
             "class": "apl",
@@ -14976,6 +15050,7 @@
         {
             "definition": "he/she is lonesome",
             "failed_forms": [
+                "present_1sg: expected 'akihihsohtaneh', got ['akhihhsohtaneh']",
                 "imperative: expected 'tsahihsohtahsi', got ['tshahhsohthsi']"
             ],
             "class": "apl[imp2]",
@@ -15130,6 +15205,7 @@
         {
             "definition": "he/she is looking for it",
             "failed_forms": [
+                "present_1sg: expected 'akiyhoh', got ['akhiyoh']",
                 "imperative: expected 'tsayhka', got ['tshayka']"
             ],
             "class": "oh-al",
@@ -15154,6 +15230,7 @@
         {
             "definition": "it\u2019s foggy",
             "failed_forms": [
+                "present_1sg: expected 'akikhvhat', got ['akhikvhat']",
                 "imperative: expected 'tsakhvhatehsti', got ['tshakvhatehsti']"
             ],
             "class": "stative",
@@ -15162,6 +15239,7 @@
         {
             "definition": "it\u2019s foggy",
             "failed_forms": [
+                "present_1sg: expected 'akikhvhat', got ['akhikvhat']",
                 "imperative: expected 'tsakhvhatehsti', got ['tshakvhatehsti']"
             ],
             "class": "stative",
@@ -15170,6 +15248,7 @@
         {
             "definition": "he/she is not having luck at hunting",
             "failed_forms": [
+                "present_1sg: expected 'akikwholek', got ['akhikholek']",
                 "imperative: expected 'tsakwholuka', got ['tshakholuka']"
             ],
             "class": "go",
@@ -15178,6 +15257,7 @@
         {
             "definition": "he/she is not having luck at hunting",
             "failed_forms": [
+                "present_1sg: expected 'akikwholek', got ['akhikholek']",
                 "imperative: expected 'tsakwholuka', got ['tshakholuka']"
             ],
             "class": "go",
@@ -15197,6 +15277,7 @@
         {
             "definition": "he/she is not having luck at hunting",
             "failed_forms": [
+                "present_1sg: expected 'akikwholek', got ['akhikholek']",
                 "imperfective: expected 'ukwholek', got ['ukwholekek']",
                 "perfective: expected 'ukwholvhs', got ['ukwholekvhs']",
                 "imperative: expected 'tsakwholuka', got ['tshakholekuka']",
@@ -15208,6 +15289,7 @@
         {
             "definition": "he/she is not having luck at hunting",
             "failed_forms": [
+                "present_1sg: expected 'akikwholek', got ['akhikholek']",
                 "imperfective: expected 'ukwholek', got ['ukwholekek']",
                 "perfective: expected 'ukwholvhs', got ['ukwholekvhs']",
                 "imperative: expected 'tsakwholuka', got ['tshakholekuka']",
@@ -15219,6 +15301,7 @@
         {
             "definition": "he/she is making a mistake",
             "failed_forms": [
+                "present_1sg: expected 'akilitahstih', got ['akhiltahstih']",
                 "imperative: expected 'tsalitahsta', got ['tshaltahsta']"
             ],
             "class": "cause",
@@ -15235,6 +15318,7 @@
         {
             "definition": "he/she is making a mistake",
             "failed_forms": [
+                "present_1sg: expected 'akilitahstih', got ['akhiltahstih']",
                 "perfective: expected 'ulitahsthan', got ['ulitahstan']",
                 "imperative: expected 'tsalitahsta', got ['tshaltahsta']"
             ],
@@ -15255,6 +15339,7 @@
         {
             "definition": "he/she is making a mistake",
             "failed_forms": [
+                "present_1sg: expected 'akilitahstih', got ['akhiltahstih']",
                 "imperfective: expected 'ulitahstihsk', got ['ulitahstihihsk']",
                 "perfective: expected 'ulitahsthan', got ['ulitahstihhan']",
                 "imperative: expected 'tsalitahsta', got ['tshaltahstiha']",
@@ -15277,6 +15362,7 @@
         {
             "definition": "he/she is making a mistake",
             "failed_forms": [
+                "present_1sg: expected 'akilitahstih', got ['akhiltahstih']",
                 "imperfective: expected 'ulitahstihsk', got ['ulitahstihihsk']",
                 "perfective: expected 'ulitahsthan', got ['ulitahstihan']",
                 "imperative: expected 'tsalitahsta', got ['tshaltahstiha']",
@@ -15288,6 +15374,7 @@
         {
             "definition": "he/she is whining",
             "failed_forms": [
+                "present_1sg: expected 'akiliyetih', got ['akhilyetih']",
                 "imperative: expected 'tsaliyeta', got ['tshalyeta']"
             ],
             "class": "cause",
@@ -15304,6 +15391,7 @@
         {
             "definition": "he/she is whining",
             "failed_forms": [
+                "present_1sg: expected 'akiliyetih', got ['akhilyetih']",
                 "perfective: expected 'uliyethan', got ['uliyetan']",
                 "imperative: expected 'tsaliyeta', got ['tshalyeta']"
             ],
@@ -15324,6 +15412,7 @@
         {
             "definition": "he/she is whining",
             "failed_forms": [
+                "present_1sg: expected 'akiliyetih', got ['akhilyetih']",
                 "imperfective: expected 'uliyetihsk', got ['uliyetihihsk']",
                 "perfective: expected 'uliyethan', got ['uliyetihhan']",
                 "imperative: expected 'tsaliyeta', got ['tshalyetiha']",
@@ -15346,6 +15435,7 @@
         {
             "definition": "he/she is whining",
             "failed_forms": [
+                "present_1sg: expected 'akiliyetih', got ['akhilyetih']",
                 "imperfective: expected 'uliyetihsk', got ['uliyetihihsk']",
                 "perfective: expected 'uliyethan', got ['uliyetihan']",
                 "imperative: expected 'tsaliyeta', got ['tshalyetiha']",
@@ -15397,6 +15487,7 @@
         {
             "definition": "he/she has an object",
             "failed_forms": [
+                "present_1sg: expected 'akina'', got [\"akhin'\"]",
                 "imperative: expected 'tsana'ehsti', got [\"tshan'ehsti\"]"
             ],
             "class": "stative-a'",
@@ -15405,6 +15496,7 @@
         {
             "definition": "he/she has an object",
             "failed_forms": [
+                "present_1sg: expected 'akina'', got [\"akhin'\"]",
                 "imperative: expected 'tsana'ehsti', got [\"tshan'ehsti\"]"
             ],
             "class": "stative",
@@ -15413,6 +15505,7 @@
         {
             "definition": "he/she is being mean",
             "failed_forms": [
+                "present_1sg: expected 'akinekuts', got ['akhinkuts']",
                 "imperative: expected 'tsanekutsehsti', got ['tshankutsehsti']"
             ],
             "class": "stative",
@@ -15421,6 +15514,7 @@
         {
             "definition": "he/she has a liquid",
             "failed_forms": [
+                "present_1sg: expected 'akineh', got ['akhinh']",
                 "imperative: expected 'tsanehehsti', got ['tshanhehsti']"
             ],
             "class": "stative-h",
@@ -15437,6 +15531,7 @@
         {
             "definition": "he/she has a liquid",
             "failed_forms": [
+                "present_1sg: expected 'akineh', got ['akhinh']",
                 "imperative: expected 'tsanehehsti', got ['tshanhehsti']",
                 "infinitive: expected 'uneht', got ['un']"
             ],
@@ -15454,6 +15549,7 @@
         {
             "definition": "he/she has a liquid",
             "failed_forms": [
+                "present_1sg: expected 'akineh', got ['akhinh']",
                 "imperative: expected 'tsanehehsti', got ['tshanhehsti']",
                 "infinitive: expected 'uneht', got ['unehht']"
             ],
@@ -15504,6 +15600,7 @@
         {
             "definition": "he/she is belching",
             "failed_forms": [
+                "present_1sg: expected 'akikhulek', got ['akhikulek']",
                 "imperative: expected 'tsakhuleki', got ['tshakuleki']",
                 "infinitive: expected 'uwakhule'ihst', got ['uwakhulehst']"
             ],
@@ -15513,6 +15610,7 @@
         {
             "definition": "he/she is belching",
             "failed_forms": [
+                "present_1sg: expected 'akikhulek', got ['akhikulek']",
                 "imperative: expected 'tsakhuleki', got ['tshakuleki']",
                 "infinitive: expected 'uwakhule'ihst', got ['uwakhulehst']"
             ],
@@ -15522,6 +15620,7 @@
         {
             "definition": "he/she is belching",
             "failed_forms": [
+                "present_1sg: expected 'akikhulek', got ['akhikulek']",
                 "imperative: expected 'tsakhuleki', got ['tshakuleki']"
             ],
             "class": "become[inf2]",
@@ -15530,6 +15629,7 @@
         {
             "definition": "he/she is belching",
             "failed_forms": [
+                "present_1sg: expected 'akikhulek', got ['akhikulek']",
                 "imperative: expected 'tsakhuleki', got ['tshakuleki']"
             ],
             "class": "become[inf2]",
@@ -15546,6 +15646,7 @@
         {
             "definition": "he/she is belching",
             "failed_forms": [
+                "present_1sg: expected 'akikhulek', got ['akhikulek']",
                 "imperative: expected 'tsakhuleki', got ['tshakuleki']",
                 "infinitive: expected 'uwakhule'ihst', got ['uwakhuleihst']"
             ],
@@ -15555,6 +15656,7 @@
         {
             "definition": "he/she is belching",
             "failed_forms": [
+                "present_1sg: expected 'akikhulek', got ['akhikulek']",
                 "imperative: expected 'tsakhuleki', got ['tshakuleki']",
                 "infinitive: expected 'uwakhule'ihst', got ['uwakhuleihst']"
             ],
@@ -15564,6 +15666,7 @@
         {
             "definition": "he/she is shivering",
             "failed_forms": [
+                "present_1sg: expected 'akinawi'', got [\"akhinwi'\"]",
                 "imperative: expected 'tsanawa', got ['tshanwa']"
             ],
             "class": "i-a-i",
@@ -15572,6 +15675,7 @@
         {
             "definition": "he/she smells it",
             "failed_forms": [
+                "present_1sg: expected 'akiwhsvk', got ['akhiwsvk']",
                 "imperative: expected 'tsawhsvki', got ['tshawsvki']"
             ],
             "class": "become",
@@ -15580,6 +15684,7 @@
         {
             "definition": "he/she smells it",
             "failed_forms": [
+                "present_1sg: expected 'akiwhsvk', got ['akhiwsvk']",
                 "imperative: expected 'tsawhsvki', got ['tshawsvki']"
             ],
             "class": "become",
@@ -15614,6 +15719,7 @@
         {
             "definition": "he/she is losing it",
             "failed_forms": [
+                "present_1sg: expected 'akiyohuhseh', got ['akhiyhuhseh']",
                 "imperative: expected 'tsayohuhsi', got ['tshayhuhhsi']"
             ],
             "class": "apl",
@@ -15622,6 +15728,7 @@
         {
             "definition": "he/she is losing it",
             "failed_forms": [
+                "present_1sg: expected 'akiyohuhseh', got ['akhiyhuhseh']",
                 "imperative: expected 'tsayohuhsi', got ['tshayhuhsi']"
             ],
             "class": "apl[imp2]",

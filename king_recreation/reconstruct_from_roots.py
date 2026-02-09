@@ -245,7 +245,14 @@ def main(classes_path=None):
 
     reconstructible_verbs: list[ReconstructibleVerb] = []
     consistency_analysis = []
-    forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
+    forms = [
+        "present",
+        "present_1sg",
+        "imperfective",
+        "perfective",
+        "imperative",
+        "infinitive",
+    ]
 
     for stem_row in derived_roots:
         definition = stem_row["definition"]
@@ -342,6 +349,11 @@ def main(classes_path=None):
             # Inject entry_no into original_data so it persists to the CSV
             if verb.entry_no is not None:
                 verb.original_data["entry_no"] = verb.entry_no
+
+            # Inject segmented_forms into original_data so it persists to the CSV
+            verb.original_data["segmented_forms"] = json.dumps(
+                verb.segmented_forms, ensure_ascii=False
+            )
 
             # Check if this matches a user selected row
             # We match on all fields except user_selected and entry_no to be safe,
@@ -561,6 +573,7 @@ def main(classes_path=None):
             "partitive",
             "distributive",
             "distributive_fut_prog",
+            "segmented_forms",
         ]
 
         # Ensure standard order of important columns if possible, but taking from first row is standard here

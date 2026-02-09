@@ -419,6 +419,7 @@ def _get_prefix_details(
         return PrefixForms(
             consonant=ConfiguredPrefix("a"),
             vowel=ConfiguredPrefix(""),
+            vowel_overrides={"a": ConfiguredPrefix("a", StemModification.A_REPLACE)}
         )
 
     if set_name == "3pl Set A":
