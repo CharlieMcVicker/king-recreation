@@ -13,7 +13,10 @@ from king_recreation.paths import (
 )
 from king_recreation.phonology_data import VOWEL_SET
 from king_recreation.preprocess_ced import respell_consonants
-from king_recreation.reconstruct_from_roots import ReconstructibleVerb
+from king_recreation.reconstruct_from_roots import (
+    ReconstructibleVerb,
+    drop_dropped_phones,
+)
 
 
 @dataclass
@@ -140,6 +143,68 @@ def read_tone_sequence(raw: str) -> List[Union[Vowel, Consonant]]:
     return seq
 
 
+def get_tone_sequence_for_form(
+    verb, form_name, cnd_corpus, corpus_id_to_entries
+) -> List[Vowel]:
+    entry_map = corpus_id_to_entries.get(verb.corpus_id)
+    if not entry_map:
+        return []
+
+    cnd_ref_id = entry_map.get(form_name)
+    if not cnd_ref_id:
+        return []
+
+    cnd_entry = cnd_corpus.get(cnd_ref_id)
+    if not cnd_entry:
+        return []
+
+    # Tone and length 2 seems to be the standard field for the entry's main form
+    # matching the row in CND.
+    raw_tone = cnd_entry.get("Tone and length 2", "")
+    if not raw_tone:
+        if raw_tone == "":
+            return []
+        # Fallback? No, just no tone.
+
+    # Clean up/Respell
+    tone_raw = split_diacritics(respell_consonants(raw_tone))
+    return read_tone_sequence(tone_raw)
+
+
+def apply_tone_to_segmentation(segmented: str, tone_seq: List[Vowel]) -> str:
+    # Preprocess segmented form to remove dropped phones (markers like >a, i@, v*)
+    segmented = drop_dropped_phones(segmented)
+
+    # Attempt to align vowels in segmented form with tones in tone_seq
+    output = []
+    tone_idx = 0
+
+    # We ignore non-vowels in tone_seq for count matching,
+    # but read_tone_sequence returns Vowel and Consonant objects.
+    # We should filter tone_seq to just vowels for alignment?
+    # Or align strictly? The segmentation often has more/different consonants.
+    # Let's align vowels.
+
+    vowel_tones = [t for t in tone_seq if isinstance(t, Vowel)]
+
+    i = 0
+    while i < len(segmented):
+        char = segmented[i]
+        if char in VOWEL_SET:
+            if tone_idx < len(vowel_tones):
+                tone_obj = vowel_tones[tone_idx]
+                tone_val = tone_obj.tone.value
+                output.append(char + tone_val)
+                tone_idx += 1
+            else:
+                output.append(char + "?")
+        else:
+            output.append(char)
+        i += 1
+
+    return "".join(output)
+
+
 def main():
 
     with open(reconstructable_verbs_path, "r") as f:
@@ -159,38 +224,47 @@ def main():
             content = content[1:]
 
         reader = DictReader(io.StringIO(content))
+        # "No." seems to be the grouping ID, but "Entry No." is unique per row.
+        # corpus_to_cnd maps to "Entry No."
         cnd_corpus = {r.get("Entry No.", "").strip(): r for r in reader}
 
+    forms_to_check = [
+        "present",
+        "present_1sg",
+        "imperfective",
+        "perfective",
+        "imperative",
+        "infinitive",
+    ]
+
     for verb in reconstructable_verbs:
-        tone_raw = split_diacritics(
-            respell_consonants(
-                cnd_corpus[corpus_id_to_entries[verb.corpus_id]["present"]][
-                    "Tone and length 2"
-                ]
+        print(f"\nVerb: {verb.definition} ({verb.h_grade_root})")
+        print(
+            f"{'Form':<15} | {'Segmented':<30} | {'Combined':<30} | {'Reference':<30}"
+        )
+        print("-" * 110)
+
+        for form in forms_to_check:
+            segmented = verb.segmented_forms.get(form, "")
+            if not segmented:
+                continue
+
+            tone_seq = get_tone_sequence_for_form(
+                verb, form, cnd_corpus, corpus_id_to_entries
             )
-        )
-        prac = respell_consonants(
-            cnd_corpus[corpus_id_to_entries[verb.corpus_id]["present"]]["Practical"]
-        )
-        tokens = read_tone_sequence(tone_raw)
 
-        start = prac.find(verb.h_grade_root)
-        if start == -1:
-            # print(prac, "does not contain h_grade root", verb.h_grade_root)
-            continue
+            combined = ""
+            ref_str = ""
 
-        tok_sub = tokens[start : start + len(verb.h_grade_root)]
-        prac_sub = prac[start : start + len(verb.h_grade_root)]
-        tone_raw_sub = (
-            tone_raw[tok_sub[0].idx_start : tok_sub[-1].idx_end] if len(tok_sub) else []
-        )
+            if tone_seq:
+                combined = apply_tone_to_segmentation(segmented, tone_seq)
+                ref_str = "".join([str(t) for t in tone_seq])
+            else:
+                combined = "No Ref Tone"
 
-        print(prac_sub, tone_raw_sub, "".join([str(tok) for tok in tok_sub]))
+            print(f"{form:<15} | {segmented:<30} | {combined:<30} | {ref_str:<30}")
 
-        # print(s2)
-        # for t in toks:
-        #     print(t)
-        # input()
+        input("\nPress Enter for next verb...")
 
 
 if __name__ == "__main__":
