@@ -17,7 +17,7 @@ This change ensures that `/h/` always follows the resonant in these clusters, wh
 
 ### 1. Root Extraction & Grade Selection
 
-The process begins by reading `artifacts/data/derived_roots.csv` and `artifacts/data/corpus.csv`. The `derived_roots.csv` file contains verbs with their identified classes and extracted roots.
+The process begins by reading `artifacts/data/validated_reconstructable_roots.csv` (or `derived_roots.csv` for initial runs) and `artifacts/data/corpus.csv`. The input file contains verbs with their identified classes, extracted roots, and configuration flags.
 
 **Logic:**
 
@@ -42,6 +42,7 @@ The process begins by reading `artifacts/data/derived_roots.csv` and `artifacts/
   - `set_a_b` (`Set A` or `Set B`)
   - `use_ka_variant`, `use_uwa_for_3rd_set_b`, `use_aki_for_1st_set_b`
   - `use_3rd_person_object` (Implies 2->3 and 1->3 interaction)
+  - `middle_voice` (Middle voice pattern to apply, e.g. `ali`, `ati`)
   - Prepronominal flags: `translocutive`, `partitive`, `distributive`, etc.
 
 ### 2. Reconstruction (Generation)
@@ -53,7 +54,8 @@ For each form (present, present_1sg, imperfective, perfective, imperative, infin
 
 1. Determine the appropriate root grade.
 2. Apply class endings from the pattern registry. Handle vowel coalescence markers (`*` for 1-vowel drop, `@` for 2-vowel drop).
-3. Handle `/h/` alternation fallbacks: if glottal grade is required but no `h` was present in the root, attempt to apply alternation to the ending if applicable (e.g., via `possible_alternates`).
+3. **Middle Voice Application**: If `middle_voice` is configured, apply the middle voice transformation to the root (e.g. prefixing `ali-`, `ati-`) before prefix attachment.
+4. Handle `/h/` alternation fallbacks: if glottal grade is required but no `h` was present in the root, attempt to apply alternation to the ending if applicable (e.g., via `possible_alternates`).
 
 **Step 2b: Add Pronominal Prefix**
 
@@ -82,6 +84,7 @@ Apply in order: `Distributive` -> `Partitive` -> `Translocutive`.
 ### 4. Output Artifacts
 
 - **reconstructable_verbs.json**: Fully serialized successfully reconstructed verbs for frontend use.
+- **validated_reconstructable_roots.csv**: The source of truth for user-validated roots and configurations.
 - **reconstruction_report.csv**: Summary of success/failure and ambiguity for each verb.
 - **reconstruction_failures.csv**: Detailed mismatch reports for failing verbs.
 - **matches_validated.csv**: Subset of verified matches for downstream logic.
