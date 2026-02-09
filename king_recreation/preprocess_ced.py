@@ -249,8 +249,23 @@ def process_cn_dict(file_path, output_path):
         verb_data["infinitive"] = form
         mapping_entry["infinitive"] = cnd_no
 
-        processed_data.append(verb_data)
-        mapping_data.append(mapping_entry)
+        if (
+            sum(
+                1
+                for form in [
+                    "present",
+                    "present_1sg",
+                    "imperfective",
+                    "perfective",
+                    "imperative",
+                    "infinitive",
+                ]
+                if verb_data.get(form)
+            )
+            > 1
+        ):
+            processed_data.append(verb_data)
+            mapping_data.append(mapping_entry)
 
     fieldnames = [
         "corpus_id",

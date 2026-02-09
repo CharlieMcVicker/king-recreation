@@ -2,7 +2,12 @@ import itertools
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 
-from king_recreation.h_alternation import possible_alternates
+from king_recreation.h_alternation import (
+    possible_alternates,
+    prevent_C_glottal_cluster,
+    recreate_C_glottal_clusters,
+)
+from king_recreation.morphemes.aspect.strip import StrippedVerbRow
 from king_recreation.phonology_data import VOWEL_SET
 
 
@@ -85,6 +90,101 @@ class ExpandedClassPattern:
                 if t_char != s_char:
                     return False
         return True
+
+    def match_alternated_endings(self, forms: dict[str, str], form_name: str):
+        suffix = self.get(form_name)
+        form_val = forms.get(form_name)
+        for alt_suffix in possible_alternates(suffix, fix_clusters=False):
+            if self._match_ending(recreate_C_glottal_clusters(form_val), alt_suffix):
+                return True
+
+        return False
+
+    def match_ending(self, forms: dict[str, str], form_name: str):
+        return self._match_ending(
+            suffix=self.get(form_name), form_val=forms.get(form_name)
+        )
+
+    def _match_ending(self, form_val: str, suffix: str):
+        # Policy: Vacuous Matching
+        # If the corpus form is missing, it cannot contradict any pattern.
+        if not form_val:
+            return True
+
+        # Literal characters only, ignore * or @
+        if suffix is None:
+            suffix = ""
+        literal_suffix = suffix.replace("*", "").replace("@", "")
+
+        return form_val.endswith(literal_suffix)
+
+    def strip_verb(self, verb) -> Optional[StrippedVerbRow]:
+        # Create stripped row
+
+        stripped_row = StrippedVerbRow(
+            corpus_id=verb.get("corpus_id", ""),
+            definition=verb.get("definition", ""),
+            verb_class=self.name,
+        )
+
+        # Strip suffixes
+        forms = [
+            "present",
+            "present_1sg",
+            "imperfective",
+            "perfective",
+            "imperative",
+            "infinitive",
+        ]
+        for fn in forms:
+            form_val = verb.get(fn)
+            if not form_val:
+                continue
+
+            cls_pattern = self.get(fn)
+            if fn == "present_1sg" and not cls_pattern:
+                cls_pattern = self.get("present")
+
+            if cls_pattern is None:
+                cls_pattern = ""
+
+            # Strip Literal Suffix
+            literal_suffix = cls_pattern.replace("*", "").replace("@", "")
+
+            if form_val.endswith(literal_suffix):
+                stripped_stem = (
+                    form_val[: -len(literal_suffix)] if literal_suffix else form_val
+                )
+                setattr(stripped_row, fn, stripped_stem)
+
+            # allow h alternates
+            elif fn in ["present_1sg", "imperative"]:
+                for hless_suffix in possible_alternates(
+                    literal_suffix, fix_clusters=False
+                ):
+                    fixed_hless_suffix = prevent_C_glottal_cluster(hless_suffix)
+                    if form_val.endswith(fixed_hless_suffix):
+                        stripped_stem = (
+                            form_val[: -len(fixed_hless_suffix)]
+                            if fixed_hless_suffix
+                            else form_val
+                        )
+                        setattr(stripped_row, fn, stripped_stem)
+                    elif hless_suffix.startswith("'"):
+                        form_with_glottals = recreate_C_glottal_clusters(form_val)
+                        if form_with_glottals.endswith(hless_suffix):
+                            stripped_stem = (
+                                form_with_glottals[: -len(hless_suffix)]
+                                if hless_suffix
+                                else form_with_glottals
+                            )
+                            setattr(
+                                stripped_row,
+                                fn,
+                                prevent_C_glottal_cluster(stripped_stem),
+                            )
+
+        return stripped_row
 
 
 @dataclass

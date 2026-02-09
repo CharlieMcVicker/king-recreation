@@ -2,7 +2,6 @@ import csv
 from dataclasses import asdict, dataclass
 from typing import Dict, List, Set
 
-from king_recreation.morphemes.aspect.strip import StrippedVerbRow
 from king_recreation.paths import post_root_morphemes_path
 
 
@@ -73,7 +72,7 @@ def match_post_root_morphemes(row: dict[str, str]) -> List[dict[str, str]]:
 
             for form in forms:
                 form_val = match_row[form]
-                if form_val.endswith(morpheme.form):
+                if form_val is not None and form_val.endswith(morpheme.form):
                     match_row[form] = form_val[: -len(morpheme.form)]
                 else:
                     break

@@ -1,0 +1,481 @@
+import re
+from dataclasses import dataclass, field
+from enum import Enum
+from typing import Dict, Optional, Tuple
+
+from king_recreation.morphemes.middle_voice import MiddleVoice
+from king_recreation.phonology_data import VOWEL_SET
+
+
+class StemType(Enum):
+    CONSONANT = "con"
+    VOWEL_A = "vowel_a"
+    VOWEL_E = "vowel_e"
+    VOWEL_O = "vowel_o"
+    VOWEL_U = "vowel_u"
+    VOWEL_V = "vowel_v"
+    ASPIRATED = "aspirated"  # th-
+    S_STEM = "s_stem"  # s-
+
+    def is_valid_for_stem(self, stem: str) -> bool:
+        if stem == "":
+            # we can't know the suffix used here
+            return True
+        if self == StemType.ASPIRATED:
+            # begins with consonant sequence then s
+            return re.match("^[^aeiouvhs]+h", stem)
+        elif self == StemType.CONSONANT:
+            return re.match("^[^aeiouvs]", stem)
+        elif self == StemType.S_STEM:
+            return stem.startswith("hs")
+        elif self == StemType.VOWEL_A:
+            return stem.startswith("a")
+        elif self == StemType.VOWEL_E:
+            return stem.startswith("e")
+        elif self == StemType.VOWEL_O:
+            return stem.startswith("o")
+        elif self == StemType.VOWEL_U:
+            return stem.startswith("u")
+        elif self == StemType.VOWEL_V:
+            return stem.startswith("v")
+        else:
+            raise Exception("Unreachable")
+
+
+class MetathesisStrategy(Enum):
+    NONE = "none"
+    H_CONS = "h_cons"  # kha- / tsha- / akhi-
+    VOWEL = "vowel"  # kh- / h- / uhw- / ...
+
+
+class StemModification(Enum):
+    NONE = "none"
+    A_REPLACE = "a_replace"
+    V_REPLACE = "v_replace"
+    METATHESIS_H_CONS = "metathesis_h_cons"
+    METATHESIS_VOWEL = "metathesis_vowel"
+
+
+@dataclass(frozen=True)
+class PronominalConfig:
+    set_type: str  # 'a' or 'b'
+    stem_type: StemType
+    metathesis_strategy: MetathesisStrategy = MetathesisStrategy.NONE
+    middle_voice: MiddleVoice = MiddleVoice.NONE
+
+    # Flags for prefix variants
+    plural_pronouns: bool = False
+    use_ka_variant: bool = False  # 3rd Set A: ka-/k- (True) vs a-/ø (False)
+    long_start: bool = (
+        False  # 3rd Set B: uwa- vs u- (on consonants), tsiya- vs tsi- on person-person
+    )
+    use_aki_for_1st_set_b: bool = (
+        False  # 1st Set B: aki- vs ak- (on consonants, does stem type predict?)
+    )
+    uwa_replaces_v: bool = False  # Does uwa- replace v-?
+
+    # Functional Flags
+    use_3rd_person_object: bool = False  # Use 1->3 and 2->3 forms (imp_type='to_3rd')
+
+    @staticmethod
+    def from_row(row: dict[str, str]):
+        return PronominalConfig(
+            set_type=row["set_a_b"],
+            stem_type=StemType(row["stem_type"]),
+            metathesis_strategy=MetathesisStrategy(row["metathesis_strategy"]),
+            middle_voice=MiddleVoice(row["middle_voice"]),
+            plural_pronouns=row["plural"] == "True",
+            use_ka_variant=row["ka_variant"] == "True",
+            long_start=row["long_start"] == "True",
+            use_aki_for_1st_set_b=row["aki_1st"] == "True",
+            uwa_replaces_v=row["uwa_v"] == "True",
+            use_3rd_person_object=row["3rd_person_object"] == "True",
+        )
+
+    @staticmethod
+    def from_dict(data: dict) -> "PronominalConfig":
+        # Handle Enums
+        clean_data = data.copy()
+        if "stem_type" in clean_data and isinstance(clean_data["stem_type"], str):
+            clean_data["stem_type"] = StemType(clean_data["stem_type"])
+        if "metathesis_strategy" in clean_data and isinstance(
+            clean_data["metathesis_strategy"], str
+        ):
+            clean_data["metathesis_strategy"] = MetathesisStrategy(
+                clean_data["metathesis_strategy"]
+            )
+        if "middle_voice" in clean_data and isinstance(clean_data["middle_voice"], str):
+            clean_data["middle_voice"] = MiddleVoice(clean_data["middle_voice"])
+        return PronominalConfig(**clean_data)
+
+    def to_row(self):
+        row = {}
+
+        row["set_a_b"] = self.set_type
+        row["stem_type"] = self.stem_type.value
+        row["metathesis_strategy"] = self.metathesis_strategy.value
+        row["middle_voice"] = self.middle_voice.value
+        row["plural"] = str(self.plural_pronouns)
+        row["ka_variant"] = str(self.use_ka_variant)
+        row["long_start"] = str(self.long_start)
+        row["aki_1st"] = str(self.use_aki_for_1st_set_b)
+        row["uwa_v"] = str(self.uwa_replaces_v)
+        row["3rd_person_object"] = str(self.use_3rd_person_object)
+
+        return row
+
+
+def get_pronominal_set_name(
+    form_name: str, config: PronominalConfig, stative: bool
+) -> Optional[str]:
+    set_type = config.set_type
+    use_3rd_person_object = config.use_3rd_person_object
+
+    set_a = set_type in ["Set A", "a"]
+
+    if form_name == "present" or form_name == "imperfective":
+        if config.plural_pronouns:
+            return "3pl Set A" if set_a else "3pl Set B"
+        else:
+            return "3rd Set A" if set_a else "3rd Set B"
+    if form_name == "perfective" or form_name == "infinitive":
+        if config.plural_pronouns:
+            return (
+                "3pl Set A"
+                if set_a and stative and not form_name == "infinitive"
+                else "3pl Set B"
+            )
+        else:
+            return (
+                "3rd Set A"
+                if set_a and stative and not form_name == "infinitive"
+                else "3rd Set B"
+            )
+    if form_name == "imperative":
+        if config.plural_pronouns:
+            return "2pl Set A" if set_a else "2pl Set B"
+        else:
+            return (
+                "2nd to 3rd"
+                if use_3rd_person_object
+                else ("2nd Set A" if set_a else "2nd Set B")
+            )
+    if form_name == "present_1sg":
+        if config.plural_pronouns:
+            return "1pl Set A" if set_a else "1pl Set B"
+        else:
+            return (
+                "1st to 3rd"
+                if use_3rd_person_object
+                else ("1st Set A" if set_a else "1st Set B")
+            )
+    return None
+
+
+@dataclass
+class ConfiguredPrefix:
+    form: str
+    stem_modification: StemModification = StemModification.NONE
+
+    def attach(self, stem: str) -> str:
+        if self.stem_modification == StemModification.METATHESIS_H_CONS:
+            if stem[0] in VOWEL_SET:
+                # ka + ah... -> khah...
+                # TODO: this branch is bogus and leads to no real derivations
+                return self.form[:-1] + "-" + "h" + stem[0] + stem[2:]
+            else:
+                # ka + n... -> kan... -> khan... (aspiration moves to prefix)
+                return self.form[:-1] + "h" + self.form[-1:] + "-" + stem[0] + stem[2:]
+
+        if self.stem_modification == StemModification.METATHESIS_VOWEL:
+            if len(stem) > 2 and stem[2] == "h":
+                # u- + ah... -> uhw...
+                if self.form == "u":
+                    # Check for double w formation from stem starting with w
+                    # e.g., u- + ahw... -> uwhw... (simplified to uwh...)
+                    res = "uwh" + stem[2:]
+                    if res.startswith("uwhw"):
+                        return "uwh-" + res[4:]
+                    if res.startswith("uwhh"):
+                        return "uwh-" + res[4:]
+                    return "uwh-" + stem[2:]
+                    # stem is like aw_h_olate
+                return self.form + "-" + stem[:2] + ">" + stem[2:]
+
+        if self.stem_modification in [
+            StemModification.A_REPLACE,
+            StemModification.V_REPLACE,
+        ]:
+            # drop first letter
+            return self.form + "->" + stem
+
+        return self.form + "-" + stem
+
+    def detach(
+        self,
+        word: str,
+    ) -> Optional[str]:
+        if self.stem_modification == StemModification.METATHESIS_H_CONS:
+            # Match 'kha' for 'ka'
+            # our stem is underlyingly Ch...
+            meta_pref = self.form[:-1] + "h" + self.form[-1:]
+            if word.startswith(meta_pref):
+                remainder = word[len(meta_pref) :]
+                return remainder[0] + "h" + remainder[1:]
+
+        if not word.startswith(self.form):
+            return None
+
+        remainder = word[len(self.form) :]
+        stem = remainder
+
+        if self.stem_modification == StemModification.METATHESIS_VOWEL:
+            # Stem is underlying VCh
+            if self.form == "u" and word.startswith("uwh"):
+                remainder = word[3:]
+                # If remainder starts with a vowel, w was likely part of the stem (ahw...)
+                # Preservation of /w/ before vowels (e.g. uhwolates -> ahwolates)
+                if remainder and remainder[0] in VOWEL_SET:
+                    return "awh" + remainder
+                return "ah" + remainder
+            if remainder:
+                # khawolate
+                # kh-awolate
+                # kh-aw_h_olate
+                stem = remainder[:2] + "h" + remainder[2:]
+
+        # Reverse Stem Transformations
+        if self.stem_modification == StemModification.A_REPLACE:
+            stem = "a" + remainder
+        elif self.stem_modification == StemModification.V_REPLACE:
+            stem = "v" + remainder
+
+        # Regressions/Constraints
+        # if self.condition == Condition.ASPIRATED:
+        #     # Restriction: ak- (akh-) before -i is not valid
+        #     if form == "akh" and stem.startswith("i"):
+        #         return None
+        #     # Restriction: ts- before -ha is not valid
+        #     if form == "ts" and stem.startswith("ha"):
+        #         return None
+
+        return stem
+
+
+def get_prefix_details(set_name: str, config: PronominalConfig) -> ConfiguredPrefix:
+    res = _get_prefix_details(set_name, config)
+    if isinstance(res, PrefixForms):
+        return res.select(config.stem_type)
+    elif isinstance(res, ConfiguredPrefix):
+        return res
+    else:
+        print(set_name)
+        raise Exception("Failed to get prefix details", set_name, config)
+
+
+@dataclass
+class PrefixForms:
+    consonant: ConfiguredPrefix
+    vowel: ConfiguredPrefix
+    vowel_overrides: Dict[str, ConfiguredPrefix] = field(default_factory=dict)
+    aspirated: Optional[ConfiguredPrefix] = None
+    s: Optional[ConfiguredPrefix] = None
+
+    def select(self, stem: StemType) -> ConfiguredPrefix:
+        if stem == StemType.ASPIRATED:
+            return self.aspirated if self.aspirated is not None else self.consonant
+        elif stem == StemType.S_STEM:
+            return self.s if self.s is not None else self.consonant
+        elif stem == StemType.CONSONANT:
+            return self.consonant
+
+        # vowel stuff
+        vowel = stem.value.split("_")[1]
+
+        if vowel in self.vowel_overrides:
+            return self.vowel_overrides[vowel]
+        else:
+            return self.vowel
+
+
+def _get_prefix_details(
+    set_name: str, config: PronominalConfig
+) -> Tuple[str, StemModification]:
+    s_type = config.stem_type
+    meta = config.metathesis_strategy
+    is_con = s_type in [StemType.CONSONANT, StemType.ASPIRATED, StemType.S_STEM]
+
+    if meta == MetathesisStrategy.H_CONS:
+        if set_name == "3rd Set A" and config.use_ka_variant:
+            return ConfiguredPrefix("ka", StemModification.METATHESIS_H_CONS)
+        if set_name == "2nd Set B":
+            return ConfiguredPrefix("tsa", StemModification.METATHESIS_H_CONS)
+        if set_name == "1st Set B":
+            return ConfiguredPrefix("aki", StemModification.METATHESIS_H_CONS)
+
+    if meta == MetathesisStrategy.VOWEL:
+        if set_name == "3rd Set A":
+            return ConfiguredPrefix("kh", StemModification.METATHESIS_VOWEL)
+        # B-set vowels for VOWEL meta
+        if set_name == "3rd Set B":
+            return (
+                ConfiguredPrefix("u", StemModification.METATHESIS_VOWEL)
+                if s_type == StemType.VOWEL_A
+                # Use 'uwh-' for vowel metathesis to match the new respelling reform (wh, yh, lh, nh)
+                # where 'h' follows the resonant.
+                else ConfiguredPrefix("uwh", StemModification.METATHESIS_VOWEL)
+            )
+
+    if set_name == "1st Set B":
+        return PrefixForms(
+            aspirated=ConfiguredPrefix("akh"),
+            s=ConfiguredPrefix("akh"),
+            consonant=(
+                ConfiguredPrefix("aki")
+                if config.use_aki_for_1st_set_b
+                else ConfiguredPrefix("ak")
+            ),
+            vowel=ConfiguredPrefix("akw"),
+        )
+
+    if set_name == "1pl Set B":
+        return PrefixForms(
+            consonant=(ConfiguredPrefix("oki")),
+            vowel=ConfiguredPrefix("og"),
+        )
+
+    if set_name == "2nd Set B":
+        return PrefixForms(
+            aspirated=ConfiguredPrefix(
+                "ts",
+            ),
+            s=ConfiguredPrefix(
+                "t",
+            ),
+            consonant=ConfiguredPrefix(
+                "tsa",
+            ),
+            vowel=ConfiguredPrefix("ts"),
+        )
+
+    if set_name == "2pl Set B":
+        return PrefixForms(
+            consonant=(ConfiguredPrefix("itsi")),
+            vowel=ConfiguredPrefix("its"),
+        )
+
+    if set_name == "3rd Set B":
+        return PrefixForms(
+            consonant=(
+                ConfiguredPrefix("uwa") if config.long_start else ConfiguredPrefix("u")
+            ),
+            vowel=ConfiguredPrefix("uw"),
+            vowel_overrides={
+                "a": ConfiguredPrefix("u", StemModification.A_REPLACE),
+                "v": (
+                    ConfiguredPrefix("uwa", StemModification.V_REPLACE)
+                    if config.uwa_replaces_v
+                    else ConfiguredPrefix("uw")
+                ),
+            },
+        )
+
+    if set_name == "3pl Set B":
+        return PrefixForms(
+            consonant=ConfiguredPrefix("uni"),
+            vowel=ConfiguredPrefix("un"),
+        )
+
+    if set_name == "1st Set A":
+        return PrefixForms(
+            consonant=ConfiguredPrefix("tsi"), vowel=ConfiguredPrefix("k")
+        )
+
+    if set_name == "1pl Set A":
+        return PrefixForms(
+            consonant=ConfiguredPrefix("otsi"),
+            vowel=ConfiguredPrefix("ots"),
+        )
+
+    if set_name == "2nd Set A":
+        return PrefixForms(
+            consonant=ConfiguredPrefix("hi"), vowel=ConfiguredPrefix("h")
+        )
+
+    if set_name == "2pl Set A":
+        return PrefixForms(
+            consonant=ConfiguredPrefix("itsi"),
+            vowel=ConfiguredPrefix("its"),
+        )
+
+    if set_name == "3rd Set A":
+        if config.use_ka_variant:
+            return PrefixForms(
+                consonant=ConfiguredPrefix("ka"),
+                vowel=ConfiguredPrefix("k"),
+            )
+        # Some H-stems take k- even if not 'ka-variant' in the traditional sense?
+        # No, let's keep it strict. If it works, it works.
+        return PrefixForms(
+            consonant=ConfiguredPrefix("a"),
+            vowel=ConfiguredPrefix(""),
+            vowel_overrides={"a": ConfiguredPrefix("a", StemModification.A_REPLACE)}
+        )
+
+    if set_name == "3pl Set A":
+        return PrefixForms(
+            consonant=ConfiguredPrefix("ani"),
+            vowel=ConfiguredPrefix("an"),
+        )
+
+    if set_name == "1st to 3rd":
+        return PrefixForms(
+            consonant=(
+                ConfiguredPrefix("tsiya")
+                if config.long_start
+                else ConfiguredPrefix("tsi")
+            ),
+            vowel=ConfiguredPrefix("tsiy"),
+        )
+
+    if set_name == "2nd to 3rd":
+        return PrefixForms(
+            consonant=(
+                ConfiguredPrefix("hiya")
+                if config.long_start
+                else ConfiguredPrefix("hi")
+            ),
+            vowel=ConfiguredPrefix("hiy"),
+        )
+
+    return None
+
+
+def detach_prefix(word: str, form_name: str, config: PronominalConfig, stative: bool):
+    set_name = get_pronominal_set_name(form_name, config, stative)
+    prefix = get_prefix_details(set_name, config)
+
+    stem = prefix.detach(word)
+
+    metathesis_used = False
+
+    # Check if metathesis was actually involved
+    if prefix.stem_modification in [
+        StemModification.METATHESIS_H_CONS,
+        StemModification.METATHESIS_VOWEL,
+    ]:
+        metathesis_used = True
+
+    # why two checks.. bad TODO: fix
+    if prefix.form == "ka" and word.startswith("kh"):
+        metathesis_used = True
+
+    return stem, metathesis_used
+
+
+def use_glottal_grade_for_set(set_name: str) -> bool:
+    return set_name in ["2nd to 3rd", "1st to 3rd", "1st Set A"]
+
+
+def use_glottal_grade(form: str, config: PronominalConfig, stative: bool) -> bool:
+    return use_glottal_grade_for_set(get_pronominal_set_name(form, config, stative))

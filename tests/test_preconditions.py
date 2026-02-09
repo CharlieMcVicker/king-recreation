@@ -1,6 +1,6 @@
 import unittest
 
-from king_recreation.pattern_registry import PatternRegistry
+from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
 
 
 class TestPreconditions(unittest.TestCase):

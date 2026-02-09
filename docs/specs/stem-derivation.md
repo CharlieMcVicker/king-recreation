@@ -97,7 +97,16 @@ class Derivation:
 - Applies the `pron_config` logic (lookup prefix -> strip -> reverse metathesis).
 - Validates consistency via `stems_are_consistent`.
 
-### 3. Consistency Validation
+### 3. Derive Middle Voice
+
+`derive_middle(der) -> List[Derivation]`
+
+- Takes a successful pronominal derivation.
+- Checks if the derived root matches known middle voice patterns (e.g., `ali-`, `ati-`, `at(at)-`).
+- If a match is found, creates _additional_ derivations for the underlying root (stripping the middle voice prefix).
+- Returns the original derivation plus any middle-voice derived options.
+
+### 4. Consistency Validation
 
 `stems_are_consistent(derived_stems, pron_config) -> Optional[str]`
 

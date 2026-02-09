@@ -8,7 +8,7 @@ from king_recreation.paths import (
     reconstructable_verbs_path,
     roots_by_class_path,
 )
-from king_recreation.reconstruct_from_roots import ReconstructionEngine
+from king_recreation.reconstruct_from_roots import ReconstructionEngine, desegment
 from king_recreation.utils import (
     group_verbs_by_root,
     load_existing_approvals,
@@ -63,7 +63,7 @@ def analyze_connections(
             if not base_stems:
                 continue
 
-            for stem in base_stems:
+            for stem in [desegment(s) for s in base_stems]:
                 if stem not in open_forms_map:
                     open_forms_map[stem] = []
 

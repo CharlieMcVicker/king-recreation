@@ -6,9 +6,13 @@ import re
 from collections import Counter, defaultdict
 from typing import Any, Dict, List, Optional
 
+from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
 from king_recreation.paths import (
     class_match_counts_path,
+    corpus_no_asp_path,
+    corpus_no_pre_no_asp_path,
     corpus_path,
+    furthest_corpus_by_id_path,
     macro_variant_data_path,
     matches_path,
     reconstructable_verbs_path,
@@ -18,11 +22,11 @@ from king_recreation.paths import (
     unmatched_verbs_path,
     unused_variants_path,
     validated_matches_path,
+    validated_reconstructable_roots_path,
     variant_match_counts_path,
     variation_match_counts_path,
     verb_coverage_path,
 )
-from king_recreation.pattern_registry import PatternRegistry
 
 
 def load_csv(path: str) -> List[Dict[str, str]]:
@@ -437,6 +441,39 @@ def _analyze_roots_by_macro(registry: PatternRegistry):
     )
 
 
+def _analyze_verb_status():
+    corpus_data = load_csv(corpus_path)
+    no_asp_ids = set(row.get("corpus_id", None) for row in load_csv(corpus_no_asp_path))
+    no_pre_ids = set(
+        row.get("corpus_id", None) for row in load_csv(corpus_no_pre_no_asp_path)
+    )
+    validated_ids = set(
+        row.get("corpus_id", None)
+        for row in load_csv(validated_reconstructable_roots_path)
+    )
+
+    best_by_id = []
+    for row in corpus_data:
+        id = row["corpus_id"]
+        best = "0.corpus"
+        if id in no_asp_ids:
+            best = "1.asp_stripped"
+        if id in no_pre_ids:
+            best = "2.pre_stripped"
+        if id in validated_ids:
+            best = "3.validated"
+
+        best_by_id.append(
+            {"corpus_id": id, "definition": row["definition"], "furthest_corpus": best}
+        )
+
+    save_csv(
+        furthest_corpus_by_id_path,
+        sorted(best_by_id, key=lambda x: (x["furthest_corpus"][0], x["corpus_id"])),
+        ["corpus_id", "definition", "furthest_corpus"],
+    )
+
+
 def analyze_matches(classes_path: Optional[str] = None):
 
     # 1. Validation and Setup
@@ -474,6 +511,8 @@ def analyze_matches(classes_path: Optional[str] = None):
 
     # 3. Output Data to Disk
     os.makedirs(reports_path, exist_ok=True)
+
+    _analyze_verb_status()
 
     save_csv(
         class_match_counts_path,

@@ -2,30 +2,26 @@ import csv
 import dataclasses
 import json
 import os
+import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Dict, List, Optional
 
 from king_recreation.h_alternation import possible_alternates, prevent_C_glottal_cluster
+from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
 from king_recreation.morphemes.post_root_morphemes import PostRootMorphemeRegistry
-from king_recreation.morphemes.prepronominals import (
-    PrePronominalConfig,
-    apply_prepronominal,
-)
-from king_recreation.morphemes.pronominals import (
+from king_recreation.morphemes.prefixes import PrefixConfig
+from king_recreation.morphemes.prefixes.pronominals import (
     PronominalConfig,
-    attach_prefix,
     get_prefix_details,
     get_pronominal_set_name,
     use_glottal_grade,
 )
 from king_recreation.paths import (
-    classes_expanded_path,
     consistency_analysis_path,
     corpus_no_pre_no_asp_path,
     corpus_path,
-    reconstructable_verbs_path,
     reconstruction_failures_path,
     reconstruction_report_path,
     reconstruction_validation_path,
@@ -33,27 +29,21 @@ from king_recreation.paths import (
     validated_matches_path,
     validated_reconstructable_roots_path,
 )
-from king_recreation.pattern_registry import PatternRegistry
 
 
-@dataclass(frozen=True)
-class VerbConfig:
-    pre: PrePronominalConfig
-    pron: PronominalConfig
+def drop_dropped_phones(s: str) -> str:
+    s = re.sub(">.", "", s)
+    s = re.sub("..@", "", s)
+    s = re.sub(".\*", "", s)
+    return s
 
-    @staticmethod
-    def from_row(stem_row: dict[str, str]) -> "VerbConfig":
-        pre_config = PrePronominalConfig.from_row(stem_row)
-        pron_config = PronominalConfig.from_row(stem_row)
 
-        return VerbConfig(pre=pre_config, pron=pron_config)
-
-    @staticmethod
-    def from_dict(data: dict) -> "VerbConfig":
-        return VerbConfig(
-            pre=PrePronominalConfig.from_dict(data.get("pre", {})),
-            pron=PronominalConfig.from_dict(data.get("pron", {})),
-        )
+def desegment(s: str) -> str:
+    """"""
+    s = s.replace("-", "")
+    s = drop_dropped_phones(s)
+    s = prevent_C_glottal_cluster(s)
+    return s
 
 
 @dataclass
@@ -63,19 +53,23 @@ class ReconstructibleVerb:
     glottal_grade_root: Optional[str]
     post_root_morpheme: Optional[str]
     class_name: str
-    config: VerbConfig
+    config: PrefixConfig
     corpus_id: Optional[int] = None
     entry_no: Optional[int] = None
     derivations: List["ReconstructibleVerb"] = field(default_factory=list)
     original_data: dict = field(
         default_factory=dict, repr=False, hash=False, compare=False
     )
+    segmented_forms: dict = field(
+        default_factory=dict,
+    )
 
+    # TODO: IS THIS DEAD?
     @staticmethod
     def from_dict(data: dict) -> "ReconstructibleVerb":
         clean_data = data.copy()
         if "config" in clean_data:
-            clean_data["config"] = VerbConfig.from_dict(clean_data["config"])
+            clean_data["config"] = PrefixConfig.from_dict(clean_data["config"])
         if "post_root_morpheme" in clean_data:
             val = clean_data["post_root_morpheme"]
             # turn "" to None
@@ -104,13 +98,13 @@ class ReconstructionEngine:
     def generate_pronominal_forms(
         self, stem: str, set_name: str, config: PronominalConfig
     ) -> List[str]:
-        prefix, condition = get_prefix_details(set_name, config)
+        prefix = get_prefix_details(set_name, config)
 
         stems_to_try = [(stem, False)]
 
         candidates = []
-        for s, dropped in stems_to_try:
-            res = attach_prefix(s, prefix, condition)
+        for stem, dropped in stems_to_try:
+            res = prefix.attach(stem)
             if res:
                 candidates.append(res)
         return candidates
@@ -134,7 +128,7 @@ class ReconstructionEngine:
 
         if verb.post_root_morpheme:
             reg = PostRootMorphemeRegistry.get_instance()
-            root = root + reg.morphemes_by_name[verb.post_root_morpheme].form
+            root = root + "-" + reg.morphemes_by_name[verb.post_root_morpheme].form
 
         return root
 
@@ -143,7 +137,9 @@ class ReconstructionEngine:
         if not class_info:
             return []
 
-        glottal_grade = use_glottal_grade(form_name, verb.config.pron)
+        glottal_grade = use_glottal_grade(
+            form_name, verb.config.pron, verb.config.stative
+        )
         root = self.root_for_form(verb, glottal_grade)
 
         if root is None:
@@ -161,22 +157,22 @@ class ReconstructionEngine:
         # truncate if pattern calls for it
         if "*" in ending_pattern:
             if len(root) >= 1:
-                root = root[:-1]
+                root = root + "*"
         elif "@" in ending_pattern:
             if len(root) >= 2:
-                root = root[:-2]
+                root = root + "@"
 
         # if we need to /h/ alternate but there wasnt an h in the h grade root
         # we need to try to drop it from the ending
         if glottal_grade and not "h" in verb.h_grade_root:
             return [
-                prevent_C_glottal_cluster(root + literal_ending)
+                root + "-" + literal_ending
                 for literal_ending in possible_alternates(
                     literal_ending, fix_clusters=False
                 )
             ]
         else:
-            return [root + literal_ending]
+            return [root + "-" + literal_ending]
 
     def get_base_stems(self, verb: ReconstructibleVerb):
         base_stems = {}
@@ -204,8 +200,11 @@ class ReconstructionEngine:
             layered_candidates = []
 
             for stem in stems if isinstance(stems, list) else [stems]:
-                set_name = get_pronominal_set_name(fn, verb.config.pron)
+                set_name = get_pronominal_set_name(
+                    fn, verb.config.pron, verb.config.stative
+                )
                 if not set_name:
+                    raise Exception("WAHH")
                     candidates = [stem]
                 else:
                     candidates = self.generate_pronominal_forms(
@@ -213,9 +212,7 @@ class ReconstructionEngine:
                     )
 
                 for c in candidates:
-                    layered_candidates.extend(
-                        apply_prepronominal(c, verb.config.pre, fn)
-                    )
+                    layered_candidates.extend(verb.config.apply_prepronominals(c, fn))
 
                 form_options[fn] = layered_candidates
 
@@ -256,13 +253,20 @@ def main(classes_path=None):
 
     reconstructible_verbs: list[ReconstructibleVerb] = []
     consistency_analysis = []
-    forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
+    forms = [
+        "present",
+        "present_1sg",
+        "imperfective",
+        "perfective",
+        "imperative",
+        "infinitive",
+    ]
 
     for stem_row in derived_roots:
         definition = stem_row["definition"]
         cls_name = stem_row["class"]
 
-        config = VerbConfig.from_row(stem_row)
+        config = PrefixConfig.from_row(stem_row)
 
         # Optional: We could re-verify consistency here, but derive_stems checks it.
         # We assume if it's in derived_roots, it passed basic consistency.
@@ -273,7 +277,7 @@ def main(classes_path=None):
         h_root = stem_row["h_grade"]
 
         glottal_root = None
-        if use_glottal_grade("present_1sg", config.pron):
+        if use_glottal_grade("present_1sg", config.pron, config.stative):
             glottal_root = stem_row["g_grade"]
 
             if glottal_root == "" and not h_root == "":
@@ -323,6 +327,12 @@ def main(classes_path=None):
         # Capture options for report
         options = generated_sets[0] if generated_sets else {fn: set() for fn in forms}
 
+        desegmented_forms = {
+            fn: {desegment(s): s for s in options.get(fn, {})} for fn in options
+        }
+
+        segmented_forms = {}
+
         if not generated_sets:
             matches_all = False
             failed_forms = ["Generation Failed"]
@@ -331,18 +341,27 @@ def main(classes_path=None):
                 ref_word = ref.get(fn)
                 if not ref_word:
                     continue
-                if ref_word not in options.get(fn, set()):
+                if ref_word not in desegmented_forms.get(fn, set()):
                     matches_all = False
                     failed_forms.append(
-                        f"{fn}: expected '{ref_word}', got {sorted(list(options.get(fn, set())))}"
+                        f"{fn}: expected '{ref_word}', got {sorted(list(desegmented_forms.get(fn, set())))}"
                     )
+                else:
+                    segmented = desegmented_forms[fn][ref_word]
+                    segmented_forms[fn] = segmented
 
         if matches_all:
             success_count += 1
+            verb.segmented_forms = segmented_forms
             validated_verbs.append(verb)
             # Inject entry_no into original_data so it persists to the CSV
             if verb.entry_no is not None:
                 verb.original_data["entry_no"] = verb.entry_no
+
+            # Inject segmented_forms into original_data so it persists to the CSV
+            verb.original_data["segmented_forms"] = json.dumps(
+                verb.segmented_forms, ensure_ascii=False
+            )
 
             # Check if this matches a user selected row
             # We match on all fields except user_selected and entry_no to be safe,
@@ -536,13 +555,12 @@ def main(classes_path=None):
             print("Aborting save to prevent data loss.")
             exit(1)
 
-        # Sort keys to keep deterministic order, but maybe prefer original order?
-        # Let's take original keys + entry_no + user_selected
         fieldnames = [
             "corpus_id",
             "entry_no",
             "user_selected",
             "definition",
+            "stative",
             "class",
             "post_root_morpheme",
             "h_grade",
@@ -552,6 +570,7 @@ def main(classes_path=None):
             "stem_type",
             "metathesis_strategy",
             "middle_voice",
+            "plural",
             "ka_variant",
             "long_start",
             "aki_1st",
@@ -562,6 +581,7 @@ def main(classes_path=None):
             "partitive",
             "distributive",
             "distributive_fut_prog",
+            "segmented_forms",
         ]
 
         # Ensure standard order of important columns if possible, but taking from first row is standard here

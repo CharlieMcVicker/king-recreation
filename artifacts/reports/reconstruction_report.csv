@@ -161,8 +161,11 @@ he/she is thinking,apl-active-h,atanht,True,,
 he/she is thinking,apl-active-h,anht,True,,
 he/she is thinking,apl-active-h,nht,True,,
 he/she is pondering,o,atanhthehil,True,,
+he/she is pondering,o,atanhtheh,True,,
 he/she is pondering,o,anhthehil,True,,
+he/she is pondering,o,anhtheh,True,,
 he/she is pondering,o,nhthehil,True,,
+he/she is pondering,o,nhtheh,True,,
 he/she is crawling,go[pres2],atanhsin,True,,
 he/she is crawling,go[pres2],anhsin,True,,
 he/she is crawling,go[pres2],nhsin,True,,
@@ -234,7 +237,9 @@ he/she is finding it out,sk-s-hst,eloho,False,,
 he/she is going around a curve,oh-ol[inf2],atey,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is going around a curve,oh-ol[inf2],ey,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is laying it down,i-a-i,t,True,,
+he/she is laying it down,i-a-i,,True,,
 he/she is laying it down,i-a-i,t,True,,
+he/she is laying it down,i-a-i,,True,,
 he/she is rising,ih-vh,atit,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is rising,ih-vh,it,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is scattering it,a,atikaley,True,,
@@ -364,7 +369,11 @@ it is shining,ih-ihi,akal,True,,
 it is shining,ih-ihi,kal,True,,
 it is shining,ih-ihi,akal,True,,
 he/she is licking it,i-a-i,kanat,True,,
+he/she is licking it,i-a-i,kan,True,,
+he/she is licking it,i-a-i,kana,True,,
 he/she is licking it,i-a-i,kanat,True,,
+he/she is licking it,i-a-i,kan,True,,
+he/she is licking it,i-a-i,kana,True,,
 he/she is warming it,cause,kanawht,True,,
 he/she is warming it,cause,kanawht,False,,
 he/she is warming it,cause[perf3],kanawht,False,,
@@ -523,6 +532,7 @@ it’s taking time,oh-ol[inf3],alhi'ilit,True,,
 it’s taking time,oh-ol[inf3],hi'ilit,True,,
 it’s taking time,oh-ol[inf3],lhi'ilit,True,,
 he/she is measuring it,o,alhil,True,,
+he/she is measuring it,o,alh,True,,
 it’s bending,vsk,lhiyvhkwit,True,,
 it’s bending,vsk,alhiyvhkwit,True,,
 it’s bending,vsk,hiyvhkwit,True,,
@@ -648,8 +658,8 @@ he/she is moving,hvsk-nh[inf2],hthelv,True,,
 he/she is moving,episodic,alhthel,True,,
 he/she is moving,episodic,hthel,True,,
 he/she is changing his/her shirt,v-vhs,anhawa'iy,True,,
-he/she is changing his/her shirt,v-vhs,anhaw,True,,
 he/she is changing his/her shirt,v-vhs,anhawa',True,,
+he/she is changing his/her shirt,v-vhs,anhaw,True,,
 he/she is taking his/her shirt off,rev-e,anhaw,True,,
 he/she is putting on a shirt,o,anhaw,True,,
 he/she is wrestling,hih-lh,anhe,True,,
@@ -668,6 +678,7 @@ he/she is starting it,cause[pres2-perf3],anhikihstih,False,,
 he/she is carrying it on his/her shoulder,go,anholhin,True,,
 he/she is carrying it on his/her shoulder,go[pres2],anholhinek,False,,
 he/she is putting it in liquid,i-a-i,hut,True,,
+he/she is putting it in liquid,i-a-i,hu,True,,
 he/she is hitting him/her on the mouth,ih-il,hulvn,True,,
 he/she is hitting him/her on the mouth,ih-il,hul,True,,
 he/she is moving it from one place to another,v-vhs,h,True,,
@@ -786,7 +797,9 @@ he/she is bending it,vsk,yhvhkwit,False,,
 he/she is bending it,vsk[imp2],yhvhkwit,True,,
 he/she is bending it,vsk[imp2],yhvhkwit,True,,
 he/she is capturing him/her,i-a-i,yhvkhit,True,,
+he/she is capturing him/her,i-a-i,yhvkhi,True,,
 he/she is capturing him/her,i-a-i,yhvkhit,True,,
+he/she is capturing him/her,i-a-i,yhvkhi,True,,
 he/she is hitting him/her on the nose,hvsk-nh,yhvhstelu,True,,
 he/she is hitting him/her on the nose,hvsk-nh,yhvhstelu,True,,
 he/she is hitting him/her on the nose,hvsk-nh[inf2],yhvhstelu,False,,
@@ -987,8 +1000,11 @@ he/she is happy,become[inf4],aliheli,False,,
 he/she is happy,become[inf4],heli,False,,
 he/she is happy,become[inf4],iheli,False,,
 he/she is exchanging it,i-a-i,ali'it,True,,
+he/she is exchanging it,i-a-i,ali'i,True,,
 he/she is exchanging it,i-a-i,'it,True,,
+he/she is exchanging it,i-a-i,'i,True,,
 he/she is exchanging it,i-a-i,i'it,True,,
+he/she is exchanging it,i-a-i,i'i,True,,
 he/she is running away,rev-i,alith,True,,
 he/she is running away,rev-i,th,True,,
 he/she is running away,rev-i,ith,True,,
@@ -1075,36 +1091,102 @@ he/she is smelling it,cause[pres2],alhsvhstih,False,,
 he/she is smelling it,cause[pres2],hsvhstih,False,,
 he/she is smelling it,cause[pres2-perf3],alhsvhstih,False,,
 he/she is smelling it,cause[pres2-perf3],hsvhstih,False,,
+they are gathering,cause[perf2],atalhihs,True,,
+they are gathering,cause[perf2],atalh,True,,
+they are gathering,cause[perf2],atalhi,True,,
+they are gathering,cause[perf2],alhihs,True,,
+they are gathering,cause[perf2],alh,True,,
+they are gathering,cause[perf2],alhi,True,,
+they are gathering,cause[perf2],lhihs,True,,
+they are gathering,cause[perf2],lh,True,,
+they are gathering,cause[perf2],lhi,True,,
+they are gathering,cause[perf2],atalhihs,True,,
+they are gathering,cause[perf2],atalh,True,,
+they are gathering,cause[perf2],atalhi,True,,
+they are gathering,cause[perf2],alhihs,True,,
+they are gathering,cause[perf2],alh,True,,
+they are gathering,cause[perf2],alhi,True,,
+they are gathering,cause[perf2],lhihs,True,,
+they are gathering,cause[perf2],lh,True,,
+they are gathering,cause[perf2],lhi,True,,
+they are gathering,cause[pres2-perf2],atalhihsih,False,,
+they are gathering,cause[pres2-perf2],alhihsih,False,,
+they are gathering,cause[pres2-perf2],lhihsih,False,,
+they are gathering,cause[pres2-perf2],atalhihsih,False,,
+they are gathering,cause[pres2-perf2],alhihsih,False,,
+they are gathering,cause[pres2-perf2],lhihsih,False,,
 it’s lightning,ih-vh,nakal,True,,
 it’s lightning,ih-vh,anakal,True,,
 it’s lightning,ih-vh,anakal,True,,
+it’s lightning,ih-vh,akal,True,,
+it’s lightning,ih-vh,akal,True,,
 it’s lightning,ih-vh,nakal,True,imperative,Ambiguity implies lossy rule reversal
 it’s lightning,ih-vh,anakal,True,imperative,Ambiguity implies lossy rule reversal
 it’s lightning,ih-vh,anakal,True,imperative,Ambiguity implies lossy rule reversal
+it’s lightning,ih-vh,akal,True,imperative,Ambiguity implies lossy rule reversal
+it’s lightning,ih-vh,akal,True,imperative,Ambiguity implies lossy rule reversal
 it’s lightning,ih-vh,nakal,True,,
 it’s lightning,ih-vh,anakal,True,,
 it’s lightning,ih-vh,anakal,True,,
+it’s lightning,ih-vh,akal,True,,
+it’s lightning,ih-vh,akal,True,,
 it’s lightning,ih-vh,nakal,True,,
 it’s lightning,ih-vh,anakal,True,,
 it’s lightning,ih-vh,anakal,True,,
+it’s lightning,ih-vh,akal,True,imperative,Ambiguity implies lossy rule reversal
+it’s lightning,ih-vh,akal,True,imperative,Ambiguity implies lossy rule reversal
 it’s lightning,stative,nakalih,False,,
 it’s lightning,stative,anakalih,False,,
 it’s lightning,stative,anakalih,False,,
+it’s lightning,stative,akalih,False,,
+it’s lightning,stative,akalih,False,,
 it’s lightning,stative,nakalih,False,imperative,Ambiguity implies lossy rule reversal
 it’s lightning,stative,anakalih,False,imperative,Ambiguity implies lossy rule reversal
 it’s lightning,stative,anakalih,False,imperative,Ambiguity implies lossy rule reversal
+it’s lightning,stative,akalih,False,imperative,Ambiguity implies lossy rule reversal
+it’s lightning,stative,akalih,False,imperative,Ambiguity implies lossy rule reversal
 it’s lightning,stative,nakalih,False,,
 it’s lightning,stative,anakalih,False,,
 it’s lightning,stative,anakalih,False,,
+it’s lightning,stative,akalih,False,,
+it’s lightning,stative,akalih,False,,
 it’s lightning,stative,nakalih,False,,
 it’s lightning,stative,anakalih,False,,
 it’s lightning,stative,anakalih,False,,
+it’s lightning,stative,akalih,False,imperative,Ambiguity implies lossy rule reversal
+it’s lightning,stative,akalih,False,imperative,Ambiguity implies lossy rule reversal
+they are getting together,hvsk-nh[inf2],aliko,True,,
+they are getting together,hvsk-nh[inf2],ko,True,,
+they are getting together,hvsk-nh[inf2],iko,True,,
+they are getting together,hvsk-nh[inf2],aliko,True,,
+they are getting together,hvsk-nh[inf2],ko,True,,
+they are getting together,hvsk-nh[inf2],iko,True,,
 he/she is attempting it,cause,anelht,True,,
 he/she is attempting it,cause[perf3],anelht,False,,
 he/she is attempting it,cause[pres2],anelhtih,False,,
 he/she is attempting it,cause[pres2-perf3],anelhtih,False,,
 he is getting married,i-a-i,anelat,True,,
+he is getting married,i-a-i,anel,True,,
+he is getting married,i-a-i,anela,True,,
 he/she is remembering him/her,i-a-i,anhtat,True,,
+he/she is remembering him/her,i-a-i,anht,True,,
+he/she is remembering him/her,i-a-i,anhta,True,,
+they are asleep,stative,lhin,True,,
+they are asleep,stative,lhin,True,,
+they are asleep,stative,lhin,True,,
+they are asleep,stative,lhin,True,,
+they are asleep,stative,lhin,True,imperative,Ambiguity implies lossy rule reversal
+they are asleep,stative,lhin,True,imperative,Ambiguity implies lossy rule reversal
+they are asleep,stative,lhin,True,imperative,Ambiguity implies lossy rule reversal
+they are asleep,stative,lhin,True,imperative,Ambiguity implies lossy rule reversal
+they are asleep,stative,lhin,True,,
+they are asleep,stative,lhin,True,,
+they are asleep,stative,lhin,True,,
+they are asleep,stative,lhin,True,,
+they are asleep,stative,lhin,True,imperative,Ambiguity implies lossy rule reversal
+they are asleep,stative,lhin,True,imperative,Ambiguity implies lossy rule reversal
+they are asleep,stative,lhin,True,imperative,Ambiguity implies lossy rule reversal
+they are asleep,stative,lhin,True,imperative,Ambiguity implies lossy rule reversal
 he/she is setting a trap,vsk,hsat,False,,
 he/she is setting a trap,vsk,hsat,False,,
 he/she is setting a trap,vsk,hsat,False,,
@@ -1260,9 +1342,13 @@ he/she is mourning for him/her,hih-hil,hskon,True,,
 he/she is mourning for him/her,hih-hil,hskon,True,,
 he/she is rubbing him/her,e-a,ahskoliy,True,,
 he/she is erasing it,i-a-i,hskolvt,False,,
+he/she is erasing it,i-a-i,hskolv,False,,
 he/she is erasing it,i-a-i,hskolvt,False,,
+he/she is erasing it,i-a-i,hskolv,False,,
 he/she is erasing it,i-a-i,hskolvt,False,,
+he/she is erasing it,i-a-i,hskolv,False,,
 he/she is erasing it,i-a-i,hskolvt,False,,
+he/she is erasing it,i-a-i,hskolv,False,,
 it’s fading,become,hskolv,False,,
 it’s fading,become,ahskolv,False,,
 it’s fading,become,hskolv,False,,
@@ -1290,9 +1376,17 @@ it’s fading,become[inf3],hskolv,True,,
 he/she is digging it,sk-s-la,ahsko,True,,
 he/she is digging it,sk-s-hst,ahsko,False,,
 he/she is finishing it,i-a-i,hskwat,True,,
+he/she is finishing it,i-a-i,hskw,True,,
+he/she is finishing it,i-a-i,hskwa,True,,
 he/she is finishing it,i-a-i,hskwat,True,,
+he/she is finishing it,i-a-i,hskw,True,,
+he/she is finishing it,i-a-i,hskwa,True,,
 he/she is finishing it,i-a-i,hskwat,True,,
+he/she is finishing it,i-a-i,hskw,True,,
+he/she is finishing it,i-a-i,hskwa,True,,
 he/she is finishing it,i-a-i,hskwat,True,,
+he/she is finishing it,i-a-i,hskw,True,,
+he/she is finishing it,i-a-i,hskwa,True,,
 he/she is catching him/her,rev-e,hskwalh,True,,
 he/she is catching him/her,rev-e,hskwalh,True,,
 he/she is catching him/her,rev-e,hskwalh,True,,
@@ -1338,14 +1432,24 @@ he/she is hitting him/her on the abdomen with it,ih-il,hskwohal,True,,
 he/she is hitting him/her on the abdomen with it,ih-il,hskwohalvn,True,,
 he/she is hitting him/her on the abdomen with it,ih-il,hskwohal,True,,
 he/she is placing his/her hand on him/her,i-a-i,ahsihthat,True,,
+he/she is placing his/her hand on him/her,i-a-i,ahsihth,True,,
+he/she is placing his/her hand on him/her,i-a-i,ahsihtha,True,,
 he/she is slapping him/her,ih-il,ahsihthvn,True,,
 he/she is slapping him/her,ih-il,ahsihth,True,,
 he/she is backing up,go,ahsin,True,,
 he/she is backing up,go[pres2],ahsinek,False,,
 he/she is roping him/her,i-a-i,hslhat,True,,
+he/she is roping him/her,i-a-i,hslh,True,,
+he/she is roping him/her,i-a-i,hslha,True,,
 he/she is roping him/her,i-a-i,hslhat,True,,
+he/she is roping him/her,i-a-i,hslh,True,,
+he/she is roping him/her,i-a-i,hslha,True,,
 he/she is roping him/her,i-a-i,hslhat,True,,
+he/she is roping him/her,i-a-i,hslh,True,,
+he/she is roping him/her,i-a-i,hslha,True,,
 he/she is roping him/her,i-a-i,hslhat,True,,
+he/she is roping him/her,i-a-i,hslh,True,,
+he/she is roping him/her,i-a-i,hslha,True,,
 he/she is building a fence,oh-al,ahsoy,True,,
 he/she is waving his/her hand,rev-gi,ahsolvta,True,,
 he/she is waving his/her hand,rev-i,ahsolvtak,True,,
@@ -1376,8 +1480,8 @@ he/she is painting it,i-a-ihsk,hsuwh,True,,
 he/she is painting it,i-a-ihsk,hsuwh,True,,
 he/she is painting it,i-a-ihsk,hsuwh,True,,
 he/she is changing his/her pants,v-vhs,ahsula'iy,True,,
-he/she is changing his/her pants,v-vhs,ahsul,True,,
 he/she is changing his/her pants,v-vhs,ahsula',True,,
+he/she is changing his/her pants,v-vhs,ahsul,True,,
 he/she is taking his/her pants off,rev-e,ahsul,True,,
 he/she is putting his/her pants on,i-vka,ahsul,True,,
 he/she is quitting,ko-kots,hsuli,True,,
@@ -1444,9 +1548,17 @@ he/she is holding his/her breath,cause[perf3],athawhohst,False,,
 he/she is holding his/her breath,cause[pres2],athawhohstih,False,,
 he/she is holding his/her breath,cause[pres2-perf3],athawhohstih,False,,
 he/she is mooring a boat,i-a-i,thalat,True,,
+he/she is mooring a boat,i-a-i,thal,True,,
+he/she is mooring a boat,i-a-i,thala,True,,
 he/she is mooring a boat,i-a-i,thalat,True,,
+he/she is mooring a boat,i-a-i,thal,True,,
+he/she is mooring a boat,i-a-i,thala,True,,
 he/she is mooring a boat,i-a-i,thalat,True,,
+he/she is mooring a boat,i-a-i,thal,True,,
+he/she is mooring a boat,i-a-i,thala,True,,
 he/she is mooring a boat,i-a-i,thalat,True,,
+he/she is mooring a boat,i-a-i,thal,True,,
+he/she is mooring a boat,i-a-i,thala,True,,
 he/she is drilling a hole,sk-s-hst,thale,False,,
 he/she is drilling a hole,sk-s-hst,thale,False,,
 he/she is drilling a hole,sk-s-hst,thale,False,,
@@ -1586,11 +1698,11 @@ he/she is inside,stative-a',y,True,,
 he/she is inside,stative-a',y,True,imperative,Ambiguity implies lossy rule reversal
 he/she is inside,stative-a',y,True,imperative,Ambiguity implies lossy rule reversal
 he/she is inside,stative-a',y,True,imperative,Ambiguity implies lossy rule reversal
-he/she is inside,stative-a',ay,True,,
-he/she is inside,stative-a',ay,True,,
+he/she is inside,stative-a',ay,False,,
+he/she is inside,stative-a',ay,False,,
 he/she is inside,stative-a',y,True,imperative,Ambiguity implies lossy rule reversal
-he/she is inside,stative-a',ay,True,,
-he/she is inside,stative-a',ay,True,,
+he/she is inside,stative-a',ay,False,,
+he/she is inside,stative-a',ay,False,,
 he/she is inside,stative,ya',True,,
 he/she is inside,stative,ya',True,,
 he/she is inside,stative,ya',True,imperative,Ambiguity implies lossy rule reversal
@@ -1659,359 +1771,181 @@ he/she is taking it somewhere,ih-vh,yvwhit,False,,
 he/she is making an X,cause,atanhawhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause,anhawhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause,nhawhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making an X,cause,atanhawhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making an X,cause,anhawhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making an X,cause,nhawhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making an X,cause[perf3],atanhawhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making an X,cause[perf3],anhawhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making an X,cause[perf3],nhawhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[perf3],atanhawhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[perf3],anhawhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[perf3],nhawhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[pres2],atanhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[pres2],anhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[pres2],nhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making an X,cause[pres2],atanhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making an X,cause[pres2],anhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making an X,cause[pres2],nhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making an X,cause[pres2-perf3],atanhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making an X,cause[pres2-perf3],anhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making an X,cause[pres2-perf3],nhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[pres2-perf3],atanhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[pres2-perf3],anhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[pres2-perf3],nhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is conjuring,e-aka,atanhehs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is conjuring,e-aka,anhehs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is conjuring,e-aka,nhehs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is conjuring,e-aka,atanhehs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is conjuring,e-aka,anhehs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is conjuring,e-aka,nhehs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is accepting him/her,become,atanilv,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is accepting him/her,become,anilv,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is accepting him/her,become,nilv,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is accepting him/her,become,atanilv,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is accepting him/her,become,anilv,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is accepting him/her,become,nilv,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause,atanvtihst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause,anvtihst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause,nvtihst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is dodging,cause,atanvtihst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is dodging,cause,anvtihst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is dodging,cause,nvtihst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is dodging,cause[perf3],atanvtihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is dodging,cause[perf3],anvtihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is dodging,cause[perf3],nvtihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[perf3],atanvtihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[perf3],anvtihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[perf3],nvtihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[pres2],atanvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[pres2],anvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[pres2],nvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is dodging,cause[pres2],atanvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is dodging,cause[pres2],anvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is dodging,cause[pres2],nvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is dodging,cause[pres2-perf3],atanvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is dodging,cause[pres2-perf3],anvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is dodging,cause[pres2-perf3],nvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[pres2-perf3],atanvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[pres2-perf3],anvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[pres2-perf3],nvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is performing baptism,o,ataw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is performing baptism,o,aw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is performing baptism,o,w,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is performing baptism,o,ataw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is performing baptism,o,aw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is performing baptism,o,w,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is giving up,sk-s-hi-hihst,atayo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is giving up,sk-s-hi-hihst,ayo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is giving up,sk-s-hi-hihst,yo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hi-hihst,atayo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hi-hihst,ayo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hi-hihst,yo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hst[imp2],atayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hst[imp2],ayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hst[imp2],yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is giving up,sk-s-hst[imp2],atayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is giving up,sk-s-hst[imp2],ayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is giving up,sk-s-hst[imp2],yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is giving up,sk-s-hst,atayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is giving up,sk-s-hst,ayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is giving up,sk-s-hst,yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hst,atayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hst,ayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hst,yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is teaching,hvsk-nh,ateyho,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is teaching,hvsk-nh,eyho,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is teaching,hvsk-nh,ateyho,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is teaching,hvsk-nh,eyho,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is teaching,hvsk-nh[inf2],ateyho,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is teaching,hvsk-nh[inf2],eyho,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is teaching,hvsk-nh[inf2],ateyho,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is teaching,hvsk-nh[inf2],eyho,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is teaching,hvsk-nh[inf4],ateyho,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is teaching,hvsk-nh[inf4],eyho,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is teaching,hvsk-nh[inf4],ateyho,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is teaching,hvsk-nh[inf4],eyho,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is weeping,hih-hil,atloy,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is weeping,hih-hil,loy,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is weeping,hih-hil,atloy,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is weeping,hih-hil,loy,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is setting a price,cause,kvwalht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is setting a price,cause,kvwalht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is setting a price,cause,kvwalht,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is setting a price,cause,kvwalht,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is setting a price,cause[perf3],kvwalht,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is setting a price,cause[perf3],kvwalht,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is setting a price,cause[perf3],kvwalht,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is setting a price,cause[perf3],kvwalht,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is setting a price,cause[pres2],kvwalhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is setting a price,cause[pres2],kvwalhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is setting a price,cause[pres2],kvwalhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is setting a price,cause[pres2],kvwalhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is setting a price,cause[pres2-perf3],kvwalhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is setting a price,cause[pres2-perf3],kvwalhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is setting a price,cause[pres2-perf3],kvwalhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is setting a price,cause[pres2-perf3],kvwalhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is rocking,apl-active,alhihk,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is rocking,apl-active,hihk,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is rocking,apl-active,alhihk,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is rocking,apl-active,hihk,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is rocking,apl-active-a,alhihk,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is rocking,apl-active-a,hihk,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is rocking,apl-active-a,alhihk,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is rocking,apl-active-a,hihk,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is drawing a picture of him/her,cause,alhilohst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is drawing a picture of him/her,cause,alhilohst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is drawing a picture of him/her,cause[perf3],alhilohst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is drawing a picture of him/her,cause[perf3],alhilohst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is drawing a picture of him/her,cause[pres2],alhilohstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is drawing a picture of him/her,cause[pres2],alhilohstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is drawing a picture of him/her,cause[pres2-perf3],alhilohstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is drawing a picture of him/her,cause[pres2-perf3],alhilohstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is conversing,apl-active-h,alhino,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is conversing,apl-active-h,hino,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is conversing,apl-active-h,alhino,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is conversing,apl-active-h,hino,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is jumping,go-in,alhthat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is jumping,go-in,hthat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is jumping,go-in,alhthat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is jumping,go-in,hthat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is changing clothes,v-vhs,anhawa'iy,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is changing clothes,v-vhs,anhaw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is changing clothes,v-vhs,anhawa',True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is changing clothes,v-vhs,anhawa'iy,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is changing clothes,v-vhs,anhaw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is changing clothes,v-vhs,anhawa',True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is undressing,rev-e,anhaw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is undressing,rev-e,anhaw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is putting on clothes,o,anhaw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is putting on clothes,o,anhaw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is putting fuel into a fire,hvsk-han,hvt,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is putting fuel into a fire,hvsk-han,hvt,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is tickling him/her,i-a-i,yhvk,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is tickling him/her,i-a-i,yhvk,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is tickling him/her,i-a-i,yhvk,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is tickling him/her,i-a-i,yhvk,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is tying it,hih-lh,khane,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is tying it,hih-lh,khane,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is tying it,hih-lh,khane,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is tying it,hih-lh,khane,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is untying it,ih-vh,khaneyh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is untying it,ih-vh,khaneyh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is untying it,ih-vh,khaneyh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is untying it,ih-vh,khaneyh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is untying it,ih-vh[inf2],khaneyh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is untying it,ih-vh[inf2],khaneyh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is untying it,ih-vh[inf2],khaneyh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is untying it,ih-vh[inf2],khaneyh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is looking after him/her,be-at,khanowat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is looking after him/her,be-at,khanowat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is looking after him/her,be-at,khanowat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is looking after him/her,be-at,khanowat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is looking after him/her,be-at-weak,khanowatit,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is looking after him/her,be-at-weak,khanowatit,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is looking after him/her,be-at-weak,khanowatit,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is looking after him/her,be-at-weak,khanowatit,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is becoming blind,become,khewa,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is becoming blind,become,khewa,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is becoming blind,become,khewa,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is becoming blind,become,khewa,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is becoming blind,become[inf2],khewa,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is becoming blind,become[inf2],khewa,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is becoming blind,become[inf2],khewa,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is becoming blind,become[inf2],khewa,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is becoming blind,become[inf4],khewa,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is becoming blind,become[inf4],khewa,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is becoming blind,become[inf4],khewa,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is becoming blind,become[inf4],khewa,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making smoke,cause,khsvhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making smoke,cause,khsvhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making smoke,cause,khsvhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making smoke,cause,khsvhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making smoke,cause[perf3],khsvhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making smoke,cause[perf3],khsvhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making smoke,cause[perf3],khsvhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making smoke,cause[perf3],khsvhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making smoke,cause[pres2],khsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making smoke,cause[pres2],khsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making smoke,cause[pres2],khsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making smoke,cause[pres2],khsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making smoke,cause[pres2-perf3],khsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is making smoke,cause[pres2-perf3],khsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making smoke,cause[pres2-perf3],khsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making smoke,cause[pres2-perf3],khsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is blinking,sk-s-a[inf2],akhthanaw,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is blinking,sk-s-a[inf2],akhthanaw,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is closing his eyes,cause,akhthahst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is closing his eyes,cause,akhthahst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is closing his eyes,cause[perf3],akhthahst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is closing his eyes,cause[perf3],akhthahst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is closing his eyes,cause[pres2],akhthahstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is closing his eyes,cause[pres2],akhthahstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is closing his eyes,cause[pres2-perf3],akhthahstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is closing his eyes,cause[pres2-perf3],akhthahstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is attacking him/her,go,khthil,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is attacking him/her,go,khthil,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is attacking him/her,go,khthil,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is attacking him/her,go,khthil,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is attacking him/her,go[pres2],khthilek,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is attacking him/her,go[pres2],khthilek,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is attacking him/her,go[pres2],khthilek,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is attacking him/her,go[pres2],khthilek,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is taking off his/her glasses,rev-e,akhthinvt,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is taking off his/her glasses,rev-e,akhthinvt,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is putting on glasses,hvsk-han,akhthinvt,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is putting on glasses,hvsk-han,akhthinvt,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is shelling corn,ih-vh,khtlh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is shelling corn,ih-vh,khtlh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is shelling corn,ih-vh,khtlh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is shelling corn,ih-vh,khtlh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is shelling corn,ih-vh[inf2],khtlh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is shelling corn,ih-vh[inf2],khtlh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is shelling corn,ih-vh[inf2],khtlh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is shelling corn,ih-vh[inf2],khtlh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is snoring,rev-gi,kwhala,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is snoring,rev-gi,kwhala,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is snoring,rev-gi,kwhala,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is snoring,rev-gi,kwhala,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is snoring,rev-gi,kwhala,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is snoring,rev-gi,kwhala,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is snoring,rev-gi,kwhala,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is snoring,rev-gi,kwhala,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is snoring,rev-i,kwhalak,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is snoring,rev-i,kwhalak,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is snoring,rev-i,kwhalak,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is snoring,rev-i,kwhalak,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is snoring,rev-i,kwhalak,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is snoring,rev-i,kwhalak,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is snoring,rev-i,kwhalak,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is snoring,rev-i,kwhalak,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is sprinkling it,vsk-post-v,kwhayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is sprinkling it,vsk-post-v,kwhayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is sprinkling it,vsk-post-v,kwhayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is sprinkling it,vsk-post-v,kwhayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is sprinkling it,vsk-post-v,kwhayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is sprinkling it,vsk-post-v,kwhayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is sprinkling it,vsk-post-v,kwhayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is sprinkling it,vsk-post-v,kwhayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is putting on shoes,hvsk-han,alahsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is putting on shoes,hvsk-han,alahsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is changing shoes,v-vhs,alahsula'iy,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is changing shoes,v-vhs,alahsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is changing shoes,v-vhs,alahsula',True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is changing shoes,v-vhs,alahsula'iy,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is changing shoes,v-vhs,alahsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is changing shoes,v-vhs,alahsula',True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is taking off his/her shoes,rev-e,alahsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is taking off his/her shoes,rev-e,alahsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is helping him/her up,cause,aleht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is helping him/her up,cause,aleht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is helping him/her up,cause[perf3],aleht,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is helping him/her up,cause[perf3],aleht,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is helping him/her up,cause[pres2],alehtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is helping him/her up,cause[pres2],alehtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is helping him/her up,cause[pres2-perf3],alehtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is helping him/her up,cause[pres2-perf3],alehtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is recuperating,cause[perf2],alehihs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is recuperating,cause[perf2],alehihs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is recuperating,cause[pres2-perf2],alehihsih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is recuperating,cause[perf2],aleh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is recuperating,cause[perf2],alehi,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is recuperating,cause[pres2-perf2],alehihsih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is getting up,hvsk-nh,ale,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is getting up,hvsk-nh,ale,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is getting up,hvsk-nh[inf2],ale,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is getting up,hvsk-nh[inf2],ale,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is taking off his/her gloves,rev-e,aliyehsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is taking off his/her gloves,rev-e,yehsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is taking off his/her gloves,rev-e,iyehsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is taking off his/her gloves,rev-e,aliyehsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is taking off his/her gloves,rev-e,yehsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is taking off his/her gloves,rev-e,iyehsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is putting on his/her gloves,i-vka,aliyehsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is putting on his/her gloves,i-vka,yehsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is putting on his/her gloves,i-vka,iyehsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is putting on his/her gloves,i-vka,aliyehsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is putting on his/her gloves,i-vka,yehsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is putting on his/her gloves,i-vka,iyehsul,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is taking off his/her socks,rev-gi,aliyo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is taking off his/her socks,rev-gi,yo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is taking off his/her socks,rev-gi,iyo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is taking off his/her socks,rev-gi,aliyo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is taking off his/her socks,rev-gi,yo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is taking off his/her socks,rev-gi,iyo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is taking off his/her socks,rev-i,aliyok,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is taking off his/her socks,rev-i,yok,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is taking off his/her socks,rev-i,iyok,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is taking off his/her socks,rev-i,aliyok,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is taking off his/her socks,rev-i,yok,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is taking off his/her socks,rev-i,iyok,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is putting on his/her socks,hih-lh,aliyo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is putting on his/her socks,hih-lh,yo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is putting on his/her socks,hih-lh,iyo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is putting on his/her socks,hih-lh,aliyo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is putting on his/her socks,hih-lh,yo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is putting on his/her socks,hih-lh,iyo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is changing his/her socks,ih-vh[imperf2],aliyohs,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is changing his/her socks,ih-vh[imperf2],yohs,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is changing his/her socks,ih-vh[imperf2],iyohs,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is changing his/her socks,ih-vh[imperf2],aliyohs,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is changing his/her socks,ih-vh[imperf2],yohs,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is changing his/her socks,ih-vh[imperf2],iyohs,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is changing his/her socks,ih-vh[imperf2-inf2],aliyohs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is changing his/her socks,ih-vh[imperf2-inf2],yohs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is changing his/her socks,ih-vh[imperf2-inf2],iyohs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is changing his/her socks,ih-vh[imperf2-inf2],aliyohs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is changing his/her socks,ih-vh[imperf2-inf2],yohs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is changing his/her socks,ih-vh[imperf2-inf2],iyohs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is aiming at him/her,cause,alhsohst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is aiming at him/her,cause,hsohst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is aiming at him/her,cause,alhsohst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is aiming at him/her,cause,hsohst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is aiming at him/her,cause[perf3],alhsohst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is aiming at him/her,cause[perf3],hsohst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is aiming at him/her,cause[perf3],alhsohst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is aiming at him/her,cause[perf3],hsohst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is aiming at him/her,cause[pres2],alhsohstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is aiming at him/her,cause[pres2],hsohstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is aiming at him/her,cause[pres2],alhsohstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is aiming at him/her,cause[pres2],hsohstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is aiming at him/her,cause[pres2-perf3],alhsohstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is aiming at him/her,cause[pres2-perf3],hsohstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is aiming at him/her,cause[pres2-perf3],alhsohstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is aiming at him/her,cause[pres2-perf3],hsohstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is playing with him/her,cause,anelht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is playing with him/her,cause,anelht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is playing with him/her,cause[perf3],anelht,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is playing with him/her,cause[perf3],anelht,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is playing with him/her,cause[pres2],anelhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is playing with him/her,cause[pres2],anelhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is playing with him/her,cause[pres2-perf3],anelhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is playing with him/her,cause[pres2-perf3],anelhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is playing,hvsk-nh[inf2],anelo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is playing,hvsk-nh[inf2],anelo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is shooting at him/her,hih-lh[imp2],hstayo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is shooting at him/her,hih-lh[imp2],hstayo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is shooting at him/her,hih-lh[imp2],hstayo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is shooting at him/her,hih-lh[imp2],hstayo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is shooting at him/her,hih-lh[imp2],hstayo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is shooting at him/her,hih-lh[imp2],hstayo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is shooting at him/her,hih-lh[imp2],hstayo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
@@ -2020,14 +1954,6 @@ he/she is splitting it,sk-h,hstlu,False,present;present_1sg;imperfective;perfect
 he/she is splitting it,sk-h,hstlu,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is splitting it,sk-h,hstlu,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is splitting it,sk-h,hstlu,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is splitting it,sk-h,hstlu,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is splitting it,sk-h,hstlu,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is splitting it,sk-h,hstlu,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is splitting it,sk-h,hstlu,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is splitting it,sk-h-yh,hstlu,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is splitting it,sk-h-yh,hstlu,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is splitting it,sk-h-yh,hstlu,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is splitting it,sk-h-yh,hstlu,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is splitting it,sk-h-yh,hstlu,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is splitting it,sk-h-yh,hstlu,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is splitting it,sk-h-yh,hstlu,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
@@ -2036,54 +1962,34 @@ he/she is splitting it,sk-h[imp2],hstlu,False,present;present_1sg;imperfective;p
 he/she is splitting it,sk-h[imp2],hstlu,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is splitting it,sk-h[imp2],hstlu,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is splitting it,sk-h[imp2],hstlu,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is splitting it,sk-h[imp2],hstlu,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is splitting it,sk-h[imp2],hstlu,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is splitting it,sk-h[imp2],hstlu,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is splitting it,sk-h[imp2],hstlu,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is sprinkling it,i-a-i,hstutl,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is sprinkling it,i-a-i,hstutl,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is sprinkling it,i-a-i,hstutl,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is sprinkling it,i-a-i,hstutl,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is sprinkling it,i-a-i,hstutl,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is sprinkling it,i-a-i,hstutl,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is sprinkling it,i-a-i,hstutl,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is sprinkling it,i-a-i,hstutl,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is counting it,hih-lh,ahse,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is counting it,hih-lh,ahse,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is cursing him/her,i-a-i,hskinat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is cursing him/her,i-a-i,hskin,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is cursing him/her,i-a-i,hskina,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is cursing him/her,i-a-i,hskinat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is cursing him/her,i-a-i,hskin,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is cursing him/her,i-a-i,hskina,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is cursing him/her,i-a-i,hskinat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is cursing him/her,i-a-i,hskin,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is cursing him/her,i-a-i,hskina,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is cursing him/her,i-a-i,hskinat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is cursing him/her,i-a-i,hskinat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is cursing him/her,i-a-i,hskinat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is cursing him/her,i-a-i,hskinat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is cursing him/her,i-a-i,hskinat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is clapping his/her hands,ih-il,ahsihthvn,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is clapping his/her hands,ih-il,ahsihth,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is cursing him/her,i-a-i,hskin,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is cursing him/her,i-a-i,hskina,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is clapping his/her hands,ih-il,ahsihthvn,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is clapping his/her hands,ih-il,ahsihth,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is getting exhausted,sk-s-hi-hihst,ahsthaye,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is getting exhausted,sk-s-hi-hihst,ahsthaye,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is getting exhausted,sk-s-hst[imp2],ahsthaye,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is getting exhausted,sk-s-hst[imp2],ahsthaye,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is getting exhausted,sk-s-hst,ahsthaye,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is getting exhausted,sk-s-hst,ahsthaye,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 it’s barking,sk-s-hst,ahsuwhi,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-it’s barking,sk-s-hst,ahsuwhi,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-it’s barking,i-a-ihsk,ahsuwh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 it’s barking,i-a-ihsk,ahsuwh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is scheduling a time,cause,hsvhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is scheduling a time,cause,hsvhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is scheduling a time,cause,hsvhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is scheduling a time,cause,hsvhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause,hsvhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause,hsvhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause,hsvhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause,hsvhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause[perf3],hsvhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause[perf3],hsvhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause[perf3],hsvhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause[perf3],hsvhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is scheduling a time,cause[perf3],hsvhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is scheduling a time,cause[perf3],hsvhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is scheduling a time,cause[perf3],hsvhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
@@ -2092,42 +1998,20 @@ he/she is scheduling a time,cause[pres2],hsvhstih,False,present;present_1sg;impe
 he/she is scheduling a time,cause[pres2],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is scheduling a time,cause[pres2],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is scheduling a time,cause[pres2],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause[pres2],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause[pres2],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause[pres2],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause[pres2],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause[pres2-perf3],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause[pres2-perf3],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause[pres2-perf3],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is scheduling a time,cause[pres2-perf3],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is scheduling a time,cause[pres2-perf3],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is scheduling a time,cause[pres2-perf3],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is scheduling a time,cause[pres2-perf3],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is scheduling a time,cause[pres2-perf3],hsvhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is releasing him/her,sk-s-hi-hihst,yo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is releasing him/her,sk-s-hi-hihst,yo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is releasing him/her,sk-s-hi-hihst,yo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is releasing him/her,sk-s-hi-hihst,yo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is releasing him/her,sk-s-hst[imp2],yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is releasing him/her,sk-s-hst[imp2],yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is releasing him/her,sk-s-hst[imp2],yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is releasing him/her,sk-s-hst[imp2],yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is releasing him/her,sk-s-hst,yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is releasing him/her,sk-s-hst,yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is releasing him/her,sk-s-hst,yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is releasing him/her,sk-s-hst,yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause,lvtvnihst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is slamming him/her,cause,lvtvnihst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is slamming him/her,cause,lvtvnihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause,lvtvnihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause,lvtvnihst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is slamming him/her,cause,lvtvnihst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is slamming him/her,cause,lvtvnihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause,lvtvnihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause[perf3],lvtvnihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause[perf3],lvtvnihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause[perf3],lvtvnihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause[perf3],lvtvnihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is slamming him/her,cause[perf3],lvtvnihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is slamming him/her,cause[perf3],lvtvnihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is slamming him/her,cause[perf3],lvtvnihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
@@ -2136,518 +2020,46 @@ he/she is slamming him/her,cause[pres2],lvtvnihstih,False,present;present_1sg;im
 he/she is slamming him/her,cause[pres2],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is slamming him/her,cause[pres2],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is slamming him/her,cause[pres2],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause[pres2],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause[pres2],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause[pres2],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause[pres2],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause[pres2-perf3],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause[pres2-perf3],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause[pres2-perf3],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is slamming him/her,cause[pres2-perf3],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is slamming him/her,cause[pres2-perf3],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is slamming him/her,cause[pres2-perf3],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is slamming him/her,cause[pres2-perf3],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is slamming him/her,cause[pres2-perf3],lvtvnihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is crossing,sk-s-hi-hihst,natiw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is crossing,sk-s-hi-hihst,natiw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is crossing,sk-s-hi-hihst,natiw,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is crossing,sk-s-hi-hihst,natiw,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is crossing,sk-s-hi-hihst,natiw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is crossing,sk-s-hi-hihst,natiw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is crossing,sk-s-hi-hihst,natiw,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is crossing,sk-s-hi-hihst,natiw,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is advertising it,hvsk-han,notsal,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is advertising it,hvsk-han,notsal,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is advertising it,hvsk-han,notsal,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is advertising it,hvsk-han,notsal,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is advertising it,hvsk-han,notsal,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is advertising it,hvsk-han,notsal,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is advertising it,hvsk-han,notsal,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is advertising it,hvsk-han,notsal,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is crossing it,become,hsoh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is crossing it,become,hsoh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is crossing it,become,hsoh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is crossing it,become,hsoh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is crossing it,become,hsoh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is crossing it,become,hsoh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is crossing it,become,hsoh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is crossing it,become,hsoh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is crossing it,become[inf4],hsoh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is crossing it,become[inf4],hsoh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is crossing it,become[inf4],hsoh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is crossing it,become[inf4],hsoh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is crossing it,become[inf4],hsoh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is crossing it,become[inf4],hsoh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is crossing it,become[inf4],hsoh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is crossing it,become[inf4],hsoh,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is explaining it,cause[perf2],ohsihs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is explaining it,cause[perf2],ohsihs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is explaining it,cause[pres2-perf2],ohsihsih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is explaining it,cause[perf2],ohs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is explaining it,cause[perf2],ohsi,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is explaining it,cause[pres2-perf2],ohsihsih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is deciding,cause,ukht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is deciding,cause,ukht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is deciding,cause[perf3],ukht,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is deciding,cause[perf3],ukht,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is deciding,cause[pres2],ukhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is deciding,cause[pres2],ukhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is deciding,cause[pres2-perf3],ukhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is deciding,cause[pres2-perf3],ukhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is washing,e-a,vtiy,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is washing,e-a,vtiy,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is shelling,rev-i,vthoh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is shelling,rev-i,vthoh,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is turning him/her over,go-in,lhihkwat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is turning him/her over,go-in,lhihkwat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is turning him/her over,go-in,lhihkwat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is turning him/her over,go-in,lhihkwat,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is singing,rev-gi,nho,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is singing,rev-gi,nho,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is singing,rev-gi,nho,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is singing,rev-gi,nho,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is singing,rev-i,nhok,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is singing,rev-i,nhok,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is singing,rev-i,nhok,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is singing,rev-i,nhok,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is clawing him/her,sk-s-la,nhuko,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is clawing him/her,sk-s-la,nhuko,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is clawing him/her,sk-s-la,nhuko,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is clawing him/her,sk-s-la,nhuko,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is clawing him/her,sk-s-hst,nhuko,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is clawing him/her,sk-s-hst,nhuko,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is clawing him/her,sk-s-hst,nhuko,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-he/she is clawing him/her,sk-s-hst,nhuko,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,go[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,cause[pres2],ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-il,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-vh,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,vnh-ih-a,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,yhvhsko',True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,ih-ihi,ayvhsko'h,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,yhvhsko'i,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative-h,ayvhsko'ih,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,yhvhsko'ih,True,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
-to come out of the nose,stative,ayvhsko'ihh,False,present;imperfective;perfective;infinitive,Ambiguity implies lossy rule reversal
 he/she is confronted with it,sk-s-hi-hihst,atlo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is confronted with it,sk-s-hi-hihst,lo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is confronted with it,sk-s-hst[imp2],atlo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
@@ -2719,12 +2131,22 @@ he/she is releasing it,sk-s-hst,yo,False,present;present_1sg;imperfective;perfec
 he/she is walking around,be-at-weak,et,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she lives,stative-h,e,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she lives,stative-h,e,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she lives,stative-eh,,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she lives,stative-eh,,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she lives,stative-eh,,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she lives,stative-eh,,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she lives,stative-eh,,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she lives,stative-eh,,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she lives,stative-eh,,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she lives,stative-eh,,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she lives,stative,eh,True,,
 he/she lives,stative,eh,True,,
 he/she thinks so,i-a-i[perf2],el,True,,
 he/she thinks so,i-a-i,el,False,,
 he/she is straightening it,cause[perf2],tshinohs,True,,
+he/she is straightening it,cause[perf2],tshino,True,,
 he/she is straightening it,cause[perf2],tshinohs,False,,
+he/she is straightening it,cause[perf2],tshino,False,,
 he/she is straightening it,cause[pres2-perf2],tshinohsih,False,,
 he/she is straightening it,cause[pres2-perf2],tshinohsih,False,,
 it is hanging,stative-a',at,True,,
@@ -2818,9 +2240,17 @@ he/she is sleeping,ih-vh[imperf2],lh,False,,
 he/she is sleeping,ih-vh[imperf2],lh,False,,
 he/she is sleeping,ih-vh[imperf2],lh,False,,
 he/she is gathering it,cause[perf2],lhihs,True,,
+he/she is gathering it,cause[perf2],lh,True,,
+he/she is gathering it,cause[perf2],lhi,True,,
 he/she is gathering it,cause[perf2],lhihs,True,,
+he/she is gathering it,cause[perf2],lh,True,,
+he/she is gathering it,cause[perf2],lhi,True,,
 he/she is gathering it,cause[perf2],lhihs,False,,
+he/she is gathering it,cause[perf2],lh,False,,
+he/she is gathering it,cause[perf2],lhi,False,,
 he/she is gathering it,cause[perf2],lhihs,False,,
+he/she is gathering it,cause[perf2],lh,False,,
+he/she is gathering it,cause[perf2],lhi,False,,
 he/she is gathering it,cause[pres2-perf2],lhihsih,False,,
 he/she is gathering it,cause[pres2-perf2],lhihsih,False,,
 he/she is gathering it,cause[pres2-perf2],lhihsih,False,,
@@ -2904,9 +2334,17 @@ he/she is wrapping him/her,vnh-vsk[inf2],kwhen,True,,
 he/she is wrapping him/her,vnh-vsk[inf2],kwhen,False,,
 he/she is wrapping him/her,vnh-vsk[inf2],kwhen,False,,
 he/she is putting it in a container,i-a-i,lat,True,,
+he/she is putting it in a container,i-a-i,l,True,,
+he/she is putting it in a container,i-a-i,la,True,,
 he/she is putting it in a container,i-a-i,lat,False,,
+he/she is putting it in a container,i-a-i,l,False,,
+he/she is putting it in a container,i-a-i,la,False,,
 he/she is putting it in a container,i-a-i,lat,True,,
+he/she is putting it in a container,i-a-i,l,True,,
+he/she is putting it in a container,i-a-i,la,True,,
 he/she is putting it in a container,i-a-i,lat,False,,
+he/she is putting it in a container,i-a-i,l,False,,
+he/she is putting it in a container,i-a-i,la,False,,
 he/she is taking it out of a container,rev-e,l,True,,
 he/she is taking it out of a container,rev-e,l,False,,
 he/she is taking it out of a container,rev-e,l,True,,
@@ -3170,15 +2608,25 @@ he/she is taking liquid from him/her,apl[imp3],neki',False,present_1sg,Ambiguity
 he/she is taking liquid from him/her,apl[imp3],neki',False,present_1sg;imperative,Ambiguity implies lossy rule reversal
 he/she is taking liquid from him/her,apl[imp3],neki',False,present_1sg;imperative,Ambiguity implies lossy rule reversal
 he/she is bewitching him/her,i-a-i,nekut,True,,
+he/she is bewitching him/her,i-a-i,neku,True,,
 he/she is bewitching him/her,i-a-i,nekut,False,,
+he/she is bewitching him/her,i-a-i,neku,False,,
 he/she is bewitching him/her,i-a-i,nekut,True,,
+he/she is bewitching him/her,i-a-i,neku,True,,
 he/she is bewitching him/her,i-a-i,nekut,False,,
+he/she is bewitching him/her,i-a-i,neku,False,,
 he/she is holding it in his/her hand,stative-h,ne,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is holding it in his/her hand,stative-h,ne,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is holding it in his/her hand,stative-h,ne,False,present_1sg,Ambiguity implies lossy rule reversal
 he/she is holding it in his/her hand,stative-h,ne,False,present_1sg,Ambiguity implies lossy rule reversal
 he/she is holding it in his/her hand,stative-h,ne,True,present_1sg;imperative,Ambiguity implies lossy rule reversal
 he/she is holding it in his/her hand,stative-h,ne,False,present_1sg;imperative,Ambiguity implies lossy rule reversal
+he/she is holding it in his/her hand,stative-eh,n,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she is holding it in his/her hand,stative-eh,n,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she is holding it in his/her hand,stative-eh,n,False,present_1sg,Ambiguity implies lossy rule reversal
+he/she is holding it in his/her hand,stative-eh,n,False,present_1sg,Ambiguity implies lossy rule reversal
+he/she is holding it in his/her hand,stative-eh,n,True,present_1sg;imperative,Ambiguity implies lossy rule reversal
+he/she is holding it in his/her hand,stative-eh,n,False,present_1sg;imperative,Ambiguity implies lossy rule reversal
 he/she is holding it in his/her hand,stative,neh,True,,
 he/she is holding it in his/her hand,stative,neh,True,,
 he/she is holding it in his/her hand,stative,neh,False,,
@@ -3208,9 +2656,17 @@ he/she lives,stative,nel,False,,
 he/she lives,stative,nel,True,imperative,Ambiguity implies lossy rule reversal
 he/she lives,stative,nel,False,imperative,Ambiguity implies lossy rule reversal
 it’s freezing,i-a-i,nehstalat,True,,
+it’s freezing,i-a-i,nehstal,True,,
+it’s freezing,i-a-i,nehstala,True,,
 it’s freezing,i-a-i,nehstalat,False,,
+it’s freezing,i-a-i,nehstal,False,,
+it’s freezing,i-a-i,nehstala,False,,
 it’s freezing,i-a-i,nehstalat,True,,
+it’s freezing,i-a-i,nehstal,True,,
+it’s freezing,i-a-i,nehstala,True,,
 it’s freezing,i-a-i,nehstalat,False,,
+it’s freezing,i-a-i,nehstal,False,,
+it’s freezing,i-a-i,nehstala,False,,
 it’s hailing,sk-s-a[inf2],nehsoy,True,,
 it’s hailing,sk-s-a[inf2],anehsoy,True,,
 it’s hailing,sk-s-a[inf2],nehsoy,True,imperative,Ambiguity implies lossy rule reversal
@@ -3271,6 +2727,14 @@ he/she is holding some liquid,stative-h,nhtse,False,,
 he/she is holding some liquid,stative-h,nhtse,False,,
 he/she is holding some liquid,stative-h,nhtse,False,,
 he/she is holding some liquid,stative-h,nhtse,False,,
+he/she is holding some liquid,stative-eh,nhts,True,,
+he/she is holding some liquid,stative-eh,nhts,True,,
+he/she is holding some liquid,stative-eh,nhts,True,,
+he/she is holding some liquid,stative-eh,nhts,True,,
+he/she is holding some liquid,stative-eh,nhts,False,,
+he/she is holding some liquid,stative-eh,nhts,False,,
+he/she is holding some liquid,stative-eh,nhts,False,,
+he/she is holding some liquid,stative-eh,nhts,False,,
 he/she is holding some liquid,stative,nhtseh,True,,
 he/she is holding some liquid,stative,nhtseh,True,,
 he/she is holding some liquid,stative,nhtseh,True,,
@@ -3296,13 +2760,29 @@ he/she hates him/her,hih-hilh,nikwat,False,present_1sg,Ambiguity implies lossy r
 he/she hates him/her,hih-hilh,nikwat,True,present_1sg;imperative,Ambiguity implies lossy rule reversal
 he/she hates him/her,hih-hilh,nikwat,False,present_1sg;imperative,Ambiguity implies lossy rule reversal
 he/she is setting up a bed,i-a-i,nilhat,True,,
+he/she is setting up a bed,i-a-i,nilh,True,,
+he/she is setting up a bed,i-a-i,nilha,True,,
 he/she is setting up a bed,i-a-i,nilhat,False,,
+he/she is setting up a bed,i-a-i,nilh,False,,
+he/she is setting up a bed,i-a-i,nilha,False,,
 he/she is setting up a bed,i-a-i,nilhat,True,,
+he/she is setting up a bed,i-a-i,nilh,True,,
+he/she is setting up a bed,i-a-i,nilha,True,,
 he/she is setting up a bed,i-a-i,nilhat,False,,
+he/she is setting up a bed,i-a-i,nilh,False,,
+he/she is setting up a bed,i-a-i,nilha,False,,
 he/she is pleading,i-a-i,nilat,True,,
+he/she is pleading,i-a-i,nil,True,,
+he/she is pleading,i-a-i,nila,True,,
 he/she is pleading,i-a-i,nilat,False,,
+he/she is pleading,i-a-i,nil,False,,
+he/she is pleading,i-a-i,nila,False,,
 he/she is pleading,i-a-i,nilat,True,,
+he/she is pleading,i-a-i,nil,True,,
+he/she is pleading,i-a-i,nila,True,,
 he/she is pleading,i-a-i,nilat,False,,
+he/she is pleading,i-a-i,nil,False,,
+he/she is pleading,i-a-i,nila,False,,
 he/she is hunting,be-at,nohal,True,,
 he/she is hunting,be-at,nohal,False,,
 he/she is hunting,be-at-weak,nohalit,True,,
@@ -3408,9 +2888,13 @@ he/she is twisting him/her,oh-ol[inf3],nuthey,False,,
 he/she is twisting him/her,oh-ol[inf3],nuthey,True,,
 he/she is twisting him/her,oh-ol[inf3],nuthey,False,,
 he/she is missing him/her,i-a-i,nvt,True,,
+he/she is missing him/her,i-a-i,nv,True,,
 he/she is missing him/her,i-a-i,nvt,False,,
+he/she is missing him/her,i-a-i,nv,False,,
 he/she is missing him/her,i-a-i,nvt,True,,
+he/she is missing him/her,i-a-i,nv,True,,
 he/she is missing him/her,i-a-i,nvt,False,,
+he/she is missing him/her,i-a-i,nv,False,,
 he/she is falling from an upright position,become,nv,False,,
 he/she is falling from an upright position,become,nv,False,,
 he/she is falling from an upright position,become,nv,False,,
@@ -3524,6 +3008,7 @@ he/she is feeding him/her,oh-al,el,False,present_1sg;imperative,Ambiguity implie
 he/she is howling,sk-h,elhuhv,False,,
 he/she is howling,sk-h[imp2],elhuhv,False,,
 he/she is howling,hvsk-nh[inf3],elhu,True,,
+he/she is leading it by a leash,stative-eh,elihsin,False,,
 he/she is leading him/her by the hand,go,ohin,True,,
 he/she is leading him/her by the hand,go[pres2],ohinek,False,,
 he/she is agreeing with him/her,apl,ohiyhtan,True,,
@@ -3559,6 +3044,7 @@ he/she is hitching him/her up,vsk,utal,False,present_1sg,Ambiguity implies lossy
 he/she is hitching him/her up,vsk[imp2],utal,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is putting a handle on a tool,hvsk-han,uhal,True,,
 he/she is washing it,o,uhil,True,,
+he/she is washing it,o,uh,True,,
 he/she is accusing him/her,cause,uhihst,True,,
 he/she is accusing him/her,cause[perf3],uhihst,False,,
 he/she is accusing him/her,cause[pres2],uhihstih,False,,
@@ -3665,52 +3151,52 @@ he/she is mentioning it,cause[pres2-perf3],nhe'ihstih,False,,
 he/she is mentioning it,cause[pres2-perf3],nhe'ihstih,False,,
 it’s contaminated,stative-h,nhehsal,True,,
 it’s contaminated,stative-h,nhehsal,True,,
+it’s contaminated,stative-h,anhehsal,True,,
+it’s contaminated,stative-h,anhehsal,True,,
 it’s contaminated,stative-h,nhehsal,True,,
 it’s contaminated,stative-h,nhehsal,True,,
-it’s contaminated,stative-h,anehsalh,False,,
-it’s contaminated,stative-h,anehsalh,False,,
 it’s contaminated,stative-h,nhehsal,True,imperative,Ambiguity implies lossy rule reversal
 it’s contaminated,stative-h,nhehsal,True,imperative,Ambiguity implies lossy rule reversal
+it’s contaminated,stative-h,anhehsal,True,imperative,Ambiguity implies lossy rule reversal
+it’s contaminated,stative-h,anhehsal,True,imperative,Ambiguity implies lossy rule reversal
 it’s contaminated,stative-h,nhehsal,True,imperative,Ambiguity implies lossy rule reversal
 it’s contaminated,stative-h,nhehsal,True,imperative,Ambiguity implies lossy rule reversal
-it’s contaminated,stative-h,anehsalh,False,imperative,Ambiguity implies lossy rule reversal
-it’s contaminated,stative-h,anehsalh,False,imperative,Ambiguity implies lossy rule reversal
+it’s contaminated,stative-h,nhehsal,True,,
+it’s contaminated,stative-h,nhehsal,True,,
+it’s contaminated,stative-h,anhehsal,True,,
+it’s contaminated,stative-h,anhehsal,True,,
 it’s contaminated,stative-h,nhehsal,True,,
 it’s contaminated,stative-h,nhehsal,True,,
 it’s contaminated,stative-h,nhehsal,True,,
 it’s contaminated,stative-h,nhehsal,True,,
-it’s contaminated,stative-h,anehsalh,False,,
-it’s contaminated,stative-h,anehsalh,False,,
+it’s contaminated,stative-h,anhehsal,True,,
+it’s contaminated,stative-h,anhehsal,True,,
 it’s contaminated,stative-h,nhehsal,True,,
 it’s contaminated,stative-h,nhehsal,True,,
-it’s contaminated,stative-h,nhehsal,True,,
-it’s contaminated,stative-h,nhehsal,True,,
-it’s contaminated,stative-h,anehsalh,False,,
-it’s contaminated,stative-h,anehsalh,False,,
 it’s contaminated,stative,nhehsalh,True,,
 it’s contaminated,stative,nhehsalh,True,,
+it’s contaminated,stative,anhehsalh,True,,
+it’s contaminated,stative,anhehsalh,True,,
 it’s contaminated,stative,nhehsalh,True,,
 it’s contaminated,stative,nhehsalh,True,,
-it’s contaminated,stative,anehsalhh,False,,
-it’s contaminated,stative,anehsalhh,False,,
 it’s contaminated,stative,nhehsalh,True,imperative,Ambiguity implies lossy rule reversal
 it’s contaminated,stative,nhehsalh,True,imperative,Ambiguity implies lossy rule reversal
+it’s contaminated,stative,anhehsalh,True,imperative,Ambiguity implies lossy rule reversal
+it’s contaminated,stative,anhehsalh,True,imperative,Ambiguity implies lossy rule reversal
 it’s contaminated,stative,nhehsalh,True,imperative,Ambiguity implies lossy rule reversal
 it’s contaminated,stative,nhehsalh,True,imperative,Ambiguity implies lossy rule reversal
-it’s contaminated,stative,anehsalhh,False,imperative,Ambiguity implies lossy rule reversal
-it’s contaminated,stative,anehsalhh,False,imperative,Ambiguity implies lossy rule reversal
+it’s contaminated,stative,nhehsalh,True,,
+it’s contaminated,stative,nhehsalh,True,,
+it’s contaminated,stative,anhehsalh,True,,
+it’s contaminated,stative,anhehsalh,True,,
 it’s contaminated,stative,nhehsalh,True,,
 it’s contaminated,stative,nhehsalh,True,,
 it’s contaminated,stative,nhehsalh,True,,
 it’s contaminated,stative,nhehsalh,True,,
-it’s contaminated,stative,anehsalhh,False,,
-it’s contaminated,stative,anehsalhh,False,,
+it’s contaminated,stative,anhehsalh,True,,
+it’s contaminated,stative,anhehsalh,True,,
 it’s contaminated,stative,nhehsalh,True,,
 it’s contaminated,stative,nhehsalh,True,,
-it’s contaminated,stative,nhehsalh,True,,
-it’s contaminated,stative,nhehsalh,True,,
-it’s contaminated,stative,anehsalhh,False,,
-it’s contaminated,stative,anehsalhh,False,,
 he/she is contaminating it,hvsk-han,nhehsal,True,,
 he/she is contaminating it,hvsk-han,nhehsal,True,,
 he/she is collecting from him/her,hvsk-han,nhil,True,,
@@ -3743,6 +3229,7 @@ he/she is straining it,cause[pres2-perf3],nhvhsolvhstih,False,,
 he/she is straining it,cause[pres2-perf3],nhvhsolvhstih,False,,
 he/she is curing him/her,i-vka,nhvw,True,,
 he/she is curing him/her,i-vka,nhvw,True,,
+he/she is breathing,rev-e,awholat,True,,
 he/she is taking it off,rev-e,vnht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is putting it on,cause,vnht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is putting it on,cause[perf3],vnht,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
@@ -3849,7 +3336,6 @@ it’s decaying,sk-s-hst,ko,False,,
 it’s decaying,sk-s-hst,ko,False,,
 he/she has an object,stative-h,,True,,
 he/she has an object,stative-h,,False,,
-he/she has an object,stative-h,a,False,,
 he/she has an object,stative-h,,False,,
 he/she has an object,stative-h,,False,,
 he/she has an object,stative,h,True,,
@@ -4001,6 +3487,8 @@ he/she is being mean,stative,nekuts,True,,
 he/she is being mean,stative,nekuts,False,,
 he/she has a liquid,stative-h,ne,True,,
 he/she has a liquid,stative-h,ne,False,,
+he/she has a liquid,stative-eh,n,False,,
+he/she has a liquid,stative-eh,n,False,,
 he/she has a liquid,stative,neh,False,,
 he/she has a liquid,stative,neh,False,,
 he/she knows it,stative-h,anht,True,,
@@ -4041,7 +3529,9 @@ he/she is losing it,apl,yohuhs,False,,
 he/she is losing it,apl[imp2],yohuhs,True,,
 he/she is losing it,apl[imp2],yohuhs,False,,
 he/she is sending on object,i-a-i,t,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is sending on object,i-a-i,,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is sending on object,i-a-i,t,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is sending on object,i-a-i,,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is sending it,hvsk-nh,,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is sending it,hvsk-nh,,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is sending it,hvsk-nh,,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal

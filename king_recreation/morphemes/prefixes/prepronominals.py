@@ -8,7 +8,6 @@ class PrePronominalConfig:
     translocutiveImpOnly: bool = False
     partitive: bool = False
     distributive: bool = False
-    distributiveImpIsFutProg: bool = False
 
     @staticmethod
     def from_row(row: dict[str, str]):
@@ -17,7 +16,6 @@ class PrePronominalConfig:
             translocutiveImpOnly=row["translocutive_imp_only"] == "True",
             partitive=row["partitive"] == "True",
             distributive=row["distributive"] == "True",
-            distributiveImpIsFutProg=row["distributive_fut_prog"] == "True",
         )
 
     @staticmethod
@@ -31,36 +29,33 @@ class PrePronominalConfig:
         row["translocutive_imp_only"] = str(self.translocutiveImpOnly)
         row["partitive"] = str(self.partitive)
         row["distributive"] = str(self.distributive)
-        row["distributive_fut_prog"] = str(self.distributiveImpIsFutProg)
 
         return row
 
 
 def apply_prepronominal(
-    word: str, config: PrePronominalConfig, form_name: str
+    word: str, config: PrePronominalConfig, form_name: str, stative: bool
 ) -> List[str]:
     current_forms = [word]
 
     if config.distributive:
         new_forms = []
         for w in current_forms:
-            if form_name == "infinitive" or (
-                form_name == "imperative" and not config.distributiveImpIsFutProg
-            ):
-                new_forms.extend(["ts" + w, "ti" + w, "t" + w])
+            if form_name == "infinitive" or (form_name == "imperative" and not stative):
+                new_forms.extend(["ts-" + w, "ti-" + w, "t-" + w])
             else:
-                new_forms.extend(["te" + w, "t" + w])
+                new_forms.extend(["te-" + w, "t-" + w])
         current_forms = list(set(new_forms))
 
     if config.partitive:
         new_forms = []
         for w in current_forms:
             if form_name == "infinitive":
-                new_forms.extend(["iy" + w, "i" + w, w])
+                new_forms.extend(["iy-" + w, "i-" + w, ">ø-" + w])
             else:
                 # Manual 'hn'/'hw' cases removed here as they are now handled
                 # by the 'nh'/'wh' respelling reform in preprocessing.
-                new_forms.extend(["ni" + w, "n" + w])
+                new_forms.extend(["ni-" + w, "n-" + w])
         current_forms = list(set(new_forms))
 
     if config.translocutive or (
@@ -68,7 +63,7 @@ def apply_prepronominal(
     ):
         new_forms = []
         for w in current_forms:
-            new_forms.extend(["wi" + w, "w" + w])
+            new_forms.extend(["wi-" + w, "w-" + w])
         current_forms = list(set(new_forms))
 
     return current_forms
