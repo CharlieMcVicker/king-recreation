@@ -1,6 +1,8 @@
 import io
 import json
+import re
 import unicodedata
+from collections import defaultdict
 from csv import DictReader
 from dataclasses import dataclass
 from enum import Enum
@@ -8,7 +10,10 @@ from typing import List, Union
 
 from king_recreation.paths import (
     cherokee_nation_dictionary_path,
+    class_ending_profiles_csv_path,
     corpus_to_cnd_path,
+    ending_tone_analysis_csv_path,
+    ending_tone_analysis_json_path,
     reconstructable_verbs_path,
 )
 from king_recreation.phonology_data import VOWEL_SET
@@ -38,39 +43,20 @@ class VowelTone(Enum):
     h = "3"
     hh = "33"
     sh = "44"
+    s = "4"
 
     @staticmethod
     def from_mark_and_length(mark: str, long: bool):
-        if mark == ACUTE:
-            if long:
-                return VowelTone.hh
-            else:
-                return VowelTone.h
-        elif mark == GRAVE:
-            if long:
-                return VowelTone.lf
-            else:
-                raise Exception("Short lowfall is bunk")
-        elif mark == D_ACUTE:
-            if long:
-                return VowelTone.sh
-            else:
-                raise Exception("Short superhigh is bunk")
-        elif mark == CIRCUM:
-            if long:
-                return VowelTone.hl
-            else:
-                raise Exception("Short falling is bunk")
-        elif mark == CARON:
-            if long:
-                return VowelTone.lh
-            else:
-                raise Exception("Short rising is bunk")
-        else:
-            if long:
-                return VowelTone.ll
-            else:
-                return VowelTone.l
+        mapping = {
+            ACUTE: (VowelTone.h, VowelTone.hh),
+            GRAVE: (VowelTone.l, VowelTone.lf),
+            D_ACUTE: (VowelTone.s, VowelTone.sh),
+            CIRCUM: (VowelTone.h, VowelTone.hl),
+            CARON: (VowelTone.l, VowelTone.lh),
+            None: (VowelTone.l, VowelTone.ll),
+        }
+        short, long_tone = mapping.get(mark, (VowelTone.l, VowelTone.ll))
+        return long_tone if long else short
 
     def __str__(self):
         return self.value
@@ -236,6 +222,155 @@ def main():
         "imperative",
         "infinitive",
     ]
+
+    class_ending_tone_verbs = defaultdict(lambda: defaultdict(lambda: defaultdict(set)))
+    class_surface_to_verbs = defaultdict(lambda: defaultdict(set))
+    # Profile: (class, present, imperfective, perfective, imperative, infinitive) -> set(corpus_id)
+    class_profile_to_verbs = defaultdict(set)
+
+    for verb in reconstructable_verbs:
+        cls = verb.class_name
+        profile = []
+
+        main_profile_forms = [
+            "present",
+            "imperfective",
+            "perfective",
+            "imperative",
+            "infinitive",
+        ]
+
+        # We also want to populate the individual mappings as before
+        for form in forms_to_check:
+            segmented = verb.segmented_forms.get(form, "")
+            surface = ""
+            if segmented:
+                tone_seq = get_tone_sequence_for_form(
+                    verb, form, cnd_corpus, corpus_id_to_entries
+                )
+                if tone_seq:
+                    combined = apply_tone_to_segmentation(segmented, tone_seq)
+                    if "-" in combined:
+                        final_combined_segment = combined.split("-")[-1]
+                        surface = final_combined_segment
+
+                        tones = re.findall(r"\d+", final_combined_segment)
+                        base_ending = re.sub(r"\d+", "", final_combined_segment)
+                        if tones:
+                            class_ending_tone_verbs[cls][base_ending][str(tones)].add(
+                                verb.corpus_id
+                            )
+                            class_surface_to_verbs[cls][final_combined_segment].add(
+                                verb.corpus_id
+                            )
+
+            if form in main_profile_forms:
+                profile.append(surface)
+
+        profile_key = (cls,) + tuple(profile)
+        class_profile_to_verbs[profile_key].add(verb.corpus_id)
+
+    # Save to artifacts
+    import csv
+    import os
+
+    # JSON Output
+    artifact_output = {}
+    for cls in sorted(class_ending_tone_verbs.keys()):
+        cls_data = {}
+        for ending in sorted(class_ending_tone_verbs[cls].keys()):
+            cls_data[ending] = sorted(list(class_ending_tone_verbs[cls][ending].keys()))
+        artifact_output[cls] = cls_data
+
+    os.makedirs(os.path.dirname(ending_tone_analysis_json_path), exist_ok=True)
+    with open(ending_tone_analysis_json_path, "w") as f:
+        json.dump(artifact_output, f, indent=4, sort_keys=True)
+
+    # CSV Output
+    # We want Class, Surface Form, Count
+    # We can also include Base Ending and Tones for clarity
+    csv_rows = []
+    for cls in sorted(class_surface_to_verbs.keys()):
+        for surface_form in sorted(class_surface_to_verbs[cls].keys()):
+            count = len(class_surface_to_verbs[cls][surface_form])
+            # Decompose for CSV columns
+            tones = re.findall(r"\d+", surface_form)
+            base_ending = re.sub(r"\d+", "", surface_form)
+
+            csv_rows.append(
+                {
+                    "Class": cls,
+                    "Surface Form": surface_form,
+                    "Base Ending": base_ending,
+                    "Tones": "-".join(tones),
+                    "Count": count,
+                }
+            )
+
+    with open(ending_tone_analysis_csv_path, "w", newline="") as f:
+        writer = csv.DictWriter(
+            f, fieldnames=["Class", "Surface Form", "Base Ending", "Tones", "Count"]
+        )
+        writer.writeheader()
+        writer.writerows(csv_rows)
+
+    # Class Ending Profiles Output
+    profile_rows = []
+    for (cls, pres, imperf, perf, impv, inf), verbs in class_profile_to_verbs.items():
+        profile_rows.append(
+            {
+                "class": cls,
+                "present": pres,
+                "imperfective": imperf,
+                "perfective": perf,
+                "immediate": impv,
+                "infinitive": inf,
+                "count": len(verbs),
+            }
+        )
+
+    # Sort by class then by forms
+    profile_rows.sort(
+        key=lambda x: (
+            x["class"],
+            x["present"],
+            x["imperfective"],
+            x["perfective"],
+            x["immediate"],
+            x["infinitive"],
+        )
+    )
+
+    with open(class_ending_profiles_csv_path, "w", newline="") as f:
+        writer = csv.DictWriter(
+            f,
+            fieldnames=[
+                "class",
+                "present",
+                "imperfective",
+                "perfective",
+                "immediate",
+                "infinitive",
+                "count",
+            ],
+        )
+        writer.writeheader()
+        writer.writerows(profile_rows)
+
+    print(
+        f"\nEnding Tone Analysis saved to:\n  JSON: {ending_tone_analysis_json_path}\n  CSV (Individual): {ending_tone_analysis_csv_path}\n  CSV (Profiles): {class_ending_profiles_csv_path}"
+    )
+
+    print("\nEnding Tone Analysis Summary by Class:")
+    for cls in sorted(class_ending_tone_verbs.keys()):
+        print(f"\nClass: {cls}")
+        print(f"  {'Ending':<15} | {'Unique Tone Sequences'}")
+        print("  " + "-" * 60)
+        for ending in sorted(class_ending_tone_verbs[cls].keys()):
+            sequences = sorted(list(class_ending_tone_verbs[cls][ending].keys()))
+            print(f"  {ending:<15} | {', '.join(sequences)}")
+
+    print("\n" + "=" * 60 + "\n")
 
     for verb in reconstructable_verbs:
         print(f"\nVerb: {verb.definition} ({verb.h_grade_root})")

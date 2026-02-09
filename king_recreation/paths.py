@@ -78,6 +78,9 @@ reconstruction_validation_path = os.path.join(
 )
 reconstruction_failures_path = os.path.join(REPORTS_DIR, "reconstruction_failures.csv")
 furthest_corpus_by_id_path = os.path.join(REPORTS_DIR, "furthest_corpus_by_id.csv")
+ending_tone_analysis_json_path = os.path.join(REPORTS_DIR, "ending_tone_analysis.json")
+ending_tone_analysis_csv_path = os.path.join(REPORTS_DIR, "ending_tone_analysis.csv")
+class_ending_profiles_csv_path = os.path.join(REPORTS_DIR, "class_ending_profiles.csv")
 
 # Statistics
 class_match_counts_path = os.path.join(REPORTS_DIR, "class_match_counts.csv")
