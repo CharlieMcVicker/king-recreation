@@ -191,7 +191,7 @@ def apply_tone_to_segmentation(segmented: str, tone_seq: List[Vowel]) -> str:
     return "".join(output)
 
 
-def main():
+def main(interactive=False):
 
     with open(reconstructable_verbs_path, "r") as f:
         reconstructable_verbs_raw = json.load(f)
@@ -431,6 +431,9 @@ def main():
 
     print("\n" + "=" * 60 + "\n")
 
+    if not interactive:
+        return
+
     for verb in reconstructable_verbs:
         print(f"\nVerb: {verb.definition} ({verb.h_grade_root})")
         print(
@@ -462,4 +465,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(interactive=True)

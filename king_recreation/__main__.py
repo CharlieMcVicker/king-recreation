@@ -2,6 +2,7 @@ import argparse
 
 from king_recreation.analyze_connections import analyze_connections
 from king_recreation.analyze_matches import analyze_matches
+from king_recreation.check_tone_consistency import main as check_tone_consistency
 from king_recreation.classify_verbs import classify_verbs
 from king_recreation.dedupe_roots import main as dedupe_roots
 from king_recreation.derive_stems import main as derive_stems
@@ -22,31 +23,26 @@ def main():
     parser = argparse.ArgumentParser(description="King Recreation Pipeline")
     parser.add_argument("--classes", help="Path to custom classes CSV file")
     args = parser.parse_args()
+    print("[1/11] Preprocessing Cherokee Nation Dictionary...")
+    process_cn_dict(cherokee_nation_dictionary_path)
 
-    print("Starting King Recreation Pipeline...")
-
-    print("\n[1/10] Preprocessing CED Data...")
-    process_cn_dict(cherokee_nation_dictionary_path, corpus_path)
-
-    print("\n[2/10] Classifying Verbs and Stripping Endings...")
+    print("\n[2/11] Classifying Verbs...")
     classify_verbs(args.classes)
 
-    print("\n[3/10] Deriving Roots from Stripped Corpus...")
-    derive_stems()
-
-    print("\n[4/10] Reconstructing from Roots...")
-    reconstruct_from_roots(args.classes)
-
-    print("\n[4.5/10] Deduping Roots...")
+    print("\n[3/11] Deduping Roots...")
     dedupe_roots()
 
-    print("\n[5/10] Analyzing Connections...")
+    print("\n[4/11] Deriving Stems...")
+    derive_stems()
 
-    print("      -> Loading reconstructable verbs...")
-    verbs = load_verbs(reconstructable_verbs_path)
+    print("\n[5/11] Reconstructing From Roots...")
+    reconstruct_from_roots()
+
+    print("\n[6/11] Loading and Grouping Verbs...")
+    verbs = load_verbs(corpus_path)
     root_groups = group_verbs_by_root(verbs)
 
-    print("      -> [5.1] Analyzing Derivational Suffix Connections...")
+    print("\n[7/11] Analyzing Derivational Suffix Connections...")
     analyze_connections(
         reconstructable_verbs_path,
         derivational_connections_path,
@@ -55,16 +51,17 @@ def main():
         root_groups=root_groups,
     )
 
-    print("\n[6/10] Grouping Dictionary Hierarchically...")
+    print("\n[8/11] Grouping Dictionary Hierarchically...")
     group_hierarchical()
 
-    print("\n[7/10] Analyzing Matches...")
+    print("\n[9/11] Checking Tone Consistency and Generating Profiles...")
+    check_tone_consistency(interactive=False)
+
+    print("\n[10/11] Analyzing Matches...")
     analyze_matches(args.classes)
 
-    print("\n[8/10] Visualizing Analysis...")
+    print("\n[11/11] Visualizing Analysis...")
     run_all_visualizations()
-
-    print("\nPipeline Complete!")
 
 
 if __name__ == "__main__":
