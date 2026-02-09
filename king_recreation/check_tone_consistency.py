@@ -270,6 +270,65 @@ def main():
         profile_key = (cls,) + tuple(profile)
         class_profile_to_verbs[profile_key].add(verb.corpus_id)
 
+    # Merge profiles with null forms
+    while True:
+        to_merge = None
+        current_keys = list(class_profile_to_verbs.keys())
+        for p in current_keys:
+            if "" not in p[1:]:  # Skip if no null forms
+                continue
+
+            # Find all profiles q that "contain" p (same class, p's non-empty match q's)
+            matches = []
+            for q in current_keys:
+                if p == q:
+                    continue
+                # q must match p in all non-empty positions
+                if p[0] != q[0]:
+                    continue
+
+                is_match = True
+                has_more_info = False
+                for idx in range(1, len(p)):
+                    if p[idx] != "":
+                        if p[idx] != q[idx]:
+                            is_match = False
+                            break
+                    elif q[idx] != "":
+                        has_more_info = True
+
+                if is_match and has_more_info:
+                    matches.append(q)
+
+            if len(matches) == 1:
+                to_merge = (p, matches[0])
+                break
+
+        if not to_merge:
+            break
+
+        p, q = to_merge
+        # Merge p's verbs into q
+        verbs_to_move = class_profile_to_verbs[p]
+        class_profile_to_verbs[q].update(verbs_to_move)
+
+        # Also update individual surface counts for inferred forms
+        # (This ensures ending_tone_analysis.csv remains consistent with profiles)
+        for idx in range(1, len(p)):
+            if p[idx] == "" and q[idx] != "":
+                inferred_surface = q[idx]
+                class_surface_to_verbs[p[0]][inferred_surface].update(verbs_to_move)
+
+                # Update class_ending_tone_verbs as well
+                tones = re.findall(r"\d+", inferred_surface)
+                base_ending = re.sub(r"\d+", "", inferred_surface)
+                if tones:
+                    class_ending_tone_verbs[p[0]][base_ending][str(tones)].update(
+                        verbs_to_move
+                    )
+
+        del class_profile_to_verbs[p]
+
     # Save to artifacts
     import csv
     import os
