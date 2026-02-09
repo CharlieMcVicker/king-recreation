@@ -3,9 +3,11 @@ import os
 from collections import defaultdict
 from typing import List
 
-from king_recreation.morphemes.aspect.class_patterns import ExpandedClassPattern
+from king_recreation.morphemes.aspect.class_patterns import (
+    ExpandedClassPattern,
+    StrippedVerbRow,
+)
 from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
-from king_recreation.morphemes.aspect.strip import StrippedVerbRow, create_stripped_row
 from king_recreation.paths import corpus_no_asp_path, corpus_path, matches_path
 
 
@@ -118,9 +120,9 @@ def classify_verbs(classes_path=None):
                 continue
             seen_class_def.add(key)
 
-            stripped_row = create_stripped_row(verb, classes_map, match["class"])
-            if stripped_row:
-                stripped_corpus_data.append(stripped_row)
+            cls = classes_map.get(match["class"])
+            if cls:
+                stripped_corpus_data.append(cls.strip_verb(verb))
 
     fieldnames = [
         "corpus_id",

@@ -2,7 +2,6 @@ import csv
 from dataclasses import asdict, dataclass
 from typing import Dict, List, Set
 
-from king_recreation.morphemes.aspect.strip import StrippedVerbRow
 from king_recreation.paths import post_root_morphemes_path
 
 
