@@ -297,8 +297,16 @@ class StemDeriver:
             )
             for plural in [False, True]:
                 for use_3rd in [False, True]:
-                    for meta in MetathesisStrategy:
-                        for s_type in StemType:
+                    for s_type in StemType:
+                        for meta in [MetathesisStrategy.NONE] + (
+                            [
+                                (
+                                    MetathesisStrategy.VOWEL
+                                    if s_type.value.startswith("vowel")
+                                    else MetathesisStrategy.H_CONS
+                                )
+                            ]
+                        ):
                             uwa_opts = [False]
                             if s_type == StemType.VOWEL_V:
                                 uwa_opts = (
