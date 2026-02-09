@@ -51,7 +51,7 @@ def apply_prepronominal(
         new_forms = []
         for w in current_forms:
             if form_name == "infinitive":
-                new_forms.extend(["iy-" + w, "i-" + w, "~ø-" + w])
+                new_forms.extend(["iy-" + w, "i-" + w, ">ø-" + w])
             else:
                 # Manual 'hn'/'hw' cases removed here as they are now handled
                 # by the 'nh'/'wh' respelling reform in preprocessing.

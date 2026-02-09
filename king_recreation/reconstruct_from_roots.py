@@ -19,11 +19,9 @@ from king_recreation.morphemes.prefixes.pronominals import (
     use_glottal_grade,
 )
 from king_recreation.paths import (
-    classes_expanded_path,
     consistency_analysis_path,
     corpus_no_pre_no_asp_path,
     corpus_path,
-    reconstructable_verbs_path,
     reconstruction_failures_path,
     reconstruction_report_path,
     reconstruction_validation_path,
@@ -33,9 +31,19 @@ from king_recreation.paths import (
 )
 
 
+def drop_dropped_phones(s: str) -> str:
+    s = re.sub(">.", "", s)
+    s = re.sub("..@", "", s)
+    s = re.sub(".\*", "", s)
+    return s
+
+
 def desegment(s: str) -> str:
     """"""
-    return re.sub("~.", "", s.replace("-", ""))
+    s = s.replace("-", "")
+    s = drop_dropped_phones(s)
+    s = prevent_C_glottal_cluster(s)
+    return s
 
 
 @dataclass
@@ -120,7 +128,7 @@ class ReconstructionEngine:
 
         if verb.post_root_morpheme:
             reg = PostRootMorphemeRegistry.get_instance()
-            root = root + reg.morphemes_by_name[verb.post_root_morpheme].form
+            root = root + "-" + reg.morphemes_by_name[verb.post_root_morpheme].form
 
         return root
 
@@ -149,22 +157,22 @@ class ReconstructionEngine:
         # truncate if pattern calls for it
         if "*" in ending_pattern:
             if len(root) >= 1:
-                root = root[:-1]
+                root = root + "*"
         elif "@" in ending_pattern:
             if len(root) >= 2:
-                root = root[:-2]
+                root = root + "@"
 
         # if we need to /h/ alternate but there wasnt an h in the h grade root
         # we need to try to drop it from the ending
         if glottal_grade and not "h" in verb.h_grade_root:
             return [
-                prevent_C_glottal_cluster(root + literal_ending)
+                root + "-" + literal_ending
                 for literal_ending in possible_alternates(
                     literal_ending, fix_clusters=False
                 )
             ]
         else:
-            return [root + literal_ending]
+            return [root + "-" + literal_ending]
 
     def get_base_stems(self, verb: ReconstructibleVerb):
         base_stems = {}

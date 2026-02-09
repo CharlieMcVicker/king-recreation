@@ -200,14 +200,14 @@ class ConfiguredPrefix:
                         return "uwh-" + res[4:]
                     return "uwh-" + stem[2:]
                     # stem is like aw_h_olate
-                return self.form + "-" + stem[:2] + "~" + stem[2:]
+                return self.form + "-" + stem[:2] + ">" + stem[2:]
 
         if self.stem_modification in [
             StemModification.A_REPLACE,
             StemModification.V_REPLACE,
         ]:
             # drop first letter
-            return self.form + "-~" + stem
+            return self.form + "->" + stem
 
         return self.form + "-" + stem
 
