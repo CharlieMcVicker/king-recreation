@@ -2,6 +2,7 @@ import csv
 import dataclasses
 import json
 import os
+import re
 from collections import defaultdict
 from dataclasses import dataclass, field
 from enum import Enum
@@ -32,6 +33,11 @@ from king_recreation.paths import (
 )
 
 
+def desegment(s: str) -> str:
+    """"""
+    return re.sub("~.", "", s.replace("-", ""))
+
+
 @dataclass
 class ReconstructibleVerb:
     definition: str
@@ -45,6 +51,9 @@ class ReconstructibleVerb:
     derivations: List["ReconstructibleVerb"] = field(default_factory=list)
     original_data: dict = field(
         default_factory=dict, repr=False, hash=False, compare=False
+    )
+    segmented_forms: dict = field(
+        default_factory=dict,
     )
 
     # TODO: IS THIS DEAD?
@@ -303,6 +312,12 @@ def main(classes_path=None):
         # Capture options for report
         options = generated_sets[0] if generated_sets else {fn: set() for fn in forms}
 
+        desegmented_forms = {
+            fn: {desegment(s): s for s in options.get(fn, {})} for fn in options
+        }
+
+        segmented_forms = {}
+
         if not generated_sets:
             matches_all = False
             failed_forms = ["Generation Failed"]
@@ -311,14 +326,19 @@ def main(classes_path=None):
                 ref_word = ref.get(fn)
                 if not ref_word:
                     continue
-                if ref_word not in options.get(fn, set()):
+                if ref_word not in desegmented_forms.get(fn, set()):
                     matches_all = False
                     failed_forms.append(
-                        f"{fn}: expected '{ref_word}', got {sorted(list(options.get(fn, set())))}"
+                        f"{fn}: expected '{ref_word}', got {sorted(list(desegmented_forms.get(fn, set())))}"
                     )
+                else:
+                    segmented = desegmented_forms[fn][ref_word]
+                    segmented_forms[fn] = segmented
+                    print(ref_word, segmented)
 
         if matches_all:
             success_count += 1
+            verb.segmented_forms = segmented_forms
             validated_verbs.append(verb)
             # Inject entry_no into original_data so it persists to the CSV
             if verb.entry_no is not None:

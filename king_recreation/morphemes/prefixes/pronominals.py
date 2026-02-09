@@ -182,10 +182,10 @@ class ConfiguredPrefix:
             if stem[0] in VOWEL_SET:
                 # ka + ah... -> khah...
                 # TODO: this branch is bogus and leads to no real derivations
-                return self.form[:-1] + "h" + stem[0] + stem[2:]
+                return self.form[:-1] + "-" + "h" + stem[0] + stem[2:]
             else:
                 # ka + n... -> kan... -> khan... (aspiration moves to prefix)
-                return self.form[:-1] + "h" + self.form[-1:] + stem[0] + stem[2:]
+                return self.form[:-1] + "h" + self.form[-1:] + "-" + stem[0] + stem[2:]
 
         if self.stem_modification == StemModification.METATHESIS_VOWEL:
             if len(stem) > 2 and stem[2] == "h":
@@ -195,21 +195,21 @@ class ConfiguredPrefix:
                     # e.g., u- + ahw... -> uwhw... (simplified to uwh...)
                     res = "uwh" + stem[2:]
                     if res.startswith("uwhw"):
-                        return "uwh" + res[4:]
+                        return "uwh-" + res[4:]
                     if res.startswith("uwhh"):
-                        return "uwh" + res[4:]
-                    return res
+                        return "uwh-" + res[4:]
+                    return "uwh-" + stem[2:]
                     # stem is like aw_h_olate
-                return self.form + stem[:2] + stem[3:]
+                return self.form + "-" + stem[:2] + "~" + stem[2:]
 
-        if self.stem_modification == StemModification.A_REPLACE:
-            if stem.startswith("a"):
-                return self.form + stem[1:]
-        if self.stem_modification == StemModification.V_REPLACE:
-            if stem.startswith("v"):
-                return self.form + stem[1:]
+        if self.stem_modification in [
+            StemModification.A_REPLACE,
+            StemModification.V_REPLACE,
+        ]:
+            # drop first letter
+            return self.form + "-~" + stem
 
-        return self.form + stem
+        return self.form + "-" + stem
 
     def detach(
         self,

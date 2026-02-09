@@ -42,20 +42,20 @@ def apply_prepronominal(
         new_forms = []
         for w in current_forms:
             if form_name == "infinitive" or (form_name == "imperative" and not stative):
-                new_forms.extend(["ts" + w, "ti" + w, "t" + w])
+                new_forms.extend(["ts-" + w, "ti-" + w, "t-" + w])
             else:
-                new_forms.extend(["te" + w, "t" + w])
+                new_forms.extend(["te-" + w, "t-" + w])
         current_forms = list(set(new_forms))
 
     if config.partitive:
         new_forms = []
         for w in current_forms:
             if form_name == "infinitive":
-                new_forms.extend(["iy" + w, "i" + w, w])
+                new_forms.extend(["iy-" + w, "i-" + w, "~ø-" + w])
             else:
                 # Manual 'hn'/'hw' cases removed here as they are now handled
                 # by the 'nh'/'wh' respelling reform in preprocessing.
-                new_forms.extend(["ni" + w, "n" + w])
+                new_forms.extend(["ni-" + w, "n-" + w])
         current_forms = list(set(new_forms))
 
     if config.translocutive or (
@@ -63,7 +63,7 @@ def apply_prepronominal(
     ):
         new_forms = []
         for w in current_forms:
-            new_forms.extend(["wi" + w, "w" + w])
+            new_forms.extend(["wi-" + w, "w-" + w])
         current_forms = list(set(new_forms))
 
     return current_forms

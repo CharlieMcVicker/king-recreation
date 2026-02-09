@@ -42,10 +42,12 @@ class MiddleVoice(Enum):
 
     def apply(self, stem: str, is_glottal_grade: bool):
         h_grade, g_grade = self.get_form()
-        if is_glottal_grade:
-            return g_grade + stem
+        if self == MiddleVoice.NONE:
+            return stem
+        elif is_glottal_grade:
+            return g_grade + "-" + stem
         else:
-            return h_grade + stem
+            return h_grade + "-" + stem
 
     def get_form(self):
         return MiddleVoice.form_maps()[self]
