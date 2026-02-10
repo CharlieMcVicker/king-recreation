@@ -35,8 +35,10 @@ def analyze_connections(
     approval_key_fields = [
         "from_h_grade",
         "from_class",
+        "from_stem_type",
         "to_h_grade",
         "to_class",
+        "to_stem_type",
         "to_form_type",
         "to_stem",
     ]
@@ -73,6 +75,7 @@ def analyze_connections(
                         "h_grade": group["h_grade"],
                         "g_grade": group["g_grade"],
                         "class_name": group["class"],
+                        "stem_type": group["stem_type"],
                         "form_type": form_type,
                         "stem": stem,
                     }
@@ -88,7 +91,12 @@ def analyze_connections(
         if root in open_forms_map:
             for m in open_forms_map[root]:
                 # Avoid self-reference
-                if (m["h_grade"], m["g_grade"], m["class_name"]) == key:
+                if (
+                    m["h_grade"],
+                    m["g_grade"],
+                    m["class_name"],
+                    m["stem_type"],
+                ) == key:
                     continue
 
                 # Heuristic logic
@@ -97,8 +105,10 @@ def analyze_connections(
                     approval_key = (
                         group["h_grade"],
                         group["class"],
+                        group["stem_type"],
                         m["h_grade"],
                         m["class_name"],
+                        m["stem_type"],
                         m["form_type"],
                         m["stem"],
                     )
@@ -110,10 +120,12 @@ def analyze_connections(
                             "from_h_grade": group["h_grade"],
                             "from_g_grade": group["g_grade"],
                             "from_class": group["class"],
+                            "from_stem_type": group["stem_type"],
                             "from_corpus_ids": ";".join(group["corpus_ids"]),
                             "to_h_grade": m["h_grade"],
                             "to_g_grade": m["g_grade"],
                             "to_class": m["class_name"],
+                            "to_stem_type": m["stem_type"],
                             "to_corpus_ids": m["corpus_ids"],
                             "to_form_type": m["form_type"],
                             "to_stem": m["stem"],
@@ -125,15 +137,37 @@ def analyze_connections(
         "from_h_grade",
         "from_g_grade",
         "from_class",
+        "from_stem_type",
         "from_corpus_ids",
         "to_h_grade",
         "to_g_grade",
         "to_class",
+        "to_stem_type",
         "to_corpus_ids",
         "to_form_type",
         "to_stem",
     ]
-    save_csv_artifact(output_path, fieldnames, rows)
+    save_csv_artifact(
+        output_path,
+        fieldnames,
+        sorted(
+            rows,
+            key=lambda row: tuple(
+                row.get(fn)
+                for fn in [
+                    "to_h_grade",
+                    "to_g_grade",
+                    "to_class",
+                    "to_stem_type",
+                    "from_h_grade",
+                    "from_g_grade",
+                    "from_class",
+                    "from_stem_type",
+                    "user_approved",
+                ]
+            ),
+        ),
+    )
 
     with open(open_forms_report_path, "w", encoding="utf-8") as f:
         json.dump(open_forms_map, f, indent=4, sort_keys=True)

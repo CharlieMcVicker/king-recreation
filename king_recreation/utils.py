@@ -52,16 +52,23 @@ def load_verbs(verbs_json_path: str):
     return [ReconstructibleVerb.from_dict(item) for item in data]
 
 
-def group_verbs_by_root(verbs: List) -> Dict[Tuple[str, str, str], Dict]:
-    """Groups ReconstructibleVerb objects by (h_grade, g_grade, class)."""
-    root_groups: Dict[Tuple[str, str, str], Dict] = {}
+def group_verbs_by_root(verbs: List) -> Dict[Tuple[str, str, str, str], Dict]:
+    """Groups ReconstructibleVerb objects by (h_grade, g_grade, class, stem_type)."""
+    root_groups: Dict[Tuple[str, str, str, str], Dict] = {}
     for verb in verbs:
-        key = (verb.h_grade_root, verb.glottal_grade_root or "", verb.class_name)
+        stem_type = verb.config.pron.stem_type.value
+        key = (
+            verb.h_grade_root,
+            verb.glottal_grade_root or "",
+            verb.class_name,
+            stem_type,
+        )
         if key not in root_groups:
             root_groups[key] = {
                 "h_grade": verb.h_grade_root,
                 "g_grade": verb.glottal_grade_root or "",
                 "class": verb.class_name,
+                "stem_type": stem_type,
                 "corpus_ids": [],
                 "verbs": [],
             }
@@ -80,10 +87,13 @@ def save_root_mapping(root_groups: Dict, path: str):
                 "h_grade": group["h_grade"],
                 "g_grade": group["g_grade"],
                 "class": group["class"],
+                "stem_type": group["stem_type"],
                 "corpus_ids": ";".join(group["corpus_ids"]),
             }
         )
-    save_csv_artifact(path, ["h_grade", "g_grade", "class", "corpus_ids"], mapping_rows)
+    save_csv_artifact(
+        path, ["h_grade", "g_grade", "class", "stem_type", "corpus_ids"], mapping_rows
+    )
 
 
 def load_existing_approvals(csv_path: str, key_fields: List[str]) -> Dict[Tuple, str]:
