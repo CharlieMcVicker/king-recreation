@@ -1,10 +1,10 @@
 corpus_id,definition,furthest_corpus
-1001,he/she is setting a post into the ground,0.corpus
+1001,he/she is setting a post into the ground (refers to a post or other long object),0.corpus
 1003,he/she has a nosebleed,0.corpus
 1033,he/she is smoking it,0.corpus
 106,he/she is doing it,0.corpus
-1084,he/she is hiding it,0.corpus
-1277,he/she is shaking it,0.corpus
+1084,he/she is hiding it (refers to a long object),0.corpus
+1277,he/she is shaking it (refers to a flexible object),0.corpus
 1306,he/she is saying it,0.corpus
 143,he/she sees him/her,0.corpus
 1462,he/she feels,0.corpus
@@ -16,7 +16,7 @@ corpus_id,definition,furthest_corpus
 1580,he/she is grinning,0.corpus
 1585,it’s rattling,0.corpus
 1627,he/she likes him/her,0.corpus
-163,he/she is driving it,0.corpus
+163,he/she is driving it (refers to a vehicle in motion or animal),0.corpus
 1649,it is making a sound,0.corpus
 1704,he/she is in a hurry,0.corpus
 1711,he/she is yelling,0.corpus
@@ -26,7 +26,7 @@ corpus_id,definition,furthest_corpus
 1745,he/she is hungry,0.corpus
 194,he/she is frolicking,0.corpus
 212,he/she is peeling it,0.corpus
-244,he/she is spilling it,0.corpus
+244,he/she is spilling it (refers to a liquid or non-liquid like salt‚ sugar),0.corpus
 283,he/she is waiting for him/her,0.corpus
 335,he/she is shaking his/her head,0.corpus
 389,he/she is closing it,0.corpus
@@ -36,30 +36,30 @@ corpus_id,definition,furthest_corpus
 428,he/she is sucking it,0.corpus
 443,he/she is sopping it,0.corpus
 504,he/she is distributing it,0.corpus
-512,it’s crowing,0.corpus
-521,he/she is dying,0.corpus
-624,he/she is enduring it,0.corpus
+512,it’s crowing (refers to a rooster),0.corpus
+521,he/she is dying (refers to a human),0.corpus
+624,he/she is enduring it (idiom),0.corpus
 69,he/she is diving,0.corpus
 723,he/she is called,0.corpus
 732,he/she is wearing gloves,0.corpus
 737,he/she is making footsteps,0.corpus
 743,he/she is going,0.corpus
 810,he/she is tying him/her up,0.corpus
-814,he/she is holding it,0.corpus
+814,he/she is holding it (refers to a flexible object),0.corpus
 965,it’s dripping,0.corpus
 1119,he/she is returning,1.asp_stripped
-113,he/she is breaking it,1.asp_stripped
-1261,he/she is parting with him/her,1.asp_stripped
+113,he/she is breaking it (refers to a flexible object),1.asp_stripped
+1261,he/she is parting with him/her (refers to in death),1.asp_stripped
 1262,he/she is using it,1.asp_stripped
 1263,he/she is putting out a fire,1.asp_stripped
 1264,he/she is sharpening it,1.asp_stripped
-1265,it is going out,1.asp_stripped
-1266,he/she is putting it into a fire,1.asp_stripped
+1265,it is going out (refers to fire‚ light),1.asp_stripped
+1266,he/she is putting it into a fire (refers to a flexible object),1.asp_stripped
 1267,he/she is mingling with a group,1.asp_stripped
 1270,he/she is linking it,1.asp_stripped
-1285,it is hanging,1.asp_stripped
-1286,he/she is hanging it up,1.asp_stripped
-1301,there are,1.asp_stripped
+1285,it is hanging (refers to a long object),1.asp_stripped
+1286,he/she is hanging it up (refers to a long object),1.asp_stripped
+1301,there are (a number of three or more must be specified),1.asp_stripped
 1570,he/she has a cold,1.asp_stripped
 162,he/she has possession of a vehicle,1.asp_stripped
 1632,they are together,1.asp_stripped
@@ -73,8 +73,8 @@ corpus_id,definition,furthest_corpus
 217,he/she is holding it in his/her hand,1.asp_stripped
 230,he/she is kicking him/her,1.asp_stripped
 235,he/she is walking,1.asp_stripped
-365,they are standing,1.asp_stripped
-367,they are sitting,1.asp_stripped
+365,they are standing (refers to a congregation),1.asp_stripped
+367,they are sitting (refers to a congregation),1.asp_stripped
 42,he/she is making noise,1.asp_stripped
 45,he/she is moving from one place to another,1.asp_stripped
 470,he/she is exploding it,1.asp_stripped
@@ -90,12 +90,12 @@ corpus_id,definition,furthest_corpus
 601,they’re having church services,1.asp_stripped
 603,they are adjourning,1.asp_stripped
 613,he/she is ironing,1.asp_stripped
-634,he/she is washing,1.asp_stripped
-788,he/she is hanging up it,1.asp_stripped
-841,he/she is taking it out of a container,1.asp_stripped
+634,he/she is washing (refers to flexible objects including clothes),1.asp_stripped
+788,he/she is hanging up it (refers to a flexible object),1.asp_stripped
+841,he/she is taking it out of a container (refers to a long object),1.asp_stripped
 844,he/she is spanking him/her,1.asp_stripped
 889,he/she is giving him/her some liquid,1.asp_stripped
-915,he/she is leaving it,1.asp_stripped
+915,he/she is leaving it (refers to flexible object),1.asp_stripped
 916,he/she is catching him/her,1.asp_stripped
 922,he/she is causing it to sound,1.asp_stripped
 978,he/she is resting him/her,1.asp_stripped
@@ -107,8 +107,8 @@ corpus_id,definition,furthest_corpus
 1484,he/she has time,2.pre_stripped
 1516,he/she is possessive of him/her,2.pre_stripped
 161,he/she is killing him/her,2.pre_stripped
-214,it’s becoming frosty,2.pre_stripped
-240,he/she is getting in,2.pre_stripped
+214,it’s becoming frosty (refers to the ground),2.pre_stripped
+240,he/she is getting in (in a car‚ box‚ etc),2.pre_stripped
 286,he/she is becoming wise,2.pre_stripped
 311,it’s boiling,2.pre_stripped
 342,he/she is putting his/her hat on,2.pre_stripped
@@ -118,7 +118,7 @@ corpus_id,definition,furthest_corpus
 473,he/she is combing someone’s hair,2.pre_stripped
 546,he/she is teaching,2.pre_stripped
 572,he/she is blinking,2.pre_stripped
-579,he/she is sprinkling it,2.pre_stripped
+579,he/she is sprinkling it (with a liquid‚ powder‚ salt‚ etc.),2.pre_stripped
 60,he/she is learning,2.pre_stripped
 803,he/she is sleeping,2.pre_stripped
 92,he/she is pouring liquid into a container,2.pre_stripped
@@ -136,8 +136,8 @@ corpus_id,definition,furthest_corpus
 1018,he/she understands it,3.validated
 1021,he/she is getting full,3.validated
 1022,he/she is making it,3.validated
-1023,he/she is making it fall,3.validated
-1024,it’s falling,3.validated
+1023,he/she is making it fall (refers to a round‚ long object),3.validated
+1024,it’s falling (refers to a round‚ long object),3.validated
 1027,he/she is writing it,3.validated
 1030,he/she is pulling a trigger,3.validated
 1038,he/she is batting it,3.validated
@@ -158,19 +158,19 @@ corpus_id,definition,furthest_corpus
 1067,he/she is alive,3.validated
 107,he/she is acting silly,3.validated
 1070,he/she is hitting him/her,3.validated
-1071,he/she is cooking it,3.validated
+1071,he/she is cooking it (refers to a specific food),3.validated
 1076,he/she is frying it,3.validated
 1078,he/she is melting it,3.validated
 1079,it’s melting,3.validated
 1081,he/she is sweeping it,3.validated
-1082,it’s becoming done,3.validated
+1082,it’s becoming done (refers to by cooking),3.validated
 1083,he/she is hiding it,3.validated
-1085,he/she is hiding him/her,3.validated
+1085,he/she is hiding him/her (refers to a flexible object),3.validated
 1086,he/she is cracking it,3.validated
 1087,he/she is putting it into a fire,3.validated
-1088,he/she is soaking it,3.validated
+1088,he/she is soaking it (refers to a flexible object),3.validated
 109,he/she is preparing it,3.validated
-112,it is shining,3.validated
+112,it is shining (refers to sun or moon),3.validated
 115,he/she is licking it,3.validated
 117,he/she is warming it,3.validated
 118,it’s getting warm,3.validated
@@ -182,8 +182,8 @@ corpus_id,definition,furthest_corpus
 1232,he/she is accumulating it,3.validated
 1233,it’s accumulating,3.validated
 1234,he/she is mentioning it,3.validated
-1235,it’s contaminated,3.validated
-1236,he/she is contaminating it,3.validated
+1235,it’s contaminated (refers to contaminated by visible foreign matter),3.validated
+1236,he/she is contaminating it (refers to contaminated by visible foreign matter),3.validated
 1241,he/she is collecting from him/her,3.validated
 1246,he/she is telling it,3.validated
 1247,he/she is omitting him/her,3.validated
@@ -191,12 +191,12 @@ corpus_id,definition,furthest_corpus
 1254,he/she is straining it,3.validated
 1256,he/she is curing him/her,3.validated
 1258,he/she is breathing,3.validated
-127,he/she is eating it,3.validated
+127,he/she is eating it (refers to a single solid food),3.validated
 128,he/she is picking it up,3.validated
 130,he/she is in agony,3.validated
 1308,he/she is taking it off,3.validated
 1309,he/she is putting it on,3.validated
-1323,he/she has something on,3.validated
+1323,he/she has something on (refers to objects),3.validated
 133,he/she is chewing it,3.validated
 135,he/she is burning him/her,3.validated
 136,it’s burning,3.validated
@@ -224,7 +224,7 @@ corpus_id,definition,furthest_corpus
 1523,he/she is late,3.validated
 1524,it’s decaying,3.validated
 153,he/she is washing his face,3.validated
-1530,he/she has an object,3.validated
+1530,he/she has an object (refers to a solid object),3.validated
 1531,he/she is yawning,3.validated
 1534,he/she is having trouble breathing,3.validated
 1535,there is dew,3.validated
@@ -239,7 +239,7 @@ corpus_id,definition,furthest_corpus
 1557,he/she is wearing a shirt,3.validated
 1561,he/she is buying it,3.validated
 1563,he/she is looking for it,3.validated
-1569,it is cold,3.validated
+1569,it is cold (refers to weather),3.validated
 1572,he/she is getting drunk,3.validated
 1576,he/she is inside it,3.validated
 158,he/she is smothering him/her,3.validated
@@ -259,7 +259,7 @@ corpus_id,definition,furthest_corpus
 1621,he/she is sticking his/her head out,3.validated
 1622,he/she is wearing a hat,3.validated
 1623,it’s dark,3.validated
-1629,he/she has an object,3.validated
+1629,he/she has an object (refers to a flexible object),3.validated
 1639,he/she is being mean,3.validated
 1642,he/she has a liquid,3.validated
 1646,he/she knows it,3.validated
@@ -275,7 +275,7 @@ corpus_id,definition,furthest_corpus
 1699,he/she is belching,3.validated
 1700,he/she is shivering,3.validated
 1708,he/she smells it,3.validated
-1709,he/she has an object,3.validated
+1709,he/she has an object (refers to a long object),3.validated
 171,he/she is having a nightmare,3.validated
 1710,he/she is aching,3.validated
 172,it’s taking time,3.validated
@@ -284,20 +284,20 @@ corpus_id,definition,furthest_corpus
 1730,he/she is sitting,3.validated
 1741,he/she is losing it,3.validated
 175,it’s bending,3.validated
-1754,he/she is sending on object,3.validated
+1754,he/she is sending on object (refers to a long object),3.validated
 176,he/she is snorting,3.validated
 1761,he/she is sending it,3.validated
 177,he/she is preaching,3.validated
 1774,he/she is sending it,3.validated
-1775,he/she is sending it,3.validated
-1776,he/she is sending it,3.validated
+1775,he/she is sending it (refers to something liquid),3.validated
+1776,he/she is sending it (refers to a flexible object),3.validated
 1778,he/she is going out of sight,3.validated
 179,it’s shattering,3.validated
 18,he/she is visiting,3.validated
 180,he/she is shattering it,3.validated
 182,he/she is beating him/her at a game,3.validated
 183,he/she is combing his/her hair,3.validated
-185,he/she is moving,3.validated
+185,he/she is moving (without changing location),3.validated
 186,he/she is changing his/her shirt,3.validated
 187,he/she is taking his/her shirt off,3.validated
 189,he/she is putting on a shirt,3.validated
@@ -307,8 +307,8 @@ corpus_id,definition,furthest_corpus
 195,he/she is building a house,3.validated
 196,he/she is leaving,3.validated
 197,he/she is starting it,3.validated
-198,he/she is carrying it on his/her shoulder,3.validated
-200,he/she is putting it in liquid,3.validated
+198,he/she is carrying it on his/her shoulder (refers to a long object),3.validated
+200,he/she is putting it in liquid (refers to a long object),3.validated
 204,he/she is hitting him/her on the mouth,3.validated
 205,he/she is moving it from one place to another,3.validated
 206,he/she is setting it down,3.validated
@@ -323,7 +323,7 @@ corpus_id,definition,furthest_corpus
 22,he/she is committing adultery,3.validated
 220,he/she is imitating him/her,3.validated
 222,he/she is looking for him/her,3.validated
-223,he/she is swimming,3.validated
+223,he/she is swimming (refers to propelling oneself through the water),3.validated
 224,it’s thundering,3.validated
 228,he/she is bending it,3.validated
 232,he/she is capturing him/her,3.validated
@@ -338,7 +338,7 @@ corpus_id,definition,furthest_corpus
 254,he/she is blowing,3.validated
 255,he/she is turning on a light,3.validated
 259,he/she is chasing him/her,3.validated
-261,he/she is riding it,3.validated
+261,he/she is riding it (refers to anything that can be straddled),3.validated
 263,he/she is swallowing it,3.validated
 266,he/she is shovelling it,3.validated
 27,he/she is looking at himself/herself in a mirror,3.validated
@@ -360,7 +360,7 @@ corpus_id,definition,furthest_corpus
 298,he/she is playing ball,3.validated
 30,he/she is shopping,3.validated
 300,he/she is taking a step,3.validated
-305,he/she is placing it in an upright position,3.validated
+305,he/she is placing it in an upright position (refers to a long object),3.validated
 306,he/she is standing in a certain spot,3.validated
 307,he/she is stopping,3.validated
 308,he/she is stopping him/her,3.validated
@@ -389,14 +389,14 @@ corpus_id,definition,furthest_corpus
 340,he/she is sticking his/her head out,3.validated
 341,he/she is taking his/her hat off,3.validated
 344,he/she is setting a goal,3.validated
-345,he/she is smelling it,3.validated
+345,he/she is smelling it (refers to sniffing),3.validated
 355,they are gathering,3.validated
 356,it’s lightning,3.validated
 359,they are getting together,3.validated
 361,he/she is attempting it,3.validated
 362,he is getting married,3.validated
 363,he/she is remembering him/her,3.validated
-366,they are asleep,3.validated
+366,they are asleep (refers to more than two),3.validated
 373,he/she is setting a trap,3.validated
 374,he/she is lifting him/her,3.validated
 377,he/she is making it crisp,3.validated
@@ -405,14 +405,14 @@ corpus_id,definition,furthest_corpus
 381,he/she is following him/her,3.validated
 382,he/she is helping him/her,3.validated
 383,he/she is braiding it,3.validated
-384,he/she is eating it,3.validated
+384,he/she is eating it (refers to a long object),3.validated
 386,he/she is crushing it,3.validated
-388,he/she is trimming it,3.validated
+388,he/she is trimming it (refers to hair‚ grass‚ hedge; but not paper‚ cloth),3.validated
 39,he/she is thinking,3.validated
 390,he/she is opening it,3.validated
 392,he/she is sandwiching it,3.validated
-397,he/she is including him/her,3.validated
-398,he/she is withdrawing,3.validated
+397,he/she is including him/her (refers to in counting),3.validated
+398,he/she is withdrawing (refers to a motion),3.validated
 4,it’s bouncing,3.validated
 400,he/she is reprimanding him/her,3.validated
 405,he/she is committing a crime,3.validated
@@ -423,12 +423,12 @@ corpus_id,definition,furthest_corpus
 416,it’s fading,3.validated
 417,he/she is digging it,3.validated
 419,he/she is finishing it,3.validated
-421,he/she is catching him/her,3.validated
+421,he/she is catching him/her (refers to a falling person or object),3.validated
 423,it’s getting shorter,3.validated
-424,he/she is breaking it,3.validated
-425,he/she is hitting him/her on the head with it,3.validated
+424,he/she is breaking it (refers to a long object),3.validated
+425,he/she is hitting him/her on the head with it (refers to a long object),3.validated
 427,he/she is amazed,3.validated
-429,he/she is hitting him/her on the abdomen with it,3.validated
+429,he/she is hitting him/her on the abdomen with it (refers to a long object),3.validated
 43,he/she is crawling,3.validated
 430,he/she is placing his/her hand on him/her,3.validated
 431,he/she is slapping him/her,3.validated
@@ -465,10 +465,10 @@ corpus_id,definition,furthest_corpus
 483,he/she is racing,3.validated
 486,he/she is loaning it to him/her,3.validated
 487,he/she is borrowing him/her,3.validated
-488,it’s flashing,3.validated
+488,it’s flashing (refers to reflected light),3.validated
 489,he/she is taking a bite,3.validated
 490,he/she is lying,3.validated
-491,he/she is taking a drink,3.validated
+491,he/she is taking a drink (refers to alcoholic beverage),3.validated
 493,he/she is promising,3.validated
 494,he/she is listening to him/her,3.validated
 495,he/she is asking him/her a question,3.validated
@@ -479,9 +479,9 @@ corpus_id,definition,furthest_corpus
 502,he/she is inside,3.validated
 507,he/she is waking up,3.validated
 509,he/she is waking him/her up,3.validated
-51,it’s burning,3.validated
-511,he/she is putting him/her inside,3.validated
-513,he/she is getting it,3.validated
+51,it’s burning (refers to flames),3.validated
+511,he/she is putting him/her inside (refers to somewhere large enough to move around in),3.validated
+513,he/she is getting it (refers to a long object),3.validated
 515,it’s breaking,3.validated
 516,he/she is shooting him/her,3.validated
 519,he/she is whittling it,3.validated
@@ -489,8 +489,8 @@ corpus_id,definition,furthest_corpus
 524,he/she is breaking it,3.validated
 526,he/she is destroying it,3.validated
 529,he/she is entering it,3.validated
-530,he/she is finding it,3.validated
-531,he/she is taking it somewhere,3.validated
+530,he/she is finding it (refers to a long object),3.validated
+531,he/she is taking it somewhere (refers to a long object),3.validated
 539,he/she is making an X,3.validated
 54,he/she is resting,3.validated
 541,he/she is conjuring,3.validated
@@ -508,7 +508,7 @@ corpus_id,definition,furthest_corpus
 558,he/she is undressing,3.validated
 559,he/she is putting on clothes,3.validated
 56,he/she is bathing,3.validated
-561,he/she is putting fuel into a fire,3.validated
+561,he/she is putting fuel into a fire (refers to solid fuel),3.validated
 562,he/she is tickling him/her,3.validated
 565,he/she is tying it,3.validated
 566,he/she is untying it,3.validated
@@ -526,9 +526,9 @@ corpus_id,definition,furthest_corpus
 584,he/she is taking off his/her shoes,3.validated
 585,he/she is helping him/her up,3.validated
 586,he/she is recuperating,3.validated
-587,he/she is getting up,3.validated
+587,he/she is getting up (from sitting or from involuntarily assumed prone position),3.validated
 589,he/she is taking off his/her gloves,3.validated
-59,he/she is giving him/her it,3.validated
+59,he/she is giving him/her it (refers to a long object),3.validated
 590,he/she is putting on his/her gloves,3.validated
 591,he/she is taking off his/her socks,3.validated
 592,he/she is putting on his/her socks,3.validated
@@ -539,7 +539,7 @@ corpus_id,definition,furthest_corpus
 600,he/she is playing,3.validated
 604,he/she is shooting at him/her,3.validated
 605,he/she is splitting it,3.validated
-606,he/she is sprinkling it,3.validated
+606,he/she is sprinkling it (with liquid),3.validated
 607,he/she is counting it,3.validated
 608,he/she is cursing him/her,3.validated
 609,he/she is clapping his/her hands,3.validated
@@ -550,13 +550,13 @@ corpus_id,definition,furthest_corpus
 618,he/she is releasing him/her,3.validated
 62,he/she is embarrassed,3.validated
 620,he/she is slamming him/her,3.validated
-621,he/she is crossing,3.validated
+621,he/she is crossing (refers to a road‚ bridge‚ etc.),3.validated
 622,he/she is advertising it,3.validated
-623,he/she is crossing it,3.validated
-625,he/she is explaining it,3.validated
+623,he/she is crossing it (refers to a body of water),3.validated
+625,he/she is explaining it (refers to a Biblical text),3.validated
 626,he/she is deciding,3.validated
-627,he/she is washing,3.validated
-628,he/she is shelling,3.validated
+627,he/she is washing (refers to dishes),3.validated
+628,he/she is shelling (refers to peas‚ nut meats‚ etc),3.validated
 63,he/she is being born,3.validated
 630,he/she is turning him/her over,3.validated
 631,he/she is singing,3.validated
@@ -564,7 +564,7 @@ corpus_id,definition,furthest_corpus
 67,he/she is finding it out,3.validated
 7,he/she is putting on a belt,3.validated
 70,he/she is going around a curve,3.validated
-72,he/she is laying it down,3.validated
+72,he/she is laying it down (refers to a long object),3.validated
 722,he/she is confronted with it,3.validated
 724,he/she is staggering,3.validated
 725,he/she is getting a rash,3.validated
@@ -572,45 +572,45 @@ corpus_id,definition,furthest_corpus
 727,he/she is sneezing,3.validated
 728,he/she is vomiting,3.validated
 729,he/she is wearing glasses,3.validated
-73,he/she is rising,3.validated
+73,he/she is rising (from a prone position),3.validated
 730,he/she is wearing shoes,3.validated
 733,he/she is wearing socks,3.validated
 735,he/she is working,3.validated
-738,he/she is releasing it,3.validated
+738,he/she is releasing it (refers to involuntarily releasing),3.validated
 739,he/she is tired,3.validated
 74,he/she is scattering it,3.validated
-740,he/she is releasing it,3.validated
+740,he/she is releasing it (refers to voluntarily releasing),3.validated
 742,he/she is walking around,3.validated
 746,he/she lives,3.validated
 75,it’s scattering,3.validated
 752,he/she thinks so,3.validated
 757,he/she is straightening it,3.validated
-759,it is hanging,3.validated
+759,it is hanging (refers to flexible object),3.validated
 76,he/she is spinning,3.validated
 764,he/she is plowing it,3.validated
-766,he/she is removing it from a hanging position,3.validated
+766,he/she is removing it from a hanging position (refers to solid or flexible object),3.validated
 767,he/she is turning it,3.validated
 769,he/she is spinning it,3.validated
 77,he/she is saying it,3.validated
 770,he/she is strapping it,3.validated
 772,he/she is standing,3.validated
 775,he/she is pitying him/her,3.validated
-776,he/she is dropping him/her,3.validated
-777,it is falling from a hanging position,3.validated
+776,he/she is dropping him/her (refers to flexible object),3.validated
+777,it is falling from a hanging position (refers to flexible object),3.validated
 78,he/she is running over him/her,3.validated
 784,he/she is baking it,3.validated
 79,he/she is hiding,3.validated
 791,he/she is rowing,3.validated
 796,he/she is pecking it,3.validated
 798,he/she is putting it into a container,3.validated
-80,he/she is leaving it behind,3.validated
+80,he/she is leaving it behind (refers to a long object),3.validated
 804,he/she is gathering it,3.validated
 809,he/she is piling it up,3.validated
 811,he/she is putting it in a hole or a container,3.validated
 812,he/she is sleepy,3.validated
-813,he/she is taking it somewhere by hand,3.validated
-815,he/she is handling it,3.validated
-818,he/she is eating it,3.validated
+813,he/she is taking it somewhere by hand (refers to a flexible object),3.validated
+815,he/she is handling it (refers to a flexible object),3.validated
+818,he/she is eating it (refers to a flexible object),3.validated
 82,he/she is drinking it,3.validated
 820,he/she is ripping it,3.validated
 821,he/she is scratching him/her,3.validated
@@ -620,16 +620,16 @@ corpus_id,definition,furthest_corpus
 826,he/she is leaving a living thing behind,3.validated
 827,he/she is giving him/her a living thing,3.validated
 829,he/she is wrapping him/her,3.validated
-830,he/she is putting it in a container,3.validated
-833,he/she is taking it out of a container,3.validated
+830,he/she is putting it in a container (refers to a long object),3.validated
+833,he/she is taking it out of a container (refers to a solid or flexible object),3.validated
 834,he/she is climbing it,3.validated
 837,he/she is burning,3.validated
-838,it is falling from an upright position,3.validated
+838,it is falling from an upright position (refers to a long object eg tree‚ pole),3.validated
 839,he/she is climbing around,3.validated
-840,it is burning,3.validated
-842,it is dying,3.validated
+840,it is burning (refers to forest or grass),3.validated
+842,it is dying (refers to an animal or plant),3.validated
 845,he/she is hoeing it,3.validated
-848,he/she is stopping by,3.validated
+848,he/she is stopping by (where on the way somewhere),3.validated
 85,he/she is scratching,3.validated
 850,he/she is overtaking him/her,3.validated
 852,he/she is bluffing him/her,3.validated
@@ -643,24 +643,24 @@ corpus_id,definition,furthest_corpus
 862,he/she is chopping it,3.validated
 864,he/she is beating him/her up,3.validated
 87,he/she is turning off the road,3.validated
-870,he/she is putting it in a hole or a container,3.validated
+870,he/she is putting it in a hole or a container (refers to a flexible object),3.validated
 871,he/she is selling it,3.validated
 873,he/she is hiring him/her,3.validated
-876,he/she is finding it,3.validated
-877,he/she is taking it somewhere,3.validated
-879,he/she is getting it,3.validated
+876,he/she is finding it (refers to a flexible object),3.validated
+877,he/she is taking it somewhere (refers to an animal‚ flexible object),3.validated
+879,he/she is getting it (refers to a flexible object),3.validated
 88,he/she is taking revenge against him/her,3.validated
 880,he/she is changing it,3.validated
-882,he/she is taking it somewhere by hand,3.validated
+882,he/she is taking it somewhere by hand (refers to a long object),3.validated
 883,he/she is peeling him/her,3.validated
 884,he/she is getting some liquid,3.validated
 885,he/she is taking liquid from him/her,3.validated
 886,he/she is bewitching him/her,3.validated
-887,he/she is holding it in his/her hand,3.validated
+887,he/she is holding it in his/her hand (refers to a long object),3.validated
 888,he/she is leaving some liquid,3.validated
 890,he/she is finding some liquid,3.validated
 891,he/she is taking some liquid somewhere,3.validated
-893,he/she lives,3.validated
+893,he/she lives (in sense of resides now),3.validated
 895,it’s freezing,3.validated
 896,it’s hailing,3.validated
 899,he/she is lying down,3.validated
@@ -668,33 +668,33 @@ corpus_id,definition,furthest_corpus
 902,he/she is taking a liquid somewhere by hand,3.validated
 903,he/she is holding some liquid,3.validated
 904,he/she is handling some liquid,3.validated
-908,he/she is handling it,3.validated
+908,he/she is handling it (refers to a long object),3.validated
 909,he/she hates him/her,3.validated
 910,he/she is setting up a bed,3.validated
 913,he/she is pleading,3.validated
 914,he/she is burying him/her,3.validated
 918,he/she is hunting,3.validated
 921,it’s flooding,3.validated
-924,it is blowing,3.validated
+924,it is blowing (refers to wind),3.validated
 925,he/she is stealing it,3.validated
 928,he/she is sinking,3.validated
 929,he/she is pulling him/her,3.validated
 931,he/she is dragging him/her,3.validated
 932,he/she is exiting,3.validated
 937,he/she is twisting him/her,3.validated
-938,he/she is missing him/her,3.validated
-94,it’s pouring into a container,3.validated
+938,he/she is missing him/her (refers to as a target),3.validated
+94,it’s pouring into a container (refers to liquid),3.validated
 940,he/she is falling from an upright position,3.validated
 941,he/she is cleaning him/her,3.validated
 942,he/she is hammering it,3.validated
 946,he/she is tying up a leg,3.validated
 949,he/she is tossing about,3.validated
 95,he/she is drawing a liquid out of a container,3.validated
-950,he/she is giving him/her an object,3.validated
+950,he/she is giving him/her an object (refers to a flexible object),3.validated
 955,he/she is pushing him/her,3.validated
 956,he/she is rolling him/her,3.validated
 96,he/she is pouring a liquid into a container,3.validated
-960,he/she is attaching the object behind it,3.validated
+960,he/she is attaching the object behind it (refers to a flexible object),3.validated
 969,he/she is piling it up,3.validated
 970,it’s hanging,3.validated
 973,he/she is stabbing him/her,3.validated

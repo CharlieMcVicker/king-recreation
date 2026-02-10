@@ -178,6 +178,11 @@ def process_cn_dict(file_path, output_path):
         # Get definition from the first row that has one
         for row in rows:
             gloss = row.get("Translation 1A", "").strip()
+            extra = row.get("Translation 1 sub entry")
+
+            if extra:
+                gloss = f"{gloss} ({extra})"
+
             if gloss:
                 verb_data["definition"] = gloss
                 break

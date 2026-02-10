@@ -378,7 +378,6 @@ def main(classes_path=None):
             def get_identity_key(r):
                 return (
                     str(r.get("corpus_id", "")),
-                    r.get("definition", ""),
                     r.get("class", ""),
                     r.get("h_grade", ""),
                     r.get("g_grade", ""),
@@ -516,7 +515,6 @@ def main(classes_path=None):
         def get_identity_key_simple(r):
             return (
                 str(r.get("corpus_id", "")),
-                r.get("definition", ""),
                 r.get("class", ""),
                 r.get("h_grade", ""),
                 r.get("g_grade", ""),
