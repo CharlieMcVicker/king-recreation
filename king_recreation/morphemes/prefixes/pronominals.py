@@ -10,6 +10,7 @@ from king_recreation.phonology_data import VOWEL_SET
 class StemType(Enum):
     CONSONANT = "con"
     GLOTTAL = "glottal"
+    LONG_START = "long"
     VOWEL_A = "vowel_a"
     VOWEL_E = "vowel_e"
     VOWEL_O = "vowel_o"
@@ -25,7 +26,7 @@ class StemType(Enum):
         if self == StemType.ASPIRATED:
             # begins with consonant sequence then s
             return re.match("^[^aeiouvhs]+h", stem)
-        elif self == StemType.CONSONANT:
+        elif self in [StemType.CONSONANT, StemType.LONG_START]:
             return re.match("^[^aeiouvs']", stem)
         elif self == StemType.S_STEM:
             return stem.startswith("hs")
@@ -70,9 +71,6 @@ class PronominalConfig:
     # Flags for prefix variants
     plural_pronouns: bool = False
     use_ka_variant: bool = False  # 3rd Set A: ka-/k- (True) vs a-/ø (False)
-    long_start: bool = (
-        False  # 3rd Set B: uwa- vs u- (on consonants), tsiya- vs tsi- on person-person
-    )
     use_aki_for_1st_set_b: bool = (
         False  # 1st Set B: aki- vs ak- (on consonants, does stem type predict?)
     )
@@ -90,7 +88,7 @@ class PronominalConfig:
             middle_voice=MiddleVoice(row["middle_voice"]),
             plural_pronouns=row["plural"] == "True",
             use_ka_variant=row["ka_variant"] == "True",
-            long_start=row["long_start"] == "True",
+            # long_start=row["long_start"] == "True",
             use_aki_for_1st_set_b=row["aki_1st"] == "True",
             uwa_replaces_v=row["uwa_v"] == "True",
             use_3rd_person_object=row["3rd_person_object"] == "True",
@@ -121,7 +119,7 @@ class PronominalConfig:
         row["middle_voice"] = self.middle_voice.value
         row["plural"] = str(self.plural_pronouns)
         row["ka_variant"] = str(self.use_ka_variant)
-        row["long_start"] = str(self.long_start)
+        # row["long_start"] = str(self.long_start)
         row["aki_1st"] = str(self.use_aki_for_1st_set_b)
         row["uwa_v"] = str(self.uwa_replaces_v)
         row["3rd_person_object"] = str(self.use_3rd_person_object)
@@ -288,6 +286,7 @@ class PrefixForms:
     aspirated: Optional[ConfiguredPrefix] = None
     s: Optional[ConfiguredPrefix] = None
     glottal: Optional[ConfiguredPrefix] = None
+    long_start: Optional[ConfiguredPrefix] = None
 
     def select(self, stem: StemType) -> ConfiguredPrefix:
         if stem == StemType.ASPIRATED:
@@ -296,12 +295,12 @@ class PrefixForms:
             return self.s if self.s is not None else self.consonant
         elif stem == StemType.GLOTTAL:
             return self.glottal if self.glottal is not None else self.consonant
+        elif stem == StemType.LONG_START:
+            return self.long_start if self.long_start is not None else self.consonant
         elif stem == StemType.CONSONANT:
             return self.consonant
 
         # vowel stuff
-        if not "_" in stem.value:
-            print("DEBUG", stem.value)
         vowel = stem.value.split("_")[1]
 
         if vowel in self.vowel_overrides:
@@ -383,9 +382,8 @@ def _get_prefix_details(
 
     if set_name == "3rd Set B":
         return PrefixForms(
-            consonant=(
-                ConfiguredPrefix("uwa") if config.long_start else ConfiguredPrefix("u")
-            ),
+            consonant=ConfiguredPrefix("u"),
+            long_start=ConfiguredPrefix("uwa"),
             glottal=ConfiguredPrefix(
                 "u", stem_modification=StemModification.GLOTTAL_DROP
             ),
@@ -462,11 +460,8 @@ def _get_prefix_details(
 
     if set_name == "1st to 3rd":
         return PrefixForms(
-            consonant=(
-                ConfiguredPrefix("tsiya")
-                if config.long_start
-                else ConfiguredPrefix("tsi")
-            ),
+            consonant=ConfiguredPrefix("tsi"),
+            long_start=ConfiguredPrefix("tsiya"),
             glottal=ConfiguredPrefix(
                 "tsi", stem_modification=StemModification.GLOTTAL_DROP
             ),
@@ -475,11 +470,8 @@ def _get_prefix_details(
 
     if set_name == "2nd to 3rd":
         return PrefixForms(
-            consonant=(
-                ConfiguredPrefix("hiya")
-                if config.long_start
-                else ConfiguredPrefix("hi")
-            ),
+            consonant=ConfiguredPrefix("hi"),
+            long_start=ConfiguredPrefix("hiya"),
             glottal=ConfiguredPrefix(
                 "hi", stem_modification=StemModification.GLOTTAL_DROP
             ),

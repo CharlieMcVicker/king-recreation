@@ -292,9 +292,6 @@ class StemDeriver:
                 ),
                 None,
             )
-            long_start_options = (
-                [b3sg_starts_uwa] if b3sg_starts_uwa is not None else [False, True]
-            )
             for plural in [False, True]:
                 for use_3rd in [False, True]:
                     for s_type in StemType:
@@ -315,27 +312,25 @@ class StemDeriver:
                                     else [False, True]
                                 )
                             for uwa in uwa_opts:
-                                for long_start in long_start_options:
-                                    pron_config = PronominalConfig(
-                                        set_type=set_type,
-                                        stem_type=s_type,
-                                        metathesis_strategy=meta,
-                                        plural_pronouns=plural,
-                                        use_ka_variant=ka,
-                                        long_start=long_start,
-                                        uwa_replaces_v=uwa,
-                                        use_aki_for_1st_set_b=aki,
-                                        use_3rd_person_object=use_3rd,
-                                    )
-                                    res = derive_pronominals(
-                                        intermediate,
-                                        pron_config,
-                                        stative,
-                                        # log="calling" in row["definition"],
-                                    )
-                                    if res:
-                                        res.config.pre = pre_config
-                                        valid_derivations.extend(derive_middle(res))
+                                pron_config = PronominalConfig(
+                                    set_type=set_type,
+                                    stem_type=s_type,
+                                    metathesis_strategy=meta,
+                                    plural_pronouns=plural,
+                                    use_ka_variant=ka,
+                                    uwa_replaces_v=uwa,
+                                    use_aki_for_1st_set_b=aki,
+                                    use_3rd_person_object=use_3rd,
+                                )
+                                res = derive_pronominals(
+                                    intermediate,
+                                    pron_config,
+                                    stative,
+                                    # log="calling" in row["definition"],
+                                )
+                                if res:
+                                    res.config.pre = pre_config
+                                    valid_derivations.extend(derive_middle(res))
         if not valid_derivations:
             return []
 
