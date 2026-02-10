@@ -1,13 +1,14 @@
 import io
 import json
 import os
-from csv import DictReader
+from csv import DictReader, DictWriter
 from typing import List, Union
 
 from king_recreation.paths import (
     cherokee_nation_dictionary_path,
     corpus_to_cnd_path,
     reconstructable_verbs_path,
+    stems_with_tone_corpus_path,
 )
 from king_recreation.reconstruct_from_roots import ReconstructibleVerb
 from king_recreation.tone.utils import (
@@ -129,7 +130,12 @@ def main():
         )
 
     # Write all rows to disk as a new - stems_with_tone_corpus.csv
-    # TODO: write all rows to disk as new corpus!
+    if rows:
+        with open(stems_with_tone_corpus_path, "w", newline="") as f:
+            writer = DictWriter(f, fieldnames=rows[0].keys())
+            writer.writeheader()
+            writer.writerows(rows)
+        print(f"Saved {len(rows)} rows to {stems_with_tone_corpus_path}")
 
     # # Access each form and its segmented version
     # for form_name in forms_to_analyze:
