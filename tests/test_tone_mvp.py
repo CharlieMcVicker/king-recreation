@@ -17,24 +17,33 @@ class TestToneMVP(unittest.TestCase):
         inferences = predict_h1_for_form(test_str)
         if log:
             for v, infs in inferences:
+                print(f"Vowel: {v.quality} at {v.idx_start}")
                 for inf in infs:
-                    print(v, inf)
-        self.assertEqual(len(inferences), 1)
-        ((v, inf),) = inferences
-        self.assertEqual(len(inf), len(expected))
+                    print(f"  {inf}")
+        self.assertEqual(
+            len(inferences),
+            len(expected),
+            f"Number of vowels with H1 mismatch for {test_str}. Got {len(inferences)}, expected {len(expected)}",
+        )
 
-        for exp in expected:
-            self.assertTrue(exp in inf, str(inf))
+        for i, ((v, inf), exp_list) in enumerate(zip(inferences, expected)):
+            self.assertCountEqual(
+                inf,
+                exp_list,
+                f"Possibilities mismatch for vowel {i} ({v.quality}) in {test_str}",
+            )
 
     def test_2_32(self):
         self._test_case(
             test_str="a2la32hs",
             expected=[
-                H1Config(
-                    historically_long=False,
-                    glottal_position=GlottalPosition.PRE_C,
-                    env=Environment.NO_SPREAD,
-                ),
+                [
+                    H1Config(
+                        historically_long=False,
+                        glottal_position=GlottalPosition.PRE_C,
+                        env=Environment.NO_SPREAD,
+                    ),
+                ]
             ],
         )
 
@@ -42,16 +51,18 @@ class TestToneMVP(unittest.TestCase):
         self._test_case(
             test_str="i23nv32hs",
             expected=[
-                H1Config(
-                    historically_long=True,
-                    glottal_position=GlottalPosition.PRE_C,
-                    env=Environment.SPREAD,
-                ),
-                H1Config(
-                    historically_long=False,
-                    glottal_position=GlottalPosition.PRE_C,
-                    env=Environment.SPREAD,
-                ),
+                [
+                    H1Config(
+                        historically_long=True,
+                        glottal_position=GlottalPosition.PRE_C,
+                        env=Environment.SPREAD,
+                    ),
+                    H1Config(
+                        historically_long=False,
+                        glottal_position=GlottalPosition.PRE_C,
+                        env=Environment.SPREAD,
+                    ),
+                ]
             ],
         )
 
@@ -59,11 +70,40 @@ class TestToneMVP(unittest.TestCase):
         self._test_case(
             test_str="ga3'la",
             expected=[
-                H1Config(
-                    historically_long=False,
-                    glottal_position=GlottalPosition.POST_C,
-                    env=Environment.NO_SPREAD,
-                ),
+                [
+                    H1Config(
+                        historically_long=False,
+                        glottal_position=GlottalPosition.POST_C,
+                        env=Environment.NO_SPREAD,
+                    ),
+                ]
+            ],
+            log=True,
+        )
+
+    def test_spreading_blocked_long(self):
+        self._test_case(
+            test_str="ga3'li22do33ha2",
+            expected=[
+                [
+                    H1Config(
+                        historically_long=False,
+                        glottal_position=GlottalPosition.POST_C,
+                        env=Environment.NO_SPREAD,
+                    ),
+                ],
+                [
+                    H1Config(
+                        historically_long=True,
+                        glottal_position=GlottalPosition.PRE_C,
+                        env=Environment.NO_SPREAD,
+                    ),
+                    H1Config(
+                        historically_long=True,
+                        glottal_position=GlottalPosition.POST_C,
+                        env=Environment.NO_SPREAD,
+                    ),
+                ],
             ],
             log=True,
         )
