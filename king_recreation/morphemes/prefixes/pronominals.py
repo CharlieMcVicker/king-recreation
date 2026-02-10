@@ -26,8 +26,10 @@ class StemType(Enum):
         if self == StemType.ASPIRATED:
             # begins with consonant sequence then s
             return re.match("^[^aeiouvhs]+h", stem)
-        elif self in [StemType.CONSONANT, StemType.LONG_START]:
+        elif self == StemType.CONSONANT:
             return re.match("^[^aeiouvs']", stem)
+        elif self == StemType.LONG_START:
+            return stem.startswith(":")
         elif self == StemType.S_STEM:
             return stem.startswith("hs")
         elif self == StemType.GLOTTAL:
@@ -57,6 +59,7 @@ class StemModification(Enum):
     A_REPLACE = "a_replace"
     V_REPLACE = "v_replace"
     GLOTTAL_DROP = "glottal_drop"
+    LONG = "long"
     METATHESIS_H_CONS = "metathesis_h_cons"
     METATHESIS_VOWEL = "metathesis_vowel"
 
@@ -88,7 +91,6 @@ class PronominalConfig:
             middle_voice=MiddleVoice(row["middle_voice"]),
             plural_pronouns=row["plural"] == "True",
             use_ka_variant=row["ka_variant"] == "True",
-            # long_start=row["long_start"] == "True",
             use_aki_for_1st_set_b=row["aki_1st"] == "True",
             uwa_replaces_v=row["uwa_v"] == "True",
             use_3rd_person_object=row["3rd_person_object"] == "True",
@@ -119,7 +121,6 @@ class PronominalConfig:
         row["middle_voice"] = self.middle_voice.value
         row["plural"] = str(self.plural_pronouns)
         row["ka_variant"] = str(self.use_ka_variant)
-        # row["long_start"] = str(self.long_start)
         row["aki_1st"] = str(self.use_aki_for_1st_set_b)
         row["uwa_v"] = str(self.uwa_replaces_v)
         row["3rd_person_object"] = str(self.use_3rd_person_object)
@@ -252,17 +253,10 @@ class ConfiguredPrefix:
             stem = "a" + remainder
         elif self.stem_modification == StemModification.GLOTTAL_DROP:
             stem = "'" + remainder
+        elif self.stem_modification == StemModification.LONG:
+            stem = ":" + remainder
         elif self.stem_modification == StemModification.V_REPLACE:
             stem = "v" + remainder
-
-        # Regressions/Constraints
-        # if self.condition == Condition.ASPIRATED:
-        #     # Restriction: ak- (akh-) before -i is not valid
-        #     if form == "akh" and stem.startswith("i"):
-        #         return None
-        #     # Restriction: ts- before -ha is not valid
-        #     if form == "ts" and stem.startswith("ha"):
-        #         return None
 
         return stem
 
@@ -296,7 +290,11 @@ class PrefixForms:
         elif stem == StemType.GLOTTAL:
             return self.glottal if self.glottal is not None else self.consonant
         elif stem == StemType.LONG_START:
-            return self.long_start if self.long_start is not None else self.consonant
+            pron = self.long_start if self.long_start is not None else self.consonant
+            # FORCE DEFAULT
+            return ConfiguredPrefix(
+                form=pron.form, stem_modification=StemModification.LONG
+            )
         elif stem == StemType.CONSONANT:
             return self.consonant
 

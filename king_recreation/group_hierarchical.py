@@ -246,8 +246,6 @@ def sync_root_ids(
 
         # Determine Root ID
         default_id = f"{h}|{g or ''}"
-        if verb.config.pron.stem_type == StemType.LONG_START:
-            default_id = "long-" + default_id
 
         # Check override
         root_id = default_id
