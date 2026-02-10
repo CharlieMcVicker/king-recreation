@@ -6,6 +6,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Any, DefaultDict, Dict, List, Optional, Tuple
 
+from king_recreation.morphemes.prefixes.pronominals import StemType
 from king_recreation.reconstruct_from_roots import (
     EnhancedJSONEncoder,
     ReconstructibleVerb,
@@ -245,6 +246,8 @@ def sync_root_ids(
 
         # Determine Root ID
         default_id = f"{h}|{g or ''}"
+        if verb.config.pron.stem_type == StemType.LONG_START:
+            default_id = "long-" + default_id
 
         # Check override
         root_id = default_id
