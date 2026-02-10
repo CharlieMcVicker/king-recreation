@@ -405,6 +405,7 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 127,he/she is eating it,i-a-i,,k,k,False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,False
 127,he/she is eating it,i-a-i,,k,k,False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,True
 128,he/she is picking it up,rev-gi,,,,False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,False
+128,he/she is picking it up,rev-gi,,,,False,False,False,False,False,False,a,glottal,none,none,False,False,False,False,False,False
 128,he/she is picking it up,rev-gi,,,,False,False,False,False,False,False,a,aspirated,none,none,False,False,False,False,False,False
 128,he/she is picking it up,rev-gi,,,,False,False,False,False,False,False,a,s_stem,none,none,False,False,False,False,False,False
 128,he/she is picking it up,rev-gi,,,,False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,True
@@ -451,6 +452,7 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 160,he/she is handling it,be-at,,h,',False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,False
 160,he/she is handling it,be-at-weak,,hit,'it,False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,False
 161,he/she is killing him/her,hih-lh,,,,False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,False
+161,he/she is killing him/her,hih-lh,,,,False,False,False,False,False,False,a,glottal,none,none,False,False,False,False,False,False
 161,he/she is killing him/her,hih-lh,,,,False,False,False,False,False,False,a,aspirated,none,none,False,False,False,False,False,False
 161,he/she is killing him/her,hih-lh,,,,False,False,False,False,False,False,a,s_stem,none,none,False,False,False,False,False,False
 161,he/she is killing him/her,hih-lh,,,,False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,True
@@ -683,12 +685,14 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 204,he/she is hitting him/her on the mouth,ih-il,hitting[il],hul,'ul,False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,True
 205,he/she is moving it from one place to another,v-vhs,,h,',False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,False
 206,he/she is setting it down,hvsk-nh,,,,False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,False
+206,he/she is setting it down,hvsk-nh,,,,False,False,False,False,False,False,a,glottal,none,none,False,False,False,False,False,False
 206,he/she is setting it down,hvsk-nh,,,,False,False,False,False,False,False,a,aspirated,none,none,False,False,False,False,False,False
 206,he/she is setting it down,hvsk-nh,,,,False,False,False,False,False,False,a,s_stem,none,none,False,False,False,False,False,False
 206,he/she is setting it down,hvsk-nh,,,,False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,True
 206,he/she is setting it down,hvsk-nh,,,,False,False,False,False,False,False,a,aspirated,none,none,False,False,False,False,False,True
 206,he/she is setting it down,hvsk-nh,,,,False,False,False,False,False,False,a,s_stem,none,none,False,False,False,False,False,True
 206,he/she is setting it down,hvsk-nh[inf2],,,,False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,False
+206,he/she is setting it down,hvsk-nh[inf2],,,,False,False,False,False,False,False,a,glottal,none,none,False,False,False,False,False,False
 206,he/she is setting it down,hvsk-nh[inf2],,,,False,False,False,False,False,False,a,aspirated,none,none,False,False,False,False,False,False
 206,he/she is setting it down,hvsk-nh[inf2],,,,False,False,False,False,False,False,a,s_stem,none,none,False,False,False,False,False,False
 206,he/she is setting it down,hvsk-nh[inf2],,,,False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,True
@@ -1173,18 +1177,26 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 363,he/she is remembering him/her,i-a-i,long[no-a],anhta,anvta,False,False,False,False,False,False,a,vowel_a,none,none,False,False,False,False,False,True
 366,they are asleep,stative,,lhin,lhin,False,False,False,False,False,False,a,con,none,none,True,False,False,False,False,False
 366,they are asleep,stative,,lhin,lhin,False,False,False,False,False,False,a,con,none,none,True,False,True,False,False,False
+366,they are asleep,stative,,'lhin,'lhin,False,False,False,False,False,False,a,glottal,none,none,True,False,False,False,False,False
+366,they are asleep,stative,,'lhin,'lhin,False,False,False,False,False,False,a,glottal,none,none,True,False,True,False,False,False
 366,they are asleep,stative,,lhin,lhin,False,False,False,False,False,False,a,aspirated,none,none,True,False,False,False,False,False
 366,they are asleep,stative,,lhin,lhin,False,False,False,False,False,False,a,aspirated,none,none,True,False,True,False,False,False
 366,they are asleep,stative,,lhin,lhin,False,False,False,True,False,False,a,con,none,none,True,False,False,False,False,False
 366,they are asleep,stative,,lhin,lhin,False,False,False,True,False,False,a,con,none,none,True,False,True,False,False,False
+366,they are asleep,stative,,'lhin,'lhin,False,False,False,True,False,False,a,glottal,none,none,True,False,False,False,False,False
+366,they are asleep,stative,,'lhin,'lhin,False,False,False,True,False,False,a,glottal,none,none,True,False,True,False,False,False
 366,they are asleep,stative,,lhin,lhin,False,False,False,True,False,False,a,aspirated,none,none,True,False,False,False,False,False
 366,they are asleep,stative,,lhin,lhin,False,False,False,True,False,False,a,aspirated,none,none,True,False,True,False,False,False
 366,they are asleep,stative,,lhin,lhin,False,False,False,False,False,False,a,con,none,none,True,False,False,False,False,True
 366,they are asleep,stative,,lhin,lhin,False,False,False,False,False,False,a,con,none,none,True,False,True,False,False,True
+366,they are asleep,stative,,'lhin,'lhin,False,False,False,False,False,False,a,glottal,none,none,True,False,False,False,False,True
+366,they are asleep,stative,,'lhin,'lhin,False,False,False,False,False,False,a,glottal,none,none,True,False,True,False,False,True
 366,they are asleep,stative,,lhin,lhin,False,False,False,False,False,False,a,aspirated,none,none,True,False,False,False,False,True
 366,they are asleep,stative,,lhin,lhin,False,False,False,False,False,False,a,aspirated,none,none,True,False,True,False,False,True
 366,they are asleep,stative,,lhin,lhin,False,False,False,True,False,False,a,con,none,none,True,False,False,False,False,True
 366,they are asleep,stative,,lhin,lhin,False,False,False,True,False,False,a,con,none,none,True,False,True,False,False,True
+366,they are asleep,stative,,'lhin,'lhin,False,False,False,True,False,False,a,glottal,none,none,True,False,False,False,False,True
+366,they are asleep,stative,,'lhin,'lhin,False,False,False,True,False,False,a,glottal,none,none,True,False,True,False,False,True
 366,they are asleep,stative,,lhin,lhin,False,False,False,True,False,False,a,aspirated,none,none,True,False,False,False,False,True
 366,they are asleep,stative,,lhin,lhin,False,False,False,True,False,False,a,aspirated,none,none,True,False,True,False,False,True
 373,he/she is setting a trap,vsk,,hsat,hsat,False,False,False,False,False,False,a,con,none,none,False,False,False,False,False,False
@@ -2349,6 +2361,10 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 833,he/she is taking it out of a container,rev-e,,l,l,True,False,False,False,False,False,a,con,h_cons,none,False,True,False,False,False,False
 833,he/she is taking it out of a container,rev-e,,l,l,False,False,False,False,False,False,a,con,none,none,False,True,False,False,False,True
 833,he/she is taking it out of a container,rev-e,,l,l,True,False,False,False,False,False,a,con,h_cons,none,False,True,False,False,False,True
+834,he/she is climbing it,go,,'l,'l,False,False,False,False,False,False,a,glottal,none,none,False,True,False,False,False,False
+834,he/she is climbing it,go,,'l,'l,True,False,False,False,False,False,a,glottal,h_cons,none,False,True,False,False,False,False
+834,he/she is climbing it,go[pres2],,'lek,'lek,False,False,False,False,False,False,a,glottal,none,none,False,True,False,False,False,False
+834,he/she is climbing it,go[pres2],,'lek,'lek,True,False,False,False,False,False,a,glottal,h_cons,none,False,True,False,False,False,False
 837,he/she is burning,sk-s-hi-hihst,,leyv,leyv,False,False,False,False,False,False,a,con,none,none,False,True,False,False,False,False
 837,he/she is burning,sk-s-hi-hihst,,leyv,leyv,True,False,False,False,False,False,a,con,h_cons,none,False,True,False,False,False,False
 837,he/she is burning,sk-s-hi-hihst,,leyv,leyv,False,False,False,False,False,False,a,con,none,none,False,True,False,False,False,True
@@ -2373,6 +2389,10 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 838,it is falling from an upright position,sk-s-hst,,leyv,leyv,True,False,False,False,False,False,a,con,h_cons,none,False,True,False,False,False,False
 838,it is falling from an upright position,sk-s-hst,,leyv,leyv,False,False,False,False,False,False,a,con,none,none,False,True,False,False,False,True
 838,it is falling from an upright position,sk-s-hst,,leyv,leyv,True,False,False,False,False,False,a,con,h_cons,none,False,True,False,False,False,True
+839,he/she is climbing around,be-at,,'l,'l,False,False,False,False,False,False,a,glottal,none,none,False,True,False,False,False,False
+839,he/she is climbing around,be-at,,'l,'l,True,False,False,False,False,False,a,glottal,h_cons,none,False,True,False,False,False,False
+839,he/she is climbing around,be-at-weak,,'lit,'lit,False,False,False,False,False,False,a,glottal,none,none,False,True,False,False,False,False
+839,he/she is climbing around,be-at-weak,,'lit,'lit,True,False,False,False,False,False,a,glottal,h_cons,none,False,True,False,False,False,False
 840,it is burning,become,,li,,False,False,False,False,False,False,a,con,none,none,False,True,False,False,False,False
 840,it is burning,become,,ali,,False,False,False,False,False,False,a,vowel_a,none,none,False,True,False,False,False,False
 840,it is burning,become,,,,False,False,False,False,False,False,a,vowel_a,none,ali,False,True,False,False,False,False
@@ -2515,6 +2535,10 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 857,he/she is falling from an elevated position,sk-s-hst,,lo,lo,True,False,False,False,False,False,a,con,h_cons,none,False,True,False,False,False,False
 857,he/she is falling from an elevated position,sk-s-hst,,lo,lo,False,False,False,False,False,False,a,con,none,none,False,True,False,False,False,True
 857,he/she is falling from an elevated position,sk-s-hst,,lo,lo,True,False,False,False,False,False,a,con,h_cons,none,False,True,False,False,False,True
+858,he/she is arriving,become,,'luh,'luh,False,False,False,False,False,False,a,glottal,none,none,False,True,False,False,False,False
+858,he/she is arriving,become,,'luh,'luh,True,False,False,False,False,False,a,glottal,h_cons,none,False,True,False,False,False,False
+858,he/she is arriving,become[inf4],,'luh,'luh,False,False,False,False,False,False,a,glottal,none,none,False,True,False,False,False,False
+858,he/she is arriving,become[inf4],,'luh,'luh,True,False,False,False,False,False,a,glottal,h_cons,none,False,True,False,False,False,False
 859,it’s lacking,become,,lulo,lulo,False,False,False,False,False,False,a,con,none,none,False,True,False,False,False,False
 859,it’s lacking,become,,lulo,lulo,True,False,False,False,False,False,a,con,h_cons,none,False,True,False,False,False,False
 859,it’s lacking,become,,lulo,lulo,False,False,False,False,False,False,a,con,none,none,False,True,False,False,False,True
@@ -2783,6 +2807,14 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 913,he/she is pleading,i-a-i,,nilat,nilat,True,False,False,False,False,False,a,con,h_cons,none,False,True,False,False,False,True
 913,he/she is pleading,i-a-i,long,nil,nil,True,False,False,False,False,False,a,con,h_cons,none,False,True,False,False,False,True
 913,he/she is pleading,i-a-i,long[no-a],nila,nila,True,False,False,False,False,False,a,con,h_cons,none,False,True,False,False,False,True
+914,he/she is burying him/her,cause[perf2],,'nihs,'nihs,False,False,False,False,False,False,a,glottal,none,none,False,True,False,False,False,True
+914,he/she is burying him/her,cause[perf2],iterative,'n,'n,False,False,False,False,False,False,a,glottal,none,none,False,True,False,False,False,True
+914,he/she is burying him/her,cause[perf2],iterative[no-i],'ni,'ni,False,False,False,False,False,False,a,glottal,none,none,False,True,False,False,False,True
+914,he/she is burying him/her,cause[perf2],,'nihs,'nihs,True,False,False,False,False,False,a,glottal,h_cons,none,False,True,False,False,False,True
+914,he/she is burying him/her,cause[perf2],iterative,'n,'n,True,False,False,False,False,False,a,glottal,h_cons,none,False,True,False,False,False,True
+914,he/she is burying him/her,cause[perf2],iterative[no-i],'ni,'ni,True,False,False,False,False,False,a,glottal,h_cons,none,False,True,False,False,False,True
+914,he/she is burying him/her,cause[pres2-perf2],,'nihsih,'nihsih,False,False,False,False,False,False,a,glottal,none,none,False,True,False,False,False,True
+914,he/she is burying him/her,cause[pres2-perf2],,'nihsih,'nihsih,True,False,False,False,False,False,a,glottal,h_cons,none,False,True,False,False,False,True
 918,he/she is hunting,be-at,,nohal,no'al,False,False,False,False,False,False,a,con,none,none,False,True,False,False,False,False
 918,he/she is hunting,be-at,,nohal,no'al,True,False,False,False,False,False,a,con,h_cons,none,False,True,False,False,False,False
 918,he/she is hunting,be-at-weak,,nohalit,no'alit,False,False,False,False,False,False,a,con,none,none,False,True,False,False,False,False
@@ -3281,15 +3313,19 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 1481,he/she is getting well,sk-s-hi-hihst,,atiw,atiw,False,False,False,False,False,False,b,vowel_a,none,none,False,False,False,False,False,False
 1481,he/she is getting well,sk-s-hi-hihst,,iw,iw,False,False,False,False,False,False,b,vowel_a,none,at,False,False,False,False,False,False
 1483,there’s an opening,stative,,tlanvt,,False,False,False,False,False,False,b,con,none,none,False,False,False,False,False,False
+1483,there’s an opening,stative,,'tlanvt,,False,False,False,False,False,False,b,glottal,none,none,False,False,False,False,False,False
 1483,there’s an opening,stative,,atlanvt,,False,False,False,False,False,False,b,vowel_a,none,none,False,False,False,False,False,False
 1483,there’s an opening,stative,,lanvt,,False,False,False,False,False,False,b,vowel_a,none,at,False,False,False,False,False,False
 1483,there’s an opening,stative,,tlanvt,,False,False,False,True,False,False,b,con,none,none,False,False,False,False,False,False
+1483,there’s an opening,stative,,'tlanvt,,False,False,False,True,False,False,b,glottal,none,none,False,False,False,False,False,False
 1483,there’s an opening,stative,,atlanvt,,False,False,False,True,False,False,b,vowel_a,none,none,False,False,False,False,False,False
 1483,there’s an opening,stative,,lanvt,,False,False,False,True,False,False,b,vowel_a,none,at,False,False,False,False,False,False
 1483,there’s an opening,stative,,tlanvt,,False,False,False,False,False,False,b,con,none,none,False,False,False,False,False,True
+1483,there’s an opening,stative,,'tlanvt,,False,False,False,False,False,False,b,glottal,none,none,False,False,False,False,False,True
 1483,there’s an opening,stative,,atlanvt,,False,False,False,False,False,False,b,vowel_a,none,none,False,False,False,False,False,True
 1483,there’s an opening,stative,,lanvt,,False,False,False,False,False,False,b,vowel_a,none,at,False,False,False,False,False,True
 1483,there’s an opening,stative,,tlanvt,,False,False,False,True,False,False,b,con,none,none,False,False,False,False,False,True
+1483,there’s an opening,stative,,'tlanvt,,False,False,False,True,False,False,b,glottal,none,none,False,False,False,False,False,True
 1483,there’s an opening,stative,,atlanvt,,False,False,False,True,False,False,b,vowel_a,none,none,False,False,False,False,False,True
 1483,there’s an opening,stative,,lanvt,,False,False,False,True,False,False,b,vowel_a,none,at,False,False,False,False,False,True
 1484,he/she has time,apl,,atlanvta't,atlanvta't,False,False,False,False,False,False,b,vowel_a,none,none,False,False,False,False,False,False
@@ -3325,7 +3361,9 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 1514,he/she is becoming warm,sk-s-hst,,kanawo,kanawo,False,False,False,False,False,False,b,con,none,none,False,False,False,True,False,False
 1514,he/she is becoming warm,sk-s-hst,,kanawo,kanawo,True,False,False,False,False,False,b,con,h_cons,none,False,False,False,True,False,False
 1516,he/she is possessive of him/her,stative-s,,keyu,keyu,False,False,False,False,False,False,b,con,none,none,False,False,False,False,False,True
+1516,he/she is possessive of him/her,stative-s,,'keyu,'keyu,False,False,False,False,False,False,b,glottal,none,none,False,False,False,False,False,True
 1516,he/she is possessive of him/her,stative,,keyuh,keyu',False,False,False,False,False,False,b,con,none,none,False,False,False,False,False,True
+1516,he/she is possessive of him/her,stative,,'keyuh,'keyu',False,False,False,False,False,False,b,glottal,none,none,False,False,False,False,False,True
 1523,he/she is late,become,,konhiyo,konhiyo,False,False,False,False,False,False,b,con,none,none,False,False,False,True,False,False
 1523,he/she is late,become,,konhiyo,konhiyo,True,False,False,False,False,False,b,con,h_cons,none,False,False,False,True,False,False
 1524,it’s decaying,sk-s-hi-hihst,,ko,ko,False,False,False,False,False,False,b,con,none,none,False,False,False,True,False,False
@@ -3335,7 +3373,9 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 1524,it’s decaying,sk-s-hst,,ko,ko,False,False,False,False,False,False,b,con,none,none,False,False,False,True,False,False
 1524,it’s decaying,sk-s-hst,,ko,ko,True,False,False,False,False,False,b,con,h_cons,none,False,False,False,True,False,False
 1530,he/she has an object,stative-h,,,,False,False,False,False,False,False,b,con,none,none,False,False,False,True,False,False
+1530,he/she has an object,stative-h,,',,False,False,False,False,False,False,b,glottal,none,none,False,False,False,True,False,False
 1530,he/she has an object,stative-h,,,,True,False,False,False,False,False,b,con,h_cons,none,False,False,False,True,False,False
+1530,he/she has an object,stative-h,,',,True,False,False,False,False,False,b,glottal,h_cons,none,False,False,False,True,False,False
 1530,he/she has an object,stative-h,,,,True,False,False,False,False,False,b,aspirated,h_cons,none,False,False,False,True,False,False
 1530,he/she has an object,stative-h,,,,True,False,False,False,False,False,b,s_stem,h_cons,none,False,False,False,True,False,False
 1530,he/she has an object,stative,,h,h,False,False,False,False,False,False,b,con,none,none,False,False,False,True,False,False
@@ -3359,12 +3399,16 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 1536,he/she is lonesome,apl[imp2],,hihsohtan,hihsohtan,False,False,False,False,False,False,b,con,none,none,False,False,False,True,False,False
 1536,he/she is lonesome,apl[imp2],,hihsohtan,hihsohtan,True,False,False,False,False,False,b,con,h_cons,none,False,False,False,True,False,False
 1537,it’s lonesome,stative,,hihsoht,,False,False,False,False,False,False,b,con,none,none,False,False,False,False,False,False
+1537,it’s lonesome,stative,,'hihsoht,,False,False,False,False,False,False,b,glottal,none,none,False,False,False,False,False,False
 1537,it’s lonesome,stative,,ahihsoht,,False,False,False,False,False,False,b,vowel_a,none,none,False,False,False,False,False,False
 1537,it’s lonesome,stative,,hihsoht,,False,False,False,True,False,False,b,con,none,none,False,False,False,False,False,False
+1537,it’s lonesome,stative,,'hihsoht,,False,False,False,True,False,False,b,glottal,none,none,False,False,False,False,False,False
 1537,it’s lonesome,stative,,ahihsoht,,False,False,False,True,False,False,b,vowel_a,none,none,False,False,False,False,False,False
 1537,it’s lonesome,stative,,hihsoht,,False,False,False,False,False,False,b,con,none,none,False,False,False,False,False,True
+1537,it’s lonesome,stative,,'hihsoht,,False,False,False,False,False,False,b,glottal,none,none,False,False,False,False,False,True
 1537,it’s lonesome,stative,,ahihsoht,,False,False,False,False,False,False,b,vowel_a,none,none,False,False,False,False,False,True
 1537,it’s lonesome,stative,,hihsoht,,False,False,False,True,False,False,b,con,none,none,False,False,False,False,False,True
+1537,it’s lonesome,stative,,'hihsoht,,False,False,False,True,False,False,b,glottal,none,none,False,False,False,False,False,True
 1537,it’s lonesome,stative,,ahihsoht,,False,False,False,True,False,False,b,vowel_a,none,none,False,False,False,False,False,True
 1544,he/she is becoming angry,become,,nhalv,nhalv,True,False,False,False,False,False,b,con,h_cons,none,False,False,False,False,False,False
 1544,he/she is becoming angry,become,,nhalv,nhalv,True,False,False,False,False,False,b,aspirated,h_cons,none,False,False,False,False,False,False
@@ -3398,15 +3442,19 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 1563,he/she is looking for it,oh-al,,y,y,False,False,False,False,False,False,b,con,none,none,False,False,False,True,False,False
 1563,he/she is looking for it,oh-al,,y,y,True,False,False,False,False,False,b,con,h_cons,none,False,False,False,True,False,False
 1569,it is cold,stative,,yhvtl,,False,False,False,False,False,False,b,con,none,none,False,False,False,False,False,False
+1569,it is cold,stative,,'yhvtl,,False,False,False,False,False,False,b,glottal,none,none,False,False,False,False,False,False
 1569,it is cold,stative,,ayhvtl,,False,False,False,False,False,False,b,vowel_a,none,none,False,False,False,False,False,False
 1569,it is cold,stative,,yhvtl,,False,False,False,False,False,False,b,aspirated,none,none,False,False,False,False,False,False
 1569,it is cold,stative,,yhvtl,,False,False,False,True,False,False,b,con,none,none,False,False,False,False,False,False
+1569,it is cold,stative,,'yhvtl,,False,False,False,True,False,False,b,glottal,none,none,False,False,False,False,False,False
 1569,it is cold,stative,,ayhvtl,,False,False,False,True,False,False,b,vowel_a,none,none,False,False,False,False,False,False
 1569,it is cold,stative,,yhvtl,,False,False,False,True,False,False,b,aspirated,none,none,False,False,False,False,False,False
 1569,it is cold,stative,,yhvtl,,False,False,False,False,False,False,b,con,none,none,False,False,False,False,False,True
+1569,it is cold,stative,,'yhvtl,,False,False,False,False,False,False,b,glottal,none,none,False,False,False,False,False,True
 1569,it is cold,stative,,ayhvtl,,False,False,False,False,False,False,b,vowel_a,none,none,False,False,False,False,False,True
 1569,it is cold,stative,,yhvtl,,False,False,False,False,False,False,b,aspirated,none,none,False,False,False,False,False,True
 1569,it is cold,stative,,yhvtl,,False,False,False,True,False,False,b,con,none,none,False,False,False,False,False,True
+1569,it is cold,stative,,'yhvtl,,False,False,False,True,False,False,b,glottal,none,none,False,False,False,False,False,True
 1569,it is cold,stative,,ayhvtl,,False,False,False,True,False,False,b,vowel_a,none,none,False,False,False,False,False,True
 1569,it is cold,stative,,yhvtl,,False,False,False,True,False,False,b,aspirated,none,none,False,False,False,False,False,True
 1572,he/she is getting drunk,e-aka,,yhvhst,yhvhst,True,False,False,False,False,False,b,con,h_cons,none,False,False,False,False,False,False
@@ -3452,15 +3500,19 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 1613,he/she is wearing a ring,stative,,yehsuhsthk,yehsuhsthk,False,False,False,False,False,False,b,vowel_a,none,ali,False,False,False,False,False,False
 1613,he/she is wearing a ring,stative,,iyehsuhsthk,yehsuhsthk,False,False,False,False,False,False,b,vowel_a,none,al_ali,False,False,False,False,False,False
 1614,it’s cloudy,stative,,lokil,,False,False,False,False,False,False,b,con,none,none,False,False,False,False,False,False
+1614,it’s cloudy,stative,,'lokil,,False,False,False,False,False,False,b,glottal,none,none,False,False,False,False,False,False
 1614,it’s cloudy,stative,,alokil,,False,False,False,False,False,False,b,vowel_a,none,none,False,False,False,False,False,False
 1614,it’s cloudy,stative,,okil,,False,False,False,False,False,False,b,vowel_a,none,al_ali,False,False,False,False,False,False
 1614,it’s cloudy,stative,,lokil,,False,False,False,True,False,False,b,con,none,none,False,False,False,False,False,False
+1614,it’s cloudy,stative,,'lokil,,False,False,False,True,False,False,b,glottal,none,none,False,False,False,False,False,False
 1614,it’s cloudy,stative,,alokil,,False,False,False,True,False,False,b,vowel_a,none,none,False,False,False,False,False,False
 1614,it’s cloudy,stative,,okil,,False,False,False,True,False,False,b,vowel_a,none,al_ali,False,False,False,False,False,False
 1614,it’s cloudy,stative,,lokil,,False,False,False,False,False,False,b,con,none,none,False,False,False,False,False,True
+1614,it’s cloudy,stative,,'lokil,,False,False,False,False,False,False,b,glottal,none,none,False,False,False,False,False,True
 1614,it’s cloudy,stative,,alokil,,False,False,False,False,False,False,b,vowel_a,none,none,False,False,False,False,False,True
 1614,it’s cloudy,stative,,okil,,False,False,False,False,False,False,b,vowel_a,none,al_ali,False,False,False,False,False,True
 1614,it’s cloudy,stative,,lokil,,False,False,False,True,False,False,b,con,none,none,False,False,False,False,False,True
+1614,it’s cloudy,stative,,'lokil,,False,False,False,True,False,False,b,glottal,none,none,False,False,False,False,False,True
 1614,it’s cloudy,stative,,alokil,,False,False,False,True,False,False,b,vowel_a,none,none,False,False,False,False,False,True
 1614,it’s cloudy,stative,,okil,,False,False,False,True,False,False,b,vowel_a,none,al_ali,False,False,False,False,False,True
 1616,it’s happening to him,apl,,alhstanh,alhstanh,False,False,False,False,False,False,b,vowel_a,none,none,False,False,False,False,False,False
@@ -3533,12 +3585,14 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 1754,he/she is sending on object,i-a-i,,t,t,False,False,True,False,False,False,a,con,none,none,False,False,False,False,False,True
 1754,he/she is sending on object,i-a-i,long[no-a],,,False,False,True,False,False,False,a,con,none,none,False,False,False,False,False,True
 1761,he/she is sending it,hvsk-nh,,,,False,False,True,False,False,False,a,con,none,none,False,False,False,False,False,False
+1761,he/she is sending it,hvsk-nh,,,,False,False,True,False,False,False,a,glottal,none,none,False,False,False,False,False,False
 1761,he/she is sending it,hvsk-nh,,,,False,False,True,False,False,False,a,aspirated,none,none,False,False,False,False,False,False
 1761,he/she is sending it,hvsk-nh,,,,False,False,True,False,False,False,a,s_stem,none,none,False,False,False,False,False,False
 1761,he/she is sending it,hvsk-nh,,,,False,False,True,False,False,False,a,con,none,none,False,False,False,False,False,True
 1761,he/she is sending it,hvsk-nh,,,,False,False,True,False,False,False,a,aspirated,none,none,False,False,False,False,False,True
 1761,he/she is sending it,hvsk-nh,,,,False,False,True,False,False,False,a,s_stem,none,none,False,False,False,False,False,True
 1761,he/she is sending it,hvsk-nh[inf2],,,,False,False,True,False,False,False,a,con,none,none,False,False,False,False,False,False
+1761,he/she is sending it,hvsk-nh[inf2],,,,False,False,True,False,False,False,a,glottal,none,none,False,False,False,False,False,False
 1761,he/she is sending it,hvsk-nh[inf2],,,,False,False,True,False,False,False,a,aspirated,none,none,False,False,False,False,False,False
 1761,he/she is sending it,hvsk-nh[inf2],,,,False,False,True,False,False,False,a,s_stem,none,none,False,False,False,False,False,False
 1761,he/she is sending it,hvsk-nh[inf2],,,,False,False,True,False,False,False,a,con,none,none,False,False,False,False,False,True

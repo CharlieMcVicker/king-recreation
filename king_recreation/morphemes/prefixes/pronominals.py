@@ -9,6 +9,7 @@ from king_recreation.phonology_data import VOWEL_SET
 
 class StemType(Enum):
     CONSONANT = "con"
+    GLOTTAL = "glottal"
     VOWEL_A = "vowel_a"
     VOWEL_E = "vowel_e"
     VOWEL_O = "vowel_o"
@@ -25,9 +26,11 @@ class StemType(Enum):
             # begins with consonant sequence then s
             return re.match("^[^aeiouvhs]+h", stem)
         elif self == StemType.CONSONANT:
-            return re.match("^[^aeiouvs]", stem)
+            return re.match("^[^aeiouvs']", stem)
         elif self == StemType.S_STEM:
             return stem.startswith("hs")
+        elif self == StemType.GLOTTAL:
+            return stem.startswith("'")
         elif self == StemType.VOWEL_A:
             return stem.startswith("a")
         elif self == StemType.VOWEL_E:
@@ -52,6 +55,7 @@ class StemModification(Enum):
     NONE = "none"
     A_REPLACE = "a_replace"
     V_REPLACE = "v_replace"
+    GLOTTAL_DROP = "glottal_drop"
     METATHESIS_H_CONS = "metathesis_h_cons"
     METATHESIS_VOWEL = "metathesis_vowel"
 
@@ -205,6 +209,7 @@ class ConfiguredPrefix:
         if self.stem_modification in [
             StemModification.A_REPLACE,
             StemModification.V_REPLACE,
+            StemModification.GLOTTAL_DROP,
         ]:
             # drop first letter
             return self.form + "->" + stem
@@ -247,6 +252,8 @@ class ConfiguredPrefix:
         # Reverse Stem Transformations
         if self.stem_modification == StemModification.A_REPLACE:
             stem = "a" + remainder
+        elif self.stem_modification == StemModification.GLOTTAL_DROP:
+            stem = "'" + remainder
         elif self.stem_modification == StemModification.V_REPLACE:
             stem = "v" + remainder
 
@@ -280,16 +287,21 @@ class PrefixForms:
     vowel_overrides: Dict[str, ConfiguredPrefix] = field(default_factory=dict)
     aspirated: Optional[ConfiguredPrefix] = None
     s: Optional[ConfiguredPrefix] = None
+    glottal: Optional[ConfiguredPrefix] = None
 
     def select(self, stem: StemType) -> ConfiguredPrefix:
         if stem == StemType.ASPIRATED:
             return self.aspirated if self.aspirated is not None else self.consonant
         elif stem == StemType.S_STEM:
             return self.s if self.s is not None else self.consonant
+        elif stem == StemType.GLOTTAL:
+            return self.glottal if self.glottal is not None else self.consonant
         elif stem == StemType.CONSONANT:
             return self.consonant
 
         # vowel stuff
+        if not "_" in stem.value:
+            print("DEBUG", stem.value)
         vowel = stem.value.split("_")[1]
 
         if vowel in self.vowel_overrides:
@@ -303,7 +315,6 @@ def _get_prefix_details(
 ) -> Tuple[str, StemModification]:
     s_type = config.stem_type
     meta = config.metathesis_strategy
-    is_con = s_type in [StemType.CONSONANT, StemType.ASPIRATED, StemType.S_STEM]
 
     if meta == MetathesisStrategy.H_CONS:
         if set_name == "3rd Set A" and config.use_ka_variant:
@@ -341,6 +352,9 @@ def _get_prefix_details(
     if set_name == "1pl Set B":
         return PrefixForms(
             consonant=(ConfiguredPrefix("oki")),
+            glottal=ConfiguredPrefix(
+                "oki", stem_modification=StemModification.GLOTTAL_DROP
+            ),
             vowel=ConfiguredPrefix("og"),
         )
 
@@ -360,7 +374,10 @@ def _get_prefix_details(
 
     if set_name == "2pl Set B":
         return PrefixForms(
-            consonant=(ConfiguredPrefix("itsi")),
+            consonant=ConfiguredPrefix("itsi"),
+            glottal=ConfiguredPrefix(
+                "itsi", stem_modification=StemModification.GLOTTAL_DROP
+            ),
             vowel=ConfiguredPrefix("its"),
         )
 
@@ -368,6 +385,9 @@ def _get_prefix_details(
         return PrefixForms(
             consonant=(
                 ConfiguredPrefix("uwa") if config.long_start else ConfiguredPrefix("u")
+            ),
+            glottal=ConfiguredPrefix(
+                "u", stem_modification=StemModification.GLOTTAL_DROP
             ),
             vowel=ConfiguredPrefix("uw"),
             vowel_overrides={
@@ -383,6 +403,9 @@ def _get_prefix_details(
     if set_name == "3pl Set B":
         return PrefixForms(
             consonant=ConfiguredPrefix("uni"),
+            glottal=ConfiguredPrefix(
+                "uni", stem_modification=StemModification.GLOTTAL_DROP
+            ),
             vowel=ConfiguredPrefix("un"),
         )
 
@@ -394,6 +417,9 @@ def _get_prefix_details(
     if set_name == "1pl Set A":
         return PrefixForms(
             consonant=ConfiguredPrefix("otsi"),
+            glottal=ConfiguredPrefix(
+                "otsi", stem_modification=StemModification.GLOTTAL_DROP
+            ),
             vowel=ConfiguredPrefix("ots"),
         )
 
@@ -405,6 +431,9 @@ def _get_prefix_details(
     if set_name == "2pl Set A":
         return PrefixForms(
             consonant=ConfiguredPrefix("itsi"),
+            glottal=ConfiguredPrefix(
+                "itsi", stem_modification=StemModification.GLOTTAL_DROP
+            ),
             vowel=ConfiguredPrefix("its"),
         )
 
@@ -419,12 +448,15 @@ def _get_prefix_details(
         return PrefixForms(
             consonant=ConfiguredPrefix("a"),
             vowel=ConfiguredPrefix(""),
-            vowel_overrides={"a": ConfiguredPrefix("a", StemModification.A_REPLACE)}
+            vowel_overrides={"a": ConfiguredPrefix("a", StemModification.A_REPLACE)},
         )
 
     if set_name == "3pl Set A":
         return PrefixForms(
             consonant=ConfiguredPrefix("ani"),
+            glottal=ConfiguredPrefix(
+                "ani", stem_modification=StemModification.GLOTTAL_DROP
+            ),
             vowel=ConfiguredPrefix("an"),
         )
 
@@ -435,6 +467,9 @@ def _get_prefix_details(
                 if config.long_start
                 else ConfiguredPrefix("tsi")
             ),
+            glottal=ConfiguredPrefix(
+                "tsi", stem_modification=StemModification.GLOTTAL_DROP
+            ),
             vowel=ConfiguredPrefix("tsiy"),
         )
 
@@ -444,6 +479,9 @@ def _get_prefix_details(
                 ConfiguredPrefix("hiya")
                 if config.long_start
                 else ConfiguredPrefix("hi")
+            ),
+            glottal=ConfiguredPrefix(
+                "hi", stem_modification=StemModification.GLOTTAL_DROP
             ),
             vowel=ConfiguredPrefix("hiy"),
         )

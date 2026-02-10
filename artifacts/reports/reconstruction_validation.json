@@ -1,5 +1,5 @@
 {
-    "summary": "1841/3581",
+    "summary": "1872/3635",
     "failures": [
         {
             "definition": "he/she is bouncing it",
@@ -1773,6 +1773,15 @@
             "corpus_id": 119
         },
         {
+            "definition": "he/she is picking it up",
+            "failed_forms": [
+                "perfective: expected 'ukihs', got ['uihs']",
+                "infinitive: expected 'ukihst', got ['uihst']"
+            ],
+            "class": "rev-gi",
+            "corpus_id": 128
+        },
+        {
             "definition": "he/she is in agony",
             "failed_forms": [
                 "imperative: expected 'hikilhiyoki', got ['hikiliyoki']"
@@ -1947,6 +1956,16 @@
             "failed_forms": [
                 "imperative: expected 'hiluka', got ['hika']",
                 "infinitive: expected 'uhihst', got ['uhst']"
+            ],
+            "class": "hih-lh",
+            "corpus_id": 161
+        },
+        {
+            "definition": "he/she is killing him/her",
+            "failed_forms": [
+                "perfective: expected 'ulh', got ['uh']",
+                "imperative: expected 'hiluka', got ['hika']",
+                "infinitive: expected 'uhihst', got ['ust']"
             ],
             "class": "hih-lh",
             "corpus_id": 161
@@ -2786,6 +2805,24 @@
             ],
             "class": "go[pres2]",
             "corpus_id": 198
+        },
+        {
+            "definition": "he/she is setting it down",
+            "failed_forms": [
+                "perfective: expected 'unh', got ['uh']",
+                "infinitive: expected 'uht', got ['ut']"
+            ],
+            "class": "hvsk-nh",
+            "corpus_id": 206
+        },
+        {
+            "definition": "he/she is setting it down",
+            "failed_forms": [
+                "perfective: expected 'unh', got ['uh']",
+                "infinitive: expected 'uht', got ['ut']"
+            ],
+            "class": "hvsk-nh[inf2]",
+            "corpus_id": 206
         },
         {
             "definition": "he/she is finding him/her",
@@ -9802,13 +9839,36 @@
             "corpus_id": 833
         },
         {
-            "definition": "he/she is burning",
+            "definition": "he/she is climbing it",
             "failed_forms": [
-                "present: expected 'kaleyvhsk', got ['khalyvhsk']",
-                "imperfective: expected 'kaleyvhsk', got ['khalyvhsk']"
+                "present: expected 'ka'lek', got [\"kha'ek\"]",
+                "imperfective: expected 'ka'lek', got [\"kha'ek\"]"
             ],
-            "class": "sk-s-hi-hihst",
-            "corpus_id": 837
+            "class": "go",
+            "corpus_id": 834
+        },
+        {
+            "definition": "he/she is climbing it",
+            "failed_forms": [
+                "imperfective: expected 'ka'lek', got [\"ka'lekek\"]",
+                "perfective: expected 'ulvhs', got ['ulekvhs']",
+                "imperative: expected 'hi'luka', got [\"hi'lekuka\"]",
+                "infinitive: expected 'ulvhst', got ['ulekvhst']"
+            ],
+            "class": "go[pres2]",
+            "corpus_id": 834
+        },
+        {
+            "definition": "he/she is climbing it",
+            "failed_forms": [
+                "present: expected 'ka'lek', got [\"kha'ek\"]",
+                "imperfective: expected 'ka'lek', got [\"kha'ekek\"]",
+                "perfective: expected 'ulvhs', got ['ulekvhs']",
+                "imperative: expected 'hi'luka', got [\"hi'lekuka\"]",
+                "infinitive: expected 'ulvhst', got ['ulekvhst']"
+            ],
+            "class": "go[pres2]",
+            "corpus_id": 834
         },
         {
             "definition": "he/she is burning",
@@ -9822,6 +9882,15 @@
         {
             "definition": "he/she is burning",
             "failed_forms": [
+                "present: expected 'kaleyvhsk', got ['khalyvhsk']",
+                "imperfective: expected 'kaleyvhsk', got ['khalyvhsk']"
+            ],
+            "class": "sk-s-hi-hihst",
+            "corpus_id": 837
+        },
+        {
+            "definition": "he/she is burning",
+            "failed_forms": [
                 "infinitive: expected 'uleyvhihst', got ['uleyvhst']"
             ],
             "class": "sk-s-hst[imp2]",
@@ -9988,6 +10057,24 @@
             ],
             "class": "sk-s-hst",
             "corpus_id": 838
+        },
+        {
+            "definition": "he/she is climbing around",
+            "failed_forms": [
+                "present: expected 'ka'litoh', got [\"kha'itoh\"]",
+                "imperfective: expected 'ka'litoh', got [\"kha'itoh\"]"
+            ],
+            "class": "be-at",
+            "corpus_id": 839
+        },
+        {
+            "definition": "he/she is climbing around",
+            "failed_forms": [
+                "present: expected 'ka'litoh', got [\"kha'itoh\"]",
+                "imperfective: expected 'ka'litoh', got [\"kha'itoh\"]"
+            ],
+            "class": "be-at-weak",
+            "corpus_id": 839
         },
         {
             "definition": "it is burning",
@@ -10895,6 +10982,33 @@
             ],
             "class": "sk-s-hst",
             "corpus_id": 857
+        },
+        {
+            "definition": "he/she is arriving",
+            "failed_forms": [
+                "infinitive: expected 'uluhihst', got ['uluhhst']"
+            ],
+            "class": "become",
+            "corpus_id": 858
+        },
+        {
+            "definition": "he/she is arriving",
+            "failed_forms": [
+                "present: expected 'ka'luhk', got [\"kha'uhk\"]",
+                "imperfective: expected 'ka'luhk', got [\"kha'uhk\"]",
+                "infinitive: expected 'uluhihst', got ['uluhhst']"
+            ],
+            "class": "become",
+            "corpus_id": 858
+        },
+        {
+            "definition": "he/she is arriving",
+            "failed_forms": [
+                "present: expected 'ka'luhk', got [\"kha'uhk\"]",
+                "imperfective: expected 'ka'luhk', got [\"kha'uhk\"]"
+            ],
+            "class": "become[inf4]",
+            "corpus_id": 858
         },
         {
             "definition": "it\u2019s lacking",
@@ -12315,6 +12429,56 @@
             ],
             "class": "i-a-i",
             "corpus_id": 913
+        },
+        {
+            "definition": "he/she is burying him/her",
+            "failed_forms": [
+                "present: expected 'ka'nihsih', got [\"kha'ihsih\"]",
+                "imperfective: expected 'ka'nihsihsk', got [\"kha'ihsihsk\"]"
+            ],
+            "class": "cause[perf2]",
+            "corpus_id": 914
+        },
+        {
+            "definition": "he/she is burying him/her",
+            "failed_forms": [
+                "present: expected 'ka'nihsih', got [\"kha'ihsih\"]",
+                "imperfective: expected 'ka'nihsihsk', got [\"kha'ihsihsk\"]"
+            ],
+            "class": "cause[perf2]",
+            "corpus_id": 914
+        },
+        {
+            "definition": "he/she is burying him/her",
+            "failed_forms": [
+                "present: expected 'ka'nihsih', got [\"kha'ihsih\"]",
+                "imperfective: expected 'ka'nihsihsk', got [\"kha'ihsihsk\"]"
+            ],
+            "class": "cause[perf2]",
+            "corpus_id": 914
+        },
+        {
+            "definition": "he/she is burying him/her",
+            "failed_forms": [
+                "imperfective: expected 'ka'nihsihsk', got [\"ka'nihsihihsk\"]",
+                "perfective: expected 'unihsanh', got ['unihsihanh']",
+                "imperative: expected 'hinihsa', got ['hinihsiha']",
+                "infinitive: expected 'unihsoht', got ['unihsihoht']"
+            ],
+            "class": "cause[pres2-perf2]",
+            "corpus_id": 914
+        },
+        {
+            "definition": "he/she is burying him/her",
+            "failed_forms": [
+                "present: expected 'ka'nihsih', got [\"kha'ihsih\"]",
+                "imperfective: expected 'ka'nihsihsk', got [\"kha'ihsihihsk\"]",
+                "perfective: expected 'unihsanh', got ['unihsihanh']",
+                "imperative: expected 'hinihsa', got ['hinihsiha']",
+                "infinitive: expected 'unihsoht', got ['unihsihoht']"
+            ],
+            "class": "cause[pres2-perf2]",
+            "corpus_id": 914
         },
         {
             "definition": "he/she is hunting",
@@ -14831,6 +14995,25 @@
         {
             "definition": "he/she is possessive of him/her",
             "failed_forms": [
+                "infinitive: expected 'ukeyht', got ['ukeyuht']"
+            ],
+            "class": "stative-s",
+            "corpus_id": 1516
+        },
+        {
+            "definition": "he/she is possessive of him/her",
+            "failed_forms": [
+                "imperfective: expected 'ukeyuhs', got ['ukeyuh']",
+                "perfective: expected 'ukeyuhs', got ['ukeyuh']",
+                "imperative: expected 'hikeyuhsehsti', got [\"hikeyu'ehsti\"]",
+                "infinitive: expected 'ukeyht', got ['ukeyuhht']"
+            ],
+            "class": "stative",
+            "corpus_id": 1516
+        },
+        {
+            "definition": "he/she is possessive of him/her",
+            "failed_forms": [
                 "imperfective: expected 'ukeyuhs', got ['ukeyuh']",
                 "perfective: expected 'ukeyuhs', got ['ukeyuh']",
                 "imperative: expected 'hikeyuhsehsti', got [\"hikeyu'ehsti\"]",
@@ -14897,8 +15080,26 @@
         {
             "definition": "he/she has an object",
             "failed_forms": [
+                "present_1sg: expected 'akih', got [\"aki'h\"]",
+                "imperative: expected 'tsahehsti', got [\"tsa'hehsti\"]"
+            ],
+            "class": "stative-h",
+            "corpus_id": 1530
+        },
+        {
+            "definition": "he/she has an object",
+            "failed_forms": [
                 "present_1sg: expected 'akih', got ['akhi']",
                 "imperative: expected 'tsahehsti', got ['tshaehsti']"
+            ],
+            "class": "stative-h",
+            "corpus_id": 1530
+        },
+        {
+            "definition": "he/she has an object",
+            "failed_forms": [
+                "present_1sg: expected 'akih', got [\"akhi'h\"]",
+                "imperative: expected 'tsahehsti', got [\"tsha'hehsti\"]"
             ],
             "class": "stative-h",
             "corpus_id": 1530
@@ -15733,6 +15934,24 @@
             ],
             "class": "apl[imp2]",
             "corpus_id": 1741
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "perfective: expected 'wunh', got ['wiuh', 'wuh']",
+                "infinitive: expected 'wuht', got ['wiut', 'wut']"
+            ],
+            "class": "hvsk-nh",
+            "corpus_id": 1761
+        },
+        {
+            "definition": "he/she is sending it",
+            "failed_forms": [
+                "perfective: expected 'wunh', got ['wiuh', 'wuh']",
+                "infinitive: expected 'wuht', got ['wiut', 'wut']"
+            ],
+            "class": "hvsk-nh[inf2]",
+            "corpus_id": 1761
         },
         {
             "definition": "he/she is sending it",
