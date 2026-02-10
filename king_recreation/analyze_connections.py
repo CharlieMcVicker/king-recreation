@@ -2,6 +2,7 @@ import json
 import os
 from typing import Dict, List, Set, Tuple
 
+from king_recreation.morphemes.prefixes.pronominals import StemType
 from king_recreation.paths import (
     derivational_connections_path,
     open_forms_report_path,
@@ -65,7 +66,11 @@ def analyze_connections(
             if not base_stems:
                 continue
 
+            # TODO don't use desegment here
+            # get proper set of segments joined
             for stem in [desegment(s) for s in base_stems]:
+                if sample_verb.config.pron.stem_type == StemType.LONG_START:
+                    stem = ":" + stem
                 if stem not in open_forms_map:
                     open_forms_map[stem] = []
 
