@@ -98,17 +98,17 @@ def get_stem_tones(
     return stem_tones
 
 
-def main():
-    verbs, cnd_corpus, corpus_id_to_entries = load_data()
+FORMS = [
+    "present",
+    "present_1sg",
+    "imperfective",
+    "perfective",
+    "imperative",
+    "infinitive",
+]
 
-    forms_to_analyze = [
-        "present",
-        "present_1sg",
-        "imperfective",
-        "perfective",
-        "imperative",
-        "infinitive",
-    ]
+
+def write_elligible_verbs(verbs, cnd_corpus, corpus_id_to_entries):
 
     eligible_count = 0
 
@@ -122,11 +122,18 @@ def main():
         eligible_count += 1
         stem_tones = {
             fn: get_stem_tones(verb, fn, cnd_corpus, corpus_id_to_entries)
-            for fn in forms_to_analyze
+            for fn in FORMS
         }
 
         rows.append(
-            {"corpus_id": verb.corpus_id, "definition": verb.definition, **stem_tones}
+            (
+                verb,
+                {
+                    "corpus_id": verb.corpus_id,
+                    "definition": verb.definition,
+                    **stem_tones,
+                },
+            )
         )
 
     # Write all rows to disk as a new - stems_with_tone_corpus.csv
@@ -134,12 +141,30 @@ def main():
         with open(stems_with_tone_corpus_path, "w", newline="") as f:
             writer = DictWriter(f, fieldnames=rows[0].keys())
             writer.writeheader()
-            writer.writerows(rows)
+            writer.writerows([row for _verb, row in rows])
         print(f"Saved {len(rows)} rows to {stems_with_tone_corpus_path}")
 
-    # # Access each form and its segmented version
-    # for form_name in forms_to_analyze:
+    return rows
 
+
+def predict_underlying_form(verb, forms, form_name):
+    return []
+
+
+def main():
+    verbs, cnd_corpus, corpus_id_to_entries = load_data()
+
+    verbs_with_forms = write_elligible_verbs(verbs, cnd_corpus, corpus_id_to_entries)
+
+    forms_to_analyze = ["present", "imperfective", "perfective"]
+
+    for verb, forms in verbs_with_forms:
+        opts_per_form = {}
+        for fn in forms_to_analyze:
+            underlying_opts = predict_underlying_form(verb, forms, fn)
+            opts_per_form[fn] = underlying_opts
+
+        # find common derivations
     #     # PLAN:
     #     # window scan along, looking for high tones (3, 32, 33)
     #     # check for preceeding 23-, spread ability, etc. as we scan
