@@ -81,6 +81,33 @@ class TestToneMVP(unittest.TestCase):
             log=True,
         )
 
+    def test_spreading_blocked_short(self):
+        self._test_case(
+            test_str="nu33the22yo32l",
+            expected=[
+                [
+                    H1Config(
+                        historically_long=True,
+                        glottal_position=GlottalPosition.POST_C,
+                        env=Environment.NO_SPREAD,
+                    ),
+                    H1Config(
+                        historically_long=True,
+                        glottal_position=GlottalPosition.PRE_C,
+                        env=Environment.NO_SPREAD,
+                    ),
+                ],
+                [
+                    H1Config(
+                        historically_long=False,
+                        glottal_position=GlottalPosition.PRE_C,
+                        env=Environment.NO_SPREAD,
+                    ),
+                ],
+            ],
+            log=True,
+        )
+
     def test_spreading_blocked_long(self):
         self._test_case(
             test_str="ga3'li22do33ha2",
