@@ -20,31 +20,29 @@ Tone orthography concepts are based on `king_recreation/check_tone_consistency.p
 
 - **SPREAD**: Spreading happens when there is no local high tone and the preceeding syllable is long.
 - **NO_SPREAD**: Spreading is blocked if there is a high tone two syllables before the current syllable.
-- **HIGH_TONE**: High tones are blocked if the preceeding syllable is already high.
+- **BLOCKED**: High tones are blocked if the preceeding syllable is already high.
 
 ### Inference Table
 
-```markdown
-| Historical sequence | Preceeding constraint | Surface Form     |
-| :------------------ | :-------------------- | ---------------- |
-| VVC'                | SPREAD                | 23-VV32          |
-| VVC'                | NO_SPREAD             | VV33             |
-| VVC'                | HIGH_TONE             | VV21             |
-| VC'                 | SPREAD                | 23-VV32          |
-| VC'                 | NO_SPREAD             | VV32             |
-| VC'                 | HIGH_TONE             | VV21             |
-| VV'                 | SPREAD                | VV33' or 23-VV3' |
-| VV'                 | NO_SPREAD             | VV33'            |
-| VV'                 | HIGH_TONE             | VV2'             |
-| V'                  | SPREAD                | 23-VV3'          |
-| V'                  | NO_SPREAD             | VV3'             |
-| V'                  | HIGH_TONE             | VV2'             |
-| VV'C                | SPREAD                | VV33             |
-| VV'C                | NO_SPREAD             | VV33             |
-| VV'C                | HIGH_TONE             | VV22             |
-| V'C                 | SPREAD                | 23-VV3           |
-| V'C                 | NO_SPREAD             | VV3              |
-| V'C                 | HIGH_TONE             | VV2              |
-```
+| Vowel Length | Glottal Class | Environment | Surface Form     |
+| :----------- | :------------ | :---------- | ---------------- |
+| Long         | PRE_C         | SPREAD      | 23-VV32          |
+| Long         | PRE_C         | NO_SPREAD   | VV33             |
+| Long         | PRE_C         | BLOCKED     | VV21             |
+| Short        | PRE_C         | SPREAD      | 23-VV32          |
+| Short        | PRE_C         | NO_SPREAD   | VV32             |
+| Short        | PRE_C         | BLOCKED     | VV21             |
+| Long         | NO_C          | SPREAD      | VV33' or 23-VV3' |
+| Long         | NO_C          | NO_SPREAD   | VV33'            |
+| Long         | NO_C          | BLOCKED     | VV2'             |
+| Short        | NO_C          | SPREAD      | 23-VV3'          |
+| Short        | NO_C          | NO_SPREAD   | VV3'             |
+| Short        | NO_C          | BLOCKED     | VV2'             |
+| Long         | POST_C        | SPREAD      | VV33             |
+| Long         | POST_C        | NO_SPREAD   | VV33             |
+| Long         | POST_C        | BLOCKED     | VV22             |
+| Short        | POST_C        | SPREAD      | 23-VV3           |
+| Short        | POST_C        | NO_SPREAD   | VV3              |
+| Short        | POST_C        | BLOCKED     | VV2              |
 
 for the h1 system, we will try to infer the complete underlying form (no tones, only glottal placement). we will test that this reconstructs the tones of the surface forms.

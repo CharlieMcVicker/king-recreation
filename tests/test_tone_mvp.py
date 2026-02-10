@@ -1,14 +1,72 @@
 import unittest
 
-from king_recreation.tone.analyze_tone_mvp import load_data
+from king_recreation.tone.analyze_tone_mvp import (
+    Environment,
+    GlottalPosition,
+    H1Config,
+    load_data,
+    predict_h1_for_form,
+)
 
 
 class TestToneMVP(unittest.TestCase):
     def setUp(self):
         self.verbs, self.cnd_corpus, self.corpus_id_to_entries = load_data()
 
-    def test_no_h1_no_h2(self):
-        pass
+    def _test_case(self, test_str, expected):
+        inferences = predict_h1_for_form(test_str)
+        self.assertEqual(len(inferences), 1)
+        ((v, inf),) = inferences
+        self.assertEqual(len(inf), len(expected))
+
+        for exp in expected:
+            self.assertTrue(exp in inf, str(inf))
+
+    def test_2_32(self):
+        self._test_case(
+            test_str="a2la32hs",
+            expected=[
+                H1Config(
+                    historically_long=False,
+                    glottal_position=GlottalPosition.PRE_C,
+                    env=Environment.NO_SPREAD,
+                ),
+            ],
+        )
+
+    def test_23_32(self):
+        self._test_case(
+            test_str="i23nv32hs",
+            expected=[
+                H1Config(
+                    historically_long=True,
+                    glottal_position=GlottalPosition.PRE_C,
+                    env=Environment.SPREAD,
+                ),
+                H1Config(
+                    historically_long=False,
+                    glottal_position=GlottalPosition.PRE_C,
+                    env=Environment.SPREAD,
+                ),
+            ],
+        )
+
+    def test_23_32(self):
+        self._test_case(
+            test_str="ga3'li22do21",
+            expected=[
+                H1Config(
+                    historically_long=True,
+                    glottal_position=GlottalPosition.PRE_C,
+                    env=Environment.SPREAD,
+                ),
+                H1Config(
+                    historically_long=False,
+                    glottal_position=GlottalPosition.PRE_C,
+                    env=Environment.SPREAD,
+                ),
+            ],
+        )
 
 
 if __name__ == "__main__":

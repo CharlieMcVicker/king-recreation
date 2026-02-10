@@ -46,6 +46,9 @@ class VowelTone(Enum):
         return self.value
 
 
+TONE_VALUE_TO_ENUM = {v.value: v for v in VowelTone}
+
+
 ACUTE = "\u0301"  # acute
 GRAVE = "\u0300"  # grave
 D_ACUTE = "\u030b"  # double acute
@@ -173,3 +176,7 @@ def apply_tone_to_segmentation(segmented: str, tone_seq: List[Vowel]) -> str:
         i += 1
 
     return "".join(output)
+
+
+def strip_morpheme_boundaries(s: str) -> str:
+    return s.replace("-", "")
