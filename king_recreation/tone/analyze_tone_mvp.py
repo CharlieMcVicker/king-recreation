@@ -166,17 +166,11 @@ def tone_sequence_from_corpus_form(s: str) -> List[Union[Consonant, Vowel]]:
             # Look ahead for tone digits or "?"
             tone_start = idx + 1
             tone_end = tone_start
-            while tone_end < len(s) and (s[tone_end].isdigit() or s[tone_end] == "'"):
+            while tone_end < len(s) and s[tone_end].isdigit():
                 tone_end += 1
 
             tone_str = s[tone_start:tone_end]
             tone_enum = TONE_VALUE_TO_ENUM.get(tone_str)
-            if not tone_enum:
-                # If "'" is present at the end, try to parse it as part of the sequence logic,
-                # but tone_enum itself doesn't contain it.
-                # However, the parser should probably just stop at tone digits.
-                # The user said "'" should be a Consonant object.
-                pass
 
             res.append(
                 Vowel(
@@ -281,7 +275,10 @@ H1_INFERENCES = {
     H1Config(False, GlottalPosition.POST_C, Environment.SPREAD): [
         [VowelTone.lh, VowelTone.h]
     ],
-    H1Config(False, GlottalPosition.POST_C, Environment.NO_SPREAD): [[VowelTone.h]],
+    H1Config(False, GlottalPosition.POST_C, Environment.NO_SPREAD): [
+        [VowelTone.h],
+        [VowelTone.h, Consonant("'", -1, -1)],
+    ],
     H1Config(False, GlottalPosition.POST_C, Environment.BLOCKED): [[VowelTone.l]],
 }
 
@@ -291,6 +288,7 @@ def get_possible_glottal_positions(
     tone: VowelTone,
     prev_tone: VowelTone = None,
     has_glottal: bool = False,
+    has_following_c: bool = False,
 ) -> List[H1Config]:
     """
     Search H1_INFERENCES for underlying configurations that could produce the observed tone.
@@ -307,6 +305,17 @@ def get_possible_glottal_positions(
             )
             if seq_has_glottal != has_glottal:
                 continue
+
+            # Additional filter for following consonant
+            if has_following_c:
+                if config.glottal_position == GlottalPosition.NO_C:
+                    continue
+            else:
+                if config.glottal_position in [
+                    GlottalPosition.PRE_C,
+                    GlottalPosition.POST_C,
+                ]:
+                    continue
 
             # Extract just the vowel tones from the sequence
             v_tones = [s for s in seq if isinstance(s, VowelTone)]
@@ -351,12 +360,29 @@ def predict_h1_for_form(form_str: str) -> List[tuple[Vowel, List[H1Config]]]:
                 if isinstance(next_seg, Consonant) and next_seg.value == "'":
                     has_glottal = True
 
+            has_following_c = False
+            # Check for any consonant following this vowel (possibly after a glottal stop)
+            for j in range(i + 1, len(tone_sequence)):
+                next_seg = tone_sequence[j]
+                if isinstance(next_seg, Consonant):
+                    if next_seg.value != "'":
+                        has_following_c = True
+                        break
+                elif isinstance(next_seg, Vowel):
+                    # Hit next vowel, no consonant in between (except maybe glottal)
+                    break
+
             # We only look for H1 if we see a candidate tone (H, HH, or HL)
             # or if a glottal stop is explicitly present.
-            if has_glottal or seg.tone in [VowelTone.hh, VowelTone.h, VowelTone.hl]:
+            if has_glottal or seg.tone in [
+                VowelTone.hh,
+                VowelTone.h,
+                VowelTone.hl,
+                VowelTone.lf,
+            ]:
                 env = Environment.from_state(local_high, prev_long)
                 possible_positions = get_possible_glottal_positions(
-                    env, seg.tone, prev_tone, has_glottal
+                    env, seg.tone, prev_tone, has_glottal, has_following_c
                 )
                 if possible_positions:
                     results.append((seg, possible_positions))
@@ -368,10 +394,12 @@ def predict_h1_for_form(form_str: str) -> List[tuple[Vowel, List[H1Config]]]:
             else:
                 local_high = local_high.advance()
 
-            if not seg.tone:
-                print("DEBUG", seg)
-            prev_long = len(seg.tone.value) == 2
-            prev_tone = seg.tone
+            if seg.tone:
+                prev_long = len(seg.tone.value) == 2
+                prev_tone = seg.tone
+            else:
+                prev_long = False
+                prev_tone = None
 
     return results
 

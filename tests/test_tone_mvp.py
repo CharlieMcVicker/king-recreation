@@ -13,8 +13,12 @@ class TestToneMVP(unittest.TestCase):
     def setUp(self):
         self.verbs, self.cnd_corpus, self.corpus_id_to_entries = load_data()
 
-    def _test_case(self, test_str, expected):
+    def _test_case(self, test_str, expected, log=False):
         inferences = predict_h1_for_form(test_str)
+        if log:
+            for v, infs in inferences:
+                for inf in infs:
+                    print(v, inf)
         self.assertEqual(len(inferences), 1)
         ((v, inf),) = inferences
         self.assertEqual(len(inf), len(expected))
@@ -51,21 +55,17 @@ class TestToneMVP(unittest.TestCase):
             ],
         )
 
-    def test_23_32(self):
+    def test_surface_glottal_post_c(self):
         self._test_case(
-            test_str="ga3'li22do21",
+            test_str="ga3'la",
             expected=[
                 H1Config(
-                    historically_long=True,
-                    glottal_position=GlottalPosition.PRE_C,
-                    env=Environment.SPREAD,
-                ),
-                H1Config(
                     historically_long=False,
-                    glottal_position=GlottalPosition.PRE_C,
-                    env=Environment.SPREAD,
+                    glottal_position=GlottalPosition.POST_C,
+                    env=Environment.NO_SPREAD,
                 ),
             ],
+            log=True,
         )
 
 
