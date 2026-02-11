@@ -756,15 +756,16 @@ def main():
 
             underlying_candidates = generate_underlying_forms(surface_stem)
             for uf in underlying_candidates:
-                output_rows.append(
-                    {
-                        "corpus_id": corpus_id,
-                        "definition": verb.definition,
-                        "form": fn,
-                        "surface_stem": surface_stem,
-                        "underlying_stem": str(uf),
-                    }
-                )
+                if check_prediction(str(uf), surface_stem):
+                    output_rows.append(
+                        {
+                            "corpus_id": corpus_id,
+                            "definition": verb.definition,
+                            "form": fn,
+                            "surface_stem": surface_stem,
+                            "underlying_stem": str(uf),
+                        }
+                    )
 
     if output_rows:
         with open(underlying_stems_path, "w", newline="") as f:
