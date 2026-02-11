@@ -5,6 +5,7 @@ from king_recreation.tone.analyze_tone_mvp import (
     GlottalPosition,
     H1Config,
     LexedForm,
+    Tonicity,
     check_prediction,
     generate_underlying_forms,
     predict_h1_for_form,
@@ -188,18 +189,28 @@ def test_infinitive_environment_override():
     test_str = "a21-ta"
 
     # CASE 1: Not infinitive -> No Spread -> No match for lf
-    results_normal = predict_h1_for_form(test_str, is_infinitive=False)
+    results_normal = predict_h1_for_form(test_str, tonicity=Tonicity.TONIC)
     assert (
         len(results_normal) == 0
     ), "Should not find H1 candidates for 'a21' (PRE_C) in NO_SPREAD env"
 
     # CASE 2: Infinitive -> Blocked -> Match for lf
-    results_inf = predict_h1_for_form(test_str, is_infinitive=True)
+    results_inf = predict_h1_for_form(test_str, tonicity=Tonicity.INFINITIVE)
     assert (
         len(results_inf) > 0
     ), "Should find H1 candidates for 'a21' (PRE_C) in infinitive (BLOCKED) env"
 
     # Validate specifically that we got BLOCKED environment configs
     for v, configs in results_inf:
+        for cfg in configs:
+            assert cfg.env == Environment.BLOCKED
+
+
+def test_atonic_environment():
+    # ATONIC should always be BLOCKED
+    test_str = "a21-ta"
+    results = predict_h1_for_form(test_str, tonicity=Tonicity.ATONIC)
+    assert len(results) > 0
+    for v, configs in results:
         for cfg in configs:
             assert cfg.env == Environment.BLOCKED
