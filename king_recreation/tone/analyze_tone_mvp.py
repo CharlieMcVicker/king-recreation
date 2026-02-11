@@ -432,100 +432,130 @@ def generate_underlying_forms(form_str: str) -> List[str]:
     prev_long = False
     prev_tone = None
 
-    choices = []
-    skip_next_glottal = False
+    # Each element is a list of possible strings for that 'segment'
+    # We will join them at the end.
+    # Choices are built step-by-step. Since POST_C glottals need to move
+    # past the next consonant, we'll use a path-based approach.
+
+    initial_path = (
+        [],
+        local_high,
+        prev_long,
+        prev_tone,
+        False,
+        False,
+    )  # (segments, lh, pl, pt, pending_post_c, skip_surface_glottal)
+    paths = [initial_path]
 
     for i, seg in enumerate(tone_sequence):
-        if skip_next_glottal:
-            skip_next_glottal = False
-            if isinstance(seg, Consonant) and seg.value == "'":
-                continue
+        new_paths = []
+        for segments, lh, pl, pt, pending_post_c, skip_surface_glottal in paths:
+            if isinstance(seg, Consonant):
+                if seg.value == "'":
+                    if skip_surface_glottal:
+                        # This surface glottal was already accounted for by the preceding vowel
+                        new_paths.append((segments, lh, pl, pt, pending_post_c, False))
+                    else:
+                        # Unaccounted glottal, keep it
+                        new_paths.append(
+                            (segments + ["'"], lh, pl, pt, pending_post_c, False)
+                        )
+                else:
+                    # Normal consonant
+                    s = seg.value
+                    if pending_post_c:
+                        s += "'"
+                    new_paths.append((segments + [s], lh, pl, pt, False, False))
+            elif isinstance(seg, Vowel):
+                # If we had a pending_post_c, it means it didn't find a C to attach to.
+                # Attach it to the PREVIOUS segment now.
+                current_segments = list(segments)
+                if pending_post_c:
+                    if current_segments:
+                        current_segments[-1] += "'"
+                    else:
+                        current_segments.append("'")
 
-        if isinstance(seg, Consonant):
-            if seg.value == "'":
-                # We skip surface glottals here and handle them in the Vowel branch
-                # but if we find one not following a vowel, we keep it?
-                # For now, just keep non-glottal consonants.
-                choices.append(["'"])
-            else:
-                choices.append([seg.value])
-        elif isinstance(seg, Vowel):
-            has_glottal = False
-            if i + 1 < len(tone_sequence):
-                next_seg = tone_sequence[i + 1]
-                if isinstance(next_seg, Consonant) and next_seg.value == "'":
-                    has_glottal = True
-                    skip_next_glottal = True
+                has_glottal = False
+                if i + 1 < len(tone_sequence):
+                    next_seg = tone_sequence[i + 1]
+                    if isinstance(next_seg, Consonant) and next_seg.value == "'":
+                        has_glottal = True
 
-            has_following_c = False
-            # Check for any consonant following this vowel (possibly after a glottal stop)
-            for j in range(i + 1, len(tone_sequence)):
-                next_seg = tone_sequence[j]
-                if isinstance(next_seg, Consonant):
-                    if next_seg.value != "'":
-                        has_following_c = True
+                has_following_c = False
+                for j in range(i + 1, len(tone_sequence)):
+                    next_seg = tone_sequence[j]
+                    if isinstance(next_seg, Consonant):
+                        if next_seg.value != "'":
+                            has_following_c = True
+                            break
+                    elif isinstance(next_seg, Vowel):
                         break
-                elif isinstance(next_seg, Vowel):
-                    break
 
-            configs = []
-            if has_glottal or (
-                seg.tone
-                and seg.tone
-                in [
-                    VowelTone.hh,
-                    VowelTone.h,
-                    VowelTone.hl,
-                    VowelTone.lf,
-                    VowelTone.lh,
-                ]
-            ):
-                env = Environment.from_state(local_high, prev_long)
-                configs = get_possible_glottal_positions(
-                    env, seg.tone, prev_tone, has_glottal, has_following_c
-                )
+                env = Environment.from_state(lh, pl)
+                configs = []
+                if has_glottal or (
+                    seg.tone
+                    and seg.tone
+                    in [
+                        VowelTone.hh,
+                        VowelTone.h,
+                        VowelTone.hl,
+                        VowelTone.lf,
+                        VowelTone.lh,
+                    ]
+                ):
+                    configs = get_possible_glottal_positions(
+                        env, seg.tone, pt, has_glottal, has_following_c
+                    )
 
-            h1_found = False
-            if configs:
-                # Branches for H1
-                branch = []
-                for cfg in configs:
-                    s = ""
-                    # POST_C: ' goes before vowel
-                    if cfg.glottal_position == GlottalPosition.POST_C:
-                        s += "'"
-                    # Doubling
-                    s += seg.quality * (2 if cfg.historically_long else 1)
-                    # PRE_C / NO_C: ' goes after vowel
-                    if cfg.glottal_position in [
-                        GlottalPosition.PRE_C,
-                        GlottalPosition.NO_C,
-                    ]:
-                        s += "'"
-                    branch.append(s)
-                choices.append(branch)
-                h1_found = True
-            else:
-                # Non-H1: Use surface length, no tone
-                is_long = seg.tone and len(seg.tone.value) == 2
-                choices.append([seg.quality * (2 if is_long else 1)])
+                if configs:
+                    for cfg in configs:
+                        s = seg.quality * (2 if cfg.historically_long else 1)
+                        new_pending = False
+                        if cfg.glottal_position in [
+                            GlottalPosition.PRE_C,
+                            GlottalPosition.NO_C,
+                        ]:
+                            s += "'"
+                        elif cfg.glottal_position == GlottalPosition.POST_C:
+                            new_pending = True
 
-            # Update flags
-            if h1_found:
-                local_high = LocalHighTone.PREV
-            else:
-                local_high = local_high.advance()
+                        new_paths.append(
+                            (
+                                current_segments + [s],
+                                LocalHighTone.PREV,
+                                len(seg.tone.value) == 2 if seg.tone else False,
+                                seg.tone,
+                                new_pending,
+                                has_glottal,  # We skip the following surface glottal if we inferred an H1
+                            )
+                        )
+                else:
+                    # Plain vowel
+                    is_long = seg.tone and len(seg.tone.value) == 2
+                    s = seg.quality * (2 if is_long else 1)
+                    new_paths.append(
+                        (
+                            current_segments + [s],
+                            lh.advance(),
+                            is_long,
+                            seg.tone,
+                            False,
+                            False,
+                        )
+                    )
+        paths = new_paths
 
-            if seg.tone:
-                prev_long = len(seg.tone.value) == 2
-                prev_tone = seg.tone
-            else:
-                prev_long = False
-                prev_tone = None
+    # Cleanup any remaining pending glottals
+    results = []
+    for segments, _, _, _, pending, _ in paths:
+        s = "".join(segments)
+        if pending:
+            s += "'"
+        results.append(s)
 
-    # Generate all combinations
-    results = ["".join(combo) for combo in itertools.product(*choices)]
-    return results
+    return list(set(results))
 
 
 def predict_underlying_form(verb, forms, form_name):
@@ -550,6 +580,7 @@ def infer_surface_forms(underlying_str: str) -> List[str]:
             length = (idx - start_v) > 1
             quality = char
             has_trailing = False
+            # PRE_C / NO_C glottal follows vowel directly
             if idx < len(underlying_str) and underlying_str[idx] == "'":
                 has_trailing = True
                 idx += 1
@@ -560,11 +591,13 @@ def infer_surface_forms(underlying_str: str) -> List[str]:
                     "long": length,
                     "glottal_after": has_trailing,
                     "glottal_before": False,
+                    "glottal_post_c": False,
                 }
             )
         elif char == "'":
             idx += 1
             if idx < len(underlying_str) and underlying_str[idx] in VOWEL_SET:
+                # 'V (used in some cases but usually we use V' or C')
                 v_char = underlying_str[idx]
                 start_v = idx
                 while idx < len(underlying_str) and underlying_str[idx] == v_char:
@@ -577,13 +610,28 @@ def infer_surface_forms(underlying_str: str) -> List[str]:
                         "long": length,
                         "glottal_before": True,
                         "glottal_after": False,
+                        "glottal_post_c": False,
                     }
                 )
             else:
                 units.append({"type": "consonant", "value": "'"})
         else:
-            units.append({"type": "consonant", "value": char})
+            # Normal consonant
+            c_val = char
             idx += 1
+            # Check for POST_C glottal: C'
+            has_post_c = False
+            if idx < len(underlying_str) and underlying_str[idx] == "'":
+                has_post_c = True
+                idx += 1
+
+            units.append({"type": "consonant", "value": c_val})
+            if has_post_c:
+                # Associate this glottal with the PREVIOUS vowel
+                for k in range(len(units) - 2, -1, -1):
+                    if units[k]["type"] == "vowel":
+                        units[k]["glottal_post_c"] = True
+                        break
 
     def solve(
         u_idx: int, local_high: LocalHighTone, prev_long: bool, surface_tones: List[str]
@@ -609,9 +657,13 @@ def infer_surface_forms(underlying_str: str) -> List[str]:
 
         g_pos = None
         if unit["glottal_before"]:
-            g_pos = GlottalPosition.POST_C
+            g_pos = (
+                GlottalPosition.POST_C
+            )  # Historical 'V can be interpreted as POST_C sometimes
         elif unit["glottal_after"]:
             g_pos = GlottalPosition.PRE_C if has_following_c else GlottalPosition.NO_C
+        elif unit.get("glottal_post_c"):
+            g_pos = GlottalPosition.POST_C
 
         results = []
         if g_pos:
@@ -626,22 +678,49 @@ def infer_surface_forms(underlying_str: str) -> List[str]:
                         item.value for item in seq if isinstance(item, Consonant)
                     ]
 
-                    current_v_str = (
-                        unit["quality"] + v_tones[-1].value + "".join(c_inline)
-                    )
-                    new_tones[u_idx] = current_v_str
+                    # For POST_C, the "spreading" tone actually applies to the PRECEDING vowel.
+                    # H1_INFERENCES for POST_C usually have one or two tones.
+                    # If two tones, the first one is the "spreading" one.
 
-                    if len(v_tones) == 2:
-                        # Apply spreading tone to preceding vowel
-                        prev_v_idx = -1
-                        for k in range(u_idx - 1, -1, -1):
-                            if units[k]["type"] == "vowel":
-                                prev_v_idx = k
-                                break
-                        if prev_v_idx != -1:
-                            new_tones[prev_v_idx] = (
-                                units[prev_v_idx]["quality"] + v_tones[0].value
+                    if g_pos == GlottalPosition.POST_C:
+                        if len(v_tones) == 2:
+                            # v_tones[0] goes to preceding vowel
+                            # v_tones[1] goes to current vowel
+                            prev_v_idx = -1
+                            for k in range(u_idx - 1, -1, -1):
+                                if units[k]["type"] == "vowel":
+                                    prev_v_idx = k
+                                    break
+                            if prev_v_idx != -1:
+                                new_tones[prev_v_idx] = (
+                                    units[prev_v_idx]["quality"] + v_tones[0].value
+                                )
+                            new_tones[u_idx] = (
+                                unit["quality"] + v_tones[1].value + "".join(c_inline)
                             )
+                        else:
+                            # Single tone for POST_C
+                            new_tones[u_idx] = (
+                                unit["quality"] + v_tones[0].value + "".join(c_inline)
+                            )
+                    else:
+                        # PRE_C or NO_C
+                        current_v_str = (
+                            unit["quality"] + v_tones[-1].value + "".join(c_inline)
+                        )
+                        new_tones[u_idx] = current_v_str
+
+                        if len(v_tones) == 2:
+                            # Apply spreading tone to preceding vowel
+                            prev_v_idx = -1
+                            for k in range(u_idx - 1, -1, -1):
+                                if units[k]["type"] == "vowel":
+                                    prev_v_idx = k
+                                    break
+                            if prev_v_idx != -1:
+                                new_tones[prev_v_idx] = (
+                                    units[prev_v_idx]["quality"] + v_tones[0].value
+                                )
 
                     results.extend(
                         solve(u_idx + 1, LocalHighTone.PREV, unit["long"], new_tones)
