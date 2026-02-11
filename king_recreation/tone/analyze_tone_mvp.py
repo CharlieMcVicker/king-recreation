@@ -2,24 +2,12 @@ from csv import DictWriter
 
 from king_recreation.paths import underlying_stems_path
 from king_recreation.tone.analysis import (
-    predict_h1_for_form,  # Exported for tests and other uses
-)
-from king_recreation.tone.analysis import (
     check_prediction,
     generate_underlying_forms,
     get_tonicity_for_form,
-    infer_surface_forms,
 )
 from king_recreation.tone.data_loader import FORMS, load_data, write_elligible_verbs
 from king_recreation.tone.diagnostics import analyze_class_coverage
-from king_recreation.tone.models import (  # These are exported here for backward compatibility or ease of import if needed
-    Environment,
-    GlottalPosition,
-    H1Config,
-    LexedForm,
-    Tonicity,
-)
-from king_recreation.tone.utils import strip_morpheme_boundaries
 
 
 def predict_underlying_form(verb, forms, form_name):

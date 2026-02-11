@@ -1,12 +1,10 @@
 import os
-import sys
-from collections import Counter
 
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 
-from king_recreation.tone.analyze_tone_mvp import (
+from king_recreation.tone.models import (
     Consonant,
     GlottalPosition,
     HistoricalVowel,
