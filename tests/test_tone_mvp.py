@@ -166,11 +166,11 @@ class TestToneMVP(unittest.TestCase):
         # Test that generate_underlying_forms finds H2
         from king_recreation.tone.analyze_tone_mvp import generate_underlying_forms
 
-        candidates = generate_underlying_forms("a3-la")
+        candidates = generate_underlying_forms("a3-la3")
         underlying_strs = [str(c) for c in candidates]
         self.assertIn("a/-la", underlying_strs)
 
-        candidates_long = generate_underlying_forms("a33-la22")
+        candidates_long = generate_underlying_forms("a23-la33")
         underlying_strs_long = [str(c) for c in candidates_long]
         # aa/ because surface is 33 (long)
         self.assertIn("aa/-laa", underlying_strs_long)
