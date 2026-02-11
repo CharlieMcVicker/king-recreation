@@ -138,14 +138,14 @@ def test_spreading_blocked_long():
 def test_h2_short_next():
     # a/ followed by short la -> a3la
     # next is short, so H2 becomes 3 and does NOT block H1 on following syllables.
-    assert check_prediction("a/la", "a3la")
-    assert not check_prediction("a/la", "a33la")
+    assert check_prediction("a/la", "a3la2")
+    assert not check_prediction("a/la", "a3la3")
 
 
 def test_h2_long_next():
-    # a/ followed by long laa -> a33laa
+    # aa/ followed by long laa -> aa33laa
     # next is long, so H2 becomes 33 and DOES block H1 on following syllables.
-    assert check_prediction("a/laa'", "a33la2'")
+    assert check_prediction("aa/laa'", "a33la2'")
 
 
 def test_h2_parsing():
@@ -165,6 +165,13 @@ def test_h2_brute_force_generation():
     underlying_strs_long = [str(c) for c in candidates_long]
     # aa/ because surface is 33 (long)
     assert "aa/-laa" in underlying_strs_long
+
+
+# def test_h2_no_33():
+#     # h2 produces
+#     candidates = generate_underlying_forms("t-e33h")
+#     underlying_strs = [str(c) for c in candidates]
+#     assert "t-ee/h" not in underlying_strs
 
 
 def test_h2_23_33():

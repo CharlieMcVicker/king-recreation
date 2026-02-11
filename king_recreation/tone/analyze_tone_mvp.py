@@ -327,7 +327,7 @@ class LexedForm:
                     # Peek ahead to see if it's followed by C or end of string
                     has_following_c = False
                     for k in range(idx + 1, len(s)):
-                        if s[k] not in VOWEL_SET and s[k] != "'":
+                        if s[k] not in VOWEL_SET and s[k] != "'" and s[k] != "-":
                             has_following_c = True
                             break
                     g_pos = (
@@ -725,6 +725,8 @@ def infer_surface_forms(lexed: Union[LexedForm, str]) -> List[str]:
             for k, token in enumerate(tokens):
                 if isinstance(token, Consonant):
                     res.append(token.value)
+                elif isinstance(token, MorphemeBoundary):
+                    res.append("-")
                 else:
                     res.append(surface_tones[k])
             return ["".join(res)]
@@ -746,12 +748,21 @@ def infer_surface_forms(lexed: Union[LexedForm, str]) -> List[str]:
         if h2:
             next_v = None
             for k in range(u_idx + 1, len(tokens)):
+                if isinstance(tokens[k], MorphemeBoundary):
+                    break
                 if isinstance(tokens[k], HistoricalVowel):
                     next_v = tokens[k]
                     break
             is_next_long = next_v.length if next_v else False
-            h2_tone_enum = VowelTone.hh if is_next_long else VowelTone.h
-            h2_blocks = h2_tone_enum == VowelTone.hh
+
+            if token.length:
+                h2_tone_enum = VowelTone.hh if is_next_long else VowelTone.lh
+            else:
+                h2_tone_enum = VowelTone.h
+
+            h2_blocks = h2_tone_enum == VowelTone.hh or (
+                h2_tone_enum == VowelTone.h and is_next_long
+            )
 
         results = []
         if g_pos:
@@ -868,7 +879,8 @@ def check_prediction(underlying_form: str, target_surface: str) -> bool:
     normalized_target = "".join(str(s) for s in seq)
 
     surface_candidates = infer_surface_forms(underlying_form)
-    return normalized_target in surface_candidates
+    stripped_candidates = [strip_morpheme_boundaries(c) for c in surface_candidates]
+    return normalized_target in stripped_candidates
 
 
 def main():
@@ -930,8 +942,10 @@ def main():
                     underlying_candidates[:2]
                 ):  # Show first 2 candidates
                     reconstructed = infer_surface_forms(uf)
+                    target_mask = strip_morpheme_boundaries(surface)
                     match = any(
-                        strip_morpheme_boundaries(surface) in r for r in reconstructed
+                        target_mask == strip_morpheme_boundaries(r)
+                        for r in reconstructed
                     )
                     print(
                         f"    Candidate {i+1}: {str(uf):15} | Reconstructed: {reconstructed[0][:20]}... | Match: {match}"
