@@ -519,7 +519,74 @@ def plot_variation_match_histograms(csv_path, output_dir):
     plt.close()
 
 
+def plot_class_sequence_counts(csv_path, output_path):
+    """Generates a histogram of how many unique surface sequences each class has."""
+    if not os.path.exists(csv_path):
+        print(f"Warning: {csv_path} not found. Skipping class sequence counts plot.")
+        return
+
+    df = pd.read_csv(csv_path)
+    if df.empty:
+        return
+
+    # Count rows per class
+    sequence_counts = df.groupby("class").size().reset_index(name="Sequence Count")
+
+    plt.figure(figsize=(10, 6))
+    # histogram of the counts
+    sns.histplot(
+        sequence_counts["Sequence Count"],
+        kde=False,
+        bins=range(1, sequence_counts["Sequence Count"].max() + 2),
+        color="skyblue",
+        edgecolor="navy",
+    )
+
+    plt.title("Distribution of Surface Sequences per Class")
+    plt.xlabel("Number of Unique Surface Sequences")
+    plt.ylabel("Number of Classes")
+
+    plt.tight_layout()
+    plt.savefig(output_path)
+    plt.close()
+
+
+def plot_sequence_match_percentage(csv_path, output_path):
+    """Generates a histogram of what percentage of a class's matches each sequence makes up."""
+    if not os.path.exists(csv_path):
+        print(
+            f"Warning: {csv_path} not found. Skipping sequence match percentage plot."
+        )
+        return
+
+    df = pd.read_csv(csv_path)
+    if df.empty:
+        return
+
+    # Calculate total count per class
+    class_totals = df.groupby("class")["count"].transform("sum")
+    df["percentage"] = (df["count"] / class_totals) * 100
+
+    plt.figure(figsize=(10, 6))
+    sns.histplot(
+        df["percentage"],
+        kde=False,
+        bins=20,
+        color="salmon",
+        edgecolor="brown",
+    )
+
+    plt.title("Distribution of Sequence Match Percentages")
+    plt.xlabel("Percentage of Class Matches (%)")
+    plt.ylabel("Number of Sequences")
+
+    plt.tight_layout()
+    plt.savefig(output_path)
+    plt.close()
+
+
 from king_recreation.paths import (
+    class_ending_profiles_csv_path,
     class_match_counts_path,
     class_near_misses_path,
     macro_variant_data_path,
@@ -582,6 +649,16 @@ def run_all_visualizations():
     plot_variation_match_histograms(
         variation_match_counts_path,
         os.path.join(output_dir, "variation_match_histograms"),
+    )
+
+    print("Generating Class Ending Profile plots...")
+    plot_class_sequence_counts(
+        class_ending_profiles_csv_path,
+        os.path.join(output_dir, "class_sequence_counts_histogram.png"),
+    )
+    plot_sequence_match_percentage(
+        class_ending_profiles_csv_path,
+        os.path.join(output_dir, "sequence_match_percentage_histogram.png"),
     )
 
 

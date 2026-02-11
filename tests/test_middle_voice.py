@@ -1,135 +1,84 @@
-import os
-import unittest
+import pytest
 
-from king_recreation.phonology_data import MiddleVoice
+from king_recreation.morphemes.middle_voice import MiddleVoice
+from king_recreation.reconstruct_from_roots import desegment
 
 
-class TestMiddleVoice(unittest.TestCase):
-    def test_middle_ali(self):
-        h_grade, g_grade = ("alhsday", "alihsday")
-        expected = [
-            (MiddleVoice.NONE, (h_grade, g_grade)),
-            (MiddleVoice.AL_ALI, ("hsday", "hsday")),
-        ]
-        result = MiddleVoice.identify_middle_voice(h_grade, g_grade)
+def _test_identify_and_reconstruct(h_grade, g_grade, expected):
+    result = MiddleVoice.identify_middle_voice(h_grade, g_grade)
 
-        self.assertTrue(
-            repr(sorted(result, key=lambda x: x[0].value))
-            == repr(sorted(expected, key=lambda x: x[0].value)),
-            "Expected two possibilities",
+    assert sorted(result, key=lambda x: x[0].value) == sorted(
+        expected, key=lambda x: x[0].value
+    )
+
+    # test apply
+    for voice, (h_stem, g_stem) in expected:
+        h_applied = (
+            desegment(voice.apply(h_stem, is_glottal_grade=False))
+            if h_stem is not None
+            else None
+        )
+        g_applied = (
+            desegment(voice.apply(g_stem, is_glottal_grade=True))
+            if g_stem is not None
+            else None
         )
 
-        # test apply
-        for voice, (h_stem, g_stem) in expected:
-            h_stem = (
-                voice.apply(h_stem, is_glottal_grade=False)
-                if h_stem is not None
-                else None
-            )
-            g_stem = (
-                voice.apply(g_stem, is_glottal_grade=True)
-                if g_stem is not None
-                else None
-            )
-
-            self.assertEqual(
-                (h_stem, g_stem),
-                (h_grade, g_grade),
-                f"Adding voice back in should recreate same forms (mv={voice})",
-            )
-
-    def test_middle_ali_no_g(self):
-        h_grade, g_grade = ("alhsday", None)
-        expected = [
-            (MiddleVoice.NONE, (h_grade, None)),
-            (MiddleVoice.AL_ALI, ("hsday", None)),
-        ]
-        result = MiddleVoice.identify_middle_voice(h_grade, g_grade)
-
-        self.assertTrue(
-            repr(sorted(result, key=lambda x: x[0].value))
-            == repr(sorted(expected, key=lambda x: x[0].value)),
-            "Expected two possibilities",
-        )
-
-        # test apply
-        for voice, (h_stem, g_stem) in expected:
-            h_stem = (
-                voice.apply(h_stem, is_glottal_grade=False)
-                if h_stem is not None
-                else None
-            )
-            g_stem = (
-                voice.apply(g_stem, is_glottal_grade=True)
-                if g_stem is not None
-                else None
-            )
-
-            self.assertEqual(
-                (h_stem, g_stem),
-                (h_grade, g_grade),
-                f"Adding voice back in should recreate same forms (mv={voice})",
-            )
-
-    def test_middle_atalen(self):
-        h_grade, g_grade = ("atalen", None)
-        expected = [
-            (MiddleVoice.NONE, (h_grade, None)),
-            (MiddleVoice.AT, ("alen", None)),
-            (MiddleVoice.ATA, ("len", None)),
-        ]
-        result = MiddleVoice.identify_middle_voice(h_grade, g_grade)
-
-        self.assertTrue(
-            repr(sorted(result, key=lambda x: x[0].value))
-            == repr(sorted(expected, key=lambda x: x[0].value)),
-            "Expected two possibilities",
-        )
-
-        # test apply
-        for voice, (h_stem, g_stem) in expected:
-            h_stem = (
-                voice.apply(h_stem, is_glottal_grade=False)
-                if h_stem is not None
-                else None
-            )
-            g_stem = (
-                voice.apply(g_stem, is_glottal_grade=True)
-                if g_stem is not None
-                else None
-            )
-
-            self.assertEqual(
-                (h_stem, g_stem),
-                (h_grade, g_grade),
-                f"Adding voice back in should recreate same forms (mv={voice})",
-            )
-
-    def test_try_stip(self):
-        stems = {
-            "present": "atawhahthvh",
-            "present_1sg": "atawahthvh",
-            "imperfective": "atawhahthvh",
-            "perfective": "atawhahthvh",
-            "imperative": "atawhahthvh",
-            "infinitive": "atawhahthvh",
-        }
-
-        expected = {
-            "present": "whahthvh",
-            "present_1sg": "wahthvh",
-            "imperfective": "whahthvh",
-            "perfective": "whahthvh",
-            "imperative": "whahthvh",
-            "infinitive": "whahthvh",
-        }
-
-        voice = MiddleVoice.ATA
-
-        res = {k: voice.try_strip_form(form) for k, form in stems.items()}
-
-        self.assertEqual(res, expected, "Expected ata to be stripped")
+        assert (h_applied, g_applied) == (
+            h_grade,
+            g_grade,
+        ), f"Adding voice back in should recreate same forms (mv={voice}), {h_applied}|{g_applied}"
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_middle_ali():
+    h_grade, g_grade = ("alhsday", "alihsday")
+    expected = [
+        (MiddleVoice.NONE, (h_grade, g_grade)),
+        (MiddleVoice.AL_ALI, ("hsday", "hsday")),
+    ]
+    _test_identify_and_reconstruct(h_grade, g_grade, expected)
+
+
+def test_middle_ali_no_g():
+    h_grade, g_grade = ("alhsday", None)
+    expected = [
+        (MiddleVoice.NONE, (h_grade, None)),
+        (MiddleVoice.AL_ALI, ("hsday", None)),
+    ]
+    _test_identify_and_reconstruct(h_grade, g_grade, expected)
+
+
+def test_middle_atalen():
+    h_grade, g_grade = ("atalen", None)
+    expected = [
+        (MiddleVoice.NONE, (h_grade, None)),
+        (MiddleVoice.AT, ("alen", None)),
+        (MiddleVoice.ATA, ("len", None)),
+    ]
+    _test_identify_and_reconstruct(h_grade, g_grade, expected)
+
+
+def test_try_strip():
+    stems = {
+        "present": "atawhahthvh",
+        "present_1sg": "atawahthvh",
+        "imperfective": "atawhahthvh",
+        "perfective": "atawhahthvh",
+        "imperative": "atawhahthvh",
+        "infinitive": "atawhahthvh",
+    }
+
+    expected = {
+        "present": "whahthvh",
+        "present_1sg": "wahthvh",
+        "imperfective": "whahthvh",
+        "perfective": "whahthvh",
+        "imperative": "whahthvh",
+        "infinitive": "whahthvh",
+    }
+
+    voice = MiddleVoice.ATA
+
+    res = {k: voice.try_strip_form(form) for k, form in stems.items()}
+
+    assert res == expected, "Expected ata to be stripped"

@@ -36,6 +36,10 @@ validated_reconstructable_roots_path = os.path.join(
     ARTIFACTS_CORPORA_DIR, "validated_reconstructable_roots.csv"
 )
 corpus_to_cnd_path = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus_to_cnd.csv")
+stems_with_tone_corpus_path = os.path.join(
+    ARTIFACTS_CORPORA_DIR, "stems_with_tone_corpus.csv"
+)
+underlying_stems_path = os.path.join(ARTIFACTS_DATA_DIR, "underlying_stems.csv")
 
 # Match Data
 matches_path = os.path.join(ARTIFACTS_DATA_DIR, "matches_initial.csv")
@@ -78,6 +82,9 @@ reconstruction_validation_path = os.path.join(
 )
 reconstruction_failures_path = os.path.join(REPORTS_DIR, "reconstruction_failures.csv")
 furthest_corpus_by_id_path = os.path.join(REPORTS_DIR, "furthest_corpus_by_id.csv")
+ending_tone_analysis_json_path = os.path.join(REPORTS_DIR, "ending_tone_analysis.json")
+ending_tone_analysis_csv_path = os.path.join(REPORTS_DIR, "ending_tone_analysis.csv")
+class_ending_profiles_csv_path = os.path.join(REPORTS_DIR, "class_ending_profiles.csv")
 
 # Statistics
 class_match_counts_path = os.path.join(REPORTS_DIR, "class_match_counts.csv")

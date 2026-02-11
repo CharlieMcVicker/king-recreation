@@ -6,8 +6,11 @@ import re
 from collections import Counter, defaultdict
 from typing import Any, Dict, List, Optional
 
+import pandas as pd
+
 from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
 from king_recreation.paths import (
+    class_ending_profiles_csv_path,
     class_match_counts_path,
     corpus_no_asp_path,
     corpus_no_pre_no_asp_path,
@@ -381,6 +384,44 @@ def _save_variation_match_csv(path: str, macro_variant_data: Dict[str, Any]) -> 
     )
 
 
+def _analyze_ending_profiles(profiles_path: str):
+    """
+    Analyzes the distribution of surface sequences and their match percentages.
+    """
+    if not os.path.exists(profiles_path):
+        return
+
+    df = pd.read_csv(profiles_path)
+    if df.empty:
+        return
+
+    # 1. Sequences per class
+    sequence_counts = df.groupby("class").size()
+    avg_seq_per_class = sequence_counts.mean()
+    max_seq_per_class = sequence_counts.max()
+
+    # 2. Percentage distribution
+    class_totals = df.groupby("class")["count"].transform("sum")
+    df["percentage"] = (df["count"] / class_totals) * 100
+
+    print("\nEnding Profile Distribution Summary:")
+    print(f"Total Unique Profiles: {len(df)}")
+    print(f"Average Unique Sequences per Class: {avg_seq_per_class:.2f}")
+    print(f"Max Unique Sequences in a Class: {max_seq_per_class}")
+
+    print("\nTop Classes by Unique Sequences:")
+    top_classes = sequence_counts.sort_values(ascending=False).head(5)
+    for cls, count in top_classes.items():
+        print(f"  {cls:<20}: {count}")
+
+    print("\nSequence Percentage Buckets:")
+    # Use pandas cut to see distribution
+    bins = [0, 20, 40, 60, 80, 100]
+    buckets = pd.cut(df["percentage"], bins=bins).value_counts().sort_index()
+    for interval, count in buckets.items():
+        print(f"  {str(interval):<15}: {count} sequences")
+
+
 def _analyze_roots_by_macro(registry: PatternRegistry):
     input_path = reconstructable_verbs_path
     output_path = root_macro_distribution_path
@@ -508,6 +549,7 @@ def analyze_matches(classes_path: Optional[str] = None):
     )
     unused_variants_report = _identify_dead_variants(macro_variant_data)
     _analyze_roots_by_macro(registry=pattern_registry)
+    _analyze_ending_profiles(class_ending_profiles_csv_path)
 
     # 3. Output Data to Disk
     os.makedirs(reports_path, exist_ok=True)
