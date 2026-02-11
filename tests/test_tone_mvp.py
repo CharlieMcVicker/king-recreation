@@ -135,6 +135,46 @@ class TestToneMVP(unittest.TestCase):
             log=True,
         )
 
+    def test_h2_short_next(self):
+        # a/ followed by short la -> a3la
+        # next is short, so H2 becomes 3 and does NOT block H1 on following syllables.
+        from king_recreation.tone.analyze_tone_mvp import LexedForm, check_prediction
+
+        self.assertTrue(check_prediction("a/la", "a3la"))
+        self.assertFalse(check_prediction("a/la", "a33la"))
+
+    def test_h2_long_next(self):
+        # a/ followed by long laa -> a33laa
+        # next is long, so H2 becomes 33 and DOES block H1 on following syllables.
+        from king_recreation.tone.analyze_tone_mvp import (
+            LexedForm,
+            check_prediction,
+            infer_surface_forms,
+        )
+
+        self.assertTrue(check_prediction("a/laa'", "a33la2'"))
+
+    def test_h2_parsing(self):
+        from king_recreation.tone.analyze_tone_mvp import LexedForm
+
+        lf = LexedForm.from_str("ga/li")
+        # tokens: [Consonant(g), HistoricalVowel(a, h2=True), Consonant(l), HistoricalVowel(i)]
+        self.assertTrue(lf.tokens[1].h2)
+        self.assertEqual(str(lf), "ga/li")
+
+    def test_h2_brute_force_generation(self):
+        # Test that generate_underlying_forms finds H2
+        from king_recreation.tone.analyze_tone_mvp import generate_underlying_forms
+
+        candidates = generate_underlying_forms("a3-la")
+        underlying_strs = [str(c) for c in candidates]
+        self.assertIn("a/-la", underlying_strs)
+
+        candidates_long = generate_underlying_forms("a33-la22")
+        underlying_strs_long = [str(c) for c in candidates_long]
+        # aa/ because surface is 33 (long)
+        self.assertIn("aa/-laa", underlying_strs_long)
+
 
 if __name__ == "__main__":
     unittest.main()

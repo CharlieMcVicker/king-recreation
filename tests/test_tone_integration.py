@@ -13,25 +13,19 @@ class TestToneIntegration(unittest.TestCase):
         correctly infer the original surface form.
         """
         underlying_forms = generate_underlying_forms(surface_form)
+        valid_underlying = [
+            str(u) for u in underlying_forms if check_prediction(str(u), surface_form)
+        ]
+
         self.assertTrue(
-            len(underlying_forms) > 0,
-            f"No underlying forms generated for {surface_form}",
+            len(valid_underlying) > 0,
+            f"No valid underlying forms (that regenerate the surface) found for {surface_form}. Candidates were: {[str(u) for u in underlying_forms]}",
         )
 
-        matched = False
-
-        for u in underlying_forms:
-            if u == underlying_expected:
-                matched = True
-            # print(f"Surface: {surface_form} -> Underlying: {u}")
-            self.assertTrue(
-                check_prediction(u, surface_form),
-                f"Underlying form {u} fails to regenerate surface form {surface_form}",
-            )
-
-        self.assertTrue(
-            matched,
-            f"No underlying form {underlying_forms} matched {underlying_expected}",
+        self.assertIn(
+            underlying_expected,
+            valid_underlying,
+            f"Expected underlying form {underlying_expected} not found among valid candidates: {valid_underlying}",
         )
 
     def test_integration_2_32(self):
