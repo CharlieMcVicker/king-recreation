@@ -1,14 +1,16 @@
 import pytest
 
-from king_recreation.tone.analyze_tone_mvp import (
+from king_recreation.tone.analysis import (
+    check_prediction,
+    generate_underlying_forms,
+    predict_h1_for_form,
+)
+from king_recreation.tone.models import (
     Environment,
     GlottalPosition,
     H1Config,
     LexedForm,
     Tonicity,
-    check_prediction,
-    generate_underlying_forms,
-    predict_h1_for_form,
 )
 
 
