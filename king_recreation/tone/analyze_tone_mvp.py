@@ -702,13 +702,190 @@ def generate_underlying_forms(form_str: str) -> List[LexedForm]:
     return [LexedForm(p[0]) for p in paths]
 
 
+def generate_underlying_forms_with_state(
+    form_str: str,
+    initial_lh: LocalHighTone = LocalHighTone.NONE,
+    initial_pl: bool = False,
+) -> List[LexedForm]:
+    """
+    Generate underlying forms with a specific initial state.
+    Use this for diagnosing if a different environment (e.g. BLOCKED) would allow a match.
+    """
+    if not form_str:
+        return []
+
+    # Use form_str directly to preserve boundaries if any
+    tone_sequence = tone_sequence_from_corpus_form(form_str)
+    local_high = initial_lh
+    prev_long = initial_pl
+    prev_tone = None
+
+    # Path state: (tokens, lh, pl, pt, skip_surface_glottal)
+    initial_path = ([], local_high, prev_long, prev_tone, False)
+    paths = [initial_path]
+
+    for i, seg in enumerate(tone_sequence):
+        new_paths = []
+        for tokens, lh, pl, pt, skip_surface_glottal in paths:
+            if isinstance(seg, MorphemeBoundary):
+                new_paths.append((tokens + [seg], lh, pl, pt, False))
+            elif isinstance(seg, Consonant):
+                if seg.value == "'":
+                    if skip_surface_glottal:
+                        new_paths.append((tokens, lh, pl, pt, False))
+                    else:
+                        new_paths.append((tokens + [seg], lh, pl, pt, False))
+                else:
+                    new_paths.append((tokens + [seg], lh, pl, pt, False))
+            elif isinstance(seg, Vowel):
+                has_glottal = False
+                if i + 1 < len(tone_sequence):
+                    next_seg = tone_sequence[i + 1]
+                    if isinstance(next_seg, Consonant) and next_seg.value == "'":
+                        has_glottal = True
+
+                has_following_c = False
+                for j in range(i + 1, len(tone_sequence)):
+                    next_seg = tone_sequence[j]
+                    if isinstance(next_seg, Consonant):
+                        if next_seg.value != "'":
+                            has_following_c = True
+                            break
+                    elif isinstance(next_seg, Vowel):
+                        break
+
+                env = Environment.from_state(lh, pl)
+                configs = []
+                if has_glottal or (
+                    seg.tone
+                    and seg.tone
+                    in [
+                        VowelTone.hh,
+                        VowelTone.h,
+                        VowelTone.hl,
+                        VowelTone.lf,
+                        VowelTone.lh,
+                    ]
+                ):
+                    configs = get_possible_glottal_positions(
+                        env, seg.tone, pt, has_glottal, has_following_c
+                    )
+
+                candidates = []
+                is_long = seg.tone and len(seg.tone.value) == 2
+                env = Environment.from_state(lh, pl)
+                next_lh = lh.advance()
+                if env == Environment.SPREAD and is_long:
+                    next_lh = LocalHighTone.PREV
+
+                candidates.append(
+                    {
+                        "hv": HistoricalVowel(seg.quality, is_long, None),
+                        "next_lh": next_lh,
+                        "skip_g": False,
+                    }
+                )
+
+                for cfg in configs:
+                    candidates.append(
+                        {
+                            "hv": HistoricalVowel(
+                                seg.quality, cfg.historically_long, cfg.glottal_position
+                            ),
+                            "next_lh": LocalHighTone.PREV,
+                            "skip_g": has_glottal,
+                        }
+                    )
+
+                is_segment_end = False
+                is_last_vowel_in_segment = True
+                for k in range(i + 1, len(tone_sequence)):
+                    if isinstance(tone_sequence[k], Vowel):
+                        is_last_vowel_in_segment = False
+                        break
+                    if isinstance(tone_sequence[k], MorphemeBoundary):
+                        break
+
+                if is_last_vowel_in_segment:
+                    is_segment_end = True
+
+                h2_eligible = (
+                    is_segment_end and seg.tone and seg.tone.value.endswith("3")
+                )
+                if h2_eligible:
+                    next_v_long = False
+                    for k in range(i + 1, len(tone_sequence)):
+                        if isinstance(tone_sequence[k], Vowel):
+                            next_v_long = len(tone_sequence[k].tone.value) == 2
+                            break
+
+                    h2_blocks = seg.tone == VowelTone.hh or (
+                        seg.tone == VowelTone.h and next_v_long
+                    )
+                    h2_next_lh = LocalHighTone.PREV if h2_blocks else lh.advance()
+
+                    h2_candidates = []
+                    for cand in candidates:
+                        h2_cand = dict(cand)
+                        h2_cand["hv"] = HistoricalVowel(
+                            cand["hv"].quality,
+                            cand["hv"].length,
+                            cand["hv"].glottal_position,
+                            h2=True,
+                        )
+                        h2_cand["next_lh"] = h2_next_lh
+                        h2_candidates.append(h2_cand)
+                    candidates.extend(h2_candidates)
+
+                for cand in candidates:
+                    hv = cand["hv"]
+                    new_paths.append(
+                        (
+                            tokens + [hv],
+                            cand["next_lh"],
+                            hv.length,
+                            seg.tone,
+                            cand["skip_g"],
+                        )
+                    )
+        paths = new_paths
+
+    return [LexedForm(p[0]) for p in paths]
+
+
+def check_prediction_with_state(
+    underlying_form: str,
+    target_surface: str,
+    initial_lh: LocalHighTone = LocalHighTone.NONE,
+) -> bool:
+    """
+    Check prediction allowing detailed state injection for diagnosis.
+    """
+    if isinstance(underlying_form, str):
+        lexed = LexedForm.from_str(underlying_form)
+    else:
+        lexed = underlying_form  # Assuming it's already LexedForm
+
+    clean_target = strip_morpheme_boundaries(target_surface)
+    seq = tone_sequence_from_corpus_form(clean_target)
+    normalized_target = "".join(str(s) for s in seq)
+
+    # We need to expose solve logic or duplicate it to inject initial_lh.
+    # Currently infer_surface_forms calls solve(0, NONE, ...).
+    # Refactoring infer_surface_forms to take optional args is cleaner.
+    # But for now I'll just change infer_surface_forms signature.
+    return False  # Placeholder, see next chunk
+
+
 def predict_underlying_form(verb, forms, form_name):
     # Determine the tone sequence for the given form
     form_str = forms[form_name]
     return generate_underlying_forms(form_str)
 
 
-def infer_surface_forms(lexed: Union[LexedForm, str]) -> List[str]:
+def infer_surface_forms(
+    lexed: Union[LexedForm, str], initial_lh: LocalHighTone = LocalHighTone.NONE
+) -> List[str]:
     """
     Forward inference: Generate possible surface forms from a LexedForm (or string).
     """
@@ -866,10 +1043,14 @@ def infer_surface_forms(lexed: Union[LexedForm, str]) -> List[str]:
 
         return results
 
-    return solve(0, LocalHighTone.NONE, False, [None] * len(tokens))
+    return solve(0, initial_lh, False, [None] * len(tokens))
 
 
-def check_prediction(underlying_form: str, target_surface: str) -> bool:
+def check_prediction(
+    underlying_form: str,
+    target_surface: str,
+    initial_lh: LocalHighTone = LocalHighTone.NONE,
+) -> bool:
     """
     Integrity check: Can this underlying form generate the target surface form?
     """
@@ -878,9 +1059,148 @@ def check_prediction(underlying_form: str, target_surface: str) -> bool:
     seq = tone_sequence_from_corpus_form(clean_target)
     normalized_target = "".join(str(s) for s in seq)
 
-    surface_candidates = infer_surface_forms(underlying_form)
+    surface_candidates = infer_surface_forms(underlying_form, initial_lh=initial_lh)
     stripped_candidates = [strip_morpheme_boundaries(c) for c in surface_candidates]
     return normalized_target in stripped_candidates
+
+
+def diagnose_mismatch(verb, surface, expected_ending):
+    print(f"    Mismatch: {verb.definition[:30]}... | Surface: {surface}")
+
+    underlying_candidates = generate_underlying_forms(surface)
+    valid_candidates = [
+        str(uf) for uf in underlying_candidates if check_prediction(str(uf), surface)
+    ]
+
+    # 1. Check for Length or quality Mismatch (Valid UF exists but different ending)
+    if valid_candidates:
+        print(f"      Found {len(valid_candidates)} valid underlying forms:")
+        for uf in valid_candidates:
+            print(f"        - {uf}")
+        # Check if any is 'close' (e.g. length diff)
+        # Simplify: just report them. User can see.
+
+    # 2. Check for Start State Blocked (for Imperative/21 tone)
+    # Try assuming PREVIOUS High (BLOCKED environment)
+    candidates_blocked = generate_underlying_forms_with_state(
+        surface, initial_lh=LocalHighTone.PREV
+    )
+    valid_blocked = [
+        str(uf)
+        for uf in candidates_blocked
+        if check_prediction(str(uf), surface, initial_lh=LocalHighTone.PREV)
+    ]
+
+    found_blocked_match = False
+    for uf in valid_blocked:
+        if uf.endswith(expected_ending):
+            found_blocked_match = True
+            break
+
+    if found_blocked_match:
+        print(
+            f"      [DIAGNOSIS] Matches expected ending '{expected_ending}' IF we assume 'BLOCKED' environment (Preceding High Tone)."
+        )
+        return
+
+    if not valid_candidates and not found_blocked_match:
+        print(
+            "      [DIAGNOSIS] No valid underlying forms found even with BLOCKED check."
+        )
+
+
+def analyze_class_coverage(verbs_with_forms):
+    print("\n--- Class Coverage Analysis ---")
+
+    # Load underlying class definitions
+    class_defs = {}
+    # Assuming running from repo root
+    underlying_classes_path = "data/classes_underlying.csv"
+    if not os.path.exists(underlying_classes_path):
+        print(f"File not found: {underlying_classes_path}")
+        return
+
+    with open(underlying_classes_path, "r") as f:
+        reader = DictReader(f)
+        for row in reader:
+            class_defs[row["class"]] = row
+
+    target_class = "go"
+    if target_class not in class_defs:
+        print(f"Class '{target_class}' not found in {underlying_classes_path}")
+        return
+
+    target_def = class_defs[target_class]
+
+    # Filter for verbs of the target class
+    class_verbs = [
+        (v, row) for v, row in verbs_with_forms if v.class_name == target_class
+    ]
+
+    total_verbs = len(class_verbs)
+    if total_verbs == 0:
+        print(f"No verbs found for class '{target_class}'")
+        return
+
+    print(f"Analyzing {total_verbs} verbs of class '{target_class}'")
+
+    # Forms to check (intersection of FORMS and columns in CSV)
+    forms_to_check = [
+        f
+        for f in ["present", "imperfective", "perfective", "imperative", "infinitive"]
+        if f in target_def and target_def[f].strip()
+    ]
+
+    for form_name in forms_to_check:
+        # Get target endings
+        raw_endings = target_def[form_name]
+        target_endings = [e.strip() for e in raw_endings.split(";") if e.strip()]
+
+        if not target_endings:
+            continue
+
+        print(f"\nForm: {form_name}")
+
+        for ending in target_endings:
+            match_count = 0
+            valid_verbs_for_form = 0
+
+            for verb, row in class_verbs:
+                surface = row.get(form_name)
+                if not surface:
+                    continue
+
+                valid_verbs_for_form += 1
+
+                # Generate underlying forms
+                underlying_candidates = generate_underlying_forms(surface)
+
+                # Check if ANY valid underlying form ends with the target ending
+                matches_ending = False
+                for uf in underlying_candidates:
+                    # Check if candidate is valid (reconstructs surface)
+                    if not check_prediction(str(uf), surface):
+                        continue
+
+                    # Check ending match
+                    # We use str(uf) which is the string representation of LexedForm
+                    if str(uf).endswith(ending):
+                        matches_ending = True
+                        break
+
+                if matches_ending:
+                    match_count += 1
+                else:
+                    diagnose_mismatch(verb, surface, ending)
+
+            if valid_verbs_for_form > 0:
+
+                percentage = (match_count / valid_verbs_for_form) * 100
+                print(
+                    f"  Ending '{ending}': {match_count}/{valid_verbs_for_form} ({percentage:.1f}%)"
+                )
+            else:
+                print(f"  Ending '{ending}': No valid surface forms found.")
 
 
 def main():
@@ -928,8 +1248,11 @@ def main():
             writer.writerows(output_rows)
         print(f"Underlying stems written to {underlying_stems_path}")
 
+    # Analyze class coverage for "go" class
+    analyze_class_coverage(verbs_with_forms)
+
     # Verification of a few entries
-    if verbs_with_forms:
+    if verbs_with_forms and False:
         print("\nVerification of a few eligible verbs:")
         for verb, row in verbs_with_forms[:5]:
             print(f"\nVerb: {verb.definition} (Root: {verb.h_grade_root})")
