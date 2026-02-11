@@ -280,6 +280,65 @@ class LexedForm:
             res.append("'")
         return "".join(res)
 
+    def __eq__(self, other):
+        if isinstance(other, str):
+            return str(self) == other
+        if isinstance(other, LexedForm):
+            return self.tokens == other.tokens
+        return False
+
+    @classmethod
+    def from_str(cls, s: str) -> "LexedForm":
+        """
+        Robustly parse a string representation back into a LexedForm.
+        """
+        tokens = []
+        idx = 0
+        while idx < len(s):
+            char = s[idx]
+            if char in VOWEL_SET:
+                start_v = idx
+                while idx < len(s) and s[idx] == char:
+                    idx += 1
+                length = (idx - start_v) > 1
+                quality = char
+                g_pos = None
+
+                # Check for PRE_C / NO_C glottal (V')
+                if idx < len(s) and s[idx] == "'":
+                    # Peek ahead to see if it's followed by C or end of string
+                    has_following_c = False
+                    for k in range(idx + 1, len(s)):
+                        if s[k] not in VOWEL_SET and s[k] != "'":
+                            has_following_c = True
+                            break
+                    g_pos = (
+                        GlottalPosition.PRE_C
+                        if has_following_c
+                        else GlottalPosition.NO_C
+                    )
+                    idx += 1
+                tokens.append(HistoricalVowel(quality, length, g_pos))
+            else:
+                # Consonant or glottal
+                tokens.append(Consonant(char, idx, idx))
+                # Check for POST_C (C')
+                if char != "'" and idx + 1 < len(s) and s[idx + 1] == "'":
+                    # Mark the PREVIOUS vowel as POST_C
+                    marked = False
+                    for k in range(len(tokens) - 2, -1, -1):
+                        if isinstance(tokens[k], HistoricalVowel):
+                            v = tokens[k]
+                            tokens[k] = HistoricalVowel(
+                                v.quality, v.length, GlottalPosition.POST_C
+                            )
+                            marked = True
+                            break
+                    if marked:
+                        idx += 1  # skip the '
+                idx += 1
+        return cls(tokens)
+
 
 # to be populated from docs/tone_mvp.md
 H1_INFERENCES = {
@@ -566,55 +625,7 @@ def infer_surface_forms(lexed: Union[LexedForm, str]) -> List[str]:
     Forward inference: Generate possible surface forms from a LexedForm (or string).
     """
     if isinstance(lexed, str):
-        # Fallback for string input: parse into LexedForm
-        # (Simplified parsing for legacy support/testing)
-        tokens = []
-        idx = 0
-        while idx < len(lexed):
-            char = lexed[idx]
-            if char in VOWEL_SET:
-                start_v = idx
-                while idx < len(lexed) and lexed[idx] == char:
-                    idx += 1
-                length = (idx - start_v) > 1
-                quality = char
-                g_pos = None
-
-                # Check for PRE_C / NO_C glottal (V')
-                if idx < len(lexed) and lexed[idx] == "'":
-                    # Peek ahead to see if it's followed by C or end of string
-                    has_following_c = False
-                    for k in range(idx + 1, len(lexed)):
-                        if lexed[k] not in VOWEL_SET and lexed[k] != "'":
-                            has_following_c = True
-                            break
-                    g_pos = (
-                        GlottalPosition.PRE_C
-                        if has_following_c
-                        else GlottalPosition.NO_C
-                    )
-                    idx += 1
-
-                # Note: This simple parser won't easily catch POST_C (C')
-                # unless we do more look-ahead. But for now, let's keep it.
-                tokens.append(HistoricalVowel(quality, length, g_pos))
-            else:
-                # Consonant or glottal
-                tokens.append(Consonant(char, idx, idx))
-                # Check for POST_C (C')
-                if char != "'" and idx + 1 < len(lexed) and lexed[idx + 1] == "'":
-                    # Mark the PREVIOUS vowel as POST_C
-                    for k in range(len(tokens) - 2, -1, -1):
-                        if isinstance(tokens[k], HistoricalVowel):
-                            # Replace with POST_C tagged vowel
-                            v = tokens[k]
-                            tokens[k] = HistoricalVowel(
-                                v.quality, v.length, GlottalPosition.POST_C
-                            )
-                            break
-                    idx += 1  # skip the '
-                idx += 1
-        lexed = LexedForm(tokens)
+        lexed = LexedForm.from_str(lexed)
 
     tokens = lexed.tokens
 
