@@ -53,6 +53,7 @@ def is_eligible(verb: ReconstructibleVerb) -> bool:
     Filter verbs based on the Tone MVP criteria:
     - No prepronominal prefixes
     - No middle voice
+    - No animate object-pronouns
     - Root does not start with 'a'
     """
     # 1. No prepronominal prefixes (translocutive, partitive, distributive)
@@ -67,6 +68,9 @@ def is_eligible(verb: ReconstructibleVerb) -> bool:
 
     # 2. No middle voice (MiddleVoice.NONE)
     if verb.config.pron.middle_voice.value != "none":
+        return False
+
+    if verb.config.pron.use_3rd_person_object:
         return False
 
     # 3. Root does not start with 'a' (specifically roots beginning with vowel 'a')
