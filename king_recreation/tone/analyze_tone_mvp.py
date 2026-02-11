@@ -146,10 +146,14 @@ def write_elligible_verbs(verbs, cnd_corpus, corpus_id_to_entries):
     # Write all rows to disk as a new - stems_with_tone_corpus.csv
     if rows:
         with open(stems_with_tone_corpus_path, "w", newline="") as f:
-            writer = DictWriter(f, fieldnames=rows[0].keys())
+            # Use the second element of the tuple which is the dictionary
+            writer = DictWriter(f, fieldnames=rows[0][1].keys())
             writer.writeheader()
-            writer.writerows([row for _verb, row in rows])
-        print(f"Saved {len(rows)} rows to {stems_with_tone_corpus_path}")
+            writer.writerows([row[1] for row in rows])
+
+        print(
+            f"\nScaffold complete. Processed {len(verbs)} verbs, {eligible_count} were eligible for analysis."
+        )
 
     return rows
 
@@ -227,7 +231,6 @@ class GlottalPosition(Enum):
     NO_C = "'"
 
 
-# named tuple?
 @dataclass(frozen=True)
 class H1Config:
     historically_long: bool
@@ -235,10 +238,47 @@ class H1Config:
     env: Environment
 
 
+# Intermediate "lexed" form between surface and underlying
 @dataclass(frozen=True)
 class HistoricalVowel:
     quality: str
     length: bool  # True for long, False for short
+    glottal_position: Union[GlottalPosition, None] = None
+
+    def __str__(self):
+        v = self.quality * (2 if self.length else 1)
+        if self.glottal_position in [GlottalPosition.PRE_C, GlottalPosition.NO_C]:
+            return v + "'"
+        return v
+
+
+@dataclass(frozen=True)
+class LexedForm:
+    tokens: List[Union[HistoricalVowel, Consonant]]
+
+    def __str__(self):
+        res = []
+        pending_post_c = False
+        for i, token in enumerate(self.tokens):
+            if isinstance(token, Consonant):
+                res.append(token.value)
+                if pending_post_c:
+                    res.append("'")
+                    pending_post_c = False
+            else:
+                if pending_post_c:
+                    # Should not normally happen if POST_C follows its rules,
+                    # but if it does, the glottal surfaces here.
+                    res.append("'")
+                    pending_post_c = False
+
+                res.append(str(token))
+                if token.glottal_position == GlottalPosition.POST_C:
+                    pending_post_c = True
+
+        if pending_post_c:
+            res.append("'")
+        return "".join(res)
 
 
 # to be populated from docs/tone_mvp.md
@@ -418,10 +458,9 @@ def predict_h1_for_form(form_str: str) -> List[tuple[Vowel, List[H1Config]]]:
     return results
 
 
-def generate_underlying_forms(form_str: str) -> List[str]:
+def generate_underlying_forms(form_str: str) -> List[LexedForm]:
     """
-    Generate all possible underlying form strings from a surface form string.
-    Uses predict_h1_for_form logic but maintains full sequence.
+    Generate all possible underlying form objects (LexedForm) from a surface form string.
     """
     if not form_str:
         return []
@@ -432,50 +471,25 @@ def generate_underlying_forms(form_str: str) -> List[str]:
     prev_long = False
     prev_tone = None
 
-    # Each element is a list of possible strings for that 'segment'
-    # We will join them at the end.
-    # Choices are built step-by-step. Since POST_C glottals need to move
-    # past the next consonant, we'll use a path-based approach.
-
-    initial_path = (
-        [],
-        local_high,
-        prev_long,
-        prev_tone,
-        False,
-        False,
-    )  # (segments, lh, pl, pt, pending_post_c, skip_surface_glottal)
+    # Path state: (tokens, lh, pl, pt, skip_surface_glottal)
+    initial_path = ([], local_high, prev_long, prev_tone, False)
     paths = [initial_path]
 
     for i, seg in enumerate(tone_sequence):
         new_paths = []
-        for segments, lh, pl, pt, pending_post_c, skip_surface_glottal in paths:
+        for tokens, lh, pl, pt, skip_surface_glottal in paths:
             if isinstance(seg, Consonant):
                 if seg.value == "'":
                     if skip_surface_glottal:
                         # This surface glottal was already accounted for by the preceding vowel
-                        new_paths.append((segments, lh, pl, pt, pending_post_c, False))
+                        new_paths.append((tokens, lh, pl, pt, False))
                     else:
                         # Unaccounted glottal, keep it
-                        new_paths.append(
-                            (segments + ["'"], lh, pl, pt, pending_post_c, False)
-                        )
+                        new_paths.append((tokens + [seg], lh, pl, pt, False))
                 else:
                     # Normal consonant
-                    s = seg.value
-                    if pending_post_c:
-                        s += "'"
-                    new_paths.append((segments + [s], lh, pl, pt, False, False))
+                    new_paths.append((tokens + [seg], lh, pl, pt, False))
             elif isinstance(seg, Vowel):
-                # If we had a pending_post_c, it means it didn't find a C to attach to.
-                # Attach it to the PREVIOUS segment now.
-                current_segments = list(segments)
-                if pending_post_c:
-                    if current_segments:
-                        current_segments[-1] += "'"
-                    else:
-                        current_segments.append("'")
-
                 has_glottal = False
                 if i + 1 < len(tone_sequence):
                     next_seg = tone_sequence[i + 1]
@@ -511,51 +525,34 @@ def generate_underlying_forms(form_str: str) -> List[str]:
 
                 if configs:
                     for cfg in configs:
-                        s = seg.quality * (2 if cfg.historically_long else 1)
-                        new_pending = False
-                        if cfg.glottal_position in [
-                            GlottalPosition.PRE_C,
-                            GlottalPosition.NO_C,
-                        ]:
-                            s += "'"
-                        elif cfg.glottal_position == GlottalPosition.POST_C:
-                            new_pending = True
-
+                        hv = HistoricalVowel(
+                            seg.quality, cfg.historically_long, cfg.glottal_position
+                        )
                         new_paths.append(
                             (
-                                current_segments + [s],
+                                tokens + [hv],
                                 LocalHighTone.PREV,
                                 len(seg.tone.value) == 2 if seg.tone else False,
                                 seg.tone,
-                                new_pending,
-                                has_glottal,  # We skip the following surface glottal if we inferred an H1
+                                has_glottal,  # We skip following glottal if inferred H1
                             )
                         )
                 else:
                     # Plain vowel
                     is_long = seg.tone and len(seg.tone.value) == 2
-                    s = seg.quality * (2 if is_long else 1)
+                    hv = HistoricalVowel(seg.quality, is_long, None)
                     new_paths.append(
                         (
-                            current_segments + [s],
+                            tokens + [hv],
                             lh.advance(),
                             is_long,
                             seg.tone,
-                            False,
                             False,
                         )
                     )
         paths = new_paths
 
-    # Cleanup any remaining pending glottals
-    results = []
-    for segments, _, _, _, pending, _ in paths:
-        s = "".join(segments)
-        if pending:
-            s += "'"
-        results.append(s)
-
-    return list(set(results))
+    return [LexedForm(p[0]) for p in paths]
 
 
 def predict_underlying_form(verb, forms, form_name):
@@ -564,111 +561,85 @@ def predict_underlying_form(verb, forms, form_name):
     return generate_underlying_forms(form_str)
 
 
-def infer_surface_forms(underlying_str: str) -> List[str]:
+def infer_surface_forms(lexed: Union[LexedForm, str]) -> List[str]:
     """
-    Forward inference: Generate possible surface forms from an underlying form string.
-    Handles spreading of tones across syllables.
+    Forward inference: Generate possible surface forms from a LexedForm (or string).
     """
-    units = []
-    idx = 0
-    while idx < len(underlying_str):
-        char = underlying_str[idx]
-        if char in VOWEL_SET:
-            start_v = idx
-            while idx < len(underlying_str) and underlying_str[idx] == char:
-                idx += 1
-            length = (idx - start_v) > 1
-            quality = char
-            has_trailing = False
-            # PRE_C / NO_C glottal follows vowel directly
-            if idx < len(underlying_str) and underlying_str[idx] == "'":
-                has_trailing = True
-                idx += 1
-            units.append(
-                {
-                    "type": "vowel",
-                    "quality": quality,
-                    "long": length,
-                    "glottal_after": has_trailing,
-                    "glottal_before": False,
-                    "glottal_post_c": False,
-                }
-            )
-        elif char == "'":
-            idx += 1
-            if idx < len(underlying_str) and underlying_str[idx] in VOWEL_SET:
-                # 'V (used in some cases but usually we use V' or C')
-                v_char = underlying_str[idx]
+    if isinstance(lexed, str):
+        # Fallback for string input: parse into LexedForm
+        # (Simplified parsing for legacy support/testing)
+        tokens = []
+        idx = 0
+        while idx < len(lexed):
+            char = lexed[idx]
+            if char in VOWEL_SET:
                 start_v = idx
-                while idx < len(underlying_str) and underlying_str[idx] == v_char:
+                while idx < len(lexed) and lexed[idx] == char:
                     idx += 1
                 length = (idx - start_v) > 1
-                units.append(
-                    {
-                        "type": "vowel",
-                        "quality": v_char,
-                        "long": length,
-                        "glottal_before": True,
-                        "glottal_after": False,
-                        "glottal_post_c": False,
-                    }
-                )
-            else:
-                units.append({"type": "consonant", "value": "'"})
-        else:
-            # Normal consonant
-            c_val = char
-            idx += 1
-            # Check for POST_C glottal: C'
-            has_post_c = False
-            if idx < len(underlying_str) and underlying_str[idx] == "'":
-                has_post_c = True
-                idx += 1
+                quality = char
+                g_pos = None
 
-            units.append({"type": "consonant", "value": c_val})
-            if has_post_c:
-                # Associate this glottal with the PREVIOUS vowel
-                for k in range(len(units) - 2, -1, -1):
-                    if units[k]["type"] == "vowel":
-                        units[k]["glottal_post_c"] = True
-                        break
+                # Check for PRE_C / NO_C glottal (V')
+                if idx < len(lexed) and lexed[idx] == "'":
+                    # Peek ahead to see if it's followed by C or end of string
+                    has_following_c = False
+                    for k in range(idx + 1, len(lexed)):
+                        if lexed[k] not in VOWEL_SET and lexed[k] != "'":
+                            has_following_c = True
+                            break
+                    g_pos = (
+                        GlottalPosition.PRE_C
+                        if has_following_c
+                        else GlottalPosition.NO_C
+                    )
+                    idx += 1
+
+                # Note: This simple parser won't easily catch POST_C (C')
+                # unless we do more look-ahead. But for now, let's keep it.
+                tokens.append(HistoricalVowel(quality, length, g_pos))
+            else:
+                # Consonant or glottal
+                tokens.append(Consonant(char, idx, idx))
+                # Check for POST_C (C')
+                if char != "'" and idx + 1 < len(lexed) and lexed[idx + 1] == "'":
+                    # Mark the PREVIOUS vowel as POST_C
+                    for k in range(len(tokens) - 2, -1, -1):
+                        if isinstance(tokens[k], HistoricalVowel):
+                            # Replace with POST_C tagged vowel
+                            v = tokens[k]
+                            tokens[k] = HistoricalVowel(
+                                v.quality, v.length, GlottalPosition.POST_C
+                            )
+                            break
+                    idx += 1  # skip the '
+                idx += 1
+        lexed = LexedForm(tokens)
+
+    tokens = lexed.tokens
 
     def solve(
         u_idx: int, local_high: LocalHighTone, prev_long: bool, surface_tones: List[str]
     ) -> List[str]:
-        if u_idx >= len(units):
+        if u_idx >= len(tokens):
             res = []
-            for k, unit in enumerate(units):
-                if unit["type"] == "consonant":
-                    res.append(unit["value"])
+            for k, token in enumerate(tokens):
+                if isinstance(token, Consonant):
+                    res.append(token.value)
                 else:
                     res.append(surface_tones[k])
             return ["".join(res)]
 
-        unit = units[u_idx]
-        if unit["type"] == "consonant":
+        token = tokens[u_idx]
+        if isinstance(token, Consonant):
             return solve(u_idx + 1, local_high, prev_long, surface_tones)
 
-        has_following_c = False
-        for j in range(u_idx + 1, len(units)):
-            if units[j]["type"] == "consonant":
-                has_following_c = True
-                break
-
-        g_pos = None
-        if unit["glottal_before"]:
-            g_pos = (
-                GlottalPosition.POST_C
-            )  # Historical 'V can be interpreted as POST_C sometimes
-        elif unit["glottal_after"]:
-            g_pos = GlottalPosition.PRE_C if has_following_c else GlottalPosition.NO_C
-        elif unit.get("glottal_post_c"):
-            g_pos = GlottalPosition.POST_C
-
+        # It's a HistoricalVowel
+        g_pos = token.glottal_position
         results = []
         if g_pos:
             env = Environment.from_state(local_high, prev_long)
-            cfg = H1Config(unit["long"], g_pos, env)
+            cfg = H1Config(token.length, g_pos, env)
             sequences = H1_INFERENCES.get(cfg, [])
             if sequences:
                 for seq in sequences:
@@ -679,34 +650,31 @@ def infer_surface_forms(underlying_str: str) -> List[str]:
                     ]
 
                     # For POST_C, the "spreading" tone actually applies to the PRECEDING vowel.
-                    # H1_INFERENCES for POST_C usually have one or two tones.
-                    # If two tones, the first one is the "spreading" one.
-
                     if g_pos == GlottalPosition.POST_C:
                         if len(v_tones) == 2:
                             # v_tones[0] goes to preceding vowel
                             # v_tones[1] goes to current vowel
                             prev_v_idx = -1
                             for k in range(u_idx - 1, -1, -1):
-                                if units[k]["type"] == "vowel":
+                                if isinstance(tokens[k], HistoricalVowel):
                                     prev_v_idx = k
                                     break
                             if prev_v_idx != -1:
                                 new_tones[prev_v_idx] = (
-                                    units[prev_v_idx]["quality"] + v_tones[0].value
+                                    tokens[prev_v_idx].quality + v_tones[0].value
                                 )
                             new_tones[u_idx] = (
-                                unit["quality"] + v_tones[1].value + "".join(c_inline)
+                                token.quality + v_tones[1].value + "".join(c_inline)
                             )
                         else:
                             # Single tone for POST_C
                             new_tones[u_idx] = (
-                                unit["quality"] + v_tones[0].value + "".join(c_inline)
+                                token.quality + v_tones[0].value + "".join(c_inline)
                             )
                     else:
                         # PRE_C or NO_C
                         current_v_str = (
-                            unit["quality"] + v_tones[-1].value + "".join(c_inline)
+                            token.quality + v_tones[-1].value + "".join(c_inline)
                         )
                         new_tones[u_idx] = current_v_str
 
@@ -714,37 +682,37 @@ def infer_surface_forms(underlying_str: str) -> List[str]:
                             # Apply spreading tone to preceding vowel
                             prev_v_idx = -1
                             for k in range(u_idx - 1, -1, -1):
-                                if units[k]["type"] == "vowel":
+                                if isinstance(tokens[k], HistoricalVowel):
                                     prev_v_idx = k
                                     break
                             if prev_v_idx != -1:
                                 new_tones[prev_v_idx] = (
-                                    units[prev_v_idx]["quality"] + v_tones[0].value
+                                    tokens[prev_v_idx].quality + v_tones[0].value
                                 )
 
                     results.extend(
-                        solve(u_idx + 1, LocalHighTone.PREV, unit["long"], new_tones)
+                        solve(u_idx + 1, LocalHighTone.PREV, token.length, new_tones)
                     )
             else:
                 # No rule: Fallback to Low
                 new_tones = list(surface_tones)
                 if new_tones[u_idx] is None:
-                    new_tones[u_idx] = unit["quality"] + ("22" if unit["long"] else "2")
+                    new_tones[u_idx] = token.quality + ("22" if token.length else "2")
                 results.extend(
-                    solve(u_idx + 1, local_high.advance(), unit["long"], new_tones)
+                    solve(u_idx + 1, local_high.advance(), token.length, new_tones)
                 )
         else:
             # Plain vowel
             new_tones = list(surface_tones)
             if new_tones[u_idx] is None:
-                new_tones[u_idx] = unit["quality"] + ("22" if unit["long"] else "2")
+                new_tones[u_idx] = token.quality + ("22" if token.length else "2")
             results.extend(
-                solve(u_idx + 1, local_high.advance(), unit["long"], new_tones)
+                solve(u_idx + 1, local_high.advance(), token.length, new_tones)
             )
 
         return results
 
-    return solve(0, LocalHighTone.NONE, False, [None] * len(units))
+    return solve(0, LocalHighTone.NONE, False, [None] * len(tokens))
 
 
 def check_prediction(underlying_form: str, target_surface: str) -> bool:
@@ -767,30 +735,28 @@ def main():
 
     forms_to_analyze = ["present", "imperfective", "perfective"]
 
-    eligible_count = 0
-    for verb, _row in verbs_with_forms:
-        eligible_count += 1
-        opts_per_form = {}
-        for fn in forms_to_analyze:
-            # ...
-            pass
+    print("\nVerification of a few eligible verbs:")
+    for verb, row in verbs_with_forms[:5]:
+        print(f"\nVerb: {verb.definition} (Root: {verb.h_grade_root})")
+        for fn in ["present", "perfective"]:
+            surface = row.get(fn)
+            if not surface:
+                continue
 
-        # find common derivations
-    #     # PLAN:
-    #     # window scan along, looking for high tones (3, 32, 33)
-    #     # check for preceeding 23-, spread ability, etc. as we scan
-    #     # prev_long, last_high both start at None
-    #     # window cond turn into spread conn
-    #     # Blocked, No spread, Spread
-    #     # Table lookup of high tone (3, 32, 33) gives possible positions for glottal
-    #     #
-
-    #     # print(f"{verb.definition} | {form_name} | Stem Tones: {stem_tones}")
-    #     # --- END MVP ANALYSIS LOGIC ---
-
-    print(
-        f"\nScaffold complete. Processed {len(verbs)} verbs, {eligible_count} were eligible for analysis."
-    )
+            underlying_candidates = generate_underlying_forms(surface)
+            print(f"  Form: {fn:12} Surface: {surface:15}")
+            for i, uf in enumerate(
+                underlying_candidates[:2]
+            ):  # Show first 2 candidates
+                reconstructed = infer_surface_forms(uf)
+                match = any(
+                    strip_morpheme_boundaries(surface) in r for r in reconstructed
+                )
+                print(
+                    f"    Candidate {i+1}: {str(uf):15} | Reconstructed: {reconstructed[0][:20]}... | Match: {match}"
+                )
+            if len(underlying_candidates) > 2:
+                print(f"    ({len(underlying_candidates)-2} more candidates...)")
 
 
 if __name__ == "__main__":
