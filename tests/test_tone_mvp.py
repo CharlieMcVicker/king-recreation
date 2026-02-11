@@ -175,6 +175,13 @@ class TestToneMVP(unittest.TestCase):
         # aa/ because surface is 33 (long)
         self.assertIn("aa/-laa", underlying_strs_long)
 
+    def test_h2_23_33(self):
+        from king_recreation.tone.analyze_tone_mvp import generate_underlying_forms
+
+        candidates = generate_underlying_forms("ka2ne23tl-i33y-v2'-a")
+        underlying_strs = [str(c) for c in candidates]
+        self.assertIn("kanee/tl-iiy-vv'-a", underlying_strs)
+
 
 if __name__ == "__main__":
     unittest.main()

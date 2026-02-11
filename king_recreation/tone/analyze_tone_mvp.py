@@ -615,10 +615,15 @@ def generate_underlying_forms(form_str: str) -> List[LexedForm]:
 
                 # 1. Plain vowel (always try)
                 is_long = seg.tone and len(seg.tone.value) == 2
+                env = Environment.from_state(lh, pl)
+                next_lh = lh.advance()
+                if env == Environment.SPREAD and is_long:
+                    next_lh = LocalHighTone.PREV
+
                 candidates.append(
                     {
                         "hv": HistoricalVowel(seg.quality, is_long, None),
-                        "next_lh": lh.advance(),
+                        "next_lh": next_lh,
                         "skip_g": False,
                     }
                 )
@@ -638,11 +643,17 @@ def generate_underlying_forms(form_str: str) -> List[LexedForm]:
                 # 3. H2 variants for all above
                 # H2 only occurs on the last mora of a segment.
                 is_segment_end = False
-                if i + 1 == len(tone_sequence):
-                    is_segment_end = True
-                elif i + 1 < len(tone_sequence) and isinstance(
-                    tone_sequence[i + 1], MorphemeBoundary
-                ):
+                # H2 only occurs on the last mora of a segment.
+                # A vowel is the last mora if there are no more vowels before the next boundary.
+                is_last_vowel_in_segment = True
+                for k in range(i + 1, len(tone_sequence)):
+                    if isinstance(tone_sequence[k], Vowel):
+                        is_last_vowel_in_segment = False
+                        break
+                    if isinstance(tone_sequence[k], MorphemeBoundary):
+                        break
+
+                if is_last_vowel_in_segment:
                     is_segment_end = True
 
                 h2_eligible = (
@@ -830,12 +841,17 @@ def infer_surface_forms(lexed: Union[LexedForm, str]) -> List[str]:
             results.extend(solve(u_idx + 1, next_lh, token.length, new_tones))
         else:
             # Plain vowel
+            env = Environment.from_state(local_high, prev_long)
             new_tones = list(surface_tones)
             if new_tones[u_idx] is None:
-                new_tones[u_idx] = token.quality + ("22" if token.length else "2")
-            results.extend(
-                solve(u_idx + 1, local_high.advance(), token.length, new_tones)
-            )
+                if env == Environment.SPREAD and token.length:
+                    new_tones[u_idx] = token.quality + "33"
+                    next_lh = LocalHighTone.PREV
+                else:
+                    new_tones[u_idx] = token.quality + ("22" if token.length else "2")
+                    next_lh = local_high.advance()
+
+            results.extend(solve(u_idx + 1, next_lh, token.length, new_tones))
 
         return results
 
