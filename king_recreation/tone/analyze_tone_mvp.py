@@ -1,4 +1,5 @@
 import io
+import itertools
 import json
 import os
 from csv import DictReader, DictWriter
@@ -171,6 +172,8 @@ def tone_sequence_from_corpus_form(s: str) -> List[Union[Consonant, Vowel]]:
 
             tone_str = s[tone_start:tone_end]
             tone_enum = TONE_VALUE_TO_ENUM.get(tone_str)
+            if not tone_enum:
+                tone_enum = VowelTone.l
 
             res.append(
                 Vowel(
@@ -232,19 +235,29 @@ class H1Config:
     env: Environment
 
 
+@dataclass(frozen=True)
+class HistoricalVowel:
+    quality: str
+    length: bool  # True for long, False for short
+
+
 # to be populated from docs/tone_mvp.md
 H1_INFERENCES = {
     # Long PRE_C
     H1Config(True, GlottalPosition.PRE_C, Environment.SPREAD): [
         [VowelTone.lh, VowelTone.hl]
     ],
-    H1Config(True, GlottalPosition.PRE_C, Environment.NO_SPREAD): [[VowelTone.hh]],
+    H1Config(True, GlottalPosition.PRE_C, Environment.NO_SPREAD): [
+        [VowelTone.hh],
+    ],
     H1Config(True, GlottalPosition.PRE_C, Environment.BLOCKED): [[VowelTone.lf]],
     # Short PRE_C
     H1Config(False, GlottalPosition.PRE_C, Environment.SPREAD): [
         [VowelTone.lh, VowelTone.hl]
     ],
-    H1Config(False, GlottalPosition.PRE_C, Environment.NO_SPREAD): [[VowelTone.hl]],
+    H1Config(False, GlottalPosition.PRE_C, Environment.NO_SPREAD): [
+        [VowelTone.hl],
+    ],
     H1Config(False, GlottalPosition.PRE_C, Environment.BLOCKED): [[VowelTone.lf]],
     # Long NO_C
     H1Config(True, GlottalPosition.NO_C, Environment.SPREAD): [
@@ -325,7 +338,7 @@ def get_possible_glottal_positions(
                     results.append(config)
                     break
             elif len(v_tones) == 2:
-                # Sequence match: current tone must match last, previous tone should match first (if known)
+                # Sequence match: current tone must match LAST, previous tone should match first
                 if v_tones[1] == tone and (
                     prev_tone is None or v_tones[0] == prev_tone
                 ):
@@ -379,6 +392,7 @@ def predict_h1_for_form(form_str: str) -> List[tuple[Vowel, List[H1Config]]]:
                 VowelTone.h,
                 VowelTone.hl,
                 VowelTone.lf,
+                VowelTone.lh,
             ]:
                 env = Environment.from_state(local_high, prev_long)
                 possible_positions = get_possible_glottal_positions(
@@ -404,10 +418,267 @@ def predict_h1_for_form(form_str: str) -> List[tuple[Vowel, List[H1Config]]]:
     return results
 
 
+def generate_underlying_forms(form_str: str) -> List[str]:
+    """
+    Generate all possible underlying form strings from a surface form string.
+    Uses predict_h1_for_form logic but maintains full sequence.
+    """
+    if not form_str:
+        return []
+
+    clean_form = strip_morpheme_boundaries(form_str)
+    tone_sequence = tone_sequence_from_corpus_form(clean_form)
+    local_high = LocalHighTone.NONE
+    prev_long = False
+    prev_tone = None
+
+    choices = []
+    skip_next_glottal = False
+
+    for i, seg in enumerate(tone_sequence):
+        if skip_next_glottal:
+            skip_next_glottal = False
+            if isinstance(seg, Consonant) and seg.value == "'":
+                continue
+
+        if isinstance(seg, Consonant):
+            if seg.value == "'":
+                # We skip surface glottals here and handle them in the Vowel branch
+                # but if we find one not following a vowel, we keep it?
+                # For now, just keep non-glottal consonants.
+                choices.append(["'"])
+            else:
+                choices.append([seg.value])
+        elif isinstance(seg, Vowel):
+            has_glottal = False
+            if i + 1 < len(tone_sequence):
+                next_seg = tone_sequence[i + 1]
+                if isinstance(next_seg, Consonant) and next_seg.value == "'":
+                    has_glottal = True
+                    skip_next_glottal = True
+
+            has_following_c = False
+            # Check for any consonant following this vowel (possibly after a glottal stop)
+            for j in range(i + 1, len(tone_sequence)):
+                next_seg = tone_sequence[j]
+                if isinstance(next_seg, Consonant):
+                    if next_seg.value != "'":
+                        has_following_c = True
+                        break
+                elif isinstance(next_seg, Vowel):
+                    break
+
+            configs = []
+            if has_glottal or (
+                seg.tone
+                and seg.tone
+                in [
+                    VowelTone.hh,
+                    VowelTone.h,
+                    VowelTone.hl,
+                    VowelTone.lf,
+                    VowelTone.lh,
+                ]
+            ):
+                env = Environment.from_state(local_high, prev_long)
+                configs = get_possible_glottal_positions(
+                    env, seg.tone, prev_tone, has_glottal, has_following_c
+                )
+
+            h1_found = False
+            if configs:
+                # Branches for H1
+                branch = []
+                for cfg in configs:
+                    s = ""
+                    # POST_C: ' goes before vowel
+                    if cfg.glottal_position == GlottalPosition.POST_C:
+                        s += "'"
+                    # Doubling
+                    s += seg.quality * (2 if cfg.historically_long else 1)
+                    # PRE_C / NO_C: ' goes after vowel
+                    if cfg.glottal_position in [
+                        GlottalPosition.PRE_C,
+                        GlottalPosition.NO_C,
+                    ]:
+                        s += "'"
+                    branch.append(s)
+                choices.append(branch)
+                h1_found = True
+            else:
+                # Non-H1: Use surface length, no tone
+                is_long = seg.tone and len(seg.tone.value) == 2
+                choices.append([seg.quality * (2 if is_long else 1)])
+
+            # Update flags
+            if h1_found:
+                local_high = LocalHighTone.PREV
+            else:
+                local_high = local_high.advance()
+
+            if seg.tone:
+                prev_long = len(seg.tone.value) == 2
+                prev_tone = seg.tone
+            else:
+                prev_long = False
+                prev_tone = None
+
+    # Generate all combinations
+    results = ["".join(combo) for combo in itertools.product(*choices)]
+    return results
+
+
 def predict_underlying_form(verb, forms, form_name):
     # Determine the tone sequence for the given form
     form_str = forms[form_name]
-    return predict_h1_for_form(form_str)
+    return generate_underlying_forms(form_str)
+
+
+def infer_surface_forms(underlying_str: str) -> List[str]:
+    """
+    Forward inference: Generate possible surface forms from an underlying form string.
+    Handles spreading of tones across syllables.
+    """
+    units = []
+    idx = 0
+    while idx < len(underlying_str):
+        char = underlying_str[idx]
+        if char in VOWEL_SET:
+            start_v = idx
+            while idx < len(underlying_str) and underlying_str[idx] == char:
+                idx += 1
+            length = (idx - start_v) > 1
+            quality = char
+            has_trailing = False
+            if idx < len(underlying_str) and underlying_str[idx] == "'":
+                has_trailing = True
+                idx += 1
+            units.append(
+                {
+                    "type": "vowel",
+                    "quality": quality,
+                    "long": length,
+                    "glottal_after": has_trailing,
+                    "glottal_before": False,
+                }
+            )
+        elif char == "'":
+            idx += 1
+            if idx < len(underlying_str) and underlying_str[idx] in VOWEL_SET:
+                v_char = underlying_str[idx]
+                start_v = idx
+                while idx < len(underlying_str) and underlying_str[idx] == v_char:
+                    idx += 1
+                length = (idx - start_v) > 1
+                units.append(
+                    {
+                        "type": "vowel",
+                        "quality": v_char,
+                        "long": length,
+                        "glottal_before": True,
+                        "glottal_after": False,
+                    }
+                )
+            else:
+                units.append({"type": "consonant", "value": "'"})
+        else:
+            units.append({"type": "consonant", "value": char})
+            idx += 1
+
+    def solve(
+        u_idx: int, local_high: LocalHighTone, prev_long: bool, surface_tones: List[str]
+    ) -> List[str]:
+        if u_idx >= len(units):
+            res = []
+            for k, unit in enumerate(units):
+                if unit["type"] == "consonant":
+                    res.append(unit["value"])
+                else:
+                    res.append(surface_tones[k])
+            return ["".join(res)]
+
+        unit = units[u_idx]
+        if unit["type"] == "consonant":
+            return solve(u_idx + 1, local_high, prev_long, surface_tones)
+
+        has_following_c = False
+        for j in range(u_idx + 1, len(units)):
+            if units[j]["type"] == "consonant":
+                has_following_c = True
+                break
+
+        g_pos = None
+        if unit["glottal_before"]:
+            g_pos = GlottalPosition.POST_C
+        elif unit["glottal_after"]:
+            g_pos = GlottalPosition.PRE_C if has_following_c else GlottalPosition.NO_C
+
+        results = []
+        if g_pos:
+            env = Environment.from_state(local_high, prev_long)
+            cfg = H1Config(unit["long"], g_pos, env)
+            sequences = H1_INFERENCES.get(cfg, [])
+            if sequences:
+                for seq in sequences:
+                    new_tones = list(surface_tones)
+                    v_tones = [item for item in seq if isinstance(item, VowelTone)]
+                    c_inline = [
+                        item.value for item in seq if isinstance(item, Consonant)
+                    ]
+
+                    current_v_str = (
+                        unit["quality"] + v_tones[-1].value + "".join(c_inline)
+                    )
+                    new_tones[u_idx] = current_v_str
+
+                    if len(v_tones) == 2:
+                        # Apply spreading tone to preceding vowel
+                        prev_v_idx = -1
+                        for k in range(u_idx - 1, -1, -1):
+                            if units[k]["type"] == "vowel":
+                                prev_v_idx = k
+                                break
+                        if prev_v_idx != -1:
+                            new_tones[prev_v_idx] = (
+                                units[prev_v_idx]["quality"] + v_tones[0].value
+                            )
+
+                    results.extend(
+                        solve(u_idx + 1, LocalHighTone.PREV, unit["long"], new_tones)
+                    )
+            else:
+                # No rule: Fallback to Low
+                new_tones = list(surface_tones)
+                if new_tones[u_idx] is None:
+                    new_tones[u_idx] = unit["quality"] + ("22" if unit["long"] else "2")
+                results.extend(
+                    solve(u_idx + 1, local_high.advance(), unit["long"], new_tones)
+                )
+        else:
+            # Plain vowel
+            new_tones = list(surface_tones)
+            if new_tones[u_idx] is None:
+                new_tones[u_idx] = unit["quality"] + ("22" if unit["long"] else "2")
+            results.extend(
+                solve(u_idx + 1, local_high.advance(), unit["long"], new_tones)
+            )
+
+        return results
+
+    return solve(0, LocalHighTone.NONE, False, [None] * len(units))
+
+
+def check_prediction(underlying_form: str, target_surface: str) -> bool:
+    """
+    Integrity check: Can this underlying form generate the target surface form?
+    """
+    # Normalize clean_target by parsing and re-serializing to ensure consistent tone representation
+    clean_target = strip_morpheme_boundaries(target_surface)
+    seq = tone_sequence_from_corpus_form(clean_target)
+    normalized_target = "".join(str(s) for s in seq)
+
+    surface_candidates = infer_surface_forms(underlying_form)
+    return normalized_target in surface_candidates
 
 
 def main():
@@ -417,11 +688,13 @@ def main():
 
     forms_to_analyze = ["present", "imperfective", "perfective"]
 
-    for verb, forms in verbs_with_forms:
+    eligible_count = 0
+    for verb, _row in verbs_with_forms:
+        eligible_count += 1
         opts_per_form = {}
         for fn in forms_to_analyze:
-            underlying_opts = predict_underlying_form(verb, forms, fn)
-            opts_per_form[fn] = underlying_opts
+            # ...
+            pass
 
         # find common derivations
     #     # PLAN:
