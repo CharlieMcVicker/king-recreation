@@ -1,6 +1,33 @@
 import pytest
 
 from king_recreation.morphemes.middle_voice import MiddleVoice
+from king_recreation.reconstruct_from_roots import desegment
+
+
+def _test_identify_and_reconstruct(h_grade, g_grade, expected):
+    result = MiddleVoice.identify_middle_voice(h_grade, g_grade)
+
+    assert sorted(result, key=lambda x: x[0].value) == sorted(
+        expected, key=lambda x: x[0].value
+    )
+
+    # test apply
+    for voice, (h_stem, g_stem) in expected:
+        h_applied = (
+            desegment(voice.apply(h_stem, is_glottal_grade=False))
+            if h_stem is not None
+            else None
+        )
+        g_applied = (
+            desegment(voice.apply(g_stem, is_glottal_grade=True))
+            if g_stem is not None
+            else None
+        )
+
+        assert (h_applied, g_applied) == (
+            h_grade,
+            g_grade,
+        ), f"Adding voice back in should recreate same forms (mv={voice}), {h_applied}|{g_applied}"
 
 
 def test_middle_ali():
@@ -9,25 +36,7 @@ def test_middle_ali():
         (MiddleVoice.NONE, (h_grade, g_grade)),
         (MiddleVoice.AL_ALI, ("hsday", "hsday")),
     ]
-    result = MiddleVoice.identify_middle_voice(h_grade, g_grade)
-
-    assert sorted(result, key=lambda x: x[0].value) == sorted(
-        expected, key=lambda x: x[0].value
-    )
-
-    # test apply
-    for voice, (h_stem, g_stem) in expected:
-        h_applied = (
-            voice.apply(h_stem, is_glottal_grade=False) if h_stem is not None else None
-        )
-        g_applied = (
-            voice.apply(g_stem, is_glottal_grade=True) if g_stem is not None else None
-        )
-
-        assert (h_applied, g_applied) == (
-            h_grade,
-            g_grade,
-        ), f"Adding voice back in should recreate same forms (mv={voice})"
+    _test_identify_and_reconstruct(h_grade, g_grade, expected)
 
 
 def test_middle_ali_no_g():
@@ -36,25 +45,7 @@ def test_middle_ali_no_g():
         (MiddleVoice.NONE, (h_grade, None)),
         (MiddleVoice.AL_ALI, ("hsday", None)),
     ]
-    result = MiddleVoice.identify_middle_voice(h_grade, g_grade)
-
-    assert sorted(result, key=lambda x: x[0].value) == sorted(
-        expected, key=lambda x: x[0].value
-    )
-
-    # test apply
-    for voice, (h_stem, g_stem) in expected:
-        h_applied = (
-            voice.apply(h_stem, is_glottal_grade=False) if h_stem is not None else None
-        )
-        g_applied = (
-            voice.apply(g_stem, is_glottal_grade=True) if g_stem is not None else None
-        )
-
-        assert (h_applied, g_applied) == (
-            h_grade,
-            g_grade,
-        ), f"Adding voice back in should recreate same forms (mv={voice})"
+    _test_identify_and_reconstruct(h_grade, g_grade, expected)
 
 
 def test_middle_atalen():
@@ -64,25 +55,7 @@ def test_middle_atalen():
         (MiddleVoice.AT, ("alen", None)),
         (MiddleVoice.ATA, ("len", None)),
     ]
-    result = MiddleVoice.identify_middle_voice(h_grade, g_grade)
-
-    assert sorted(result, key=lambda x: x[0].value) == sorted(
-        expected, key=lambda x: x[0].value
-    )
-
-    # test apply
-    for voice, (h_stem, g_stem) in expected:
-        h_applied = (
-            voice.apply(h_stem, is_glottal_grade=False) if h_stem is not None else None
-        )
-        g_applied = (
-            voice.apply(g_stem, is_glottal_grade=True) if g_stem is not None else None
-        )
-
-        assert (h_applied, g_applied) == (
-            h_grade,
-            g_grade,
-        ), f"Adding voice back in should recreate same forms (mv={voice})"
+    _test_identify_and_reconstruct(h_grade, g_grade, expected)
 
 
 def test_try_strip():
