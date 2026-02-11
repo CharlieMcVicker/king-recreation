@@ -12,6 +12,7 @@ from king_recreation.paths import (
     corpus_to_cnd_path,
     reconstructable_verbs_path,
     stems_with_tone_corpus_path,
+    underlying_stems_path,
 )
 from king_recreation.phonology_data import VOWEL_SET
 from king_recreation.reconstruct_from_roots import ReconstructibleVerb
@@ -742,32 +743,69 @@ def check_prediction(underlying_form: str, target_surface: str) -> bool:
 def main():
     verbs, cnd_corpus, corpus_id_to_entries = load_data()
 
+    # Get eligible verbs and their surface stems
     verbs_with_forms = write_elligible_verbs(verbs, cnd_corpus, corpus_id_to_entries)
 
-    forms_to_analyze = ["present", "imperfective", "perfective"]
-
-    print("\nVerification of a few eligible verbs:")
-    for verb, row in verbs_with_forms[:5]:
-        print(f"\nVerb: {verb.definition} (Root: {verb.h_grade_root})")
-        for fn in ["present", "perfective"]:
-            surface = row.get(fn)
-            if not surface:
+    output_rows = []
+    for verb, row in verbs_with_forms:
+        corpus_id = row["corpus_id"]
+        for fn in FORMS:
+            surface_stem = row.get(fn)
+            if not surface_stem:
                 continue
 
-            underlying_candidates = generate_underlying_forms(surface)
-            print(f"  Form: {fn:12} Surface: {surface:15}")
-            for i, uf in enumerate(
-                underlying_candidates[:2]
-            ):  # Show first 2 candidates
-                reconstructed = infer_surface_forms(uf)
-                match = any(
-                    strip_morpheme_boundaries(surface) in r for r in reconstructed
+            underlying_candidates = generate_underlying_forms(surface_stem)
+            for uf in underlying_candidates:
+                output_rows.append(
+                    {
+                        "corpus_id": corpus_id,
+                        "definition": verb.definition,
+                        "form": fn,
+                        "surface_stem": surface_stem,
+                        "underlying_stem": str(uf),
+                    }
                 )
-                print(
-                    f"    Candidate {i+1}: {str(uf):15} | Reconstructed: {reconstructed[0][:20]}... | Match: {match}"
-                )
-            if len(underlying_candidates) > 2:
-                print(f"    ({len(underlying_candidates)-2} more candidates...)")
+
+    if output_rows:
+        with open(underlying_stems_path, "w", newline="") as f:
+            writer = DictWriter(
+                f,
+                fieldnames=[
+                    "corpus_id",
+                    "definition",
+                    "form",
+                    "surface_stem",
+                    "underlying_stem",
+                ],
+            )
+            writer.writeheader()
+            writer.writerows(output_rows)
+        print(f"Underlying stems written to {underlying_stems_path}")
+
+    # Verification of a few entries
+    if verbs_with_forms:
+        print("\nVerification of a few eligible verbs:")
+        for verb, row in verbs_with_forms[:5]:
+            print(f"\nVerb: {verb.definition} (Root: {verb.h_grade_root})")
+            for fn in ["present", "perfective"]:
+                surface = row.get(fn)
+                if not surface:
+                    continue
+
+                underlying_candidates = generate_underlying_forms(surface)
+                print(f"  Form: {fn:12} Surface: {surface:15}")
+                for i, uf in enumerate(
+                    underlying_candidates[:2]
+                ):  # Show first 2 candidates
+                    reconstructed = infer_surface_forms(uf)
+                    match = any(
+                        strip_morpheme_boundaries(surface) in r for r in reconstructed
+                    )
+                    print(
+                        f"    Candidate {i+1}: {str(uf):15} | Reconstructed: {reconstructed[0][:20]}... | Match: {match}"
+                    )
+                if len(underlying_candidates) > 2:
+                    print(f"    ({len(underlying_candidates)-2} more candidates...)")
 
 
 if __name__ == "__main__":

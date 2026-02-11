@@ -39,6 +39,7 @@ corpus_to_cnd_path = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus_to_cnd.csv")
 stems_with_tone_corpus_path = os.path.join(
     ARTIFACTS_CORPORA_DIR, "stems_with_tone_corpus.csv"
 )
+underlying_stems_path = os.path.join(ARTIFACTS_DATA_DIR, "underlying_stems.csv")
 
 # Match Data
 matches_path = os.path.join(ARTIFACTS_DATA_DIR, "matches_initial.csv")
