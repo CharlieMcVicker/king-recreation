@@ -904,6 +904,7 @@ def main():
                         {
                             "corpus_id": corpus_id,
                             "definition": verb.definition,
+                            "class": verb.class_name,
                             "form": fn,
                             "surface_stem": surface_stem,
                             "underlying_stem": str(uf),
@@ -917,6 +918,7 @@ def main():
                 fieldnames=[
                     "corpus_id",
                     "definition",
+                    "class",
                     "form",
                     "surface_stem",
                     "underlying_stem",
