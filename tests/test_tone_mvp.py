@@ -130,6 +130,11 @@ def test_spreading_blocked_long():
                     glottal_position=GlottalPosition.POST_C,
                     env=Environment.NO_SPREAD,
                 ),
+                H1Config(
+                    historically_long=True,
+                    glottal_position=GlottalPosition.POST_C,
+                    env=Environment.SPREAD,
+                ),
             ],
         ],
         log=True,

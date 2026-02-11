@@ -3,9 +3,9 @@ import itertools
 import json
 import os
 from csv import DictReader, DictWriter
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
-from typing import List, Union
+from typing import List, Optional, Union
 
 from king_recreation.paths import (
     cherokee_nation_dictionary_path,
@@ -300,6 +300,7 @@ class HistoricalVowel:
     length: bool  # True for long, False for short
     glottal_position: Union[GlottalPosition, None] = None
     h2: bool = False
+    derived_env: Optional["Environment"] = field(default=None, compare=False)
 
     def __str__(self):
         v = self.quality * (2 if self.length else 1)
@@ -519,76 +520,51 @@ def predict_h1_for_form(
     form_str: str, tonicity: Tonicity = Tonicity.TONIC
 ) -> List[tuple[Vowel, List[H1Config]]]:
     """
-    Core logic to predict possible H1 configurations for a single form string.
+    Wrapper around generate_underlying_forms to maintain compatibility with tests.
     """
     if not form_str:
         return []
 
-    # Use form_str directly to preserve boundaries if any
     tone_sequence = tone_sequence_from_corpus_form(form_str)
-    local_high = LocalHighTone.NONE
-    prev_long = False
-    prev_tone = None
+    surface_vowels = [s for s in tone_sequence if isinstance(s, Vowel)]
+
+    candidates = generate_underlying_forms(form_str, tonicity=tonicity)
 
     results = []
+    # For each vowel index, collect unique H1Configs from all candidates
+    for i, suv in enumerate(surface_vowels):
+        configs = set()
+        for cand in candidates:
+            # LexedForm.tokens contains MorphemeBoundary and Consonants too.
+            # But the number of HistoricalVowels matches surface_vowels.
+            hvs = [t for t in cand.tokens if isinstance(t, HistoricalVowel)]
+            if i < len(hvs):
+                hv = hvs[i]
+                if hv.glottal_position is not None and hv.derived_env is not None:
+                    configs.add(
+                        H1Config(hv.length, hv.glottal_position, hv.derived_env)
+                    )
 
-    for i, seg in enumerate(tone_sequence):
-        if isinstance(seg, Vowel):
-            h1_found = False
-            # Check if this vowel or the following consonant is a glottal stop candidate
-            has_glottal = False
-            if i + 1 < len(tone_sequence):
-                next_seg = tone_sequence[i + 1]
-                if isinstance(next_seg, Consonant) and next_seg.value == "'":
-                    has_glottal = True
-
-            has_following_c = False
-            # Check for any consonant following this vowel (possibly after a glottal stop)
-            for j in range(i + 1, len(tone_sequence)):
-                next_seg = tone_sequence[j]
-                if isinstance(next_seg, Consonant):
-                    if next_seg.value != "'":
-                        has_following_c = True
-                        break
-                elif isinstance(next_seg, Vowel):
-                    # Hit next vowel, no consonant in between (except maybe glottal)
-                    break
-
-            # We only look for H1 if we see a candidate tone (H, HH, or HL)
-            # or if a glottal stop is explicitly present.
-            if has_glottal or seg.tone in [
-                VowelTone.hh,
-                VowelTone.h,
-                VowelTone.hl,
-                VowelTone.lf,
-                VowelTone.lh,
-            ]:
-                env = Environment.from_state(local_high, prev_long, tonicity)
-                possible_positions = get_possible_glottal_positions(
-                    env, seg.tone, prev_tone, has_glottal, has_following_c
+        if configs:
+            # Sort for deterministic test results
+            results.append(
+                (
+                    suv,
+                    sorted(
+                        list(configs),
+                        key=lambda x: (x.glottal_position.value, x.historically_long),
+                    ),
                 )
-                if possible_positions:
-                    results.append((seg, possible_positions))
-                    h1_found = True
-
-            # update flags for next syllable
-            if h1_found:
-                local_high = LocalHighTone.PREV
-            else:
-                local_high = local_high.advance()
-
-            if seg.tone:
-                prev_long = len(seg.tone.value) == 2
-                prev_tone = seg.tone
-            else:
-                prev_long = False
-                prev_tone = None
+            )
 
     return results
 
 
 def generate_underlying_forms(
-    form_str: str, tonicity: Tonicity = Tonicity.TONIC
+    form_str: str,
+    initial_lh: LocalHighTone = LocalHighTone.NONE,
+    initial_pl: bool = False,
+    tonicity: Tonicity = Tonicity.TONIC,
 ) -> List[LexedForm]:
     """
     Generate all possible underlying form objects (LexedForm) from a surface form string.
@@ -598,12 +574,10 @@ def generate_underlying_forms(
 
     # Use form_str directly to preserve boundaries if any
     tone_sequence = tone_sequence_from_corpus_form(form_str)
-    local_high = LocalHighTone.NONE
-    prev_long = False
     prev_tone = None
 
     # Path state: (tokens, lh, pl, pt, skip_surface_glottal)
-    initial_path = ([], local_high, prev_long, prev_tone, False)
+    initial_path = ([], initial_lh, initial_pl, prev_tone, False)
     paths = [initial_path]
 
     for i, seg in enumerate(tone_sequence):
@@ -668,7 +642,9 @@ def generate_underlying_forms(
 
                 candidates.append(
                     {
-                        "hv": HistoricalVowel(seg.quality, is_long, None),
+                        "hv": HistoricalVowel(
+                            seg.quality, is_long, None, derived_env=env
+                        ),
                         "next_lh": next_lh,
                         "skip_g": False,
                     }
@@ -679,7 +655,10 @@ def generate_underlying_forms(
                     candidates.append(
                         {
                             "hv": HistoricalVowel(
-                                seg.quality, cfg.historically_long, cfg.glottal_position
+                                seg.quality,
+                                cfg.historically_long,
+                                cfg.glottal_position,
+                                derived_env=env,
                             ),
                             "next_lh": LocalHighTone.PREV,
                             "skip_g": has_glottal,
@@ -689,8 +668,6 @@ def generate_underlying_forms(
                 # 3. H2 variants for all above
                 # H2 only occurs on the last mora of a segment.
                 is_segment_end = False
-                # H2 only occurs on the last mora of a segment.
-                # A vowel is the last mora if there are no more vowels before the next boundary.
                 is_last_vowel_in_segment = True
                 for k in range(i + 1, len(tone_sequence)):
                     if isinstance(tone_sequence[k], Vowel):
@@ -727,6 +704,7 @@ def generate_underlying_forms(
                             cand["hv"].length,
                             cand["hv"].glottal_position,
                             h2=True,
+                            derived_env=env,
                         )
                         h2_cand["next_lh"] = h2_next_lh
                         h2_candidates.append(h2_cand)
@@ -746,182 +724,6 @@ def generate_underlying_forms(
         paths = new_paths
 
     return [LexedForm(p[0]) for p in paths]
-
-
-def generate_underlying_forms_with_state(
-    form_str: str,
-    initial_lh: LocalHighTone = LocalHighTone.NONE,
-    initial_pl: bool = False,
-    tonicity: Tonicity = Tonicity.TONIC,
-) -> List[LexedForm]:
-    """
-    Generate underlying forms with a specific initial state.
-    Use this for diagnosing if a different environment (e.g. BLOCKED) would allow a match.
-    """
-    if not form_str:
-        return []
-
-    # Use form_str directly to preserve boundaries if any
-    tone_sequence = tone_sequence_from_corpus_form(form_str)
-    local_high = initial_lh
-    prev_long = initial_pl
-    prev_tone = None
-
-    # Path state: (tokens, lh, pl, pt, skip_surface_glottal)
-    initial_path = ([], local_high, prev_long, prev_tone, False)
-    paths = [initial_path]
-
-    for i, seg in enumerate(tone_sequence):
-        new_paths = []
-        for tokens, lh, pl, pt, skip_surface_glottal in paths:
-            if isinstance(seg, MorphemeBoundary):
-                new_paths.append((tokens + [seg], lh, pl, pt, False))
-            elif isinstance(seg, Consonant):
-                if seg.value == "'":
-                    if skip_surface_glottal:
-                        new_paths.append((tokens, lh, pl, pt, False))
-                    else:
-                        new_paths.append((tokens + [seg], lh, pl, pt, False))
-                else:
-                    new_paths.append((tokens + [seg], lh, pl, pt, False))
-            elif isinstance(seg, Vowel):
-                has_glottal = False
-                if i + 1 < len(tone_sequence):
-                    next_seg = tone_sequence[i + 1]
-                    if isinstance(next_seg, Consonant) and next_seg.value == "'":
-                        has_glottal = True
-
-                has_following_c = False
-                for j in range(i + 1, len(tone_sequence)):
-                    next_seg = tone_sequence[j]
-                    if isinstance(next_seg, Consonant):
-                        if next_seg.value != "'":
-                            has_following_c = True
-                            break
-                    elif isinstance(next_seg, Vowel):
-                        break
-
-                env = Environment.from_state(lh, pl, tonicity)
-                configs = []
-                if has_glottal or (
-                    seg.tone
-                    and seg.tone
-                    in [
-                        VowelTone.hh,
-                        VowelTone.h,
-                        VowelTone.hl,
-                        VowelTone.lf,
-                        VowelTone.lh,
-                    ]
-                ):
-                    configs = get_possible_glottal_positions(
-                        env, seg.tone, pt, has_glottal, has_following_c
-                    )
-
-                candidates = []
-                is_long = seg.tone and len(seg.tone.value) == 2
-                env = Environment.from_state(lh, pl, tonicity)
-                next_lh = lh.advance()
-                if env == Environment.SPREAD and is_long:
-                    next_lh = LocalHighTone.PREV
-
-                candidates.append(
-                    {
-                        "hv": HistoricalVowel(seg.quality, is_long, None),
-                        "next_lh": next_lh,
-                        "skip_g": False,
-                    }
-                )
-
-                for cfg in configs:
-                    candidates.append(
-                        {
-                            "hv": HistoricalVowel(
-                                seg.quality, cfg.historically_long, cfg.glottal_position
-                            ),
-                            "next_lh": LocalHighTone.PREV,
-                            "skip_g": has_glottal,
-                        }
-                    )
-
-                is_segment_end = False
-                is_last_vowel_in_segment = True
-                for k in range(i + 1, len(tone_sequence)):
-                    if isinstance(tone_sequence[k], Vowel):
-                        is_last_vowel_in_segment = False
-                        break
-                    if isinstance(tone_sequence[k], MorphemeBoundary):
-                        break
-
-                if is_last_vowel_in_segment:
-                    is_segment_end = True
-
-                h2_eligible = (
-                    is_segment_end and seg.tone and seg.tone.value.endswith("3")
-                )
-                if h2_eligible:
-                    next_v_long = False
-                    for k in range(i + 1, len(tone_sequence)):
-                        if isinstance(tone_sequence[k], Vowel):
-                            next_v_long = len(tone_sequence[k].tone.value) == 2
-                            break
-
-                    h2_blocks = seg.tone == VowelTone.hh or (
-                        seg.tone == VowelTone.h and next_v_long
-                    )
-                    h2_next_lh = LocalHighTone.PREV if h2_blocks else lh.advance()
-
-                    h2_candidates = []
-                    for cand in candidates:
-                        h2_cand = dict(cand)
-                        h2_cand["hv"] = HistoricalVowel(
-                            cand["hv"].quality,
-                            cand["hv"].length,
-                            cand["hv"].glottal_position,
-                            h2=True,
-                        )
-                        h2_cand["next_lh"] = h2_next_lh
-                        h2_candidates.append(h2_cand)
-                    candidates.extend(h2_candidates)
-
-                for cand in candidates:
-                    hv = cand["hv"]
-                    new_paths.append(
-                        (
-                            tokens + [hv],
-                            cand["next_lh"],
-                            hv.length,
-                            seg.tone,
-                            cand["skip_g"],
-                        )
-                    )
-        paths = new_paths
-
-    return [LexedForm(p[0]) for p in paths]
-
-
-def check_prediction_with_state(
-    underlying_form: str,
-    target_surface: str,
-    initial_lh: LocalHighTone = LocalHighTone.NONE,
-) -> bool:
-    """
-    Check prediction allowing detailed state injection for diagnosis.
-    """
-    if isinstance(underlying_form, str):
-        lexed = LexedForm.from_str(underlying_form)
-    else:
-        lexed = underlying_form  # Assuming it's already LexedForm
-
-    clean_target = strip_morpheme_boundaries(target_surface)
-    seq = tone_sequence_from_corpus_form(clean_target)
-    normalized_target = "".join(str(s) for s in seq)
-
-    # We need to expose solve logic or duplicate it to inject initial_lh.
-    # Currently infer_surface_forms calls solve(0, NONE, ...).
-    # Refactoring infer_surface_forms to take optional args is cleaner.
-    # But for now I'll just change infer_surface_forms signature.
-    return False  # Placeholder, see next chunk
 
 
 def predict_underlying_form(verb, forms, form_name):
@@ -1139,7 +941,7 @@ def diagnose_mismatch(
 
     # 2. Check for Start State Blocked (for Imperative/21 tone)
     # Try assuming PREVIOUS High (BLOCKED environment)
-    candidates_blocked = generate_underlying_forms_with_state(
+    candidates_blocked = generate_underlying_forms(
         surface, initial_lh=LocalHighTone.PREV, tonicity=tonicity
     )
     valid_blocked = [
