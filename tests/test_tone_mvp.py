@@ -16,7 +16,7 @@ def _test_case(test_str, expected, log=False):
     inferences = predict_h1_for_form(test_str)
     if log:
         for v, infs in inferences:
-            print(f"Vowel: {v.quality} at {v.idx_start}")
+            print(f"Vowel: {v.quality}")
             for inf in infs:
                 print(f"  {inf}")
     assert len(inferences) == len(

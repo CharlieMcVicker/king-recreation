@@ -200,14 +200,12 @@ def tone_sequence_from_corpus_form(
                 Vowel(
                     quality=char,
                     tone=tone_enum,
-                    idx_start=idx,
-                    idx_end=tone_end - 1,
                 )
             )
             idx = tone_end
         else:
             # Consonant or glottal stop
-            res.append(Consonant(value=char, idx_start=idx, idx_end=idx))
+            res.append(Consonant(value=char))
             idx += 1
     return res
 
@@ -391,7 +389,7 @@ class LexedForm:
                 idx += 1
             else:
                 # Consonant or glottal
-                tokens.append(Consonant(char, idx, idx))
+                tokens.append(Consonant(char))
                 # Check for POST_C (C')
                 if char != "'" and idx + 1 < len(s) and s[idx + 1] == "'":
                     # Mark the PREVIOUS vowel as POST_C
@@ -430,24 +428,61 @@ H1_INFERENCES = {
     H1Config(False, GlottalPosition.PRE_C, Environment.BLOCKED): [[VowelTone.lf]],
     # Long NO_C
     H1Config(True, GlottalPosition.NO_C, Environment.SPREAD): [
-        [VowelTone.hh, Consonant("'", -1, -1)],
-        [VowelTone.lh, VowelTone.h, Consonant("'", -1, -1)],
+        [
+            VowelTone.hh,
+            Consonant(
+                "'",
+            ),
+        ],
+        [
+            VowelTone.lh,
+            VowelTone.h,
+            Consonant(
+                "'",
+            ),
+        ],
     ],
     H1Config(True, GlottalPosition.NO_C, Environment.NO_SPREAD): [
-        [VowelTone.hh, Consonant("'", -1, -1)]
+        [
+            VowelTone.hh,
+            Consonant(
+                "'",
+            ),
+        ]
     ],
     H1Config(True, GlottalPosition.NO_C, Environment.BLOCKED): [
-        [VowelTone.l, Consonant("'", -1, -1)]
+        [
+            VowelTone.l,
+            Consonant(
+                "'",
+            ),
+        ]
     ],
     # Short NO_C
     H1Config(False, GlottalPosition.NO_C, Environment.SPREAD): [
-        [VowelTone.lh, VowelTone.h, Consonant("'", -1, -1)]
+        [
+            VowelTone.lh,
+            VowelTone.h,
+            Consonant(
+                "'",
+            ),
+        ]
     ],
     H1Config(False, GlottalPosition.NO_C, Environment.NO_SPREAD): [
-        [VowelTone.h, Consonant("'", -1, -1)]
+        [
+            VowelTone.h,
+            Consonant(
+                "'",
+            ),
+        ]
     ],
     H1Config(False, GlottalPosition.NO_C, Environment.BLOCKED): [
-        [VowelTone.l, Consonant("'", -1, -1)]
+        [
+            VowelTone.l,
+            Consonant(
+                "'",
+            ),
+        ]
     ],
     # Long POST_C
     H1Config(True, GlottalPosition.POST_C, Environment.SPREAD): [[VowelTone.hh]],
@@ -459,7 +494,12 @@ H1_INFERENCES = {
     ],
     H1Config(False, GlottalPosition.POST_C, Environment.NO_SPREAD): [
         [VowelTone.h],
-        [VowelTone.h, Consonant("'", -1, -1)],
+        [
+            VowelTone.h,
+            Consonant(
+                "'",
+            ),
+        ],
     ],
     H1Config(False, GlottalPosition.POST_C, Environment.BLOCKED): [[VowelTone.l]],
 }

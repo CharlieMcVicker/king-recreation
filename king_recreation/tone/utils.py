@@ -11,8 +11,6 @@ from king_recreation.reconstruct_from_roots import drop_dropped_phones
 @dataclass
 class Consonant:
     value: str
-    idx_start: int
-    idx_end: int
 
     def __str__(self):
         return self.value
@@ -62,9 +60,6 @@ class Vowel:
     quality: str
     tone: VowelTone
 
-    idx_start: int
-    idx_end: int
-
     def __str__(self):
         return self.quality + str(self.tone)
 
@@ -87,11 +82,10 @@ def read_tone_sequence(raw: str) -> List[Union[Vowel, Consonant]]:
     while idx < len(raw):
         c = raw[idx]
         if c not in VOWEL_SET:
-            seq.append(Consonant(value=c, idx_start=idx, idx_end=idx))
+            seq.append(Consonant(value=c))
             idx += 1
         else:
             quality = c
-            idx_start = idx
             idx += 1
             if safe_get(raw, idx) in TONE_MARKS:
                 tone_mark = raw[idx]
@@ -109,8 +103,6 @@ def read_tone_sequence(raw: str) -> List[Union[Vowel, Consonant]]:
                 Vowel(
                     quality,
                     VowelTone.from_mark_and_length(tone_mark, long),
-                    idx_start=idx_start,
-                    idx_end=idx - 1,
                 )
             )
     return seq
