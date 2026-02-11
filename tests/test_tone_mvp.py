@@ -178,3 +178,28 @@ def test_h2_23_33():
     candidates = generate_underlying_forms("ka2ne23tl-i33y-v2'-a")
     underlying_strs = [str(c) for c in candidates]
     assert "kanee/tl-iiy-vv'-a" in underlying_strs
+
+
+def test_infinitive_environment_override():
+    # Detect 'lf' (21) tone on short vowel.
+    # In NO_SPREAD env (default for start of word), 'lf' is not valid for H1.
+    # In BLOCKED env, 'lf' IS valid.
+
+    test_str = "a21-ta"
+
+    # CASE 1: Not infinitive -> No Spread -> No match for lf
+    results_normal = predict_h1_for_form(test_str, is_infinitive=False)
+    assert (
+        len(results_normal) == 0
+    ), "Should not find H1 candidates for 'a21' (PRE_C) in NO_SPREAD env"
+
+    # CASE 2: Infinitive -> Blocked -> Match for lf
+    results_inf = predict_h1_for_form(test_str, is_infinitive=True)
+    assert (
+        len(results_inf) > 0
+    ), "Should find H1 candidates for 'a21' (PRE_C) in infinitive (BLOCKED) env"
+
+    # Validate specifically that we got BLOCKED environment configs
+    for v, configs in results_inf:
+        for cfg in configs:
+            assert cfg.env == Environment.BLOCKED

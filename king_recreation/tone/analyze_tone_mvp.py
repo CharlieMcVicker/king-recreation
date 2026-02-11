@@ -229,13 +229,23 @@ class Environment(Enum):
     BLOCKED = "blocked"
 
     @staticmethod
-    def from_state(lh: LocalHighTone, prev_long: bool) -> "Environment":
+    def from_state(
+        lh: LocalHighTone, prev_long: bool, is_infinitive: bool = False
+    ) -> "Environment":
         if lh == lh.PREV:
             return Environment.BLOCKED
-        elif not prev_long or lh == lh.TWO_PREV:
-            return Environment.NO_SPREAD
-        else:
-            return Environment.SPREAD if prev_long else Environment.NO_SPREAD
+
+        # Determine raw environment
+        raw_env = (
+            Environment.SPREAD
+            if (prev_long and lh != lh.TWO_PREV)
+            else Environment.NO_SPREAD
+        )
+
+        if is_infinitive and raw_env == Environment.NO_SPREAD:
+            return Environment.BLOCKED
+
+        return raw_env
 
 
 class GlottalPosition(Enum):
@@ -473,7 +483,9 @@ def get_possible_glottal_positions(
     return results
 
 
-def predict_h1_for_form(form_str: str) -> List[tuple[Vowel, List[H1Config]]]:
+def predict_h1_for_form(
+    form_str: str, is_infinitive: bool = False
+) -> List[tuple[Vowel, List[H1Config]]]:
     """
     Core logic to predict possible H1 configurations for a single form string.
     """
@@ -519,7 +531,7 @@ def predict_h1_for_form(form_str: str) -> List[tuple[Vowel, List[H1Config]]]:
                 VowelTone.lf,
                 VowelTone.lh,
             ]:
-                env = Environment.from_state(local_high, prev_long)
+                env = Environment.from_state(local_high, prev_long, is_infinitive)
                 possible_positions = get_possible_glottal_positions(
                     env, seg.tone, prev_tone, has_glottal, has_following_c
                 )
@@ -543,7 +555,9 @@ def predict_h1_for_form(form_str: str) -> List[tuple[Vowel, List[H1Config]]]:
     return results
 
 
-def generate_underlying_forms(form_str: str) -> List[LexedForm]:
+def generate_underlying_forms(
+    form_str: str, is_infinitive: bool = False
+) -> List[LexedForm]:
     """
     Generate all possible underlying form objects (LexedForm) from a surface form string.
     """
@@ -593,7 +607,7 @@ def generate_underlying_forms(form_str: str) -> List[LexedForm]:
                     elif isinstance(next_seg, Vowel):
                         break
 
-                env = Environment.from_state(lh, pl)
+                env = Environment.from_state(lh, pl, is_infinitive)
                 configs = []
                 if has_glottal or (
                     seg.tone
@@ -615,7 +629,7 @@ def generate_underlying_forms(form_str: str) -> List[LexedForm]:
 
                 # 1. Plain vowel (always try)
                 is_long = seg.tone and len(seg.tone.value) == 2
-                env = Environment.from_state(lh, pl)
+                env = Environment.from_state(lh, pl, is_infinitive)
                 next_lh = lh.advance()
                 if env == Environment.SPREAD and is_long:
                     next_lh = LocalHighTone.PREV
@@ -706,6 +720,7 @@ def generate_underlying_forms_with_state(
     form_str: str,
     initial_lh: LocalHighTone = LocalHighTone.NONE,
     initial_pl: bool = False,
+    is_infinitive: bool = False,
 ) -> List[LexedForm]:
     """
     Generate underlying forms with a specific initial state.
@@ -754,7 +769,7 @@ def generate_underlying_forms_with_state(
                     elif isinstance(next_seg, Vowel):
                         break
 
-                env = Environment.from_state(lh, pl)
+                env = Environment.from_state(lh, pl, is_infinitive)
                 configs = []
                 if has_glottal or (
                     seg.tone
@@ -773,7 +788,7 @@ def generate_underlying_forms_with_state(
 
                 candidates = []
                 is_long = seg.tone and len(seg.tone.value) == 2
-                env = Environment.from_state(lh, pl)
+                env = Environment.from_state(lh, pl, is_infinitive)
                 next_lh = lh.advance()
                 if env == Environment.SPREAD and is_long:
                     next_lh = LocalHighTone.PREV
@@ -880,11 +895,15 @@ def check_prediction_with_state(
 def predict_underlying_form(verb, forms, form_name):
     # Determine the tone sequence for the given form
     form_str = forms[form_name]
-    return generate_underlying_forms(form_str)
+    return generate_underlying_forms(
+        form_str, is_infinitive=(form_name == "infinitive")
+    )
 
 
 def infer_surface_forms(
-    lexed: Union[LexedForm, str], initial_lh: LocalHighTone = LocalHighTone.NONE
+    lexed: Union[LexedForm, str],
+    initial_lh: LocalHighTone = LocalHighTone.NONE,
+    is_infinitive: bool = False,
 ) -> List[str]:
     """
     Forward inference: Generate possible surface forms from a LexedForm (or string).
@@ -943,7 +962,7 @@ def infer_surface_forms(
 
         results = []
         if g_pos:
-            env = Environment.from_state(local_high, prev_long)
+            env = Environment.from_state(local_high, prev_long, is_infinitive)
             cfg = H1Config(token.length, g_pos, env)
             sequences = H1_INFERENCES.get(cfg, [])
             if sequences:
@@ -1029,7 +1048,7 @@ def infer_surface_forms(
             results.extend(solve(u_idx + 1, next_lh, token.length, new_tones))
         else:
             # Plain vowel
-            env = Environment.from_state(local_high, prev_long)
+            env = Environment.from_state(local_high, prev_long, is_infinitive)
             new_tones = list(surface_tones)
             if new_tones[u_idx] is None:
                 if env == Environment.SPREAD and token.length:
@@ -1050,6 +1069,7 @@ def check_prediction(
     underlying_form: str,
     target_surface: str,
     initial_lh: LocalHighTone = LocalHighTone.NONE,
+    is_infinitive: bool = False,
 ) -> bool:
     """
     Integrity check: Can this underlying form generate the target surface form?
@@ -1059,17 +1079,23 @@ def check_prediction(
     seq = tone_sequence_from_corpus_form(clean_target)
     normalized_target = "".join(str(s) for s in seq)
 
-    surface_candidates = infer_surface_forms(underlying_form, initial_lh=initial_lh)
+    surface_candidates = infer_surface_forms(
+        underlying_form, initial_lh=initial_lh, is_infinitive=is_infinitive
+    )
     stripped_candidates = [strip_morpheme_boundaries(c) for c in surface_candidates]
     return normalized_target in stripped_candidates
 
 
-def diagnose_mismatch(verb, surface, expected_ending):
+def diagnose_mismatch(verb, surface, expected_ending, is_infinitive=False):
     print(f"    Mismatch: {verb.definition[:30]}... | Surface: {surface}")
 
-    underlying_candidates = generate_underlying_forms(surface)
+    underlying_candidates = generate_underlying_forms(
+        surface, is_infinitive=is_infinitive
+    )
     valid_candidates = [
-        str(uf) for uf in underlying_candidates if check_prediction(str(uf), surface)
+        str(uf)
+        for uf in underlying_candidates
+        if check_prediction(str(uf), surface, is_infinitive=is_infinitive)
     ]
 
     # 1. Check for Length or quality Mismatch (Valid UF exists but different ending)
@@ -1083,12 +1109,17 @@ def diagnose_mismatch(verb, surface, expected_ending):
     # 2. Check for Start State Blocked (for Imperative/21 tone)
     # Try assuming PREVIOUS High (BLOCKED environment)
     candidates_blocked = generate_underlying_forms_with_state(
-        surface, initial_lh=LocalHighTone.PREV
+        surface, initial_lh=LocalHighTone.PREV, is_infinitive=is_infinitive
     )
     valid_blocked = [
         str(uf)
         for uf in candidates_blocked
-        if check_prediction(str(uf), surface, initial_lh=LocalHighTone.PREV)
+        if check_prediction(
+            str(uf),
+            surface,
+            initial_lh=LocalHighTone.PREV,
+            is_infinitive=is_infinitive,
+        )
     ]
 
     found_blocked_match = False
@@ -1173,13 +1204,18 @@ def analyze_class_coverage(verbs_with_forms):
                 valid_verbs_for_form += 1
 
                 # Generate underlying forms
-                underlying_candidates = generate_underlying_forms(surface)
+                is_infinitive = form_name == "infinitive"
+                underlying_candidates = generate_underlying_forms(
+                    surface, is_infinitive=is_infinitive
+                )
 
                 # Check if ANY valid underlying form ends with the target ending
                 matches_ending = False
                 for uf in underlying_candidates:
                     # Check if candidate is valid (reconstructs surface)
-                    if not check_prediction(str(uf), surface):
+                    if not check_prediction(
+                        str(uf), surface, is_infinitive=is_infinitive
+                    ):
                         continue
 
                     # Check ending match
@@ -1191,7 +1227,9 @@ def analyze_class_coverage(verbs_with_forms):
                 if matches_ending:
                     match_count += 1
                 else:
-                    diagnose_mismatch(verb, surface, ending)
+                    diagnose_mismatch(
+                        verb, surface, ending, is_infinitive=is_infinitive
+                    )
 
             if valid_verbs_for_form > 0:
 
@@ -1217,9 +1255,12 @@ def main():
             if not surface_stem:
                 continue
 
-            underlying_candidates = generate_underlying_forms(surface_stem)
+            is_infinitive = fn == "infinitive"
+            underlying_candidates = generate_underlying_forms(
+                surface_stem, is_infinitive=is_infinitive
+            )
             for uf in underlying_candidates:
-                if check_prediction(str(uf), surface_stem):
+                if check_prediction(str(uf), surface_stem, is_infinitive=is_infinitive):
                     output_rows.append(
                         {
                             "corpus_id": corpus_id,
@@ -1261,12 +1302,15 @@ def main():
                 if not surface:
                     continue
 
-                underlying_candidates = generate_underlying_forms(surface)
+                is_infinitive = fn == "infinitive"
+                underlying_candidates = generate_underlying_forms(
+                    surface, is_infinitive=is_infinitive
+                )
                 print(f"  Form: {fn:12} Surface: {surface:15}")
                 for i, uf in enumerate(
                     underlying_candidates[:2]
                 ):  # Show first 2 candidates
-                    reconstructed = infer_surface_forms(uf)
+                    reconstructed = infer_surface_forms(uf, is_infinitive=is_infinitive)
                     target_mask = strip_morpheme_boundaries(surface)
                     match = any(
                         target_mask == strip_morpheme_boundaries(r)

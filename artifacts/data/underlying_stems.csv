@@ -11,9 +11,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 59,he/she is giving him/her it (refers to a long object),apl[imp3],perfective,t-e33l,t-ee'l
 59,he/she is giving him/her it (refers to a long object),apl[imp3],perfective,t-e33l,t-eel'
 59,he/she is giving him/her it (refers to a long object),apl[imp3],perfective,t-e33l,t-ee/l'
-59,he/she is giving him/her it (refers to a long object),apl[imp3],infinitive,t-e3ht,t-eh't
 59,he/she is giving him/her it (refers to a long object),apl[imp3],infinitive,t-e3ht,t-e/ht
-59,he/she is giving him/her it (refers to a long object),apl[imp3],infinitive,t-e3ht,t-e/h't
 72,he/she is laying it down (refers to a long object),i-a-i,present,-t-i3',-t-i'
 72,he/she is laying it down (refers to a long object),i-a-i,present,-t-i3',-t-i'
 72,he/she is laying it down (refers to a long object),i-a-i,present,-t-i3',-t-i/'
@@ -23,6 +21,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 72,he/she is laying it down (refers to a long object),i-a-i,imperfective,-t-i32hsk,-t-i'hsk
 72,he/she is laying it down (refers to a long object),i-a-i,perfective,-t-,-t-
 72,he/she is laying it down (refers to a long object),i-a-i,imperative,-t-a2,-t-a
+72,he/she is laying it down (refers to a long object),i-a-i,infinitive,-t-i21hst,-t-ii'hst
+72,he/she is laying it down (refers to a long object),i-a-i,infinitive,-t-i21hst,-t-i'hst
 80,he/she is leaving it behind (refers to a long object),a,present,ti32hs-i22y-a3',ti'hs-iiy-a'
 80,he/she is leaving it behind (refers to a long object),a,present,ti32hs-i22y-a3',ti'hs-iiy-a'
 80,he/she is leaving it behind (refers to a long object),a,present,ti32hs-i22y-a3',ti'hs-iiy-a/'
@@ -43,6 +43,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 96,he/she is pouring a liquid into a container,cause,present_1sg,tli32hst-i2h,tli'hst-ih
 96,he/she is pouring a liquid into a container,cause,imperfective,tli32hst-i22hsk,tli'hst-iihsk
 96,he/she is pouring a liquid into a container,cause,perfective,tli32hst-ha2n,tli'hst-han
+96,he/she is pouring a liquid into a container,cause,infinitive,tli21hst-o2ht,tlii'hst-oht
+96,he/she is pouring a liquid into a container,cause,infinitive,tli21hst-o2ht,tli'hst-oht
 112,it is shining (refers to sun or moon),ih-ihi,present,ka33l-i2h,kaa'l-ih
 112,it is shining (refers to sun or moon),ih-ihi,present,ka33l-i2h,kaal'-ih
 112,it is shining (refers to sun or moon),ih-ihi,present,ka33l-i2h,kaa/l'-ih
@@ -84,9 +86,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 117,he/she is warming it,cause,imperfective,ka22na2wht-i23hsk,kaanawht-ii/hsk
 117,he/she is warming it,cause,perfective,ka22na2wht-ha2n,kaanawht-han
 117,he/she is warming it,cause,imperative,ka22na2wht-a2,kaanawht-a
-117,he/she is warming it,cause,infinitive,ka22na2wht-o3ht,kaanawht-oh't
 117,he/she is warming it,cause,infinitive,ka22na2wht-o3ht,kaanawht-o/ht
-117,he/she is warming it,cause,infinitive,ka22na2wht-o3ht,kaanawht-o/h't
 118,it’s getting warm,sk-s-hi-hihst,present,ka22na2wo22-hsk,kaanawoo-hsk
 118,it’s getting warm,sk-s-hi-hihst,imperfective,ka22na2wo22-hsk,kaanawoo-hsk
 118,it’s getting warm,sk-s-hi-hihst,perfective,ka22na2wo22-hs,kaanawoo-hs
@@ -100,6 +100,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 127,he/she is eating it (refers to a single solid food),i-a-i,imperfective,k-i32hsk,k-i'hsk
 127,he/she is eating it (refers to a single solid food),i-a-i,perfective,k-,k-
 127,he/she is eating it (refers to a single solid food),i-a-i,imperative,k-a2,k-a
+127,he/she is eating it (refers to a single solid food),i-a-i,infinitive,k-i21hst,k-ii'hst
+127,he/she is eating it (refers to a single solid food),i-a-i,infinitive,k-i21hst,k-i'hst
 128,he/she is picking it up,rev-gi,present,-ki33',-kii'
 128,he/she is picking it up,rev-gi,present,-ki33',-kii'
 128,he/she is picking it up,rev-gi,present_1sg,-ki33',-kii'
@@ -111,6 +113,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 128,he/she is picking it up,rev-gi,perfective,-ki33hs,-kiih's
 128,he/she is picking it up,rev-gi,perfective,-ki33hs,-kii/h's
 128,he/she is picking it up,rev-gi,imperative,-ki2,-ki
+128,he/she is picking it up,rev-gi,infinitive,-ki21hst,-kii'hst
+128,he/she is picking it up,rev-gi,infinitive,-ki21hst,-ki'hst
 133,he/she is chewing it,o,present,ki32hst-o2',ki'hst-o'
 133,he/she is chewing it,o,present,ki32hst-o2',ki'hst-oo'
 133,he/she is chewing it,o,present,ki32hst-o2',ki'hst-o'
@@ -122,6 +126,10 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 133,he/she is chewing it,o,perfective,ki32hst-o2',ki'hst-o'
 133,he/she is chewing it,o,perfective,ki32hst-o2',ki'hst-oo'
 133,he/she is chewing it,o,perfective,ki32hst-o2',ki'hst-o'
+133,he/she is chewing it,o,infinitive,ki21hst-o21hst,kii'hst-oo'hst
+133,he/she is chewing it,o,infinitive,ki21hst-o21hst,kii'hst-o'hst
+133,he/she is chewing it,o,infinitive,ki21hst-o21hst,ki'hst-oo'hst
+133,he/she is chewing it,o,infinitive,ki21hst-o21hst,ki'hst-o'hst
 138,he/she is reading,e-a,present,ko22li23y-e3',koolii/y-e'
 138,he/she is reading,e-a,present,ko22li23y-e3',koolii/y-ee'
 138,he/she is reading,e-a,present,ko22li23y-e3',koolii/y-e'
@@ -144,11 +152,11 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 145,he/she is showing it to him/her,cause,present,ko2whthv2ht-i3h,kowhthvht-i/h'
 145,he/she is showing it to him/her,cause,imperfective,ko2whthv2ht-i23hsk,kowhthvht-ii/hsk
 145,he/she is showing it to him/her,cause,perfective,ko2whthv2ht-ha2n,kowhthvht-han
-145,he/she is showing it to him/her,cause,infinitive,ko2whthv2ht-o3ht,kowhthvht-oh't
 145,he/she is showing it to him/her,cause,infinitive,ko2whthv2ht-o3ht,kowhthvht-o/ht
-145,he/she is showing it to him/her,cause,infinitive,ko2whthv2ht-o3ht,kowhthvht-o/h't
 149,he/she is chopping it up,sk-h,imperfective,kv22ha2lu32y-hsk,kvvhalu'y-hsk
 149,he/she is chopping it up,sk-h,perfective,kv22ha2lu32y-h,kvvhalu'y-h
+149,he/she is chopping it up,sk-h,infinitive,kv22ha2lu21y-hst,kvvhaluu'y-hst
+149,he/she is chopping it up,sk-h,infinitive,kv22ha2lu21y-hst,kvvhalu'y-hst
 152,he/she is scolding him/her,vsk[imp2],present,kv22hsko23l-v32hsk,kvvhskoo/l-vv'hsk
 152,he/she is scolding him/her,vsk[imp2],present,kv22hsko23l-v32hsk,kvvhskoo/l-v'hsk
 152,he/she is scolding him/her,vsk[imp2],imperfective,kv22hsko23l-v32hsk,kvvhskoo/l-vv'hsk
@@ -196,6 +204,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 158,he/she is smothering him/her,cause,perfective,ha2wo33hst-ha2n,hawoo'hst-han
 158,he/she is smothering him/her,cause,perfective,ha2wo33hst-ha2n,hawooh'st-han
 158,he/she is smothering him/her,cause,perfective,ha2wo33hst-ha2n,hawoo/h'st-han
+158,he/she is smothering him/her,cause,infinitive,ha2wo21hst-o2ht,hawoo'hst-oht
+158,he/she is smothering him/her,cause,infinitive,ha2wo21hst-o2ht,hawo'hst-oht
 160,he/she is handling it,be-at,present,h-i23t-o32h,h-iit-oo'h
 160,he/she is handling it,be-at,present,h-i23t-o32h,h-iit-o'h
 160,he/she is handling it,be-at,present,h-i23t-o32h,h-ii/t-oo'h
@@ -277,6 +287,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 205,he/she is moving it from one place to another,v-vhs,perfective,h-v33hs,h-vv'hs
 205,he/she is moving it from one place to another,v-vhs,perfective,h-v33hs,h-vvh's
 205,he/she is moving it from one place to another,v-vhs,perfective,h-v33hs,h-vv/h's
+205,he/she is moving it from one place to another,v-vhs,infinitive,h-v21hst,h-vv'hst
+205,he/she is moving it from one place to another,v-vhs,infinitive,h-v21hst,h-v'hst
 206,he/she is setting it down,hvsk-nh,present,-hv3hsk,-hvh'sk
 206,he/she is setting it down,hvsk-nh,present,-hv3hsk,-hv/hsk
 206,he/she is setting it down,hvsk-nh,present,-hv3hsk,-hv/h'sk
@@ -335,6 +347,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 216,he/she is taking it somewhere by hand,go,perfective,yh-v33hs,yh-vv'hs
 216,he/she is taking it somewhere by hand,go,perfective,yh-v33hs,yh-vvh's
 216,he/she is taking it somewhere by hand,go,perfective,yh-v33hs,yh-vv/h's
+216,he/she is taking it somewhere by hand,go,infinitive,yh-v21hst,yh-vv'hst
+216,he/she is taking it somewhere by hand,go,infinitive,yh-v21hst,yh-v'hst
 218,he/she is quilting it,hvsk-han,present,yhe2hka2l-hv3hsk,yhehkal-hvh'sk
 218,he/she is quilting it,hvsk-han,present,yhe2hka2l-hv3hsk,yhehkal-hv/hsk
 218,he/she is quilting it,hvsk-han,present,yhe2hka2l-hv3hsk,yhehkal-hv/h'sk
@@ -397,6 +411,10 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 224,it’s thundering,o,perfective,yhv22ta2kwa2l-o3',yhvvtakwal-o'
 224,it’s thundering,o,perfective,yhv22ta2kwa2l-o3',yhvvtakwal-o'
 224,it’s thundering,o,perfective,yhv22ta2kwa2l-o3',yhvvtakwal-o/'
+224,it’s thundering,o,infinitive,yhv22ta2kwa2l-o21hst,yhvvtakwal-oo'hst
+224,it’s thundering,o,infinitive,yhv22ta2kwa2l-o21hst,yhvvtakwal-o'hst
+228,he/she is bending it,vsk[imp2],infinitive,yhv2hkwi2t-v21t,yhvhkwit-vv't
+228,he/she is bending it,vsk[imp2],infinitive,yhv2hkwi2t-v21t,yhvhkwit-v't
 232,he/she is capturing him/her,i-a-i,imperative,yv22khi23-t-a2,yvvkhii/-t-a
 234,he/she is choking him/her,ih-vh,present,yhv2hski23y-i33h,yhvhskii/y-iih
 234,he/she is choking him/her,ih-vh,present,yhv2hski23y-i33h,yhvhskii/y-iih'
@@ -424,6 +442,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 253,he/she is lighting a fire,hvsk-han[inf2],perfective,tsi33hsl-ha2n,tsii'hsl-han
 253,he/she is lighting a fire,hvsk-han[inf2],perfective,tsi33hsl-ha2n,tsiih'sl-han
 253,he/she is lighting a fire,hvsk-han[inf2],perfective,tsi33hsl-ha2n,tsii/h'sl-han
+253,he/she is lighting a fire,hvsk-han[inf2],infinitive,tsi21hsl-hv3hst,tsii'hsl-hv/hst
+253,he/she is lighting a fire,hvsk-han[inf2],infinitive,tsi21hsl-hv3hst,tsi'hsl-hv/hst
 255,he/she is turning on a light,hvsk-han[inf2],present,tsv22hst-hv3hsk,tsvvhst-hv/hsk
 255,he/she is turning on a light,hvsk-han[inf2],imperfective,tsv22hst-hv3hsk,tsvvhst-hv/hsk
 255,he/she is turning on a light,hvsk-han[inf2],perfective,tsv22hst-ha3n,tsvvhst-ha/n
@@ -490,6 +510,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 270,he/she is going down-hill,sk-s-hi-hihst,perfective,khso3-hs,khso-h's
 270,he/she is going down-hill,sk-s-hi-hihst,perfective,khso3-hs,khso/-hs
 270,he/she is going down-hill,sk-s-hi-hihst,perfective,khso3-hs,khso/-h's
+270,he/she is going down-hill,sk-s-hi-hihst,infinitive,khso21-hi2hst,khsoo'-hihst
+270,he/she is going down-hill,sk-s-hi-hihst,infinitive,khso21-hi2hst,khso'-hihst
 273,he/she knows how,stative-h,present,khtha2-h,khtha-h
 273,he/she knows how,stative-h,imperfective,khtha2-h,khtha-h
 278,he/she is hitting him/her on the eye,hvsk-nh,infinitive,khthe22lu2-ht,khtheelu-ht
@@ -558,6 +580,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 373,he/she is setting a trap,vsk[imp2],present_1sg,hsa2t-v32hsk,hsat-v'hsk
 373,he/she is setting a trap,vsk[imp2],imperfective,hsa2t-v32hsk,hsat-v'hsk
 373,he/she is setting a trap,vsk[imp2],perfective,hsa2t-v32n,hsat-v'n
+373,he/she is setting a trap,vsk[imp2],infinitive,hsa2t-v21t,hsat-vv't
+373,he/she is setting a trap,vsk[imp2],infinitive,hsa2t-v21t,hsat-v't
 374,he/she is lifting him/her,i-vka,present,hsa2la2t-i3',hsalat-i'
 374,he/she is lifting him/her,i-vka,present,hsa2la2t-i3',hsalat-i'
 374,he/she is lifting him/her,i-vka,present,hsa2la2t-i3',hsalat-i/'
@@ -566,6 +590,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 374,he/she is lifting him/her,i-vka,present_1sg,hsa2la2t-i3',hsalat-i/'
 374,he/she is lifting him/her,i-vka,imperfective,hsa2la2t-i32hsk,hsalat-i'hsk
 374,he/she is lifting him/her,i-vka,perfective,hsa2la2t-a32n,hsalat-a'n
+374,he/she is lifting him/her,i-vka,infinitive,hsa2la2t-o21t,hsalat-oo't
+374,he/she is lifting him/her,i-vka,infinitive,hsa2la2t-o21t,hsalat-o't
 377,he/she is making it crisp,cause,present,hsta2ka2yht-i3h,hstakayht-ih'
 377,he/she is making it crisp,cause,present,hsta2ka2yht-i3h,hstakayht-i/h
 377,he/she is making it crisp,cause,present,hsta2ka2yht-i3h,hstakayht-i/h'
@@ -577,9 +603,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 377,he/she is making it crisp,cause,perfective,hsta2ka2yht-ha3n,hstakayht-ha/n
 377,he/she is making it crisp,cause,perfective,hsta2ka2yht-ha3n,hstakayht-ha/n'
 377,he/she is making it crisp,cause,imperative,hsta2ka2yht-a2,hstakayht-a
-377,he/she is making it crisp,cause,infinitive,hsta2ka2yht-o3ht,hstakayht-oh't
 377,he/she is making it crisp,cause,infinitive,hsta2ka2yht-o3ht,hstakayht-o/ht
-377,he/she is making it crisp,cause,infinitive,hsta2ka2yht-o3ht,hstakayht-o/h't
 378,it’s becoming crisp,hih-lh,present,hsta2ka2yv22-hi3h,hstakayvv-hi/h
 378,it’s becoming crisp,hih-lh,imperfective,hsta2ka2yv22-hi2h,hstakayvv-hih
 378,it’s becoming crisp,hih-lh,perfective,hsta2ka2yv22-lh,hstakayvv-lh
@@ -600,6 +624,10 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 381,he/she is following him/her,go,perfective,hsta32wa2t-v33hs,hsta'wat-vv'hs
 381,he/she is following him/her,go,perfective,hsta32wa2t-v33hs,hsta'wat-vvh's
 381,he/she is following him/her,go,perfective,hsta32wa2t-v33hs,hsta'wat-vv/h's
+381,he/she is following him/her,go,infinitive,hsta21wa2t-v21hst,hstaa'wat-vv'hst
+381,he/she is following him/her,go,infinitive,hsta21wa2t-v21hst,hstaa'wat-v'hst
+381,he/she is following him/her,go,infinitive,hsta21wa2t-v21hst,hsta'wat-vv'hst
+381,he/she is following him/her,go,infinitive,hsta21wa2t-v21hst,hsta'wat-v'hst
 382,he/she is helping him/her,ih-vh,present,hste22l-i3h,hsteel-i/h
 382,he/she is helping him/her,ih-vh,present_1sg,hste22l-i3h,hsteel-i/h
 382,he/she is helping him/her,ih-vh,imperfective,hste22l-i23hsk,hsteel-ii/hsk
@@ -658,6 +686,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 386,he/she is crushing it,o,imperfective,hst-o33hsk,hst-oo/h'sk
 386,he/she is crushing it,o,perfective,hst-o33',hst-oo'
 386,he/she is crushing it,o,perfective,hst-o33',hst-oo'
+386,he/she is crushing it,o,infinitive,hst-o21hst,hst-oo'hst
+386,he/she is crushing it,o,infinitive,hst-o21hst,hst-o'hst
 388,he/she is trimming it (refers to hair‚ grass‚ hedge; but not paper‚ cloth),apl-active-a,present,hsto22y-e3h,hstooy-e/h
 388,he/she is trimming it (refers to hair‚ grass‚ hedge; but not paper‚ cloth),apl-active-a,present_1sg,hsto22y-e3h,hstooy-e/h
 388,he/she is trimming it (refers to hair‚ grass‚ hedge; but not paper‚ cloth),apl-active-a,imperfective,hsto22y-e23hsk,hstooy-ee/hsk
@@ -665,6 +695,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 388,he/she is trimming it (refers to hair‚ grass‚ hedge; but not paper‚ cloth),apl-active-a,imperative,hsto23y-a2,hstoo/y-a
 388,he/she is trimming it (refers to hair‚ grass‚ hedge; but not paper‚ cloth),apl-active-a,infinitive,hsto2y-ht,hstoy-ht
 390,he/she is opening it,rev-'i,imperative,hstu2-'i2,hstu-'i
+390,he/she is opening it,rev-'i,infinitive,hstu2-'i21hst,hstu-'ii'hst
+390,he/she is opening it,rev-'i,infinitive,hstu2-'i21hst,hstu-'i'hst
 392,he/she is sandwiching it,hvsk-han,present,hstv23ha3l-hv2hsk,hstvvhal'-hvhsk
 392,he/she is sandwiching it,hvsk-han,present,hstv23ha3l-hv2hsk,hstvvha/l'-hvhsk
 392,he/she is sandwiching it,hvsk-han,present_1sg,hstv23ha3l-hv2hsk,hstvvhal'-hvhsk
@@ -679,10 +711,14 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 400,he/she is reprimanding him/her,become[inf3],present_1sg,hska32-k,hska'-k
 400,he/she is reprimanding him/her,become[inf3],imperfective,hska32-k,hska'-k
 400,he/she is reprimanding him/her,become[inf3],perfective,hska32-ts,hska'-ts
+400,he/she is reprimanding him/her,become[inf3],infinitive,hska21-yhst,hskaa'-yhst
+400,he/she is reprimanding him/her,become[inf3],infinitive,hska21-yhst,hska'-yhst
 405,he/she is committing a crime,become[inf3],present,hska2nv32-k,hskanv'-k
 405,he/she is committing a crime,become[inf3],present_1sg,hska2nv32-k,hskanv'-k
 405,he/she is committing a crime,become[inf3],imperfective,hska2nv32-k,hskanv'-k
 405,he/she is committing a crime,become[inf3],perfective,hska2nv32-ts,hskanv'-ts
+405,he/she is committing a crime,become[inf3],infinitive,hska2nv21-yhst,hskanvv'-yhst
+405,he/she is committing a crime,become[inf3],infinitive,hska2nv21-yhst,hskanv'-yhst
 411,he/she is gnawing it,i-a-i,present,hsko22k-i3',hskook-i/'
 411,he/she is gnawing it,i-a-i,present_1sg,hsko22k-i3',hskook-i/'
 411,he/she is gnawing it,i-a-i,perfective,hsko33k-,hskoo'k-
@@ -733,6 +769,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 419,he/she is finishing it,i-a-i,perfective,hskw-a3t-,hskw-a/t-
 419,he/she is finishing it,i-a-i,perfective,hskw-a3t-,hskw-a/t'-
 419,he/she is finishing it,i-a-i,imperative,hskw-a2t-a2,hskw-at-a
+419,he/she is finishing it,i-a-i,infinitive,hskw-a2t-i21hst,hskw-at-ii'hst
+419,he/she is finishing it,i-a-i,infinitive,hskw-a2t-i21hst,hskw-at-i'hst
 421,he/she is catching him/her (refers to a falling person or object),rev-e,present,hskwa32lh-e2',hskwa'lh-e'
 421,he/she is catching him/her (refers to a falling person or object),rev-e,present,hskwa32lh-e2',hskwa'lh-ee'
 421,he/she is catching him/her (refers to a falling person or object),rev-e,present,hskwa32lh-e2',hskwa'lh-e'
@@ -743,15 +781,23 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 421,he/she is catching him/her (refers to a falling person or object),rev-e,imperfective,hskwa32lh-e21hsk,hskwa'lh-e'hsk
 421,he/she is catching him/her (refers to a falling person or object),rev-e,perfective,hskwa32lh-e21hs,hskwa'lh-ee'hs
 421,he/she is catching him/her (refers to a falling person or object),rev-e,perfective,hskwa32lh-e21hs,hskwa'lh-e'hs
+421,he/she is catching him/her (refers to a falling person or object),rev-e,infinitive,hskwa21lh-e21hst,hskwaa'lh-ee'hst
+421,he/she is catching him/her (refers to a falling person or object),rev-e,infinitive,hskwa21lh-e21hst,hskwaa'lh-e'hst
+421,he/she is catching him/her (refers to a falling person or object),rev-e,infinitive,hskwa21lh-e21hst,hskwa'lh-ee'hst
+421,he/she is catching him/her (refers to a falling person or object),rev-e,infinitive,hskwa21lh-e21hst,hskwa'lh-e'hst
 423,it’s getting shorter,become[inf3],present,hskwa2lo32-k,hskwalo'-k
 423,it’s getting shorter,become[inf3],present_1sg,hskwa2lo32-k,hskwalo'-k
 423,it’s getting shorter,become[inf3],imperfective,hskwa2lo32-k,hskwalo'-k
 423,it’s getting shorter,become[inf3],perfective,hskwa2lo32-ts,hskwalo'-ts
+423,it’s getting shorter,become[inf3],infinitive,hskwa2lo21-yhst,hskwaloo'-yhst
+423,it’s getting shorter,become[inf3],infinitive,hskwa2lo21-yhst,hskwalo'-yhst
 424,he/she is breaking it (refers to a long object),sk-s-a[inf2],present,hskwa32l-hsk,hskwa'l-hsk
 424,he/she is breaking it (refers to a long object),sk-s-a[inf2],present_1sg,hskwa32l-hsk,hskwa'l-hsk
 424,he/she is breaking it (refers to a long object),sk-s-a[inf2],imperfective,hskwa32l-hsk,hskwa'l-hsk
 424,he/she is breaking it (refers to a long object),sk-s-a[inf2],perfective,hskwa32l-hs,hskwa'l-hs
 424,he/she is breaking it (refers to a long object),sk-s-a[inf2],imperative,hskwa2l-a2,hskwal-a
+424,he/she is breaking it (refers to a long object),sk-s-a[inf2],infinitive,hskwa21l-hst,hskwaa'l-hst
+424,he/she is breaking it (refers to a long object),sk-s-a[inf2],infinitive,hskwa21l-hst,hskwa'l-hst
 425,he/she is hitting him/her on the head with it (refers to a long object),ih-il,present,hskwa2l-v33n-i2h,hskwal-vv'n-ih
 425,he/she is hitting him/her on the head with it (refers to a long object),ih-il,present,hskwa2l-v33n-i2h,hskwal-vvn'-ih
 425,he/she is hitting him/her on the head with it (refers to a long object),ih-il,present,hskwa2l-v33n-i2h,hskwal-vv/n'-ih
@@ -807,6 +853,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 436,he/she is roping him/her,i-a-i,perfective,hslh-a3t-,hslh-a/t-
 436,he/she is roping him/her,i-a-i,perfective,hslh-a3t-,hslh-a/t'-
 436,he/she is roping him/her,i-a-i,imperative,hslh-a2t-a2,hslh-at-a
+436,he/she is roping him/her,i-a-i,infinitive,hslh-a2t-i21hst,hslh-at-ii'hst
+436,he/she is roping him/her,i-a-i,infinitive,hslh-a2t-i21hst,hslh-at-i'hst
 445,he/she is painting it,i-a-ihsk,present,hsu23wh-i3hsk,hsuuwh-ih'sk
 445,he/she is painting it,i-a-ihsk,present,hsu23wh-i3hsk,hsuuwh-i/h'sk
 445,he/she is painting it,i-a-ihsk,present,hsu23wh-i3hsk,hsuu/wh-ih'sk
@@ -860,11 +908,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 459,he/she is drinking it up,terminative-no-o,imperfective,hsv2-hv3hsk,hsv-hv/h'sk
 459,he/she is drinking it up,terminative-no-o,perfective,hsv2-nh,hsv-nh
 459,he/she is drinking it up,terminative-no-o,imperative,hsv2-nha2,hsv-nha
-459,he/she is drinking it up,terminative-no-o,infinitive,hsv3-hv3hst,hsv-h'v/hst
-459,he/she is drinking it up,terminative-no-o,infinitive,hsv3-hv3hst,hsv/-hvh'st
 459,he/she is drinking it up,terminative-no-o,infinitive,hsv3-hv3hst,hsv/-hv/hst
-459,he/she is drinking it up,terminative-no-o,infinitive,hsv3-hv3hst,hsv/-hv/h'st
-459,he/she is drinking it up,terminative-no-o,infinitive,hsv3-hv3hst,hsv/-h'v/hst
 464,he/she is mooring a boat,i-a-i,present,tha2l-a2t-i3',thal-at-i'
 464,he/she is mooring a boat,i-a-i,present,tha2l-a2t-i3',thal-at-i'
 464,he/she is mooring a boat,i-a-i,present,tha2l-a2t-i3',thal-at-i/'
@@ -876,6 +920,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 464,he/she is mooring a boat,i-a-i,perfective,tha2l-a3t-,thal-a/t-
 464,he/she is mooring a boat,i-a-i,perfective,tha2l-a3t-,thal-a/t'-
 464,he/she is mooring a boat,i-a-i,imperative,tha2l-a2t-a2,thal-at-a
+464,he/she is mooring a boat,i-a-i,infinitive,tha2l-a2t-i21hst,thal-at-ii'hst
+464,he/she is mooring a boat,i-a-i,infinitive,tha2l-a2t-i21hst,thal-at-i'hst
 472,he/she is kissing him/her,vsk-post-v,perfective,tha2we23to32-n,thaweetoo'-n
 472,he/she is kissing him/her,vsk-post-v,perfective,tha2we23to32-n,thaweeto'-n
 472,he/she is kissing him/her,vsk-post-v,infinitive,tha2we23to32-t,thaweetoo'-t
@@ -910,6 +956,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 477,he/she is shaking him/her,episodic[imp2],perfective,the33l-v22nh,thee'l-vvnh
 477,he/she is shaking him/her,episodic[imp2],perfective,the33l-v22nh,theel'-vvnh
 477,he/she is shaking him/her,episodic[imp2],perfective,the33l-v22nh,thee/l'-vvnh
+477,he/she is shaking him/her,episodic[imp2],infinitive,the21l-ht,thee'l-ht
+477,he/she is shaking him/her,episodic[imp2],infinitive,the21l-ht,the'l-ht
 502,he/she is inside,stative-a',present,y-a3',y-a'
 502,he/she is inside,stative-a',present,y-a3',y-a'
 502,he/she is inside,stative-a',present,y-a3',y-a/'
@@ -937,9 +985,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 511,he/she is putting him/her inside (refers to somewhere large enough to move around in),cause,present,yht-i3h,yht-i/h'
 511,he/she is putting him/her inside (refers to somewhere large enough to move around in),cause,imperfective,yht-i23hsk,yht-ii/hsk
 511,he/she is putting him/her inside (refers to somewhere large enough to move around in),cause,perfective,yht-ha2n,yht-han
-511,he/she is putting him/her inside (refers to somewhere large enough to move around in),cause,infinitive,yht-o3ht,yht-oh't
 511,he/she is putting him/her inside (refers to somewhere large enough to move around in),cause,infinitive,yht-o3ht,yht-o/ht
-511,he/she is putting him/her inside (refers to somewhere large enough to move around in),cause,infinitive,yht-o3ht,yht-o/h't
 513,he/she is getting it (refers to a long object),ih-vh,present,y-i3h,y-ih'
 513,he/she is getting it (refers to a long object),ih-vh,present,y-i3h,y-i/h
 513,he/she is getting it (refers to a long object),ih-vh,present,y-i3h,y-i/h'
@@ -961,6 +1007,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 515,it’s breaking,become[inf3],perfective,yo33-ts,yoo'-ts
 515,it’s breaking,become[inf3],perfective,yo33-ts,yoo-t's
 515,it’s breaking,become[inf3],perfective,yo33-ts,yoo/-t's
+515,it’s breaking,become[inf3],infinitive,yo21-yhst,yoo'-yhst
+515,it’s breaking,become[inf3],infinitive,yo21-yhst,yo'-yhst
 516,he/she is shooting him/her,hih-lh[imp2],present,yo22-hi3h,yoo-hi/h
 516,he/she is shooting him/her,hih-lh[imp2],present_1sg,yo2-'i3h,yo-'ih'
 516,he/she is shooting him/her,hih-lh[imp2],present_1sg,yo2-'i3h,yo-'i/h
@@ -1003,6 +1051,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 524,he/she is breaking it,cause,perfective,yo33hst-ha2n,yoo'hst-han
 524,he/she is breaking it,cause,perfective,yo33hst-ha2n,yooh'st-han
 524,he/she is breaking it,cause,perfective,yo33hst-ha2n,yoo/h'st-han
+524,he/she is breaking it,cause,infinitive,yo21hst-o3ht,yoo'hst-o/ht
+524,he/she is breaking it,cause,infinitive,yo21hst-o3ht,yo'hst-o/ht
 526,he/she is destroying it,terminative,present,yo33hstha2n-o3hv3hsk,yoo'hsthan-oh'v/hsk
 526,he/she is destroying it,terminative,present,yo33hstha2n-o3hv3hsk,yooh'sthan-oh'v/hsk
 526,he/she is destroying it,terminative,present_1sg,yo33hstha2n-o3hv3hsk,yoo'hsthan-oh'v/hsk
@@ -1091,6 +1141,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 769,he/she is spinning it,cause,present_1sg,ti33kwa2lv22te23yhst-i2h,tiik'walvvtee/yhst-ih
 769,he/she is spinning it,cause,perfective,ti33kwa2lv22te23yhst-ha2n,tii'kwalvvtee/yhst-han
 769,he/she is spinning it,cause,perfective,ti33kwa2lv22te23yhst-ha2n,tiik'walvvtee/yhst-han
+769,he/she is spinning it,cause,infinitive,ti21kwa2lv22te23yhst-o2ht,tii'kwalvvtee/yhst-oht
+769,he/she is spinning it,cause,infinitive,ti21kwa2lv22te23yhst-o2ht,ti'kwalvvtee/yhst-oht
 770,he/she is strapping it,hih-lh,present,tlo22-hi3h,tloo-hi/h
 770,he/she is strapping it,hih-lh,present_1sg,tlo22-hi3h,tloo-hi/h
 770,he/she is strapping it,hih-lh,imperfective,tlo22-hi2h,tloo-hih
@@ -1138,9 +1190,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 798,he/she is putting it into a container,cause,imperfective,lht-i23hsk,lht-ii/hsk
 798,he/she is putting it into a container,cause,perfective,lht-ha2n,lht-han
 798,he/she is putting it into a container,cause,imperative,lht-a2,lht-a
-798,he/she is putting it into a container,cause,infinitive,lht-o3ht,lht-oh't
 798,he/she is putting it into a container,cause,infinitive,lht-o3ht,lht-o/ht
-798,he/she is putting it into a container,cause,infinitive,lht-o3ht,lht-o/h't
 804,he/she is gathering it,cause[perf2],present,lh-i22hs-i3h,lh-iihs-i/h
 804,he/she is gathering it,cause[perf2],present_1sg,lh-i22hs-i3h,lh-iihs-i/h
 804,he/she is gathering it,cause[perf2],imperfective,lh-i22hs-i23hsk,lh-iihs-ii/hsk
@@ -1155,9 +1205,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 809,he/she is piling it up,husk,present_1sg,l-hu2hsk,l-huhsk
 809,he/she is piling it up,husk,imperfective,l-hu2hsk,l-huhsk
 809,he/she is piling it up,husk,perfective,l-hu2n,l-hun
-809,he/she is piling it up,husk,infinitive,l-hu3hst,l-huh'st
 809,he/she is piling it up,husk,infinitive,l-hu3hst,l-hu/hst
-809,he/she is piling it up,husk,infinitive,l-hu3hst,l-hu/h'st
 811,he/she is putting it in a hole or a container,hvsk-han,present,l-hv3hsk,l-hvh'sk
 811,he/she is putting it in a hole or a container,hvsk-han,present,l-hv3hsk,l-hv/hsk
 811,he/she is putting it in a hole or a container,hvsk-han,present,l-hv3hsk,l-hv/h'sk
@@ -1186,6 +1234,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 813,he/she is taking it somewhere by hand (refers to a flexible object),go,perfective,nh-v33hs,nh-vv'hs
 813,he/she is taking it somewhere by hand (refers to a flexible object),go,perfective,nh-v33hs,nh-vvh's
 813,he/she is taking it somewhere by hand (refers to a flexible object),go,perfective,nh-v33hs,nh-vv/h's
+813,he/she is taking it somewhere by hand (refers to a flexible object),go,infinitive,nh-v21hst,nh-vv'hst
+813,he/she is taking it somewhere by hand (refers to a flexible object),go,infinitive,nh-v21hst,nh-v'hst
 815,he/she is handling it (refers to a flexible object),be-at,present,nh-i23t-o32h,nh-iit-oo'h
 815,he/she is handling it (refers to a flexible object),be-at,present,nh-i23t-o32h,nh-iit-o'h
 815,he/she is handling it (refers to a flexible object),be-at,present,nh-i23t-o32h,nh-ii/t-oo'h
@@ -1217,6 +1267,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 818,he/she is eating it (refers to a flexible object),e-aka,perfective,yh-a33',yh-aa'
 818,he/she is eating it (refers to a flexible object),e-aka,perfective,yh-a33',yh-aa'
 818,he/she is eating it (refers to a flexible object),e-aka,imperative,y-a2ka2,y-aka
+818,he/she is eating it (refers to a flexible object),e-aka,infinitive,yh-e21hst,yh-ee'hst
+818,he/she is eating it (refers to a flexible object),e-aka,infinitive,yh-e21hst,yh-e'hst
 820,he/she is ripping it,ih-vh,present,tsa2ka2l-i3h,tsakal-ih'
 820,he/she is ripping it,ih-vh,present,tsa2ka2l-i3h,tsakal-i/h
 820,he/she is ripping it,ih-vh,present,tsa2ka2l-i3h,tsakal-i/h'
@@ -1256,6 +1308,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 825,he/she is stinging it,sk-h,perfective,tsv33y-h,tsvv'y-h
 825,he/she is stinging it,sk-h,perfective,tsv33y-h,tsvvy'-h
 825,he/she is stinging it,sk-h,perfective,tsv33y-h,tsvv/y'-h
+825,he/she is stinging it,sk-h,infinitive,tsv21y-hst,tsvv'y-hst
+825,he/she is stinging it,sk-h,infinitive,tsv21y-hst,tsv'y-hst
 826,he/she is leaving a living thing behind,a,present,kha2h-i22y-a3',khah-iiy-a/'
 826,he/she is leaving a living thing behind,a,present_1sg,kha2h-i22y-a3',khah-iiy-a/'
 826,he/she is leaving a living thing behind,a,perfective,kha2h-i33y-,khah-ii'y-
@@ -1270,6 +1324,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 827,he/she is giving him/her a living thing,apl,present_1sg,kha32n-e2h,kha'n-eh
 827,he/she is giving him/her a living thing,apl,imperfective,kha32n-e22h,kha'n-eeh
 827,he/she is giving him/her a living thing,apl,perfective,kha32n-e22l,kha'n-eel
+827,he/she is giving him/her a living thing,apl,infinitive,kha21n-e3ht,khaa'n-e/ht
+827,he/she is giving him/her a living thing,apl,infinitive,kha21n-e3ht,kha'n-e/ht
 829,he/she is wrapping him/her,vnh-vsk[inf2],infinitive,kwhe22n-v2ht,kwheen-vht
 830,he/she is putting it in a container (refers to a long object),i-a-i,present,l-a3t-i3',l-at'-i/'
 830,he/she is putting it in a container (refers to a long object),i-a-i,present,l-a3t-i3',l-a/t-i'
@@ -1286,6 +1342,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 830,he/she is putting it in a container (refers to a long object),i-a-i,perfective,l-a3t-,l-a/t-
 830,he/she is putting it in a container (refers to a long object),i-a-i,perfective,l-a3t-,l-a/t'-
 830,he/she is putting it in a container (refers to a long object),i-a-i,imperative,l-a2t-a2,l-at-a
+830,he/she is putting it in a container (refers to a long object),i-a-i,infinitive,l-a2t-i21hst,l-at-ii'hst
+830,he/she is putting it in a container (refers to a long object),i-a-i,infinitive,l-a2t-i21hst,l-at-i'hst
 833,he/she is taking it out of a container (refers to a solid or flexible object),rev-e,present,l-e33',l-ee'
 833,he/she is taking it out of a container (refers to a solid or flexible object),rev-e,present,l-e33',l-ee'
 833,he/she is taking it out of a container (refers to a solid or flexible object),rev-e,present_1sg,l-e33',l-ee'
@@ -1297,7 +1355,11 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 833,he/she is taking it out of a container (refers to a solid or flexible object),rev-e,perfective,l-e33hs,l-eeh's
 833,he/she is taking it out of a container (refers to a solid or flexible object),rev-e,perfective,l-e33hs,l-ee/h's
 833,he/she is taking it out of a container (refers to a solid or flexible object),rev-e,imperative,l-a2ki2,l-aki
+833,he/she is taking it out of a container (refers to a solid or flexible object),rev-e,infinitive,l-e21hst,l-ee'hst
+833,he/she is taking it out of a container (refers to a solid or flexible object),rev-e,infinitive,l-e21hst,l-e'hst
 834,he/she is climbing it,go,perfective,l-v32hs,l-v'hs
+834,he/she is climbing it,go,infinitive,l-v21hst,l-vv'hst
+834,he/she is climbing it,go,infinitive,l-v21hst,l-v'hst
 837,he/she is burning,sk-s-hi-hihst,present,le33yv22-hsk,lee'yvv-hsk
 837,he/she is burning,sk-s-hi-hihst,present,le33yv22-hsk,leey'vv-hsk
 837,he/she is burning,sk-s-hi-hihst,present_1sg,le33yv22-hsk,lee'yvv-hsk
@@ -1306,6 +1368,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 837,he/she is burning,sk-s-hi-hihst,imperfective,le33yv22-hsk,leey'vv-hsk
 837,he/she is burning,sk-s-hi-hihst,perfective,le33yv22-hs,lee'yvv-hs
 837,he/she is burning,sk-s-hi-hihst,perfective,le33yv22-hs,leey'vv-hs
+837,he/she is burning,sk-s-hi-hihst,infinitive,le21yv23-hi3hst,lee'yvv/-hi/hst
+837,he/she is burning,sk-s-hi-hihst,infinitive,le21yv23-hi3hst,le'yvv/-hi/hst
 838,it is falling from an upright position (refers to a long object eg tree‚ pole),sk-s-hi-hihst,present,le22yv23-hsk,leeyvv/-hsk
 838,it is falling from an upright position (refers to a long object eg tree‚ pole),sk-s-hi-hihst,present_1sg,le22yv33-hsk,leeyvv-hsk
 838,it is falling from an upright position (refers to a long object eg tree‚ pole),sk-s-hi-hihst,present_1sg,le22yv33-hsk,leeyvv-h'sk
@@ -1364,17 +1428,13 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 848,he/she is stopping by (where on the way somewhere),cause,perfective,lo22hi2hst-ha3n,loohihst-ha/n
 848,he/she is stopping by (where on the way somewhere),cause,perfective,lo22hi2hst-ha3n,loohihst-ha/n'
 848,he/she is stopping by (where on the way somewhere),cause,imperative,lo22hi2hst-a2,loohihst-a
-848,he/she is stopping by (where on the way somewhere),cause,infinitive,lo22hi2hst-o3ht,loohihst-oh't
 848,he/she is stopping by (where on the way somewhere),cause,infinitive,lo22hi2hst-o3ht,loohihst-o/ht
-848,he/she is stopping by (where on the way somewhere),cause,infinitive,lo22hi2hst-o3ht,loohihst-o/h't
 850,he/she is overtaking him/her,apl[imp2],present,lo22hi2hs-e3h,loohihs-eh'
 850,he/she is overtaking him/her,apl[imp2],present,lo22hi2hs-e3h,loohihs-e/h
 850,he/she is overtaking him/her,apl[imp2],present,lo22hi2hs-e3h,loohihs-e/h'
 850,he/she is overtaking him/her,apl[imp2],imperfective,lo22hi2hs-e23h,loohihs-ee/h
 850,he/she is overtaking him/her,apl[imp2],perfective,lo22hi2hs-e23l,loohihs-ee/l
-850,he/she is overtaking him/her,apl[imp2],infinitive,lo22hi2hs-e3ht,loohihs-eh't
 850,he/she is overtaking him/her,apl[imp2],infinitive,lo22hi2hs-e3ht,loohihs-e/ht
-850,he/she is overtaking him/her,apl[imp2],infinitive,lo22hi2hs-e3ht,loohihs-e/h't
 853,he/she is oiling it,e-a,present,lo23n-e3',loon-e'
 853,he/she is oiling it,e-a,present,lo23n-e3',loon-ee'
 853,he/she is oiling it,e-a,present,lo23n-e3',loon-e'
@@ -1413,6 +1473,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 854,he/she is making him/her fall from an elevated position,cause,perfective,lo3nht-ha2n,lon'ht-han
 854,he/she is making him/her fall from an elevated position,cause,perfective,lo3nht-ha2n,lo/nht-han
 854,he/she is making him/her fall from an elevated position,cause,perfective,lo3nht-ha2n,lo/n'ht-han
+854,he/she is making him/her fall from an elevated position,cause,infinitive,lo21nht-o3ht,loo'nht-o/ht
+854,he/she is making him/her fall from an elevated position,cause,infinitive,lo21nht-o3ht,lo'nht-o/ht
 855,he/she is cheating,apl-active-h,present_1sg,lo22nu2-'e23h,loonu-'ee/h
 856,he/she is passing by without stopping,sk-s-hi-hihst,present,lo22-hsk,loo-hsk
 856,he/she is passing by without stopping,sk-s-hi-hihst,imperfective,lo22-hsk,loo-hsk
@@ -1423,6 +1485,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 857,he/she is falling from an elevated position,sk-s-hi-hihst,present_1sg,lo32-hsk,lo'-hsk
 857,he/she is falling from an elevated position,sk-s-hi-hihst,imperfective,lo32-hsk,lo'-hsk
 857,he/she is falling from an elevated position,sk-s-hi-hihst,perfective,lo32-hs,lo'-hs
+857,he/she is falling from an elevated position,sk-s-hi-hihst,infinitive,lo21-hi3hst,loo'-hi/hst
+857,he/she is falling from an elevated position,sk-s-hi-hihst,infinitive,lo21-hi3hst,lo'-hi/hst
 858,he/she is arriving,become[inf4],present,'lu2h-k,'luh-k
 858,he/she is arriving,become[inf4],present_1sg,'lu2h-k,'luh-k
 858,he/she is arriving,become[inf4],imperfective,'lu2h-k,'luh-k
@@ -1430,11 +1494,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 858,he/she is arriving,become[inf4],perfective,lu3h-ts,lu/h-ts
 858,he/she is arriving,become[inf4],perfective,lu3h-ts,lu/h'-ts
 858,he/she is arriving,become[inf4],imperative,'lu2h-ki2,'luh-ki
-858,he/she is arriving,become[inf4],infinitive,lu3h-i3hst,luh'-i/hst
-858,he/she is arriving,become[inf4],infinitive,lu3h-i3hst,lu/h-ih'st
 858,he/she is arriving,become[inf4],infinitive,lu3h-i3hst,lu/h-i/hst
-858,he/she is arriving,become[inf4],infinitive,lu3h-i3hst,lu/h-i/h'st
-858,he/she is arriving,become[inf4],infinitive,lu3h-i3hst,lu/h'-i/hst
 859,it’s lacking,become,present,lu23lo32-k,luuloo'-k
 859,it’s lacking,become,present,lu23lo32-k,luulo'-k
 859,it’s lacking,become,present_1sg,lu23lo32-k,luuloo'-k
@@ -1449,6 +1509,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 862,he/she is chopping it,sk-h,present_1sg,lu32y-hsk,lu'y-hsk
 862,he/she is chopping it,sk-h,imperfective,lu32y-hsk,lu'y-hsk
 862,he/she is chopping it,sk-h,perfective,lu32y-h,lu'y-h
+862,he/she is chopping it,sk-h,infinitive,lu21y-hst,luu'y-hst
+862,he/she is chopping it,sk-h,infinitive,lu21y-hst,lu'y-hst
 864,he/she is beating him/her up,hih-hil,present,l-v33n-hi2h,l-vv'n-hih
 864,he/she is beating him/her up,hih-hil,present,l-v33n-hi2h,l-vvn'-hih
 864,he/she is beating him/her up,hih-hil,present,l-v33n-hi2h,l-vv/n'-hih
@@ -1461,6 +1523,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 864,he/she is beating him/her up,hih-hil,perfective,l-v33n-hi2l,l-vv'n-hil
 864,he/she is beating him/her up,hih-hil,perfective,l-v33n-hi2l,l-vvn'-hil
 864,he/she is beating him/her up,hih-hil,perfective,l-v33n-hi2l,l-vv/n'-hil
+864,he/she is beating him/her up,hih-hil,infinitive,l-v21n-hst,l-vv'n-hst
+864,he/she is beating him/her up,hih-hil,infinitive,l-v21n-hst,l-v'n-hst
 870,he/she is putting it in a hole or a container (refers to a flexible object),vsk[imp2],present,l-v33hsk,l-vv'hsk
 870,he/she is putting it in a hole or a container (refers to a flexible object),vsk[imp2],present,l-v33hsk,l-vvh'sk
 870,he/she is putting it in a hole or a container (refers to a flexible object),vsk[imp2],present,l-v33hsk,l-vv/h'sk
@@ -1473,6 +1537,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 870,he/she is putting it in a hole or a container (refers to a flexible object),vsk[imp2],perfective,l-v33n,l-vv'n
 870,he/she is putting it in a hole or a container (refers to a flexible object),vsk[imp2],perfective,l-v33n,l-vvn'
 870,he/she is putting it in a hole or a container (refers to a flexible object),vsk[imp2],perfective,l-v33n,l-vv/n'
+870,he/she is putting it in a hole or a container (refers to a flexible object),vsk[imp2],infinitive,l-v21t,l-vv't
+870,he/she is putting it in a hole or a container (refers to a flexible object),vsk[imp2],infinitive,l-v21t,l-v't
 871,he/she is selling it,go-in,present,na2t-e33k,nat-ee'k
 871,he/she is selling it,go-in,present,na2t-e33k,nat-eek'
 871,he/she is selling it,go-in,present,na2t-e33k,nat-ee/k'
@@ -1489,10 +1555,16 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 873,he/she is hiring him/her,vsk[imp2],imperfective,na32lh-v2hsk,na'lh-vhsk
 873,he/she is hiring him/her,vsk[imp2],perfective,na32lh-v21n,na'lh-vv'n
 873,he/she is hiring him/her,vsk[imp2],perfective,na32lh-v21n,na'lh-v'n
+873,he/she is hiring him/her,vsk[imp2],infinitive,na21lh-v21t,naa'lh-vv't
+873,he/she is hiring him/her,vsk[imp2],infinitive,na21lh-v21t,naa'lh-v't
+873,he/she is hiring him/her,vsk[imp2],infinitive,na21lh-v21t,na'lh-vv't
+873,he/she is hiring him/her,vsk[imp2],infinitive,na21lh-v21t,na'lh-v't
 876,he/she is finding it (refers to a flexible object),ih-vh[inf2],present,na32whth-i3h,na'whth-i/h
 876,he/she is finding it (refers to a flexible object),ih-vh[inf2],present_1sg,na32whth-i3h,na'whth-i/h
 876,he/she is finding it (refers to a flexible object),ih-vh[inf2],imperfective,na32whth-i23hsk,na'whth-ii/hsk
 876,he/she is finding it (refers to a flexible object),ih-vh[inf2],perfective,na32whth-v22h,na'whth-vvh
+876,he/she is finding it (refers to a flexible object),ih-vh[inf2],infinitive,na21whth-v3ht,naa'whth-v/ht
+876,he/she is finding it (refers to a flexible object),ih-vh[inf2],infinitive,na21whth-v3ht,na'whth-v/ht
 877,he/she is taking it somewhere (refers to an animal‚ flexible object),ih-vh,present,na32wi22t-i3h,na'wiit-ih'
 877,he/she is taking it somewhere (refers to an animal‚ flexible object),ih-vh,present,na32wi22t-i3h,na'wiit-i/h
 877,he/she is taking it somewhere (refers to an animal‚ flexible object),ih-vh,present,na32wi22t-i3h,na'wiit-i/h'
@@ -1501,6 +1573,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 877,he/she is taking it somewhere (refers to an animal‚ flexible object),ih-vh,present_1sg,na32wi22t-i3h,na'wiit-i/h'
 877,he/she is taking it somewhere (refers to an animal‚ flexible object),ih-vh,imperfective,na32wi22t-i23hsk,na'wiit-ii/hsk
 877,he/she is taking it somewhere (refers to an animal‚ flexible object),ih-vh,perfective,na32wi22t-v22h,na'wiit-vvh
+877,he/she is taking it somewhere (refers to an animal‚ flexible object),ih-vh,infinitive,na21wi23t-ht,naa'wii/t-ht
+877,he/she is taking it somewhere (refers to an animal‚ flexible object),ih-vh,infinitive,na21wi23t-ht,na'wii/t-ht
 879,he/she is getting it (refers to a flexible object),rev-e,present,n-e33',n-ee'
 879,he/she is getting it (refers to a flexible object),rev-e,present,n-e33',n-ee'
 879,he/she is getting it (refers to a flexible object),rev-e,present_1sg,n-e33',n-ee'
@@ -1512,6 +1586,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 879,he/she is getting it (refers to a flexible object),rev-e,perfective,n-e33hs,n-eeh's
 879,he/she is getting it (refers to a flexible object),rev-e,perfective,n-e33hs,n-ee/h's
 879,he/she is getting it (refers to a flexible object),rev-e,imperative,n-a2ki2,n-aki
+879,he/she is getting it (refers to a flexible object),rev-e,infinitive,n-e21hst,n-ee'hst
+879,he/she is getting it (refers to a flexible object),rev-e,infinitive,n-e21hst,n-e'hst
 880,he/she is changing it,v-vhs,present,ne23tl-i33y-v2',nee/tl-iiy-v'
 880,he/she is changing it,v-vhs,present,ne23tl-i33y-v2',nee/tl-iiy-vv'
 880,he/she is changing it,v-vhs,present,ne23tl-i33y-v2',nee/tl-iiy-v'
@@ -1560,6 +1636,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 882,he/she is taking it somewhere by hand (refers to a long object),go,perfective,n-v33hs,n-vv'hs
 882,he/she is taking it somewhere by hand (refers to a long object),go,perfective,n-v33hs,n-vvh's
 882,he/she is taking it somewhere by hand (refers to a long object),go,perfective,n-v33hs,n-vv/h's
+882,he/she is taking it somewhere by hand (refers to a long object),go,infinitive,n-v21hst,n-vv'hst
+882,he/she is taking it somewhere by hand (refers to a long object),go,infinitive,n-v21hst,n-v'hst
 883,he/she is peeling him/her,ih-vh,present,ne33ka2l-i3h,nee'kal-ih'
 883,he/she is peeling him/her,ih-vh,present,ne33ka2l-i3h,nee'kal-i/h
 883,he/she is peeling him/her,ih-vh,present,ne33ka2l-i3h,nee'kal-i/h'
@@ -1576,6 +1654,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 883,he/she is peeling him/her,ih-vh,imperfective,ne33ka2l-i23hsk,neek'al-ii/hsk
 883,he/she is peeling him/her,ih-vh,perfective,ne33ka2l-v22h,nee'kal-vvh
 883,he/she is peeling him/her,ih-vh,perfective,ne33ka2l-v22h,neek'al-vvh
+883,he/she is peeling him/her,ih-vh,infinitive,ne21ka3l-ht,nee'ka/l-ht
+883,he/she is peeling him/her,ih-vh,infinitive,ne21ka3l-ht,ne'ka/l-ht
 884,he/she is getting some liquid,rev-gi,present,ne22-ki33',nee-kii'
 884,he/she is getting some liquid,rev-gi,present,ne22-ki33',nee-kii'
 884,he/she is getting some liquid,rev-gi,present_1sg,ne22-ki33',nee-kii'
@@ -1621,6 +1701,10 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 895,it’s freezing,i-a-i,perfective,ne23hsta3l-a2t-,neehstal'-at-
 895,it’s freezing,i-a-i,perfective,ne23hsta3l-a2t-,neehsta/l'-at-
 895,it’s freezing,i-a-i,imperative,ne22hsta2l-a2t-a2,neehstal-at-a
+895,it’s freezing,i-a-i,infinitive,ne23hsta3l-a2t-i21hst,neehstal'-at-ii'hst
+895,it’s freezing,i-a-i,infinitive,ne23hsta3l-a2t-i21hst,neehstal'-at-i'hst
+895,it’s freezing,i-a-i,infinitive,ne23hsta3l-a2t-i21hst,neehsta/l'-at-ii'hst
+895,it’s freezing,i-a-i,infinitive,ne23hsta3l-a2t-i21hst,neehsta/l'-at-i'hst
 899,he/she is lying down,stative-k,present,nh-k,nh-k
 899,he/she is lying down,stative-k,imperfective,nh-k,nh-k
 899,he/she is lying down,stative-k,imperative,nh-ke33hsti2,nh-kee'hsti
@@ -1638,6 +1722,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 902,he/she is taking a liquid somewhere by hand,go,perfective,nhts-v33hs,nhts-vv'hs
 902,he/she is taking a liquid somewhere by hand,go,perfective,nhts-v33hs,nhts-vvh's
 902,he/she is taking a liquid somewhere by hand,go,perfective,nhts-v33hs,nhts-vv/h's
+902,he/she is taking a liquid somewhere by hand,go,infinitive,nhts-v21hst,nhts-vv'hst
+902,he/she is taking a liquid somewhere by hand,go,infinitive,nhts-v21hst,nhts-v'hst
 903,he/she is holding some liquid,stative-eh,present,nhts-e3h,nhts-eh'
 903,he/she is holding some liquid,stative-eh,present,nhts-e3h,nhts-e/h
 903,he/she is holding some liquid,stative-eh,present,nhts-e3h,nhts-e/h'
@@ -1686,11 +1772,15 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 909,he/she hates him/her,hih-hilh,present_1sg,ni2kwa32t-hi2h,nikwa't-hih
 909,he/she hates him/her,hih-hilh,imperfective,ni2kwa32t-hi2h,nikwa't-hih
 909,he/she hates him/her,hih-hilh,perfective,ni2kwa32t-hi2lh,nikwa't-hilh
+909,he/she hates him/her,hih-hilh,infinitive,ni2kwa21t-hi3hst,nikwaa't-hi/hst
+909,he/she hates him/her,hih-hilh,infinitive,ni2kwa21t-hi3hst,nikwa't-hi/hst
 910,he/she is setting up a bed,i-a-i,present,ni22lh-a3t-i3',niilh-a/t-i'
 910,he/she is setting up a bed,i-a-i,present,ni22lh-a3t-i3',niilh-a/t-i'
 910,he/she is setting up a bed,i-a-i,present,ni22lh-a3t-i3',niilh-a/t-i/'
 910,he/she is setting up a bed,i-a-i,perfective,ni22lh-a3t-,niilh-a/t-
 910,he/she is setting up a bed,i-a-i,imperative,ni22lh-a2t-a2,niilh-at-a
+910,he/she is setting up a bed,i-a-i,infinitive,ni22lh-a2t-i21hst,niilh-at-ii'hst
+910,he/she is setting up a bed,i-a-i,infinitive,ni22lh-a2t-i21hst,niilh-at-i'hst
 913,he/she is pleading,i-a-i,present,ni23l-a3t-i2',niil-at'-i'
 913,he/she is pleading,i-a-i,present,ni23l-a3t-i2',niil-at'-ii'
 913,he/she is pleading,i-a-i,present,ni23l-a3t-i2',niil-at'-i'
@@ -1727,6 +1817,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 913,he/she is pleading,i-a-i,infinitive,ni23l-a3t-i21hst,niil-a/t'-i'hst
 913,he/she is pleading,i-a-i,infinitive,ni23l-a3t-i21hst,nii/l-at'-ii'hst
 913,he/she is pleading,i-a-i,infinitive,ni23l-a3t-i21hst,nii/l-at'-i'hst
+913,he/she is pleading,i-a-i,infinitive,ni23l-a3t-i21hst,nii/l-a/t-ii'hst
+913,he/she is pleading,i-a-i,infinitive,ni23l-a3t-i21hst,nii/l-a/t-i'hst
 913,he/she is pleading,i-a-i,infinitive,ni23l-a3t-i21hst,nii/l-a/t'-ii'hst
 913,he/she is pleading,i-a-i,infinitive,ni23l-a3t-i21hst,nii/l-a/t'-i'hst
 914,he/she is burying him/her,cause[perf2],present,'n-i22hs-i3h,'n-iihs-i/h
@@ -1796,6 +1888,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 929,he/she is pulling him/her,rev-e,perfective,nhsa2n-e33hs,nhsan-ee'hs
 929,he/she is pulling him/her,rev-e,perfective,nhsa2n-e33hs,nhsan-eeh's
 929,he/she is pulling him/her,rev-e,perfective,nhsa2n-e33hs,nhsan-ee/h's
+929,he/she is pulling him/her,rev-e,infinitive,nhsa2n-e21hst,nhsan-ee'hst
+929,he/she is pulling him/her,rev-e,infinitive,nhsa2n-e21hst,nhsan-e'hst
 931,he/she is dragging him/her,go,present,nhsi23n-e32k,nhsiin-ee'k
 931,he/she is dragging him/her,go,present,nhsi23n-e32k,nhsiin-e'k
 931,he/she is dragging him/her,go,present,nhsi23n-e32k,nhsii/n-ee'k
@@ -1882,9 +1976,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 940,he/she is falling from an upright position,become[inf2],perfective,nv33-ts,nvv'-ts
 940,he/she is falling from an upright position,become[inf2],perfective,nv33-ts,nvv-t's
 940,he/she is falling from an upright position,become[inf2],perfective,nv33-ts,nvv/-t's
-940,he/she is falling from an upright position,become[inf2],infinitive,nv2-'i3hst,nv-'ih'st
 940,he/she is falling from an upright position,become[inf2],infinitive,nv2-'i3hst,nv-'i/hst
-940,he/she is falling from an upright position,become[inf2],infinitive,nv2-'i3hst,nv-'i/h'st
 941,he/she is cleaning him/her,ih-vh,present,nv22ka2l-i3h,nvvkal-ih'
 941,he/she is cleaning him/her,ih-vh,present,nv22ka2l-i3h,nvvkal-i/h
 941,he/she is cleaning him/her,ih-vh,present,nv22ka2l-i3h,nvvkal-i/h'
@@ -1903,6 +1995,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 942,he/she is hammering it,o,imperfective,nv22kwa2l-o33hsk,nvvkwal-oo/h'sk
 942,he/she is hammering it,o,perfective,nv22kwa2l-o33',nvvkwal-oo'
 942,he/she is hammering it,o,perfective,nv22kwa2l-o33',nvvkwal-oo'
+942,he/she is hammering it,o,infinitive,nv22kwa2l-o21hst,nvvkwal-oo'hst
+942,he/she is hammering it,o,infinitive,nv22kwa2l-o21hst,nvvkwal-o'hst
 946,he/she is tying up a leg,hih-lh,present,nv33lho22-hi3h,nvv'lhoo-hih'
 946,he/she is tying up a leg,hih-lh,present,nv33lho22-hi3h,nvv'lhoo-hi/h
 946,he/she is tying up a leg,hih-lh,present,nv33lho22-hi3h,nvv'lhoo-hi/h'
@@ -1919,6 +2013,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 946,he/she is tying up a leg,hih-lh,imperfective,nv33lho22-hi2h,nvvl'hoo-hih
 946,he/she is tying up a leg,hih-lh,perfective,nv33lho22-lh,nvv'lhoo-lh
 946,he/she is tying up a leg,hih-lh,perfective,nv33lho22-lh,nvvl'hoo-lh
+946,he/she is tying up a leg,hih-lh,infinitive,nv21lho23-hst,nvv'lhoo/-hst
+946,he/she is tying up a leg,hih-lh,infinitive,nv21lho23-hst,nv'lhoo/-hst
 949,he/she is tossing about,be-at,present,nv33ts-i22t-o33h,nvv'ts-iit-oo'h
 949,he/she is tossing about,be-at,present,nv33ts-i22t-o33h,nvv'ts-iit-ooh'
 949,he/she is tossing about,be-at,present,nv33ts-i22t-o33h,nvv'ts-iit-oo/h'
@@ -1967,10 +2063,14 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 950,he/she is giving him/her an object (refers to a flexible object),apl,perfective,nv33n-e22l,nvv'n-eel
 950,he/she is giving him/her an object (refers to a flexible object),apl,perfective,nv33n-e22l,nvvn'-eel
 950,he/she is giving him/her an object (refers to a flexible object),apl,perfective,nv33n-e22l,nvv/n'-eel
+950,he/she is giving him/her an object (refers to a flexible object),apl,infinitive,nv21n-e3ht,nvv'n-e/ht
+950,he/she is giving him/her an object (refers to a flexible object),apl,infinitive,nv21n-e3ht,nv'n-e/ht
 955,he/she is pushing him/her,sk-h-yh,present,hsa2to32-hsk,hsato'-hsk
 955,he/she is pushing him/her,sk-h-yh,present_1sg,hsa2to32-hsk,hsato'-hsk
 955,he/she is pushing him/her,sk-h-yh,imperfective,hsa2to32-hsk,hsato'-hsk
 955,he/she is pushing him/her,sk-h-yh,perfective,hsa2to32-yh,hsato'-yh
+955,he/she is pushing him/her,sk-h-yh,infinitive,hsa2to21-hst,hsatoo'-hst
+955,he/she is pushing him/her,sk-h-yh,infinitive,hsa2to21-hst,hsato'-hst
 956,he/she is rolling him/her,hih-lh,present,hsa2kwa2le23-hi3h,hsakwalee-hih'
 956,he/she is rolling him/her,hih-lh,present,hsa2kwa2le23-hi3h,hsakwalee-hi/h'
 956,he/she is rolling him/her,hih-lh,present,hsa2kwa2le23-hi3h,hsakwalee/-hih'
@@ -2036,6 +2136,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 981,he/she is lecturing him/her,cause,perfective,wo3nht-ha2n,won'ht-han
 981,he/she is lecturing him/her,cause,perfective,wo3nht-ha2n,wo/nht-han
 981,he/she is lecturing him/her,cause,perfective,wo3nht-ha2n,wo/n'ht-han
+981,he/she is lecturing him/her,cause,infinitive,wo21nht-o3ht,woo'nht-o/ht
+981,he/she is lecturing him/her,cause,infinitive,wo21nht-o3ht,wo'nht-o/ht
 983,he/she is speaking,ih-ihi,present,wo33n-i2h,woo'n-ih
 983,he/she is speaking,ih-ihi,present,wo33n-i2h,woon'-ih
 983,he/she is speaking,ih-ihi,present,wo33n-i2h,woo/n'-ih
@@ -2060,9 +2162,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 993,he/she is howling,hvsk-nh[inf3],imperfective,e22lhu2-hv3hsk,eelhu-hv/hsk
 993,he/she is howling,hvsk-nh[inf3],imperfective,e22lhu2-hv3hsk,eelhu-hv/h'sk
 993,he/she is howling,hvsk-nh[inf3],perfective,e22lhu2-nh,eelhu-nh
-993,he/she is howling,hvsk-nh[inf3],infinitive,e22lhu2-hv3hst,eelhu-hvh'st
 993,he/she is howling,hvsk-nh[inf3],infinitive,e22lhu2-hv3hst,eelhu-hv/hst
-993,he/she is howling,hvsk-nh[inf3],infinitive,e22lhu2-hv3hst,eelhu-hv/h'st
 1014,he/she is leading him/her by the hand,go,present,o22hi23n-e32k,oohii/n-ee'k
 1014,he/she is leading him/her by the hand,go,present,o22hi23n-e32k,oohii/n-e'k
 1014,he/she is leading him/her by the hand,go,imperfective,o22hi23n-e32k,oohii/n-ee'k
@@ -2074,6 +2174,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1015,he/she is agreeing with him/her,apl,present,o22hi2yhta32n-e2h,oohiyhta'n-eh
 1015,he/she is agreeing with him/her,apl,imperfective,o22hi2yhta32n-e22h,oohiyhta'n-eeh
 1015,he/she is agreeing with him/her,apl,perfective,o22hi2yhta32n-e22l,oohiyhta'n-eel
+1015,he/she is agreeing with him/her,apl,infinitive,o22hi2yhta21n-e3ht,oohiyhtaa'n-e/ht
+1015,he/she is agreeing with him/her,apl,infinitive,o22hi2yhta21n-e3ht,oohiyhta'n-e/ht
 1017,he/she is recognizing him/her,become[inf4],present,o2lh-k,olh-k
 1017,he/she is recognizing him/her,become[inf4],imperfective,o2lh-k,olh-k
 1017,he/she is recognizing him/her,become[inf4],perfective,o2lh-ts,olh-ts
@@ -2087,9 +2189,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1021,he/she is getting full,sk-s-hi-hihst,imperfective,o22lhv3-hsk,oolhv/-hsk
 1021,he/she is getting full,sk-s-hi-hihst,perfective,o22lhv3-hs,oolhv/-hs
 1021,he/she is getting full,sk-s-hi-hihst,imperative,o22lhv2-hi2,oolhv-hi
-1021,he/she is getting full,sk-s-hi-hihst,infinitive,o22lhv3-hi3hst,oolhv/-hih'st
 1021,he/she is getting full,sk-s-hi-hihst,infinitive,o22lhv3-hi3hst,oolhv/-hi/hst
-1021,he/she is getting full,sk-s-hi-hihst,infinitive,o22lhv3-hi3hst,oolhv/-hi/h'st
 1022,he/she is making it,vnh-vsk[inf3],infinitive,o22lh-v2nht,oolh-vnht
 1023,he/she is making it fall (refers to a round‚ long object),cause,present,o22ho2nht-i3h,oohonht-ih'
 1023,he/she is making it fall (refers to a round‚ long object),cause,present,o22ho2nht-i3h,oohonht-i/h
@@ -2099,9 +2199,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1023,he/she is making it fall (refers to a round‚ long object),cause,perfective,o22ho2nht-ha3n,oohonht-ha/n
 1023,he/she is making it fall (refers to a round‚ long object),cause,perfective,o22ho2nht-ha3n,oohonht-ha/n'
 1023,he/she is making it fall (refers to a round‚ long object),cause,imperative,o22ho2nht-a2,oohonht-a
-1023,he/she is making it fall (refers to a round‚ long object),cause,infinitive,o22ho2nht-o3ht,oohonht-oh't
 1023,he/she is making it fall (refers to a round‚ long object),cause,infinitive,o22ho2nht-o3ht,oohonht-o/ht
-1023,he/she is making it fall (refers to a round‚ long object),cause,infinitive,o22ho2nht-o3ht,oohonht-o/h't
 1024,it’s falling (refers to a round‚ long object),sk-s-hi-hihst,present,o22ho2-hsk,ooho-hsk
 1024,it’s falling (refers to a round‚ long object),sk-s-hi-hihst,imperfective,o22ho2-hsk,ooho-hsk
 1024,it’s falling (refers to a round‚ long object),sk-s-hi-hihst,perfective,o22ho2-hs,ooho-hs
@@ -2127,6 +2225,10 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1030,he/she is pulling a trigger,rev-e,perfective,o32tsa2n-e33hs,o'tsan-ee'hs
 1030,he/she is pulling a trigger,rev-e,perfective,o32tsa2n-e33hs,o'tsan-eeh's
 1030,he/she is pulling a trigger,rev-e,perfective,o32tsa2n-e33hs,o'tsan-ee/h's
+1030,he/she is pulling a trigger,rev-e,infinitive,o21tsa2n-e21hst,oo'tsan-ee'hst
+1030,he/she is pulling a trigger,rev-e,infinitive,o21tsa2n-e21hst,oo'tsan-e'hst
+1030,he/she is pulling a trigger,rev-e,infinitive,o21tsa2n-e21hst,o'tsan-ee'hst
+1030,he/she is pulling a trigger,rev-e,infinitive,o21tsa2n-e21hst,o'tsan-e'hst
 1038,he/she is batting it,ih-il,present,o22hst-v33n-i2h,oohst-vvn-ih
 1038,he/she is batting it,ih-il,present,o22hst-v33n-i2h,oohst-vvn'-ih
 1038,he/she is batting it,ih-il,present,o22hst-v33n-i2h,oohst-vv/n'-ih
@@ -2137,6 +2239,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1038,he/she is batting it,ih-il,perfective,o22hst-v23n-i32l,oohst-vv/n-i'l
 1038,he/she is batting it,ih-il,infinitive,o22hst-v23n-i32hst,oohst-vv/n-ii'hst
 1038,he/she is batting it,ih-il,infinitive,o22hst-v23n-i32hst,oohst-vv/n-i'hst
+1040,he/she is saying to him/her,apl[imp2],infinitive,o21hs-e3ht,oo'hs-e/ht
+1040,he/she is saying to him/her,apl[imp2],infinitive,o21hs-e3ht,o'hs-e/ht
 1041,it’s swelling,sk-s-hi-hihst,present,o22thi2-hsk,oothi-hsk
 1041,it’s swelling,sk-s-hi-hihst,imperfective,o22thi2-hsk,oothi-hsk
 1041,it’s swelling,sk-s-hi-hihst,perfective,o22thi2-hs,oothi-hs
@@ -2172,10 +2276,14 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1044,he/she is unhitching him/her,rev-e,perfective,u22ta2l-e33hs,uutal-eeh's
 1044,he/she is unhitching him/her,rev-e,perfective,u22ta2l-e33hs,uutal-ee/h's
 1044,he/she is unhitching him/her,rev-e,imperative,u22ta2l-a2ki2,uutal-aki
+1044,he/she is unhitching him/her,rev-e,infinitive,u22ta2l-e21hst,uutal-ee'hst
+1044,he/she is unhitching him/her,rev-e,infinitive,u22ta2l-e21hst,uutal-e'hst
 1045,he/she is hitching him/her up,vsk[imp2],present,u22ta2l-v32hsk,uutal-v'hsk
 1045,he/she is hitching him/her up,vsk[imp2],present_1sg,u22ta2l-v32hsk,uutal-v'hsk
 1045,he/she is hitching him/her up,vsk[imp2],imperfective,u22ta2l-v32hsk,uutal-v'hsk
 1045,he/she is hitching him/her up,vsk[imp2],perfective,u22ta2l-v32n,uutal-v'n
+1045,he/she is hitching him/her up,vsk[imp2],infinitive,u22ta2l-v21t,uutal-vv't
+1045,he/she is hitching him/her up,vsk[imp2],infinitive,u22ta2l-v21t,uutal-v't
 1050,he/she is putting a handle on a tool,hvsk-han,present,u22ha2l-hv3hsk,uuhal-hvh'sk
 1050,he/she is putting a handle on a tool,hvsk-han,present,u22ha2l-hv3hsk,uuhal-hv/hsk
 1050,he/she is putting a handle on a tool,hvsk-han,present,u22ha2l-hv3hsk,uuhal-hv/h'sk
@@ -2213,6 +2321,10 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1055,he/she is covering it,vsk[imp2],perfective,u33lh-v21n,uul'h-v'n
 1055,he/she is covering it,vsk[imp2],perfective,u33lh-v21n,uu/l'h-vv'n
 1055,he/she is covering it,vsk[imp2],perfective,u33lh-v21n,uu/l'h-v'n
+1055,he/she is covering it,vsk[imp2],infinitive,u21lh-v21t,uu'lh-vv't
+1055,he/she is covering it,vsk[imp2],infinitive,u21lh-v21t,uu'lh-v't
+1055,he/she is covering it,vsk[imp2],infinitive,u21lh-v21t,u'lh-vv't
+1055,he/she is covering it,vsk[imp2],infinitive,u21lh-v21t,u'lh-v't
 1056,he/she is putting it in water,hvsk-nh,present,u22-hv3hsk,uu-hv/hsk
 1056,he/she is putting it in water,hvsk-nh,present_1sg,u2-'v3hsk,u-'vh'sk
 1056,he/she is putting it in water,hvsk-nh,present_1sg,u2-'v3hsk,u-'v/hsk
@@ -2267,9 +2379,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1071,he/she is cooking it (refers to a specific food),cause,perfective,nhi2hst-ha3n,nhihst-ha/n
 1071,he/she is cooking it (refers to a specific food),cause,perfective,nhi2hst-ha3n,nhihst-ha/n'
 1071,he/she is cooking it (refers to a specific food),cause,imperative,v22nhi2hst-a2,vvnhihst-a
-1071,he/she is cooking it (refers to a specific food),cause,infinitive,nhi2hst-o3ht,nhihst-oh't
 1071,he/she is cooking it (refers to a specific food),cause,infinitive,nhi2hst-o3ht,nhihst-o/ht
-1071,he/she is cooking it (refers to a specific food),cause,infinitive,nhi2hst-o3ht,nhihst-o/h't
 1076,he/she is frying it,hvsk-han,present,v22tsa2l-hv3hsk,vvtsal-hvh'sk
 1076,he/she is frying it,hvsk-han,present,v22tsa2l-hv3hsk,vvtsal-hv/hsk
 1076,he/she is frying it,hvsk-han,present,v22tsa2l-hv3hsk,vvtsal-hv/h'sk
@@ -2288,9 +2398,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1078,he/she is melting it,cause,perfective,na2wht-ha3n,nawht-ha/n
 1078,he/she is melting it,cause,perfective,na2wht-ha3n,nawht-ha/n'
 1078,he/she is melting it,cause,imperative,v22na2wht-a2,vvnawht-a
-1078,he/she is melting it,cause,infinitive,na2wht-o3ht,nawht-oh't
 1078,he/she is melting it,cause,infinitive,na2wht-o3ht,nawht-o/ht
-1078,he/she is melting it,cause,infinitive,na2wht-o3ht,nawht-o/h't
 1079,it’s melting,sk-s-hi-hihst,present,v22na2wo22-hsk,vvnawoo-hsk
 1079,it’s melting,sk-s-hi-hihst,imperfective,v22na2wo22-hsk,vvnawoo-hsk
 1079,it’s melting,sk-s-hi-hihst,perfective,na2wo22-hs,nawoo-hs
@@ -2302,9 +2410,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1082,it’s becoming done (refers to by cooking),sk-s-hi-hihst,imperfective,v2n-hsk,vn-hsk
 1082,it’s becoming done (refers to by cooking),sk-s-hi-hihst,perfective,n-hs,n-hs
 1082,it’s becoming done (refers to by cooking),sk-s-hi-hihst,imperative,v23n-hi2,vv/n-hi
-1082,it’s becoming done (refers to by cooking),sk-s-hi-hihst,infinitive,n-hi3hst,n-hih'st
 1082,it’s becoming done (refers to by cooking),sk-s-hi-hihst,infinitive,n-hi3hst,n-hi/hst
-1082,it’s becoming done (refers to by cooking),sk-s-hi-hihst,infinitive,n-hi3hst,n-hi/h'st
 1083,he/she is hiding it,hvsk-han,present,v22hska2l-hv3hsk,vvhskal-hvh'sk
 1083,he/she is hiding it,hvsk-han,present,v22hska2l-hv3hsk,vvhskal-hv/hsk
 1083,he/she is hiding it,hvsk-han,present,v22hska2l-hv3hsk,vvhskal-hv/h'sk
@@ -2317,6 +2423,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1083,he/she is hiding it,hvsk-han,infinitive,hska2l-ht,hskal-ht
 1085,he/she is hiding him/her (refers to a flexible object),vsk[imp2],imperfective,v22hska2l-v32hsk,vvhskal-v'hsk
 1085,he/she is hiding him/her (refers to a flexible object),vsk[imp2],perfective,hska2l-v32n,hskal-v'n
+1085,he/she is hiding him/her (refers to a flexible object),vsk[imp2],infinitive,hska2l-v21t,hskal-vv't
+1085,he/she is hiding him/her (refers to a flexible object),vsk[imp2],infinitive,hska2l-v21t,hskal-v't
 1086,he/she is cracking it,o,present,v22hskwa2l-o33',vvhskwal-oo'
 1086,he/she is cracking it,o,present,v22hskwa2l-o33',vvhskwal-oo'
 1086,he/she is cracking it,o,imperfective,v22hskwa2l-o33hsk,vvhskwal-oo'hsk
@@ -2324,6 +2432,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1086,he/she is cracking it,o,imperfective,v22hskwa2l-o33hsk,vvhskwal-oo/h'sk
 1086,he/she is cracking it,o,perfective,hskwa2l-o33',hskwal-oo'
 1086,he/she is cracking it,o,perfective,hskwa2l-o33',hskwal-oo'
+1086,he/she is cracking it,o,infinitive,hskwa2l-o21hst,hskwal-oo'hst
+1086,he/she is cracking it,o,infinitive,hskwa2l-o21hst,hskwal-o'hst
 1087,he/she is putting it into a fire,hvsk-han,present,v22t-hv3hsk,vvt-hv/hsk
 1087,he/she is putting it into a fire,hvsk-han,imperfective,v22t-hv3hsk,vvt-hv/hsk
 1087,he/she is putting it into a fire,hvsk-han,perfective,v22t-ha3n,vvt-ha/n
@@ -2352,6 +2462,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1088,he/she is soaking it (refers to a flexible object),hvsk-han,perfective,v33wa2l-ha3n,vvw'al-han'
 1088,he/she is soaking it (refers to a flexible object),hvsk-han,perfective,v33wa2l-ha3n,vvw'al-ha/n
 1088,he/she is soaking it (refers to a flexible object),hvsk-han,perfective,v33wa2l-ha3n,vvw'al-ha/n'
+1088,he/she is soaking it (refers to a flexible object),hvsk-han,infinitive,v21wa3l-ht,vv'wa/l-ht
+1088,he/she is soaking it (refers to a flexible object),hvsk-han,infinitive,v21wa3l-ht,v'wa/l-ht
 1221,he/she is ascending an incline,sk-s-hi-hihst,present,na2lu22-hsk,naluu-hsk
 1221,he/she is ascending an incline,sk-s-hi-hihst,present_1sg,na2lu22-hsk,naluu-hsk
 1221,he/she is ascending an incline,sk-s-hi-hihst,perfective,nha2lu22-hs,nhaluu-hs
@@ -2391,6 +2503,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1231,he/she is prying it,ih-vh,imperfective,ne33kwa2t-i23hsk,neek'wat-ii/hsk
 1231,he/she is prying it,ih-vh,perfective,nhe33kwa2t-v22h,nhee'kwat-vvh
 1231,he/she is prying it,ih-vh,perfective,nhe33kwa2t-v22h,nheek'wat-vvh
+1231,he/she is prying it,ih-vh,infinitive,nhe21kwa3t-ht,nhee'kwa/t-ht
+1231,he/she is prying it,ih-vh,infinitive,nhe21kwa3t-ht,nhe'kwa/t-ht
 1232,he/she is accumulating it,o,present,ne2hkw-o33',nehkw-oo'
 1232,he/she is accumulating it,o,present,ne2hkw-o33',nehkw-oo'
 1232,he/she is accumulating it,o,present_1sg,ne2hkw-o33',nehkw-oo'
@@ -2400,6 +2514,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1232,he/she is accumulating it,o,imperfective,ne2hkw-o33hsk,nehkw-oo/h'sk
 1232,he/she is accumulating it,o,perfective,nhe2hkw-o33',nhehkw-oo'
 1232,he/she is accumulating it,o,perfective,nhe2hkw-o33',nhehkw-oo'
+1232,he/she is accumulating it,o,infinitive,nhe2hkw-o21hst,nhehkw-oo'hst
+1232,he/she is accumulating it,o,infinitive,nhe2hkw-o21hst,nhehkw-o'hst
 1233,it’s accumulating,become[inf2],present,ne2hkwo33-k,nehkwoo'-k
 1233,it’s accumulating,become[inf2],present,ne2hkwo33-k,nehkwoo-k'
 1233,it’s accumulating,become[inf2],present,ne2hkwo33-k,nehkwoo/-k'
@@ -2409,9 +2525,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1233,it’s accumulating,become[inf2],perfective,nhe2hkwo33-ts,nhehkwoo'-ts
 1233,it’s accumulating,become[inf2],perfective,nhe2hkwo33-ts,nhehkwoo-t's
 1233,it’s accumulating,become[inf2],perfective,nhe2hkwo33-ts,nhehkwoo/-t's
-1233,it’s accumulating,become[inf2],infinitive,nhe2hkwo2-'i3hst,nhehkwo-'ih'st
 1233,it’s accumulating,become[inf2],infinitive,nhe2hkwo2-'i3hst,nhehkwo-'i/hst
-1233,it’s accumulating,become[inf2],infinitive,nhe2hkwo2-'i3hst,nhehkwo-'i/h'st
 1235,it’s contaminated (refers to contaminated by visible foreign matter),stative-h,present,ne33hsa2l-h,nee'hsal-h
 1235,it’s contaminated (refers to contaminated by visible foreign matter),stative-h,present,ne33hsa2l-h,neeh'sal-h
 1235,it’s contaminated (refers to contaminated by visible foreign matter),stative-h,imperfective,ne33hsa2l-h,nee'hsal-h
@@ -2440,6 +2554,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1236,he/she is contaminating it (refers to contaminated by visible foreign matter),hvsk-han,perfective,nhe33hsa2l-ha3n,nheeh'sal-han'
 1236,he/she is contaminating it (refers to contaminated by visible foreign matter),hvsk-han,perfective,nhe33hsa2l-ha3n,nheeh'sal-ha/n
 1236,he/she is contaminating it (refers to contaminated by visible foreign matter),hvsk-han,perfective,nhe33hsa2l-ha3n,nheeh'sal-ha/n'
+1236,he/she is contaminating it (refers to contaminated by visible foreign matter),hvsk-han,infinitive,nhe21hsa3l-ht,nhee'hsa/l-ht
+1236,he/she is contaminating it (refers to contaminated by visible foreign matter),hvsk-han,infinitive,nhe21hsa3l-ht,nhe'hsa/l-ht
 1241,he/she is collecting from him/her,hvsk-han,present,ni2l-hv3hsk,nil-hvh'sk
 1241,he/she is collecting from him/her,hvsk-han,present,ni2l-hv3hsk,nil-hv/hsk
 1241,he/she is collecting from him/her,hvsk-han,present,ni2l-hv3hsk,nil-hv/h'sk
@@ -2597,6 +2713,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1531,he/she is yawning,apl-active,perfective,ha2lho33k-e22h,halhoo'k-eeh
 1531,he/she is yawning,apl-active,perfective,ha2lho33k-e22h,halhook'-eeh
 1531,he/she is yawning,apl-active,perfective,ha2lho33k-e22h,halhoo/k'-eeh
+1531,he/she is yawning,apl-active,infinitive,ha2lho21k-e3ht,halhoo'k-e/ht
+1531,he/she is yawning,apl-active,infinitive,ha2lho21k-e3ht,halho'k-e/ht
 1534,he/she is having trouble breathing,cause,present,ha2wo33hst-i2h,hawoo'hst-ih
 1534,he/she is having trouble breathing,cause,present,ha2wo33hst-i2h,hawooh'st-ih
 1534,he/she is having trouble breathing,cause,present,ha2wo33hst-i2h,hawoo/h'st-ih
@@ -2609,6 +2727,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1534,he/she is having trouble breathing,cause,perfective,ha2wo33hst-ha2n,hawoo'hst-han
 1534,he/she is having trouble breathing,cause,perfective,ha2wo33hst-ha2n,hawooh'st-han
 1534,he/she is having trouble breathing,cause,perfective,ha2wo33hst-ha2n,hawoo/h'st-han
+1534,he/she is having trouble breathing,cause,infinitive,ha2wo21hst-o3ht,hawoo'hst-o/ht
+1534,he/she is having trouble breathing,cause,infinitive,ha2wo21hst-o3ht,hawo'hst-o/ht
 1535,there is dew,stative-h,present,hi33hsa2t-h,hii'hsat-h
 1535,there is dew,stative-h,present,hi33hsa2t-h,hiih'sat-h
 1535,there is dew,stative-h,present_1sg,hi33hsa2t-h,hii'hsat-h
@@ -2625,6 +2745,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1536,he/she is lonesome,apl,present_1sg,hi22hso2hta32n-e2h,hiihsohta'n-eh
 1536,he/she is lonesome,apl,imperfective,hi22hso2hta32n-e22h,hiihsohta'n-eeh
 1536,he/she is lonesome,apl,perfective,hi22hso2hta32n-e22l,hiihsohta'n-eel
+1536,he/she is lonesome,apl,infinitive,hi22hso2hta21n-e3ht,hiihsohtaa'n-e/ht
+1536,he/she is lonesome,apl,infinitive,hi22hso2hta21n-e3ht,hiihsohta'n-e/ht
 1537,it’s lonesome,stative,present,hi22hso3ht-,hiihso/ht-
 1537,it’s lonesome,stative,imperfective,hi22hso2ht-,hiihsoht-
 1537,it’s lonesome,stative,perfective,hi22hso2ht-,hiihsoht-
@@ -2653,10 +2775,16 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1548,he/she is stubbing his/her toe,o,imperfective,nha32hskwa2l-o33hsk,nha'hskwal-oo/h'sk
 1548,he/she is stubbing his/her toe,o,perfective,nha32hskwa2l-o33',nha'hskwal-oo'
 1548,he/she is stubbing his/her toe,o,perfective,nha32hskwa2l-o33',nha'hskwal-oo'
+1548,he/she is stubbing his/her toe,o,infinitive,nha21hskwa2l-o21hst,nhaa'hskwal-oo'hst
+1548,he/she is stubbing his/her toe,o,infinitive,nha21hskwa2l-o21hst,nhaa'hskwal-o'hst
+1548,he/she is stubbing his/her toe,o,infinitive,nha21hskwa2l-o21hst,nha'hskwal-oo'hst
+1548,he/she is stubbing his/her toe,o,infinitive,nha21hskwa2l-o21hst,nha'hskwal-o'hst
 1551,he/she has a chill,cause,present,nha2wa32hst-i2h,nhawa'hst-ih
 1551,he/she has a chill,cause,present_1sg,na2wa32hst-i2h,nawa'hst-ih
 1551,he/she has a chill,cause,imperfective,nha2wa32hst-i22hsk,nhawa'hst-iihsk
 1551,he/she has a chill,cause,perfective,nha2wa32hst-ha2n,nhawa'hst-han
+1551,he/she has a chill,cause,infinitive,nha2wa21hst-o3ht,nhawaa'hst-o/ht
+1551,he/she has a chill,cause,infinitive,nha2wa21hst-o3ht,nhawa'hst-o/ht
 1561,he/she is buying it,sk-s-hi-hihst,present,wha2-hsk,wha-hsk
 1561,he/she is buying it,sk-s-hi-hihst,present_1sg,wa3-hsk,wa-h'sk
 1561,he/she is buying it,sk-s-hi-hihst,present_1sg,wa3-hsk,wa/-hsk
@@ -2664,11 +2792,7 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1561,he/she is buying it,sk-s-hi-hihst,imperfective,wha2-hsk,wha-hsk
 1561,he/she is buying it,sk-s-hi-hihst,perfective,wha2-hs,wha-hs
 1561,he/she is buying it,sk-s-hi-hihst,imperative,wa2-hi2,wa-hi
-1561,he/she is buying it,sk-s-hi-hihst,infinitive,wha3-hi3hst,wha-h'i/hst
-1561,he/she is buying it,sk-s-hi-hihst,infinitive,wha3-hi3hst,wha/-hih'st
 1561,he/she is buying it,sk-s-hi-hihst,infinitive,wha3-hi3hst,wha/-hi/hst
-1561,he/she is buying it,sk-s-hi-hihst,infinitive,wha3-hi3hst,wha/-hi/h'st
-1561,he/she is buying it,sk-s-hi-hihst,infinitive,wha3-hi3hst,wha/-h'i/hst
 1563,he/she is looking for it,oh-al,present,y-ho2h,y-hoh
 1563,he/she is looking for it,oh-al,present_1sg,y-ho3h,y-hoh'
 1563,he/she is looking for it,oh-al,present_1sg,y-ho3h,y-ho/h
@@ -2690,6 +2814,8 @@ corpus_id,definition,class,form,surface_stem,underlying_stem
 1572,he/she is getting drunk,e-aka,perfective,yhv2hst-a33',yhvhst-aa'
 1572,he/she is getting drunk,e-aka,perfective,yhv2hst-a33',yhvhst-aa'
 1572,he/she is getting drunk,e-aka,imperative,yv2hst-a2ka2,yvhst-aka
+1572,he/she is getting drunk,e-aka,infinitive,yhv2hst-e21hst,yhvhst-ee'hst
+1572,he/she is getting drunk,e-aka,infinitive,yhv2hst-e21hst,yhvhst-e'hst
 1597,it’s foggy,stative,present,khv2ha3t-,khvhat'-
 1597,it’s foggy,stative,present,khv2ha3t-,khvha/t-
 1597,it’s foggy,stative,present,khv2ha3t-,khvha/t'-
