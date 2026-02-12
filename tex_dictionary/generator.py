@@ -104,7 +104,12 @@ def generate_verb_table(verb: ReconstructibleVerb, corpus_to_cnd, cnd):
     return table
 
 
-def verb_config_to_tex(verb: ReconstructibleVerb, root_str: str):
+def verb_config_to_tex(
+    verb: ReconstructibleVerb, root_str: str, parent_classes: list[str]
+):
+    if not parent_classes:
+        parent_classes = []
+
     parts = []
 
     config = verb.config
@@ -143,6 +148,9 @@ def verb_config_to_tex(verb: ReconstructibleVerb, root_str: str):
     if verb.post_root_morpheme:
         parts.append(verb.post_root_morpheme)
 
+    for class_name in parent_classes:
+        parts.append("[" + class_name + "]")
+
     parts.append("[" + verb.class_name + "]")
 
     return "{-}".join(
@@ -178,10 +186,14 @@ def load_hierarchical_data(path: str) -> List[RootNode]:
 
 
 def render_verb_entry(
-    verb: ReconstructibleVerb, root_str: str, corpus_to_cnd, cnd, level=0
+    verb: ReconstructibleVerb, root_str: str, corpus_to_cnd, cnd, parent_classes=None
 ) -> List[str]:
+    if parent_classes is None:
+        parent_classes = []
+
+    level = len(parent_classes)
     content = []
-    verb_tex = verb_config_to_tex(verb, root_str)
+    verb_tex = verb_config_to_tex(verb, root_str, parent_classes)
 
     if level == 0:
         header_cmd = r"\subsubsection*"
@@ -213,7 +225,13 @@ def render_verb_entry(
     if verb.derivations:
         for derivation in verb.derivations:
             content.extend(
-                render_verb_entry(derivation, root_str, corpus_to_cnd, cnd, level + 1)
+                render_verb_entry(
+                    derivation,
+                    root_str,
+                    corpus_to_cnd,
+                    cnd,
+                    parent_classes=parent_classes + [verb.class_name],
+                )
             )
 
     return content
@@ -269,9 +287,7 @@ def generate_tex_files():
             content.append(r"\nopagebreak")
 
             for verb in cls.verbs:
-                content.extend(
-                    render_verb_entry(verb, root_str, corpus_to_cnd, cnd, level=0)
-                )
+                content.extend(render_verb_entry(verb, root_str, corpus_to_cnd, cnd))
 
         tex_path = os.path.join(TEX_ROOTS_DIR, f"root_{slug}.tex")
         with open(tex_path, "w", encoding="utf-8") as f:
