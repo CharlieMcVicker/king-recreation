@@ -2,6 +2,7 @@ import json
 import os
 from typing import Dict, List, Set, Tuple
 
+from king_recreation.morphemes.middle_voice import MiddleVoice
 from king_recreation.morphemes.prefixes.pronominals import StemType
 from king_recreation.paths import (
     DERIVATIONAL_CONNECTIONS_PATH,
@@ -68,7 +69,14 @@ def analyze_connections(
 
             # TODO don't use desegment here
             # get proper set of segments joined
-            for stem in [desegment(s) for s in base_stems]:
+            for stem in [
+                desegment(
+                    s
+                    if sample_verb.config.pron.middle_voice == MiddleVoice.NONE
+                    else "-".join(s.split("-")[1:])
+                )
+                for s in base_stems
+            ]:
                 if sample_verb.config.pron.stem_type == StemType.LONG_START:
                     stem = ":" + stem
                 if stem not in open_forms_map:
