@@ -206,3 +206,16 @@ This script:
 - `artifacts/charts/diagnostics/overall_coverage.png`: Pie chart of verbs where _all_ recorded forms have at least one valid underlying reconstruction.
 - `artifacts/charts/diagnostics/success_by_form.png`: Success rates for each specific form type.
 - `artifacts/reports/class_coverage_<class>.csv`: Detailed coverage reports for specific underlying classes defined in `data/classes_underlying.csv`.
+
+* +### TeX Dictionary Generation
+* +A high-quality print dictionary can be generated from the hierarchical JSON data.
+* +**Usage:**
+* +`bash
++./scripts/build_tex.sh
++`
+* +This script:
+  +1. Runs `scripts/generate_tex_dict.py` to create modular TeX files from `hierarchical-dict.json`.
+  +2. Includes corpus forms for Syllabary (from CND), Phonetics with Tone, and Phonetics without Tone.
+  +3. Combines these snippets into `artifacts/tex/main.tex`.
+  +4. Compiles the document using `xelatex` to produce `artifacts/tex/main.pdf`.
+* +> See [TeX Documentation](docs/TeX.md) for more details.
