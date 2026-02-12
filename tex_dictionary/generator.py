@@ -163,6 +163,8 @@ def generate_tex_files():
         )
 
         for cls in root_node["classes"]:
+
+            content.append(r"\needspace{3in}")
             content.append(
                 r"\subsection*{" + unicode_to_latex("Class: " + cls["class_name"]) + "}"
             )
