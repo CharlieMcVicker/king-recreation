@@ -112,6 +112,19 @@ def generate_verb_table(verb, underlying_stems, corpus_to_cnd, cnd):
     return table
 
 
+def verb_config_to_str(config: dict):
+    set_flaire = "Set " + config["pron"]["set_type"]
+
+    if config["pron"]["plural_pronouns"]:
+        set_flaire += " (plural)"
+
+    middle_flaire = None
+    if not config["pron"]["middle_voice"] == "none":
+        middle_flaire = config["pron"]["middle_voice"].replace("_", "/").lower()
+
+    return ", ".join(f for f in [set_flaire, middle_flaire] if f is not None)
+
+
 def generate_tex_files():
     print("Loading data...")
     if not os.path.exists(paths.hierarchical_dict_path):
@@ -143,9 +156,16 @@ def generate_tex_files():
         content.append(r"\section*{" + unicode_to_latex(header_text) + "}")
 
         for cls in root_node["classes"]:
-            content.append(r"\subsection*{" + unicode_to_latex(cls["class_name"]) + "}")
+            content.append(
+                r"\subsection*{" + unicode_to_latex("Class: " + cls["class_name"]) + "}"
+            )
 
             for verb in cls["verbs"]:
+                content.append(
+                    r"\subsubsection*{With... "
+                    + unicode_to_latex(verb_config_to_str(verb["config"]))
+                    + "}"
+                )
                 content.append(
                     r"\textbf{Definition: } " + unicode_to_latex(verb["definition"])
                 )
