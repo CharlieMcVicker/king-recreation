@@ -40,6 +40,6 @@ def find_conflicts(file_path):
 
 
 if __name__ == "__main__":
-    from king_recreation.paths import cherokee_nation_dictionary_path
+    from king_recreation.paths import CHEROKEE_NATION_DICTIONARY_PATH
 
-    find_conflicts(cherokee_nation_dictionary_path)
+    find_conflicts(CHEROKEE_NATION_DICTIONARY_PATH)

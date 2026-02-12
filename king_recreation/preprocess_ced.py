@@ -94,9 +94,9 @@ def clean_row(row):
 
 
 from king_recreation.paths import (
-    ced_data_original_path,
-    cherokee_nation_dictionary_path,
-    corpus_path,
+    CED_DATA_ORIGINAL_PATH,
+    CHEROKEE_NATION_DICTIONARY_PATH,
+    CORPUS_PATH,
 )
 
 
@@ -290,7 +290,7 @@ def process_cn_dict(file_path, output_path):
         writer.writerows(processed_data)
 
     # Write mapping CSV
-    from king_recreation.paths import corpus_to_cnd_path
+    from king_recreation.paths import CORPUS_TO_CND_PATH
 
     mapping_fieldnames = [
         "corpus_id",
@@ -301,19 +301,19 @@ def process_cn_dict(file_path, output_path):
         "imperative",
         "infinitive",
     ]
-    with open(corpus_to_cnd_path, mode="w", encoding="utf-8", newline="") as f:
+    with open(CORPUS_TO_CND_PATH, mode="w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=mapping_fieldnames)
         writer.writeheader()
         writer.writerows(mapping_data)
 
     print(f"Processed CN data written to {output_path}")
-    print(f"Mapping CND data written to {corpus_to_cnd_path}")
+    print(f"Mapping CND data written to {CORPUS_TO_CND_PATH}")
 
 
 def process_ced():
     # Use centralized paths
-    input_path = ced_data_original_path
-    output_path = corpus_path
+    input_path = CED_DATA_ORIGINAL_PATH
+    output_path = CORPUS_PATH
 
     # Ensure the full directory path exists for the output file
     output_data_dir = os.path.dirname(output_path)
@@ -360,6 +360,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.new_source:
-        process_cn_dict(cherokee_nation_dictionary_path, corpus_path)
+        process_cn_dict(CHEROKEE_NATION_DICTIONARY_PATH, CORPUS_PATH)
     else:
         process_ced()

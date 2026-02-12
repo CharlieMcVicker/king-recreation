@@ -4,10 +4,10 @@ from csv import DictReader, DictWriter
 from typing import List, Union
 
 from king_recreation.paths import (
-    cherokee_nation_dictionary_path,
-    corpus_to_cnd_path,
-    reconstructable_verbs_path,
-    stems_with_tone_corpus_path,
+    CHEROKEE_NATION_DICTIONARY_PATH,
+    CORPUS_TO_CND_PATH,
+    RECONSTRUCTABLE_VERBS_PATH,
+    STEMS_WITH_TONE_CORPUS_PATH,
 )
 from king_recreation.reconstruct_from_roots import ReconstructibleVerb
 from king_recreation.tone.utils import (
@@ -20,15 +20,15 @@ from king_recreation.tone.utils import (
 
 def load_data():
     """Load the necessary data for tone analysis."""
-    with open(reconstructable_verbs_path, "r") as f:
+    with open(RECONSTRUCTABLE_VERBS_PATH, "r") as f:
         reconstructable_verbs_raw = json.load(f)
     verbs = [ReconstructibleVerb.from_dict(v) for v in reconstructable_verbs_raw]
 
-    with open(corpus_to_cnd_path, "r") as f:
+    with open(CORPUS_TO_CND_PATH, "r") as f:
         reader = DictReader(f)
         corpus_id_to_entries = {int(r["corpus_id"]): r for r in reader}
 
-    with open(cherokee_nation_dictionary_path, "r") as f:
+    with open(CHEROKEE_NATION_DICTIONARY_PATH, "r") as f:
         content = f.read()
         if content.startswith("\ufeff"):
             content = content[1:]
@@ -141,7 +141,7 @@ def write_elligible_verbs(verbs, cnd_corpus, corpus_id_to_entries):
 
     # Write all rows to disk as a new - stems_with_tone_corpus.csv
     if rows:
-        with open(stems_with_tone_corpus_path, "w", newline="") as f:
+        with open(STEMS_WITH_TONE_CORPUS_PATH, "w", newline="") as f:
             # Use the second element of the tuple which is the dictionary
             writer = DictWriter(f, fieldnames=rows[0][1].keys())
             writer.writeheader()

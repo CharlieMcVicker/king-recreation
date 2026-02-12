@@ -16,37 +16,37 @@ VISUALIZATIONS_DIR = os.path.join(ARTIFACTS_DIR, "visualizations")
 # -----------------------------------------------------------------------------
 # 1. Pipeline Inputs (Immutable Data)
 # -----------------------------------------------------------------------------
-cherokee_nation_dictionary_path = os.path.join(
+CHEROKEE_NATION_DICTIONARY_PATH = os.path.join(
     DATA_DIR, "cherokee_nation_dictionary.csv"
 )
-ced_data_original_path = os.path.join(DATA_DIR, "ced_data_original.csv")
-post_root_morphemes_path = os.path.join(DATA_DIR, "post_root_morphemes.csv")
-classes_data_path = os.path.join(DATA_DIR, "classes.csv")
+CED_DATA_ORIGINAL_PATH = os.path.join(DATA_DIR, "ced_data_original.csv")
+POST_ROOT_MORPHEMES_PATH = os.path.join(DATA_DIR, "post_root_morphemes.csv")
+CLASSES_DATA_PATH = os.path.join(DATA_DIR, "classes.csv")
 
 
 # -----------------------------------------------------------------------------
 # 2. Intermediate Corpora & Analysis Data
 # -----------------------------------------------------------------------------
-corpus_path = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus.csv")
-corpus_no_asp_path = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus_no_asp.csv")
-corpus_no_pre_no_asp_path = os.path.join(
+CORPUS_PATH = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus.csv")
+CORPUS_NO_ASP_PATH = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus_no_asp.csv")
+CORPUS_NO_PRE_NO_ASP_PATH = os.path.join(
     ARTIFACTS_CORPORA_DIR, "corpus_no_pre_no_asp.csv"
 )
-validated_reconstructable_roots_path = os.path.join(
+VALIDATED_RECONSTRUCTABLE_ROOTS_PATH = os.path.join(
     ARTIFACTS_CORPORA_DIR, "validated_reconstructable_roots.csv"
 )
-corpus_to_cnd_path = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus_to_cnd.csv")
-stems_with_tone_corpus_path = os.path.join(
+CORPUS_TO_CND_PATH = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus_to_cnd.csv")
+STEMS_WITH_TONE_CORPUS_PATH = os.path.join(
     ARTIFACTS_CORPORA_DIR, "stems_with_tone_corpus.csv"
 )
-underlying_stems_path = os.path.join(ARTIFACTS_DATA_DIR, "underlying_stems.csv")
+UNDERLYING_STEMS_PATH = os.path.join(ARTIFACTS_DATA_DIR, "underlying_stems.csv")
 
 # Match Data
-matches_path = os.path.join(ARTIFACTS_DATA_DIR, "matches_initial.csv")
-validated_matches_path = os.path.join(ARTIFACTS_DATA_DIR, "matches_validated.csv")
+MATCHES_PATH = os.path.join(ARTIFACTS_DATA_DIR, "matches_initial.csv")
+VALIDATED_MATCHES_PATH = os.path.join(ARTIFACTS_DATA_DIR, "matches_validated.csv")
 
 # Connections (Manual & Automated)
-derivational_connections_path = os.path.join(
+DERIVATIONAL_CONNECTIONS_PATH = os.path.join(
     CONNECTIONS_DIR, "derivational_suffix_connections.csv"
 )
 
@@ -55,16 +55,16 @@ derivational_connections_path = os.path.join(
 # 3. Final Outputs (JSON/CSV for App or Consumption)
 # -----------------------------------------------------------------------------
 # Main Application Data
-reconstructable_verbs_path = os.path.join(
+RECONSTRUCTABLE_VERBS_PATH = os.path.join(
     ARTIFACTS_DATA_DIR, "reconstructable_verbs.json"
 )
-hierarchical_dict_path = os.path.join(ARTIFACTS_DATA_DIR, "hierarchical-dict.json")
-classes_expanded_path = os.path.join(ARTIFACTS_DATA_DIR, "classes_expanded.json")
+HIERARCHICAL_DICT_PATH = os.path.join(ARTIFACTS_DATA_DIR, "hierarchical-dict.json")
+CLASSES_EXPANDED_PATH = os.path.join(ARTIFACTS_DATA_DIR, "classes_expanded.json")
 
 # Supplementary Data
-root_ids_path = os.path.join(ARTIFACTS_DATA_DIR, "root_ids.csv")
-roots_by_class_path = os.path.join(ARTIFACTS_DATA_DIR, "roots_by_class.csv")
-root_macro_distribution_path = os.path.join(
+ROOT_IDS_PATH = os.path.join(ARTIFACTS_DATA_DIR, "root_ids.csv")
+ROOTS_BY_CLASS_PATH = os.path.join(ARTIFACTS_DATA_DIR, "roots_by_class.csv")
+ROOT_MACRO_DISTRIBUTION_PATH = os.path.join(
     ARTIFACTS_DATA_DIR, "root_macro_distribution.csv"
 )
 
@@ -72,36 +72,36 @@ root_macro_distribution_path = os.path.join(
 # -----------------------------------------------------------------------------
 # 4. Reports & Logs
 # -----------------------------------------------------------------------------
-reports_path = REPORTS_DIR  # Legacy alias
-pre_parsing_failures_path = os.path.join(REPORTS_DIR, "stem_derivation_failures.csv")
-open_forms_report_path = os.path.join(REPORTS_DIR, "open_forms.json")
-consistency_analysis_path = os.path.join(REPORTS_DIR, "consistency_analysis.csv")
-reconstruction_report_path = os.path.join(REPORTS_DIR, "reconstruction_report.csv")
-reconstruction_validation_path = os.path.join(
+REPORTS_PATH = REPORTS_DIR  # Legacy alias
+PRE_PARSING_FAILURES_PATH = os.path.join(REPORTS_DIR, "stem_derivation_failures.csv")
+OPEN_FORMS_REPORT_PATH = os.path.join(REPORTS_DIR, "open_forms.json")
+CONSISTENCY_ANALYSIS_PATH = os.path.join(REPORTS_DIR, "consistency_analysis.csv")
+RECONSTRUCTION_REPORT_PATH = os.path.join(REPORTS_DIR, "reconstruction_report.csv")
+RECONSTRUCTION_VALIDATION_PATH = os.path.join(
     REPORTS_DIR, "reconstruction_validation.json"
 )
-reconstruction_failures_path = os.path.join(REPORTS_DIR, "reconstruction_failures.csv")
-furthest_corpus_by_id_path = os.path.join(REPORTS_DIR, "furthest_corpus_by_id.csv")
-ending_tone_analysis_json_path = os.path.join(REPORTS_DIR, "ending_tone_analysis.json")
-ending_tone_analysis_csv_path = os.path.join(REPORTS_DIR, "ending_tone_analysis.csv")
-class_ending_profiles_csv_path = os.path.join(REPORTS_DIR, "class_ending_profiles.csv")
+RECONSTRUCTION_FAILURES_PATH = os.path.join(REPORTS_DIR, "reconstruction_failures.csv")
+FURTHEST_CORPUS_BY_ID_PATH = os.path.join(REPORTS_DIR, "furthest_corpus_by_id.csv")
+ENDING_TONE_ANALYSIS_JSON_PATH = os.path.join(REPORTS_DIR, "ending_tone_analysis.json")
+ENDING_TONE_ANALYSIS_CSV_PATH = os.path.join(REPORTS_DIR, "ending_tone_analysis.csv")
+CLASS_ENDING_PROFILES_CSV_PATH = os.path.join(REPORTS_DIR, "class_ending_profiles.csv")
 
 # Statistics
-class_match_counts_path = os.path.join(REPORTS_DIR, "class_match_counts.csv")
-verb_coverage_path = os.path.join(REPORTS_DIR, "verb_coverage.json")
-unmatched_verbs_path = os.path.join(REPORTS_DIR, "unmatched_verbs.csv")
-root_ambiguity_counts_path = os.path.join(REPORTS_DIR, "root_ambiguity_counts.csv")
-macro_variant_data_path = os.path.join(REPORTS_DIR, "macro_variant_data.json")
-variant_match_counts_path = os.path.join(REPORTS_DIR, "variant_match_counts.csv")
-variation_match_counts_path = os.path.join(REPORTS_DIR, "variation_match_counts.csv")
-unused_variants_path = os.path.join(REPORTS_DIR, "unused_variants.json")
-class_near_misses_path = os.path.join(REPORTS_DIR, "class_near_misses.csv")
+CLASS_MATCH_COUNTS_PATH = os.path.join(REPORTS_DIR, "class_match_counts.csv")
+VERB_COVERAGE_PATH = os.path.join(REPORTS_DIR, "verb_coverage.json")
+UNMATCHED_VERBS_PATH = os.path.join(REPORTS_DIR, "unmatched_verbs.csv")
+ROOT_AMBIGUITY_COUNTS_PATH = os.path.join(REPORTS_DIR, "root_ambiguity_counts.csv")
+MACRO_VARIANT_DATA_PATH = os.path.join(REPORTS_DIR, "macro_variant_data.json")
+VARIANT_MATCH_COUNTS_PATH = os.path.join(REPORTS_DIR, "variant_match_counts.csv")
+VARIATION_MATCH_COUNTS_PATH = os.path.join(REPORTS_DIR, "variation_match_counts.csv")
+UNUSED_VARIANTS_PATH = os.path.join(REPORTS_DIR, "unused_variants.json")
+CLASS_NEAR_MISSES_PATH = os.path.join(REPORTS_DIR, "class_near_misses.csv")
 
 
 # -----------------------------------------------------------------------------
 # 5. Visualizations
 # -----------------------------------------------------------------------------
-visualizations_path = VISUALIZATIONS_DIR
+VISUALIZATIONS_PATH = VISUALIZATIONS_DIR
 
 
 # -----------------------------------------------------------------------------

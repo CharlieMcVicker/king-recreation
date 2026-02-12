@@ -1,6 +1,6 @@
 from csv import DictWriter
 
-from king_recreation.paths import underlying_stems_path
+from king_recreation.paths import UNDERLYING_STEMS_PATH
 from king_recreation.tone.analysis import (
     check_prediction,
     generate_underlying_forms,
@@ -51,7 +51,7 @@ def main():
                     )
 
     if output_rows:
-        with open(underlying_stems_path, "w", newline="") as f:
+        with open(UNDERLYING_STEMS_PATH, "w", newline="") as f:
             writer = DictWriter(
                 f,
                 fieldnames=[
@@ -65,7 +65,7 @@ def main():
             )
             writer.writeheader()
             writer.writerows(output_rows)
-        print(f"Underlying stems written to {underlying_stems_path}")
+        print(f"Underlying stems written to {UNDERLYING_STEMS_PATH}")
 
     # Analyze class coverage
     analyze_class_coverage(verbs_with_forms)

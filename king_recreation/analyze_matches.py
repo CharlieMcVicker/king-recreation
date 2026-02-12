@@ -10,25 +10,25 @@ import pandas as pd
 
 from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
 from king_recreation.paths import (
-    class_ending_profiles_csv_path,
-    class_match_counts_path,
-    corpus_no_asp_path,
-    corpus_no_pre_no_asp_path,
-    corpus_path,
-    furthest_corpus_by_id_path,
-    macro_variant_data_path,
-    matches_path,
-    reconstructable_verbs_path,
-    reports_path,
-    root_ambiguity_counts_path,
-    root_macro_distribution_path,
-    unmatched_verbs_path,
-    unused_variants_path,
-    validated_matches_path,
-    validated_reconstructable_roots_path,
-    variant_match_counts_path,
-    variation_match_counts_path,
-    verb_coverage_path,
+    CLASS_ENDING_PROFILES_CSV_PATH,
+    CLASS_MATCH_COUNTS_PATH,
+    CORPUS_NO_ASP_PATH,
+    CORPUS_NO_PRE_NO_ASP_PATH,
+    CORPUS_PATH,
+    FURTHEST_CORPUS_BY_ID_PATH,
+    MACRO_VARIANT_DATA_PATH,
+    MATCHES_PATH,
+    RECONSTRUCTABLE_VERBS_PATH,
+    REPORTS_PATH,
+    ROOT_AMBIGUITY_COUNTS_PATH,
+    ROOT_MACRO_DISTRIBUTION_PATH,
+    UNMATCHED_VERBS_PATH,
+    UNUSED_VARIANTS_PATH,
+    VALIDATED_MATCHES_PATH,
+    VALIDATED_RECONSTRUCTABLE_ROOTS_PATH,
+    VARIANT_MATCH_COUNTS_PATH,
+    VARIATION_MATCH_COUNTS_PATH,
+    VERB_COVERAGE_PATH,
 )
 
 
@@ -423,8 +423,8 @@ def _analyze_ending_profiles(profiles_path: str):
 
 
 def _analyze_roots_by_macro(registry: PatternRegistry):
-    input_path = reconstructable_verbs_path
-    output_path = root_macro_distribution_path
+    input_path = RECONSTRUCTABLE_VERBS_PATH
+    output_path = ROOT_MACRO_DISTRIBUTION_PATH
 
     if not os.path.exists(input_path):
         print(f"Error: {input_path} not found.")
@@ -483,14 +483,14 @@ def _analyze_roots_by_macro(registry: PatternRegistry):
 
 
 def _analyze_verb_status():
-    corpus_data = load_csv(corpus_path)
-    no_asp_ids = set(row.get("corpus_id", None) for row in load_csv(corpus_no_asp_path))
+    corpus_data = load_csv(CORPUS_PATH)
+    no_asp_ids = set(row.get("corpus_id", None) for row in load_csv(CORPUS_NO_ASP_PATH))
     no_pre_ids = set(
-        row.get("corpus_id", None) for row in load_csv(corpus_no_pre_no_asp_path)
+        row.get("corpus_id", None) for row in load_csv(CORPUS_NO_PRE_NO_ASP_PATH)
     )
     validated_ids = set(
         row.get("corpus_id", None)
-        for row in load_csv(validated_reconstructable_roots_path)
+        for row in load_csv(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH)
     )
 
     best_by_id = []
@@ -509,7 +509,7 @@ def _analyze_verb_status():
         )
 
     save_csv(
-        furthest_corpus_by_id_path,
+        FURTHEST_CORPUS_BY_ID_PATH,
         sorted(best_by_id, key=lambda x: (x["furthest_corpus"][0], x["corpus_id"])),
         ["corpus_id", "definition", "furthest_corpus"],
     )
@@ -518,18 +518,18 @@ def _analyze_verb_status():
 def analyze_matches(classes_path: Optional[str] = None):
 
     # 1. Validation and Setup
-    if not os.path.exists(matches_path):
-        print(f"Error: {matches_path} not found.")
+    if not os.path.exists(MATCHES_PATH):
+        print(f"Error: {MATCHES_PATH} not found.")
         return
-    if not os.path.exists(corpus_path):
-        print(f"Error: {corpus_path} not found.")
+    if not os.path.exists(CORPUS_PATH):
+        print(f"Error: {CORPUS_PATH} not found.")
         return
     if classes_path and not os.path.exists(classes_path):
         print(f"Error: {classes_path} not found.")
         return
 
-    matches = load_csv(matches_path)
-    corpus = load_csv(corpus_path)
+    matches = load_csv(MATCHES_PATH)
+    corpus = load_csv(CORPUS_PATH)
     pattern_registry = PatternRegistry.get_instance()
     pattern_registry.load_from_csv(classes_path)
 
@@ -539,30 +539,30 @@ def analyze_matches(classes_path: Optional[str] = None):
     total_verb_count = len(all_verbs)
 
     # 2. Perform Analysis Steps
-    filtered_matches = _prepare_filtered_matches(matches, validated_matches_path)
+    filtered_matches = _prepare_filtered_matches(matches, VALIDATED_MATCHES_PATH)
     class_match_data = _analyze_class_matches(filtered_matches, pattern_registry)
     coverage_summary = _analyze_verb_coverage(filtered_matches, all_verbs)
     unmatched_verbs_data = _get_unmatched_verbs(filtered_matches, all_verbs, corpus)
-    root_ambiguity_data = _analyze_root_ambiguity(reconstructable_verbs_path)
+    root_ambiguity_data = _analyze_root_ambiguity(RECONSTRUCTABLE_VERBS_PATH)
     macro_variant_data = _analyze_macro_variants(
-        reconstructable_verbs_path, pattern_registry
+        RECONSTRUCTABLE_VERBS_PATH, pattern_registry
     )
     unused_variants_report = _identify_dead_variants(macro_variant_data)
     _analyze_roots_by_macro(registry=pattern_registry)
-    _analyze_ending_profiles(class_ending_profiles_csv_path)
+    _analyze_ending_profiles(CLASS_ENDING_PROFILES_CSV_PATH)
 
     # 3. Output Data to Disk
-    os.makedirs(reports_path, exist_ok=True)
+    os.makedirs(REPORTS_PATH, exist_ok=True)
 
     _analyze_verb_status()
 
     save_csv(
-        class_match_counts_path,
+        CLASS_MATCH_COUNTS_PATH,
         class_match_data,
         ["class", "ending", "reconstructs"],
     )
 
-    save_json(verb_coverage_path, coverage_summary)
+    save_json(VERB_COVERAGE_PATH, coverage_summary)
 
     form_fields = [
         "definition",
@@ -573,25 +573,25 @@ def analyze_matches(classes_path: Optional[str] = None):
         "infinitive",
     ]
     save_csv(
-        unmatched_verbs_path,
+        UNMATCHED_VERBS_PATH,
         unmatched_verbs_data,
         ["corpus_id"] + form_fields,
     )
 
     if root_ambiguity_data:
         save_csv(
-            root_ambiguity_counts_path,
+            ROOT_AMBIGUITY_COUNTS_PATH,
             root_ambiguity_data,
             ["h_grade", "g_grade", "count"],
         )
 
     if macro_variant_data:
-        save_json(macro_variant_data_path, macro_variant_data)
-        _save_variant_match_csv(variant_match_counts_path, macro_variant_data)
-        _save_variation_match_csv(variation_match_counts_path, macro_variant_data)
+        save_json(MACRO_VARIANT_DATA_PATH, macro_variant_data)
+        _save_variant_match_csv(VARIANT_MATCH_COUNTS_PATH, macro_variant_data)
+        _save_variation_match_csv(VARIATION_MATCH_COUNTS_PATH, macro_variant_data)
 
     if unused_variants_report is not None:
-        save_json(unused_variants_path, unused_variants_report)
+        save_json(UNUSED_VARIANTS_PATH, unused_variants_report)
 
     # 4. Console Summary
     print("\nVerb Class Coverage Summary:")
@@ -607,10 +607,10 @@ def analyze_matches(classes_path: Optional[str] = None):
         print(f"{key:<20} | {matched:<12} | {pct:>9}%")
     print("")
 
-    print(f"Analysis complete. Artifacts generated in {reports_path}/")
+    print(f"Analysis complete. Artifacts generated in {REPORTS_PATH}/")
     if root_ambiguity_data:
         print(
-            f"Root ambiguity counts saved to {os.path.join(reports_path, 'root_ambiguity_counts.csv')}"
+            f"Root ambiguity counts saved to {os.path.join(REPORTS_PATH, 'root_ambiguity_counts.csv')}"
         )
 
 

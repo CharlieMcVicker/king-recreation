@@ -7,10 +7,10 @@ from king_recreation.dedupe_roots import main as dedupe_roots
 from king_recreation.derive_stems import main as derive_stems
 from king_recreation.group_hierarchical import main as group_hierarchical
 from king_recreation.paths import (
-    cherokee_nation_dictionary_path,
-    corpus_path,
-    derivational_connections_path,
-    reconstructable_verbs_path,
+    CHEROKEE_NATION_DICTIONARY_PATH,
+    CORPUS_PATH,
+    DERIVATIONAL_CONNECTIONS_PATH,
+    RECONSTRUCTABLE_VERBS_PATH,
 )
 from king_recreation.preprocess_ced import process_cn_dict
 from king_recreation.reconstruct_from_roots import main as reconstruct_from_roots
@@ -24,7 +24,7 @@ def main():
     parser.add_argument("--classes", help="Path to custom classes CSV file")
     args = parser.parse_args()
     print("[1/11] Preprocessing Cherokee Nation Dictionary...")
-    process_cn_dict(cherokee_nation_dictionary_path, corpus_path)
+    process_cn_dict(CHEROKEE_NATION_DICTIONARY_PATH, CORPUS_PATH)
 
     print("\n[2/11] Classifying Verbs...")
     classify_verbs(args.classes)
@@ -39,13 +39,13 @@ def main():
     reconstruct_from_roots()
 
     print("\n[6/11] Loading and Grouping Verbs...")
-    verbs = load_verbs(reconstructable_verbs_path)
+    verbs = load_verbs(RECONSTRUCTABLE_VERBS_PATH)
     root_groups = group_verbs_by_root(verbs)
 
     print("\n[7/11] Analyzing Derivational Suffix Connections...")
     analyze_connections(
-        reconstructable_verbs_path,
-        derivational_connections_path,
+        RECONSTRUCTABLE_VERBS_PATH,
+        DERIVATIONAL_CONNECTIONS_PATH,
         args.classes,
         verbs=verbs,
         root_groups=root_groups,

@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import sys
 
-from king_recreation import paths
+from king_recreation.paths import TEX_DIR
 from tex_dictionary.generator import generate_tex_files
 
 
@@ -12,7 +12,7 @@ def run_xelatex():
         print("XeLaTeX found. Compiling main.tex...")
         # Change to the tex directory to run xelatex
         original_cwd = os.getcwd()
-        os.chdir(paths.TEX_DIR)
+        os.chdir(TEX_DIR)
         try:
             # Run twice to resolve TOC
             for _ in range(2):

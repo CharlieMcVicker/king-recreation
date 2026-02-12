@@ -2,7 +2,7 @@ import csv
 from dataclasses import asdict, dataclass
 from typing import Dict, List, Set
 
-from king_recreation.paths import post_root_morphemes_path
+from king_recreation.paths import POST_ROOT_MORPHEMES_PATH
 
 
 @dataclass
@@ -23,7 +23,7 @@ class PostRootMorpheme:
 def load_post_root_morphemes():
     # Load Morphemes
     morphemes = []
-    with open(post_root_morphemes_path, "r", encoding="utf-8") as f:
+    with open(POST_ROOT_MORPHEMES_PATH, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             morphemes.append(PostRootMorpheme.from_row(row))

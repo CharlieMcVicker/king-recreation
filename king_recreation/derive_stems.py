@@ -16,10 +16,10 @@ from king_recreation.morphemes.prefixes.pronominals import (
     use_glottal_grade,
 )
 from king_recreation.paths import (
-    corpus_no_asp_path,
-    corpus_no_pre_no_asp_path,
-    corpus_path,
-    pre_parsing_failures_path,
+    CORPUS_NO_ASP_PATH,
+    CORPUS_NO_PRE_NO_ASP_PATH,
+    CORPUS_PATH,
+    PRE_PARSING_FAILURES_PATH,
 )
 
 
@@ -353,14 +353,14 @@ class StemDeriver:
 
 def main():
     full_corpus = {}
-    with open(corpus_path, "r", encoding="utf-8") as f:
+    with open(CORPUS_PATH, "r", encoding="utf-8") as f:
         for r in csv.DictReader(f):
             full_corpus[r["corpus_id"]] = r
 
     deriver = StemDeriver()
     labeled_data = []
     failures = []
-    with open(corpus_no_asp_path, "r", encoding="utf-8") as f:
+    with open(CORPUS_NO_ASP_PATH, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             ref = full_corpus.get(row["corpus_id"])
@@ -387,7 +387,7 @@ def main():
     if labeled_data:
         keys = labeled_data[0].keys()
         keys = [k for k in keys if k not in form_names]
-        with open(corpus_no_pre_no_asp_path, "w", encoding="utf-8") as f:
+        with open(CORPUS_NO_PRE_NO_ASP_PATH, "w", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()
             writer.writerows(
@@ -395,7 +395,7 @@ def main():
             )
     if failures:
         keys = failures[0].keys()
-        with open(pre_parsing_failures_path, "w", encoding="utf-8") as f:
+        with open(PRE_PARSING_FAILURES_PATH, "w", encoding="utf-8") as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()
             writer.writerows(failures)

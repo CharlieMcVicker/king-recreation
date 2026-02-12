@@ -4,10 +4,10 @@ from typing import Dict, List, Set, Tuple
 
 from king_recreation.morphemes.prefixes.pronominals import StemType
 from king_recreation.paths import (
-    derivational_connections_path,
-    open_forms_report_path,
-    reconstructable_verbs_path,
-    roots_by_class_path,
+    DERIVATIONAL_CONNECTIONS_PATH,
+    OPEN_FORMS_REPORT_PATH,
+    RECONSTRUCTABLE_VERBS_PATH,
+    ROOTS_BY_CLASS_PATH,
 )
 from king_recreation.reconstruct_from_roots import ReconstructionEngine, desegment
 from king_recreation.utils import (
@@ -46,7 +46,7 @@ def analyze_connections(
     existing_approvals = load_existing_approvals(output_path, approval_key_fields)
 
     # Write roots_by_class.csv
-    csv_mapping_path = roots_by_class_path
+    csv_mapping_path = ROOTS_BY_CLASS_PATH
     from king_recreation.utils import save_root_mapping
 
     save_root_mapping(root_groups, csv_mapping_path)
@@ -174,7 +174,7 @@ def analyze_connections(
         ),
     )
 
-    with open(open_forms_report_path, "w", encoding="utf-8") as f:
+    with open(OPEN_FORMS_REPORT_PATH, "w", encoding="utf-8") as f:
         json.dump(open_forms_map, f, indent=4, sort_keys=True)
 
     print(
@@ -190,12 +190,12 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Analyze root connections.")
     parser.add_argument(
         "--input",
-        default=reconstructable_verbs_path,
+        default=RECONSTRUCTABLE_VERBS_PATH,
         help="Path to reconstructable verbs JSON",
     )
     parser.add_argument(
         "--output",
-        default=derivational_connections_path,
+        default=DERIVATIONAL_CONNECTIONS_PATH,
         help="Path to output CSV",
     )
     parser.add_argument("--classes", help="Path to classes CSV")

@@ -54,10 +54,10 @@ def parse_ids(id_str: str) -> List[int]:
 
 
 from king_recreation.paths import (
-    derivational_connections_path,
-    hierarchical_dict_path,
-    reconstructable_verbs_path,
-    root_ids_path,
+    DERIVATIONAL_CONNECTIONS_PATH,
+    HIERARCHICAL_DICT_PATH,
+    RECONSTRUCTABLE_VERBS_PATH,
+    ROOT_IDS_PATH,
 )
 
 
@@ -66,9 +66,9 @@ def load_all_data() -> Tuple[
     List[Dict[str, str]],
     List[Dict[str, str]],
 ]:
-    verbs_path = reconstructable_verbs_path
-    deriv_conn_path = derivational_connections_path
-    r_ids_path = root_ids_path
+    verbs_path = RECONSTRUCTABLE_VERBS_PATH
+    deriv_conn_path = DERIVATIONAL_CONNECTIONS_PATH
+    r_ids_path = ROOT_IDS_PATH
 
     all_verbs_raw = load_json(verbs_path)
     all_verbs = [ReconstructibleVerb.from_dict(v) for v in all_verbs_raw]
@@ -288,7 +288,7 @@ def sync_root_ids(
     )
 
     # 4. Save CSV
-    r_ids_path = root_ids_path
+    r_ids_path = ROOT_IDS_PATH
     fieldnames = [
         "corpus_id",
         "definition",
@@ -452,7 +452,7 @@ def save_output(data: Any, path: str) -> None:
 
 def main() -> None:
     print("Grouping verbs hierarchically...")
-    output_path = hierarchical_dict_path
+    output_path = HIERARCHICAL_DICT_PATH
 
     # 1. Load Data
     (

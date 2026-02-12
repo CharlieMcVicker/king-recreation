@@ -19,15 +19,15 @@ from king_recreation.morphemes.prefixes.pronominals import (
     use_glottal_grade,
 )
 from king_recreation.paths import (
-    consistency_analysis_path,
-    corpus_no_pre_no_asp_path,
-    corpus_path,
-    reconstruction_failures_path,
-    reconstruction_report_path,
-    reconstruction_validation_path,
-    reports_path,
-    validated_matches_path,
-    validated_reconstructable_roots_path,
+    CONSISTENCY_ANALYSIS_PATH,
+    CORPUS_NO_PRE_NO_ASP_PATH,
+    CORPUS_PATH,
+    RECONSTRUCTION_FAILURES_PATH,
+    RECONSTRUCTION_REPORT_PATH,
+    RECONSTRUCTION_VALIDATION_PATH,
+    REPORTS_PATH,
+    VALIDATED_MATCHES_PATH,
+    VALIDATED_RECONSTRUCTABLE_ROOTS_PATH,
 )
 
 
@@ -227,17 +227,17 @@ def main(classes_path=None):
 
     # Load Derived Roots
     derived_roots = []
-    if os.path.exists(corpus_no_pre_no_asp_path):
-        with open(corpus_no_pre_no_asp_path, "r", encoding="utf-8") as f:
+    if os.path.exists(CORPUS_NO_PRE_NO_ASP_PATH):
+        with open(CORPUS_NO_PRE_NO_ASP_PATH, "r", encoding="utf-8") as f:
             derived_roots = list(csv.DictReader(f))
     else:
-        print(f"Error: {corpus_no_pre_no_asp_path} not found.")
+        print(f"Error: {CORPUS_NO_PRE_NO_ASP_PATH} not found.")
         return
 
     # Load existing validated roots to persist user selections
     user_selected_rows = []
-    if os.path.exists(validated_reconstructable_roots_path):
-        with open(validated_reconstructable_roots_path, "r", encoding="utf-8") as f:
+    if os.path.exists(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH):
+        with open(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH, "r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
             if "user_selected" in reader.fieldnames:
                 for row in reader:
@@ -248,7 +248,7 @@ def main(classes_path=None):
 
     # Load raw Corpus
     full_corpus_map = {}
-    with open(corpus_path, "r", encoding="utf-8") as f:
+    with open(CORPUS_PATH, "r", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             full_corpus_map[row["corpus_id"]] = row
 
@@ -450,7 +450,7 @@ def main(classes_path=None):
         "is_consistent",
         "mismatch_details",
     ] + [f"root_{fn}" for fn in forms]
-    with open(consistency_analysis_path, "w", encoding="utf-8", newline="") as f:
+    with open(CONSISTENCY_ANALYSIS_PATH, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=analysis_fields)
         writer.writeheader()
         writer.writerows(consistency_analysis)
@@ -470,13 +470,13 @@ def main(classes_path=None):
 
     if validated_matches_data:
         keys = ["corpus_id", "definition", "class", "scope"]
-        with open(validated_matches_path, "w", encoding="utf-8", newline="") as f:
+        with open(VALIDATED_MATCHES_PATH, "w", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=keys)
             writer.writeheader()
             writer.writerows(validated_matches_data)
 
     # Save Reconstruction Report
-    with open(reconstruction_report_path, "w", encoding="utf-8", newline="") as f:
+    with open(RECONSTRUCTION_REPORT_PATH, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(
             f,
             fieldnames=[
@@ -491,7 +491,7 @@ def main(classes_path=None):
         writer.writeheader()
         writer.writerows(report_data)
 
-    with open(reconstruction_validation_path, "w", encoding="utf-8") as f:
+    with open(RECONSTRUCTION_VALIDATION_PATH, "w", encoding="utf-8") as f:
         json.dump(
             {
                 "summary": f"{success_count}/{len(reconstructible_verbs)}",
@@ -588,7 +588,7 @@ def main(classes_path=None):
                 fieldnames.append(col)
 
         with open(
-            validated_reconstructable_roots_path, "w", encoding="utf-8", newline=""
+            VALIDATED_RECONSTRUCTABLE_ROOTS_PATH, "w", encoding="utf-8", newline=""
         ) as f:
             writer = csv.DictWriter(f, fieldnames=fieldnames)
             writer.writeheader()
@@ -612,7 +612,7 @@ def main(classes_path=None):
         key=lambda x: (x["class"], x["definition"], x["corpus_id"] or 0)
     )
 
-    with open(reconstruction_failures_path, "w", encoding="utf-8", newline="") as f:
+    with open(RECONSTRUCTION_FAILURES_PATH, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(
             f,
             fieldnames=["corpus_id", "definition", "class", "mismatch_details"],
@@ -620,7 +620,7 @@ def main(classes_path=None):
         writer.writeheader()
         writer.writerows(failures_csv_data)
 
-    print(f"Artifacts saved to {reports_path}")
+    print(f"Artifacts saved to {REPORTS_PATH}")
 
 
 if __name__ == "__main__":

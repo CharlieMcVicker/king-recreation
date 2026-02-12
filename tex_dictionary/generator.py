@@ -8,7 +8,13 @@ from pylatex import Tabularx
 from pylatex.utils import NoEscape, bold, italic
 from pylatexenc.latexencode import unicode_to_latex
 
-from king_recreation import paths
+from king_recreation.paths import (
+    CHEROKEE_NATION_DICTIONARY_PATH,
+    CORPUS_TO_CND_PATH,
+    HIERARCHICAL_DICT_PATH,
+    MAIN_TEX_PATH,
+    TEX_ROOTS_DIR,
+)
 
 
 def strip_tone(s):
@@ -20,9 +26,9 @@ def strip_tone(s):
 
 def load_corpus_to_cnd():
     mapping = {}
-    if not os.path.exists(paths.corpus_to_cnd_path):
+    if not os.path.exists(CORPUS_TO_CND_PATH):
         return mapping
-    with open(paths.corpus_to_cnd_path, "r", encoding="utf-8") as f:
+    with open(CORPUS_TO_CND_PATH, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             cid = row["corpus_id"]
@@ -32,9 +38,9 @@ def load_corpus_to_cnd():
 
 def load_cnd():
     cnd = {}
-    if not os.path.exists(paths.cherokee_nation_dictionary_path):
+    if not os.path.exists(CHEROKEE_NATION_DICTIONARY_PATH):
         return cnd
-    with open(paths.cherokee_nation_dictionary_path, "r", encoding="utf-8-sig") as f:
+    with open(CHEROKEE_NATION_DICTIONARY_PATH, "r", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         for row in reader:
             entry_no = row["Entry No."]
@@ -144,17 +150,17 @@ def verb_config_to_tex(verb: dict, root_str: str):
 
 def generate_tex_files():
     print("Loading data...")
-    if not os.path.exists(paths.hierarchical_dict_path):
-        print(f"Error: {paths.hierarchical_dict_path} not found.")
+    if not os.path.exists(HIERARCHICAL_DICT_PATH):
+        print(f"Error: {HIERARCHICAL_DICT_PATH} not found.")
         return
 
-    with open(paths.hierarchical_dict_path, "r", encoding="utf-8") as f:
+    with open(HIERARCHICAL_DICT_PATH, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     corpus_to_cnd = load_corpus_to_cnd()
     cnd = load_cnd()
 
-    os.makedirs(paths.TEX_ROOTS_DIR, exist_ok=True)
+    os.makedirs(TEX_ROOTS_DIR, exist_ok=True)
 
     root_files = []
 
@@ -212,7 +218,7 @@ def generate_tex_files():
                 content.append(table.dumps())
                 content.append(r"\\[1em]")
 
-        tex_path = os.path.join(paths.TEX_ROOTS_DIR, f"root_{slug}.tex")
+        tex_path = os.path.join(TEX_ROOTS_DIR, f"root_{slug}.tex")
         with open(tex_path, "w", encoding="utf-8") as f:
             f.write("\n".join(content))
         root_files.append(f"root_{slug}.tex")
@@ -247,8 +253,8 @@ def generate_tex_files():
 
     main_tex_content.append(r"\end{document}")
 
-    with open(paths.MAIN_TEX_PATH, "w", encoding="utf-8") as f:
+    with open(MAIN_TEX_PATH, "w", encoding="utf-8") as f:
         f.write("\n".join(main_tex_content))
 
-    print(f"Generated {len(root_files)} root files and {paths.MAIN_TEX_PATH}")
+    print(f"Generated {len(root_files)} root files and {MAIN_TEX_PATH}")
     return True

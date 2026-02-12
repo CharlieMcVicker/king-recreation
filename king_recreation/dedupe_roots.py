@@ -9,8 +9,8 @@ from typing import List
 from king_recreation.morphemes.prefixes import PrefixConfig
 from king_recreation.morphemes.prefixes.pronominals import use_glottal_grade
 from king_recreation.paths import (
-    reconstructable_verbs_path,
-    validated_reconstructable_roots_path,
+    RECONSTRUCTABLE_VERBS_PATH,
+    VALIDATED_RECONSTRUCTABLE_ROOTS_PATH,
 )
 from king_recreation.reconstruct_from_roots import ReconstructibleVerb
 
@@ -105,12 +105,12 @@ def enrich_glottal_grades(verbs: List[ReconstructibleVerb]):
 
 
 def main():
-    if not os.path.exists(validated_reconstructable_roots_path):
-        print(f"Error: {validated_reconstructable_roots_path} not found.")
+    if not os.path.exists(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH):
+        print(f"Error: {VALIDATED_RECONSTRUCTABLE_ROOTS_PATH} not found.")
         return
 
     validated_verbs = []
-    with open(validated_reconstructable_roots_path, "r", encoding="utf-8") as f:
+    with open(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             # Reconstruct ReconstructibleVerb object
@@ -174,10 +174,10 @@ def main():
     enrich_glottal_grades(deduped_roots)
 
     # Save Fully Serialized Verbs
-    with open(reconstructable_verbs_path, "w", encoding="utf-8") as f:
+    with open(RECONSTRUCTABLE_VERBS_PATH, "w", encoding="utf-8") as f:
         json.dump(deduped_roots, f, cls=EnhancedJSONEncoder, indent=4)
 
-    print(f"Artifacts saved to {reconstructable_verbs_path}")
+    print(f"Artifacts saved to {RECONSTRUCTABLE_VERBS_PATH}")
 
 
 if __name__ == "__main__":

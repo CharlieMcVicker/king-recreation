@@ -5,12 +5,12 @@ from collections import defaultdict
 from csv import DictReader
 
 from king_recreation.paths import (
-    cherokee_nation_dictionary_path,
-    class_ending_profiles_csv_path,
-    corpus_to_cnd_path,
-    ending_tone_analysis_csv_path,
-    ending_tone_analysis_json_path,
-    reconstructable_verbs_path,
+    CHEROKEE_NATION_DICTIONARY_PATH,
+    CLASS_ENDING_PROFILES_CSV_PATH,
+    CORPUS_TO_CND_PATH,
+    ENDING_TONE_ANALYSIS_CSV_PATH,
+    ENDING_TONE_ANALYSIS_JSON_PATH,
+    RECONSTRUCTABLE_VERBS_PATH,
 )
 from king_recreation.reconstruct_from_roots import ReconstructibleVerb
 from king_recreation.tone.utils import (
@@ -21,17 +21,17 @@ from king_recreation.tone.utils import (
 
 def main(interactive=False):
 
-    with open(reconstructable_verbs_path, "r") as f:
+    with open(RECONSTRUCTABLE_VERBS_PATH, "r") as f:
         reconstructable_verbs_raw = json.load(f)
     reconstructable_verbs = [
         ReconstructibleVerb.from_dict(v) for v in reconstructable_verbs_raw
     ]
 
-    with open(corpus_to_cnd_path, "r") as f:
+    with open(CORPUS_TO_CND_PATH, "r") as f:
         reader = DictReader(f)
         corpus_id_to_entries = {int(r["corpus_id"]): r for r in reader}
 
-    with open(cherokee_nation_dictionary_path, "r") as f:
+    with open(CHEROKEE_NATION_DICTIONARY_PATH, "r") as f:
 
         content = f.read()
         if content.startswith("\ufeff"):
@@ -169,8 +169,8 @@ def main(interactive=False):
             cls_data[ending] = sorted(list(class_ending_tone_verbs[cls][ending].keys()))
         artifact_output[cls] = cls_data
 
-    os.makedirs(os.path.dirname(ending_tone_analysis_json_path), exist_ok=True)
-    with open(ending_tone_analysis_json_path, "w") as f:
+    os.makedirs(os.path.dirname(ENDING_TONE_ANALYSIS_JSON_PATH), exist_ok=True)
+    with open(ENDING_TONE_ANALYSIS_JSON_PATH, "w") as f:
         json.dump(artifact_output, f, indent=4, sort_keys=True)
 
     # CSV Output
@@ -194,7 +194,7 @@ def main(interactive=False):
                 }
             )
 
-    with open(ending_tone_analysis_csv_path, "w", newline="") as f:
+    with open(ENDING_TONE_ANALYSIS_CSV_PATH, "w", newline="") as f:
         writer = csv.DictWriter(
             f, fieldnames=["Class", "Surface Form", "Base Ending", "Tones", "Count"]
         )
@@ -228,7 +228,7 @@ def main(interactive=False):
         )
     )
 
-    with open(class_ending_profiles_csv_path, "w", newline="") as f:
+    with open(CLASS_ENDING_PROFILES_CSV_PATH, "w", newline="") as f:
         writer = csv.DictWriter(
             f,
             fieldnames=[
@@ -245,7 +245,7 @@ def main(interactive=False):
         writer.writerows(profile_rows)
 
     print(
-        f"\nEnding Tone Analysis saved to:\n  JSON: {ending_tone_analysis_json_path}\n  CSV (Individual): {ending_tone_analysis_csv_path}\n  CSV (Profiles): {class_ending_profiles_csv_path}"
+        f"\nEnding Tone Analysis saved to:\n  JSON: {ENDING_TONE_ANALYSIS_JSON_PATH}\n  CSV (Individual): {ENDING_TONE_ANALYSIS_CSV_PATH}\n  CSV (Profiles): {CLASS_ENDING_PROFILES_CSV_PATH}"
     )
 
     print("\nEnding Tone Analysis Summary by Class:")
