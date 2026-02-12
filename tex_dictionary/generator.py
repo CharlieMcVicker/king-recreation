@@ -157,6 +157,13 @@ def generate_tex_files():
         header_text = "Root: " + root_str
         content.append(r"\needspace{4in}")
         content.append(r"\section*{" + unicode_to_latex(header_text) + "}")
+        content.append(
+            r"\markboth{"
+            + unicode_to_latex(root_str)
+            + "}{"
+            + unicode_to_latex(root_str)
+            + "}"
+        )
         content.append(r"\nopagebreak")
         content.append(
             r"\addcontentsline{toc}{section}{" + unicode_to_latex(root_str) + "}"
@@ -209,10 +216,16 @@ def generate_tex_files():
         r"\usepackage{booktabs}",
         r"\usepackage{tabularx}",
         r"\usepackage{needspace}",
-        r"\usepackage[margin=1in]{geometry}",
+        r"\usepackage[margin=1in, headheight=14pt]{geometry}",
+        r"\usepackage{fancyhdr}",
         r"\setmainfont{Plantagenet Cherokee}",
         r"\title{Cherokee Hierarchical Dictionary}",
         r"\author{King Recreation}",
+        r"\pagestyle{fancy}",
+        r"\fancyhf{}",
+        r"\fancyhead[L]{\rightmark}",
+        r"\fancyhead[R]{\leftmark}",
+        r"\fancyfoot[C]{\thepage}",
         r"\begin{document}",
         r"\maketitle",
         r"\tableofcontents",

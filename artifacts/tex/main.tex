@@ -3,10 +3,16 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{needspace}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=1in, headheight=14pt]{geometry}
+\usepackage{fancyhdr}
 \setmainfont{Plantagenet Cherokee}
 \title{Cherokee Hierarchical Dictionary}
 \author{King Recreation}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\rightmark}
+\fancyhead[R]{\leftmark}
+\fancyfoot[C]{\thepage}
 \begin{document}
 \maketitle
 \tableofcontents
