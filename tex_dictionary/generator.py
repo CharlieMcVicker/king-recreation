@@ -18,22 +18,6 @@ def strip_tone(s):
     return re.sub(r"\d", "", s)
 
 
-def load_underlying_stems():
-    stems = {}
-    if not os.path.exists(paths.underlying_stems_path):
-        return stems
-    with open(paths.underlying_stems_path, "r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            cid = row["corpus_id"]
-            fn = row["form"]
-            key = (cid, fn)
-            if key not in stems:
-                stems[key] = []
-            stems[key].append((row["surface_stem"], row["underlying_stem"]))
-    return stems
-
-
 def load_corpus_to_cnd():
     mapping = {}
     if not os.path.exists(paths.corpus_to_cnd_path):
@@ -71,7 +55,7 @@ def get_cnd_entry(cid, form_name, corpus_to_cnd, cnd) -> Dict[str, str]:
     return cnd.get(entry_ref, {})
 
 
-def generate_verb_table(verb, underlying_stems, corpus_to_cnd, cnd):
+def generate_verb_table(verb, corpus_to_cnd, cnd):
     forms = [
         "present",
         "present_1sg",
@@ -167,7 +151,6 @@ def generate_tex_files():
     with open(paths.hierarchical_dict_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    underlying_stems = load_underlying_stems()
     corpus_to_cnd = load_corpus_to_cnd()
     cnd = load_cnd()
 
@@ -225,7 +208,7 @@ def generate_tex_files():
                 )
                 content.append(r"\\[0.5em]")
 
-                table = generate_verb_table(verb, underlying_stems, corpus_to_cnd, cnd)
+                table = generate_verb_table(verb, corpus_to_cnd, cnd)
                 content.append(table.dumps())
                 content.append(r"\\[1em]")
 
