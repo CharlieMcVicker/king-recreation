@@ -205,7 +205,7 @@ def generate_tex_files():
 
             for verb in cls["verbs"]:
                 verb_tex = verb_config_to_tex(verb, root_str)
-                content.append(r"\subsubsection*{With... " + verb_tex + "}")
+                content.append(r"\subsubsection*{" + verb_tex + "}")
                 content.append(r"\nopagebreak")
                 content.append(
                     r"\textbf{Definition: } " + unicode_to_latex(verb["definition"])
@@ -237,7 +237,9 @@ def generate_tex_files():
         r"\usepackage{needspace}",
         r"\usepackage[margin=1in, headheight=14pt]{geometry}",
         r"\usepackage{fancyhdr}",
-        r"\setmainfont{Plantagenet Cherokee}",
+        r"\usepackage{titlesec}",
+        r"\titleformat*{\subsubsection}{\normalfont\large}",
+        r"\setmainfont{Noto Sans Cherokee}[AutoFakeBold=1.5, AutoFakeSlant=0.2]",
         r"\title{Cherokee Hierarchical Dictionary}",
         r"\author{King Recreation}",
         r"\pagestyle{fancy}",
