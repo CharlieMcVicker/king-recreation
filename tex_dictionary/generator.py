@@ -177,6 +177,48 @@ def load_hierarchical_data(path: str) -> List[RootNode]:
     return roots
 
 
+def render_verb_entry(
+    verb: ReconstructibleVerb, root_str: str, corpus_to_cnd, cnd, level=0
+) -> List[str]:
+    content = []
+    verb_tex = verb_config_to_tex(verb, root_str)
+
+    if level == 0:
+        header_cmd = r"\subsubsection*"
+        toc_level = "subsection"
+    else:
+        # Use paragraph for derivations
+        header_cmd = r"\paragraph*"
+        toc_level = "subsubsection"
+
+    if level > 0:
+        content.append(r"\needspace{1in}")
+    else:
+        content.append(r"\needspace{2in}")
+
+    content.append(header_cmd + "{" + verb_tex + "}")
+    content.append(r"\nopagebreak")
+
+    content.append(r"\textbf{Definition: } " + unicode_to_latex(verb.definition))
+
+    label = verb_tex + unicode_to_latex(" (" + verb.definition + ")")
+
+    content.append(r"\addcontentsline{toc}{" + toc_level + "}{" + label + "}")
+    content.append(r"\\[0.5em]")
+
+    table = generate_verb_table(verb, corpus_to_cnd, cnd)
+    content.append(table.dumps())
+    content.append(r"\\[1em]")
+
+    if verb.derivations:
+        for derivation in verb.derivations:
+            content.extend(
+                render_verb_entry(derivation, root_str, corpus_to_cnd, cnd, level + 1)
+            )
+
+    return content
+
+
 def generate_tex_files():
     print("Loading data...")
     if not os.path.exists(HIERARCHICAL_DICT_PATH):
@@ -227,23 +269,9 @@ def generate_tex_files():
             content.append(r"\nopagebreak")
 
             for verb in cls.verbs:
-                verb_tex = verb_config_to_tex(verb, root_str)
-                content.append(r"\subsubsection*{" + verb_tex + "}")
-                content.append(r"\nopagebreak")
-                content.append(
-                    r"\textbf{Definition: } " + unicode_to_latex(verb.definition)
+                content.extend(
+                    render_verb_entry(verb, root_str, corpus_to_cnd, cnd, level=0)
                 )
-                content.append(
-                    r"\addcontentsline{toc}{subsection}{"
-                    + verb_tex
-                    + unicode_to_latex(" (" + verb.definition + ")")
-                    + "}"
-                )
-                content.append(r"\\[0.5em]")
-
-                table = generate_verb_table(verb, corpus_to_cnd, cnd)
-                content.append(table.dumps())
-                content.append(r"\\[1em]")
 
         tex_path = os.path.join(TEX_ROOTS_DIR, f"root_{slug}.tex")
         with open(tex_path, "w", encoding="utf-8") as f:

@@ -75,6 +75,10 @@ class ReconstructibleVerb:
             val = clean_data["post_root_morpheme"]
             # turn "" to None
             clean_data["post_root_morpheme"] = val if val else None
+        if "derivations" in clean_data:
+            clean_data["derivations"] = [
+                ReconstructibleVerb.from_dict(d) for d in clean_data["derivations"]
+            ]
         return ReconstructibleVerb(**clean_data)
 
 
