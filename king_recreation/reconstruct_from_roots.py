@@ -34,7 +34,7 @@ from king_recreation.paths import (
 def drop_dropped_phones(s: str) -> str:
     s = re.sub(">.", "", s)
     s = re.sub("..@", "", s)
-    s = re.sub(".\*", "", s)
+    s = re.sub(".\\*", "", s)
     s = re.sub(":", "", s)
     return s
 
