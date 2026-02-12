@@ -4,8 +4,8 @@ import os
 import re
 from typing import Dict
 
-from pylatex import Tabular
-from pylatex.utils import bold
+from pylatex import Tabularx
+from pylatex.utils import NoEscape, bold
 from pylatexenc.latexencode import unicode_to_latex
 
 from king_recreation import paths
@@ -89,12 +89,12 @@ def generate_verb_table(verb, underlying_stems, corpus_to_cnd, cnd):
         "infinitive": "Infinitive",
     }
 
-    table = Tabular("|l|l|l|l|")
-    table.add_hline()
+    table = Tabularx("l X X X", width_argument=NoEscape(r"\textwidth"))
+    table.append(NoEscape(r"\toprule"))
     table.add_row(
         (bold("Form"), bold("Syllabary"), bold("With Tone"), bold("Toneless"))
     )
-    table.add_hline()
+    table.append(NoEscape(r"\midrule"))
 
     cid = verb.get("corpus_id")
 
@@ -108,7 +108,7 @@ def generate_verb_table(verb, underlying_stems, corpus_to_cnd, cnd):
 
         table.add_row((label, syllabary, surface, toneless))
 
-    table.add_hline()
+    table.append(NoEscape(r"\bottomrule"))
     return table
 
 
@@ -165,6 +165,7 @@ def generate_tex_files():
         r"\documentclass{article}",
         r"\usepackage{fontspec}",
         r"\usepackage{booktabs}",
+        r"\usepackage{tabularx}",
         r"\usepackage[margin=1in]{geometry}",
         r"\setmainfont{Plantagenet Cherokee}",
         r"\title{Cherokee Hierarchical Dictionary}",
