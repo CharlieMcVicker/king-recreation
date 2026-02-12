@@ -2,6 +2,7 @@ import csv
 import json
 import os
 import re
+from typing import Dict
 
 from pylatex import Tabular
 from pylatex.utils import bold
@@ -53,17 +54,21 @@ def load_cnd():
         reader = csv.DictReader(f)
         for row in reader:
             entry_no = row["Entry No."]
-            cnd[entry_no] = row["Syllabary"]
+            cnd[entry_no] = {
+                "syllabary": row["Syllabary"],
+                "tone": row["Tone and length 2"],
+                "no_tone": row["Practical"],
+            }
     return cnd
 
 
-def get_syllabary(cid, form_name, corpus_to_cnd, cnd):
+def get_cnd_entry(cid, form_name, corpus_to_cnd, cnd) -> Dict[str, str]:
     if str(cid) not in corpus_to_cnd:
-        return ""
+        return {}
     entry_ref = corpus_to_cnd[str(cid)].get(form_name)
     if not entry_ref:
-        return ""
-    return cnd.get(entry_ref, "")
+        return {}
+    return cnd.get(entry_ref, {})
 
 
 def generate_verb_table(verb, underlying_stems, corpus_to_cnd, cnd):
@@ -92,23 +97,14 @@ def generate_verb_table(verb, underlying_stems, corpus_to_cnd, cnd):
     table.add_hline()
 
     cid = verb.get("corpus_id")
-    json_forms = verb.get("segmented_forms", {})
 
     for fn in forms:
         label = form_labels[fn]
-        syllabary = get_syllabary(cid, fn, corpus_to_cnd, cnd)
+        cnd_entry = get_cnd_entry(cid, fn, corpus_to_cnd, cnd)
 
-        surface = ""
-        toneless = ""
-
-        stem_key = (str(cid), fn)
-        if cid and stem_key in underlying_stems:
-            candidates = underlying_stems[stem_key]
-            surface = candidates[0][0]
-            toneless = strip_tone(surface)
-        else:
-            surface = json_forms.get(fn, "")
-            toneless = strip_tone(surface)
+        syllabary = cnd_entry.get("syllabary", "---")
+        surface = cnd_entry.get("tone", "---")
+        toneless = cnd_entry.get("no_tone", "---")
 
         table.add_row((label, syllabary, surface, toneless))
 
