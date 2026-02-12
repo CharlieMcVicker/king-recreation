@@ -5,7 +5,7 @@ import re
 from typing import Dict
 
 from pylatex import Tabularx
-from pylatex.utils import NoEscape, bold
+from pylatex.utils import NoEscape, bold, italic
 from pylatexenc.latexencode import unicode_to_latex
 
 from king_recreation import paths
@@ -112,17 +112,43 @@ def generate_verb_table(verb, underlying_stems, corpus_to_cnd, cnd):
     return table
 
 
-def verb_config_to_str(config: dict):
+def verb_config_to_tex(verb: dict, root_str: str):
+    parts = []
+
+    config = verb["config"]
+
+    if config["pre"]["translocutive"]:
+        parts.append("wi-")
+
+    if config["pre"]["partitive"]:
+        parts.append("ni-")
+
+    if config["pre"]["distributive"]:
+        parts.append("de-")
+
+    if config["pre"]["distributive"]:
+        parts.append("de-")
+
     set_flaire = "Set " + config["pron"]["set_type"]
 
     if config["pron"]["plural_pronouns"]:
         set_flaire += " (plural)"
 
-    middle_flaire = None
-    if not config["pron"]["middle_voice"] == "none":
-        middle_flaire = config["pron"]["middle_voice"].replace("_", "/").lower()
+    parts.append(italic(set_flaire))
 
-    return ", ".join(f for f in [set_flaire, middle_flaire] if f is not None)
+    if not config["pron"]["middle_voice"] == "none":
+        parts.append(config["pron"]["middle_voice"].replace("_", "/").lower())
+
+    parts.append(bold(root_str.replace(" ", "")))
+
+    if verb["post_root_morpheme"]:
+        parts.append(verb["post_root_morpheme"])
+
+    parts.append("[" + verb["class_name"] + "]")
+
+    return "{-}".join(
+        p if isinstance(p, NoEscape) else unicode_to_latex(p) for p in parts
+    )
 
 
 def generate_tex_files():
@@ -178,24 +204,17 @@ def generate_tex_files():
             content.append(r"\nopagebreak")
 
             for verb in cls["verbs"]:
-                verb_str = verb_config_to_str(verb["config"])
-                content.append(
-                    r"\subsubsection*{With... " + unicode_to_latex(verb_str) + "}"
-                )
+                verb_tex = verb_config_to_tex(verb, root_str)
+                content.append(r"\subsubsection*{With... " + verb_tex + "}")
                 content.append(r"\nopagebreak")
                 content.append(
                     r"\textbf{Definition: } " + unicode_to_latex(verb["definition"])
                 )
                 content.append(
                     r"\addcontentsline{toc}{subsection}{"
-                    + unicode_to_latex(
-                        verb["definition"]
-                        + " ("
-                        + verb["class_name"]
-                        + ", "
-                        + verb_str
-                        + ")"
-                    )
+                    + unicode_to_latex(verb["definition"] + " (")
+                    + verb_tex
+                    + unicode_to_latex(")")
                     + "}"
                 )
                 content.append(r"\\[0.5em]")
