@@ -118,16 +118,13 @@ def verb_config_to_tex(verb: dict, root_str: str):
     config = verb["config"]
 
     if config["pre"]["translocutive"]:
-        parts.append("wi-")
+        parts.append("wi")
 
     if config["pre"]["partitive"]:
-        parts.append("ni-")
+        parts.append("ni")
 
     if config["pre"]["distributive"]:
-        parts.append("de-")
-
-    if config["pre"]["distributive"]:
-        parts.append("de-")
+        parts.append("de")
 
     set_flaire = "Set " + config["pron"]["set_type"]
 
