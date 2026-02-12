@@ -151,7 +151,7 @@ def generate_tex_files():
         content = []
         # Header with Root info
         root_str = f"{h_grade}"
-        if g_grade:
+        if g_grade and not g_grade == h_grade:
             root_str += f" / {g_grade}"
 
         header_text = "Root: " + root_str
@@ -166,10 +166,9 @@ def generate_tex_files():
             )
 
             for verb in cls["verbs"]:
+                verb_str = verb_config_to_str(verb["config"])
                 content.append(
-                    r"\subsubsection*{With... "
-                    + unicode_to_latex(verb_config_to_str(verb["config"]))
-                    + "}"
+                    r"\subsubsection*{With... " + unicode_to_latex(verb_str) + "}"
                 )
                 content.append(
                     r"\textbf{Definition: } " + unicode_to_latex(verb["definition"])
@@ -177,7 +176,12 @@ def generate_tex_files():
                 content.append(
                     r"\addcontentsline{toc}{subsection}{"
                     + unicode_to_latex(
-                        verb["definition"] + " (" + verb["class_name"] + ")"
+                        verb["definition"]
+                        + " ("
+                        + verb["class_name"]
+                        + ", "
+                        + verb_str
+                        + ")"
                     )
                     + "}"
                 )
