@@ -155,7 +155,9 @@ def generate_tex_files():
             root_str += f" / {g_grade}"
 
         header_text = "Root: " + root_str
+        content.append(r"\needspace{4in}")
         content.append(r"\section*{" + unicode_to_latex(header_text) + "}")
+        content.append(r"\nopagebreak")
         content.append(
             r"\addcontentsline{toc}{section}{" + unicode_to_latex(root_str) + "}"
         )
@@ -164,12 +166,14 @@ def generate_tex_files():
             content.append(
                 r"\subsection*{" + unicode_to_latex("Class: " + cls["class_name"]) + "}"
             )
+            content.append(r"\nopagebreak")
 
             for verb in cls["verbs"]:
                 verb_str = verb_config_to_str(verb["config"])
                 content.append(
                     r"\subsubsection*{With... " + unicode_to_latex(verb_str) + "}"
                 )
+                content.append(r"\nopagebreak")
                 content.append(
                     r"\textbf{Definition: } " + unicode_to_latex(verb["definition"])
                 )
@@ -202,6 +206,7 @@ def generate_tex_files():
         r"\usepackage{fontspec}",
         r"\usepackage{booktabs}",
         r"\usepackage{tabularx}",
+        r"\usepackage{needspace}",
         r"\usepackage[margin=1in]{geometry}",
         r"\setmainfont{Plantagenet Cherokee}",
         r"\title{Cherokee Hierarchical Dictionary}",
