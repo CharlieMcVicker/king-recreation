@@ -7,14 +7,7 @@ from pylatex import Tabular
 from pylatex.utils import bold
 from pylatexenc.latexencode import unicode_to_latex
 
-# Paths
-ROOT_DIR = os.getcwd()
-HIERARCHICAL_DICT_PATH = os.path.join(ROOT_DIR, "artifacts/data/hierarchical-dict.json")
-CORPUS_TO_CND_PATH = os.path.join(ROOT_DIR, "artifacts/corpora/corpus_to_cnd.csv")
-CND_PATH = os.path.join(ROOT_DIR, "data/cherokee_nation_dictionary.csv")
-UNDERLYING_STEMS_PATH = os.path.join(ROOT_DIR, "artifacts/data/underlying_stems.csv")
-OUTPUT_DIR = os.path.join(ROOT_DIR, "artifacts/tex/roots")
-MAIN_TEX_PATH = os.path.join(ROOT_DIR, "artifacts/tex/main.tex")
+from king_recreation import paths
 
 
 def strip_tone(s):
@@ -26,9 +19,9 @@ def strip_tone(s):
 
 def load_underlying_stems():
     stems = {}
-    if not os.path.exists(UNDERLYING_STEMS_PATH):
+    if not os.path.exists(paths.underlying_stems_path):
         return stems
-    with open(UNDERLYING_STEMS_PATH, "r", encoding="utf-8") as f:
+    with open(paths.underlying_stems_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             cid = row["corpus_id"]
@@ -42,9 +35,9 @@ def load_underlying_stems():
 
 def load_corpus_to_cnd():
     mapping = {}
-    if not os.path.exists(CORPUS_TO_CND_PATH):
+    if not os.path.exists(paths.corpus_to_cnd_path):
         return mapping
-    with open(CORPUS_TO_CND_PATH, "r", encoding="utf-8") as f:
+    with open(paths.corpus_to_cnd_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             cid = row["corpus_id"]
@@ -54,9 +47,9 @@ def load_corpus_to_cnd():
 
 def load_cnd():
     cnd = {}
-    if not os.path.exists(CND_PATH):
+    if not os.path.exists(paths.cherokee_nation_dictionary_path):
         return cnd
-    with open(CND_PATH, "r", encoding="utf-8-sig") as f:
+    with open(paths.cherokee_nation_dictionary_path, "r", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         for row in reader:
             entry_no = row["Entry No."]
@@ -123,16 +116,20 @@ def generate_verb_table(verb, underlying_stems, corpus_to_cnd, cnd):
     return table
 
 
-def main():
+def generate_tex_files():
     print("Loading data...")
-    with open(HIERARCHICAL_DICT_PATH, "r", encoding="utf-8") as f:
+    if not os.path.exists(paths.hierarchical_dict_path):
+        print(f"Error: {paths.hierarchical_dict_path} not found.")
+        return
+
+    with open(paths.hierarchical_dict_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
     underlying_stems = load_underlying_stems()
     corpus_to_cnd = load_corpus_to_cnd()
     cnd = load_cnd()
 
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    os.makedirs(paths.TEX_ROOTS_DIR, exist_ok=True)
 
     root_files = []
 
@@ -162,7 +159,7 @@ def main():
                 content.append(table.dumps())
                 content.append(r"\\[1em]")
 
-        tex_path = os.path.join(OUTPUT_DIR, f"root_{slug}.tex")
+        tex_path = os.path.join(paths.TEX_ROOTS_DIR, f"root_{slug}.tex")
         with open(tex_path, "w", encoding="utf-8") as f:
             f.write("\n".join(content))
         root_files.append(f"root_{slug}.tex")
@@ -187,12 +184,8 @@ def main():
 
     main_tex_content.append(r"\end{document}")
 
-    with open(MAIN_TEX_PATH, "w", encoding="utf-8") as f:
+    with open(paths.MAIN_TEX_PATH, "w", encoding="utf-8") as f:
         f.write("\n".join(main_tex_content))
 
-    print(f"Generated {len(root_files)} root files and {MAIN_TEX_PATH}")
-    print("Done!")
-
-
-if __name__ == "__main__":
-    main()
+    print(f"Generated {len(root_files)} root files and {paths.MAIN_TEX_PATH}")
+    return True

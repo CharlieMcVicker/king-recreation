@@ -102,3 +102,11 @@ class_near_misses_path = os.path.join(REPORTS_DIR, "class_near_misses.csv")
 # 5. Visualizations
 # -----------------------------------------------------------------------------
 visualizations_path = VISUALIZATIONS_DIR
+
+
+# -----------------------------------------------------------------------------
+# 6. TeX Dictionary Outputs
+# -----------------------------------------------------------------------------
+TEX_DIR = os.path.join(ARTIFACTS_DIR, "tex")
+TEX_ROOTS_DIR = os.path.join(TEX_DIR, "roots")
+MAIN_TEX_PATH = os.path.join(TEX_DIR, "main.tex")

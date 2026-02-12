@@ -15,14 +15,14 @@ This technical stack is designed to transform a structured datasheet into a prof
 ### 3. Build & Version Management
 
 - **Git:** Every generated root file and the master configuration is tracked in source control. This provides a clear history of changes and allows the curriculum team to "roll back" to previous versions of specific entries if needed.
-- **Build Script:** An automated build script `scripts/build_tex.sh` handles the generation and optional compilation using XeLaTeX.
+- **Build Entry Point:** The `tex_dictionary` module handles the generation and optional compilation using XeLaTeX. Run it using `python3 -m tex_dictionary`.
 
 ---
 
 ### Workflow Overview
 
-1. **Generate:** Run `./scripts/build_tex.sh`.
-2. **Extract:** A Python script `scripts/generate_tex_dict.py` reads the `hierarchical-dict.json` and `underlying_stems.csv`.
+1. **Generate:** Run `python3 -m tex_dictionary`.
+2. **Extract:** The `tex_dictionary.generator` reads the `hierarchical-dict.json` and `underlying_stems.csv`.
 3. **Structure:** Individual `.tex` snippet files are created for each root in `artifacts/tex/roots/`.
 4. **Stitch:** A master `main.tex` file pulls these snippets together.
 5. **Compile:** If `xelatex` is available, it produces a high-quality, print-ready PDF at `artifacts/tex/main.pdf`.
