@@ -1,6 +1,10 @@
 import os
 from csv import DictReader, DictWriter
 
+import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
+
 from king_recreation.tone.analysis import (
     check_prediction,
     generate_underlying_forms,
@@ -203,3 +207,161 @@ def analyze_class_coverage(verbs_with_forms):
                 writer.writeheader()
                 writer.writerows(report_rows)
             print(f"  Report saved to {csv_path}")
+
+
+def generate_prediction_charts(overall_perc, form_stats):
+    """
+    Generates charts for prediction success rates.
+    """
+    output_dir = "artifacts/charts/diagnostics"
+    os.makedirs(output_dir, exist_ok=True)
+
+    # 1. Overall Full Coverage Chart
+    plt.figure(figsize=(6, 6))
+    plt.pie(
+        [overall_perc, 100 - overall_perc],
+        labels=["Full Coverage", "Incomplete"],
+        autopct="%1.1f%%",
+        startangle=140,
+        colors=["#4CAF50", "#FFC107"],
+    )
+    plt.title(
+        "Percentage of Verbs with Full Coverage\n(All recorded forms reconstructible)"
+    )
+    plt.savefig(f"{output_dir}/overall_coverage.png")
+    plt.close()
+
+    # 2. Success Rate by Form Chart
+    if form_stats:
+        df = pd.DataFrame(form_stats)
+        plt.figure(figsize=(10, 6))
+        ax = sns.barplot(
+            x="form",
+            y="success_rate",
+            data=df,
+            hue="form",
+            palette="viridis",
+            legend=False,
+        )
+        plt.title("Success Rate for Proposing Underlying Forms by Form Name")
+        plt.ylabel("Success Rate (%)")
+        plt.xlabel("Form Name")
+        plt.ylim(0, 100)
+
+        for i, p in enumerate(ax.patches):
+            ax.annotate(
+                f"{p.get_height():.1f}%",
+                (p.get_x() + p.get_width() / 2.0, p.get_height()),
+                ha="center",
+                va="center",
+                xytext=(0, 9),
+                textcoords="offset points",
+            )
+
+        plt.savefig(f"{output_dir}/success_by_form.png")
+        plt.close()
+    print(f"Diagnostic charts saved to {output_dir}")
+
+
+def calculate_prediction_stats(verbs_with_forms):
+    """
+    Calculates:
+    1. % of verbs with at least one valid underlying form for EVERY recorded form.
+    2. Success rate for proposing underlying forms by form name.
+    """
+    print("\n--- Prediction Statistics ---")
+
+    # The standard set of forms to report on
+    forms_to_check = [
+        "present",
+        "imperfective",
+        "perfective",
+        "imperative",
+        "infinitive",
+    ]
+
+    total_verbs = 0
+    fully_covered_verbs = 0
+
+    success_by_form = {f: 0 for f in forms_to_check}
+    total_by_form = {f: 0 for f in forms_to_check}
+
+    for verb, row in verbs_with_forms:
+        has_any_form = False
+        all_forms_successful = True
+
+        for form_name in forms_to_check:
+            surface = row.get(form_name)
+            if not surface:
+                continue
+
+            has_any_form = True
+            total_by_form[form_name] += 1
+
+            tonicity = get_tonicity_for_form(verb, form_name)
+            candidates = generate_underlying_forms(surface, tonicity=tonicity)
+
+            success = any(
+                check_prediction(str(uf), surface, tonicity=tonicity)
+                for uf in candidates
+            )
+
+            if success:
+                success_by_form[form_name] += 1
+            else:
+                all_forms_successful = False
+
+        if has_any_form:
+            total_verbs += 1
+            if all_forms_successful:
+                fully_covered_verbs += 1
+
+    overall_perc = 0
+    if total_verbs > 0:
+        overall_perc = (fully_covered_verbs / total_verbs) * 100
+        print(
+            f"Verbs with full coverage (all recorded forms have valid prediction): {fully_covered_verbs}/{total_verbs} ({overall_perc:.1f}%)"
+        )
+
+    print("\nSuccess rate by form:")
+    form_stats = []
+    for f in forms_to_check:
+        if total_by_form[f] > 0:
+            perc = (success_by_form[f] / total_by_form[f]) * 100
+            print(f"  {f:15}: {success_by_form[f]}/{total_by_form[f]} ({perc:.1f}%)")
+            form_stats.append({"form": f, "success_rate": perc})
+        else:
+            print(f"  {f:15}: No data")
+
+    # Generate charts
+    generate_prediction_charts(overall_perc, form_stats)
+
+    # Save CSV report
+    reports_dir = "artifacts/reports"
+    os.makedirs(reports_dir, exist_ok=True)
+    csv_path = os.path.join(reports_dir, "prediction_success_rates.csv")
+    with open(csv_path, "w", newline="") as f:
+        writer = DictWriter(f, fieldnames=["form", "successes", "total", "percentage"])
+        writer.writeheader()
+        for f in forms_to_check:
+            total = total_by_form[f]
+            successes = success_by_form[f]
+            perc = (successes / total * 100) if total > 0 else 0
+            writer.writerow(
+                {
+                    "form": f,
+                    "successes": successes,
+                    "total": total,
+                    "percentage": round(perc, 1),
+                }
+            )
+        # Add a row for overall
+        writer.writerow(
+            {
+                "form": "OVERALL (Full Coverage)",
+                "successes": fully_covered_verbs,
+                "total": total_verbs,
+                "percentage": round(overall_perc, 1),
+            }
+        )
+    print(f"Prediction stats report saved to {csv_path}")

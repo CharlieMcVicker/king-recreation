@@ -7,7 +7,10 @@ from king_recreation.tone.analysis import (
     get_tonicity_for_form,
 )
 from king_recreation.tone.data_loader import FORMS, load_data, write_elligible_verbs
-from king_recreation.tone.diagnostics import analyze_class_coverage
+from king_recreation.tone.diagnostics import (
+    analyze_class_coverage,
+    calculate_prediction_stats,
+)
 
 
 def predict_underlying_form(verb, forms, form_name):
@@ -64,8 +67,11 @@ def main():
             writer.writerows(output_rows)
         print(f"Underlying stems written to {underlying_stems_path}")
 
-    # Analyze class coverage for "go" class
+    # Analyze class coverage
     analyze_class_coverage(verbs_with_forms)
+
+    # Calculate overall prediction stats and generate charts
+    calculate_prediction_stats(verbs_with_forms)
 
     # Verification of a few entries
     if verbs_with_forms and False:

@@ -182,3 +182,27 @@ To help interpret the results, a separate script `king_recreation/visualize_anal
 1.  **Class Distribution** (`artifacts/class_distribution_full.png`, `artifacts/class_distribution_filtered.png`): A bar chart showing the number of verbs matched by each class, clustered by strictness/scope.
 2.  **Coverage Overlap** (`artifacts/verb_coverage.png`): A visualization of the "Verb Coverage Summary."
 3.  **Near-Miss Heatmap** (`artifacts/near_miss_heatmap_strict_full.png`, `artifacts/near_miss_heatmap_strict_filtered.png`, `artifacts/near_miss_heatmap_loose_full.png`, `artifacts/near_miss_heatmap_loose_filtered.png`): Heatmaps showing which forms are the most frequent blockers, separated by match strictness.
+
+### Tone Analysis (MVP)
+
+The project includes an experimental Tone Analysis module to derive underlying forms from surface stems with tone markings.
+
+**Usage:**
+
+```bash
+python3 -m king_recreation.tone.analyze_tone_mvp
+```
+
+This script:
+
+1.  Loads eligible verbs (no prepronominal prefixes, no middle voice, no 3rd person objects, non-'a' initial roots).
+2.  Generates all valid underlying form candidates for each recorded form.
+3.  Verifies if candidates can reconstruct the original surface tones.
+4.  Calculates prediction statistics and generates diagnostic charts.
+
+**Diagnostic Outputs:**
+
+- `artifacts/reports/prediction_success_rates.csv`: Success rates for proposing underlying forms, broken down by form (present, imperfective, etc.).
+- `artifacts/charts/diagnostics/overall_coverage.png`: Pie chart of verbs where _all_ recorded forms have at least one valid underlying reconstruction.
+- `artifacts/charts/diagnostics/success_by_form.png`: Success rates for each specific form type.
+- `artifacts/reports/class_coverage_<class>.csv`: Detailed coverage reports for specific underlying classes defined in `data/classes_underlying.csv`.
