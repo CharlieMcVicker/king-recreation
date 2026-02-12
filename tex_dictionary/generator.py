@@ -126,10 +126,20 @@ def verb_config_to_tex(verb: dict, root_str: str):
     if config["pre"]["distributive"]:
         parts.append("de")
 
-    set_flaire = "Set " + config["pron"]["set_type"]
+    pronoun_map = {
+        ("a", False, False): "a",
+        ("a", True, False): "ka",
+        ("a", False, True): "ani",
+        ("b", False, False): "u",
+        ("b", True, False): "u",
+        ("b", False, True): "uni",
+    }
 
-    if config["pron"]["plural_pronouns"]:
-        set_flaire += " (plural)"
+    set_flaire = pronoun_map[
+        config["pron"]["set_type"],
+        config["pron"]["use_ka_variant"],
+        config["pron"]["plural_pronouns"],
+    ]
 
     parts.append(italic(set_flaire))
 
@@ -209,9 +219,8 @@ def generate_tex_files():
                 )
                 content.append(
                     r"\addcontentsline{toc}{subsection}{"
-                    + unicode_to_latex(verb["definition"] + " (")
                     + verb_tex
-                    + unicode_to_latex(")")
+                    + unicode_to_latex(" (" + verb["definition"] + ")")
                     + "}"
                 )
                 content.append(r"\\[0.5em]")
