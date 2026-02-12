@@ -150,10 +150,15 @@ def generate_tex_files():
 
         content = []
         # Header with Root info
-        header_text = f"Root: {h_grade}"
+        root_str = f"{h_grade}"
         if g_grade:
-            header_text += f" / {g_grade}"
+            root_str += f" / {g_grade}"
+
+        header_text = "Root: " + root_str
         content.append(r"\section*{" + unicode_to_latex(header_text) + "}")
+        content.append(
+            r"\addcontentsline{toc}{section}{" + unicode_to_latex(root_str) + "}"
+        )
 
         for cls in root_node["classes"]:
             content.append(
@@ -168,6 +173,13 @@ def generate_tex_files():
                 )
                 content.append(
                     r"\textbf{Definition: } " + unicode_to_latex(verb["definition"])
+                )
+                content.append(
+                    r"\addcontentsline{toc}{subsection}{"
+                    + unicode_to_latex(
+                        verb["definition"] + " (" + verb["class_name"] + ")"
+                    )
+                    + "}"
                 )
                 content.append(r"\\[0.5em]")
 
