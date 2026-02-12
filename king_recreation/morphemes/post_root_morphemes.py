@@ -72,10 +72,13 @@ def match_post_root_morphemes(row: dict[str, str]) -> List[dict[str, str]]:
 
             for form in forms:
                 form_val = match_row[form]
-                if form_val is not None and form_val.endswith(morpheme.form):
-                    match_row[form] = form_val[: -len(morpheme.form)]
+                if form_val is not None:
+                    if form_val.endswith(morpheme.form):
+                        match_row[form] = form_val[: -len(morpheme.form)]
+                    else:
+                        break
                 else:
-                    break
+                    match_row[form] = None
             else:
                 rows.append(match_row)
     return rows
