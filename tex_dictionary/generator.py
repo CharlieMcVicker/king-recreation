@@ -2,12 +2,13 @@ import csv
 import json
 import os
 import re
-from typing import Dict
+from typing import Dict, List
 
 from pylatex import Tabularx
 from pylatex.utils import NoEscape, bold, italic
 from pylatexenc.latexencode import unicode_to_latex
 
+from king_recreation.group_hierarchical import RootClassNode, RootNode
 from king_recreation.paths import (
     CHEROKEE_NATION_DICTIONARY_PATH,
     CORPUS_TO_CND_PATH,
@@ -15,6 +16,7 @@ from king_recreation.paths import (
     MAIN_TEX_PATH,
     TEX_ROOTS_DIR,
 )
+from king_recreation.reconstruct_from_roots import ReconstructibleVerb
 
 
 def strip_tone(s):
@@ -61,7 +63,7 @@ def get_cnd_entry(cid, form_name, corpus_to_cnd, cnd) -> Dict[str, str]:
     return cnd.get(entry_ref, {})
 
 
-def generate_verb_table(verb, corpus_to_cnd, cnd):
+def generate_verb_table(verb: ReconstructibleVerb, corpus_to_cnd, cnd):
     forms = [
         "present",
         "present_1sg",
@@ -86,7 +88,7 @@ def generate_verb_table(verb, corpus_to_cnd, cnd):
     )
     table.append(NoEscape(r"\midrule"))
 
-    cid = verb.get("corpus_id")
+    cid = verb.corpus_id
 
     for fn in forms:
         label = form_labels[fn]
@@ -102,18 +104,18 @@ def generate_verb_table(verb, corpus_to_cnd, cnd):
     return table
 
 
-def verb_config_to_tex(verb: dict, root_str: str):
+def verb_config_to_tex(verb: ReconstructibleVerb, root_str: str):
     parts = []
 
-    config = verb["config"]
+    config = verb.config
 
-    if config["pre"]["translocutive"]:
+    if config.pre.translocutive:
         parts.append("wi")
 
-    if config["pre"]["partitive"]:
+    if config.pre.partitive:
         parts.append("ni")
 
-    if config["pre"]["distributive"]:
+    if config.pre.distributive:
         parts.append("de")
 
     pronoun_map = {
@@ -126,26 +128,53 @@ def verb_config_to_tex(verb: dict, root_str: str):
     }
 
     set_flaire = pronoun_map[
-        config["pron"]["set_type"],
-        config["pron"]["use_ka_variant"],
-        config["pron"]["plural_pronouns"],
+        config.pron.set_type,
+        config.pron.use_ka_variant,
+        config.pron.plural_pronouns,
     ]
 
     parts.append(italic(set_flaire))
 
-    if not config["pron"]["middle_voice"] == "none":
-        parts.append(config["pron"]["middle_voice"].replace("_", "/").lower())
+    if not config.pron.middle_voice.value == "none":
+        parts.append(config.pron.middle_voice.value.replace("_", "/").lower())
 
     parts.append(bold(root_str.replace(" ", "")))
 
-    if verb["post_root_morpheme"]:
-        parts.append(verb["post_root_morpheme"])
+    if verb.post_root_morpheme:
+        parts.append(verb.post_root_morpheme)
 
-    parts.append("[" + verb["class_name"] + "]")
+    parts.append("[" + verb.class_name + "]")
 
     return "{-}".join(
         p if isinstance(p, NoEscape) else unicode_to_latex(p) for p in parts
     )
+
+
+def load_hierarchical_data(path: str) -> List[RootNode]:
+    with open(path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    roots = []
+    for root_data in data:
+        classes = []
+        for cls_data in root_data.get("classes", []):
+            verbs = []
+            for v_data in cls_data.get("verbs", []):
+                verbs.append(ReconstructibleVerb.from_dict(v_data))
+
+            classes.append(
+                RootClassNode(class_name=cls_data["class_name"], verbs=verbs)
+            )
+
+        roots.append(
+            RootNode(
+                h_grade_root=root_data["h_grade_root"],
+                glottal_grade_root=root_data.get("glottal_grade_root"),
+                slug=root_data["slug"],
+                classes=classes,
+            )
+        )
+    return roots
 
 
 def generate_tex_files():
@@ -154,9 +183,7 @@ def generate_tex_files():
         print(f"Error: {HIERARCHICAL_DICT_PATH} not found.")
         return
 
-    with open(HIERARCHICAL_DICT_PATH, "r", encoding="utf-8") as f:
-        data = json.load(f)
-
+    data = load_hierarchical_data(HIERARCHICAL_DICT_PATH)
     corpus_to_cnd = load_corpus_to_cnd()
     cnd = load_cnd()
 
@@ -166,9 +193,9 @@ def generate_tex_files():
 
     print(f"Generating TeX files for {len(data)} roots...")
     for root_node in data:
-        slug = root_node["slug"]
-        h_grade = root_node["h_grade_root"]
-        g_grade = root_node["glottal_grade_root"]
+        slug = root_node.slug
+        h_grade = root_node.h_grade_root
+        g_grade = root_node.glottal_grade_root
 
         content = []
         # Header with Root info
@@ -191,25 +218,25 @@ def generate_tex_files():
             r"\addcontentsline{toc}{section}{" + unicode_to_latex(root_str) + "}"
         )
 
-        for cls in root_node["classes"]:
+        for cls in root_node.classes:
 
             content.append(r"\needspace{3in}")
             content.append(
-                r"\subsection*{" + unicode_to_latex("Class: " + cls["class_name"]) + "}"
+                r"\subsection*{" + unicode_to_latex("Class: " + cls.class_name) + "}"
             )
             content.append(r"\nopagebreak")
 
-            for verb in cls["verbs"]:
+            for verb in cls.verbs:
                 verb_tex = verb_config_to_tex(verb, root_str)
                 content.append(r"\subsubsection*{" + verb_tex + "}")
                 content.append(r"\nopagebreak")
                 content.append(
-                    r"\textbf{Definition: } " + unicode_to_latex(verb["definition"])
+                    r"\textbf{Definition: } " + unicode_to_latex(verb.definition)
                 )
                 content.append(
                     r"\addcontentsline{toc}{subsection}{"
                     + verb_tex
-                    + unicode_to_latex(" (" + verb["definition"] + ")")
+                    + unicode_to_latex(" (" + verb.definition + ")")
                     + "}"
                 )
                 content.append(r"\\[0.5em]")
