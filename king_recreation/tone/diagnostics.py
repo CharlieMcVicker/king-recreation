@@ -226,7 +226,7 @@ def generate_prediction_charts(overall_perc, form_stats):
         colors=["#4CAF50", "#FFC107"],
     )
     plt.title(
-        "Percentage of Verbs with Full Coverage\n(All recorded forms reconstructible)"
+        "Percentage of Verbs with Full Coverage\n(All recorded forms reconstructable)"
     )
     plt.savefig(f"{output_dir}/overall_coverage.png")
     plt.close()

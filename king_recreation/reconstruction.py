@@ -48,7 +48,7 @@ def desegment(s: str) -> str:
 
 
 @dataclass
-class ReconstructibleVerb:
+class ReconstructableVerb:
     definition: str
     h_grade_root: str
     glottal_grade_root: Optional[str]
@@ -57,7 +57,7 @@ class ReconstructibleVerb:
     config: PrefixConfig
     corpus_id: Optional[int] = None
     entry_no: Optional[int] = None
-    derivations: List["ReconstructibleVerb"] = field(default_factory=list)
+    derivations: List["ReconstructableVerb"] = field(default_factory=list)
     original_data: dict = field(
         default_factory=dict, repr=False, hash=False, compare=False
     )
@@ -67,7 +67,7 @@ class ReconstructibleVerb:
 
     # TODO: IS THIS DEAD?
     @staticmethod
-    def from_dict(data: dict) -> "ReconstructibleVerb":
+    def from_dict(data: dict) -> "ReconstructableVerb":
         clean_data = data.copy()
         if "config" in clean_data:
             clean_data["config"] = PrefixConfig.from_dict(clean_data["config"])
@@ -75,7 +75,7 @@ class ReconstructibleVerb:
             val = clean_data["post_root_morpheme"]
             # turn "" to None
             clean_data["post_root_morpheme"] = val if val else None
-        return ReconstructibleVerb(**clean_data)
+        return ReconstructableVerb(**clean_data)
 
 
 class EnhancedJSONEncoder(json.JSONEncoder):
@@ -111,7 +111,7 @@ class ReconstructionEngine:
         return candidates
 
     def root_for_form(
-        self, verb: ReconstructibleVerb, glottal_grade: bool
+        self, verb: ReconstructableVerb, glottal_grade: bool
     ) -> Optional[str]:
         # Determine Grade
         # Default: h-grade
@@ -133,7 +133,7 @@ class ReconstructionEngine:
 
         return root
 
-    def get_base_stems_for_form(self, verb: ReconstructibleVerb, form_name: str):
+    def get_base_stems_for_form(self, verb: ReconstructableVerb, form_name: str):
         class_info = self.classes.get(verb.class_name)
         if not class_info:
             return []
@@ -175,7 +175,7 @@ class ReconstructionEngine:
         else:
             return [root + "-" + literal_ending]
 
-    def get_base_stems(self, verb: ReconstructibleVerb):
+    def get_base_stems(self, verb: ReconstructableVerb):
         base_stems = {}
 
         for form_name in [
@@ -192,7 +192,7 @@ class ReconstructionEngine:
 
         return base_stems
 
-    def reconstruct_verb(self, verb: ReconstructibleVerb) -> List[Dict[str, str]]:
+    def reconstruct_verb(self, verb: ReconstructableVerb) -> List[Dict[str, str]]:
         base_stems = self.get_base_stems(verb)
 
         form_options = {}
@@ -252,7 +252,7 @@ def main(classes_path=None):
         for row in csv.DictReader(f):
             full_corpus_map[row["corpus_id"]] = row
 
-    reconstructible_verbs: list[ReconstructibleVerb] = []
+    reconstructable_verbs: list[ReconstructableVerb] = []
     consistency_analysis = []
     forms = [
         "present",
@@ -284,7 +284,7 @@ def main(classes_path=None):
             if glottal_root == "" and not h_root == "":
                 glottal_root = None
 
-        verb = ReconstructibleVerb(
+        verb = ReconstructableVerb(
             definition=definition,
             h_grade_root=h_root,
             glottal_grade_root=glottal_root,
@@ -294,20 +294,20 @@ def main(classes_path=None):
             corpus_id=int(stem_row["corpus_id"]) if "corpus_id" in stem_row else None,
             original_data=stem_row,
         )
-        reconstructible_verbs.append(verb)
+        reconstructable_verbs.append(verb)
 
     print(
-        f"Found {len(reconstructible_verbs)} reconstructible candidates from derived roots."
+        f"Found {len(reconstructable_verbs)} reconstructable candidates from derived roots."
     )
 
     # Validation Phase
     success_count = 0
     failures = []
     report_data = []
-    validated_verbs: List[ReconstructibleVerb] = []
+    validated_verbs: List[ReconstructableVerb] = []
     validated_rows: List[dict] = []
 
-    for verb in reconstructible_verbs:
+    for verb in reconstructable_verbs:
         generated_sets = engine.reconstruct_verb(verb)
         matches_all = True
         failed_forms = []
@@ -367,7 +367,7 @@ def main(classes_path=None):
             # Check if this matches a user selected row
             # We match on all fields except user_selected and entry_no to be safe,
             # or simply use the fact that original_data might match if it hasn't changed.
-            # However, ReconstructibleVerb reconstructs data which might differ slightly if logic changes.
+            # However, ReconstructableVerb reconstructs data which might differ slightly if logic changes.
             # But the requirement is: "fail when rewriting if we would drop a row that was user marked"
             # This implies the row must be EXACTLY valid as per current logic.
             # So we check if the currently generated `verb.original_data` (augmented with keys)
@@ -441,7 +441,7 @@ def main(classes_path=None):
             }
         )
 
-    print(f"Validation Success: {success_count}/{len(reconstructible_verbs)}")
+    print(f"Validation Success: {success_count}/{len(reconstructable_verbs)}")
 
     # Save Consistency Analysis
     analysis_fields = [
@@ -457,7 +457,7 @@ def main(classes_path=None):
 
     # Save Matches Validated
     validated_matches_data = []
-    for d, verb in zip(report_data, reconstructible_verbs):
+    for d, verb in zip(report_data, reconstructable_verbs):
         if d["success"]:
             validated_matches_data.append(
                 {
@@ -494,7 +494,7 @@ def main(classes_path=None):
     with open(reconstruction_validation_path, "w", encoding="utf-8") as f:
         json.dump(
             {
-                "summary": f"{success_count}/{len(reconstructible_verbs)}",
+                "summary": f"{success_count}/{len(reconstructable_verbs)}",
                 "failures": failures,
             },
             f,

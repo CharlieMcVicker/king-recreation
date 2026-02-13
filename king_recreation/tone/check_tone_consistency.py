@@ -12,7 +12,7 @@ from king_recreation.paths import (
     ending_tone_analysis_json_path,
     reconstructable_verbs_path,
 )
-from king_recreation.reconstruction import ReconstructibleVerb
+from king_recreation.reconstruction import ReconstructableVerb
 from king_recreation.tone.utils import (
     apply_tone_to_segmentation,
     get_tone_sequence_for_form,
@@ -24,7 +24,7 @@ def main(interactive=False):
     with open(reconstructable_verbs_path, "r") as f:
         reconstructable_verbs_raw = json.load(f)
     reconstructable_verbs = [
-        ReconstructibleVerb.from_dict(v) for v in reconstructable_verbs_raw
+        ReconstructableVerb.from_dict(v) for v in reconstructable_verbs_raw
     ]
 
     with open(corpus_to_cnd_path, "r") as f:

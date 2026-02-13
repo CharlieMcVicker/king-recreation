@@ -7,13 +7,13 @@ from dataclasses import dataclass, field
 from typing import Any, DefaultDict, Dict, List, Optional, Tuple
 
 from king_recreation.morphemes.prefixes.pronominals import StemType
-from king_recreation.reconstruction import EnhancedJSONEncoder, ReconstructibleVerb
+from king_recreation.reconstruction import EnhancedJSONEncoder, ReconstructableVerb
 
 
 @dataclass
 class RootClassNode:
     class_name: str
-    verbs: List[ReconstructibleVerb] = field(default_factory=list)
+    verbs: List[ReconstructableVerb] = field(default_factory=list)
 
 
 @dataclass
@@ -59,7 +59,7 @@ from king_recreation.paths import (
 
 
 def load_all_data() -> Tuple[
-    List[ReconstructibleVerb],
+    List[ReconstructableVerb],
     List[Dict[str, str]],
     List[Dict[str, str]],
 ]:
@@ -68,7 +68,7 @@ def load_all_data() -> Tuple[
     r_ids_path = root_ids_path
 
     all_verbs_raw = load_json(verbs_path)
-    all_verbs = [ReconstructibleVerb.from_dict(v) for v in all_verbs_raw]
+    all_verbs = [ReconstructableVerb.from_dict(v) for v in all_verbs_raw]
     derivational_connections = load_csv(deriv_conn_path)
     root_ids = load_csv(r_ids_path)
 
@@ -80,8 +80,8 @@ def load_all_data() -> Tuple[
 
 
 def build_verb_index(
-    all_verbs: List[ReconstructibleVerb],
-) -> Dict[int, ReconstructibleVerb]:
+    all_verbs: List[ReconstructableVerb],
+) -> Dict[int, ReconstructableVerb]:
     verbs_by_id = {}
     for v in all_verbs:
         if v.corpus_id is not None:
@@ -91,7 +91,7 @@ def build_verb_index(
 
 def build_connection_graphs(
     derivational_connections: List[Dict[str, str]],
-    verbs_by_id: Dict[int, ReconstructibleVerb],
+    verbs_by_id: Dict[int, ReconstructableVerb],
 ) -> Tuple[Dict[int, int], DefaultDict[int, List[Dict[str, Any]]]]:
     parent_map = {}
     children_map = defaultdict(list)
@@ -128,7 +128,7 @@ def build_connection_graphs(
 
 
 def identify_top_level_nodes(
-    all_verbs: List[ReconstructibleVerb], parent_map: Dict[int, int]
+    all_verbs: List[ReconstructableVerb], parent_map: Dict[int, int]
 ) -> List[int]:
     top_level_ids = []
     for verb in all_verbs:
@@ -141,9 +141,9 @@ def identify_top_level_nodes(
 
 def build_tree_node(
     verb_id: int,
-    verbs_by_id: Dict[int, ReconstructibleVerb],
+    verbs_by_id: Dict[int, ReconstructableVerb],
     children_map: DefaultDict[int, List[Dict[str, Any]]],
-) -> ReconstructibleVerb:
+) -> ReconstructableVerb:
     verb = verbs_by_id[verb_id]
 
     children = children_map.get(verb_id, [])
@@ -159,11 +159,11 @@ def build_tree_node(
 
 def group_roots_initial(
     top_level_ids: List[int],
-    all_verbs: List[ReconstructibleVerb],
-    verbs_by_id: Dict[int, ReconstructibleVerb],
+    all_verbs: List[ReconstructableVerb],
+    verbs_by_id: Dict[int, ReconstructableVerb],
     children_map: DefaultDict[int, List[Dict[str, Any]]],
 ) -> DefaultDict[
-    Tuple[str, str], Dict[str, DefaultDict[str, List[ReconstructibleVerb]]]
+    Tuple[str, str], Dict[str, DefaultDict[str, List[ReconstructableVerb]]]
 ]:
     # Returns Dict: (h, g) -> { "classes": {name: [verbs...]} }
 
@@ -195,7 +195,7 @@ def group_roots_initial(
 
 
 def sync_root_ids(
-    all_verbs: List[ReconstructibleVerb],
+    all_verbs: List[ReconstructableVerb],
     existing_root_ids: List[Dict[str, str]],
 ) -> Tuple[Dict[int, str], Dict[str, str]]:
 
@@ -304,8 +304,8 @@ def sync_root_ids(
 
 def group_roots_with_ids(
     top_level_ids: List[int],
-    all_verbs: List[ReconstructibleVerb],
-    verbs_by_id: Dict[int, ReconstructibleVerb],
+    all_verbs: List[ReconstructableVerb],
+    verbs_by_id: Dict[int, ReconstructableVerb],
     children_map: DefaultDict[int, List[Dict[str, Any]]],
     verb_to_root_id: Dict[int, str],
 ) -> DefaultDict[str, Dict[str, Any]]:
@@ -337,7 +337,7 @@ def group_roots_with_ids(
     for i, verb in enumerate(all_verbs):
         if verb.corpus_id is None:
             # We need to find the ID assigned in sync_root_ids
-            # Since we don't store synthetic IDs in ReconstructibleVerb, we'll recalculate
+            # Since we don't store synthetic IDs in ReconstructableVerb, we'll recalculate
             # but ideally we'd pass the mapping we just built.
             # However, the verb itself doesn't have an ID, so we use its index in all_verbs
             # that we used in sync_root_ids.
@@ -355,8 +355,8 @@ def group_roots_with_ids(
 
 def group_roots_final(
     top_level_ids: List[int],
-    all_verbs: List[ReconstructibleVerb],
-    verbs_by_id: Dict[int, ReconstructibleVerb],
+    all_verbs: List[ReconstructableVerb],
+    verbs_by_id: Dict[int, ReconstructableVerb],
     children_map: DefaultDict[int, List[Dict[str, Any]]],
     verb_to_root_id: Dict[int, str],
     synthetic_to_root_id: Dict[str, str],

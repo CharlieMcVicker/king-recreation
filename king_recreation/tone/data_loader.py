@@ -9,7 +9,7 @@ from king_recreation.paths import (
     reconstructable_verbs_path,
     stems_with_tone_corpus_path,
 )
-from king_recreation.reconstruction import ReconstructibleVerb
+from king_recreation.reconstruction import ReconstructableVerb
 from king_recreation.tone.utils import (
     Consonant,
     Vowel,
@@ -22,7 +22,7 @@ def load_data():
     """Load the necessary data for tone analysis."""
     with open(reconstructable_verbs_path, "r") as f:
         reconstructable_verbs_raw = json.load(f)
-    verbs = [ReconstructibleVerb.from_dict(v) for v in reconstructable_verbs_raw]
+    verbs = [ReconstructableVerb.from_dict(v) for v in reconstructable_verbs_raw]
 
     with open(corpus_to_cnd_path, "r") as f:
         reader = DictReader(f)
@@ -39,7 +39,7 @@ def load_data():
     return verbs, cnd_corpus, corpus_id_to_entries
 
 
-def is_eligible(verb: ReconstructibleVerb) -> bool:
+def is_eligible(verb: ReconstructableVerb) -> bool:
     """
     Filter verbs based on the Tone MVP criteria:
     - No prepronominal prefixes
@@ -72,7 +72,7 @@ def is_eligible(verb: ReconstructibleVerb) -> bool:
 
 
 def get_stem_tones(
-    verb: ReconstructibleVerb, form_name: str, cnd_corpus, corpus_id_to_entries
+    verb: ReconstructableVerb, form_name: str, cnd_corpus, corpus_id_to_entries
 ):
     segmented = verb.segmented_forms.get(form_name)
     if not segmented:
@@ -115,7 +115,7 @@ def write_elligible_verbs(verbs, cnd_corpus, corpus_id_to_entries):
 
     eligible_count = 0
 
-    # Iterate over every verb in reconstructible verbs
+    # Iterate over every verb in reconstructable verbs
     rows = []
     for verb in verbs:
         # Apply filtering criteria

@@ -41,19 +41,19 @@ class track_performance:
 
 
 def load_verbs(verbs_json_path: str):
-    """Loads reconstructible verbs from a JSON file."""
-    from king_recreation.reconstruct_from_roots import ReconstructibleVerb
+    """Loads reconstructable verbs from a JSON file."""
+    from king_recreation.reconstruct_from_roots import ReconstructableVerb
 
     if not os.path.exists(verbs_json_path):
         return []
 
     with open(verbs_json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
-    return [ReconstructibleVerb.from_dict(item) for item in data]
+    return [ReconstructableVerb.from_dict(item) for item in data]
 
 
 def group_verbs_by_root(verbs: List) -> Dict[Tuple[str, str, str, str], Dict]:
-    """Groups ReconstructibleVerb objects by (h_grade, g_grade, class, stem_type)."""
+    """Groups ReconstructableVerb objects by (h_grade, g_grade, class, stem_type)."""
     root_groups: Dict[Tuple[str, str, str, str], Dict] = {}
     for verb in verbs:
         stem_type = verb.config.pron.stem_type.value
