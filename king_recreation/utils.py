@@ -4,7 +4,9 @@ import json
 import os
 import time
 from functools import partial, wraps
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Tuple
+
+from king_recreation.reconstruction import ReconstructableVerb
 
 
 class track_performance:
@@ -42,7 +44,6 @@ class track_performance:
 
 def load_verbs(verbs_json_path: str):
     """Loads reconstructable verbs from a JSON file."""
-    from king_recreation.reconstruct_from_roots import ReconstructableVerb
 
     if not os.path.exists(verbs_json_path):
         return []

@@ -157,43 +157,6 @@ def build_tree_node(
     return verb
 
 
-def group_roots_initial(
-    top_level_ids: List[int],
-    all_verbs: List[ReconstructableVerb],
-    verbs_by_id: Dict[int, ReconstructableVerb],
-    children_map: DefaultDict[int, List[Dict[str, Any]]],
-) -> DefaultDict[
-    Tuple[str, str], Dict[str, DefaultDict[str, List[ReconstructableVerb]]]
-]:
-    # Returns Dict: (h, g) -> { "classes": {name: [verbs...]} }
-
-    root_groups = defaultdict(lambda: {"classes": defaultdict(list)})
-
-    def get_key(h, g):
-        return (h, g if g else "")
-
-    # Process graph-based top level verbs
-    for vid in top_level_ids:
-        verb = verbs_by_id[vid]
-        # Use the root ID assigned to the top-level verb
-        h = verb.h_grade_root
-        g = verb.glottal_grade_root
-        cls = verb.class_name
-
-        tree_node = build_tree_node(vid, verbs_by_id, children_map)
-        root_groups[get_key(h, g)]["classes"][cls].append(tree_node)
-
-    # Process verbs with null corpus_ids (always top level, no children)
-    for verb in all_verbs:
-        if verb.corpus_id is None:
-            h = verb.h_grade_root
-            g = verb.glottal_grade_root
-            cls = verb.class_name
-            root_groups[get_key(h, g)]["classes"][cls].append(verb)
-
-    return root_groups
-
-
 def sync_root_ids(
     all_verbs: List[ReconstructableVerb],
     existing_root_ids: List[Dict[str, str]],
@@ -300,57 +263,6 @@ def sync_root_ids(
         writer.writerows(csv_rows)
 
     return verb_to_root_id, synthetic_to_root_id
-
-
-def group_roots_with_ids(
-    top_level_ids: List[int],
-    all_verbs: List[ReconstructableVerb],
-    verbs_by_id: Dict[int, ReconstructableVerb],
-    children_map: DefaultDict[int, List[Dict[str, Any]]],
-    verb_to_root_id: Dict[int, str],
-) -> DefaultDict[str, Dict[str, Any]]:
-    # Returns Dict: root_id -> { "h": h, "g": g, "classes": {name: [verbs...]} }
-
-    root_groups = defaultdict(lambda: {"classes": defaultdict(list)})
-
-    # Process graph-based top level verbs
-    for vid in top_level_ids:
-        verb = verbs_by_id[vid]
-        root_id = verb_to_root_id.get(vid)
-        if not root_id:
-            # Should not happen with proper sync
-            root_id = f"{verb.h_grade_root}|{verb.glottal_grade_root or ''}"
-
-        h = verb.h_grade_root
-        g = verb.glottal_grade_root
-        cls = verb.class_name
-
-        tree_node = build_tree_node(vid, verbs_by_id, children_map)
-
-        if "h" not in root_groups[root_id]:
-            root_groups[root_id]["h"] = h
-            root_groups[root_id]["g"] = g or ""
-
-        root_groups[root_id]["classes"][cls].append(tree_node)
-
-    # Process verbs with null corpus_ids
-    for i, verb in enumerate(all_verbs):
-        if verb.corpus_id is None:
-            # We need to find the ID assigned in sync_root_ids
-            # Since we don't store synthetic IDs in ReconstructableVerb, we'll recalculate
-            # but ideally we'd pass the mapping we just built.
-            # However, the verb itself doesn't have an ID, so we use its index in all_verbs
-            # that we used in sync_root_ids.
-            # Actually, let's just use the default logic here for simplicity if it's not approved.
-            # But we want to support splitting even these.
-
-            # Re-fetch or calculate
-            cid_key = f"synthetic-{i}"
-            # This is a bit hacky. Let's make sync_root_ids return a mapping for synthetic ones too.
-            # Or better, let's change the parameters.
-            pass
-
-    return root_groups
 
 
 def group_roots_final(
