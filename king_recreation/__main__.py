@@ -23,44 +23,38 @@ def main():
     parser = argparse.ArgumentParser(description="King Recreation Pipeline")
     parser.add_argument("--classes", help="Path to custom classes CSV file")
     args = parser.parse_args()
-    print("[1/11] Preprocessing Cherokee Nation Dictionary...")
+    print("[1/10] Preprocessing Cherokee Nation Dictionary...")
     process_cn_dict(cherokee_nation_dictionary_path, corpus_path)
 
-    print("\n[2/11] Classifying Verbs...")
+    print("\n[2/10] Classifying Verbs...")
     classify_verbs(args.classes)
 
-    print("\n[3/11] Deduping Roots...")
+    print("\n[3/10] Deduping Roots...")
     dedupe_roots()
 
-    print("\n[4/11] Deriving Stems...")
+    print("\n[4/10] Deriving Stems...")
     derive_stems()
 
-    print("\n[5/11] Reconstructing From Roots...")
+    print("\n[5/10] Reconstructing From Roots...")
     reconstruct_from_roots()
 
-    print("\n[6/11] Loading and Grouping Verbs...")
-    verbs = load_verbs(reconstructable_verbs_path)
-    root_groups = group_verbs_by_root(verbs)
-
-    print("\n[7/11] Analyzing Derivational Suffix Connections...")
+    print("\n[6/10] Analyzing Derivational Suffix Connections...")
     analyze_connections(
         reconstructable_verbs_path,
         derivational_connections_path,
         args.classes,
-        verbs=verbs,
-        root_groups=root_groups,
     )
 
-    print("\n[8/11] Grouping Dictionary Hierarchically...")
+    print("\n[7/10] Grouping Dictionary Hierarchically...")
     group_hierarchical()
 
-    print("\n[9/11] Checking Tone Consistency and Generating Profiles...")
+    print("\n[8/10] Checking Tone Consistency and Generating Profiles...")
     check_tone_consistency(interactive=False)
 
-    print("\n[10/11] Analyzing Matches...")
+    print("\n[9/10] Analyzing Matches...")
     analyze_matches(args.classes)
 
-    print("\n[11/11] Visualizing Analysis...")
+    print("\n[10/10] Visualizing Analysis...")
     run_all_visualizations()
 
 
