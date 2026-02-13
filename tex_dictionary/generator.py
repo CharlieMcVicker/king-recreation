@@ -9,6 +9,7 @@ from pylatex.utils import NoEscape, bold, italic
 from pylatexenc.latexencode import unicode_to_latex
 
 from king_recreation.group_hierarchical import RootClassNode, RootNode
+from king_recreation.morphemes.post_root_morphemes import PostRootMorphemeRegistry
 from king_recreation.paths import (
     CHEROKEE_NATION_DICTIONARY_PATH,
     CORPUS_TO_CND_PATH,
@@ -16,7 +17,7 @@ from king_recreation.paths import (
     MAIN_TEX_PATH,
     TEX_ROOTS_DIR,
 )
-from king_recreation.reconstruct_from_roots import ReconstructibleVerb
+from king_recreation.reconstruction import ReconstructableVerb
 
 
 def strip_tone(s):
@@ -63,7 +64,7 @@ def get_cnd_entry(cid, form_name, corpus_to_cnd, cnd) -> Dict[str, str]:
     return cnd.get(entry_ref, {})
 
 
-def generate_verb_table(verb: ReconstructibleVerb, corpus_to_cnd, cnd):
+def generate_verb_table(verb: ReconstructableVerb, corpus_to_cnd, cnd):
     forms = [
         "present",
         "present_1sg",
@@ -105,7 +106,7 @@ def generate_verb_table(verb: ReconstructibleVerb, corpus_to_cnd, cnd):
 
 
 def verb_config_to_tex(
-    verb: ReconstructibleVerb, root_str: str, parent_classes: list[str]
+    verb: ReconstructableVerb, root_str: str, parent_classes: list[str]
 ):
     if not parent_classes:
         parent_classes = []
@@ -146,7 +147,11 @@ def verb_config_to_tex(
     parts.append(bold(root_str.replace(" ", "")))
 
     if verb.post_root_morpheme:
-        parts.append(verb.post_root_morpheme)
+        prm = PostRootMorphemeRegistry.get_instance().morphemes_by_name.get(
+            verb.post_root_morpheme
+        )
+        if prm:
+            parts.append(prm.form)
 
     for class_name in parent_classes:
         parts.append("[" + class_name + "]")
@@ -168,7 +173,7 @@ def load_hierarchical_data(path: str) -> List[RootNode]:
         for cls_data in root_data.get("classes", []):
             verbs = []
             for v_data in cls_data.get("verbs", []):
-                verbs.append(ReconstructibleVerb.from_dict(v_data))
+                verbs.append(ReconstructableVerb.from_dict(v_data))
 
             classes.append(
                 RootClassNode(class_name=cls_data["class_name"], verbs=verbs)
@@ -186,7 +191,7 @@ def load_hierarchical_data(path: str) -> List[RootNode]:
 
 
 def render_verb_entry(
-    verb: ReconstructibleVerb, root_str: str, corpus_to_cnd, cnd, parent_classes=None
+    verb: ReconstructableVerb, root_str: str, corpus_to_cnd, cnd, parent_classes=None
 ) -> List[str]:
     if parent_classes is None:
         parent_classes = []
