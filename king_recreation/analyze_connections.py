@@ -1,5 +1,6 @@
 import json
 import os
+from dataclasses import asdict, dataclass
 from typing import Dict, List, Set, Tuple
 
 from king_recreation.morphemes.prefixes.pronominals import StemType
@@ -16,6 +17,30 @@ from king_recreation.utils import (
     load_verbs,
     save_csv_artifact,
 )
+
+
+@dataclass
+class Connection:
+    user_approved: str
+    from_h_grade: str
+    from_g_grade: str
+    from_class: str
+    from_stem_type: str
+    from_corpus_ids: str
+    to_h_grade: str
+    to_g_grade: str
+    to_class: str
+    to_stem_type: str
+    to_corpus_ids: str
+    to_form_type: str
+    to_stem: str
+
+    def to_dict(self):
+        return asdict(self)
+
+    @classmethod
+    def from_dict(cls, data):
+        return cls(**data)
 
 
 def analyze_connections(
@@ -86,7 +111,7 @@ def analyze_connections(
                     }
                 )
 
-    rows = []
+    connections: List[Connection] = []
     for key, group in root_groups.items():
         # Check against h_grade root
         root = group["h_grade"]
@@ -119,22 +144,22 @@ def analyze_connections(
                     )
                     user_approved = existing_approvals.get(approval_key, "")
 
-                    rows.append(
-                        {
-                            "user_approved": user_approved,
-                            "from_h_grade": group["h_grade"],
-                            "from_g_grade": group["g_grade"],
-                            "from_class": group["class"],
-                            "from_stem_type": group["stem_type"],
-                            "from_corpus_ids": ";".join(group["corpus_ids"]),
-                            "to_h_grade": m["h_grade"],
-                            "to_g_grade": m["g_grade"],
-                            "to_class": m["class_name"],
-                            "to_stem_type": m["stem_type"],
-                            "to_corpus_ids": m["corpus_ids"],
-                            "to_form_type": m["form_type"],
-                            "to_stem": m["stem"],
-                        }
+                    connections.append(
+                        Connection(
+                            user_approved=user_approved,
+                            from_h_grade=group["h_grade"],
+                            from_g_grade=group["g_grade"],
+                            from_class=group["class"],
+                            from_stem_type=group["stem_type"],
+                            from_corpus_ids=";".join(group["corpus_ids"]),
+                            to_h_grade=m["h_grade"],
+                            to_g_grade=m["g_grade"],
+                            to_class=m["class_name"],
+                            to_stem_type=m["stem_type"],
+                            to_corpus_ids=m["corpus_ids"],
+                            to_form_type=m["form_type"],
+                            to_stem=m["stem"],
+                        )
                     )
 
     fieldnames = [
@@ -152,6 +177,8 @@ def analyze_connections(
         "to_form_type",
         "to_stem",
     ]
+
+    rows = [c.to_dict() for c in connections]
     save_csv_artifact(
         output_path,
         fieldnames,
