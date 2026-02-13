@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[oneside,openany]{book}
 \usepackage{fontspec}
 \usepackage{booktabs}
 \usepackage{tabularx}
@@ -6,9 +6,9 @@
 \usepackage[paperwidth=5.5in, paperheight=8.5in, margin=0.5in, headheight=14pt]{geometry}
 \usepackage{fancyhdr}
 \usepackage{titlesec}
-\titleformat*{\subsubsection}{\normalfont\large}
+\titleformat{\subsection}{\normalfont\large\bfseries}{}{0pt}{}
+\titleformat{\subsubsection}[hang]{\normalfont\normalsize\bfseries}{}{0pt}{}
 \titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{}{0pt}{}
-\titleformat{\subparagraph}[hang]{\normalfont\normalsize\bfseries}{}{0pt}{}
 \setcounter{tocdepth}{4}
 \setmainfont{Noto Sans Cherokee}[AutoFakeBold=1.5, AutoFakeSlant=0.2]
 \title{Cherokee Root-based Dictionary}
@@ -22,7 +22,7 @@
 \maketitle
 \tableofcontents
 \newpage
-\section{Verb tables by root}
+\chapter{Verb tables by root}
 \input{roots/root_J258J24.tex}
 \input{roots/root_J2x1aHwnbHVo.tex}
 \input{roots/root_J2x8J2w.tex}
