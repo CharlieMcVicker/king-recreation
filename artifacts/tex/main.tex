@@ -7,6 +7,9 @@
 \usepackage{fancyhdr}
 \usepackage{titlesec}
 \titleformat*{\subsubsection}{\normalfont\large}
+\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{}{0pt}{}
+\titleformat{\subparagraph}[hang]{\normalfont\normalsize\bfseries}{}{0pt}{}
+\setcounter{tocdepth}{4}
 \setmainfont{Noto Sans Cherokee}[AutoFakeBold=1.5, AutoFakeSlant=0.2]
 \title{Cherokee Hierarchical Dictionary}
 \author{King Recreation}
@@ -19,6 +22,7 @@
 \maketitle
 \tableofcontents
 \newpage
+\section{Verb tables by root}
 \input{roots/root_J258J24.tex}
 \input{roots/root_J2x1aHwnbHVo.tex}
 \input{roots/root_J2x8J2w.tex}

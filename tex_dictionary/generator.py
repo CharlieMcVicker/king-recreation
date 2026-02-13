@@ -201,12 +201,12 @@ def render_verb_entry(
     verb_tex = verb_config_to_tex(verb, root_str, parent_classes)
 
     if level == 0:
-        header_cmd = r"\subsubsection*"
-        toc_level = "subsection"
-    else:
-        # Use paragraph for derivations
         header_cmd = r"\paragraph*"
         toc_level = "subsubsection"
+    else:
+        # Use subparagraph for derivations
+        header_cmd = r"\subparagraph*"
+        toc_level = "paragraph"
 
     if level > 0:
         content.append(r"\needspace{1in}")
@@ -270,7 +270,7 @@ def generate_tex_files():
 
         header_text = "Root: " + root_str
         content.append(r"\needspace{4in}")
-        content.append(r"\section*{" + unicode_to_latex(header_text) + "}")
+        content.append(r"\subsection*{" + unicode_to_latex(header_text) + "}")
         content.append(
             r"\markboth{"
             + unicode_to_latex(root_str)
@@ -280,14 +280,14 @@ def generate_tex_files():
         )
         content.append(r"\nopagebreak")
         content.append(
-            r"\addcontentsline{toc}{section}{" + unicode_to_latex(root_str) + "}"
+            r"\addcontentsline{toc}{subsection}{" + unicode_to_latex(root_str) + "}"
         )
 
         for cls in root_node.classes:
 
             content.append(r"\needspace{3in}")
             content.append(
-                r"\subsection*{" + unicode_to_latex("Class: " + cls.class_name) + "}"
+                r"\subsubsection*{" + unicode_to_latex("Class: " + cls.class_name) + "}"
             )
             content.append(r"\nopagebreak")
 
@@ -310,6 +310,9 @@ def generate_tex_files():
         r"\usepackage{fancyhdr}",
         r"\usepackage{titlesec}",
         r"\titleformat*{\subsubsection}{\normalfont\large}",
+        r"\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{}{0pt}{}",
+        r"\titleformat{\subparagraph}[hang]{\normalfont\normalsize\bfseries}{}{0pt}{}",
+        r"\setcounter{tocdepth}{4}",
         r"\setmainfont{Noto Sans Cherokee}[AutoFakeBold=1.5, AutoFakeSlant=0.2]",
         r"\title{Cherokee Hierarchical Dictionary}",
         r"\author{King Recreation}",
@@ -322,6 +325,7 @@ def generate_tex_files():
         r"\maketitle",
         r"\tableofcontents",
         r"\newpage",
+        r"\section{Verb tables by root}",
     ]
 
     for rf in sorted(root_files):
