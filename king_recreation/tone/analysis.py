@@ -1,6 +1,6 @@
 from typing import List, Union
 
-from king_recreation.reconstruct_from_roots import ReconstructibleVerb
+from king_recreation.reconstruction import ReconstructableVerb
 from king_recreation.tone.models import (
     Environment,
     GlottalPosition,
@@ -20,7 +20,7 @@ from king_recreation.tone.utils import (
 )
 
 
-def get_tonicity_for_form(verb: ReconstructibleVerb, form_name: str) -> Tonicity:
+def get_tonicity_for_form(verb: ReconstructableVerb, form_name: str) -> Tonicity:
     """Determine the tonicity for a given verb form."""
     if form_name == "infinitive":
         return Tonicity.INFINITIVE

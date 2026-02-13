@@ -12,7 +12,7 @@ from king_recreation.paths import (
     RECONSTRUCTABLE_VERBS_PATH,
     VALIDATED_RECONSTRUCTABLE_ROOTS_PATH,
 )
-from king_recreation.reconstruct_from_roots import ReconstructibleVerb
+from king_recreation.reconstruction import ReconstructableVerb
 
 
 class EnhancedJSONEncoder(json.JSONEncoder):
@@ -26,8 +26,8 @@ class EnhancedJSONEncoder(json.JSONEncoder):
         return super().default(o)
 
 
-def dedupe_roots(validated_verbs: list[ReconstructibleVerb]):
-    roots_by_corpus_id: dict[str, list[ReconstructibleVerb]] = {}
+def dedupe_roots(validated_verbs: list[ReconstructableVerb]):
+    roots_by_corpus_id: dict[str, list[ReconstructableVerb]] = {}
     for verb in validated_verbs:
         c_id = verb.corpus_id
         if not c_id in roots_by_corpus_id:
@@ -77,7 +77,7 @@ def dedupe_roots(validated_verbs: list[ReconstructibleVerb]):
     return deduped_roots, dropped
 
 
-def enrich_glottal_grades(verbs: List[ReconstructibleVerb]):
+def enrich_glottal_grades(verbs: List[ReconstructableVerb]):
     """
     If an h_grade_root has exactly one attested glottal_grade_root across all verbs,
     apply that glottal_grade_root to any verbs sharing the same h_grade_root
@@ -113,7 +113,7 @@ def main():
     with open(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            # Reconstruct ReconstructibleVerb object
+            # Reconstruct ReconstructableVerb object
             config = PrefixConfig.from_row(row)
 
             # Logic to reconstruct h_root/glottal_root/post_root if not directly in row?
@@ -143,7 +143,7 @@ def main():
                 int(row["entry_no"]) if "entry_no" in row and row["entry_no"] else None
             )
 
-            verb = ReconstructibleVerb(
+            verb = ReconstructableVerb(
                 definition=definition,
                 h_grade_root=h_root,
                 glottal_grade_root=glottal_root,

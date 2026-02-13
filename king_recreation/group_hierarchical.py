@@ -6,17 +6,16 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Any, DefaultDict, Dict, List, Optional, Tuple
 
+from king_recreation.analyze_connections import Connection
 from king_recreation.morphemes.prefixes.pronominals import StemType
-from king_recreation.reconstruct_from_roots import (
-    EnhancedJSONEncoder,
-    ReconstructibleVerb,
-)
+from king_recreation.reconstruction import EnhancedJSONEncoder, ReconstructableVerb
+from king_recreation.utils import load_root_ids_map
 
 
 @dataclass
 class RootClassNode:
     class_name: str
-    verbs: List[ReconstructibleVerb] = field(default_factory=list)
+    verbs: List[ReconstructableVerb] = field(default_factory=list)
 
 
 @dataclass
@@ -62,18 +61,18 @@ from king_recreation.paths import (
 
 
 def load_all_data() -> Tuple[
-    List[ReconstructibleVerb],
+    List[ReconstructableVerb],
     List[Dict[str, str]],
-    List[Dict[str, str]],
+    Dict[str, str],
 ]:
     verbs_path = RECONSTRUCTABLE_VERBS_PATH
     deriv_conn_path = DERIVATIONAL_CONNECTIONS_PATH
     r_ids_path = ROOT_IDS_PATH
 
     all_verbs_raw = load_json(verbs_path)
-    all_verbs = [ReconstructibleVerb.from_dict(v) for v in all_verbs_raw]
+    all_verbs = [ReconstructableVerb.from_dict(v) for v in all_verbs_raw]
     derivational_connections = load_csv(deriv_conn_path)
-    root_ids = load_csv(r_ids_path)
+    root_ids = load_root_ids_map(r_ids_path)
 
     return (
         all_verbs,
@@ -83,8 +82,8 @@ def load_all_data() -> Tuple[
 
 
 def build_verb_index(
-    all_verbs: List[ReconstructibleVerb],
-) -> Dict[int, ReconstructibleVerb]:
+    all_verbs: List[ReconstructableVerb],
+) -> Dict[int, ReconstructableVerb]:
     verbs_by_id = {}
     for v in all_verbs:
         if v.corpus_id is not None:
@@ -92,9 +91,42 @@ def build_verb_index(
     return verbs_by_id
 
 
+def verbs_by_root_class(
+    all_verbs: list[ReconstructableVerb], verb_to_root_id
+) -> dict[tuple[str, str], list[ReconstructableVerb]]:
+    root_classes = {}
+    for verb in all_verbs:
+        key = (verb_to_root_id[verb.corpus_id], verb.class_name)
+        if not key in root_classes:
+            root_classes[key] = []
+
+        root_classes[key].append(verb)
+
+    return root_classes
+
+
+def apply_derivations(
+    derivational_connections: dict[tuple[str, str], Connection],
+    raw_root_classes: dict[tuple[str, str], list[ReconstructableVerb]],
+):
+    root_classes = {
+        k: v for k, v in raw_root_classes.items() if k not in derivational_connections
+    }
+
+    for child_key, conn in derivational_connections.items():
+        verbs = raw_root_classes[child_key]
+        for verb in verbs:
+            # add parent class to verb
+
+            verb.h_grade_root = conn.to_h_grade
+            verb.g_grade_root = conn.to_g_grade
+            verb.parent_class = conn.to_class
+            root_classes[(conn.to_id, conn.to_class)]
+
+
 def build_connection_graphs(
     derivational_connections: List[Dict[str, str]],
-    verbs_by_id: Dict[int, ReconstructibleVerb],
+    verbs_by_id: Dict[int, ReconstructableVerb],
 ) -> Tuple[Dict[int, int], DefaultDict[int, List[Dict[str, Any]]]]:
     parent_map = {}
     children_map = defaultdict(list)
@@ -131,7 +163,7 @@ def build_connection_graphs(
 
 
 def identify_top_level_nodes(
-    all_verbs: List[ReconstructibleVerb], parent_map: Dict[int, int]
+    all_verbs: List[ReconstructableVerb], parent_map: Dict[int, int]
 ) -> List[int]:
     top_level_ids = []
     for verb in all_verbs:
@@ -144,9 +176,9 @@ def identify_top_level_nodes(
 
 def build_tree_node(
     verb_id: int,
-    verbs_by_id: Dict[int, ReconstructibleVerb],
+    verbs_by_id: Dict[int, ReconstructableVerb],
     children_map: DefaultDict[int, List[Dict[str, Any]]],
-) -> ReconstructibleVerb:
+) -> ReconstructableVerb:
     verb = verbs_by_id[verb_id]
 
     children = children_map.get(verb_id, [])
@@ -160,67 +192,17 @@ def build_tree_node(
     return verb
 
 
-def group_roots_initial(
-    top_level_ids: List[int],
-    all_verbs: List[ReconstructibleVerb],
-    verbs_by_id: Dict[int, ReconstructibleVerb],
-    children_map: DefaultDict[int, List[Dict[str, Any]]],
-) -> DefaultDict[
-    Tuple[str, str], Dict[str, DefaultDict[str, List[ReconstructibleVerb]]]
-]:
-    # Returns Dict: (h, g) -> { "classes": {name: [verbs...]} }
-
-    root_groups = defaultdict(lambda: {"classes": defaultdict(list)})
-
-    def get_key(h, g):
-        return (h, g if g else "")
-
-    # Process graph-based top level verbs
-    for vid in top_level_ids:
-        verb = verbs_by_id[vid]
-        # Use the root ID assigned to the top-level verb
-        h = verb.h_grade_root
-        g = verb.glottal_grade_root
-        cls = verb.class_name
-
-        tree_node = build_tree_node(vid, verbs_by_id, children_map)
-        root_groups[get_key(h, g)]["classes"][cls].append(tree_node)
-
-    # Process verbs with null corpus_ids (always top level, no children)
-    for verb in all_verbs:
-        if verb.corpus_id is None:
-            h = verb.h_grade_root
-            g = verb.glottal_grade_root
-            cls = verb.class_name
-            root_groups[get_key(h, g)]["classes"][cls].append(verb)
-
-    return root_groups
-
-
 def sync_root_ids(
-    all_verbs: List[ReconstructibleVerb],
-    verbs_by_id: Dict[int, ReconstructibleVerb],
-    verb_parent_map: Dict[int, int],
-    existing_root_ids: List[Dict[str, str]],
+    all_verbs: List[ReconstructableVerb],
+    overrides: Dict[str, str],
 ) -> Tuple[Dict[int, str], Dict[str, str]]:
 
     # 1. Parse existing root_ids.csv to find user overrides
     # We need to handle the previous format where 'corpus_ids' was a list
     # and map EACH corpus_id to the override if 'user_edited' was set.
-    overrides = {}  # corpus_id_str -> root_id
+    # overrides = {}  # corpus_id_str -> root_id
 
-    for row in existing_root_ids:
-        # Check if this is a user edited row
-        if row.get("user_edited") == "x":
-            rid = row.get("root_id")
-            # Old format (or intermediate format) had 'corpus_ids' column
-            if "corpus_ids" in row:
-                cids = [x.strip() for x in row["corpus_ids"].split(";") if x.strip()]
-                for cid in cids:
-                    overrides[cid] = rid
-            # Check for new format (corpus_id column) just in case we run this on already-migrated file
-            elif "corpus_id" in row:
-                overrides[row["corpus_id"]] = rid
+    # NOTE: overrides are now passed in via load_root_ids_map from utils
 
     # 2. Build rows for every verb
     csv_rows = []
@@ -307,65 +289,15 @@ def sync_root_ids(
     return verb_to_root_id, synthetic_to_root_id
 
 
-def group_roots_with_ids(
-    top_level_ids: List[int],
-    all_verbs: List[ReconstructibleVerb],
-    verbs_by_id: Dict[int, ReconstructibleVerb],
-    children_map: DefaultDict[int, List[Dict[str, Any]]],
-    verb_to_root_id: Dict[int, str],
-) -> DefaultDict[str, Dict[str, Any]]:
-    # Returns Dict: root_id -> { "h": h, "g": g, "classes": {name: [verbs...]} }
-
-    root_groups = defaultdict(lambda: {"classes": defaultdict(list)})
-
-    # Process graph-based top level verbs
-    for vid in top_level_ids:
-        verb = verbs_by_id[vid]
-        root_id = verb_to_root_id.get(vid)
-        if not root_id:
-            # Should not happen with proper sync
-            root_id = f"{verb.h_grade_root}|{verb.glottal_grade_root or ''}"
-
-        h = verb.h_grade_root
-        g = verb.glottal_grade_root
-        cls = verb.class_name
-
-        tree_node = build_tree_node(vid, verbs_by_id, children_map)
-
-        if "h" not in root_groups[root_id]:
-            root_groups[root_id]["h"] = h
-            root_groups[root_id]["g"] = g or ""
-
-        root_groups[root_id]["classes"][cls].append(tree_node)
-
-    # Process verbs with null corpus_ids
-    for i, verb in enumerate(all_verbs):
-        if verb.corpus_id is None:
-            # We need to find the ID assigned in sync_root_ids
-            # Since we don't store synthetic IDs in ReconstructibleVerb, we'll recalculate
-            # but ideally we'd pass the mapping we just built.
-            # However, the verb itself doesn't have an ID, so we use its index in all_verbs
-            # that we used in sync_root_ids.
-            # Actually, let's just use the default logic here for simplicity if it's not approved.
-            # But we want to support splitting even these.
-
-            # Re-fetch or calculate
-            cid_key = f"synthetic-{i}"
-            # This is a bit hacky. Let's make sync_root_ids return a mapping for synthetic ones too.
-            # Or better, let's change the parameters.
-            pass
-
-    return root_groups
-
-
 def group_roots_final(
     top_level_ids: List[int],
-    all_verbs: List[ReconstructibleVerb],
-    verbs_by_id: Dict[int, ReconstructibleVerb],
+    all_verbs: List[ReconstructableVerb],
+    verbs_by_id: Dict[int, ReconstructableVerb],
     children_map: DefaultDict[int, List[Dict[str, Any]]],
     verb_to_root_id: Dict[int, str],
     synthetic_to_root_id: Dict[str, str],
 ) -> DefaultDict[str, Dict[str, Any]]:
+    # dict[str, {"classes": dict[str,list]}]
     root_groups = defaultdict(lambda: {"classes": defaultdict(list)})
 
     for vid in top_level_ids:
@@ -458,20 +390,23 @@ def main() -> None:
     (
         all_verbs,
         derivational_connections,
-        existing_root_ids,
+        existing_root_ids_overrides,
     ) = load_all_data()
 
-    # 2. Build Verb Graphs
-    verbs_by_id = build_verb_index(all_verbs)
-    parent_map, children_map = build_connection_graphs(
-        derivational_connections, verbs_by_id
-    )
-
-    # 3. Sync Root IDs
+    # 2. Sync Root IDs
     # We need to assign stable IDs to verbs and group them accordingly
     # This also saves the root_ids.csv for user maintenance
     verb_to_root_id, synthetic_to_root_id = sync_root_ids(
-        all_verbs, verbs_by_id, parent_map, existing_root_ids
+        all_verbs, existing_root_ids_overrides
+    )
+
+    # 3. Build Verb Graphs
+    verbs_by_id = build_verb_index(all_verbs)
+
+    # root_classes = collect_root_class_nodes(all_verbs, verb_to_root_id)
+
+    parent_map, children_map = build_connection_graphs(
+        derivational_connections, verbs_by_id
     )
 
     # 4. Identify Top Level Verbs

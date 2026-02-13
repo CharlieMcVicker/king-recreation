@@ -1,7 +1,7 @@
 import pytest
 
 from king_recreation.morphemes.middle_voice import MiddleVoice
-from king_recreation.reconstruct_from_roots import desegment
+from king_recreation.reconstruction import desegment
 
 
 def _test_identify_and_reconstruct(h_grade, g_grade, expected):
