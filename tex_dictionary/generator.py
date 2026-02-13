@@ -299,14 +299,14 @@ def generate_tex_files():
             f.write("\n".join(content))
         root_files.append(f"root_{slug}.tex")
 
-    print(f"Generating main.tex...")
+    print(f"Generating main.tex and booklet.tex...")
     main_tex_content = [
         r"\documentclass{article}",
         r"\usepackage{fontspec}",
         r"\usepackage{booktabs}",
         r"\usepackage{tabularx}",
         r"\usepackage{needspace}",
-        r"\usepackage[margin=1in, headheight=14pt]{geometry}",
+        r"\usepackage[paperwidth=5.5in, paperheight=8.5in, margin=0.5in, headheight=14pt]{geometry}",
         r"\usepackage{fancyhdr}",
         r"\usepackage{titlesec}",
         r"\titleformat*{\subsubsection}{\normalfont\large}",
@@ -314,8 +314,8 @@ def generate_tex_files():
         r"\titleformat{\subparagraph}[hang]{\normalfont\normalsize\bfseries}{}{0pt}{}",
         r"\setcounter{tocdepth}{4}",
         r"\setmainfont{Noto Sans Cherokee}[AutoFakeBold=1.5, AutoFakeSlant=0.2]",
-        r"\title{Cherokee Hierarchical Dictionary}",
-        r"\author{King Recreation}",
+        r"\title{Cherokee Root-based Dictionary}",
+        r"\author{Charlie ᏣᎵ McVicker}",
         r"\pagestyle{fancy}",
         r"\fancyhf{}",
         r"\fancyhead[L]{\rightmark}",
@@ -336,5 +336,20 @@ def generate_tex_files():
     with open(MAIN_TEX_PATH, "w", encoding="utf-8") as f:
         f.write("\n".join(main_tex_content))
 
-    print(f"Generated {len(root_files)} root files and {MAIN_TEX_PATH}")
+    # Generate booklet.tex
+    booklet_tex_path = os.path.join(os.path.dirname(MAIN_TEX_PATH), "booklet.tex")
+    booklet_tex_content = [
+        r"\documentclass[letterpaper]{article}",
+        r"\usepackage[margin=0.25in]{geometry}",
+        r"\usepackage{pdfpages}",
+        r"\begin{document}",
+        r"\includepdf[pages=-, nup=2x1, landscape, booklet=true]{main.pdf}",
+        r"\end{document}",
+    ]
+    with open(booklet_tex_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(booklet_tex_content))
+
+    print(
+        f"Generated {len(root_files)} root files, {MAIN_TEX_PATH}, and {booklet_tex_path}"
+    )
     return True
