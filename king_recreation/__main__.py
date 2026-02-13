@@ -13,7 +13,7 @@ from king_recreation.paths import (
     reconstructable_verbs_path,
 )
 from king_recreation.preprocess_ced import process_cn_dict
-from king_recreation.reconstruct_from_roots import main as reconstruct_from_roots
+from king_recreation.reconstruction import main as reconstruct_from_roots
 from king_recreation.tone.check_tone_consistency import main as check_tone_consistency
 from king_recreation.utils import group_verbs_by_root, load_verbs
 from king_recreation.visualize_analysis import run_all_visualizations

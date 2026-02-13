@@ -9,7 +9,7 @@ from king_recreation.paths import (
     reconstructable_verbs_path,
     stems_with_tone_corpus_path,
 )
-from king_recreation.reconstruct_from_roots import ReconstructibleVerb
+from king_recreation.reconstruction import ReconstructibleVerb
 from king_recreation.tone.utils import (
     Consonant,
     Vowel,

@@ -1,6 +1,6 @@
 from typing import List, Union
 
-from king_recreation.reconstruct_from_roots import ReconstructibleVerb
+from king_recreation.reconstruction import ReconstructibleVerb
 from king_recreation.tone.models import (
     Environment,
     GlottalPosition,

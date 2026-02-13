@@ -9,7 +9,7 @@ from king_recreation.paths import (
     reconstructable_verbs_path,
     roots_by_class_path,
 )
-from king_recreation.reconstruct_from_roots import ReconstructionEngine, desegment
+from king_recreation.reconstruction import ReconstructionEngine, desegment
 from king_recreation.utils import (
     group_verbs_by_root,
     load_existing_approvals,

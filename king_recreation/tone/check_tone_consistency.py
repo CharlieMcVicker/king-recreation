@@ -12,7 +12,7 @@ from king_recreation.paths import (
     ending_tone_analysis_json_path,
     reconstructable_verbs_path,
 )
-from king_recreation.reconstruct_from_roots import ReconstructibleVerb
+from king_recreation.reconstruction import ReconstructibleVerb
 from king_recreation.tone.utils import (
     apply_tone_to_segmentation,
     get_tone_sequence_for_form,

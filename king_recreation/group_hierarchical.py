@@ -7,10 +7,7 @@ from dataclasses import dataclass, field
 from typing import Any, DefaultDict, Dict, List, Optional, Tuple
 
 from king_recreation.morphemes.prefixes.pronominals import StemType
-from king_recreation.reconstruct_from_roots import (
-    EnhancedJSONEncoder,
-    ReconstructibleVerb,
-)
+from king_recreation.reconstruction import EnhancedJSONEncoder, ReconstructibleVerb
 
 
 @dataclass
