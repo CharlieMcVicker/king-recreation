@@ -199,8 +199,6 @@ def group_roots_initial(
 
 def sync_root_ids(
     all_verbs: List[ReconstructibleVerb],
-    verbs_by_id: Dict[int, ReconstructibleVerb],
-    verb_parent_map: Dict[int, int],
     existing_root_ids: List[Dict[str, str]],
 ) -> Tuple[Dict[int, str], Dict[str, str]]:
 
@@ -461,17 +459,15 @@ def main() -> None:
         existing_root_ids,
     ) = load_all_data()
 
-    # 2. Build Verb Graphs
+    # 2. Sync Root IDs
+    # We need to assign stable IDs to verbs and group them accordingly
+    # This also saves the root_ids.csv for user maintenance
+    verb_to_root_id, synthetic_to_root_id = sync_root_ids(all_verbs, existing_root_ids)
+
+    # 3. Build Verb Graphs
     verbs_by_id = build_verb_index(all_verbs)
     parent_map, children_map = build_connection_graphs(
         derivational_connections, verbs_by_id
-    )
-
-    # 3. Sync Root IDs
-    # We need to assign stable IDs to verbs and group them accordingly
-    # This also saves the root_ids.csv for user maintenance
-    verb_to_root_id, synthetic_to_root_id = sync_root_ids(
-        all_verbs, verbs_by_id, parent_map, existing_root_ids
     )
 
     # 4. Identify Top Level Verbs
