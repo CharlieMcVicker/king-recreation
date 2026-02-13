@@ -1,5 +1,6 @@
 import json
 import os
+import re
 from dataclasses import asdict, dataclass
 from typing import Dict, List, Set, Tuple
 
@@ -92,30 +93,38 @@ def analyze_connections(
 
         sample_verb = group["verbs"][0]
         for form_type in ["perfective", "infinitive"]:
-            base_stems = engine.get_base_stems_for_form(sample_verb, form_type)
-            if not base_stems:
-                continue
+            original_class = sample_verb.class_name
+            optns = [original_class]
+            if "[" in original_class:
+                optns.append(re.sub(r"(\[[^\[\]]*\])", "", original_class))
+            for class_name in optns:
+                sample_verb.class_name = class_name
+                base_stems = engine.get_base_stems_for_form(sample_verb, form_type)
+                if not base_stems:
+                    continue
 
-            # TODO don't use desegment here
-            # get proper set of segments joined
-            for stem in [desegment(s) for s in base_stems]:
-                if sample_verb.config.pron.stem_type == StemType.LONG_START:
-                    stem = ":" + stem
-                if stem not in open_forms_map:
-                    open_forms_map[stem] = []
+                # TODO don't use desegment here
+                # get proper set of segments joined
+                for stem in [desegment(s) for s in base_stems]:
+                    if sample_verb.config.pron.stem_type == StemType.LONG_START:
+                        stem = ":" + stem
+                    if stem not in open_forms_map:
+                        open_forms_map[stem] = []
 
-                open_forms_map[stem].append(
-                    {
-                        "corpus_ids": ";".join(group["corpus_ids"]),
-                        "root_id": group["root_id"],
-                        "h_grade": group["h_grade"],
-                        "g_grade": group["g_grade"],
-                        "class_name": group["class"],
-                        "stem_type": group["stem_type"],
-                        "form_type": form_type,
-                        "stem": stem,
-                    }
-                )
+                    open_forms_map[stem].append(
+                        {
+                            "corpus_ids": ";".join(group["corpus_ids"]),
+                            "root_id": group["root_id"],
+                            "h_grade": group["h_grade"],
+                            "g_grade": group["g_grade"],
+                            "class_name": class_name,
+                            "stem_type": group["stem_type"],
+                            "form_type": form_type,
+                            "stem": stem,
+                        }
+                    )
+
+            sample_verb.class_name = original_class
 
     connections: List[Connection] = []
     for key, group in root_groups.items():
