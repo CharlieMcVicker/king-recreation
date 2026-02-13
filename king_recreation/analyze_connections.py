@@ -8,25 +8,30 @@ from king_recreation.paths import (
     derivational_connections_path,
     open_forms_report_path,
     reconstructable_verbs_path,
+    root_ids_path,
     roots_by_class_path,
 )
 from king_recreation.reconstruction import ReconstructionEngine, desegment
 from king_recreation.utils import (
     group_verbs_by_root,
     load_existing_approvals,
+    load_root_ids_map,
     load_verbs,
     save_csv_artifact,
+    save_root_mapping,
 )
 
 
 @dataclass
 class Connection:
     user_approved: str
+    from_root_id: str
     from_h_grade: str
     from_g_grade: str
     from_class: str
     from_stem_type: str
     from_corpus_ids: str
+    to_root_id: str
     to_h_grade: str
     to_g_grade: str
     to_class: str
@@ -55,14 +60,15 @@ def analyze_connections(
             print(f"Error: Input file {input_path} not found.")
             return
         verbs = load_verbs(input_path)
-        root_groups = group_verbs_by_root(verbs)
+        root_overrides = load_root_ids_map(root_ids_path)
+        root_groups = group_verbs_by_root(verbs, root_id_overrides=root_overrides)
 
     # Load existing approvals
     approval_key_fields = [
-        "from_h_grade",
+        "from_root_id",
         "from_class",
         "from_stem_type",
-        "to_h_grade",
+        "to_root_id",
         "to_class",
         "to_stem_type",
         "to_form_type",
@@ -72,7 +78,6 @@ def analyze_connections(
 
     # Write roots_by_class.csv
     csv_mapping_path = roots_by_class_path
-    from king_recreation.utils import save_root_mapping
 
     save_root_mapping(root_groups, csv_mapping_path)
 
@@ -102,6 +107,7 @@ def analyze_connections(
                 open_forms_map[stem].append(
                     {
                         "corpus_ids": ";".join(group["corpus_ids"]),
+                        "root_id": group["root_id"],
                         "h_grade": group["h_grade"],
                         "g_grade": group["g_grade"],
                         "class_name": group["class"],
@@ -122,8 +128,7 @@ def analyze_connections(
             for m in open_forms_map[root]:
                 # Avoid self-reference
                 if (
-                    m["h_grade"],
-                    m["g_grade"],
+                    m["root_id"],
                     m["class_name"],
                     m["stem_type"],
                 ) == key:
@@ -133,10 +138,10 @@ def analyze_connections(
                 is_cause = group["class"].startswith("cause")
                 if is_cause or m["form_type"] == "perfective":
                     approval_key = (
-                        group["h_grade"],
+                        group["root_id"],
                         group["class"],
                         group["stem_type"],
-                        m["h_grade"],
+                        m["root_id"],
                         m["class_name"],
                         m["stem_type"],
                         m["form_type"],
@@ -147,11 +152,13 @@ def analyze_connections(
                     connections.append(
                         Connection(
                             user_approved=user_approved,
+                            from_root_id=group["root_id"],
                             from_h_grade=group["h_grade"],
                             from_g_grade=group["g_grade"],
                             from_class=group["class"],
                             from_stem_type=group["stem_type"],
                             from_corpus_ids=";".join(group["corpus_ids"]),
+                            to_root_id=m["root_id"],
                             to_h_grade=m["h_grade"],
                             to_g_grade=m["g_grade"],
                             to_class=m["class_name"],
@@ -164,11 +171,13 @@ def analyze_connections(
 
     fieldnames = [
         "user_approved",
+        "from_root_id",
         "from_h_grade",
         "from_g_grade",
         "from_class",
         "from_stem_type",
         "from_corpus_ids",
+        "to_root_id",
         "to_h_grade",
         "to_g_grade",
         "to_class",
@@ -187,10 +196,12 @@ def analyze_connections(
             key=lambda row: tuple(
                 row.get(fn)
                 for fn in [
+                    "to_root_id",
                     "to_h_grade",
                     "to_g_grade",
                     "to_class",
                     "to_stem_type",
+                    "from_root_id",
                     "from_h_grade",
                     "from_g_grade",
                     "from_class",

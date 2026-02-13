@@ -4,7 +4,7 @@ import json
 import os
 import time
 from functools import partial, wraps
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 from king_recreation.reconstruction import ReconstructableVerb
 
@@ -53,19 +53,58 @@ def load_verbs(verbs_json_path: str):
     return [ReconstructableVerb.from_dict(item) for item in data]
 
 
-def group_verbs_by_root(verbs: List) -> Dict[Tuple[str, str, str, str], Dict]:
-    """Groups ReconstructableVerb objects by (h_grade, g_grade, class, stem_type)."""
-    root_groups: Dict[Tuple[str, str, str, str], Dict] = {}
+def load_root_ids_map(root_ids_path: str) -> Dict[str, str]:
+    """Loads a mapping of corpus_id -> root_id from the CSV, respecting user edits."""
+    overrides = {}
+    if not os.path.exists(root_ids_path):
+        return overrides
+
+    with open(root_ids_path, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row.get("user_edited") == "x":
+                rid = row.get("root_id")
+                if "corpus_ids" in row:
+                    cids = [
+                        x.strip()
+                        for x in row.get("corpus_ids", "").split(";")
+                        if x.strip()
+                    ]
+                    for cid in cids:
+                        overrides[cid] = rid
+                elif "corpus_id" in row:
+                    overrides[row["corpus_id"]] = rid
+    return overrides
+
+
+def group_verbs_by_root(
+    verbs: List, root_id_overrides: Optional[Dict[str, str]] = None
+) -> Dict[Tuple[str, str, str], Dict]:
+    """Groups ReconstructableVerb objects by (root_id, class, stem_type)."""
+    root_groups: Dict[Tuple[str, str, str], Dict] = {}
+    root_id_overrides = root_id_overrides or {}
+
     for verb in verbs:
         stem_type = verb.config.pron.stem_type.value
+
+        # Determine Root ID
+        root_id = f"{verb.h_grade_root}|{verb.glottal_grade_root or ''}"
+        if verb.corpus_id is not None:
+            cid = str(verb.corpus_id)
+        if cid in root_id_overrides:
+            root_id = root_id_overrides[cid]
+
+        # root_ids do not override h_grade; we track root_id as the grouping key.
+        # We no longer parse h/g from the root_id.
+
         key = (
-            verb.h_grade_root,
-            verb.glottal_grade_root or "",
+            root_id,
             verb.class_name,
             stem_type,
         )
         if key not in root_groups:
             root_groups[key] = {
+                "root_id": root_id,
                 "h_grade": verb.h_grade_root,
                 "g_grade": verb.glottal_grade_root or "",
                 "class": verb.class_name,
@@ -85,6 +124,7 @@ def save_root_mapping(root_groups: Dict, path: str):
         group = root_groups[key]
         mapping_rows.append(
             {
+                "root_id": group["root_id"],
                 "h_grade": group["h_grade"],
                 "g_grade": group["g_grade"],
                 "class": group["class"],
@@ -93,7 +133,9 @@ def save_root_mapping(root_groups: Dict, path: str):
             }
         )
     save_csv_artifact(
-        path, ["h_grade", "g_grade", "class", "stem_type", "corpus_ids"], mapping_rows
+        path,
+        ["root_id", "h_grade", "g_grade", "class", "stem_type", "corpus_ids"],
+        mapping_rows,
     )
 
 

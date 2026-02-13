@@ -6,8 +6,10 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Any, DefaultDict, Dict, List, Optional, Tuple
 
+from king_recreation.analyze_connections import Connection
 from king_recreation.morphemes.prefixes.pronominals import StemType
 from king_recreation.reconstruction import EnhancedJSONEncoder, ReconstructableVerb
+from king_recreation.utils import load_root_ids_map
 
 
 @dataclass
@@ -61,7 +63,7 @@ from king_recreation.paths import (
 def load_all_data() -> Tuple[
     List[ReconstructableVerb],
     List[Dict[str, str]],
-    List[Dict[str, str]],
+    Dict[str, str],
 ]:
     verbs_path = reconstructable_verbs_path
     deriv_conn_path = derivational_connections_path
@@ -70,7 +72,7 @@ def load_all_data() -> Tuple[
     all_verbs_raw = load_json(verbs_path)
     all_verbs = [ReconstructableVerb.from_dict(v) for v in all_verbs_raw]
     derivational_connections = load_csv(deriv_conn_path)
-    root_ids = load_csv(r_ids_path)
+    root_ids = load_root_ids_map(r_ids_path)
 
     return (
         all_verbs,
@@ -87,6 +89,39 @@ def build_verb_index(
         if v.corpus_id is not None:
             verbs_by_id[v.corpus_id] = v
     return verbs_by_id
+
+
+def verbs_by_root_class(
+    all_verbs: list[ReconstructableVerb], verb_to_root_id
+) -> dict[tuple[str, str], list[ReconstructableVerb]]:
+    root_classes = {}
+    for verb in all_verbs:
+        key = (verb_to_root_id[verb.corpus_id], verb.class_name)
+        if not key in root_classes:
+            root_classes[key] = []
+
+        root_classes[key].append(verb)
+
+    return root_classes
+
+
+def apply_derivations(
+    derivational_connections: dict[tuple[str, str], Connection],
+    raw_root_classes: dict[tuple[str, str], list[ReconstructableVerb]],
+):
+    root_classes = {
+        k: v for k, v in raw_root_classes.items() if k not in derivational_connections
+    }
+
+    for child_key, conn in derivational_connections.items():
+        verbs = raw_root_classes[child_key]
+        for verb in verbs:
+            # add parent class to verb
+
+            verb.h_grade_root = conn.to_h_grade
+            verb.g_grade_root = conn.to_g_grade
+            verb.parent_class = conn.to_class
+            root_classes[(conn.to_id, conn.to_class)]
 
 
 def build_connection_graphs(
@@ -159,26 +194,15 @@ def build_tree_node(
 
 def sync_root_ids(
     all_verbs: List[ReconstructableVerb],
-    existing_root_ids: List[Dict[str, str]],
+    overrides: Dict[str, str],
 ) -> Tuple[Dict[int, str], Dict[str, str]]:
 
     # 1. Parse existing root_ids.csv to find user overrides
     # We need to handle the previous format where 'corpus_ids' was a list
     # and map EACH corpus_id to the override if 'user_edited' was set.
-    overrides = {}  # corpus_id_str -> root_id
+    # overrides = {}  # corpus_id_str -> root_id
 
-    for row in existing_root_ids:
-        # Check if this is a user edited row
-        if row.get("user_edited") == "x":
-            rid = row.get("root_id")
-            # Old format (or intermediate format) had 'corpus_ids' column
-            if "corpus_ids" in row:
-                cids = [x.strip() for x in row["corpus_ids"].split(";") if x.strip()]
-                for cid in cids:
-                    overrides[cid] = rid
-            # Check for new format (corpus_id column) just in case we run this on already-migrated file
-            elif "corpus_id" in row:
-                overrides[row["corpus_id"]] = rid
+    # NOTE: overrides are now passed in via load_root_ids_map from utils
 
     # 2. Build rows for every verb
     csv_rows = []
@@ -273,6 +297,7 @@ def group_roots_final(
     verb_to_root_id: Dict[int, str],
     synthetic_to_root_id: Dict[str, str],
 ) -> DefaultDict[str, Dict[str, Any]]:
+    # dict[str, {"classes": dict[str,list]}]
     root_groups = defaultdict(lambda: {"classes": defaultdict(list)})
 
     for vid in top_level_ids:
@@ -365,16 +390,21 @@ def main() -> None:
     (
         all_verbs,
         derivational_connections,
-        existing_root_ids,
+        existing_root_ids_overrides,
     ) = load_all_data()
 
     # 2. Sync Root IDs
     # We need to assign stable IDs to verbs and group them accordingly
     # This also saves the root_ids.csv for user maintenance
-    verb_to_root_id, synthetic_to_root_id = sync_root_ids(all_verbs, existing_root_ids)
+    verb_to_root_id, synthetic_to_root_id = sync_root_ids(
+        all_verbs, existing_root_ids_overrides
+    )
 
     # 3. Build Verb Graphs
     verbs_by_id = build_verb_index(all_verbs)
+
+    # root_classes = collect_root_class_nodes(all_verbs, verb_to_root_id)
+
     parent_map, children_map = build_connection_graphs(
         derivational_connections, verbs_by_id
     )
