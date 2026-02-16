@@ -3211,6 +3211,52 @@
             "stem_type": "vowel_a"
         }
     ],
+    "ateyhst": [
+        {
+            "class_name": "oh-ol[inf2]",
+            "corpus_ids": "70",
+            "form_type": "infinitive",
+            "g_grade": "a",
+            "h_grade": "a",
+            "root_id": "a|a",
+            "stem": "ateyhst",
+            "stem_type": "vowel_a"
+        }
+    ],
+    "ateyol": [
+        {
+            "class_name": "oh-ol[inf2]",
+            "corpus_ids": "70",
+            "form_type": "perfective",
+            "g_grade": "a",
+            "h_grade": "a",
+            "root_id": "a|a",
+            "stem": "ateyol",
+            "stem_type": "vowel_a"
+        },
+        {
+            "class_name": "oh-ol",
+            "corpus_ids": "70",
+            "form_type": "perfective",
+            "g_grade": "a",
+            "h_grade": "a",
+            "root_id": "a|a",
+            "stem": "ateyol",
+            "stem_type": "vowel_a"
+        }
+    ],
+    "ateyot": [
+        {
+            "class_name": "oh-ol",
+            "corpus_ids": "70",
+            "form_type": "infinitive",
+            "g_grade": "a",
+            "h_grade": "a",
+            "root_id": "a|a",
+            "stem": "ateyot",
+            "stem_type": "vowel_a"
+        }
+    ],
     "athan": [
         {
             "class_name": "hvsk-han",
@@ -3879,52 +3925,6 @@
             "root_id": "et|et",
             "stem": "etol",
             "stem_type": "vowel_e"
-        }
-    ],
-    "eyhst": [
-        {
-            "class_name": "oh-ol[inf2]",
-            "corpus_ids": "70",
-            "form_type": "infinitive",
-            "g_grade": "ey",
-            "h_grade": "ey",
-            "root_id": "ey|ey",
-            "stem": "eyhst",
-            "stem_type": "vowel_a"
-        }
-    ],
-    "eyol": [
-        {
-            "class_name": "oh-ol[inf2]",
-            "corpus_ids": "70",
-            "form_type": "perfective",
-            "g_grade": "ey",
-            "h_grade": "ey",
-            "root_id": "ey|ey",
-            "stem": "eyol",
-            "stem_type": "vowel_a"
-        },
-        {
-            "class_name": "oh-ol",
-            "corpus_ids": "70",
-            "form_type": "perfective",
-            "g_grade": "ey",
-            "h_grade": "ey",
-            "root_id": "ey|ey",
-            "stem": "eyol",
-            "stem_type": "vowel_a"
-        }
-    ],
-    "eyot": [
-        {
-            "class_name": "oh-ol",
-            "corpus_ids": "70",
-            "form_type": "infinitive",
-            "g_grade": "ey",
-            "h_grade": "ey",
-            "root_id": "ey|ey",
-            "stem": "eyot",
-            "stem_type": "vowel_a"
         }
     ],
     "hahskihs": [
@@ -5474,11 +5474,11 @@
             "class_name": "oh-ol",
             "corpus_ids": "383",
             "form_type": "perfective",
-            "g_grade": "hstey",
-            "h_grade": "hstey",
-            "root_id": "hstey|hstey",
+            "g_grade": "hs",
+            "h_grade": "hs",
+            "root_id": "hs|hs",
             "stem": "hsteyol",
-            "stem_type": "con"
+            "stem_type": "s_stem"
         }
     ],
     "hsteyot": [
@@ -5486,11 +5486,11 @@
             "class_name": "oh-ol",
             "corpus_ids": "383",
             "form_type": "infinitive",
-            "g_grade": "hstey",
-            "h_grade": "hstey",
-            "root_id": "hstey|hstey",
+            "g_grade": "hs",
+            "h_grade": "hs",
+            "root_id": "hs|hs",
             "stem": "hsteyot",
-            "stem_type": "con"
+            "stem_type": "s_stem"
         }
     ],
     "hstik": [
@@ -6292,9 +6292,9 @@
             "class_name": "oh-ol[inf2]",
             "corpus_ids": "76",
             "form_type": "infinitive",
-            "g_grade": "ikwalvtey",
-            "h_grade": "ikwalvtey",
-            "root_id": "ikwalvtey|ikwalvtey",
+            "g_grade": "ikwalv",
+            "h_grade": "ikwalv",
+            "root_id": "ikwalv|ikwalv",
             "stem": "ikwalvteyhst",
             "stem_type": "vowel_a"
         }
@@ -6304,9 +6304,9 @@
             "class_name": "oh-ol[inf2]",
             "corpus_ids": "76",
             "form_type": "perfective",
-            "g_grade": "ikwalvtey",
-            "h_grade": "ikwalvtey",
-            "root_id": "ikwalvtey|ikwalvtey",
+            "g_grade": "ikwalv",
+            "h_grade": "ikwalv",
+            "root_id": "ikwalv|ikwalv",
             "stem": "ikwalvteyol",
             "stem_type": "vowel_a"
         },
@@ -6314,9 +6314,9 @@
             "class_name": "oh-ol",
             "corpus_ids": "76",
             "form_type": "perfective",
-            "g_grade": "ikwalvtey",
-            "h_grade": "ikwalvtey",
-            "root_id": "ikwalvtey|ikwalvtey",
+            "g_grade": "ikwalv",
+            "h_grade": "ikwalv",
+            "root_id": "ikwalv|ikwalv",
             "stem": "ikwalvteyol",
             "stem_type": "vowel_a"
         }
@@ -6326,9 +6326,9 @@
             "class_name": "oh-ol",
             "corpus_ids": "76",
             "form_type": "infinitive",
-            "g_grade": "ikwalvtey",
-            "h_grade": "ikwalvtey",
-            "root_id": "ikwalvtey|ikwalvtey",
+            "g_grade": "ikwalv",
+            "h_grade": "ikwalv",
+            "root_id": "ikwalv|ikwalv",
             "stem": "ikwalvteyot",
             "stem_type": "vowel_a"
         }
