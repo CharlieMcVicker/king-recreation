@@ -8,7 +8,6 @@ from pylatex import Tabularx
 from pylatex.utils import NoEscape, bold, italic
 from pylatexenc.latexencode import unicode_to_latex
 
-from king_recreation.group_hierarchical import RootClassNode, RootNode
 from king_recreation.morphemes.post_root_morphemes import PostRootMorphemeRegistry
 from king_recreation.paths import (
     CHEROKEE_NATION_DICTIONARY_PATH,
@@ -17,6 +16,7 @@ from king_recreation.paths import (
     MAIN_TEX_PATH,
     TEX_ROOTS_DIR,
 )
+from king_recreation.phases.group_hierarchical import RootClassNode, RootNode
 from king_recreation.reconstruction import ReconstructableVerb
 
 

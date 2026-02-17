@@ -1,12 +1,7 @@
 import pytest
 
-from king_recreation.derive_stems import StemDeriver, is_strict_compatible
 from king_recreation.h_alternation import _drop_first_h
-
-
-@pytest.fixture
-def deriver():
-    return StemDeriver()
+from king_recreation.phases.identify_prefixes import is_strict_compatible
 
 
 def test_blinking_vowel_restoration():

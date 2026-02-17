@@ -83,7 +83,20 @@ def get_matches_for_verb(verb, registry: PatternRegistry):
     return matches
 
 
-def classify_verbs(classes_path=None):
+def identify_aspect_classes(classes_path=None):
+    """
+    Identify aspect classes for all verbs in a corpus.
+
+    Produces a list initial matches of verbs and class endings.
+
+    Inputs:
+    * CORPUS_PATH: corpus with tense endings stripped.
+    * CLASSES_PATH: aspect classes to use for matching.
+
+    Outputs:
+    * CORPUS_NO_ASP_PATH: corpus with aspect stripped.
+    * MATCHES_PATH: correspondence of verbs to aspect classes that match endings. Used for analysis.
+    """
     # Load classes via Registry
     registry = PatternRegistry.get_instance()
     registry.load_from_csv(classes_path)
@@ -148,4 +161,4 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Classify verbs using King's classes.")
     parser.add_argument("--classes", help="Path to classes CSV file")
     args = parser.parse_args()
-    classify_verbs(args.classes)
+    identify_aspect_classes(args.classes)

@@ -1,5 +1,7 @@
+import csv
 import io
 import json
+import os
 import re
 from collections import defaultdict
 from csv import DictReader
@@ -19,7 +21,27 @@ from king_recreation.tone.utils import (
 )
 
 
-def main(interactive=False):
+def check_tone_consistency(interactive=False):
+    """
+    Check tone consistency for reconstructed verbs against the Cherokee Nation Dictionary.
+
+    Matches segmented forms with CND entries to verify tone patterns and generate
+    ending tone profiles for each verb class.
+
+    Inputs:
+    * RECONSTRUCTABLE_VERBS_PATH: List of reconstructed verbs with segmentation.
+    * CORPUS_TO_CND_PATH: Mapping from corpus IDs to CND entry numbers.
+    * CHEROKEE_NATION_DICTIONARY_PATH: The CND source file.
+
+    Outputs:
+    * ENDING_TONE_ANALYSIS_JSON_PATH: Detailed tone analysis by class and ending.
+    * ENDING_TONE_ANALYSIS_CSV_PATH: Flat CSV of tone patterns by class and surface form.
+    * CLASS_ENDING_PROFILES_CSV_PATH: Summary of tone profiles across aspect forms for each class.
+    """
+
+    if not os.path.exists(RECONSTRUCTABLE_VERBS_PATH):
+        print(f"Error: {RECONSTRUCTABLE_VERBS_PATH} not found.")
+        return
 
     with open(RECONSTRUCTABLE_VERBS_PATH, "r") as f:
         reconstructable_verbs_raw = json.load(f)
@@ -27,12 +49,21 @@ def main(interactive=False):
         ReconstructableVerb.from_dict(v) for v in reconstructable_verbs_raw
     ]
 
+    if not os.path.exists(CORPUS_TO_CND_PATH):
+        print(f"Error: {CORPUS_TO_CND_PATH} not found. Tone check skipped.")
+        return
+
     with open(CORPUS_TO_CND_PATH, "r") as f:
         reader = DictReader(f)
         corpus_id_to_entries = {int(r["corpus_id"]): r for r in reader}
 
-    with open(CHEROKEE_NATION_DICTIONARY_PATH, "r") as f:
+    if not os.path.exists(CHEROKEE_NATION_DICTIONARY_PATH):
+        print(
+            f"Error: {CHEROKEE_NATION_DICTIONARY_PATH} not found. Tone check skipped."
+        )
+        return
 
+    with open(CHEROKEE_NATION_DICTIONARY_PATH, "r") as f:
         content = f.read()
         if content.startswith("\ufeff"):
             content = content[1:]
@@ -158,9 +189,6 @@ def main(interactive=False):
         del class_profile_to_verbs[p]
 
     # Save to artifacts
-    import csv
-    import os
-
     # JSON Output
     artifact_output = {}
     for cls in sorted(class_ending_tone_verbs.keys()):
@@ -293,4 +321,4 @@ def main(interactive=False):
 
 
 if __name__ == "__main__":
-    main(interactive=True)
+    check_tone_consistency(interactive=True)

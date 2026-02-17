@@ -2,6 +2,12 @@ import csv
 import os
 import re
 
+from king_recreation.paths import (
+    CED_DATA_ORIGINAL_PATH,
+    CHEROKEE_NATION_DICTIONARY_PATH,
+    CORPUS_PATH,
+)
+
 
 def respell_consonants(s):
     # Rewrite rules for aspiration marking
@@ -93,23 +99,30 @@ def clean_row(row):
     }
 
 
-from king_recreation.paths import (
-    CED_DATA_ORIGINAL_PATH,
-    CHEROKEE_NATION_DICTIONARY_PATH,
-    CORPUS_PATH,
-)
+def create_corpus_from_cn_dict():
+    """
+    Create a corpus CSV with one row per lexical item.
 
+    Inputs:
+    * CHEROKEE_NATION_DICTIONARY_PATH: a CSV with one row per verb form, multiple orthographies.
 
-def process_cn_dict(file_path, output_path):
-    print(f"Processing Cherokee Nation dictionary from {file_path}")
+    Outputs:
+    * CORPUS_PATH: a CSV with one row per lexical item with all forms present, tone-less orthography.
+    """
+    # CHEROKEE_NATION_DICTIONARY_PATH, CORPUS_PATH
+    print(
+        f"Processing Cherokee Nation dictionary from {CHEROKEE_NATION_DICTIONARY_PATH}"
+    )
 
     # Check if file exists
-    if not os.path.exists(file_path):
-        print(f"Error: Input file needed not found at {file_path}")
+    if not os.path.exists(CHEROKEE_NATION_DICTIONARY_PATH):
+        print(
+            f"Error: Input file needed not found at {CHEROKEE_NATION_DICTIONARY_PATH}"
+        )
         return
 
     # Ensure the full directory path exists for the output file
-    output_data_dir = os.path.dirname(output_path)
+    output_data_dir = os.path.dirname(CORPUS_PATH)
     if not os.path.exists(output_data_dir):
         os.makedirs(output_data_dir)
 
@@ -119,7 +132,7 @@ def process_cn_dict(file_path, output_path):
 
     grouped_entries = {}
 
-    with open(file_path, mode="r", encoding="utf-8") as f:
+    with open(CHEROKEE_NATION_DICTIONARY_PATH, mode="r", encoding="utf-8") as f:
         # Some CND files may have a BOM
         content = f.read()
         if content.startswith("\ufeff"):
@@ -284,7 +297,7 @@ def process_cn_dict(file_path, output_path):
         "infinitive",
     ]
 
-    with open(output_path, mode="w", encoding="utf-8", newline="") as f:
+    with open(CORPUS_PATH, mode="w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(processed_data)
@@ -306,23 +319,19 @@ def process_cn_dict(file_path, output_path):
         writer.writeheader()
         writer.writerows(mapping_data)
 
-    print(f"Processed CN data written to {output_path}")
+    print(f"Processed CN data written to {CORPUS_PATH}")
     print(f"Mapping CND data written to {CORPUS_TO_CND_PATH}")
 
 
 def process_ced():
-    # Use centralized paths
-    input_path = CED_DATA_ORIGINAL_PATH
-    output_path = CORPUS_PATH
-
     # Ensure the full directory path exists for the output file
-    output_data_dir = os.path.dirname(output_path)
+    output_data_dir = os.path.dirname(CORPUS_PATH)
     if not os.path.exists(output_data_dir):
         os.makedirs(output_data_dir)
 
     processed_data = []
 
-    with open(input_path, mode="r", encoding="utf-8") as f:
+    with open(CED_DATA_ORIGINAL_PATH, mode="r", encoding="utf-8") as f:
         # The file seems to have a trailing comma in the header based on initial view
         reader = csv.DictReader(f)
         for idx, row in enumerate(reader):
@@ -340,12 +349,12 @@ def process_ced():
         "imperative",
         "infinitive",
     ]
-    with open(output_path, mode="w", encoding="utf-8", newline="") as f:
+    with open(CORPUS_PATH, mode="w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(processed_data)
 
-    print(f"Processed data written to {output_path}")
+    print(f"Processed data written to {CORPUS_PATH}")
 
 
 if __name__ == "__main__":
@@ -360,6 +369,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.new_source:
-        process_cn_dict(CHEROKEE_NATION_DICTIONARY_PATH, CORPUS_PATH)
+        create_corpus_from_cn_dict(CHEROKEE_NATION_DICTIONARY_PATH, CORPUS_PATH)
     else:
         process_ced()

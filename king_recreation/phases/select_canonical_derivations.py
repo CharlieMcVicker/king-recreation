@@ -79,9 +79,9 @@ def dedupe_roots(validated_verbs: list[ReconstructableVerb]):
 
 def enrich_glottal_grades(verbs: List[ReconstructableVerb]):
     """
-    If an h_grade_root has exactly one attested glottal_grade_root across all verbs,
-    apply that glottal_grade_root to any verbs sharing the same h_grade_root
-    that are currently missing it.
+    If an h_grade_root has exactly one attested glottal_grade_root across all
+    verbs, apply that glottal_grade_root to any verbs sharing the same
+    h_grade_root that are currently missing it.
     """
     # h_grade -> set of non-null glottal_grade_root values
     g_grades_by_h = defaultdict(set)
@@ -104,7 +104,19 @@ def enrich_glottal_grades(verbs: List[ReconstructableVerb]):
         print(f"[INFO] Enriched {enriched_count} verbs with inferred glottal grades.")
 
 
-def main():
+def select_canonical_derivations():
+    """
+    Select canonical derivations to represent verbs going forward. It is at this
+    step that all over-generation is reduced and a single canonical derivation
+    is picked for each corpus entry.
+
+    Inputs:
+    * VALIDATED_RECONSTRUCTABLE_ROOTS_PATH: all possible valid, reconstructable
+    derivations for each lexical item as well as manual user-selected forms
+
+    Outputs:
+    * RECONSTRUCTABLE_VERBS_PATH: JSON of canonical derivations for each lexical item.
+    """
     if not os.path.exists(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH):
         print(f"Error: {VALIDATED_RECONSTRUCTABLE_ROOTS_PATH} not found.")
         return
@@ -181,4 +193,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    select_canonical_derivations()

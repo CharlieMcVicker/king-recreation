@@ -6,8 +6,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Any, DefaultDict, Dict, List, Optional, Tuple
 
-from king_recreation.analyze_connections import Connection
-from king_recreation.morphemes.prefixes.pronominals import StemType
+from king_recreation.phases.identify_derived_verbs import DerivedVerbConnection
 from king_recreation.reconstruction import EnhancedJSONEncoder, ReconstructableVerb
 from king_recreation.utils import load_root_ids_map
 
@@ -106,7 +105,7 @@ def verbs_by_root_class(
 
 
 def apply_derivations(
-    derivational_connections: dict[tuple[str, str], Connection],
+    derivational_connections: dict[tuple[str, str], DerivedVerbConnection],
     raw_root_classes: dict[tuple[str, str], list[ReconstructableVerb]],
 ):
     root_classes = {
@@ -382,9 +381,18 @@ def save_output(data: Any, path: str) -> None:
     print(f"Hierarchical dictionary saved to {path}")
 
 
-def main() -> None:
-    print("Grouping verbs hierarchically...")
-    output_path = HIERARCHICAL_DICT_PATH
+def group_hierarchical() -> None:
+    """
+    Group verbs into a hierarchy by root, class, pronominal config, and derivational suffix connections.
+
+    Inputs:
+    * RECONSTRUCTABLE_VERBS_PATH: canonical derivations for verbs.
+    * ROOT_IDS_PATH: user-tuned canonical ids for roots for each corpus item.
+    * DERIVATIONAL_CONNECTIONS_PATH: derivational connection data.
+
+    Outputs:
+    * HIERARCHICAL_DICT_PATH: a JSON dictionary nested by root -> class -> derivation.
+    """
 
     # 1. Load Data
     (
@@ -426,8 +434,8 @@ def main() -> None:
     final_output = build_final_hierarchy(root_groups)
 
     # 7. Save
-    save_output(final_output, output_path)
+    save_output(final_output, HIERARCHICAL_DICT_PATH)
 
 
 if __name__ == "__main__":
-    main()
+    group_hierarchical()

@@ -8,7 +8,7 @@ from king_recreation.morphemes.middle_voice import MiddleVoice
 from king_recreation.morphemes.prefixes.pronominals import StemType
 from king_recreation.paths import (
     DERIVATIONAL_CONNECTIONS_PATH,
-    OPEN_FORMS_REPORT_PATH,
+    OPEN_FORMS_PATH,
     RECONSTRUCTABLE_VERBS_PATH,
     ROOT_IDS_PATH,
     ROOTS_BY_CLASS_PATH,
@@ -25,7 +25,7 @@ from king_recreation.utils import (
 
 
 @dataclass
-class Connection:
+class DerivedVerbConnection:
     user_approved: str
     from_root_id: str
     from_h_grade: str
@@ -50,20 +50,27 @@ class Connection:
         return cls(**data)
 
 
-def analyze_connections(
-    input_path: str,
-    output_path: str,
+def identify_derived_verbs(
     classes_path: str = None,
-    verbs: List = None,
-    root_groups: Dict = None,
 ):
-    if verbs is None or root_groups is None:
-        if not os.path.exists(input_path):
-            print(f"Error: Input file {input_path} not found.")
-            return
-        verbs = load_verbs(input_path)
-        root_overrides = load_root_ids_map(ROOT_IDS_PATH)
-        root_groups = group_verbs_by_root(verbs, root_id_overrides=root_overrides)
+    """
+    Identify which validated verbs appear to be derived from other verbs.
+
+    Inputs:
+    * RECONSTRUCTABLE_VERBS_PATH: List of validated reconstructable verbs.
+    * ROOT_IDS_PATH: Map of verb IDs to root IDs.
+
+    Outputs:
+    * DERIVATIONAL_CONNECTIONS_PATH: CSV of identified derivational connections.
+    * OPEN_FORMS_PATH: JSON dump of potential derivation bases.
+    * ROOTS_BY_CLASS_PATH: CSV mapping roots to classes.
+    """
+    if not os.path.exists(RECONSTRUCTABLE_VERBS_PATH):
+        print(f"Error: Input file {RECONSTRUCTABLE_VERBS_PATH} not found.")
+        return
+    verbs = load_verbs(RECONSTRUCTABLE_VERBS_PATH)
+    root_overrides = load_root_ids_map(ROOT_IDS_PATH)
+    root_groups = group_verbs_by_root(verbs, root_id_overrides=root_overrides)
 
     # Load existing approvals
     approval_key_fields = [
@@ -76,7 +83,9 @@ def analyze_connections(
         "to_form_type",
         "to_stem",
     ]
-    existing_approvals = load_existing_approvals(output_path, approval_key_fields)
+    existing_approvals = load_existing_approvals(
+        DERIVATIONAL_CONNECTIONS_PATH, approval_key_fields
+    )
 
     # Write roots_by_class.csv
     csv_mapping_path = ROOTS_BY_CLASS_PATH
@@ -134,7 +143,7 @@ def analyze_connections(
 
             sample_verb.class_name = original_class
 
-    connections: List[Connection] = []
+    connections: List[DerivedVerbConnection] = []
     for key, group in root_groups.items():
         # Check against h_grade root
         root = group["h_grade"]
@@ -167,7 +176,7 @@ def analyze_connections(
                     user_approved = existing_approvals.get(approval_key, "")
 
                     connections.append(
-                        Connection(
+                        DerivedVerbConnection(
                             user_approved=user_approved,
                             from_root_id=group["root_id"],
                             from_h_grade=group["h_grade"],
@@ -206,7 +215,7 @@ def analyze_connections(
 
     rows = [c.to_dict() for c in connections]
     save_csv_artifact(
-        output_path,
+        DERIVATIONAL_CONNECTIONS_PATH,
         fieldnames,
         sorted(
             rows,
@@ -229,13 +238,13 @@ def analyze_connections(
         ),
     )
 
-    with open(OPEN_FORMS_REPORT_PATH, "w", encoding="utf-8") as f:
+    with open(OPEN_FORMS_PATH, "w", encoding="utf-8") as f:
         json.dump(open_forms_map, f, indent=4, sort_keys=True)
 
     print(
         f"Analyzed {len(root_groups)} root groups ({len(verbs)} verbs). Found {len(rows)} connections."
     )
-    print(f"Results written to {output_path}")
+    print(f"Results written to {DERIVATIONAL_CONNECTIONS_PATH}")
     print(f"Root-class mapping written to {csv_mapping_path}")
 
 
@@ -256,4 +265,4 @@ if __name__ == "__main__":
     parser.add_argument("--classes", help="Path to classes CSV")
     args = parser.parse_args()
 
-    analyze_connections(args.input, args.output, args.classes)
+    identify_derived_verbs(args.input, args.output, args.classes)

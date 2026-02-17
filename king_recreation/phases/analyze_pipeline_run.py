@@ -515,7 +515,23 @@ def _analyze_verb_status():
     )
 
 
-def analyze_matches(classes_path: Optional[str] = None):
+def analyze_pipeline_run(classes_path: Optional[str] = None):
+    """
+    Analyze the results of the pipeline and generate summary statistics.
+
+    Inputs:
+    * MATCHES_PATH: Raw aspect class matches.
+    * CORPUS_PATH: Original corpus.
+    * RECONSTRUCTABLE_VERBS_PATH: Final reconstructed verbs.
+    * VALIDATED_MATCHES_PATH: Validated matches.
+
+    Outputs:
+    * CLASS_MATCH_COUNTS_PATH: Counts of matches per class.
+    * VERB_COVERAGE_PATH: JSON summary of verb coverage.
+    * UNMATCHED_VERBS_PATH: List of verbs not matched/reconstructed.
+    * ROOT_AMBIGUITY_COUNTS_PATH: Statistics on root ambiguity.
+    * MACRO_VARIANT_DATA_PATH: Analysis of macro-class variants.
+    """
 
     # 1. Validation and Setup
     if not os.path.exists(MATCHES_PATH):
@@ -620,7 +636,7 @@ if __name__ == "__main__":
     parser.add_argument("--classes", help="Path to classes CSV file")
     args = parser.parse_args()
 
-    analyze_matches(args.classes)
+    analyze_pipeline_run(args.classes)
 
     if args.visualize:
         from king_recreation.visualize_analysis import run_all_visualizations

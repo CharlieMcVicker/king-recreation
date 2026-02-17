@@ -3,8 +3,8 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import List, Union
 
+from king_recreation.phases.preprocess_ced import respell_consonants
 from king_recreation.phonology_data import VOWEL_SET
-from king_recreation.preprocess_ced import respell_consonants
 from king_recreation.reconstruction import drop_dropped_phones
 
 

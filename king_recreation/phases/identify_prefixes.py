@@ -24,7 +24,7 @@ from king_recreation.paths import (
 
 
 @dataclass
-class Derivation:
+class PrefixDerivation:
     config: PrefixConfig
     h_grade: str
     g_grade: Optional[str]
@@ -46,6 +46,13 @@ class Derivation:
 
 
 def is_strict_compatible(s1: str, s2: str) -> bool:
+    """
+    Test if two stems are compatible.
+
+    Used to check two stems of the same grade.
+
+    TODO: can we just use equality now?
+    """
     if s1 == s2:
         return True
     if s1.startswith(s2) or s2.startswith(s1):
@@ -119,7 +126,7 @@ def derive_pronominals(
     pron_config: PronominalConfig,
     stative: bool,
     log=False,
-) -> Optional[Derivation]:
+) -> Optional[PrefixDerivation]:
 
     derived_stems = {}
     metathesis_used = False
@@ -138,7 +145,7 @@ def derive_pronominals(
             not metathesis_used
             == (pron_config.metathesis_strategy == MetathesisStrategy.NONE)
         ):
-            return Derivation(
+            return PrefixDerivation(
                 config=PrefixConfig(pre=None, pron=pron_config, stative=stative),
                 h_grade=h_grade,
                 g_grade=g_grade,
@@ -151,7 +158,7 @@ def derive_pronominals(
         return None
 
 
-def derive_middle(der: Derivation) -> List[Derivation]:
+def derive_middle(der: PrefixDerivation) -> List[PrefixDerivation]:
     der_dict = asdict(der)
     pron_dict = asdict(der.config.pron)
     options = []
@@ -175,7 +182,7 @@ def derive_middle(der: Derivation) -> List[Derivation]:
         )
 
         options.append(
-            Derivation(
+            PrefixDerivation(
                 **der_dict,
             )
         )
@@ -259,10 +266,10 @@ def iter_pre_configs(forms):
                             yield pre_config, stative, intermediate
 
 
-class StemDeriver:
+class PrefixDeriver:
     def derive_row(
         self, row: Dict[str, str], ref: Dict[str, str] = None
-    ) -> List[Derivation]:
+    ) -> List[PrefixDerivation]:
         form_names = [
             "present",
             "present_1sg",
@@ -278,7 +285,7 @@ class StemDeriver:
         if not forms:
             return []
 
-        valid_derivations: list[Derivation] = []
+        valid_derivations: list[PrefixDerivation] = []
 
         for pre_config, stative, intermediate in iter_pre_configs(forms):
             set_type = "b" if intermediate["present"].startswith("u") else "a"
@@ -351,13 +358,25 @@ class StemDeriver:
         return valid_derivations
 
 
-def main():
+def identify_prefixes():
+    """
+    Identify and strip pre-pronominal, pronominal, and middle-voice prefixes.
+
+    Inputs:
+    * CORPUS_PATH: Original corpus (used to reference full forms during derivation).
+    * CORPUS_NO_ASP_PATH: Corpus with aspect endings stripped (input for prefix stripping).
+
+    Outputs:
+    * CORPUS_NO_PRE_NO_ASP_PATH: Corpus with all valid configurations of prefixes stripped.
+    * PRE_PARSING_FAILURES_PATH: List of verbs that failed parsing and reasons.
+    """
+
     full_corpus = {}
     with open(CORPUS_PATH, "r", encoding="utf-8") as f:
         for r in csv.DictReader(f):
             full_corpus[r["corpus_id"]] = r
 
-    deriver = StemDeriver()
+    deriver = PrefixDeriver()
     labeled_data = []
     failures = []
     with open(CORPUS_NO_ASP_PATH, "r", encoding="utf-8") as f:

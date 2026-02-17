@@ -67,6 +67,7 @@ ROOTS_BY_CLASS_PATH = os.path.join(ARTIFACTS_DATA_DIR, "roots_by_class.csv")
 ROOT_MACRO_DISTRIBUTION_PATH = os.path.join(
     ARTIFACTS_DATA_DIR, "root_macro_distribution.csv"
 )
+OPEN_FORMS_PATH = os.path.join(ARTIFACTS_DATA_DIR, "open_forms.json")
 
 
 # -----------------------------------------------------------------------------
@@ -74,7 +75,6 @@ ROOT_MACRO_DISTRIBUTION_PATH = os.path.join(
 # -----------------------------------------------------------------------------
 REPORTS_PATH = REPORTS_DIR  # Legacy alias
 PRE_PARSING_FAILURES_PATH = os.path.join(REPORTS_DIR, "stem_derivation_failures.csv")
-OPEN_FORMS_REPORT_PATH = os.path.join(REPORTS_DIR, "open_forms.json")
 CONSISTENCY_ANALYSIS_PATH = os.path.join(REPORTS_DIR, "consistency_analysis.csv")
 RECONSTRUCTION_REPORT_PATH = os.path.join(REPORTS_DIR, "reconstruction_report.csv")
 RECONSTRUCTION_VALIDATION_PATH = os.path.join(
