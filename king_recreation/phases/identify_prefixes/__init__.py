@@ -1,3 +1,4 @@
+import json
 from dataclasses import asdict, dataclass
 from typing import Dict, List, Optional, Tuple
 
@@ -7,7 +8,6 @@ from king_recreation.morphemes.post_root_morphemes import match_post_root_morphe
 from king_recreation.morphemes.prefixes import PrefixConfig
 from king_recreation.morphemes.prefixes.prepronominals import PrePronominalConfig
 from king_recreation.morphemes.prefixes.pronominals import (
-    MetathesisStrategy,
     PronominalConfig,
     StemType,
     detach_prefix,
@@ -127,23 +127,25 @@ def derive_pronominals(
     stative: bool,
     log=False,
 ) -> Optional[PrefixDerivation]:
-
+    if log:
+        print("\n\nDerivation begins\n" + json.dumps(pron_config.to_row(), indent=2))
     derived_stems = {}
     metathesis_used = False
     for fn, word in intermediate_forms.items():
         stem, fn_metathesis_used = detach_prefix(word, fn, pron_config, stative)
         metathesis_used = metathesis_used or fn_metathesis_used
         if stem is None:
+            if log:
+                print(f"Stem for form {fn} ({word}) is None")
             return None
 
         derived_stems[fn] = stem
     res = stems_are_consistent(derived_stems, pron_config, stative, log=log)
     if res is not None:
         h_grade, g_grade = res
-        # Metathesis must be used if strategy is not none
+        # Metathesis must be used if it is allowed
         if pron_config.stem_type.is_valid_for_stem(h_grade) and (
-            not metathesis_used
-            == (pron_config.metathesis_strategy == MetathesisStrategy.NONE)
+            metathesis_used == pron_config.allow_h_metathesis
         ):
             return PrefixDerivation(
                 config=PrefixConfig(pre=None, pron=pron_config, stative=stative),
@@ -153,8 +155,12 @@ def derive_pronominals(
                 metathesis_involved=metathesis_used,
             )
         else:
+            if log:
+                print("Stem type not valid")
             return None
     else:
+        if log:
+            print("Inconsistent stems", derived_stems)
         return None
 
 
@@ -268,7 +274,7 @@ def iter_pre_configs(forms):
 
 class PrefixDeriver:
     def derive_row(
-        self, row: Dict[str, str], ref: Dict[str, str] = None
+        self, row: Dict[str, str], ref: Dict[str, str] = None, log=False
     ) -> List[PrefixDerivation]:
         form_names = [
             "present",
@@ -290,7 +296,9 @@ class PrefixDeriver:
         for pre_config, stative, intermediate in iter_pre_configs(forms):
             set_type = "b" if intermediate["present"].startswith("u") else "a"
             ka = intermediate["present"].startswith("k")
-            aki = intermediate.get("present_1sg", "").startswith("aki")
+            aki = intermediate.get("present_1sg", "").startswith(
+                "aki"
+            ) or intermediate.get("present_1sg", "").startswith("akhi")
             b3sg_starts_uwa = next(
                 (
                     intermediate.get(fn, "").startswith("uwa")
@@ -302,15 +310,7 @@ class PrefixDeriver:
             for plural in [False, True]:
                 for use_3rd in [False, True]:
                     for s_type in StemType:
-                        for meta in [MetathesisStrategy.NONE] + (
-                            [
-                                (
-                                    MetathesisStrategy.VOWEL
-                                    if s_type.value.startswith("vowel")
-                                    else MetathesisStrategy.H_CONS
-                                )
-                            ]
-                        ):
+                        for allow_h_metathesis in [False, True]:
                             uwa_opts = [False]
                             if s_type == StemType.VOWEL_V:
                                 uwa_opts = (
@@ -322,7 +322,7 @@ class PrefixDeriver:
                                 pron_config = PronominalConfig(
                                     set_type=set_type,
                                     stem_type=s_type,
-                                    metathesis_strategy=meta,
+                                    allow_h_metathesis=allow_h_metathesis,
                                     plural_pronouns=plural,
                                     use_ka_variant=ka,
                                     uwa_replaces_v=uwa,
@@ -333,6 +333,7 @@ class PrefixDeriver:
                                     intermediate,
                                     pron_config,
                                     stative,
+                                    log=log,
                                     # log="calling" in row["definition"],
                                 )
                                 if res:
@@ -344,7 +345,7 @@ class PrefixDeriver:
         valid_derivations.sort(
             key=lambda d: (
                 d.config.pron.use_3rd_person_object,
-                d.config.pron.metathesis_strategy != MetathesisStrategy.NONE,
+                d.config.pron.allow_h_metathesis,
                 d.config.pron.use_ka_variant,
                 sum(
                     [

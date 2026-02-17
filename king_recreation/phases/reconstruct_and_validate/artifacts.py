@@ -131,7 +131,7 @@ def save_validated_roots(data: list):
         "metathesis_involved",
         "set_a_b",
         "stem_type",
-        "metathesis_strategy",
+        "allow_h_metathesis",
         "middle_voice",
         "plural",
         "ka_variant",

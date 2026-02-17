@@ -95,7 +95,7 @@ class ReconstructionEngine:
 
         candidates = []
         for stem, dropped in stems_to_try:
-            res = prefix.attach(stem)
+            res = prefix.attach(stem, config.allow_h_metathesis)
             if res:
                 candidates.append(res)
         return candidates
