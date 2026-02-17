@@ -38,8 +38,7 @@ def check_tone_consistency(interactive=False):
     * CLASS_ENDING_PROFILES_CSV_PATH: Summary of tone profiles across aspect forms for each class.
     """
 
-    raw_verbs = load_raw_reconstructable_verbs()
-    reconstructable_verbs = [ReconstructableVerb.from_dict(v) for v in raw_verbs]
+    reconstructable_verbs = load_raw_reconstructable_verbs()
     if not reconstructable_verbs:
         print("Required inputs missing.")
         return

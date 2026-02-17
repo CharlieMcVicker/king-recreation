@@ -8,7 +8,6 @@ from king_recreation.paths import (
     HIERARCHICAL_DICT_PATH,
     ROOT_IDS_PATH,
 )
-from king_recreation.utils import load_root_ids_map
 
 
 def load_derivational_connections() -> List[Dict[str, str]]:
@@ -16,6 +15,30 @@ def load_derivational_connections() -> List[Dict[str, str]]:
         return []
     with open(DERIVATIONAL_CONNECTIONS_PATH, "r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
+
+
+def load_root_ids_map(root_ids_path: str) -> Dict[str, str]:
+    """Loads a mapping of corpus_id -> root_id from the CSV, respecting user edits."""
+    overrides = {}
+    if not os.path.exists(root_ids_path):
+        return overrides
+
+    with open(root_ids_path, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row.get("user_edited") == "x":
+                rid = row.get("root_id")
+                if "corpus_ids" in row:
+                    cids = [
+                        x.strip()
+                        for x in row.get("corpus_ids", "").split(";")
+                        if x.strip()
+                    ]
+                    for cid in cids:
+                        overrides[cid] = rid
+                elif "corpus_id" in row:
+                    overrides[row["corpus_id"]] = rid
+    return overrides
 
 
 def load_root_ids_overrides() -> Dict[str, str]:

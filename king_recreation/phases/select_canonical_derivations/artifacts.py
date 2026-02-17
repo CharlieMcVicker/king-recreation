@@ -1,8 +1,10 @@
 import csv
 import json
 import os
+from typing import List
 
 from king_recreation.paths import RECONSTRUCTABLE_VERBS_PATH
+from king_recreation.reconstruction import ReconstructableVerb
 
 
 def save_reconstructable_verbs(data: list, encoder_cls):
@@ -12,8 +14,9 @@ def save_reconstructable_verbs(data: list, encoder_cls):
     print(f"Artifacts saved to {RECONSTRUCTABLE_VERBS_PATH}")
 
 
-def load_reconstructable_verbs() -> list:
+def load_reconstructable_verbs() -> List[ReconstructableVerb]:
     if not os.path.exists(RECONSTRUCTABLE_VERBS_PATH):
         return []
     with open(RECONSTRUCTABLE_VERBS_PATH, "r", encoding="utf-8") as f:
-        return json.load(f)
+        data = json.load(f)
+    return [ReconstructableVerb.from_dict(item) for item in data]

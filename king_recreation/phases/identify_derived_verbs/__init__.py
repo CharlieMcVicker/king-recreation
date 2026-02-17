@@ -1,6 +1,6 @@
 import re
 from dataclasses import asdict, dataclass
-from typing import Dict, List
+from typing import Dict, List, Optional, Tuple
 
 from king_recreation.morphemes.prefixes.pronominals import MiddleVoice, StemType
 from king_recreation.phases.identify_derived_verbs.artifacts import (
@@ -18,7 +18,46 @@ from king_recreation.reconstruction import (
     ReconstructionEngine,
     desegment,
 )
-from king_recreation.utils import group_verbs_by_root
+
+
+def group_verbs_by_root(
+    verbs: List[ReconstructableVerb], root_id_overrides: Optional[Dict[str, str]] = None
+) -> Dict[Tuple[str, str, str], Dict]:
+    """Groups ReconstructableVerb objects by (root_id, class, stem_type)."""
+    root_groups: Dict[Tuple[str, str, str], Dict] = {}
+    root_id_overrides = root_id_overrides or {}
+
+    for verb in verbs:
+        stem_type = verb.config.pron.stem_type.value
+
+        # Determine Root ID
+        root_id = f"{verb.h_grade_root}|{verb.glottal_grade_root or ''}"
+        if verb.corpus_id is not None:
+            cid = str(verb.corpus_id)
+            if cid in root_id_overrides:
+                root_id = root_id_overrides[cid]
+
+        # root_ids do not override h_grade; we track root_id as the grouping key.
+        # We no longer parse h/g from the root_id.
+
+        key = (
+            root_id,
+            verb.class_name,
+            stem_type,
+        )
+        if key not in root_groups:
+            root_groups[key] = {
+                "root_id": root_id,
+                "h_grade": verb.h_grade_root,
+                "g_grade": verb.glottal_grade_root or "",
+                "class": verb.class_name,
+                "stem_type": stem_type,
+                "corpus_ids": [],
+                "verbs": [],
+            }
+        root_groups[key]["corpus_ids"].append(str(verb.corpus_id))
+        root_groups[key]["verbs"].append(verb)
+    return root_groups
 
 
 @dataclass
@@ -62,8 +101,7 @@ def identify_derived_verbs(
     * OPEN_FORMS_PATH: JSON dump of potential derivation bases.
     * ROOTS_BY_CLASS_PATH: CSV mapping roots to classes.
     """
-    raw_verbs = load_reconstructable_verbs()
-    verbs = [ReconstructableVerb.from_dict(v) for v in raw_verbs]
+    verbs = load_reconstructable_verbs()
     if not verbs:
         print("Required inputs missing.")
         return

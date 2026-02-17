@@ -17,7 +17,6 @@ from king_recreation.phases.select_canonical_derivations.artifacts import (
     load_reconstructable_verbs as load_raw_reconstructable_verbs,
 )
 from king_recreation.reconstruction import EnhancedJSONEncoder, ReconstructableVerb
-from king_recreation.utils import load_root_ids_map
 
 
 @dataclass
@@ -51,8 +50,7 @@ def load_all_data() -> Tuple[
     List[Dict[str, str]],
     Dict[str, str],
 ]:
-    data = load_raw_reconstructable_verbs()
-    all_verbs = [ReconstructableVerb.from_dict(v) for v in data]
+    all_verbs = load_raw_reconstructable_verbs()
     derivational_connections = load_derivational_connections()
     root_ids = load_root_ids_overrides()
 
