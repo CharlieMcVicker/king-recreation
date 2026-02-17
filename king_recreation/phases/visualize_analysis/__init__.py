@@ -585,16 +585,16 @@ def plot_sequence_match_percentage(csv_path, output_path):
     plt.close()
 
 
-from king_recreation.paths import (
-    CLASS_ENDING_PROFILES_CSV_PATH,
-    CLASS_MATCH_COUNTS_PATH,
-    CLASS_NEAR_MISSES_PATH,
-    MACRO_VARIANT_DATA_PATH,
-    ROOT_AMBIGUITY_COUNTS_PATH,
-    VARIANT_MATCH_COUNTS_PATH,
-    VARIATION_MATCH_COUNTS_PATH,
-    VERB_COVERAGE_PATH,
-    VISUALIZATIONS_PATH,
+from king_recreation.phases.visualize_analysis.artifacts import (
+    get_class_ending_profiles_path,
+    get_class_match_counts_path,
+    get_class_near_misses_path,
+    get_macro_variant_data_path,
+    get_root_ambiguity_counts_path,
+    get_variant_match_counts_path,
+    get_variation_match_counts_path,
+    get_verb_coverage_path,
+    get_visualizations_dir,
 )
 
 
@@ -617,64 +617,63 @@ def visualize_all():
     """
 
     # Plots (images) go to visualizations
-    output_dir = VISUALIZATIONS_PATH
-    os.makedirs(output_dir, exist_ok=True)
+    output_dir = get_visualizations_dir()
 
     print("Generating Class Distribution plots...")
     plot_class_distribution(
-        CLASS_MATCH_COUNTS_PATH,
+        get_class_match_counts_path(),
         os.path.join(output_dir, "class_distribution"),
     )
 
     print("Generating Verb Coverage plot...")
     plot_verb_coverage(
-        VERB_COVERAGE_PATH,
+        get_verb_coverage_path(),
         os.path.join(output_dir, "verb_coverage.png"),
     )
 
     print("Generating Near-Miss Heatmap plots...")
     plot_near_miss_heatmap(
-        CLASS_NEAR_MISSES_PATH,
+        get_class_near_misses_path(),
         os.path.join(output_dir, "near_miss_heatmap"),
     )
 
     print("Generating Root Ambiguity Histogram...")
     plot_root_ambiguity_histogram(
-        ROOT_AMBIGUITY_COUNTS_PATH,
+        get_root_ambiguity_counts_path(),
         os.path.join(output_dir, "root_ambiguity_histogram.png"),
     )
 
     print("Generating Class Match Histogram...")
     plot_class_match_histogram(
-        CLASS_MATCH_COUNTS_PATH,
+        get_class_match_counts_path(),
         os.path.join(output_dir, "class_match_histogram.png"),
     )
 
     print("Generating Macro Variant plots...")
     plot_macro_variants(
-        MACRO_VARIANT_DATA_PATH,
+        get_macro_variant_data_path(),
         os.path.join(output_dir, "macro_variants"),
     )
 
     print("Generating Variant Match Histograms...")
     plot_variant_match_histograms(
-        VARIANT_MATCH_COUNTS_PATH,
+        get_variant_match_counts_path(),
         os.path.join(output_dir, "variant_match_histograms"),
     )
 
     print("Generating Variation Match Histograms...")
     plot_variation_match_histograms(
-        VARIATION_MATCH_COUNTS_PATH,
+        get_variation_match_counts_path(),
         os.path.join(output_dir, "variation_match_histograms"),
     )
 
     print("Generating Class Ending Profile plots...")
     plot_class_sequence_counts(
-        CLASS_ENDING_PROFILES_CSV_PATH,
+        get_class_ending_profiles_path(),
         os.path.join(output_dir, "class_sequence_counts_histogram.png"),
     )
     plot_sequence_match_percentage(
-        CLASS_ENDING_PROFILES_CSV_PATH,
+        get_class_ending_profiles_path(),
         os.path.join(output_dir, "sequence_match_percentage_histogram.png"),
     )
 
@@ -688,4 +687,4 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     visualize_all()
-    print(f"Visualizations saved to {VISUALIZATIONS_PATH}/")
+    print(f"Visualizations saved.")

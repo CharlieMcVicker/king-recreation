@@ -1,27 +1,24 @@
-import json
-import os
 import re
 from dataclasses import asdict, dataclass
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List
 
-from king_recreation.morphemes.middle_voice import MiddleVoice
-from king_recreation.morphemes.prefixes.pronominals import StemType
-from king_recreation.paths import (
-    DERIVATIONAL_CONNECTIONS_PATH,
-    OPEN_FORMS_PATH,
-    RECONSTRUCTABLE_VERBS_PATH,
-    ROOT_IDS_PATH,
-    ROOTS_BY_CLASS_PATH,
-)
-from king_recreation.reconstruction import ReconstructionEngine, desegment
-from king_recreation.utils import (
-    group_verbs_by_root,
-    load_existing_approvals,
-    load_root_ids_map,
-    load_verbs,
-    save_csv_artifact,
+from king_recreation.morphemes.prefixes.pronominals import MiddleVoice, StemType
+from king_recreation.phases.identify_derived_verbs.artifacts import (
+    load_existing_approvals_data,
+    load_root_overrides,
+    save_derivational_connections,
+    save_open_forms,
     save_root_mapping,
 )
+from king_recreation.phases.select_canonical_derivations.artifacts import (
+    load_reconstructable_verbs,
+)
+from king_recreation.reconstruction import (
+    ReconstructableVerb,
+    ReconstructionEngine,
+    desegment,
+)
+from king_recreation.utils import group_verbs_by_root
 
 
 @dataclass
@@ -65,11 +62,12 @@ def identify_derived_verbs(
     * OPEN_FORMS_PATH: JSON dump of potential derivation bases.
     * ROOTS_BY_CLASS_PATH: CSV mapping roots to classes.
     """
-    if not os.path.exists(RECONSTRUCTABLE_VERBS_PATH):
-        print(f"Error: Input file {RECONSTRUCTABLE_VERBS_PATH} not found.")
+    raw_verbs = load_reconstructable_verbs()
+    verbs = [ReconstructableVerb.from_dict(v) for v in raw_verbs]
+    if not verbs:
+        print("Required inputs missing.")
         return
-    verbs = load_verbs(RECONSTRUCTABLE_VERBS_PATH)
-    root_overrides = load_root_ids_map(ROOT_IDS_PATH)
+    root_overrides = load_root_overrides()
     root_groups = group_verbs_by_root(verbs, root_id_overrides=root_overrides)
 
     # Load existing approvals
@@ -83,14 +81,10 @@ def identify_derived_verbs(
         "to_form_type",
         "to_stem",
     ]
-    existing_approvals = load_existing_approvals(
-        DERIVATIONAL_CONNECTIONS_PATH, approval_key_fields
-    )
+    existing_approvals = load_existing_approvals_data(approval_key_fields)
 
     # Write roots_by_class.csv
-    csv_mapping_path = ROOTS_BY_CLASS_PATH
-
-    save_root_mapping(root_groups, csv_mapping_path)
+    save_root_mapping(root_groups)
 
     engine = ReconstructionEngine(classes_path)
 
@@ -113,8 +107,6 @@ def identify_derived_verbs(
                 if not base_stems:
                     continue
 
-                # TODO don't use desegment here
-                # get proper set of segments joined
                 for stem in [
                     desegment(
                         s
@@ -214,9 +206,7 @@ def identify_derived_verbs(
     ]
 
     rows = [c.to_dict() for c in connections]
-    save_csv_artifact(
-        DERIVATIONAL_CONNECTIONS_PATH,
-        fieldnames,
+    save_derivational_connections(
         sorted(
             rows,
             key=lambda row: tuple(
@@ -236,33 +226,19 @@ def identify_derived_verbs(
                 ]
             ),
         ),
+        fieldnames,
     )
 
-    with open(OPEN_FORMS_PATH, "w", encoding="utf-8") as f:
-        json.dump(open_forms_map, f, indent=4, sort_keys=True)
+    save_open_forms(open_forms_map)
 
-    print(
-        f"Analyzed {len(root_groups)} root groups ({len(verbs)} verbs). Found {len(rows)} connections."
-    )
-    print(f"Results written to {DERIVATIONAL_CONNECTIONS_PATH}")
-    print(f"Root-class mapping written to {csv_mapping_path}")
+    print(f"Results written.")
 
 
 if __name__ == "__main__":
     import argparse
 
     parser = argparse.ArgumentParser(description="Analyze root connections.")
-    parser.add_argument(
-        "--input",
-        default=RECONSTRUCTABLE_VERBS_PATH,
-        help="Path to reconstructable verbs JSON",
-    )
-    parser.add_argument(
-        "--output",
-        default=DERIVATIONAL_CONNECTIONS_PATH,
-        help="Path to output CSV",
-    )
     parser.add_argument("--classes", help="Path to classes CSV")
     args = parser.parse_args()
 
-    identify_derived_verbs(args.input, args.output, args.classes)
+    identify_derived_verbs(args.classes)

@@ -2,10 +2,11 @@ import csv
 import os
 import re
 
-from king_recreation.paths import (
-    CED_DATA_ORIGINAL_PATH,
-    CHEROKEE_NATION_DICTIONARY_PATH,
-    CORPUS_PATH,
+from king_recreation.phases.preprocess_ced.artifacts import (
+    read_original_ced,
+    read_original_cnd,
+    save_corpus,
+    save_mapping,
 )
 
 
@@ -70,7 +71,6 @@ def clean_row(row):
     imperfective = clean_string(imperfective_raw)
     # README: "3rd incompletive habitual column with oi rstripped"
     # Logic: if it ends in 'i' (possibly with tones/glottals), and has 'o' before it.
-    print(imperative[:-3], imperfective.endswith("o'i"))
     if imperfective.endswith("o'i"):
         imperfective = imperfective[:-3]
 
@@ -109,45 +109,21 @@ def create_corpus_from_cn_dict():
     Outputs:
     * CORPUS_PATH: a CSV with one row per lexical item with all forms present, tone-less orthography.
     """
-    # CHEROKEE_NATION_DICTIONARY_PATH, CORPUS_PATH
-    print(
-        f"Processing Cherokee Nation dictionary from {CHEROKEE_NATION_DICTIONARY_PATH}"
-    )
-
-    # Check if file exists
-    if not os.path.exists(CHEROKEE_NATION_DICTIONARY_PATH):
-        print(
-            f"Error: Input file needed not found at {CHEROKEE_NATION_DICTIONARY_PATH}"
-        )
-        return
-
-    # Ensure the full directory path exists for the output file
-    output_data_dir = os.path.dirname(CORPUS_PATH)
-    if not os.path.exists(output_data_dir):
-        os.makedirs(output_data_dir)
+    rows = read_original_cnd()
 
     # Group rows by "Entry No." (Using "No." column as primary ID, but it seems to repeat for forms)
     # The file has "No." column which groups forms of the same verb.
     # We will read all rows and group them by "No."
 
     grouped_entries = {}
+    for row in rows:
+        entry_no = row.get("No.", "").strip()
+        if not entry_no:
+            continue
 
-    with open(CHEROKEE_NATION_DICTIONARY_PATH, mode="r", encoding="utf-8") as f:
-        # Some CND files may have a BOM
-        content = f.read()
-        if content.startswith("\ufeff"):
-            content = content[1:]
-        import io
-
-        reader = csv.DictReader(io.StringIO(content))
-        for row in reader:
-            entry_no = row.get("No.", "").strip()
-            if not entry_no:
-                continue
-
-            if entry_no not in grouped_entries:
-                grouped_entries[entry_no] = []
-            grouped_entries[entry_no].append(row)
+        if entry_no not in grouped_entries:
+            grouped_entries[entry_no] = []
+        grouped_entries[entry_no].append(row)
 
     processed_data = []
     mapping_data = []
@@ -297,13 +273,7 @@ def create_corpus_from_cn_dict():
         "infinitive",
     ]
 
-    with open(CORPUS_PATH, mode="w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(processed_data)
-
-    # Write mapping CSV
-    from king_recreation.paths import CORPUS_TO_CND_PATH
+    save_corpus(processed_data, fieldnames)
 
     mapping_fieldnames = [
         "corpus_id",
@@ -314,30 +284,17 @@ def create_corpus_from_cn_dict():
         "imperative",
         "infinitive",
     ]
-    with open(CORPUS_TO_CND_PATH, mode="w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=mapping_fieldnames)
-        writer.writeheader()
-        writer.writerows(mapping_data)
-
-    print(f"Processed CN data written to {CORPUS_PATH}")
-    print(f"Mapping CND data written to {CORPUS_TO_CND_PATH}")
+    save_mapping(mapping_data, mapping_fieldnames)
 
 
 def process_ced():
-    # Ensure the full directory path exists for the output file
-    output_data_dir = os.path.dirname(CORPUS_PATH)
-    if not os.path.exists(output_data_dir):
-        os.makedirs(output_data_dir)
-
     processed_data = []
+    rows = read_original_ced()
 
-    with open(CED_DATA_ORIGINAL_PATH, mode="r", encoding="utf-8") as f:
-        # The file seems to have a trailing comma in the header based on initial view
-        reader = csv.DictReader(f)
-        for idx, row in enumerate(reader):
-            verb_data = clean_row(row)
-            verb_data["corpus_id"] = idx
-            processed_data.append(verb_data)
+    for idx, row in enumerate(rows):
+        verb_data = clean_row(row)
+        verb_data["corpus_id"] = idx
+        processed_data.append(verb_data)
 
     fieldnames = [
         "corpus_id",
@@ -349,12 +306,7 @@ def process_ced():
         "imperative",
         "infinitive",
     ]
-    with open(CORPUS_PATH, mode="w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(processed_data)
-
-    print(f"Processed data written to {CORPUS_PATH}")
+    save_corpus(processed_data, fieldnames)
 
 
 if __name__ == "__main__":
@@ -369,6 +321,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.new_source:
-        create_corpus_from_cn_dict(CHEROKEE_NATION_DICTIONARY_PATH, CORPUS_PATH)
+        create_corpus_from_cn_dict()
     else:
         process_ced()

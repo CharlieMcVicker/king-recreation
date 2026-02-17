@@ -1,18 +1,17 @@
-import csv
-import io
-import json
-import os
 import re
 from collections import defaultdict
-from csv import DictReader
 
-from king_recreation.paths import (
-    CHEROKEE_NATION_DICTIONARY_PATH,
-    CLASS_ENDING_PROFILES_CSV_PATH,
-    CORPUS_TO_CND_PATH,
-    ENDING_TONE_ANALYSIS_CSV_PATH,
-    ENDING_TONE_ANALYSIS_JSON_PATH,
-    RECONSTRUCTABLE_VERBS_PATH,
+from king_recreation.phases.check_tone_consistency.artifacts import (
+    load_cnd_corpus,
+    save_class_ending_profiles,
+    save_tone_analysis_csv,
+    save_tone_analysis_json,
+)
+from king_recreation.phases.preprocess_ced.artifacts import (
+    load_mapping as load_corpus_mapping,
+)
+from king_recreation.phases.select_canonical_derivations.artifacts import (
+    load_reconstructable_verbs as load_raw_reconstructable_verbs,
 )
 from king_recreation.reconstruction import ReconstructableVerb
 from king_recreation.tone.utils import (
@@ -39,39 +38,22 @@ def check_tone_consistency(interactive=False):
     * CLASS_ENDING_PROFILES_CSV_PATH: Summary of tone profiles across aspect forms for each class.
     """
 
-    if not os.path.exists(RECONSTRUCTABLE_VERBS_PATH):
-        print(f"Error: {RECONSTRUCTABLE_VERBS_PATH} not found.")
+    raw_verbs = load_raw_reconstructable_verbs()
+    reconstructable_verbs = [ReconstructableVerb.from_dict(v) for v in raw_verbs]
+    if not reconstructable_verbs:
+        print("Required inputs missing.")
         return
 
-    with open(RECONSTRUCTABLE_VERBS_PATH, "r") as f:
-        reconstructable_verbs_raw = json.load(f)
-    reconstructable_verbs = [
-        ReconstructableVerb.from_dict(v) for v in reconstructable_verbs_raw
-    ]
-
-    if not os.path.exists(CORPUS_TO_CND_PATH):
-        print(f"Error: {CORPUS_TO_CND_PATH} not found. Tone check skipped.")
+    mapping = load_corpus_mapping()
+    corpus_id_to_entries = {int(r["corpus_id"]): r for r in mapping}
+    if not corpus_id_to_entries:
+        print("Corpus to CND mapping missing.")
         return
 
-    with open(CORPUS_TO_CND_PATH, "r") as f:
-        reader = DictReader(f)
-        corpus_id_to_entries = {int(r["corpus_id"]): r for r in reader}
-
-    if not os.path.exists(CHEROKEE_NATION_DICTIONARY_PATH):
-        print(
-            f"Error: {CHEROKEE_NATION_DICTIONARY_PATH} not found. Tone check skipped."
-        )
+    cnd_corpus = load_cnd_corpus()
+    if not cnd_corpus:
+        print("CND corpus missing.")
         return
-
-    with open(CHEROKEE_NATION_DICTIONARY_PATH, "r") as f:
-        content = f.read()
-        if content.startswith("\ufeff"):
-            content = content[1:]
-
-        reader = DictReader(io.StringIO(content))
-        # "No." seems to be the grouping ID, but "Entry No." is unique per row.
-        # corpus_to_cnd maps to "Entry No."
-        cnd_corpus = {r.get("Entry No.", "").strip(): r for r in reader}
 
     forms_to_check = [
         "present",
@@ -197,9 +179,7 @@ def check_tone_consistency(interactive=False):
             cls_data[ending] = sorted(list(class_ending_tone_verbs[cls][ending].keys()))
         artifact_output[cls] = cls_data
 
-    os.makedirs(os.path.dirname(ENDING_TONE_ANALYSIS_JSON_PATH), exist_ok=True)
-    with open(ENDING_TONE_ANALYSIS_JSON_PATH, "w") as f:
-        json.dump(artifact_output, f, indent=4, sort_keys=True)
+    save_tone_analysis_json(artifact_output)
 
     # CSV Output
     # We want Class, Surface Form, Count
@@ -222,12 +202,9 @@ def check_tone_consistency(interactive=False):
                 }
             )
 
-    with open(ENDING_TONE_ANALYSIS_CSV_PATH, "w", newline="") as f:
-        writer = csv.DictWriter(
-            f, fieldnames=["Class", "Surface Form", "Base Ending", "Tones", "Count"]
-        )
-        writer.writeheader()
-        writer.writerows(csv_rows)
+    save_tone_analysis_csv(
+        csv_rows, ["Class", "Surface Form", "Base Ending", "Tones", "Count"]
+    )
 
     # Class Ending Profiles Output
     profile_rows = []
@@ -256,25 +233,20 @@ def check_tone_consistency(interactive=False):
         )
     )
 
-    with open(CLASS_ENDING_PROFILES_CSV_PATH, "w", newline="") as f:
-        writer = csv.DictWriter(
-            f,
-            fieldnames=[
-                "class",
-                "present",
-                "imperfective",
-                "perfective",
-                "immediate",
-                "infinitive",
-                "count",
-            ],
-        )
-        writer.writeheader()
-        writer.writerows(profile_rows)
-
-    print(
-        f"\nEnding Tone Analysis saved to:\n  JSON: {ENDING_TONE_ANALYSIS_JSON_PATH}\n  CSV (Individual): {ENDING_TONE_ANALYSIS_CSV_PATH}\n  CSV (Profiles): {CLASS_ENDING_PROFILES_CSV_PATH}"
+    save_class_ending_profiles(
+        profile_rows,
+        [
+            "class",
+            "present",
+            "imperfective",
+            "perfective",
+            "immediate",
+            "infinitive",
+            "count",
+        ],
     )
+
+    print(f"\nEnding Tone Analysis saved.")
 
     print("\nEnding Tone Analysis Summary by Class:")
     for cls in sorted(class_ending_tone_verbs.keys()):

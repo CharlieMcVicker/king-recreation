@@ -30,28 +30,37 @@ from king_recreation.paths import (
     VARIATION_MATCH_COUNTS_PATH,
     VERB_COVERAGE_PATH,
 )
-
-
-def load_csv(path: str) -> List[Dict[str, str]]:
-    with open(path, mode="r", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
-
-
-def save_csv(path: str, data: List[Dict[str, Any]], fieldnames: List[str]) -> None:
-    with open(path, mode="w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(data)
-
-
-def save_json(path: str, data: Any) -> None:
-    with open(path, mode="w", encoding="utf-8") as f:
-        json.dump(data, f, indent=4, sort_keys=True)
-
-
-def load_json(path: str) -> Any:
-    with open(path, mode="r", encoding="utf-8") as f:
-        return json.load(f)
+from king_recreation.phases.analyze_pipeline_run.artifacts import (
+    save_class_match_counts,
+    save_furthest_corpus_by_id,
+    save_macro_variant_data,
+    save_root_ambiguity_counts,
+    save_root_macro_distribution,
+    save_unmatched_verbs,
+    save_unused_variants,
+    save_variant_match_counts,
+    save_variation_match_counts,
+    save_verb_coverage,
+)
+from king_recreation.phases.identify_aspect_classes.artifacts import (
+    load_matches as load_raw_matches,
+)
+from king_recreation.phases.identify_aspect_classes.artifacts import (
+    load_stripped_corpus as load_corpus_no_asp,
+)
+from king_recreation.phases.identify_prefixes.artifacts import (
+    load_stripped_roots as load_corpus_no_pre,
+)
+from king_recreation.phases.preprocess_ced.artifacts import load_corpus
+from king_recreation.phases.reconstruct_and_validate.artifacts import (
+    load_validated_matches,
+)
+from king_recreation.phases.reconstruct_and_validate.artifacts import (
+    load_validated_roots as load_validated_reconstructable_roots,
+)
+from king_recreation.phases.select_canonical_derivations.artifacts import (
+    load_reconstructable_verbs,
+)
 
 
 def _prepare_filtered_matches(
@@ -71,15 +80,14 @@ def _prepare_filtered_matches(
         if key not in filtered_matches:
             filtered_matches[key] = row
 
-    if os.path.exists(validated_matches_path):
-        validated_matches = load_csv(validated_matches_path)
-        for row in validated_matches:
-            verb = row["definition"]
-            corpus_id = row.get("corpus_id", "")
-            cls = row["class"]
-            row["scope"] = "reconstructs"
-            key = (corpus_id if corpus_id else verb, cls)
-            filtered_matches[key] = row
+    validated_matches = load_validated_matches()
+    for row in validated_matches:
+        verb = row["definition"]
+        corpus_id = row.get("corpus_id", "")
+        cls = row["class"]
+        row["scope"] = "reconstructs"
+        key = (corpus_id if corpus_id else verb, cls)
+        filtered_matches[key] = row
     return filtered_matches
 
 
@@ -172,11 +180,10 @@ def _get_unmatched_verbs(
     return unmatched_data
 
 
-def _analyze_root_ambiguity(reconstructable_path: str) -> List[Dict[str, Any]]:
-    if not os.path.exists(reconstructable_path):
+def _analyze_root_ambiguity() -> List[Dict[str, Any]]:
+    reconstructable_verbs = load_reconstructable_verbs()
+    if reconstructable_verbs is None:
         return []
-
-    reconstructable_verbs = load_json(reconstructable_path)
 
     # Group corpus_ids by h_grade_root then glottal_grade
     root_groups = defaultdict(lambda: defaultdict(set))
@@ -201,13 +208,10 @@ def _analyze_root_ambiguity(reconstructable_path: str) -> List[Dict[str, Any]]:
     return root_ambiguity_data
 
 
-def _analyze_macro_variants(
-    reconstructable_path: str, pattern_registry: PatternRegistry
-) -> Dict[str, Any]:
-    if not os.path.exists(reconstructable_path):
+def _analyze_macro_variants(pattern_registry: PatternRegistry) -> Dict[str, Any]:
+    reconstructable_verbs = load_reconstructable_verbs()
+    if reconstructable_verbs is None:
         return {}
-
-    reconstructable_verbs = load_json(reconstructable_path)
     # pattern captures the base name and then the digits for each form if present
     # eg. v'vsk[perf2-inf2] -> ("v'vsk", None, None, "2", None, "2")
     pattern_regex = r"([\w\-'\*]+)(?:\[(?:pres(\d+))?\-?(?:imperf(\d+))?\-?(?:perf(\d+))?\-?(?:imp(\d+))?\-?(?:inf(\d+))?\])?"
@@ -280,9 +284,6 @@ def _analyze_macro_variants(
                         "percent": round(count / total_matches * 100, 2),
                     }
                 )
-        else:
-            # Handle case with 0 matches (shouldn't happen given the loop check above, but for safety)
-            pass
 
     return analysis
 
@@ -307,7 +308,7 @@ def _identify_dead_variants(macro_variant_data: Dict[str, Any]) -> List[Dict[str
     return dead_variants
 
 
-def _save_variant_match_csv(path: str, macro_variant_data: Dict[str, Any]) -> None:
+def _save_variant_match_csv(macro_variant_data: Dict[str, Any]) -> None:
     flattened_data = []
     for macro_name, data in macro_variant_data.items():
         if "variant_stats" in data:
@@ -326,8 +327,7 @@ def _save_variant_match_csv(path: str, macro_variant_data: Dict[str, Any]) -> No
     # Sort by match count descending, then macro class
     flattened_data.sort(key=lambda x: (-x["match_count"], x["macro_class"]))
 
-    save_csv(
-        path,
+    save_variant_match_counts(
         flattened_data,
         [
             "macro_class",
@@ -339,7 +339,7 @@ def _save_variant_match_csv(path: str, macro_variant_data: Dict[str, Any]) -> No
     )
 
 
-def _save_variation_match_csv(path: str, macro_variant_data: Dict[str, Any]) -> None:
+def _save_variation_match_csv(macro_variant_data: Dict[str, Any]) -> None:
     flattened_data = []
     for macro_name, data in macro_variant_data.items():
         if data.get("can_have_variants", False) and "slots" in data:
@@ -371,8 +371,7 @@ def _save_variation_match_csv(path: str, macro_variant_data: Dict[str, Any]) -> 
     # Sort by match count descending, then macro class
     flattened_data.sort(key=lambda x: (-x["match_count"], x["macro_class"]))
 
-    save_csv(
-        path,
+    save_variation_match_counts(
         flattened_data,
         [
             "macro_class",
@@ -423,15 +422,9 @@ def _analyze_ending_profiles(profiles_path: str):
 
 
 def _analyze_roots_by_macro(registry: PatternRegistry):
-    input_path = RECONSTRUCTABLE_VERBS_PATH
-    output_path = ROOT_MACRO_DISTRIBUTION_PATH
-
-    if not os.path.exists(input_path):
-        print(f"Error: {input_path} not found.")
+    data = load_reconstructable_verbs()
+    if data is None:
         return
-
-    with open(input_path, "r", encoding="utf-8") as f:
-        data = json.load(f)
 
     classes_to_parents = {
         pattern.name: parent
@@ -468,8 +461,7 @@ def _analyze_roots_by_macro(registry: PatternRegistry):
         for (parent, class_name), letters in sorted(final_letters_by_class.items())
     ]
 
-    save_csv(
-        output_path,
+    save_root_macro_distribution(
         rows,
         fieldnames=[
             "parent",
@@ -483,14 +475,11 @@ def _analyze_roots_by_macro(registry: PatternRegistry):
 
 
 def _analyze_verb_status():
-    corpus_data = load_csv(CORPUS_PATH)
-    no_asp_ids = set(row.get("corpus_id", None) for row in load_csv(CORPUS_NO_ASP_PATH))
-    no_pre_ids = set(
-        row.get("corpus_id", None) for row in load_csv(CORPUS_NO_PRE_NO_ASP_PATH)
-    )
+    corpus_data = load_corpus()
+    no_asp_ids = set(row.get("corpus_id", None) for row in load_corpus_no_asp())
+    no_pre_ids = set(row.get("corpus_id", None) for row in load_corpus_no_pre())
     validated_ids = set(
-        row.get("corpus_id", None)
-        for row in load_csv(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH)
+        row.get("corpus_id", None) for row in load_validated_reconstructable_roots()
     )
 
     best_by_id = []
@@ -508,8 +497,7 @@ def _analyze_verb_status():
             {"corpus_id": id, "definition": row["definition"], "furthest_corpus": best}
         )
 
-    save_csv(
-        FURTHEST_CORPUS_BY_ID_PATH,
+    save_furthest_corpus_by_id(
         sorted(best_by_id, key=lambda x: (x["furthest_corpus"][0], x["corpus_id"])),
         ["corpus_id", "definition", "furthest_corpus"],
     )
@@ -533,19 +521,12 @@ def analyze_pipeline_run(classes_path: Optional[str] = None):
     * MACRO_VARIANT_DATA_PATH: Analysis of macro-class variants.
     """
 
-    # 1. Validation and Setup
-    if not os.path.exists(MATCHES_PATH):
-        print(f"Error: {MATCHES_PATH} not found.")
-        return
-    if not os.path.exists(CORPUS_PATH):
-        print(f"Error: {CORPUS_PATH} not found.")
-        return
-    if classes_path and not os.path.exists(classes_path):
-        print(f"Error: {classes_path} not found.")
+    matches = load_raw_matches()
+    corpus = load_corpus()
+    if not matches or not corpus:
+        print("Required inputs missing.")
         return
 
-    matches = load_csv(MATCHES_PATH)
-    corpus = load_csv(CORPUS_PATH)
     pattern_registry = PatternRegistry.get_instance()
     pattern_registry.load_from_csv(classes_path)
 
@@ -559,26 +540,21 @@ def analyze_pipeline_run(classes_path: Optional[str] = None):
     class_match_data = _analyze_class_matches(filtered_matches, pattern_registry)
     coverage_summary = _analyze_verb_coverage(filtered_matches, all_verbs)
     unmatched_verbs_data = _get_unmatched_verbs(filtered_matches, all_verbs, corpus)
-    root_ambiguity_data = _analyze_root_ambiguity(RECONSTRUCTABLE_VERBS_PATH)
-    macro_variant_data = _analyze_macro_variants(
-        RECONSTRUCTABLE_VERBS_PATH, pattern_registry
-    )
+    root_ambiguity_data = _analyze_root_ambiguity()
+    macro_variant_data = _analyze_macro_variants(pattern_registry)
     unused_variants_report = _identify_dead_variants(macro_variant_data)
     _analyze_roots_by_macro(registry=pattern_registry)
     _analyze_ending_profiles(CLASS_ENDING_PROFILES_CSV_PATH)
 
     # 3. Output Data to Disk
-    os.makedirs(REPORTS_PATH, exist_ok=True)
-
     _analyze_verb_status()
 
-    save_csv(
-        CLASS_MATCH_COUNTS_PATH,
+    save_class_match_counts(
         class_match_data,
         ["class", "ending", "reconstructs"],
     )
 
-    save_json(VERB_COVERAGE_PATH, coverage_summary)
+    save_verb_coverage(coverage_summary)
 
     form_fields = [
         "definition",
@@ -588,26 +564,24 @@ def analyze_pipeline_run(classes_path: Optional[str] = None):
         "imperative",
         "infinitive",
     ]
-    save_csv(
-        UNMATCHED_VERBS_PATH,
+    save_unmatched_verbs(
         unmatched_verbs_data,
         ["corpus_id"] + form_fields,
     )
 
     if root_ambiguity_data:
-        save_csv(
-            ROOT_AMBIGUITY_COUNTS_PATH,
+        save_root_ambiguity_counts(
             root_ambiguity_data,
             ["h_grade", "g_grade", "count"],
         )
 
     if macro_variant_data:
-        save_json(MACRO_VARIANT_DATA_PATH, macro_variant_data)
-        _save_variant_match_csv(VARIANT_MATCH_COUNTS_PATH, macro_variant_data)
-        _save_variation_match_csv(VARIATION_MATCH_COUNTS_PATH, macro_variant_data)
+        save_macro_variant_data(macro_variant_data)
+        _save_variant_match_csv(macro_variant_data)
+        _save_variation_match_csv(macro_variant_data)
 
     if unused_variants_report is not None:
-        save_json(UNUSED_VARIANTS_PATH, unused_variants_report)
+        save_unused_variants(unused_variants_report)
 
     # 4. Console Summary
     print("\nVerb Class Coverage Summary:")
@@ -623,11 +597,21 @@ def analyze_pipeline_run(classes_path: Optional[str] = None):
         print(f"{key:<20} | {matched:<12} | {pct:>9}%")
     print("")
 
-    print(f"Analysis complete. Artifacts generated in {REPORTS_PATH}/")
-    if root_ambiguity_data:
-        print(
-            f"Root ambiguity counts saved to {os.path.join(REPORTS_PATH, 'root_ambiguity_counts.csv')}"
-        )
+    print(f"Analysis complete.")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Analyze match data.")
+    parser.add_argument("--visualize", action="store_true", help="Run visualization.")
+    parser.add_argument("--classes", help="Path to classes CSV file")
+    args = parser.parse_args()
+
+    analyze_pipeline_run(args.classes)
+
+    if args.visualize:
+        from king_recreation.visualize_analysis import run_all_visualizations
+
+        run_all_visualizations()
 
 
 if __name__ == "__main__":

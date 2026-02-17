@@ -1,20 +1,24 @@
-import csv
 import json
-import os
 from typing import List
 
 from king_recreation.morphemes.prefixes import PrefixConfig
 from king_recreation.morphemes.prefixes.pronominals import use_glottal_grade
-from king_recreation.paths import (
-    CONSISTENCY_ANALYSIS_PATH,
-    CORPUS_NO_PRE_NO_ASP_PATH,
-    CORPUS_PATH,
-    RECONSTRUCTION_FAILURES_PATH,
-    RECONSTRUCTION_REPORT_PATH,
-    RECONSTRUCTION_VALIDATION_PATH,
-    REPORTS_PATH,
-    VALIDATED_MATCHES_PATH,
-    VALIDATED_RECONSTRUCTABLE_ROOTS_PATH,
+from king_recreation.phases.identify_prefixes.artifacts import load_stripped_roots
+from king_recreation.phases.preprocess_ced.artifacts import load_corpus
+from king_recreation.phases.reconstruct_and_validate.artifacts import (
+    load_consistency_analysis,
+    load_existing_validated_roots,
+    load_reconstruction_failures,
+    load_reconstruction_report,
+    load_reconstruction_validation,
+    load_validated_matches,
+    load_validated_roots,
+    save_consistency_analysis,
+    save_reconstruction_failures,
+    save_reconstruction_report,
+    save_reconstruction_validation,
+    save_validated_matches,
+    save_validated_roots,
 )
 from king_recreation.reconstruction import (
     ReconstructableVerb,
@@ -45,31 +49,18 @@ def reconstruct_and_validate(classes_path=None):
     engine = ReconstructionEngine(classes_path)
 
     # Load Derived Roots
-    derived_roots = []
-    if os.path.exists(CORPUS_NO_PRE_NO_ASP_PATH):
-        with open(CORPUS_NO_PRE_NO_ASP_PATH, "r", encoding="utf-8") as f:
-            derived_roots = list(csv.DictReader(f))
-    else:
-        print(f"Error: {CORPUS_NO_PRE_NO_ASP_PATH} not found.")
+    derived_roots = load_stripped_roots()
+    if derived_roots is None:
+        print("Error: Derived roots not found.")
         return
 
     # Load existing validated roots to persist user selections
-    user_selected_rows = []
-    if os.path.exists(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH):
-        with open(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH, "r", encoding="utf-8") as f:
-            reader = csv.DictReader(f)
-            if "user_selected" in reader.fieldnames:
-                for row in reader:
-                    if row.get("user_selected") == "x":
-                        user_selected_rows.append(row)
-
+    user_selected_rows = load_existing_validated_roots()
     print(f"Loaded {len(user_selected_rows)} user-selected rows for persistence.")
 
     # Load raw Corpus
-    full_corpus_map = {}
-    with open(CORPUS_PATH, "r", encoding="utf-8") as f:
-        for row in csv.DictReader(f):
-            full_corpus_map[row["corpus_id"]] = row
+    corpus = load_corpus()
+    full_corpus_map = {row["corpus_id"]: row for row in corpus}
 
     reconstructable_verbs: list[ReconstructableVerb] = []
     consistency_analysis = []
@@ -184,17 +175,6 @@ def reconstruct_and_validate(classes_path=None):
             )
 
             # Check if this matches a user selected row
-            # We match on all fields except user_selected and entry_no to be safe,
-            # or simply use the fact that original_data might match if it hasn't changed.
-            # However, ReconstructableVerb reconstructs data which might differ slightly if logic changes.
-            # But the requirement is: "fail when rewriting if we would drop a row that was user marked"
-            # This implies the row must be EXACTLY valid as per current logic.
-            # So we check if the currently generated `verb.original_data` (augmented with keys)
-            # matches the critical fields of a saved user_selection.
-
-            # Let's match on specific identity fields to be robust:
-            # corpus_id, definition, class, h_grade, g_grade, post_root_morpheme
-
             def get_identity_key(r):
                 return (
                     str(r.get("corpus_id", "")),
@@ -221,8 +201,6 @@ def reconstruct_and_validate(classes_path=None):
 
             current_key = get_identity_key(verb.original_data)
 
-            # This implementation is O(N*M) which is fine for small N, M (~2000 rows).
-            # If slow, optimize to set lookup.
             is_selected = False
             for usr_row in user_selected_rows:
                 if get_identity_key(usr_row) == current_key:
@@ -263,16 +241,7 @@ def reconstruct_and_validate(classes_path=None):
     print(f"Validation Success: {success_count}/{len(reconstructable_verbs)}")
 
     # Save Consistency Analysis
-    analysis_fields = [
-        "definition",
-        "assigned_class",
-        "is_consistent",
-        "mismatch_details",
-    ] + [f"root_{fn}" for fn in forms]
-    with open(CONSISTENCY_ANALYSIS_PATH, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=analysis_fields)
-        writer.writeheader()
-        writer.writerows(consistency_analysis)
+    save_consistency_analysis(consistency_analysis)
 
     # Save Matches Validated
     validated_matches_data = []
@@ -287,51 +256,21 @@ def reconstruct_and_validate(classes_path=None):
                 }
             )
 
-    if validated_matches_data:
-        keys = ["corpus_id", "definition", "class", "scope"]
-        with open(VALIDATED_MATCHES_PATH, "w", encoding="utf-8", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=keys)
-            writer.writeheader()
-            writer.writerows(validated_matches_data)
+    save_validated_matches(validated_matches_data)
 
     # Save Reconstruction Report
-    with open(RECONSTRUCTION_REPORT_PATH, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(
-            f,
-            fieldnames=[
-                "definition",
-                "class",
-                "root",
-                "success",
-                "ambiguous_forms",
-                "notes",
-            ],
-        )
-        writer.writeheader()
-        writer.writerows(report_data)
+    save_reconstruction_report(report_data)
 
-    with open(RECONSTRUCTION_VALIDATION_PATH, "w", encoding="utf-8") as f:
-        json.dump(
-            {
-                "summary": f"{success_count}/{len(reconstructable_verbs)}",
-                "failures": failures,
-            },
-            f,
-            indent=4,
-        )
+    save_reconstruction_validation(
+        {
+            "summary": f"{success_count}/{len(reconstructable_verbs)}",
+            "failures": failures,
+        }
+    )
 
     # Save Validated Roots CSV
     if validated_rows:
-        # Re-determine fieldnames to include entry_no if it was added
-        # (It effectively merges keys from all rows to handle optional entry_no)
-        all_keys = set()
-        for row in validated_rows:
-            all_keys.update(row.keys())
-
         # Verify all user selections were preserved
-        missing_selections = []
-
-        # Build set of generated identity keys
         def get_identity_key_simple(r):
             return (
                 str(r.get("corpus_id", "")),
@@ -346,7 +285,6 @@ def reconstruct_and_validate(classes_path=None):
                 r.get("metathesis_strategy", ""),
                 r.get("middle_voice", ""),
                 r.get("ka_variant", ""),
-                # r.get("long_start", ""),
                 r.get("aki_1st", ""),
                 r.get("uwa_v", ""),
                 r.get("3rd_person_object", ""),
@@ -359,6 +297,7 @@ def reconstruct_and_validate(classes_path=None):
 
         generated_keys = {get_identity_key_simple(r) for r in validated_rows}
 
+        missing_selections = []
         for usr_row in user_selected_rows:
             if get_identity_key_simple(usr_row) not in generated_keys:
                 missing_selections.append(usr_row)
@@ -372,49 +311,9 @@ def reconstruct_and_validate(classes_path=None):
             print("Aborting save to prevent data loss.")
             exit(1)
 
-        fieldnames = [
-            "corpus_id",
-            "entry_no",
-            "user_selected",
-            "definition",
-            "stative",
-            "class",
-            "post_root_morpheme",
-            "h_grade",
-            "g_grade",
-            "metathesis_involved",
-            "set_a_b",
-            "stem_type",
-            "metathesis_strategy",
-            "middle_voice",
-            "plural",
-            "ka_variant",
-            "aki_1st",
-            "uwa_v",
-            "3rd_person_object",
-            "translocutive",
-            "translocutive_imp_only",
-            "partitive",
-            "distributive",
-            "distributive_fut_prog",
-            "segmented_forms",
-        ]
-
-        # Ensure standard order of important columns if possible, but taking from first row is standard here
-        # Make sure optional columns are present
-        for col in ["entry_no", "user_selected"]:
-            if col not in fieldnames and col in all_keys:
-                fieldnames.append(col)
-
-        with open(
-            VALIDATED_RECONSTRUCTABLE_ROOTS_PATH, "w", encoding="utf-8", newline=""
-        ) as f:
-            writer = csv.DictWriter(f, fieldnames=fieldnames)
-            writer.writeheader()
-            writer.writerows(validated_rows)
+        save_validated_roots(validated_rows)
 
     # Save Reconstruction Failures CSV
-    # failure format: {"definition": ..., "failed_forms": [...], "class": ...}
     failures_csv_data = []
     for fail in failures:
         failures_csv_data.append(
@@ -431,15 +330,9 @@ def reconstruct_and_validate(classes_path=None):
         key=lambda x: (x["class"], x["definition"], x["corpus_id"] or 0)
     )
 
-    with open(RECONSTRUCTION_FAILURES_PATH, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(
-            f,
-            fieldnames=["corpus_id", "definition", "class", "mismatch_details"],
-        )
-        writer.writeheader()
-        writer.writerows(failures_csv_data)
+    save_reconstruction_failures(failures_csv_data)
 
-    print(f"Artifacts saved to {REPORTS_PATH}")
+    print(f"Artifacts saved.")
 
 
 if __name__ == "__main__":

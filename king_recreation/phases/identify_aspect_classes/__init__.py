@@ -8,7 +8,11 @@ from king_recreation.morphemes.aspect.class_patterns import (
     StrippedVerbRow,
 )
 from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
-from king_recreation.paths import CORPUS_NO_ASP_PATH, CORPUS_PATH, MATCHES_PATH
+from king_recreation.phases.identify_aspect_classes.artifacts import (
+    save_matches,
+    save_stripped_corpus,
+)
+from king_recreation.phases.preprocess_ced.artifacts import load_corpus
 
 
 def group_matches_by_macro(
@@ -109,11 +113,7 @@ def identify_aspect_classes(classes_path=None):
     classes_map = {p.name: p for p in registry.expanded_patterns}
 
     # Load raw corpus
-    corpus_rows = []
-    with open(CORPUS_PATH, mode="r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            corpus_rows.append(row)
+    corpus_rows = load_corpus()
 
     matches_data = []
     stripped_corpus_data: List[StrippedVerbRow] = []
@@ -137,22 +137,10 @@ def identify_aspect_classes(classes_path=None):
             if cls:
                 stripped_corpus_data.append(cls.strip_verb(verb))
 
-    fieldnames = [
-        "corpus_id",
-        "definition",
-        "class",
-    ]
-
-    with open(MATCHES_PATH, mode="w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(matches_data)
+    save_matches(matches_data)
 
     if stripped_corpus_data:
-        StrippedVerbRow.write_csv(CORPUS_NO_ASP_PATH, stripped_corpus_data)
-
-    print(f"Matches written to {MATCHES_PATH}")
-    print(f"Endings Stripped Corpus written to {CORPUS_NO_ASP_PATH}")
+        save_stripped_corpus(stripped_corpus_data)
 
 
 if __name__ == "__main__":

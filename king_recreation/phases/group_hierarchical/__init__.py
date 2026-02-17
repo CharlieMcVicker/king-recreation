@@ -6,7 +6,16 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Any, DefaultDict, Dict, List, Optional, Tuple
 
+from king_recreation.phases.group_hierarchical.artifacts import (
+    load_derivational_connections,
+    load_root_ids_overrides,
+    save_hierarchical_dict,
+    save_root_ids,
+)
 from king_recreation.phases.identify_derived_verbs import DerivedVerbConnection
+from king_recreation.phases.select_canonical_derivations.artifacts import (
+    load_reconstructable_verbs as load_raw_reconstructable_verbs,
+)
 from king_recreation.reconstruction import EnhancedJSONEncoder, ReconstructableVerb
 from king_recreation.utils import load_root_ids_map
 
@@ -31,32 +40,10 @@ def get_root_slug(h_grade: str, g_grade: Optional[str]) -> str:
     return base64.urlsafe_b64encode(utf8_bytes).decode("utf-8").replace("=", "")
 
 
-def load_json(path: str) -> Any:
-    if not os.path.exists(path):
-        return []
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def load_csv(path: str) -> List[Dict[str, str]]:
-    if not os.path.exists(path):
-        return []
-    with open(path, "r", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
-
-
 def parse_ids(id_str: str) -> List[int]:
     if not id_str:
         return []
     return [int(x.strip()) for x in id_str.split(";") if x.strip().isdigit()]
-
-
-from king_recreation.paths import (
-    DERIVATIONAL_CONNECTIONS_PATH,
-    HIERARCHICAL_DICT_PATH,
-    RECONSTRUCTABLE_VERBS_PATH,
-    ROOT_IDS_PATH,
-)
 
 
 def load_all_data() -> Tuple[
@@ -64,14 +51,10 @@ def load_all_data() -> Tuple[
     List[Dict[str, str]],
     Dict[str, str],
 ]:
-    verbs_path = RECONSTRUCTABLE_VERBS_PATH
-    deriv_conn_path = DERIVATIONAL_CONNECTIONS_PATH
-    r_ids_path = ROOT_IDS_PATH
-
-    all_verbs_raw = load_json(verbs_path)
-    all_verbs = [ReconstructableVerb.from_dict(v) for v in all_verbs_raw]
-    derivational_connections = load_csv(deriv_conn_path)
-    root_ids = load_root_ids_map(r_ids_path)
+    data = load_raw_reconstructable_verbs()
+    all_verbs = [ReconstructableVerb.from_dict(v) for v in data]
+    derivational_connections = load_derivational_connections()
+    root_ids = load_root_ids_overrides()
 
     return (
         all_verbs,
@@ -88,39 +71,6 @@ def build_verb_index(
         if v.corpus_id is not None:
             verbs_by_id[v.corpus_id] = v
     return verbs_by_id
-
-
-def verbs_by_root_class(
-    all_verbs: list[ReconstructableVerb], verb_to_root_id
-) -> dict[tuple[str, str], list[ReconstructableVerb]]:
-    root_classes = {}
-    for verb in all_verbs:
-        key = (verb_to_root_id[verb.corpus_id], verb.class_name)
-        if not key in root_classes:
-            root_classes[key] = []
-
-        root_classes[key].append(verb)
-
-    return root_classes
-
-
-def apply_derivations(
-    derivational_connections: dict[tuple[str, str], DerivedVerbConnection],
-    raw_root_classes: dict[tuple[str, str], list[ReconstructableVerb]],
-):
-    root_classes = {
-        k: v for k, v in raw_root_classes.items() if k not in derivational_connections
-    }
-
-    for child_key, conn in derivational_connections.items():
-        verbs = raw_root_classes[child_key]
-        for verb in verbs:
-            # add parent class to verb
-
-            verb.h_grade_root = conn.to_h_grade
-            verb.g_grade_root = conn.to_g_grade
-            verb.parent_class = conn.to_class
-            root_classes[(conn.to_id, conn.to_class)]
 
 
 def build_connection_graphs(
@@ -197,10 +147,6 @@ def sync_root_ids(
 ) -> Tuple[Dict[int, str], Dict[str, str]]:
 
     # 1. Parse existing root_ids.csv to find user overrides
-    # We need to handle the previous format where 'corpus_ids' was a list
-    # and map EACH corpus_id to the override if 'user_edited' was set.
-    # overrides = {}  # corpus_id_str -> root_id
-
     # NOTE: overrides are now passed in via load_root_ids_map from utils
 
     # 2. Build rows for every verb
@@ -257,19 +203,16 @@ def sync_root_ids(
         )
 
     # 3. Sort rows for stability
-    # Sort by (h_grade, g_grade, class, corpus_id)
     csv_rows.sort(
         key=lambda x: (
             x["h_grade"] or "",
             x["g_grade"] or "",
             x["class"] or "",
-            # Handle synthetic IDs in sort carefully? using string sort is fine
             x["corpus_id"],
         )
     )
 
     # 4. Save CSV
-    r_ids_path = ROOT_IDS_PATH
     fieldnames = [
         "corpus_id",
         "definition",
@@ -280,10 +223,7 @@ def sync_root_ids(
         "root_id",
         "user_edited",
     ]
-    with open(r_ids_path, "w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(csv_rows)
+    save_root_ids(csv_rows, fieldnames)
 
     return verb_to_root_id, synthetic_to_root_id
 
@@ -360,7 +300,6 @@ def build_final_hierarchy(
     final_output = []
 
     # Identify top-level root IDs
-    # Now that we removed root-to-root logic, all grouped roots are "top level" in this context
     for root_id, data in root_groups.items():
         h, g = data["h"], data.get("g", "")
         final_output.append(format_node((h, g), override_root_id=root_id))
@@ -373,12 +312,6 @@ def build_final_hierarchy(
 def get_root_slug_from_id(root_id: str) -> str:
     utf8_bytes = root_id.encode("utf-8")
     return base64.urlsafe_b64encode(utf8_bytes).decode("utf-8").replace("=", "")
-
-
-def save_output(data: Any, path: str) -> None:
-    with open(path, "w", encoding="utf-8") as f:
-        json.dump(data, f, indent=2, ensure_ascii=False, cls=EnhancedJSONEncoder)
-    print(f"Hierarchical dictionary saved to {path}")
 
 
 def group_hierarchical() -> None:
@@ -402,16 +335,12 @@ def group_hierarchical() -> None:
     ) = load_all_data()
 
     # 2. Sync Root IDs
-    # We need to assign stable IDs to verbs and group them accordingly
-    # This also saves the root_ids.csv for user maintenance
     verb_to_root_id, synthetic_to_root_id = sync_root_ids(
         all_verbs, existing_root_ids_overrides
     )
 
     # 3. Build Verb Graphs
     verbs_by_id = build_verb_index(all_verbs)
-
-    # root_classes = collect_root_class_nodes(all_verbs, verb_to_root_id)
 
     parent_map, children_map = build_connection_graphs(
         derivational_connections, verbs_by_id
@@ -434,7 +363,7 @@ def group_hierarchical() -> None:
     final_output = build_final_hierarchy(root_groups)
 
     # 7. Save
-    save_output(final_output, HIERARCHICAL_DICT_PATH)
+    save_hierarchical_dict(final_output, EnhancedJSONEncoder)
 
 
 if __name__ == "__main__":

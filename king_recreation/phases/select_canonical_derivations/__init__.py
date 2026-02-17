@@ -8,9 +8,11 @@ from typing import List
 
 from king_recreation.morphemes.prefixes import PrefixConfig
 from king_recreation.morphemes.prefixes.pronominals import use_glottal_grade
-from king_recreation.paths import (
-    RECONSTRUCTABLE_VERBS_PATH,
-    VALIDATED_RECONSTRUCTABLE_ROOTS_PATH,
+from king_recreation.phases.reconstruct_and_validate.artifacts import (
+    load_validated_roots,
+)
+from king_recreation.phases.select_canonical_derivations.artifacts import (
+    save_reconstructable_verbs,
 )
 from king_recreation.reconstruction import ReconstructableVerb
 
@@ -117,64 +119,54 @@ def select_canonical_derivations():
     Outputs:
     * RECONSTRUCTABLE_VERBS_PATH: JSON of canonical derivations for each lexical item.
     """
-    if not os.path.exists(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH):
-        print(f"Error: {VALIDATED_RECONSTRUCTABLE_ROOTS_PATH} not found.")
+    rows = load_validated_roots()
+    if rows is None:
+        print("Error: Validated roots not found.")
         return
 
     validated_verbs = []
-    with open(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH, "r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            # Reconstruct ReconstructableVerb object
-            config = PrefixConfig.from_row(row)
+    for row in rows:
+        # Reconstruct ReconstructableVerb object
+        config = PrefixConfig.from_row(row)
 
-            # Logic to reconstruct h_root/glottal_root/post_root if not directly in row?
-            # The row is the original derived root row.
+        definition = row["definition"]
+        cls_name = row["class"]
+        post_root_morpheme = row.get("post_root_morpheme")
+        post_root_morpheme = post_root_morpheme if post_root_morpheme else None
 
-            definition = row["definition"]
-            cls_name = row["class"]
-            post_root_morpheme = row.get("post_root_morpheme")
-            post_root_morpheme = post_root_morpheme if post_root_morpheme else None
+        h_root = row["h_grade"]
 
-            h_root = row["h_grade"]
+        glottal_root = None
+        if use_glottal_grade("present_1sg", config.pron, config.stative):
+            glottal_root = row["g_grade"]
+            if glottal_root == "" and not h_root == "":
+                glottal_root = None
 
-            # Re-apply glottal logic or just take it from row?
-            # In reconstruct_from_roots, glottal_root was derived:
-            # if use_glottal_grade("present_1sg", config.pron): glottal_root = stem_row["g_grade"]...
-            # We should replicate this logic to be safe, or assume the row has what we need?
-            # actually row has "g_grade".
+        corpus_id = int(row["corpus_id"]) if "corpus_id" in row else None
+        entry_no = (
+            int(row["entry_no"]) if "entry_no" in row and row["entry_no"] else None
+        )
 
-            glottal_root = None
-            if use_glottal_grade("present_1sg", config.pron, config.stative):
-                glottal_root = row["g_grade"]
-                if glottal_root == "" and not h_root == "":
-                    glottal_root = None
-
-            corpus_id = int(row["corpus_id"]) if "corpus_id" in row else None
-            entry_no = (
-                int(row["entry_no"]) if "entry_no" in row and row["entry_no"] else None
-            )
-
-            verb = ReconstructableVerb(
-                definition=definition,
-                h_grade_root=h_root,
-                glottal_grade_root=glottal_root,
-                class_name=cls_name,
-                post_root_morpheme=post_root_morpheme,
-                config=config,
-                corpus_id=corpus_id,
-                entry_no=entry_no,
-                original_data=row,  # Keep it if we want to pass it further, though JSON serialization dumps fields
-            )
-            # Monkey-patch or attach user_selected for use in dedupe
-            verb.user_selected = row.get("user_selected") == "x"
-            # Deserialize segmented_forms
-            if "segmented_forms" in row and row["segmented_forms"]:
-                try:
-                    verb.segmented_forms = json.loads(row["segmented_forms"])
-                except json.JSONDecodeError:
-                    verb.segmented_forms = {}
-            validated_verbs.append(verb)
+        verb = ReconstructableVerb(
+            definition=definition,
+            h_grade_root=h_root,
+            glottal_grade_root=glottal_root,
+            class_name=cls_name,
+            post_root_morpheme=post_root_morpheme,
+            config=config,
+            corpus_id=corpus_id,
+            entry_no=entry_no,
+            original_data=row,  # Keep it if we want to pass it further, though JSON serialization dumps fields
+        )
+        # Monkey-patch or attach user_selected for use in dedupe
+        verb.user_selected = row.get("user_selected") == "x"
+        # Deserialize segmented_forms
+        if "segmented_forms" in row and row["segmented_forms"]:
+            try:
+                verb.segmented_forms = json.loads(row["segmented_forms"])
+            except json.JSONDecodeError:
+                verb.segmented_forms = {}
+        validated_verbs.append(verb)
 
     print(f"Loaded {len(validated_verbs)} validated verbs.")
 
@@ -186,10 +178,7 @@ def select_canonical_derivations():
     enrich_glottal_grades(deduped_roots)
 
     # Save Fully Serialized Verbs
-    with open(RECONSTRUCTABLE_VERBS_PATH, "w", encoding="utf-8") as f:
-        json.dump(deduped_roots, f, cls=EnhancedJSONEncoder, indent=4)
-
-    print(f"Artifacts saved to {RECONSTRUCTABLE_VERBS_PATH}")
+    save_reconstructable_verbs(deduped_roots, EnhancedJSONEncoder)
 
 
 if __name__ == "__main__":

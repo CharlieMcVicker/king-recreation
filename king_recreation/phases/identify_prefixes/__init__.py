@@ -15,12 +15,14 @@ from king_recreation.morphemes.prefixes.pronominals import (
     detach_prefix,
     use_glottal_grade,
 )
-from king_recreation.paths import (
-    CORPUS_NO_ASP_PATH,
-    CORPUS_NO_PRE_NO_ASP_PATH,
-    CORPUS_PATH,
-    PRE_PARSING_FAILURES_PATH,
+from king_recreation.phases.identify_aspect_classes.artifacts import (
+    load_stripped_corpus,
 )
+from king_recreation.phases.identify_prefixes.artifacts import (
+    save_prefix_parsing_failures,
+    save_stripped_roots,
+)
+from king_recreation.phases.preprocess_ced.artifacts import load_corpus
 
 
 @dataclass
@@ -371,56 +373,33 @@ def identify_prefixes():
     * PRE_PARSING_FAILURES_PATH: List of verbs that failed parsing and reasons.
     """
 
-    full_corpus = {}
-    with open(CORPUS_PATH, "r", encoding="utf-8") as f:
-        for r in csv.DictReader(f):
-            full_corpus[r["corpus_id"]] = r
+    corpus = load_corpus()
+    full_corpus = {r["corpus_id"]: r for r in corpus}
 
     deriver = PrefixDeriver()
     labeled_data = []
     failures = []
-    with open(CORPUS_NO_ASP_PATH, "r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            ref = full_corpus.get(row["corpus_id"])
-            derivations = deriver.derive_row(row, ref)
-            if not derivations:
-                failures.append(row)
-            else:
-                # d = derivations[0]
-                for d in derivations:
-                    # copy row
-                    stripped_row = {**row, **d.to_row()}
-                    # labeled_data.append({**d.to_row()})
-                    labeled_data.extend(match_post_root_morphemes(stripped_row))
 
-    form_names = [
-        "present",
-        "present_1sg",
-        "imperfective",
-        "perfective",
-        "imperative",
-        "infinitive",
-    ]
+    rows = load_stripped_corpus()
+    for row in rows:
+        ref = full_corpus.get(row["corpus_id"])
+        derivations = deriver.derive_row(row, ref)
+        if not derivations:
+            failures.append(row)
+        else:
+            # d = derivations[0]
+            for d in derivations:
+                # copy row
+                stripped_row = {**row, **d.to_row()}
+                # labeled_data.append({**d.to_row()})
+                labeled_data.extend(match_post_root_morphemes(stripped_row))
 
     if labeled_data:
-        keys = labeled_data[0].keys()
-        keys = [k for k in keys if k not in form_names]
-        with open(CORPUS_NO_PRE_NO_ASP_PATH, "w", encoding="utf-8") as f:
-            writer = csv.DictWriter(f, fieldnames=keys)
-            writer.writeheader()
-            writer.writerows(
-                {k: v for k, v in row.items() if k in keys} for row in labeled_data
-            )
+        save_stripped_roots(labeled_data)
     if failures:
-        keys = failures[0].keys()
-        with open(PRE_PARSING_FAILURES_PATH, "w", encoding="utf-8") as f:
-            writer = csv.DictWriter(f, fieldnames=keys)
-            writer.writeheader()
-            writer.writerows(failures)
+        save_prefix_parsing_failures(failures)
+
     print(f"Processed {len(labeled_data) + len(failures)} rows.")
-    print(f"Success: {len(labeled_data)}")
-    print(f"Failures: {len(failures)}")
 
 
 if __name__ == "__main__":
