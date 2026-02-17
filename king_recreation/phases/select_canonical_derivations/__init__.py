@@ -49,9 +49,20 @@ def dedupe_roots(validated_verbs: list[ReconstructableVerb]):
         candidates = [v for v in vl if len(v.h_grade_root) == min_len]
 
         # 3. Sort candidates to pick one deterministically
-        # key: (h_grade_root, class_name, full original data string)
+        # Priority: con > aspirated > s_stem > others
+        def get_stem_priority(v):
+            st = v.original_data.get("stem_type", "")
+            if st == "con":
+                return 0
+            if st == "aspirated":
+                return 1
+            if st == "s_stem":
+                return 2
+            return 3
+
         candidates.sort(
             key=lambda v: (
+                get_stem_priority(v),
                 v.h_grade_root,
                 v.class_name,
                 json.dumps(v.original_data, sort_keys=True),
