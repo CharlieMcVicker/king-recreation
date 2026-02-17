@@ -480,3 +480,73 @@ function findCorpusEntries(definition: string, dictionary: DictionaryEntry[]) {
   // 2. Return all entries with same 'No.'
   return dictionary.filter((e) => e["No."] === groupNo);
 }
+
+export async function getValidatedRootsRows(): Promise<any[]> {
+  const filePath = path.join(
+    process.cwd(),
+    "../artifacts/corpora/validated_reconstructable_roots.csv",
+  );
+  if (!fs.existsSync(filePath)) return [];
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const result = Papa.parse(fileContent, {
+    header: true,
+    skipEmptyLines: true,
+    dynamicTyping: true,
+  });
+  return result.data;
+}
+
+export async function updateUserSelection(
+  corpusId: number,
+  rowIndex: number,
+): Promise<void> {
+  const filePath = path.join(
+    process.cwd(),
+    "../artifacts/corpora/validated_reconstructable_roots.csv",
+  );
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const parsed = Papa.parse(fileContent, {
+    header: true,
+    skipEmptyLines: true,
+    dynamicTyping: true,
+  });
+
+  const rows = parsed.data as any[];
+
+  // Find all indices for this corpus_id
+  const indices: number[] = [];
+  rows.forEach((row, idx) => {
+    if (row.corpus_id === corpusId) {
+      indices.push(idx);
+    }
+  });
+
+  if (rowIndex < 0 || rowIndex >= indices.length) {
+    throw new Error(
+      `Invalid rowIndex ${rowIndex} for corpusId ${corpusId}. Found ${indices.length} rows.`,
+    );
+  }
+
+  // Clear existing selection for this corpus_id
+  indices.forEach((idx) => {
+    rows[idx].user_selected = "";
+  });
+
+  // Set new selection
+  const targetGlobalIndex = indices[rowIndex];
+  rows[targetGlobalIndex].user_selected = "x";
+
+  // Write back
+  const csv = Papa.unparse(rows, {
+    quotes: false, // Default is false, but complex fields will be quoted automatically
+    quoteChar: '"',
+    escapeChar: '"',
+    delimiter: ",",
+    header: true,
+    newline: "\n",
+    skipEmptyLines: false, // Don't skip empty lines
+    columns: undefined, // Use all columns
+  });
+
+  fs.writeFileSync(filePath, csv);
+}
