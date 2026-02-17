@@ -1,4 +1,3 @@
-import pytest
 
 from king_recreation.tone.analysis import (
     check_prediction,

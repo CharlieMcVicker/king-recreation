@@ -1,7 +1,6 @@
 import atexit
 import time
 from functools import partial, wraps
-from typing import Dict, List, Optional, Tuple
 
 
 class track_performance:

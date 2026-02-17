@@ -1,5 +1,5 @@
 import csv
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from typing import Dict, List, Set
 
 from king_recreation.paths import POST_ROOT_MORPHEMES_PATH

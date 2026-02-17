@@ -13,7 +13,6 @@ from king_recreation.phases.preprocess_ced.artifacts import (
 from king_recreation.phases.select_canonical_derivations.artifacts import (
     load_reconstructable_verbs as load_raw_reconstructable_verbs,
 )
-from king_recreation.reconstruction import ReconstructableVerb
 from king_recreation.tone.utils import (
     apply_tone_to_segmentation,
     get_tone_sequence_for_form,

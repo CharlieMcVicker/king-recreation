@@ -1,9 +1,5 @@
-import csv
-import io
 import os
 import tempfile
-
-import pytest
 
 from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
 

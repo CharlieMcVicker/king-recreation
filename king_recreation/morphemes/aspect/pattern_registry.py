@@ -2,7 +2,7 @@ import csv
 import os
 import re
 from collections import defaultdict
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 
 from king_recreation.h_alternation import (
     possible_alternates,

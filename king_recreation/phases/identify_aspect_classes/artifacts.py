@@ -1,6 +1,6 @@
 import csv
 import os
-from typing import Any, Dict, List
+from typing import Dict, List
 
 from king_recreation.morphemes.aspect.class_patterns import StrippedVerbRow
 from king_recreation.paths import CORPUS_NO_ASP_PATH, MATCHES_PATH

@@ -1,6 +1,4 @@
 import argparse
-import csv
-import json
 import os
 import re
 from collections import Counter, defaultdict
@@ -9,27 +7,7 @@ from typing import Any, Dict, List, Optional
 import pandas as pd
 
 from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
-from king_recreation.paths import (
-    CLASS_ENDING_PROFILES_CSV_PATH,
-    CLASS_MATCH_COUNTS_PATH,
-    CORPUS_NO_ASP_PATH,
-    CORPUS_NO_PRE_NO_ASP_PATH,
-    CORPUS_PATH,
-    FURTHEST_CORPUS_BY_ID_PATH,
-    MACRO_VARIANT_DATA_PATH,
-    MATCHES_PATH,
-    RECONSTRUCTABLE_VERBS_PATH,
-    REPORTS_PATH,
-    ROOT_AMBIGUITY_COUNTS_PATH,
-    ROOT_MACRO_DISTRIBUTION_PATH,
-    UNMATCHED_VERBS_PATH,
-    UNUSED_VARIANTS_PATH,
-    VALIDATED_MATCHES_PATH,
-    VALIDATED_RECONSTRUCTABLE_ROOTS_PATH,
-    VARIANT_MATCH_COUNTS_PATH,
-    VARIATION_MATCH_COUNTS_PATH,
-    VERB_COVERAGE_PATH,
-)
+from king_recreation.paths import CLASS_ENDING_PROFILES_CSV_PATH, VALIDATED_MATCHES_PATH
 from king_recreation.phases.analyze_pipeline_run.artifacts import (
     save_class_match_counts,
     save_furthest_corpus_by_id,

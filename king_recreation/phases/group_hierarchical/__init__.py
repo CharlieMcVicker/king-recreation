@@ -1,7 +1,4 @@
 import base64
-import csv
-import json
-import os
 from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Any, DefaultDict, Dict, List, Optional, Tuple
@@ -12,7 +9,6 @@ from king_recreation.phases.group_hierarchical.artifacts import (
     save_hierarchical_dict,
     save_root_ids,
 )
-from king_recreation.phases.identify_derived_verbs import DerivedVerbConnection
 from king_recreation.phases.select_canonical_derivations.artifacts import (
     load_reconstructable_verbs as load_raw_reconstructable_verbs,
 )
