@@ -1,11 +1,42 @@
 import re
 
 from king_recreation.phases.preprocess_ced.artifacts import (
+    load_manual_corrections,
     read_original_ced,
     read_original_cnd,
     save_corpus,
     save_mapping,
+    save_raw_corpus,
 )
+
+
+def apply_patches(data: list[dict], corrections: list[dict]) -> list[dict]:
+    """
+    Apply patches to the corpus data.
+    """
+    # Create a mapping for quick lookup by corpus_id
+    data_map = {str(row["corpus_id"]): row for row in data}
+
+    for patch in corrections:
+        corpus_id = str(patch.get("corpus_id", "")).strip()
+        if not corpus_id:
+            continue
+
+        if corpus_id in data_map:
+            target_row = data_map[corpus_id]
+            for key, value in patch.items():
+                # Skip IDs and notes/metadata
+                if key in ["corpus_id", "notes"]:
+                    continue
+
+                if value == "NULL":
+                    # Special value to drop a field
+                    target_row[key] = ""
+                elif value and value.strip():
+                    # Only overwrite if value is not empty (preserve original if empty)
+                    target_row[key] = value.strip()
+
+    return data
 
 
 def respell_consonants(s):
@@ -270,6 +301,11 @@ def create_corpus_from_cn_dict():
         "imperative",
         "infinitive",
     ]
+    save_raw_corpus(processed_data, fieldnames)
+
+    corrections = load_manual_corrections()
+    if corrections:
+        processed_data = apply_patches(processed_data, corrections)
 
     save_corpus(processed_data, fieldnames)
 
@@ -304,6 +340,12 @@ def process_ced():
         "imperative",
         "infinitive",
     ]
+    save_raw_corpus(processed_data, fieldnames)
+
+    corrections = load_manual_corrections()
+    if corrections:
+        processed_data = apply_patches(processed_data, corrections)
+
     save_corpus(processed_data, fieldnames)
 
 

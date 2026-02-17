@@ -22,12 +22,14 @@ CHEROKEE_NATION_DICTIONARY_PATH = os.path.join(
 CED_DATA_ORIGINAL_PATH = os.path.join(DATA_DIR, "ced_data_original.csv")
 POST_ROOT_MORPHEMES_PATH = os.path.join(DATA_DIR, "post_root_morphemes.csv")
 CLASSES_DATA_PATH = os.path.join(DATA_DIR, "classes.csv")
+MANUAL_CORRECTIONS_PATH = os.path.join(DATA_DIR, "manual_corrections.csv")
 
 
 # -----------------------------------------------------------------------------
 # 2. Intermediate Corpora & Analysis Data
 # -----------------------------------------------------------------------------
 CORPUS_PATH = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus.csv")
+CORPUS_RAW_PATH = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus_raw.csv")
 CORPUS_NO_ASP_PATH = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus_no_asp.csv")
 CORPUS_NO_PRE_NO_ASP_PATH = os.path.join(
     ARTIFACTS_CORPORA_DIR, "corpus_no_pre_no_asp.csv"
