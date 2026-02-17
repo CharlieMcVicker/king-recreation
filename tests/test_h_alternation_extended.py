@@ -1,4 +1,3 @@
-
 from king_recreation.h_alternation import _drop_first_h
 from king_recreation.phases.identify_prefixes import is_strict_compatible
 

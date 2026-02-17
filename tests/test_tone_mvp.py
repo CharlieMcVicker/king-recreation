@@ -1,4 +1,3 @@
-
 from king_recreation.tone.analysis import (
     check_prediction,
     generate_underlying_forms,

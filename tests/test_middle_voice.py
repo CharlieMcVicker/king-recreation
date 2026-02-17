@@ -1,4 +1,3 @@
-
 from king_recreation.morphemes.middle_voice import MiddleVoice
 from king_recreation.reconstruction import desegment
 
