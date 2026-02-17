@@ -39,7 +39,7 @@ Handles the inner pronominal inflection and stem properties.
 class PronominalConfig:
     set_type: str  # 'a' | 'b'
     stem_type: StemType
-    metathesis_strategy: MetathesisStrategy = MetathesisStrategy.NONE
+    allow_h_metathesis: bool = False
     use_ka_variant: bool = False
     use_uwa_for_3rd_set_b: bool = False
     use_aki_for_1st_set_b: bool = False
@@ -59,12 +59,6 @@ class PronominalConfig:
 - `VOWEL_I` ("vowel_i")
 - `ASPIRATED` ("aspirated")
 - `S_STEM` ("s_stem")
-
-#### `MetathesisStrategy`
-
-- `NONE` ("none")
-- `H_CONS` ("h_cons")
-- `VOWEL` ("vowel")
 
 ### 3. The `Derivation` Result Object
 
@@ -123,7 +117,7 @@ The `StemDeriver.derive_row` method implements a nested loop to find valid confi
 2.  For each valid pre-config, iterate `PronominalConfig` candidates:
     - Determine `set_type` (a/b) based on the "present" form.
     - Test `use_3rd_person_object` (True/False).
-    - Test all `MetathesisStrategy` options.
+    - Test `allow_h_metathesis` (True/False).
     - Test all `StemType` options.
     - Auto-detect `use_ka_variant`, `use_aki_for_1st_set_b`, and `use_uwa_for_3rd_set_b`.
 3.  Collect and rank successful `Derivation` objects.

@@ -38,7 +38,7 @@ The process begins by reading `artifacts/data/validated_reconstructable_roots.cs
 - Class ID (class_name)
 - Config:
   - `stem_type` (e.g. `con`, `vowel_a`, `aspirated`, `s_stem`)
-  - `metathesis_strategy` (`none`, `h_cons`, `vowel`)
+  - `allow_h_metathesis` (boolean)
   - `set_a_b` (`Set A` or `Set B`)
   - `use_ka_variant`, `use_uwa_for_3rd_set_b`, `use_aki_for_1st_set_b`
   - `use_3rd_person_object` (Implies 2->3 and 1->3 interaction)
@@ -69,8 +69,7 @@ Apply in order: `Distributive` -> `Partitive` -> `Translocutive`.
 
 **Step 2d: Metathesis Logic**
 
-- **H-Consonant Metathesis**: If `h_cons` strategy is used, aspiration moves to the prefix (e.g., `ka-` + `nh...` -> `khanh...`).
-- **Vowel Metathesis**: If `vowel` strategy is used, handles specific variants like `kh-`, `uwh-` (for vowels other than `a`), or `h-`. The `uwh-` variant aligns with the respelling reform.
+- **H-Metathesis**: If `allow_h_metathesis` is used, aspiration moves to the prefix (e.g., `ka-` + `nh...` -> `khanh...`).
 
 ### 3. Validation
 

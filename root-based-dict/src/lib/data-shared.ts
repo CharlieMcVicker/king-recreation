@@ -17,7 +17,7 @@ export interface ReconstructableVerb {
     pron: {
       set_type: string;
       stem_type: string;
-      metathesis_strategy: string;
+      allow_h_metathesis: boolean;
       middle_voice: string;
       use_ka_variant: boolean;
       long_start?: boolean;
