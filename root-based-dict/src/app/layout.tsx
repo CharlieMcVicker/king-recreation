@@ -11,6 +11,7 @@ import {
   RefreshCw,
   BarChart3,
   Layers,
+  ListTodo,
 } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -62,6 +63,13 @@ export default function RootLayout({
               >
                 <GitCompare className="w-4 h-4" />
                 Browse Morphemes
+              </Link>
+              <Link
+                href="/select-roots"
+                className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+              >
+                <ListTodo className="w-4 h-4" />
+                Select Roots
               </Link>
             </nav>
             <div className="p-4 border-t border-gray-200 dark:border-zinc-800">

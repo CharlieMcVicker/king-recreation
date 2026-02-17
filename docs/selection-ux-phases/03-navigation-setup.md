@@ -6,13 +6,17 @@ Register the new workflow in the application navigation and create the entry poi
 
 ## Steps
 
-1.  **Modify `root-based-dict/src/app/layout.tsx`**:
+1.  **Modify `root-based-dict/src/app/layout.tsx`**: [Completed]
     - Add a new `Link` to the sidebar navigation.
     - Label: "Select Roots".
     - Icon: Use `CheckSquare` or `ListTodo` from `lucide-react`.
     - Href: `/select-roots`.
-2.  **Create `root-based-dict/src/app/select-roots/page.tsx`**:
+2.  **Create `root-based-dict/src/app/select-roots/page.tsx`**: [Completed]
     - A server component that fetches all roots from `getValidatedRootsRows()`.
     - Passes the data to a (yet to be created) client component `SelectRootsWorkflow`.
-3.  **Verification**:
+3.  **Verification**: [Completed]
     - Verify the "Select Roots" link appears in the sidebar and navigates to the (currently empty) page.
+
+## Status
+
+Completed
