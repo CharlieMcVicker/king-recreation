@@ -35,6 +35,7 @@ class MiddleVoice(Enum):
     AT_PRE_C = "at_pre_c"
     ATA = "ata"
     ATAT = "atat"
+    ATI = "ati"
     ALI = "ali"
     AL_ALI = "al_ali"
     # ALH_ALI = "alh_ali"
@@ -94,7 +95,7 @@ class MiddleVoice(Enum):
     def metathesizing_form(self):
         META_FORMS = [
             MiddleVoice.ALI,
-            # MiddleVoice.AT,
+            MiddleVoice.AT,
         ]
         return self in META_FORMS
 
@@ -106,6 +107,7 @@ class MiddleVoice(Enum):
             MiddleVoice.AT_PRE_C: ("at", "at", Constraint.PRE_C_NO_S),
             MiddleVoice.ATA: ("ata", "ata", Constraint.PRE_C),
             MiddleVoice.ATAT: ("atat", "atat", Constraint.PRE_V),
+            MiddleVoice.ATI: ("ati", "ati", Constraint.PRE_C),
             MiddleVoice.ALI: ("ali", "ali", Constraint.PRE_C),
             MiddleVoice.AL_ALI: ("al", "ali", Constraint.PRE_C),
             # MiddleVoice.ALH_ALI: ("alh", "ali", Constraint.PRE_C_NO_S),
