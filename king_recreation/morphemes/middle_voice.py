@@ -1,6 +1,7 @@
 from enum import Enum
 from typing import List, Optional, Tuple
 
+from king_recreation.h_alternation import grades_are_compatible
 from king_recreation.metathesis import demetathesize_h, metathesize_h
 from king_recreation.phonology_data import VOWEL_SET
 
@@ -81,10 +82,10 @@ class MiddleVoice(Enum):
         if self == MiddleVoice.NONE:
             return stem
         elif is_glottal_grade:
-            if self.metathesizing_form() and allow_metathesis:
-                g_grade, stem = metathesize_h(g_grade, stem)
             return g_grade + "-" + stem
         else:
+            if self.metathesizing_form() and allow_metathesis:
+                h_grade, stem = metathesize_h(h_grade, stem)
             return h_grade + "-" + stem
 
     def get_form(self):
@@ -112,7 +113,7 @@ class MiddleVoice(Enum):
 
     @staticmethod
     def identify_middle_voice(
-        h_grade: str, g_grade: Optional[str]
+        h_grade: str, g_grade: Optional[str], log=False
     ) -> List[Tuple["MiddleVoice", Tuple[str, Optional[str], bool]]]:
         possibilities = []
         for voice in MiddleVoice:
@@ -121,18 +122,23 @@ class MiddleVoice(Enum):
                 res = voice.try_strip(h_grade, g_grade, allow_meta)
                 match_h = res and condition.matches(res[0])
                 match_g = res and (res[1] is None or condition.matches(res[1]))
-                print(
-                    h_grade,
-                    "|",
-                    g_grade,
-                    voice.value,
-                    res is not None,
-                    match_h,
-                    match_g,
+                grades_match = res and (
+                    res[1] is None or grades_are_compatible(h=res[0], glottal=res[1])
                 )
-                if res:
-                    print("\t", res[0], res[1])
-                if res and match_h and match_g:
+                if log:
+                    print(
+                        h_grade,
+                        "|",
+                        g_grade,
+                        voice.value,
+                        res is not None,
+                        match_h,
+                        match_g,
+                        grades_match,
+                    )
+                    if res:
+                        print("\t", res[0], res[1])
+                if res and match_h and match_g and grades_match:
                     possibilities.append((voice, res, allow_meta))
 
         return possibilities

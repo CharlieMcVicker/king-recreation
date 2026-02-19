@@ -7,24 +7,24 @@ from king_recreation.reconstruction import desegment
 def _test_identify_and_reconstruct(
     h_grade, g_grade, expected: List[Tuple[MiddleVoice, Tuple[str, str | None]]]
 ):
-    result = MiddleVoice.identify_middle_voice(h_grade, g_grade)
+    result = MiddleVoice.identify_middle_voice(h_grade, g_grade, log=True)
 
-    assert sorted([(v[0], v[1]) for v in result], key=lambda x: x[0].value) == sorted(
+    assert sorted(result, key=lambda x: x[0].value) == sorted(
         expected, key=lambda x: x[0].value
     )
 
     # test apply
-    for voice, (h_stem, g_stem) in expected:
+    for voice, (h_stem, g_stem), use_meta in expected:
         h_applied = (
             desegment(
-                voice.apply(h_stem, is_glottal_grade=False, allow_metathesis=False)
+                voice.apply(h_stem, is_glottal_grade=False, allow_metathesis=use_meta)
             )
             if h_stem is not None
             else None
         )
         g_applied = (
             desegment(
-                voice.apply(g_stem, is_glottal_grade=True, allow_metathesis=False)
+                voice.apply(g_stem, is_glottal_grade=True, allow_metathesis=use_meta)
             )
             if g_stem is not None
             else None
@@ -46,8 +46,8 @@ def test_match():
 def test_middle_ali():
     h_grade, g_grade = ("alhsday", "alihsday")
     expected = [
-        (MiddleVoice.NONE, (h_grade, g_grade)),
-        (MiddleVoice.AL_ALI, ("hsday", "hsday")),
+        (MiddleVoice.NONE, (h_grade, g_grade), False),
+        (MiddleVoice.AL_ALI, ("hsday", "hsday"), False),
     ]
     _test_identify_and_reconstruct(h_grade, g_grade, expected)
 
@@ -55,8 +55,8 @@ def test_middle_ali():
 def test_middle_ali_no_g():
     h_grade, g_grade = ("alhsday", None)
     expected = [
-        (MiddleVoice.NONE, (h_grade, None)),
-        (MiddleVoice.AL_ALI, ("hsday", None)),
+        (MiddleVoice.NONE, (h_grade, None), False),
+        (MiddleVoice.AL_ALI, ("hsday", None), False),
     ]
     _test_identify_and_reconstruct(h_grade, g_grade, expected)
 
@@ -64,8 +64,8 @@ def test_middle_ali_no_g():
 def test_middle_alhkhot():
     h_grade, g_grade = ("alhkhotht", None)
     expected = [
-        (MiddleVoice.NONE, (h_grade, None)),
-        (MiddleVoice.AL_ALI, ("hkhotht", None)),
+        (MiddleVoice.NONE, (h_grade, None), False),
+        (MiddleVoice.AL_ALI, ("hkhotht", None), False),
     ]
     _test_identify_and_reconstruct(h_grade, g_grade, expected)
 
@@ -73,9 +73,9 @@ def test_middle_alhkhot():
 def test_middle_atalen():
     h_grade, g_grade = ("atalen", None)
     expected = [
-        (MiddleVoice.NONE, (h_grade, None)),
-        (MiddleVoice.AT, ("alen", None)),
-        (MiddleVoice.ATA, ("len", None)),
+        (MiddleVoice.NONE, (h_grade, None), False),
+        (MiddleVoice.AT, ("alen", None), False),
+        (MiddleVoice.ATA, ("len", None), False),
     ]
     _test_identify_and_reconstruct(h_grade, g_grade, expected)
 
@@ -109,7 +109,7 @@ def test_try_strip():
 def test_empty_root():
     h_grade, g_grade = ("", "")
     expected = [
-        (MiddleVoice.NONE, (h_grade, g_grade)),
+        (MiddleVoice.NONE, (h_grade, g_grade), False),
     ]
     _test_identify_and_reconstruct(h_grade, g_grade, expected)
 
@@ -117,6 +117,24 @@ def test_empty_root():
 def test_empty_root_no_g():
     h_grade, g_grade = ("", None)
     expected = [
-        (MiddleVoice.NONE, (h_grade, g_grade)),
+        (MiddleVoice.NONE, (h_grade, g_grade), False),
     ]
     _test_identify_and_reconstruct(h_grade, g_grade, expected)
+
+
+def test_alhino():
+    h_grade, g_grade = ("alhino", "alino")
+    expected = [
+        (MiddleVoice.NONE, (h_grade, g_grade), False),
+        (MiddleVoice.ALI, ("nho", "no"), True),
+    ]
+    _test_identify_and_reconstruct(h_grade, g_grade, expected)
+
+
+def test_alhino_strip():
+    res = MiddleVoice.ALI.try_strip("alhino", "alino", allow_metathesis=True)
+    print(res)
+    _, _, con = MiddleVoice.ALI.get_form()
+    assert res
+    assert con.matches(res[0])
+    assert con.matches(res[1])
