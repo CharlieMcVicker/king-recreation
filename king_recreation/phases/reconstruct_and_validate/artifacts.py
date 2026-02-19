@@ -122,6 +122,7 @@ def save_validated_roots(data: list):
         "corpus_id",
         "entry_no",
         "user_selected",
+        "pipeline_selected",
         "definition",
         "stative",
         "class",

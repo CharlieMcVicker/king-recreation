@@ -8,6 +8,7 @@ from king_recreation.morphemes.prefixes import PrefixConfig
 from king_recreation.morphemes.prefixes.pronominals import use_glottal_grade
 from king_recreation.phases.reconstruct_and_validate.artifacts import (
     load_validated_roots,
+    save_validated_roots,
 )
 from king_recreation.phases.select_canonical_derivations.artifacts import (
     save_reconstructable_verbs,
@@ -39,40 +40,45 @@ def dedupe_roots(validated_verbs: list[ReconstructableVerb]):
     dropped = []
 
     for c_id, vl in roots_by_corpus_id.items():
-        lowest_len = None
-        lowest_v = None
+        # Identify pipeline choice (shortest h_grade_root, tie-broken deterministically)
+
+        # 1. Find min length
+        min_len = min(len(v.h_grade_root) for v in vl)
+
+        # 2. Filter to candidates with min length
+        candidates = [v for v in vl if len(v.h_grade_root) == min_len]
+
+        # 3. Sort candidates to pick one deterministically
+        # key: (h_grade_root, class_name, full original data string)
+        candidates.sort(
+            key=lambda v: (
+                v.h_grade_root,
+                v.class_name,
+                json.dumps(v.original_data, sort_keys=True),
+            )
+        )
+
+        pipeline_choice = candidates[0]
+        pipeline_choice.original_data["pipeline_selected"] = "x"
+
         if len(vl) == 1:
             deduped_roots.append(vl[0])
-        else:
-            # Check for user override
-            selected = [v for v in vl if getattr(v, "user_selected", False)]
-            unique_selected_roots = {v.h_grade_root for v in selected}
-            if len(unique_selected_roots) > 1:
-                print(
-                    f"[ERROR] Multiple conflicting user_selected roots for corpus_id {c_id}: {list(unique_selected_roots)}"
-                )
-                exit(1)
-            elif len(unique_selected_roots) == 1:
-                deduped_roots.append(selected[0])
-                continue
+            continue
 
-            # Default logic
-            for v in vl:
-                len_v = len(v.h_grade_root)
-                if lowest_v is None or len_v < lowest_len:
-                    lowest_len = len_v
-                    lowest_v = v
-                elif lowest_v == len_v:
-                    print(
-                        "[WARNING]",
-                        v.class_name,
-                        lowest_v.class_name,
-                        "have same length root",
-                    )
-                    dropped.append(c_id)
-                    break
-            else:
-                deduped_roots.append(lowest_v)
+        # Check for user override
+        selected = [v for v in vl if getattr(v, "user_selected", False)]
+        unique_selected_roots = {v.h_grade_root for v in selected}
+        if len(unique_selected_roots) > 1:
+            print(
+                f"[ERROR] Multiple conflicting user_selected roots for corpus_id {c_id}: {list(unique_selected_roots)}"
+            )
+            exit(1)
+        elif len(unique_selected_roots) == 1:
+            deduped_roots.append(selected[0])
+            continue
+
+        # Default logic: use pipeline choice
+        deduped_roots.append(pipeline_choice)
 
     return deduped_roots, dropped
 
@@ -164,6 +170,9 @@ def select_canonical_derivations():
                 verb.segmented_forms = json.loads(row["segmented_forms"])
             except json.JSONDecodeError:
                 verb.segmented_forms = {}
+
+        # Initialize pipeline_selected to empty string
+        row["pipeline_selected"] = ""
         validated_verbs.append(verb)
 
     print(f"Loaded {len(validated_verbs)} validated verbs.")
@@ -174,6 +183,9 @@ def select_canonical_derivations():
     )
 
     enrich_glottal_grades(deduped_roots)
+
+    # Save updated rows with pipeline_selected marks back to CSV
+    save_validated_roots(rows)
 
     # Save Fully Serialized Verbs
     save_reconstructable_verbs(deduped_roots, EnhancedJSONEncoder)

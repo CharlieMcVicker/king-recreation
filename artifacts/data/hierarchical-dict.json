@@ -114,7 +114,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -154,7 +154,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -199,7 +199,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7083,88 +7083,7 @@
             },
             "corpus_id": 4,
             "entry_no": 8,
-            "derivations": [
-              {
-                "definition": "he/she is bouncing it",
-                "h_grade_root": "atinvt",
-                "glottal_grade_root": "atinvt",
-                "post_root_morpheme": null,
-                "class_name": "cause",
-                "config": {
-                  "pre": {
-                    "translocutive": false,
-                    "translocutiveImpOnly": false,
-                    "partitive": false,
-                    "distributive": false
-                  },
-                  "pron": {
-                    "set_type": "a",
-                    "stem_type": "vowel_a",
-                    "allow_h_metathesis": false,
-                    "middle_voice": "at",
-                    "middle_voice_h_metathesis": false,
-                    "plural_pronouns": false,
-                    "use_ka_variant": false,
-                    "use_aki_for_1st_set_b": false,
-                    "uwa_replaces_v": false,
-                    "use_3rd_person_object": false
-                  },
-                  "stative": false
-                },
-                "corpus_id": 6,
-                "entry_no": 10,
-                "derivations": [],
-                "original_data": {},
-                "segmented_forms": {
-                  "present": "a->at-atinvt-ih",
-                  "present_1sg": "k-at-atinvt-ih",
-                  "imperfective": "a->at-atinvt-ihsk",
-                  "perfective": "u->at-atinvt-han",
-                  "imperative": "h-at-atinvt-a",
-                  "infinitive": "u->at-atinvt-oht"
-                }
-              },
-              {
-                "definition": "he/she is running over him/her",
-                "h_grade_root": "atinvt",
-                "glottal_grade_root": "atinvt",
-                "post_root_morpheme": null,
-                "class_name": "cause",
-                "config": {
-                  "pre": {
-                    "translocutive": false,
-                    "translocutiveImpOnly": false,
-                    "partitive": false,
-                    "distributive": false
-                  },
-                  "pron": {
-                    "set_type": "a",
-                    "stem_type": "vowel_a",
-                    "allow_h_metathesis": false,
-                    "middle_voice": "none",
-                    "middle_voice_h_metathesis": false,
-                    "plural_pronouns": false,
-                    "use_ka_variant": false,
-                    "use_aki_for_1st_set_b": false,
-                    "uwa_replaces_v": false,
-                    "use_3rd_person_object": true
-                  },
-                  "stative": false
-                },
-                "corpus_id": 78,
-                "entry_no": 82,
-                "derivations": [],
-                "original_data": {},
-                "segmented_forms": {
-                  "present": "a->atinvt-ih",
-                  "present_1sg": "tsiy-atinvt-ih",
-                  "imperfective": "a->atinvt-ihsk",
-                  "perfective": "u->atinvt-han",
-                  "imperative": "hiy-atinvt-a",
-                  "infinitive": "u->atinvt-oht"
-                }
-              }
-            ],
+            "derivations": [],
             "original_data": {},
             "segmented_forms": {
               "present": "a->at-at-ek",
@@ -7780,6 +7699,98 @@
               "perfective": "u->athv-hs",
               "imperative": "h-athv-hi",
               "infinitive": "u->athv-hihst"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "h_grade_root": "atinvt",
+    "glottal_grade_root": "atinvt",
+    "slug": "YXRpbnZ0fGF0aW52dA",
+    "classes": [
+      {
+        "class_name": "cause",
+        "verbs": [
+          {
+            "definition": "he/she is bouncing it",
+            "h_grade_root": "atinvt",
+            "glottal_grade_root": "atinvt",
+            "post_root_morpheme": null,
+            "class_name": "cause",
+            "config": {
+              "pre": {
+                "translocutive": false,
+                "translocutiveImpOnly": false,
+                "partitive": false,
+                "distributive": false
+              },
+              "pron": {
+                "set_type": "a",
+                "stem_type": "vowel_a",
+                "allow_h_metathesis": false,
+                "middle_voice": "at",
+                "middle_voice_h_metathesis": false,
+                "plural_pronouns": false,
+                "use_ka_variant": false,
+                "use_aki_for_1st_set_b": false,
+                "uwa_replaces_v": false,
+                "use_3rd_person_object": false
+              },
+              "stative": false
+            },
+            "corpus_id": 6,
+            "entry_no": 10,
+            "derivations": [],
+            "original_data": {},
+            "segmented_forms": {
+              "present": "a->at-atinvt-ih",
+              "present_1sg": "k-at-atinvt-ih",
+              "imperfective": "a->at-atinvt-ihsk",
+              "perfective": "u->at-atinvt-han",
+              "imperative": "h-at-atinvt-a",
+              "infinitive": "u->at-atinvt-oht"
+            }
+          },
+          {
+            "definition": "he/she is running over him/her",
+            "h_grade_root": "atinvt",
+            "glottal_grade_root": "atinvt",
+            "post_root_morpheme": null,
+            "class_name": "cause",
+            "config": {
+              "pre": {
+                "translocutive": false,
+                "translocutiveImpOnly": false,
+                "partitive": false,
+                "distributive": false
+              },
+              "pron": {
+                "set_type": "a",
+                "stem_type": "vowel_a",
+                "allow_h_metathesis": false,
+                "middle_voice": "none",
+                "middle_voice_h_metathesis": false,
+                "plural_pronouns": false,
+                "use_ka_variant": false,
+                "use_aki_for_1st_set_b": false,
+                "uwa_replaces_v": false,
+                "use_3rd_person_object": true
+              },
+              "stative": false
+            },
+            "corpus_id": 78,
+            "entry_no": 82,
+            "derivations": [],
+            "original_data": {},
+            "segmented_forms": {
+              "present": "a->atinvt-ih",
+              "present_1sg": "tsiy-atinvt-ih",
+              "imperfective": "a->atinvt-ihsk",
+              "perfective": "u->atinvt-han",
+              "imperative": "hiy-atinvt-a",
+              "infinitive": "u->atinvt-oht"
             }
           }
         ]
@@ -14106,7 +14117,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14158,7 +14169,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14210,7 +14221,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14262,7 +14273,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14314,7 +14325,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14366,7 +14377,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14418,7 +14429,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14470,7 +14481,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14574,7 +14585,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14626,7 +14637,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14675,7 +14686,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14727,7 +14738,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14779,7 +14790,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14831,7 +14842,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14883,7 +14894,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -14935,7 +14946,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -15655,7 +15666,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -15818,48 +15829,7 @@
             },
             "corpus_id": 811,
             "entry_no": 841,
-            "derivations": [
-              {
-                "definition": "he/she is putting it into a container",
-                "h_grade_root": "lht",
-                "glottal_grade_root": "lot",
-                "post_root_morpheme": null,
-                "class_name": "cause",
-                "config": {
-                  "pre": {
-                    "translocutive": false,
-                    "translocutiveImpOnly": false,
-                    "partitive": false,
-                    "distributive": false
-                  },
-                  "pron": {
-                    "set_type": "a",
-                    "stem_type": "con",
-                    "allow_h_metathesis": false,
-                    "middle_voice": "none",
-                    "middle_voice_h_metathesis": false,
-                    "plural_pronouns": false,
-                    "use_ka_variant": true,
-                    "use_aki_for_1st_set_b": false,
-                    "uwa_replaces_v": false,
-                    "use_3rd_person_object": false
-                  },
-                  "stative": false
-                },
-                "corpus_id": 798,
-                "entry_no": 828,
-                "derivations": [],
-                "original_data": {},
-                "segmented_forms": {
-                  "present": "ka-lht-ih",
-                  "present_1sg": "tsi-lot-ih",
-                  "imperfective": "ka-lht-ihsk",
-                  "perfective": "u-lht-han",
-                  "imperative": "hi-lht-a",
-                  "infinitive": "u-lht-oht"
-                }
-              }
-            ],
+            "derivations": [],
             "original_data": {},
             "segmented_forms": {
               "present": "ka-l-hvhsk",
@@ -16520,7 +16490,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -16572,7 +16542,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -16624,7 +16594,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -16676,7 +16646,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -16725,7 +16695,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -16748,6 +16718,58 @@
               "perfective": "u-lho-hs",
               "imperative": "hi-lho-hi",
               "infinitive": "u-lho-hihst"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "h_grade_root": "lht",
+    "glottal_grade_root": "lot",
+    "slug": "bGh0fGxvdA",
+    "classes": [
+      {
+        "class_name": "cause",
+        "verbs": [
+          {
+            "definition": "he/she is putting it into a container",
+            "h_grade_root": "lht",
+            "glottal_grade_root": "lot",
+            "post_root_morpheme": null,
+            "class_name": "cause",
+            "config": {
+              "pre": {
+                "translocutive": false,
+                "translocutiveImpOnly": false,
+                "partitive": false,
+                "distributive": false
+              },
+              "pron": {
+                "set_type": "a",
+                "stem_type": "aspirated",
+                "allow_h_metathesis": false,
+                "middle_voice": "none",
+                "middle_voice_h_metathesis": false,
+                "plural_pronouns": false,
+                "use_ka_variant": true,
+                "use_aki_for_1st_set_b": false,
+                "uwa_replaces_v": false,
+                "use_3rd_person_object": false
+              },
+              "stative": false
+            },
+            "corpus_id": 798,
+            "entry_no": 828,
+            "derivations": [],
+            "original_data": {},
+            "segmented_forms": {
+              "present": "ka-lht-ih",
+              "present_1sg": "tsi-lot-ih",
+              "imperfective": "ka-lht-ihsk",
+              "perfective": "u-lht-han",
+              "imperative": "hi-lht-a",
+              "infinitive": "u-lht-oht"
             }
           }
         ]
@@ -19307,7 +19329,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -19352,7 +19374,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -19404,7 +19426,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -19506,7 +19528,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -19572,48 +19594,7 @@
             },
             "corpus_id": 1544,
             "entry_no": 1610,
-            "derivations": [
-              {
-                "definition": "he/she is making him/her angry",
-                "h_grade_root": "nhalvhst",
-                "glottal_grade_root": "nalvhst",
-                "post_root_morpheme": null,
-                "class_name": "cause",
-                "config": {
-                  "pre": {
-                    "translocutive": false,
-                    "translocutiveImpOnly": false,
-                    "partitive": false,
-                    "distributive": false
-                  },
-                  "pron": {
-                    "set_type": "a",
-                    "stem_type": "con",
-                    "allow_h_metathesis": true,
-                    "middle_voice": "none",
-                    "middle_voice_h_metathesis": false,
-                    "plural_pronouns": false,
-                    "use_ka_variant": true,
-                    "use_aki_for_1st_set_b": false,
-                    "uwa_replaces_v": false,
-                    "use_3rd_person_object": true
-                  },
-                  "stative": false
-                },
-                "corpus_id": 1224,
-                "entry_no": 1275,
-                "derivations": [],
-                "original_data": {},
-                "segmented_forms": {
-                  "present": "kha-nalvhst-ih",
-                  "present_1sg": "tsi-nalvhst-ih",
-                  "imperfective": "kha-nalvhst-ihsk",
-                  "perfective": "u-nhalvhst-han",
-                  "imperative": "hi-nalvhst-a",
-                  "infinitive": "u-nhalvhst-oht"
-                }
-              }
-            ],
+            "derivations": [],
             "original_data": {},
             "segmented_forms": {
               "present": "u-nhalv-k",
@@ -19666,6 +19647,58 @@
               "imperfective": "u-nhalv-hs",
               "perfective": "u-nhalv-hs",
               "imperative": "tsha-nalv-hsehsti"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "h_grade_root": "nhalvhst",
+    "glottal_grade_root": "nalvhst",
+    "slug": "bmhhbHZoc3R8bmFsdmhzdA",
+    "classes": [
+      {
+        "class_name": "cause",
+        "verbs": [
+          {
+            "definition": "he/she is making him/her angry",
+            "h_grade_root": "nhalvhst",
+            "glottal_grade_root": "nalvhst",
+            "post_root_morpheme": null,
+            "class_name": "cause",
+            "config": {
+              "pre": {
+                "translocutive": false,
+                "translocutiveImpOnly": false,
+                "partitive": false,
+                "distributive": false
+              },
+              "pron": {
+                "set_type": "a",
+                "stem_type": "aspirated",
+                "allow_h_metathesis": true,
+                "middle_voice": "none",
+                "middle_voice_h_metathesis": false,
+                "plural_pronouns": false,
+                "use_ka_variant": true,
+                "use_aki_for_1st_set_b": false,
+                "uwa_replaces_v": false,
+                "use_3rd_person_object": true
+              },
+              "stative": false
+            },
+            "corpus_id": 1224,
+            "entry_no": 1275,
+            "derivations": [],
+            "original_data": {},
+            "segmented_forms": {
+              "present": "kha-nalvhst-ih",
+              "present_1sg": "tsi-nalvhst-ih",
+              "imperfective": "kha-nalvhst-ihsk",
+              "perfective": "u-nhalvhst-han",
+              "imperative": "hi-nalvhst-a",
+              "infinitive": "u-nhalvhst-oht"
             }
           }
         ]
@@ -19799,7 +19832,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -19851,7 +19884,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -19903,7 +19936,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -19955,7 +19988,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20007,7 +20040,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20110,7 +20143,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20155,7 +20188,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20203,7 +20236,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20255,7 +20288,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20307,7 +20340,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20399,7 +20432,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20444,7 +20477,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20496,7 +20529,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20588,7 +20621,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20640,7 +20673,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20692,7 +20725,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20893,7 +20926,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20938,7 +20971,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -20983,7 +21016,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -21033,7 +21066,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -21085,7 +21118,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -21137,7 +21170,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": true,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -23413,7 +23446,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -23569,7 +23602,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -23621,7 +23654,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -23673,7 +23706,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -23725,7 +23758,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -26318,7 +26351,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -26332,88 +26365,7 @@
             },
             "corpus_id": 207,
             "entry_no": 213,
-            "derivations": [
-              {
-                "definition": "he/she is visiting him/her",
-                "h_grade_root": "whahthvh",
-                "glottal_grade_root": "wahthvh",
-                "post_root_morpheme": "be-at",
-                "class_name": "be-at",
-                "config": {
-                  "pre": {
-                    "translocutive": false,
-                    "translocutiveImpOnly": false,
-                    "partitive": false,
-                    "distributive": false
-                  },
-                  "pron": {
-                    "set_type": "a",
-                    "stem_type": "con",
-                    "allow_h_metathesis": false,
-                    "middle_voice": "none",
-                    "middle_voice_h_metathesis": false,
-                    "plural_pronouns": false,
-                    "use_ka_variant": false,
-                    "use_aki_for_1st_set_b": false,
-                    "uwa_replaces_v": false,
-                    "use_3rd_person_object": true
-                  },
-                  "stative": false
-                },
-                "corpus_id": 208,
-                "entry_no": 214,
-                "derivations": [],
-                "original_data": {},
-                "segmented_forms": {
-                  "present": "a-whahthvh-it-oh",
-                  "present_1sg": "tsi-wahthvh-it-oh",
-                  "imperfective": "a-whahthvh-it-oh",
-                  "perfective": "u-whahthvh-it-ol",
-                  "imperative": "hi-wahthvh-it-a",
-                  "infinitive": "u-whahthvh-it-ahst"
-                }
-              },
-              {
-                "definition": "he/she is visiting",
-                "h_grade_root": "whahthvh",
-                "glottal_grade_root": "wahthvh",
-                "post_root_morpheme": "be-at",
-                "class_name": "be-at",
-                "config": {
-                  "pre": {
-                    "translocutive": false,
-                    "translocutiveImpOnly": false,
-                    "partitive": false,
-                    "distributive": false
-                  },
-                  "pron": {
-                    "set_type": "a",
-                    "stem_type": "vowel_a",
-                    "allow_h_metathesis": false,
-                    "middle_voice": "ata",
-                    "middle_voice_h_metathesis": false,
-                    "plural_pronouns": false,
-                    "use_ka_variant": false,
-                    "use_aki_for_1st_set_b": false,
-                    "uwa_replaces_v": false,
-                    "use_3rd_person_object": false
-                  },
-                  "stative": false
-                },
-                "corpus_id": 18,
-                "entry_no": 22,
-                "derivations": [],
-                "original_data": {},
-                "segmented_forms": {
-                  "present": "a->ata-whahthvh-it-oh",
-                  "present_1sg": "k-ata-wahthvh-it-oh",
-                  "imperfective": "a->ata-whahthvh-it-oh",
-                  "perfective": "u->ata-whahthvh-it-ol",
-                  "imperative": "h-ata-whahthvh-it-a",
-                  "infinitive": "u->ata-whahthvh-it-ahst"
-                }
-              }
-            ],
+            "derivations": [],
             "original_data": {},
             "segmented_forms": {
               "present": "a-whahth-ih",
@@ -26422,6 +26374,98 @@
               "perfective": "u-whahth-vh",
               "imperative": "hi-wahth-a",
               "infinitive": "u-whahth-vht"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "h_grade_root": "whahthvh",
+    "glottal_grade_root": "wahthvh",
+    "slug": "d2hhaHRodmh8d2FodGh2aA",
+    "classes": [
+      {
+        "class_name": "be-at",
+        "verbs": [
+          {
+            "definition": "he/she is visiting",
+            "h_grade_root": "whahthvh",
+            "glottal_grade_root": "wahthvh",
+            "post_root_morpheme": "be-at",
+            "class_name": "be-at",
+            "config": {
+              "pre": {
+                "translocutive": false,
+                "translocutiveImpOnly": false,
+                "partitive": false,
+                "distributive": false
+              },
+              "pron": {
+                "set_type": "a",
+                "stem_type": "vowel_a",
+                "allow_h_metathesis": false,
+                "middle_voice": "ata",
+                "middle_voice_h_metathesis": false,
+                "plural_pronouns": false,
+                "use_ka_variant": false,
+                "use_aki_for_1st_set_b": false,
+                "uwa_replaces_v": false,
+                "use_3rd_person_object": false
+              },
+              "stative": false
+            },
+            "corpus_id": 18,
+            "entry_no": 22,
+            "derivations": [],
+            "original_data": {},
+            "segmented_forms": {
+              "present": "a->ata-whahthvh-it-oh",
+              "present_1sg": "k-ata-wahthvh-it-oh",
+              "imperfective": "a->ata-whahthvh-it-oh",
+              "perfective": "u->ata-whahthvh-it-ol",
+              "imperative": "h-ata-whahthvh-it-a",
+              "infinitive": "u->ata-whahthvh-it-ahst"
+            }
+          },
+          {
+            "definition": "he/she is visiting him/her",
+            "h_grade_root": "whahthvh",
+            "glottal_grade_root": "wahthvh",
+            "post_root_morpheme": "be-at",
+            "class_name": "be-at",
+            "config": {
+              "pre": {
+                "translocutive": false,
+                "translocutiveImpOnly": false,
+                "partitive": false,
+                "distributive": false
+              },
+              "pron": {
+                "set_type": "a",
+                "stem_type": "aspirated",
+                "allow_h_metathesis": false,
+                "middle_voice": "none",
+                "middle_voice_h_metathesis": false,
+                "plural_pronouns": false,
+                "use_ka_variant": false,
+                "use_aki_for_1st_set_b": false,
+                "uwa_replaces_v": false,
+                "use_3rd_person_object": true
+              },
+              "stative": false
+            },
+            "corpus_id": 208,
+            "entry_no": 214,
+            "derivations": [],
+            "original_data": {},
+            "segmented_forms": {
+              "present": "a-whahthvh-it-oh",
+              "present_1sg": "tsi-wahthvh-it-oh",
+              "imperfective": "a-whahthvh-it-oh",
+              "perfective": "u-whahthvh-it-ol",
+              "imperative": "hi-wahthvh-it-a",
+              "infinitive": "u-whahthvh-it-ahst"
             }
           }
         ]
@@ -26451,7 +26495,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -27221,7 +27265,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -27325,7 +27369,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -27377,7 +27421,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -27429,7 +27473,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -27474,7 +27518,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -27578,7 +27622,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -27673,7 +27717,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -27777,7 +27821,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -27881,7 +27925,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -27985,7 +28029,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -28037,7 +28081,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -28089,7 +28133,7 @@
               },
               "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -28139,7 +28183,7 @@
               },
               "pron": {
                 "set_type": "b",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
