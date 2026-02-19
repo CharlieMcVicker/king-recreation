@@ -115,7 +115,9 @@ class ReconstructionEngine:
             return None
 
         # apply middle voice
-        root = verb.config.pron.middle_voice.apply(root, glottal_grade)
+        root = verb.config.pron.middle_voice.apply(
+            root, glottal_grade, verb.config.pron.middle_voice_h_metathesis
+        )
 
         if verb.post_root_morpheme:
             reg = PostRootMorphemeRegistry.get_instance()

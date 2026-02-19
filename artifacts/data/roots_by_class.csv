@@ -1,4 +1,5 @@
 root_id,h_grade,g_grade,class,stem_type,corpus_ids
+'i|'i,'i,'i,i-a-i,vowel_a,317
 'luh|'luh,'luh,'luh,become[inf4],glottal,858
 'l|'l,'l,'l,be-at,glottal,839
 'l|'l,'l,'l,go,glottal,834
@@ -20,7 +21,6 @@ root_id,h_grade,g_grade,class,stem_type,corpus_ids
 :naw|,:naw,,i-a-i,long,1700
 :n|:n,:n,:n,be-at,long,908
 :n|:n,:n,:n,go,long,882
-:n|:n,:n,:n,stative-eh,long,887
 :taluk|:taluk,:taluk,:taluk,i-vka,long,764
 :teyhst|:teyahst,:teyhst,:teyahst,cause,long,767
 :tikwalvteyhst|:tikwalvteyhst,:tikwalvteyhst,:tikwalvteyhst,cause,long,769
@@ -101,11 +101,6 @@ alhskwethuh|,alhskwethuh,,stative-k,vowel_a,1622
 alhstanh|,alhstanh,,apl[imp2],vowel_a,1616
 alhstul|,alhstul,,stative,vowel_a,1618
 alh|atl,alh,atl,o,vowel_a,173
-ali'it|ali'it,ali'it,ali'it,i-a-i,vowel_a,317
-aliyo|aliyo,aliyo,aliyo,hih-lh,vowel_a,592
-aliyo|aliyo,aliyo,aliyo,ih-vh[imperf2-inf2],vowel_a,593
-aliyo|aliyo,aliyo,aliyo,rev-gi,vowel_a,591
-aliyo|aliyo,aliyo,aliyo,stative-h,vowel_a,733
 altsikw|altsikw,altsikw,altsikw,sk-h,vowel_a,324
 anelht|anelht,anelht,anelht,cause,vowel_a,599
 anelht|anelht-attempt,anelht,anelht,cause,vowel_a,361
@@ -129,17 +124,13 @@ athiyo|a'tiyo,athiyo,a'tiyo,hih-lh,vowel_a,480
 athu|a'tu,athu,a'tu,rev-gi,vowel_a,491
 athvhihst|a'tvhihst,athvhihst,a'tvhihst,cause,vowel_a,497
 athv|a'tv,athv,a'tv,sk-s-hi-hihst,vowel_a,498
-atinvt|atinvt,atinvt,atinvt,cause,vowel_a,6;78
-atl|atl,atl,atl,rev-e,vowel_a,87
-ato|ato,ato,ato,sk-s-hi-hihst,vowel_a,777
-at|at,at,at,go-in,vowel_a,4;1471
-at|at,at,at,go-in[perf2],vowel_a,5
+at|at,at,at,go-in,vowel_a,1471
 awholat|a'wolat,awholat,a'wolat,rev-e,vowel_a,1258
 awohil|awo'il,awohil,awo'il,v-vhs,vowel_a,980
 aw|aw,aw,aw,o,vowel_a,979
 ayhu'in|ayu'in,ayhu'in,ayu'in,go,vowel_a,223
 a|a,a,a,oh-ol[inf2],vowel_a,70
-burning,ali,,become,vowel_a,840
+burning,li,,become,con,840
 ehihstan|,ehihstan,,apl,vowel_e,1710
 ehohihst|e'ohihst,ehohihst,e'ohihst,cause,vowel_a,61
 eho|e'o,eho,e'o,sk-s-hi-hihst,vowel_a,62
@@ -150,14 +141,14 @@ el|el,el,el,i-a-i[perf2],vowel_e,752
 ethiy|,ethiy,,ih-vh,vowel_a,1476
 et|et,et,et,be-at,vowel_e,742
 e|e,e,e,hvsk-nh,vowel_a,63
+e|e,e,e,stative-h,vowel_e,746
 hahs|,hahs,,rev-gi,vowel_a,469
 halhok|,halhok,,apl-active,con,1531
 halu|'alu,halu,'alu,rev-gi,con,155
 hang,at,at,hvsk-han,vowel_a,976
 hang,at,at,rev-e,vowel_a,766
-hang,at,at,stative-a',vowel_a,759
-hang,,,stative-h,con,1530
-hang,at,at,stative-h,vowel_a,970
+hang,h,',stative,con,1530
+hang,',',stative,vowel_a,759;970
 hanol|,hanol,,go,vowel_a,467
 hawohst|'awohst,hawohst,'awohst,cause,con,158;1534
 helitsh|'elitsh,helitsh,'elitsh,apl[imp3],vowel_a,314
@@ -228,7 +219,7 @@ hsvhst|hsvhst,hsvhst,hsvhst,cause,con,612
 hsvhst|hsvhst,hsvhst,hsvhst,cause,vowel_a,345
 hsv|hsv,hsv,hsv,become,con,455
 hsv|hsv,hsv,hsv,terminative-no-o,con,459
-hs|hs,hs,hs,oh-ol,s_stem,383
+hs|hs,hs,hs,oh-ol,con,383
 hs|hs,hs,hs,rev-gi,vowel_a,336
 hthat|that,hthat,that,go-in,vowel_a,555
 hthaw|thaw,hthaw,thaw,o,vowel_a,183
@@ -250,6 +241,7 @@ ikaleyo|,ikaleyo,,become[inf3],vowel_a,75
 ikaley|ikaley,ikaley,ikaley,a,vowel_a,74
 ikwalv|ikwalv,ikwalv,ikwalv,oh-ol[inf2],vowel_a,76
 ilheh|,ilheh,,stative-k,vowel_a,1478
+invt|invt,invt,invt,cause,vowel_a,6;78
 itha|itha,itha,itha,sk-h[imp2],vowel_a,82
 it|it,it,it,ih-vh,vowel_a,73
 iw|,iw,,sk-s-hi-hihst,vowel_a,1481
@@ -291,6 +283,7 @@ kwenothi|,kwenothi,,sk-s-hst[imp2],con,725
 kwhala|kwhala,kwhala,kwhala,rev-gi,con,578
 kwhol|,kwhol,,go,con,1599
 k|k,k,k,i-a-i,con,127
+k|k,k,k,rev-i,con,128
 lahsithv'|,lahsithv',,apl,vowel_a,1485
 lako|lako,lako,lako,sk-s-la,vowel_a,85
 lanvt|,lanvt,,stative,vowel_a,1483
@@ -313,6 +306,7 @@ liyet|,liyet,,cause,con,1612
 li|,li,,become[inf3],vowel_a,94
 lohihst|lo'ihst,lohihst,lo'ihst,cause,con,848
 lohihs|lo'ihs,lohihs,lo'ihs,apl[imp2],con,850
+lokil|,lokil,,stative,con,1614
 lok|lok,lok,lok,i-vka,con,845
 lonahst|lonahst,lonahst,lonahst,cause,con,852
 long,,,i-a-i,con,72;1754
@@ -320,7 +314,6 @@ lonht|lonht,lonht,lonht,cause,con,854
 lonu|lonu,lonu,lonu,apl-active-h,con,855
 lon|lon,lon,lon,e-a,con,853
 loy|loy,loy,loy,hih-hil,vowel_a,98;547
-lo|lo,lo,lo,hih-lh,vowel_a,7
 lo|lo,lo,lo,sk-s-hi-hihst,con,856;857
 lo|lo,lo,lo,sk-s-hi-hihst,vowel_a,722
 lulo|lulo,lulo,lulo,become,con,859
@@ -332,6 +325,7 @@ l|l,l,l,hih-hil,con,864
 l|l,l,l,hvsk-han,con,811
 l|l,l,l,i-a-i,con,830
 l|l,l,l,rev-e,con,833
+l|l,l,l,rev-e,vowel_a,87
 l|l,l,l,vsk[imp2],con,870
 nalh|nalh,nalh,nalh,vsk[imp2],con,873
 nanehs|nanehs,nanehs,nanehs,episodic[inf2],vowel_a,30
@@ -418,6 +412,7 @@ nv|nv,nv,nv,i-a-i,con,938
 nv|nv,nv,nv,sk-s-la,vowel_a,46
 n|n,n,n,rev-e,con,879
 n|n,n,n,stative-a',con,1629
+n|n,n,n,stative-eh,con,887
 n|n,n,n,vsk-long[imp2],con,1776
 ohin|o'in,ohin,o'in,go,vowel_o,1014
 ohiyhtan|o'iyhtan,ohiyhtan,o'iyhtan,apl,vowel_o,1015
@@ -428,7 +423,6 @@ ohst|ohst,ohst,ohst,ih-il,vowel_o,1038
 ohs|ohs,ohs,ohs,apl[imp2],vowel_o,1040
 ohs|ohs,ohs,ohs,cause[perf2],vowel_o,625
 okht|,okht,,cause,vowel_a,724
-okil|,okil,,stative,vowel_a,1614
 olhv|olv,olhv,olv,sk-s-hi-hihst,vowel_o,1021
 olh|olh,olh,olh,vnh-vsk[inf3],vowel_o,1022
 olh|oli,olh,oli,become[inf4],vowel_o,1017;1018
@@ -440,7 +434,7 @@ othi|othi,othi,othi,sk-s-hi-hihst,vowel_o,1041
 otsan|otsan,otsan,otsan,rev-e,vowel_o,1030
 ot|ot,ot,ot,hvsk-han,vowel_o,1043
 owhel|owel,owhel,owel,i-vka,vowel_o,1027
-sakal|sakal,sakal,sakal,ih-vh,vowel_a,25
+o|o,o,o,sk-s-hi-hihst,vowel_a,777
 san|san,san,san,vnh-vsk[inf2],vowel_a,239
 say,at,at,vnh-ih-a,vowel_a,77
 sa|sa,sa,sa,rev-'i,vowel_a,238
@@ -460,11 +454,15 @@ thu'ihst|thu'ihst,thu'ihst,thu'ihst,cause,con,493
 th|th,th,th,rev-i,vowel_a,318
 tihs|tihs,tihs,tihs,a,con,80
 tlihst|tlihst,tlihst,tlihst,cause,con,96
+tlo|tlo,tlo,tlo,hih-lh,vowel_a,7
 tl|tl,tl,tl,ih-vh[inf2],con,95
 to|to,to,to,stative-k,con,772
+tsakal|tsakal,tsakal,tsakal,ih-vh,vowel_a,25
 tsihsl|tsihsl,tsihsl,tsihsl,hvsk-han[inf2],con,253
 tsvhst|tsvhst,tsvhst,tsvhst,hvsk-han[inf2],con,255
 t|t,t,t,apl[imp3],con,59
+t|t,t,t,go-in,vowel_a,4
+t|t,t,t,go-in[perf2],vowel_a,5
 uhal|u'al,uhal,u'al,hvsk-han,vowel_u,1050
 uhihst|u'ihst,uhihst,u'ihst,cause,vowel_u,1053
 uh|u',uh,u',o,vowel_u,1052
@@ -542,8 +540,12 @@ yohst|yohst,yohst,yohst,cause,con,524
 yohuhs|,yohuhs,,apl[imp2],con,1741
 yol|yol,yol,yol,hvsk-han[inf2],con,519
 yol|yol,yol,yol,ih-il,con,523
+yo|yo,yo,yo,hih-lh,vowel_a,592
+yo|yo,yo,yo,ih-vh[imperf2-inf2],vowel_a,593
+yo|yo,yo,yo,rev-gi,vowel_a,591
 yo|yo,yo,yo,sk-s-hi-hihst,con,618;740
 yo|yo,yo,yo,sk-s-hi-hihst,vowel_a,545
+yo|yo,yo,yo,stative-h,vowel_a,733
 yo|yo-break,yo,yo,become[inf3],con,515
 yo|yo-shoot,yo,yo,hih-lh[imp2],con,516
 yvlat|,yvlat,,stative-h,vowel_a,1470
@@ -554,6 +556,3 @@ y|y,y,y,hih-hil[imp2],vowel_a,21
 y|y,y,y,ih-vh,con,513
 y|y,y,y,oh-al,con,222;1563
 y|y,y,y,stative-a',con,502
-|,,,hvsk-nh,con,206;1761
-|,,,rev-gi,con,128
-|,,,stative-eh,vowel_e,746
