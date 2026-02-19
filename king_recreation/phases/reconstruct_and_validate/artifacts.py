@@ -133,6 +133,7 @@ def save_validated_roots(data: list):
         "stem_type",
         "allow_h_metathesis",
         "middle_voice",
+        "middle_voice_h_metathesis",
         "plural",
         "ka_variant",
         "aki_1st",

@@ -62,6 +62,7 @@ class PronominalConfig:
     stem_type: StemType
     allow_h_metathesis: bool = False
     middle_voice: MiddleVoice = MiddleVoice.NONE
+    middle_voice_h_metathesis: bool = False
 
     # Flags for prefix variants
     plural_pronouns: bool = False
@@ -81,6 +82,7 @@ class PronominalConfig:
             stem_type=StemType(row["stem_type"]),
             allow_h_metathesis=row["allow_h_metathesis"] == "True",
             middle_voice=MiddleVoice(row["middle_voice"]),
+            middle_voice_h_metathesis=row["middle_voice_h_metathesis"] == "True",
             plural_pronouns=row["plural"] == "True",
             use_ka_variant=row["ka_variant"] == "True",
             use_aki_for_1st_set_b=row["aki_1st"] == "True",
@@ -105,6 +107,7 @@ class PronominalConfig:
         row["stem_type"] = self.stem_type.value
         row["allow_h_metathesis"] = str(self.allow_h_metathesis)
         row["middle_voice"] = self.middle_voice.value
+        row["middle_voice_h_metathesis"] = str(self.middle_voice_h_metathesis)
         row["plural"] = str(self.plural_pronouns)
         row["ka_variant"] = str(self.use_ka_variant)
         row["aki_1st"] = str(self.use_aki_for_1st_set_b)
