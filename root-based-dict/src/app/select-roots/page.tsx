@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getValidatedRootsRows } from "@/lib/data";
-import SelectRootsWorkflow from "./select-roots-workflow";
+import SelectRootsWorkflow from "@/components/SelectRootsWorkflow";
 
 export const metadata: Metadata = {
   title: "Select Roots | King Match Explorer",
