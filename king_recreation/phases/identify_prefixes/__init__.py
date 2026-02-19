@@ -168,9 +168,11 @@ def derive_middle(der: PrefixDerivation) -> List[PrefixDerivation]:
     der_dict = asdict(der)
     pron_dict = asdict(der.config.pron)
     options = []
-    for middle_voice, (h_grade, g_grade) in MiddleVoice.identify_middle_voice(
-        der.h_grade, der.g_grade
-    ):
+    for (
+        middle_voice,
+        (h_grade, g_grade),
+        allow_meta,
+    ) in MiddleVoice.identify_middle_voice(der.h_grade, der.g_grade):
         der_dict["h_grade"] = h_grade
         der_dict["g_grade"] = g_grade
 
@@ -180,6 +182,7 @@ def derive_middle(der: PrefixDerivation) -> List[PrefixDerivation]:
         }
 
         pron_dict["middle_voice"] = middle_voice
+        pron_dict["middle_voice_h_metathesis"] = allow_meta
 
         der_dict["config"] = PrefixConfig(
             pre=der.config.pre,
