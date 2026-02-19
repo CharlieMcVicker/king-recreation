@@ -53,8 +53,11 @@ interface SelectRootsWorkflowProps {
 export default function SelectRootsWorkflow({
   initialData,
 }: SelectRootsWorkflowProps) {
+  const [showAllRows, setShowAllRows] = useState(false);
+  const [showOnlyUnreviewed, setShowOnlyUnreviewed] = useState(false);
+
   // Group data by corpus_id
-  const { groupedData, uniqueCorpusIds } = useMemo(() => {
+  const { groupedData, allCorpusIds } = useMemo(() => {
     const groups: Record<number, ValidatedRootRow[]> = {};
     const ids: number[] = [];
 
@@ -66,8 +69,17 @@ export default function SelectRootsWorkflow({
       groups[row.corpus_id].push(row);
     });
 
-    return { groupedData: groups, uniqueCorpusIds: ids };
+    return { groupedData: groups, allCorpusIds: ids };
   }, [initialData]);
+
+  const uniqueCorpusIds = useMemo(() => {
+    if (!showOnlyUnreviewed) return allCorpusIds;
+
+    return allCorpusIds.filter((id) => {
+      const derivations = groupedData[id] || [];
+      return !derivations.some((d) => d.user_selected === "x");
+    });
+  }, [allCorpusIds, showOnlyUnreviewed, groupedData]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedDerivationIndex, setSelectedDerivationIndex] = useState(0);
@@ -76,7 +88,13 @@ export default function SelectRootsWorkflow({
     type: "success" | "error";
     text: string;
   } | null>(null);
-  const [showAllRows, setShowAllRows] = useState(false);
+
+  // Reset index if it becomes out of bounds due to filtering
+  useEffect(() => {
+    if (currentIndex >= uniqueCorpusIds.length && uniqueCorpusIds.length > 0) {
+      setCurrentIndex(0);
+    }
+  }, [uniqueCorpusIds.length, currentIndex]);
 
   const currentCorpusId = uniqueCorpusIds[currentIndex];
   const derivations = groupedData[currentCorpusId] || [];
@@ -159,7 +177,10 @@ export default function SelectRootsWorkflow({
 
   if (!currentCorpusId) return <div>No data loaded.</div>;
 
-  const selectedDerivation = derivations[selectedDerivationIndex];
+  // Defensive access: ensure we always have a derivation if any exist,
+  // even if the index is temporarily out of bounds during navigation.
+  const selectedDerivation =
+    derivations[selectedDerivationIndex] || derivations[0];
 
   const rows = useMemo(
     () => [
@@ -235,6 +256,18 @@ export default function SelectRootsWorkflow({
             <span className="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-xs font-mono text-zinc-500">
               ID: {currentCorpusId}
             </span>
+            {selectedDerivation?.user_selected === "x" && (
+              <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-wider border border-emerald-100 dark:border-emerald-800/30">
+                <CheckCircle2 className="w-3 h-3" />
+                User Approved
+              </span>
+            )}
+            {selectedDerivation?.pipeline_selected === "x" && (
+              <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400 text-[10px] font-bold uppercase tracking-wider border border-amber-100 dark:border-amber-800/30">
+                <AlertCircle className="w-3 h-3" />
+                Pipeline Selected
+              </span>
+            )}
           </div>
           <p className="text-sm text-zinc-500 flex items-center gap-2">
             <Database className="w-4 h-4" />
@@ -245,9 +278,12 @@ export default function SelectRootsWorkflow({
         <div className="flex items-center gap-4">
           <div className="text-right mr-4">
             <div className="text-sm font-medium text-zinc-900 dark:text-zinc-100">
-              {currentIndex + 1} / {uniqueCorpusIds.length}
+              {uniqueCorpusIds.length > 0 ? currentIndex + 1 : 0} /{" "}
+              {uniqueCorpusIds.length}
             </div>
-            <div className="text-xs text-zinc-500">Words reviewed</div>
+            <div className="text-xs text-zinc-500">
+              {showOnlyUnreviewed ? "Unreviewed words" : "Words reviewed"}
+            </div>
           </div>
 
           <div className="flex gap-1">
@@ -335,7 +371,7 @@ export default function SelectRootsWorkflow({
                           {isSelected ? "Focused" : "Select"}
                         </span>
                       </div>
-                      {isPipeline && pipelineDiffers && (
+                      {isPipeline && (
                         <div className="mt-2 text-[10px] font-medium text-amber-600 dark:text-amber-500 bg-amber-50 dark:bg-amber-900/20 px-1.5 py-0.5 rounded inline-block">
                           Pipeline Selected
                         </div>
@@ -361,9 +397,13 @@ export default function SelectRootsWorkflow({
                   </td>
                   {derivations.map((derivation, devIdx) => {
                     const val = (derivation as any)[row.key];
-                    const selectedVal = (selectedDerivation as any)[row.key];
+                    const selectedVal = selectedDerivation
+                      ? (selectedDerivation as any)[row.key]
+                      : undefined;
                     const isDiff =
-                      devIdx !== selectedDerivationIndex && val !== selectedVal;
+                      devIdx !== selectedDerivationIndex &&
+                      selectedDerivation &&
+                      val !== selectedVal;
                     const isFocusColumn = devIdx === selectedDerivationIndex;
 
                     return (
@@ -459,6 +499,23 @@ export default function SelectRootsWorkflow({
               <span className="ml-1 text-[10px] opacity-60">
                 ({redundantRowKeys.size} hidden)
               </span>
+            </button>
+
+            <button
+              onClick={() => {
+                setShowOnlyUnreviewed(!showOnlyUnreviewed);
+                setCurrentIndex(0); // Reset on toggle
+              }}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
+                showOnlyUnreviewed
+                  ? "bg-amber-100 text-amber-900 dark:bg-amber-900/40 dark:text-amber-100"
+                  : "text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
+              }`}
+            >
+              <Filter
+                className={`w-4 h-4 ${showOnlyUnreviewed ? "fill-current" : ""}`}
+              />
+              {showOnlyUnreviewed ? "Unreviewed Only" : "Show All Verbs"}
             </button>
           </div>
 
