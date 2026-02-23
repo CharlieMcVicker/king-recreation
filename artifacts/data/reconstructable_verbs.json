@@ -3281,7 +3281,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -3377,9 +3377,9 @@
     },
     {
         "definition": "he/she is changing his/her shirt",
-        "h_grade_root": "anhaw",
-        "glottal_grade_root": "aniw",
-        "post_root_morpheme": "change-out[flexible]",
+        "h_grade_root": "anhawa'",
+        "glottal_grade_root": "aniwa'",
+        "post_root_morpheme": "change-out",
         "class_name": "v-vhs",
         "config": {
             "pre": {
@@ -3406,12 +3406,12 @@
         "entry_no": 192,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->anhaw-a'iy-v'",
-            "present_1sg": "k-aniw-a'iy-v'",
-            "imperfective": "a->anhaw-a'iy-vhsk",
-            "perfective": "u->anhaw-a'iy-vhs",
-            "imperative": "h-anhaw-a'iy-vna",
-            "infinitive": "u->anhaw-a'iy-vhst"
+            "present": "a->anhawa'-iy-v'",
+            "present_1sg": "k-aniwa'-iy-v'",
+            "imperfective": "a->anhawa'-iy-vhsk",
+            "perfective": "u->anhawa'-iy-vhs",
+            "imperative": "h-anhawa'-iy-vna",
+            "infinitive": "u->anhawa'-iy-vhst"
         }
     },
     {
@@ -4389,9 +4389,9 @@
     },
     {
         "definition": "he/she is hitting him/her on the nose",
-        "h_grade_root": "yhvhstelu",
-        "glottal_grade_root": "yvhstelu",
-        "post_root_morpheme": null,
+        "h_grade_root": "yhvhs",
+        "glottal_grade_root": "yvhs",
+        "post_root_morpheme": "hit-on[t]",
         "class_name": "hvsk-nh",
         "config": {
             "pre": {
@@ -4418,12 +4418,12 @@
         "entry_no": 239,
         "derivations": [],
         "segmented_forms": {
-            "present": "a-yhvhstelu-hvhsk",
-            "present_1sg": "tsi-yvhstelu-hvhsk",
-            "imperfective": "a-yhvhstelu-hvhsk",
-            "perfective": "u-yhvhstelu-nh",
-            "imperative": "hi-yvhstelu-hvka",
-            "infinitive": "u-yhvhstelu-ht"
+            "present": "a-yhvhs-telu-hvhsk",
+            "present_1sg": "tsi-yvhs-telu-hvhsk",
+            "imperfective": "a-yhvhs-telu-hvhsk",
+            "perfective": "u-yhvhs-telu-nh",
+            "imperative": "hi-yvhs-telu-hvka",
+            "infinitive": "u-yhvhs-telu-ht"
         }
     },
     {
@@ -4467,10 +4467,10 @@
     },
     {
         "definition": "it\u2019s hatching",
-        "h_grade_root": "atsa",
-        "glottal_grade_root": "atsa",
+        "h_grade_root": "atsa'",
+        "glottal_grade_root": "atsa'",
         "post_root_morpheme": null,
-        "class_name": "rev-'i",
+        "class_name": "rev-i",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -4496,12 +4496,12 @@
         "entry_no": 244,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->atsa-'i'",
-            "present_1sg": "k-atsa-'i'",
-            "imperfective": "a->atsa-'ihsk",
-            "perfective": "u->atsa-'ihs",
-            "imperative": "h-atsa-'i",
-            "infinitive": "u->atsa-'ihst"
+            "present": "a->atsa'-i'",
+            "present_1sg": "k-atsa'-i'",
+            "imperfective": "a->atsa'-ihsk",
+            "perfective": "u->atsa'-ihs",
+            "imperative": "h-atsa'-i",
+            "infinitive": "u->atsa'-ihst"
         }
     },
     {
@@ -4751,7 +4751,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -4868,7 +4868,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -5047,9 +5047,9 @@
     },
     {
         "definition": "he/she is hitting him/her on the eye",
-        "h_grade_root": "khthelu",
-        "glottal_grade_root": "kathelu",
-        "post_root_morpheme": null,
+        "h_grade_root": "khth",
+        "glottal_grade_root": "kath",
+        "post_root_morpheme": "hit-on[no-t]",
         "class_name": "hvsk-nh",
         "config": {
             "pre": {
@@ -5076,12 +5076,12 @@
         "entry_no": 285,
         "derivations": [],
         "segmented_forms": {
-            "present": "a-khthelu-hvhsk",
-            "present_1sg": "tsi-kathelu-hvhsk",
-            "imperfective": "a-khthelu-hvhsk",
-            "perfective": "u-khthelu-nh",
-            "imperative": "hi-kathelu-hvka",
-            "infinitive": "u-khthelu-ht"
+            "present": "a-khth-elu-hvhsk",
+            "present_1sg": "tsi-kath-elu-hvhsk",
+            "imperfective": "a-khth-elu-hvhsk",
+            "perfective": "u-khth-elu-nh",
+            "imperative": "hi-kath-elu-hvka",
+            "infinitive": "u-khth-elu-ht"
         }
     },
     {
@@ -5710,8 +5710,8 @@
     },
     {
         "definition": "he/she is thanking him/her",
-        "h_grade_root": "helitsh",
-        "glottal_grade_root": "'elitsh",
+        "h_grade_root": "alihelitsh",
+        "glottal_grade_root": "ali'elitsh",
         "post_root_morpheme": null,
         "class_name": "apl[imp3]",
         "config": {
@@ -5725,7 +5725,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "ali",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -5739,18 +5739,18 @@
         "entry_no": 321,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->ali-helitsh-eh",
-            "present_1sg": "tsiy-ali-'elitsh-eh",
-            "imperfective": "a->ali-helitsh-eh",
-            "perfective": "u->ali-helitsh-el",
-            "imperative": "hiy-ali-'elitsh-ihsi",
-            "infinitive": "u->ali-helitsh-eht"
+            "present": "a->alihelitsh-eh",
+            "present_1sg": "tsiy-ali'elitsh-eh",
+            "imperfective": "a->alihelitsh-eh",
+            "perfective": "u->alihelitsh-el",
+            "imperative": "hiy-ali'elitsh-ihsi",
+            "infinitive": "u->alihelitsh-eht"
         }
     },
     {
         "definition": "he/she is happy",
-        "h_grade_root": "heli",
-        "glottal_grade_root": "'eli",
+        "h_grade_root": "aliheli",
+        "glottal_grade_root": "ali'eli",
         "post_root_morpheme": null,
         "class_name": "become",
         "config": {
@@ -5764,7 +5764,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "ali",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -5778,12 +5778,12 @@
         "entry_no": 322,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->ali-heli-k",
-            "present_1sg": "k-ali-'eli-k",
-            "imperfective": "a->ali-heli-k",
-            "perfective": "u->ali-heli-ts",
-            "imperative": "h-ali-heli-ki",
-            "infinitive": "u->ali-heli-hst"
+            "present": "a->aliheli-k",
+            "present_1sg": "k-ali'eli-k",
+            "imperfective": "a->aliheli-k",
+            "perfective": "u->aliheli-ts",
+            "imperative": "h-aliheli-ki",
+            "infinitive": "u->aliheli-hst"
         }
     },
     {
@@ -5827,8 +5827,8 @@
     },
     {
         "definition": "he/she is running away",
-        "h_grade_root": "th",
-        "glottal_grade_root": "th",
+        "h_grade_root": "alith",
+        "glottal_grade_root": "alith",
         "post_root_morpheme": null,
         "class_name": "rev-i",
         "config": {
@@ -5842,7 +5842,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "ali",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -5856,12 +5856,12 @@
         "entry_no": 325,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->ali-th-i'",
-            "present_1sg": "k-ali-th-i'",
-            "imperfective": "a->ali-th-ihsk",
-            "perfective": "u->ali-th-ihs",
-            "imperative": "h-ali-th-i",
-            "infinitive": "u->ali-th-ihst"
+            "present": "a->alith-i'",
+            "present_1sg": "k-alith-i'",
+            "imperfective": "a->alith-ihsk",
+            "perfective": "u->alith-ihs",
+            "imperative": "h-alith-i",
+            "infinitive": "u->alith-ihst"
         }
     },
     {
@@ -6256,8 +6256,8 @@
     },
     {
         "definition": "he/she is dancing",
-        "h_grade_root": "hs",
-        "glottal_grade_root": "hs",
+        "h_grade_root": "alhs",
+        "glottal_grade_root": "alihs",
         "post_root_morpheme": null,
         "class_name": "rev-gi",
         "config": {
@@ -6271,7 +6271,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "al_ali",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -6285,12 +6285,12 @@
         "entry_no": 343,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->al-hs-ki'",
-            "present_1sg": "k-ali-hs-ki'",
-            "imperfective": "a->al-hs-kihsk",
-            "perfective": "u->al-hs-kihs",
-            "imperative": "h-al-hs-ki",
-            "infinitive": "u->al-hs-kihst"
+            "present": "a->alhs-ki'",
+            "present_1sg": "k-alihs-ki'",
+            "imperfective": "a->alhs-kihsk",
+            "perfective": "u->alhs-kihs",
+            "imperative": "h-alhs-ki",
+            "infinitive": "u->alhs-kihst"
         }
     },
     {
@@ -6605,10 +6605,46 @@
     },
     {
         "definition": "it\u2019s lightning",
-        "h_grade_root": "akal",
+        "h_grade_root": "nakal",
         "glottal_grade_root": null,
         "post_root_morpheme": null,
         "class_name": "ih-vh",
+        "config": {
+            "pre": {
+                "translocutive": false,
+                "translocutiveImpOnly": false,
+                "partitive": false,
+                "distributive": false
+            },
+            "pron": {
+                "set_type": "a",
+                "stem_type": "con",
+                "allow_h_metathesis": false,
+                "middle_voice": "none",
+                "middle_voice_h_metathesis": false,
+                "plural_pronouns": false,
+                "use_ka_variant": false,
+                "use_aki_for_1st_set_b": false,
+                "uwa_replaces_v": false,
+                "use_3rd_person_object": false
+            },
+            "stative": false
+        },
+        "corpus_id": 356,
+        "entry_no": 363,
+        "derivations": [],
+        "segmented_forms": {
+            "present": "a-nakal-ih",
+            "imperfective": "a-nakal-ihsk",
+            "perfective": "u-nakal-vh"
+        }
+    },
+    {
+        "definition": "they are getting together",
+        "h_grade_root": "aliko",
+        "glottal_grade_root": null,
+        "post_root_morpheme": null,
+        "class_name": "hvsk-nh[inf2]",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -6630,52 +6666,16 @@
             },
             "stative": false
         },
-        "corpus_id": 356,
-        "entry_no": 363,
-        "derivations": [],
-        "segmented_forms": {
-            "present": "an-akal-ih",
-            "imperfective": "an-akal-ihsk",
-            "perfective": "un-akal-vh"
-        }
-    },
-    {
-        "definition": "they are getting together",
-        "h_grade_root": "ko",
-        "glottal_grade_root": null,
-        "post_root_morpheme": null,
-        "class_name": "hvsk-nh[inf2]",
-        "config": {
-            "pre": {
-                "translocutive": false,
-                "translocutiveImpOnly": false,
-                "partitive": false,
-                "distributive": false
-            },
-            "pron": {
-                "set_type": "a",
-                "stem_type": "vowel_a",
-                "allow_h_metathesis": false,
-                "middle_voice": "ali",
-                "middle_voice_h_metathesis": false,
-                "plural_pronouns": true,
-                "use_ka_variant": false,
-                "use_aki_for_1st_set_b": false,
-                "uwa_replaces_v": false,
-                "use_3rd_person_object": false
-            },
-            "stative": false
-        },
         "corpus_id": 359,
         "entry_no": 366,
         "derivations": [],
         "segmented_forms": {
-            "present": "an-ali-ko-hvhsk",
-            "present_1sg": "ots-ali-ko-hvhsk",
-            "imperfective": "an-ali-ko-hvhsk",
-            "perfective": "un-ali-ko-nh",
-            "imperative": "its-ali-ko-hvka",
-            "infinitive": "un-ali-ko*-ht"
+            "present": "an-aliko-hvhsk",
+            "present_1sg": "ots-aliko-hvhsk",
+            "imperfective": "an-aliko-hvhsk",
+            "perfective": "un-aliko-nh",
+            "imperative": "its-aliko-hvka",
+            "infinitive": "un-aliko*-ht"
         }
     },
     {
@@ -6885,7 +6885,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -6893,7 +6893,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -6924,7 +6924,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -6963,7 +6963,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -6999,7 +6999,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7038,7 +7038,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7046,7 +7046,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -7077,7 +7077,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7085,7 +7085,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -7155,7 +7155,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7194,7 +7194,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7233,7 +7233,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7272,7 +7272,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7311,7 +7311,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7428,7 +7428,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7436,7 +7436,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -7467,7 +7467,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7506,7 +7506,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7545,7 +7545,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7553,7 +7553,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -7738,7 +7738,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7746,7 +7746,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -7816,7 +7816,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7863,7 +7863,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -7894,7 +7894,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -7933,7 +7933,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -8089,7 +8089,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -8097,7 +8097,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -8245,7 +8245,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -8253,7 +8253,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -8323,7 +8323,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -8479,7 +8479,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -8710,7 +8710,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -8788,7 +8788,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -8851,7 +8851,7 @@
     },
     {
         "definition": "it\u2019s exploding",
-        "h_grade_root": "ahsh",
+        "h_grade_root": "athahs",
         "glottal_grade_root": null,
         "post_root_morpheme": null,
         "class_name": "rev-gi",
@@ -8866,8 +8866,8 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at",
-                "middle_voice_h_metathesis": true,
+                "middle_voice": "none",
+                "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
@@ -8880,11 +8880,11 @@
         "entry_no": 476,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->ath-ahs-ki'",
-            "imperfective": "a->ath-ahs-kihsk",
-            "perfective": "u->ath-ahs-kihs",
-            "imperative": "h-ath-ahs-ki",
-            "infinitive": "u->ath-ahs-kihst"
+            "present": "a->athahs-ki'",
+            "imperfective": "a->athahs-kihsk",
+            "perfective": "u->athahs-kihs",
+            "imperative": "h-athahs-ki",
+            "infinitive": "u->athahs-kihst"
         }
     },
     {
@@ -8902,7 +8902,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -8941,7 +8941,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -8980,7 +8980,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -8988,7 +8988,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -9006,8 +9006,8 @@
     },
     {
         "definition": "he/she is leading him/her",
-        "h_grade_root": "hinh",
-        "glottal_grade_root": "hinh",
+        "h_grade_root": "athinh",
+        "glottal_grade_root": "athinh",
         "post_root_morpheme": null,
         "class_name": "go[pres2]",
         "config": {
@@ -9021,7 +9021,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at_pre_c",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -9035,12 +9035,12 @@
         "entry_no": 486,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->at-hinh-",
-            "present_1sg": "tsiy-at-hinh-",
-            "imperfective": "a->at-hinh-ek",
-            "perfective": "u->at-hinh-vhs",
-            "imperative": "hiy-at-hinh-uka",
-            "infinitive": "u->at-hinh-vhst"
+            "present": "a->athinh-",
+            "present_1sg": "tsiy-athinh-",
+            "imperfective": "a->athinh-ek",
+            "perfective": "u->athinh-vhs",
+            "imperative": "hiy-athinh-uka",
+            "infinitive": "u->athinh-vhst"
         }
     },
     {
@@ -9084,8 +9084,8 @@
     },
     {
         "definition": "he/she is racing",
-        "h_grade_root": "hohk",
-        "glottal_grade_root": "hohk",
+        "h_grade_root": "athohk",
+        "glottal_grade_root": "athohk",
         "post_root_morpheme": "leaving",
         "class_name": "a",
         "config": {
@@ -9099,7 +9099,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at_pre_c",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -9113,18 +9113,18 @@
         "entry_no": 490,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->at-hohk-iy-a'",
-            "present_1sg": "k-at-hohk-iy-a'",
-            "imperfective": "a->at-hohk-iy-ahsk",
-            "perfective": "u->at-hohk-iy-",
-            "imperative": "h-at-hohk-iy-a",
-            "infinitive": "u->at-hohk-iy-ahst"
+            "present": "a->athohk-iy-a'",
+            "present_1sg": "k-athohk-iy-a'",
+            "imperfective": "a->athohk-iy-ahsk",
+            "perfective": "u->athohk-iy-",
+            "imperative": "h-athohk-iy-a",
+            "infinitive": "u->athohk-iy-ahst"
         }
     },
     {
         "definition": "he/she is loaning it to him/her",
-        "h_grade_root": "holhst",
-        "glottal_grade_root": "holhst",
+        "h_grade_root": "atholhst",
+        "glottal_grade_root": "atholhst",
         "post_root_morpheme": null,
         "class_name": "cause",
         "config": {
@@ -9138,7 +9138,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at_pre_c",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -9152,18 +9152,18 @@
         "entry_no": 493,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->at-holhst-ih",
-            "present_1sg": "tsiy-at-holhst-ih",
-            "imperfective": "a->at-holhst-ihsk",
-            "perfective": "u->at-holhst-han",
-            "imperative": "hiy-at-holhst-a",
-            "infinitive": "u->at-holhst-oht"
+            "present": "a->atholhst-ih",
+            "present_1sg": "tsiy-atholhst-ih",
+            "imperfective": "a->atholhst-ihsk",
+            "perfective": "u->atholhst-han",
+            "imperative": "hiy-atholhst-a",
+            "infinitive": "u->atholhst-oht"
         }
     },
     {
         "definition": "he/she is borrowing him/her",
-        "h_grade_root": "hol",
-        "glottal_grade_root": "hol",
+        "h_grade_root": "athol",
+        "glottal_grade_root": "athol",
         "post_root_morpheme": null,
         "class_name": "sk-s-a",
         "config": {
@@ -9177,7 +9177,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at_pre_c",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -9191,17 +9191,17 @@
         "entry_no": 494,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->at-hol-hsk",
-            "present_1sg": "tsiy-at-hol-hsk",
-            "imperfective": "a->at-hol-hsk",
-            "perfective": "u->at-hol-hs",
-            "imperative": "hiy-at-hol-a",
-            "infinitive": "u->at-hol-hihst"
+            "present": "a->athol-hsk",
+            "present_1sg": "tsiy-athol-hsk",
+            "imperfective": "a->athol-hsk",
+            "perfective": "u->athol-hs",
+            "imperative": "hiy-athol-a",
+            "infinitive": "u->athol-hihst"
         }
     },
     {
         "definition": "it\u2019s flashing (refers to reflected light)",
-        "h_grade_root": "hoyaw",
+        "h_grade_root": "thoyaw",
         "glottal_grade_root": null,
         "post_root_morpheme": null,
         "class_name": "sk-s-a[inf2]",
@@ -9214,9 +9214,9 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "vowel_a",
+                "stem_type": "con",
                 "allow_h_metathesis": false,
-                "middle_voice": "at_pre_c",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -9230,10 +9230,10 @@
         "entry_no": 495,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->at-hoyaw-hsk",
-            "imperfective": "a->at-hoyaw-hsk",
-            "perfective": "u->at-hoyaw-hs",
-            "infinitive": "u->at-hoyaw-hst"
+            "present": "a-thoyaw-hsk",
+            "imperfective": "a-thoyaw-hsk",
+            "perfective": "u-thoyaw-hs",
+            "infinitive": "u-thoyaw-hst"
         }
     },
     {
@@ -9368,7 +9368,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -9394,8 +9394,8 @@
     },
     {
         "definition": "he/she is listening to him/her",
-        "h_grade_root": "hvtahst",
-        "glottal_grade_root": "hvtahst",
+        "h_grade_root": "athvtahst",
+        "glottal_grade_root": "athvtahst",
         "post_root_morpheme": null,
         "class_name": "cause",
         "config": {
@@ -9409,7 +9409,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at_pre_c",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -9423,18 +9423,18 @@
         "entry_no": 501,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->at-hvtahst-ih",
-            "present_1sg": "tsiy-at-hvtahst-ih",
-            "imperfective": "a->at-hvtahst-ihsk",
-            "perfective": "u->at-hvtahst-han",
-            "imperative": "hiy-at-hvtahst-a",
-            "infinitive": "u->at-hvtahst-oht"
+            "present": "a->athvtahst-ih",
+            "present_1sg": "tsiy-athvtahst-ih",
+            "imperfective": "a->athvtahst-ihsk",
+            "perfective": "u->athvtahst-han",
+            "imperative": "hiy-athvtahst-a",
+            "infinitive": "u->athvtahst-oht"
         }
     },
     {
         "definition": "he/she is asking him/her a question",
-        "h_grade_root": "hvt",
-        "glottal_grade_root": "hvt",
+        "h_grade_root": "athvt",
+        "glottal_grade_root": "athvt",
         "post_root_morpheme": null,
         "class_name": "episodic",
         "config": {
@@ -9448,7 +9448,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at_pre_c",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -9462,18 +9462,18 @@
         "entry_no": 502,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->at-hvt-vhvhsk",
-            "present_1sg": "tsiy-at-hvt-vhvhsk",
-            "imperfective": "a->at-hvt-vhvhsk",
-            "perfective": "u->at-hvt-vnh",
-            "imperative": "hiy-at-hvt-vhvka",
-            "infinitive": "u->at-hvt-ht"
+            "present": "a->athvt-vhvhsk",
+            "present_1sg": "tsiy-athvt-vhvhsk",
+            "imperfective": "a->athvt-vhvhsk",
+            "perfective": "u->athvt-vnh",
+            "imperative": "hiy-athvt-vhvka",
+            "infinitive": "u->athvt-ht"
         }
     },
     {
         "definition": "he/she hears him/her",
-        "h_grade_root": "hvk",
-        "glottal_grade_root": "hvk",
+        "h_grade_root": "athvk",
+        "glottal_grade_root": "athvk",
         "post_root_morpheme": null,
         "class_name": "i-vka",
         "config": {
@@ -9487,7 +9487,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at_pre_c",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -9501,12 +9501,12 @@
         "entry_no": 503,
         "derivations": [],
         "segmented_forms": {
-            "present": "a->at-hvk-i'",
-            "present_1sg": "tsiy-at-hvk-i'",
-            "imperfective": "a->at-hvk-ihsk",
-            "perfective": "u->at-hvk-an",
-            "imperative": "hiy-at-hvk-vka",
-            "infinitive": "u->at-hvk-ot"
+            "present": "a->athvk-i'",
+            "present_1sg": "tsiy-athvk-i'",
+            "imperfective": "a->athvk-ihsk",
+            "perfective": "u->athvk-an",
+            "imperative": "hiy-athvk-vka",
+            "infinitive": "u->athvk-ot"
         }
     },
     {
@@ -9685,7 +9685,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -9919,7 +9919,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -10132,8 +10132,8 @@
     },
     {
         "definition": "he/she is making an X",
-        "h_grade_root": "nhawhst",
-        "glottal_grade_root": "nawhst",
+        "h_grade_root": "atanhawhst",
+        "glottal_grade_root": "atanawhst",
         "post_root_morpheme": null,
         "class_name": "cause",
         "config": {
@@ -10147,7 +10147,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "ata",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -10161,12 +10161,12 @@
         "entry_no": 549,
         "derivations": [],
         "segmented_forms": {
-            "present": "t-a->ata-nhawhst-ih",
-            "present_1sg": "te-k-ata-nawhst-ih",
-            "imperfective": "t-a->ata-nhawhst-ihsk",
-            "perfective": "t-u->ata-nhawhst-han",
-            "imperative": "t-h-ata-nhawhst-a",
-            "infinitive": "ts-u->ata-nhawhst-oht"
+            "present": "t-a->atanhawhst-ih",
+            "present_1sg": "te-k-atanawhst-ih",
+            "imperfective": "t-a->atanhawhst-ihsk",
+            "perfective": "t-u->atanhawhst-han",
+            "imperative": "t-h-atanhawhst-a",
+            "infinitive": "ts-u->atanhawhst-oht"
         }
     },
     {
@@ -10210,8 +10210,8 @@
     },
     {
         "definition": "he/she is accepting him/her",
-        "h_grade_root": "nilv",
-        "glottal_grade_root": "nilv",
+        "h_grade_root": "atanilv",
+        "glottal_grade_root": "atanilv",
         "post_root_morpheme": null,
         "class_name": "become",
         "config": {
@@ -10225,7 +10225,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "ata",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -10239,12 +10239,12 @@
         "entry_no": 552,
         "derivations": [],
         "segmented_forms": {
-            "present": "t-a->ata-nilv-k",
-            "present_1sg": "te-tsiy-ata-nilv-k",
-            "imperfective": "t-a->ata-nilv-k",
-            "perfective": "t-u->ata-nilv-ts",
-            "imperative": "t-hiy-ata-nilv-ki",
-            "infinitive": "ts-u->ata-nilv-hst"
+            "present": "t-a->atanilv-k",
+            "present_1sg": "te-tsiy-atanilv-k",
+            "imperfective": "t-a->atanilv-k",
+            "perfective": "t-u->atanilv-ts",
+            "imperative": "t-hiy-atanilv-ki",
+            "infinitive": "ts-u->atanilv-hst"
         }
     },
     {
@@ -10288,8 +10288,8 @@
     },
     {
         "definition": "he/she is performing baptism",
-        "h_grade_root": "w",
-        "glottal_grade_root": "w",
+        "h_grade_root": "aw",
+        "glottal_grade_root": "aw",
         "post_root_morpheme": null,
         "class_name": "o",
         "config": {
@@ -10303,7 +10303,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "ata",
+                "middle_voice": "at",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -10317,12 +10317,12 @@
         "entry_no": 554,
         "derivations": [],
         "segmented_forms": {
-            "present": "t-a->ata-w-o'",
-            "present_1sg": "te-k-ata-w-o'",
-            "imperfective": "t-a->ata-w-ohsk",
-            "perfective": "t-u->ata-w-o'",
-            "imperative": "t-h-ata-w-otsa",
-            "infinitive": "ts-u->ata-w-ohst"
+            "present": "t-a->at-aw-o'",
+            "present_1sg": "te-k-at-aw-o'",
+            "imperfective": "t-a->at-aw-ohsk",
+            "perfective": "t-u->at-aw-o'",
+            "imperative": "t-h-at-aw-otsa",
+            "infinitive": "ts-u->at-aw-ohst"
         }
     },
     {
@@ -10366,8 +10366,8 @@
     },
     {
         "definition": "he/she is weeping",
-        "h_grade_root": "loy",
-        "glottal_grade_root": "loy",
+        "h_grade_root": "atloy",
+        "glottal_grade_root": "atloy",
         "post_root_morpheme": null,
         "class_name": "hih-hil",
         "config": {
@@ -10381,7 +10381,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at_pre_c",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -10395,12 +10395,12 @@
         "entry_no": 557,
         "derivations": [],
         "segmented_forms": {
-            "present": "t-a->at-loy-hih",
-            "present_1sg": "te-k-at-loy-ih",
-            "imperfective": "t-a->at-loy-hih",
-            "perfective": "t-u->at-loy-hil",
-            "imperative": "t-h-at-loy-hka",
-            "infinitive": "ts-u->at-loy-hst"
+            "present": "t-a->atloy-hih",
+            "present_1sg": "te-k-atloy-ih",
+            "imperfective": "t-a->atloy-hih",
+            "perfective": "t-u->atloy-hil",
+            "imperative": "t-h-atloy-hka",
+            "infinitive": "ts-u->atloy-hst"
         }
     },
     {
@@ -10808,7 +10808,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -10847,7 +10847,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -10886,7 +10886,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -10925,7 +10925,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -11198,7 +11198,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "aspirated",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -11783,7 +11783,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -11791,7 +11791,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -11822,7 +11822,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -11861,7 +11861,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -11939,7 +11939,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -11947,7 +11947,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -12095,7 +12095,7 @@
             },
             "pron": {
                 "set_type": "a",
-                "stem_type": "con",
+                "stem_type": "s_stem",
                 "allow_h_metathesis": false,
                 "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
@@ -12142,7 +12142,7 @@
                 "use_ka_variant": false,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -12181,7 +12181,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -12628,7 +12628,7 @@
     },
     {
         "definition": "he/she is staggering",
-        "h_grade_root": "okht",
+        "h_grade_root": "atokht",
         "glottal_grade_root": null,
         "post_root_morpheme": null,
         "class_name": "cause",
@@ -12643,7 +12643,7 @@
                 "set_type": "b",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -12657,12 +12657,12 @@
         "entry_no": 742,
         "derivations": [],
         "segmented_forms": {
-            "present": "t-u->at-okht-ih",
-            "present_1sg": "t-akw-at-okht-ih",
-            "imperfective": "t-u->at-okht-ihsk",
-            "perfective": "t-u->at-okht-han",
-            "imperative": "ti-ts-at-okht-a",
-            "infinitive": "ts-u->at-okht-oht"
+            "present": "t-u->atokht-ih",
+            "present_1sg": "t-akw-atokht-ih",
+            "imperfective": "t-u->atokht-ihsk",
+            "perfective": "t-u->atokht-han",
+            "imperative": "ti-ts-atokht-a",
+            "infinitive": "ts-u->atokht-oht"
         }
     },
     {
@@ -13132,10 +13132,10 @@
     },
     {
         "definition": "he/she lives",
-        "h_grade_root": "",
-        "glottal_grade_root": "",
+        "h_grade_root": "e",
+        "glottal_grade_root": "e",
         "post_root_morpheme": null,
-        "class_name": "stative-eh",
+        "class_name": "stative-h",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -13161,10 +13161,10 @@
         "entry_no": 769,
         "derivations": [],
         "segmented_forms": {
-            "present": "--eh",
-            "present_1sg": "k--e'",
-            "imperfective": "--eh",
-            "imperative": "h--ehehsti"
+            "present": "-e-h",
+            "present_1sg": "k-e-'",
+            "imperfective": "-e-h",
+            "imperative": "h-e-hehsti"
         }
     },
     {
@@ -13208,9 +13208,9 @@
     },
     {
         "definition": "he/she is straightening it",
-        "h_grade_root": ":tshino",
-        "glottal_grade_root": ":tshino",
-        "post_root_morpheme": "iterative[no-i]",
+        "h_grade_root": ":tshinohs",
+        "glottal_grade_root": ":tshinohs",
+        "post_root_morpheme": null,
         "class_name": "cause[perf2]",
         "config": {
             "pre": {
@@ -13237,12 +13237,12 @@
         "entry_no": 787,
         "derivations": [],
         "segmented_forms": {
-            "present": "ka-:tshino-hs-ih",
-            "present_1sg": "tsi-:tshino-hs-ih",
-            "imperfective": "ka-:tshino-hs-ihsk",
-            "perfective": "uwa-:tshino-hs-anh",
-            "imperative": "hi-:tshino-hs-a",
-            "infinitive": "uwa-:tshino-hs-oht"
+            "present": "ka-:tshinohs-ih",
+            "present_1sg": "tsi-:tshinohs-ih",
+            "imperfective": "ka-:tshinohs-ihsk",
+            "perfective": "uwa-:tshinohs-anh",
+            "imperative": "hi-:tshinohs-a",
+            "infinitive": "uwa-:tshinohs-oht"
         }
     },
     {
@@ -13555,8 +13555,8 @@
     },
     {
         "definition": "he/she is dropping him/her (refers to flexible object)",
-        "h_grade_root": "onht",
-        "glottal_grade_root": "onht",
+        "h_grade_root": "atonht",
+        "glottal_grade_root": "atonht",
         "post_root_morpheme": null,
         "class_name": "cause",
         "config": {
@@ -13570,7 +13570,7 @@
                 "set_type": "a",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": true,
@@ -13584,12 +13584,12 @@
         "entry_no": 806,
         "derivations": [],
         "segmented_forms": {
-            "present": "k-at-onht-ih",
-            "present_1sg": "tsiy-at-onht-ih",
-            "imperfective": "k-at-onht-ihsk",
-            "perfective": "u->at-onht-han",
-            "imperative": "hiy-at-onht-a",
-            "infinitive": "u->at-onht-oht"
+            "present": "k-atonht-ih",
+            "present_1sg": "tsiy-atonht-ih",
+            "imperfective": "k-atonht-ihsk",
+            "perfective": "u->atonht-han",
+            "imperative": "hiy-atonht-a",
+            "infinitive": "u->atonht-oht"
         }
     },
     {
@@ -14821,7 +14821,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -14899,7 +14899,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -15172,7 +15172,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -15289,7 +15289,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -15328,7 +15328,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -15367,7 +15367,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -15523,7 +15523,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -15601,7 +15601,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -15640,7 +15640,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -16176,7 +16176,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -16233,9 +16233,9 @@
     },
     {
         "definition": "he/she is pleading",
-        "h_grade_root": "nil",
-        "glottal_grade_root": "nil",
-        "post_root_morpheme": "long",
+        "h_grade_root": "nilat",
+        "glottal_grade_root": "nilat",
+        "post_root_morpheme": null,
         "class_name": "i-a-i",
         "config": {
             "pre": {
@@ -16262,12 +16262,12 @@
         "entry_no": 943,
         "derivations": [],
         "segmented_forms": {
-            "present": "ka-nil-at-i'",
-            "present_1sg": "tsi-nil-at-i'",
-            "imperfective": "ka-nil-at-ihsk",
-            "perfective": "u-nil-at-",
-            "imperative": "hi-nil-at-a",
-            "infinitive": "u-nil-at-ihst"
+            "present": "ka-nilat-i'",
+            "present_1sg": "tsi-nilat-i'",
+            "imperfective": "ka-nilat-ihsk",
+            "perfective": "u-nilat-",
+            "imperative": "hi-nilat-a",
+            "infinitive": "u-nilat-ihst"
         }
     },
     {
@@ -16640,7 +16640,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -16679,7 +16679,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -16757,7 +16757,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -16835,7 +16835,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -16913,7 +16913,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -17300,7 +17300,7 @@
                 "use_ka_variant": true,
                 "use_aki_for_1st_set_b": false,
                 "uwa_replaces_v": false,
-                "use_3rd_person_object": false
+                "use_3rd_person_object": true
             },
             "stative": false
         },
@@ -19723,8 +19723,8 @@
     },
     {
         "definition": "he/she is in prayer",
-        "h_grade_root": "olihst",
-        "glottal_grade_root": null,
+        "h_grade_root": "tolihst",
+        "glottal_grade_root": "tolihst",
         "post_root_morpheme": null,
         "class_name": "stative[inf2]",
         "config": {
@@ -19738,7 +19738,7 @@
                 "set_type": "b",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "atat",
+                "middle_voice": "ata",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -19752,12 +19752,12 @@
         "entry_no": 1516,
         "derivations": [],
         "segmented_forms": {
-            "present": "u->atat-olihst-",
-            "present_1sg": "akw-atat-olihst-",
-            "imperfective": "u->atat-olihst-",
-            "perfective": "u->atat-olihst-",
-            "imperative": "ts-atat-olihst-ehsti",
-            "infinitive": "u->atat-olihst-oht"
+            "present": "u->ata-tolihst-",
+            "present_1sg": "akw-ata-tolihst-",
+            "imperfective": "u->ata-tolihst-",
+            "perfective": "u->ata-tolihst-",
+            "imperative": "ts-ata-tolihst-ehsti",
+            "infinitive": "u->ata-tolihst-oht"
         }
     },
     {
@@ -19917,7 +19917,7 @@
     },
     {
         "definition": "it\u2019s hot",
-        "h_grade_root": "lheh",
+        "h_grade_root": "atilheh",
         "glottal_grade_root": null,
         "post_root_morpheme": null,
         "class_name": "stative-k",
@@ -19932,7 +19932,7 @@
                 "set_type": "b",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "ati",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -19946,16 +19946,16 @@
         "entry_no": 1544,
         "derivations": [],
         "segmented_forms": {
-            "present": "u->ati-lheh-k",
-            "imperfective": "u->ati-lheh-k",
-            "perfective": "u->ati-lheh-k",
-            "imperative": "ts-ati-lheh-kehsti"
+            "present": "u->atilheh-k",
+            "imperfective": "u->atilheh-k",
+            "perfective": "u->atilheh-k",
+            "imperative": "ts-atilheh-kehsti"
         }
     },
     {
         "definition": "he/she is in hiding",
-        "h_grade_root": "hskal",
-        "glottal_grade_root": null,
+        "h_grade_root": "vhskal",
+        "glottal_grade_root": "vhskal",
         "post_root_morpheme": null,
         "class_name": "stative-h",
         "config": {
@@ -19969,7 +19969,7 @@
                 "set_type": "b",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "ati",
+                "middle_voice": "ati_v",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -19983,18 +19983,18 @@
         "entry_no": 1546,
         "derivations": [],
         "segmented_forms": {
-            "present": "u->ati-hskal-h",
-            "present_1sg": "akw-ati-hskal-h",
-            "imperfective": "u->ati-hskal-h",
-            "perfective": "u->ati-hskal-h",
-            "imperative": "ts-ati-hskal-hehsti",
-            "infinitive": "u->ati-hskal-ht"
+            "present": "u->ati->vhskal-h",
+            "present_1sg": "akw-ati->vhskal-h",
+            "imperfective": "u->ati->vhskal-h",
+            "perfective": "u->ati->vhskal-h",
+            "imperative": "ts-ati->vhskal-hehsti",
+            "infinitive": "u->ati->vhskal-ht"
         }
     },
     {
         "definition": "he/she is getting well",
-        "h_grade_root": "w",
-        "glottal_grade_root": "w",
+        "h_grade_root": "atiw",
+        "glottal_grade_root": null,
         "post_root_morpheme": null,
         "class_name": "sk-s-hi-hihst",
         "config": {
@@ -20008,7 +20008,7 @@
                 "set_type": "b",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "ati",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -20022,12 +20022,12 @@
         "entry_no": 1547,
         "derivations": [],
         "segmented_forms": {
-            "present": "u->ati-w-hsk",
-            "present_1sg": "akw-ati-w-hsk",
-            "imperfective": "u->ati-w-hsk",
-            "perfective": "u->ati-w-hs",
-            "imperative": "ts-ati-w-hi",
-            "infinitive": "u->ati-w-hihst"
+            "present": "u->atiw-hsk",
+            "present_1sg": "akw-atiw-hsk",
+            "imperfective": "u->atiw-hsk",
+            "perfective": "u->atiw-hs",
+            "imperative": "ts-atiw-hi",
+            "infinitive": "u->atiw-hihst"
         }
     },
     {
@@ -20107,7 +20107,7 @@
     },
     {
         "definition": "he/she is taking revenge",
-        "h_grade_root": "le",
+        "h_grade_root": "atle",
         "glottal_grade_root": null,
         "post_root_morpheme": null,
         "class_name": "become[inf2]",
@@ -20122,7 +20122,7 @@
                 "set_type": "b",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at_pre_c",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -20136,12 +20136,12 @@
         "entry_no": 1553,
         "derivations": [],
         "segmented_forms": {
-            "present": "u->at-le-k",
-            "present_1sg": "akw-at-le-k",
-            "imperfective": "u->at-le-k",
-            "perfective": "u->at-le-ts",
-            "imperative": "ts-at-le-ki",
-            "infinitive": "u->at-le-'ihst"
+            "present": "u->atle-k",
+            "present_1sg": "akw-atle-k",
+            "imperfective": "u->atle-k",
+            "perfective": "u->atle-ts",
+            "imperative": "ts-atle-ki",
+            "infinitive": "u->atle-'ihst"
         }
     },
     {
@@ -20223,7 +20223,7 @@
     },
     {
         "definition": "he/she wants it",
-        "h_grade_root": "ul",
+        "h_grade_root": "atul",
         "glottal_grade_root": null,
         "post_root_morpheme": null,
         "class_name": "ih-vh",
@@ -20238,7 +20238,7 @@
                 "set_type": "b",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -20252,18 +20252,18 @@
         "entry_no": 1573,
         "derivations": [],
         "segmented_forms": {
-            "present": "u->at-ul-ih",
-            "present_1sg": "akw-at-ul-ih",
-            "imperfective": "u->at-ul-ihsk",
-            "perfective": "u->at-ul-vh",
-            "imperative": "ts-at-ul-a",
-            "infinitive": "u->at-ul-ht"
+            "present": "u->atul-ih",
+            "present_1sg": "akw-atul-ih",
+            "imperfective": "u->atul-ihsk",
+            "perfective": "u->atul-vh",
+            "imperative": "ts-atul-a",
+            "infinitive": "u->atul-ht"
         }
     },
     {
         "definition": "he/she is willing",
-        "h_grade_root": "vnv'ihst",
-        "glottal_grade_root": null,
+        "h_grade_root": "atvnv'ihst",
+        "glottal_grade_root": "atvnv'ihst",
         "post_root_morpheme": null,
         "class_name": "stative",
         "config": {
@@ -20277,7 +20277,7 @@
                 "set_type": "b",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -20291,11 +20291,11 @@
         "entry_no": 1574,
         "derivations": [],
         "segmented_forms": {
-            "present": "u->at-vnv'ihst-",
-            "present_1sg": "akw-at-vnv'ihst-",
-            "imperfective": "u->at-vnv'ihst-",
-            "perfective": "u->at-vnv'ihst-",
-            "imperative": "ts-at-vnv'ihst-ehsti"
+            "present": "u->atvnv'ihst-",
+            "present_1sg": "akw-atvnv'ihst-",
+            "imperfective": "u->atvnv'ihst-",
+            "perfective": "u->atvnv'ihst-",
+            "imperative": "ts-atvnv'ihst-ehsti"
         }
     },
     {
@@ -21030,10 +21030,10 @@
     },
     {
         "definition": "he/she is inside it",
-        "h_grade_root": "ats",
-        "glottal_grade_root": null,
+        "h_grade_root": "atsa'",
+        "glottal_grade_root": "atsa'",
         "post_root_morpheme": null,
-        "class_name": "stative-a'",
+        "class_name": "stative",
         "config": {
             "pre": {
                 "translocutive": false,
@@ -21059,11 +21059,11 @@
         "entry_no": 1642,
         "derivations": [],
         "segmented_forms": {
-            "present": "u->ats-a'",
-            "present_1sg": "akw-ats-a'",
-            "imperfective": "u->ats-a'",
-            "perfective": "u->ats-a'",
-            "imperative": "ts-ats-a'ehsti"
+            "present": "u->atsa'-",
+            "present_1sg": "akw-atsa'-",
+            "imperfective": "u->atsa'-",
+            "perfective": "u->atsa'-",
+            "imperative": "ts-atsa'-ehsti"
         }
     },
     {
@@ -21567,7 +21567,7 @@
     },
     {
         "definition": "it\u2019s dark",
-        "h_grade_root": "hsih",
+        "h_grade_root": "alhsih",
         "glottal_grade_root": null,
         "post_root_morpheme": null,
         "class_name": "stative-k",
@@ -21582,7 +21582,7 @@
                 "set_type": "b",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "al_ali",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -21596,10 +21596,10 @@
         "entry_no": 1689,
         "derivations": [],
         "segmented_forms": {
-            "present": "u->al-hsih-k",
-            "imperfective": "u->al-hsih-k",
-            "perfective": "u->al-hsih-k",
-            "imperative": "ts-al-hsih-kehsti"
+            "present": "u->alhsih-k",
+            "imperfective": "u->alhsih-k",
+            "perfective": "u->alhsih-k",
+            "imperative": "ts-alhsih-kehsti"
         }
     },
     {
@@ -21873,8 +21873,8 @@
     },
     {
         "definition": "he/she is listening to him/her",
-        "h_grade_root": "hvtahst",
-        "glottal_grade_root": "hvtahst",
+        "h_grade_root": "athvtahst",
+        "glottal_grade_root": "athvtahst",
         "post_root_morpheme": null,
         "class_name": "stative[inf2]",
         "config": {
@@ -21888,7 +21888,7 @@
                 "set_type": "b",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at_pre_c",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -21902,12 +21902,12 @@
         "entry_no": 1759,
         "derivations": [],
         "segmented_forms": {
-            "present": "u->at-hvtahst-",
-            "present_1sg": "tsiy-at-hvtahst-",
-            "imperfective": "u->at-hvtahst-",
-            "perfective": "u->at-hvtahst-",
-            "imperative": "hiy-at-hvtahst-ehsti",
-            "infinitive": "u->at-hvtahst-oht"
+            "present": "u->athvtahst-",
+            "present_1sg": "tsiy-athvtahst-",
+            "imperfective": "u->athvtahst-",
+            "perfective": "u->athvtahst-",
+            "imperative": "hiy-athvtahst-ehsti",
+            "infinitive": "u->athvtahst-oht"
         }
     },
     {
@@ -22455,7 +22455,7 @@
     },
     {
         "definition": "he/she is going out of sight",
-        "h_grade_root": "eli",
+        "h_grade_root": "ateli",
         "glottal_grade_root": null,
         "post_root_morpheme": null,
         "class_name": "become",
@@ -22470,7 +22470,7 @@
                 "set_type": "b",
                 "stem_type": "vowel_a",
                 "allow_h_metathesis": false,
-                "middle_voice": "at",
+                "middle_voice": "none",
                 "middle_voice_h_metathesis": false,
                 "plural_pronouns": false,
                 "use_ka_variant": false,
@@ -22484,12 +22484,12 @@
         "entry_no": 1849,
         "derivations": [],
         "segmented_forms": {
-            "present": "w-u->at-eli-k",
-            "present_1sg": "w-akw-at-eli-k",
-            "imperfective": "w-u->at-eli-k",
-            "perfective": "w-u->at-eli-ts",
-            "imperative": "wi-ts-at-eli-ki",
-            "infinitive": "w-u->at-eli-hst"
+            "present": "w-u->ateli-k",
+            "present_1sg": "w-akw-ateli-k",
+            "imperfective": "w-u->ateli-k",
+            "perfective": "w-u->ateli-ts",
+            "imperative": "wi-ts-ateli-ki",
+            "infinitive": "w-u->ateli-hst"
         }
     }
 ]
