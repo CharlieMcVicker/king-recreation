@@ -9,9 +9,13 @@ def _test_identify_and_reconstruct(
 ):
     result = MiddleVoice.identify_middle_voice(h_grade, g_grade, log=True)
 
-    assert sorted(result, key=lambda x: x[0].value) == sorted(
-        expected, key=lambda x: x[0].value
-    )
+    key_fn = lambda x: x[0].value
+    res_sorted = sorted(result, key=key_fn)
+    expected_sorted = sorted(expected, key=key_fn)
+
+    assert (
+        res_sorted == expected_sorted
+    ), f"Expect res and expected to match\nRes: {res_sorted}\nExp: {expected_sorted}"
 
     # test apply
     for voice, (h_stem, g_stem), use_meta in expected:
@@ -138,3 +142,14 @@ def test_alhino_strip():
     assert res
     assert con.matches(res[0])
     assert con.matches(res[1])
+
+
+def test_hide():
+    h_grade, g_grade = ("atihsgal", "atihsgal")
+    expected = [
+        (MiddleVoice.NONE, (h_grade, g_grade), False),
+        (MiddleVoice.AT, ("ihsgal", "ihsgal"), False),
+        (MiddleVoice.ATI, ("hsgal", "hsgal"), False),
+        (MiddleVoice.ATI_V, ("vhsgal", "vhsgal"), False),
+    ]
+    _test_identify_and_reconstruct(h_grade, g_grade, expected)

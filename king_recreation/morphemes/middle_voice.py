@@ -36,6 +36,7 @@ class MiddleVoice(Enum):
     ATA = "ata"
     ATAT = "atat"
     ATI = "ati"
+    ATI_V = "ati_v"
     ALI = "ali"
     AL_ALI = "al_ali"
     # ALH_ALI = "alh_ali"
@@ -71,18 +72,28 @@ class MiddleVoice(Enum):
         if h_grade_stripped is not None and (
             g_grade is None or g_grade.startswith(test_g)
         ):
-            return (
-                h_grade_stripped,
-                g_grade[len(test_g) :] if g_grade is not None else None,
-            )
+            g_grade_stripped = g_grade[len(test_g) :] if g_grade is not None else None
+
+            if self == MiddleVoice.ATI_V:
+                h_grade_stripped = "v" + h_grade_stripped
+                g_grade_stripped = (
+                    "v" + g_grade_stripped if g_grade_stripped is not None else None
+                )
+
+            return (h_grade_stripped, g_grade_stripped)
         else:
             return None
 
     def apply(self, stem: str, is_glottal_grade: bool, allow_metathesis: bool):
-        h_grade, g_grade, _ = self.get_form()
         if self == MiddleVoice.NONE:
             return stem
-        elif is_glottal_grade:
+
+        h_grade, g_grade, _ = self.get_form()
+        if self == MiddleVoice.ATI_V:
+            # drop v
+            stem = ">" + stem
+
+        if is_glottal_grade:
             return g_grade + "-" + stem
         else:
             if self.metathesizing_form() and allow_metathesis:
@@ -108,6 +119,7 @@ class MiddleVoice(Enum):
             MiddleVoice.ATA: ("ata", "ata", Constraint.PRE_C),
             MiddleVoice.ATAT: ("atat", "atat", Constraint.PRE_V),
             MiddleVoice.ATI: ("ati", "ati", Constraint.PRE_C),
+            MiddleVoice.ATI_V: ("ati", "ati", Constraint.PRE_V),
             MiddleVoice.ALI: ("ali", "ali", Constraint.PRE_C),
             MiddleVoice.AL_ALI: ("al", "ali", Constraint.PRE_C),
             # MiddleVoice.ALH_ALI: ("alh", "ali", Constraint.PRE_C_NO_S),
