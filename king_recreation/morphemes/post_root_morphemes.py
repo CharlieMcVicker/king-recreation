@@ -62,9 +62,19 @@ def match_post_root_morphemes(row: dict[str, str]) -> List[dict[str, str]]:
         "h_grade",
         "g_grade",
     ]
-    if row["class"] in reg.class_map:
-        morphemes = reg.class_map[row["class"]]
-        for m_name in morphemes:
+
+    verb_class = row["class"]
+    verb_macro = verb_class.split("[")[0]
+    macro_wildcard = f"{verb_macro}[*]"
+
+    morphemes_to_check = set()
+    if verb_class in reg.class_map:
+        morphemes_to_check.update(reg.class_map[verb_class])
+    if macro_wildcard in reg.class_map:
+        morphemes_to_check.update(reg.class_map[macro_wildcard])
+
+    if morphemes_to_check:
+        for m_name in morphemes_to_check:
             morpheme = reg.morphemes_by_name[m_name]
 
             match_row = row.copy()
