@@ -246,16 +246,16 @@ def check_tone_consistency(interactive=False):
 
     print(f"\nEnding Tone Analysis saved.")
 
-    print("\nEnding Tone Analysis Summary by Class:")
-    for cls in sorted(class_ending_tone_verbs.keys()):
-        print(f"\nClass: {cls}")
-        print(f"  {'Ending':<15} | {'Unique Tone Sequences'}")
-        print("  " + "-" * 60)
-        for ending in sorted(class_ending_tone_verbs[cls].keys()):
-            sequences = sorted(list(class_ending_tone_verbs[cls][ending].keys()))
-            print(f"  {ending:<15} | {', '.join(sequences)}")
+    # print("\nEnding Tone Analysis Summary by Class:")
+    # for cls in sorted(class_ending_tone_verbs.keys()):
+    #     print(f"\nClass: {cls}")
+    #     print(f"  {'Ending':<15} | {'Unique Tone Sequences'}")
+    #     print("  " + "-" * 60)
+    #     for ending in sorted(class_ending_tone_verbs[cls].keys()):
+    #         sequences = sorted(list(class_ending_tone_verbs[cls][ending].keys()))
+    #         print(f"  {ending:<15} | {', '.join(sequences)}")
 
-    print("\n" + "=" * 60 + "\n")
+    # print("\n" + "=" * 60 + "\n")
 
     if not interactive:
         return

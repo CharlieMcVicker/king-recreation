@@ -381,22 +381,22 @@ def _analyze_ending_profiles(profiles_path: str):
     class_totals = df.groupby("class")["count"].transform("sum")
     df["percentage"] = (df["count"] / class_totals) * 100
 
-    print("\nEnding Profile Distribution Summary:")
-    print(f"Total Unique Profiles: {len(df)}")
-    print(f"Average Unique Sequences per Class: {avg_seq_per_class:.2f}")
-    print(f"Max Unique Sequences in a Class: {max_seq_per_class}")
+    # print("\nEnding Profile Distribution Summary:")
+    # print(f"Total Unique Profiles: {len(df)}")
+    # print(f"Average Unique Sequences per Class: {avg_seq_per_class:.2f}")
+    # print(f"Max Unique Sequences in a Class: {max_seq_per_class}")
 
-    print("\nTop Classes by Unique Sequences:")
-    top_classes = sequence_counts.sort_values(ascending=False).head(5)
-    for cls, count in top_classes.items():
-        print(f"  {cls:<20}: {count}")
+    # print("\nTop Classes by Unique Sequences:")
+    # top_classes = sequence_counts.sort_values(ascending=False).head(5)
+    # for cls, count in top_classes.items():
+    #     print(f"  {cls:<20}: {count}")
 
-    print("\nSequence Percentage Buckets:")
-    # Use pandas cut to see distribution
-    bins = [0, 20, 40, 60, 80, 100]
-    buckets = pd.cut(df["percentage"], bins=bins).value_counts().sort_index()
-    for interval, count in buckets.items():
-        print(f"  {str(interval):<15}: {count} sequences")
+    # print("\nSequence Percentage Buckets:")
+    # # Use pandas cut to see distribution
+    # bins = [0, 20, 40, 60, 80, 100]
+    # buckets = pd.cut(df["percentage"], bins=bins).value_counts().sort_index()
+    # for interval, count in buckets.items():
+    #     print(f"  {str(interval):<15}: {count} sequences")
 
 
 def _analyze_roots_by_macro(registry: PatternRegistry):
