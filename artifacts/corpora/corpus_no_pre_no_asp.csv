@@ -763,8 +763,8 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 185,he/she is moving (without changing location),episodic,,alhthel,alithel,False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
 185,he/she is moving (without changing location),episodic,,hthel,thel,False,False,False,False,False,False,a,vowel_a,False,al_ali,False,False,False,False,False,False
 186,he/she is changing his/her shirt,v-vhs,,anhawa'iy,aniwa'iy,False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
-186,he/she is changing his/her shirt,v-vhs,change-out,anhawa',aniwa',False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
 186,he/she is changing his/her shirt,v-vhs,change-out[flexible],anhaw,aniw,False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
+186,he/she is changing his/her shirt,v-vhs,change-out,anhawa',aniwa',False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
 187,he/she is taking his/her shirt off,rev-e,,anhaw,aniw,False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
 189,he/she is putting on a shirt,o,,anhaw,aniw,False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
 191,he/she is wrestling,hih-lh,,anhe,anhe,False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
@@ -906,11 +906,11 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 232,he/she is capturing him/her,i-a-i,,yhvkhit,yvkhit,False,False,False,False,False,False,a,aspirated,False,none,False,False,False,False,False,True
 232,he/she is capturing him/her,i-a-i,long[no-a],yhvkhi,yvkhi,False,False,False,False,False,False,a,aspirated,False,none,False,False,False,False,False,True
 233,he/she is hitting him/her on the nose,hvsk-nh,,yhvhstelu,yvhstelu,False,False,False,False,False,False,a,con,False,none,False,False,False,False,False,True
-233,he/she is hitting him/her on the nose,hvsk-nh,hit-on[no-t],yhvhst,yvhst,False,False,False,False,False,False,a,con,False,none,False,False,False,False,False,True
 233,he/she is hitting him/her on the nose,hvsk-nh,hit-on[t],yhvhs,yvhs,False,False,False,False,False,False,a,con,False,none,False,False,False,False,False,True
+233,he/she is hitting him/her on the nose,hvsk-nh,hit-on[no-t],yhvhst,yvhst,False,False,False,False,False,False,a,con,False,none,False,False,False,False,False,True
 233,he/she is hitting him/her on the nose,hvsk-nh,,yhvhstelu,yvhstelu,False,False,False,False,False,False,a,aspirated,False,none,False,False,False,False,False,True
-233,he/she is hitting him/her on the nose,hvsk-nh,hit-on[no-t],yhvhst,yvhst,False,False,False,False,False,False,a,aspirated,False,none,False,False,False,False,False,True
 233,he/she is hitting him/her on the nose,hvsk-nh,hit-on[t],yhvhs,yvhs,False,False,False,False,False,False,a,aspirated,False,none,False,False,False,False,False,True
+233,he/she is hitting him/her on the nose,hvsk-nh,hit-on[no-t],yhvhst,yvhst,False,False,False,False,False,False,a,aspirated,False,none,False,False,False,False,False,True
 233,he/she is hitting him/her on the nose,hvsk-nh[inf2],,yhvhstelu,yvhstelu,False,False,False,False,False,False,a,con,False,none,False,False,False,False,False,True
 233,he/she is hitting him/her on the nose,hvsk-nh[inf2],,yhvhstelu,yvhstelu,False,False,False,False,False,False,a,aspirated,False,none,False,False,False,False,False,True
 234,he/she is choking him/her,ih-vh,,yhvhskiy,yvhskiy,False,False,False,False,False,False,a,con,False,none,False,False,False,False,False,True
@@ -1200,23 +1200,23 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 345,he/she is smelling it (refers to sniffing),cause[pres2-perf3],,alhsvhstih,alihsvhstih,False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
 345,he/she is smelling it (refers to sniffing),cause[pres2-perf3],,hsvhstih,hsvhstih,False,False,False,False,False,False,a,vowel_a,False,al_ali,False,False,False,False,False,False
 355,they are gathering,cause[perf2],,atalhihs,atalhihs,False,False,False,False,False,False,a,vowel_a,False,none,False,True,False,False,False,False
-355,they are gathering,cause[perf2],iterative,atalh,atalh,False,False,False,False,False,False,a,vowel_a,False,none,False,True,False,False,False,False
 355,they are gathering,cause[perf2],iterative[no-i],atalhi,atalhi,False,False,False,False,False,False,a,vowel_a,False,none,False,True,False,False,False,False
+355,they are gathering,cause[perf2],iterative,atalh,atalh,False,False,False,False,False,False,a,vowel_a,False,none,False,True,False,False,False,False
 355,they are gathering,cause[perf2],,alhihs,alhihs,False,False,False,False,False,False,a,vowel_a,False,at,False,True,False,False,False,False
-355,they are gathering,cause[perf2],iterative,alh,alh,False,False,False,False,False,False,a,vowel_a,False,at,False,True,False,False,False,False
 355,they are gathering,cause[perf2],iterative[no-i],alhi,alhi,False,False,False,False,False,False,a,vowel_a,False,at,False,True,False,False,False,False
+355,they are gathering,cause[perf2],iterative,alh,alh,False,False,False,False,False,False,a,vowel_a,False,at,False,True,False,False,False,False
 355,they are gathering,cause[perf2],,lhihs,lhihs,False,False,False,False,False,False,a,vowel_a,False,ata,False,True,False,False,False,False
-355,they are gathering,cause[perf2],iterative,lh,lh,False,False,False,False,False,False,a,vowel_a,False,ata,False,True,False,False,False,False
 355,they are gathering,cause[perf2],iterative[no-i],lhi,lhi,False,False,False,False,False,False,a,vowel_a,False,ata,False,True,False,False,False,False
+355,they are gathering,cause[perf2],iterative,lh,lh,False,False,False,False,False,False,a,vowel_a,False,ata,False,True,False,False,False,False
 355,they are gathering,cause[perf2],,atalhihs,atalhihs,False,False,False,False,False,False,a,vowel_a,False,none,False,True,False,False,False,True
-355,they are gathering,cause[perf2],iterative,atalh,atalh,False,False,False,False,False,False,a,vowel_a,False,none,False,True,False,False,False,True
 355,they are gathering,cause[perf2],iterative[no-i],atalhi,atalhi,False,False,False,False,False,False,a,vowel_a,False,none,False,True,False,False,False,True
+355,they are gathering,cause[perf2],iterative,atalh,atalh,False,False,False,False,False,False,a,vowel_a,False,none,False,True,False,False,False,True
 355,they are gathering,cause[perf2],,alhihs,alhihs,False,False,False,False,False,False,a,vowel_a,False,at,False,True,False,False,False,True
-355,they are gathering,cause[perf2],iterative,alh,alh,False,False,False,False,False,False,a,vowel_a,False,at,False,True,False,False,False,True
 355,they are gathering,cause[perf2],iterative[no-i],alhi,alhi,False,False,False,False,False,False,a,vowel_a,False,at,False,True,False,False,False,True
+355,they are gathering,cause[perf2],iterative,alh,alh,False,False,False,False,False,False,a,vowel_a,False,at,False,True,False,False,False,True
 355,they are gathering,cause[perf2],,lhihs,lhihs,False,False,False,False,False,False,a,vowel_a,False,ata,False,True,False,False,False,True
-355,they are gathering,cause[perf2],iterative,lh,lh,False,False,False,False,False,False,a,vowel_a,False,ata,False,True,False,False,False,True
 355,they are gathering,cause[perf2],iterative[no-i],lhi,lhi,False,False,False,False,False,False,a,vowel_a,False,ata,False,True,False,False,False,True
+355,they are gathering,cause[perf2],iterative,lh,lh,False,False,False,False,False,False,a,vowel_a,False,ata,False,True,False,False,False,True
 355,they are gathering,cause[pres2-perf2],,atalhihsih,atalhihsih,False,False,False,False,False,False,a,vowel_a,False,none,False,True,False,False,False,False
 355,they are gathering,cause[pres2-perf2],,alhihsih,alhihsih,False,False,False,False,False,False,a,vowel_a,False,at,False,True,False,False,False,False
 355,they are gathering,cause[pres2-perf2],,lhihsih,lhihsih,False,False,False,False,False,False,a,vowel_a,False,ata,False,True,False,False,False,False
@@ -1579,8 +1579,8 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 445,he/she is painting it,i-a-ihsk,,hsuwh,hsuwh,False,False,False,False,False,False,a,con,False,none,False,False,False,False,False,True
 445,he/she is painting it,i-a-ihsk,,hsuwh,hsuwh,False,False,False,False,False,False,a,s_stem,False,none,False,False,False,False,False,True
 446,he/she is changing his/her pants,v-vhs,,ahsula'iy,ahsula'iy,False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
-446,he/she is changing his/her pants,v-vhs,change-out,ahsula',ahsula',False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
 446,he/she is changing his/her pants,v-vhs,change-out[flexible],ahsul,ahsul,False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
+446,he/she is changing his/her pants,v-vhs,change-out,ahsula',ahsula',False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
 447,he/she is taking his/her pants off,rev-e,,ahsul,ahsul,False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
 448,he/she is putting his/her pants on,i-vka,,ahsul,ahsul,False,False,False,False,False,False,a,vowel_a,False,none,False,False,False,False,False,False
 449,he/she is quitting,ko-kots,,hsuli,hsuli,False,False,False,False,False,False,a,con,False,none,False,False,False,False,False,False
@@ -1941,8 +1941,8 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 555,he/she is jumping,go-in,,alhthat,alithat,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
 555,he/she is jumping,go-in,,hthat,that,False,False,False,False,False,True,a,vowel_a,False,al_ali,False,False,False,False,False,False
 557,he/she is changing clothes,v-vhs,,anhawa'iy,aniwa'iy,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
-557,he/she is changing clothes,v-vhs,change-out,anhawa',aniwa',False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
 557,he/she is changing clothes,v-vhs,change-out[flexible],anhaw,aniw,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
+557,he/she is changing clothes,v-vhs,change-out,anhawa',aniwa',False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
 558,he/she is undressing,rev-e,,anhaw,aniw,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
 559,he/she is putting on clothes,o,,anhaw,aniw,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
 561,he/she is putting fuel into a fire (refers to solid fuel),hvsk-han,,hvt,'vt,False,False,False,False,False,True,a,con,False,none,False,False,False,False,False,False
@@ -2007,16 +2007,16 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 579,he/she is sprinkling it (with a liquid‚ powder‚ salt‚ etc.),vsk-post-v,,kwhayo,kwhayo,False,False,False,False,False,True,a,aspirated,False,none,False,False,False,False,False,True
 582,he/she is putting on shoes,hvsk-han,,alahsul,alahsul,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
 583,he/she is changing shoes,v-vhs,,alahsula'iy,alahsula'iy,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
-583,he/she is changing shoes,v-vhs,change-out,alahsula',alahsula',False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
 583,he/she is changing shoes,v-vhs,change-out[flexible],alahsul,alahsul,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
+583,he/she is changing shoes,v-vhs,change-out,alahsula',alahsula',False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
 584,he/she is taking off his/her shoes,rev-e,,alahsul,alahsul,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
 585,he/she is helping him/her up,cause,,aleht,alet,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,True
 585,he/she is helping him/her up,cause[perf3],,aleht,alet,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,True
 585,he/she is helping him/her up,cause[pres2],,alehtih,aletih,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,True
 585,he/she is helping him/her up,cause[pres2-perf3],,alehtih,aletih,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,True
 586,he/she is recuperating,cause[perf2],,alehihs,ale'ihs,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
-586,he/she is recuperating,cause[perf2],iterative,aleh,ale',False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
 586,he/she is recuperating,cause[perf2],iterative[no-i],alehi,ale'i,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
+586,he/she is recuperating,cause[perf2],iterative,aleh,ale',False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
 586,he/she is recuperating,cause[pres2-perf2],,alehihsih,ale'ihsih,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
 587,he/she is getting up (from sitting or from involuntarily assumed prone position),hvsk-nh,,ale,ale,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
 587,he/she is getting up (from sitting or from involuntarily assumed prone position),hvsk-nh[inf2],,ale,ale,False,False,False,False,False,True,a,vowel_a,False,none,False,False,False,False,False,False
@@ -2126,8 +2126,8 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 623,he/she is crossing it (refers to a body of water),become,,:hsoh,:hsoh,False,False,False,False,False,True,a,long,False,none,False,False,True,False,False,False
 623,he/she is crossing it (refers to a body of water),become[inf4],,:hsoh,:hsoh,False,False,False,False,False,True,a,long,False,none,False,False,True,False,False,False
 625,he/she is explaining it (refers to a Biblical text),cause[perf2],,ohsihs,ohsihs,False,False,False,False,False,True,a,vowel_o,False,none,False,False,True,False,False,False
-625,he/she is explaining it (refers to a Biblical text),cause[perf2],iterative,ohs,ohs,False,False,False,False,False,True,a,vowel_o,False,none,False,False,True,False,False,False
 625,he/she is explaining it (refers to a Biblical text),cause[perf2],iterative[no-i],ohsi,ohsi,False,False,False,False,False,True,a,vowel_o,False,none,False,False,True,False,False,False
+625,he/she is explaining it (refers to a Biblical text),cause[perf2],iterative,ohs,ohs,False,False,False,False,False,True,a,vowel_o,False,none,False,False,True,False,False,False
 625,he/she is explaining it (refers to a Biblical text),cause[pres2-perf2],,ohsihsih,ohsihsih,False,False,False,False,False,True,a,vowel_o,False,none,False,False,True,False,False,False
 626,he/she is deciding,cause,,ukht,ukot,False,False,False,False,False,True,a,vowel_u,False,none,False,False,True,False,False,False
 626,he/she is deciding,cause[perf3],,ukht,ukot,False,False,False,False,False,True,a,vowel_u,False,none,False,False,True,False,False,False
@@ -2258,8 +2258,8 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 803,he/she is sleeping,ih-vh[imperf2],,lh,'l,False,False,False,False,False,False,a,con,False,none,False,False,True,False,False,False
 803,he/she is sleeping,ih-vh[imperf2],,lh,'l,False,False,False,False,False,False,a,aspirated,False,none,False,False,True,False,False,False
 804,he/she is gathering it,cause[perf2],,:lhihs,:lhihs,False,False,False,False,False,False,a,long,False,none,False,False,True,False,False,False
-804,he/she is gathering it,cause[perf2],iterative,:lh,:lh,False,False,False,False,False,False,a,long,False,none,False,False,True,False,False,False
 804,he/she is gathering it,cause[perf2],iterative[no-i],:lhi,:lhi,False,False,False,False,False,False,a,long,False,none,False,False,True,False,False,False
+804,he/she is gathering it,cause[perf2],iterative,:lh,:lh,False,False,False,False,False,False,a,long,False,none,False,False,True,False,False,False
 804,he/she is gathering it,cause[pres2-perf2],,:lhihsih,:lhihsih,False,False,False,False,False,False,a,long,False,none,False,False,True,False,False,False
 809,he/she is piling it up,husk,,:l,:l,False,False,False,False,False,False,a,long,False,none,False,False,True,False,False,False
 811,he/she is putting it in a hole or a container,hvsk-han,,l,l,False,False,False,False,False,False,a,con,False,none,False,False,True,False,False,False
@@ -2526,8 +2526,8 @@ corpus_id,definition,class,post_root_morpheme,h_grade,g_grade,metathesis_involve
 913,he/she is pleading,i-a-i,long,nil,nil,False,False,False,False,False,False,a,con,False,none,False,False,True,False,False,True
 913,he/she is pleading,i-a-i,long[no-a],nila,nila,False,False,False,False,False,False,a,con,False,none,False,False,True,False,False,True
 914,he/she is burying him/her,cause[perf2],,'nihs,'nihs,False,False,False,False,False,False,a,glottal,False,none,False,False,True,False,False,True
-914,he/she is burying him/her,cause[perf2],iterative,'n,'n,False,False,False,False,False,False,a,glottal,False,none,False,False,True,False,False,True
 914,he/she is burying him/her,cause[perf2],iterative[no-i],'ni,'ni,False,False,False,False,False,False,a,glottal,False,none,False,False,True,False,False,True
+914,he/she is burying him/her,cause[perf2],iterative,'n,'n,False,False,False,False,False,False,a,glottal,False,none,False,False,True,False,False,True
 914,he/she is burying him/her,cause[pres2-perf2],,'nihsih,'nihsih,False,False,False,False,False,False,a,glottal,False,none,False,False,True,False,False,True
 918,he/she is hunting,be-at,,nohalit,no'alit,False,False,False,False,False,False,a,con,False,none,False,False,True,False,False,False
 918,he/she is hunting,be-at,be-at,nohal,no'al,False,False,False,False,False,False,a,con,False,none,False,False,True,False,False,False
