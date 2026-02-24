@@ -397,7 +397,18 @@ def identify_prefixes():
                 labeled_data.extend(match_post_root_morphemes(stripped_row))
 
     if labeled_data:
-        save_stripped_roots(labeled_data)
+        save_stripped_roots(
+            sorted(
+                labeled_data,
+                key=lambda row: (
+                    int(row["corpus_id"]),
+                    row["class"],
+                    row["h_grade"],
+                    row["g_grade"],
+                    row["stem_type"],
+                ),
+            )
+        )
     if failures:
         save_prefix_parsing_failures(failures)
 
