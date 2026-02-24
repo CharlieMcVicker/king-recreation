@@ -17,7 +17,7 @@ This change ensures that `/h/` always follows the resonant in these clusters, wh
 
 ### 1. Root Extraction & Grade Selection
 
-The process begins by reading `artifacts/data/validated_reconstructable_roots.csv` (or `derived_roots.csv` for initial runs) and `artifacts/data/corpus.csv`. The input file contains verbs with their identified classes, extracted roots, and configuration flags.
+The process begins by reading `curated/validated_reconstructable_roots.csv` (or `derived_roots.csv` for initial runs) and `artifacts/data/corpus.csv`. The input file contains verbs with their identified classes, extracted roots, and configuration flags.
 
 **Logic:**
 
@@ -83,7 +83,7 @@ Apply in order: `Distributive` -> `Partitive` -> `Translocutive`.
 ### 4. Output Artifacts
 
 - **reconstructable_verbs.json**: Fully serialized successfully reconstructed verbs for frontend use.
-- **validated_reconstructable_roots.csv**: The source of truth for user-validated roots and configurations.
+- **curated/validated_reconstructable_roots.csv**: The source of truth for user-validated roots and configurations.
 - **reconstruction_report.csv**: Summary of success/failure and ambiguity for each verb.
 - **reconstruction_failures.csv**: Detailed mismatch reports for failing verbs.
 - **matches_validated.csv**: Subset of verified matches for downstream logic.

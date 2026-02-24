@@ -17,10 +17,7 @@ export * from "./data-shared";
 
 const DATA_DIR = path.join(process.cwd(), "../data");
 const ARTIFACTS_DATA_DIR = path.join(process.cwd(), "../artifacts/data");
-const CONNECTIONS_DATA_DIR = path.join(
-  process.cwd(),
-  "../artifacts/connections",
-);
+const CONNECTIONS_DATA_DIR = path.join(process.cwd(), "../curated");
 const REPORTS_DIR = path.join(process.cwd(), "../artifacts/reports");
 
 export async function getVerbCoverage(): Promise<any> {
@@ -484,7 +481,7 @@ function findCorpusEntries(definition: string, dictionary: DictionaryEntry[]) {
 export async function getValidatedRootsRows(): Promise<any[]> {
   const filePath = path.join(
     process.cwd(),
-    "../artifacts/corpora/validated_reconstructable_roots.csv",
+    "../curated/validated_reconstructable_roots.csv",
   );
   if (!fs.existsSync(filePath)) return [];
   const fileContent = fs.readFileSync(filePath, "utf-8");
@@ -502,7 +499,7 @@ export async function updateUserSelection(
 ): Promise<void> {
   const filePath = path.join(
     process.cwd(),
-    "../artifacts/corpora/validated_reconstructable_roots.csv",
+    "../curated/validated_reconstructable_roots.csv",
   );
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const parsed = Papa.parse(fileContent, {

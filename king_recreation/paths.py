@@ -5,10 +5,10 @@ import os
 # -----------------------------------------------------------------------------
 DATA_DIR = "data"
 ARTIFACTS_DIR = "artifacts"
+CURATED_DIR = "curated"
 
 ARTIFACTS_DATA_DIR = os.path.join(ARTIFACTS_DIR, "data")
 ARTIFACTS_CORPORA_DIR = os.path.join(ARTIFACTS_DIR, "corpora")
-CONNECTIONS_DIR = os.path.join(ARTIFACTS_DIR, "connections")
 REPORTS_DIR = os.path.join(ARTIFACTS_DIR, "reports")
 VISUALIZATIONS_DIR = os.path.join(ARTIFACTS_DIR, "visualizations")
 
@@ -35,7 +35,7 @@ CORPUS_NO_PRE_NO_ASP_PATH = os.path.join(
     ARTIFACTS_CORPORA_DIR, "corpus_no_pre_no_asp.csv"
 )
 VALIDATED_RECONSTRUCTABLE_ROOTS_PATH = os.path.join(
-    ARTIFACTS_CORPORA_DIR, "validated_reconstructable_roots.csv"
+    CURATED_DIR, "validated_reconstructable_roots.csv"
 )
 CORPUS_TO_CND_PATH = os.path.join(ARTIFACTS_CORPORA_DIR, "corpus_to_cnd.csv")
 STEMS_WITH_TONE_CORPUS_PATH = os.path.join(
@@ -49,7 +49,7 @@ VALIDATED_MATCHES_PATH = os.path.join(ARTIFACTS_DATA_DIR, "matches_validated.csv
 
 # Connections (Manual & Automated)
 DERIVATIONAL_CONNECTIONS_PATH = os.path.join(
-    CONNECTIONS_DIR, "derivational_suffix_connections.csv"
+    CURATED_DIR, "derivational_suffix_connections.csv"
 )
 
 
@@ -64,7 +64,7 @@ HIERARCHICAL_DICT_PATH = os.path.join(ARTIFACTS_DATA_DIR, "hierarchical-dict.jso
 CLASSES_EXPANDED_PATH = os.path.join(ARTIFACTS_DATA_DIR, "classes_expanded.json")
 
 # Supplementary Data
-ROOT_IDS_PATH = os.path.join(ARTIFACTS_DATA_DIR, "root_ids.csv")
+ROOT_IDS_PATH = os.path.join(CURATED_DIR, "root_ids.csv")
 ROOTS_BY_CLASS_PATH = os.path.join(ARTIFACTS_DATA_DIR, "roots_by_class.csv")
 ROOT_MACRO_DISTRIBUTION_PATH = os.path.join(
     ARTIFACTS_DATA_DIR, "root_macro_distribution.csv"
