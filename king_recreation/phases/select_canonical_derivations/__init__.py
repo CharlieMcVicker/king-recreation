@@ -12,6 +12,7 @@ from king_recreation.phases.reconstruct_and_validate.artifacts import (
 )
 from king_recreation.phases.select_canonical_derivations.artifacts import (
     save_reconstructable_verbs,
+    save_selection_snapshot,
 )
 from king_recreation.reconstruction import ReconstructableVerb
 
@@ -38,8 +39,13 @@ def dedupe_roots(validated_verbs: list[ReconstructableVerb]):
 
     deduped_roots = []
     dropped = []
+    snapshot_data = []
 
-    for c_id, vl in roots_by_corpus_id.items():
+    # Sort corpus IDs for stable snapshot
+    for c_id in sorted(
+        roots_by_corpus_id.keys(), key=lambda x: int(x) if str(x).isdigit() else 0
+    ):
+        vl = roots_by_corpus_id[c_id]
         # Identify pipeline choice (shortest h_grade_root, tie-broken deterministically)
 
         # 1. Find min length
@@ -72,6 +78,33 @@ def dedupe_roots(validated_verbs: list[ReconstructableVerb]):
         pipeline_choice = candidates[0]
         pipeline_choice.original_data["pipeline_selected"] = "x"
 
+        # Create snapshot entry for this corpus_id
+        options_snapshot = []
+        for v in vl:
+            v_dict = dataclasses.asdict(v)
+            v_dict.pop("original_data", None)
+            v_dict.pop("segmented_forms", None)
+            v_dict.pop("derivations", None)
+            # Ensure user_selected is captured accurately in the dict
+            v_dict["user_selected"] = getattr(v, "user_selected", False)
+            v_dict["pipeline_selected"] = (
+                v.original_data.get("pipeline_selected") == "x"
+            )
+            options_snapshot.append(v_dict)
+
+        # Sort options for stability within the corpus entry
+        options_snapshot.sort(
+            key=lambda x: json.dumps(x, sort_keys=True, cls=EnhancedJSONEncoder)
+        )
+
+        snapshot_data.append(
+            {
+                "corpus_id": c_id,
+                "definition": vl[0].definition,
+                "options": options_snapshot,
+            }
+        )
+
         if len(vl) == 1:
             deduped_roots.append(vl[0])
             continue
@@ -91,7 +124,7 @@ def dedupe_roots(validated_verbs: list[ReconstructableVerb]):
         # Default logic: use pipeline choice
         deduped_roots.append(pipeline_choice)
 
-    return deduped_roots, dropped
+    return deduped_roots, dropped, snapshot_data
 
 
 def enrich_glottal_grades(verbs: List[ReconstructableVerb]):
@@ -188,10 +221,12 @@ def select_canonical_derivations():
 
     print(f"Loaded {len(validated_verbs)} validated verbs.")
 
-    deduped_roots, dropped_items = dedupe_roots(validated_verbs)
+    deduped_roots, dropped_items, snapshot_data = dedupe_roots(validated_verbs)
     print(
         f"Root-deduping: {len(deduped_roots)} unique roots, {len(dropped_items)} ambiguous items dropped"
     )
+
+    save_selection_snapshot(snapshot_data, EnhancedJSONEncoder)
 
     enrich_glottal_grades(deduped_roots)
 

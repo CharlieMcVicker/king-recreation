@@ -98,7 +98,12 @@ VARIANT_MATCH_COUNTS_PATH = os.path.join(REPORTS_DIR, "variant_match_counts.csv"
 VARIATION_MATCH_COUNTS_PATH = os.path.join(REPORTS_DIR, "variation_match_counts.csv")
 UNUSED_VARIANTS_PATH = os.path.join(REPORTS_DIR, "unused_variants.json")
 CLASS_NEAR_MISSES_PATH = os.path.join(REPORTS_DIR, "class_near_misses.csv")
-
+VERB_SELECTION_SNAPSHOT_VOLATILE_PATH = os.path.join(
+    REPORTS_DIR, "verb_selection_snapshot.json"
+)
+VERB_SELECTION_SNAPSHOT_CANONICAL_PATH = os.path.join(
+    DATA_DIR, "verb_selection_snapshot.json"
+)
 
 # -----------------------------------------------------------------------------
 # 5. Visualizations

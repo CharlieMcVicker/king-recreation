@@ -11,12 +11,21 @@ from king_recreation.phases.reconstruct_and_validate import reconstruct_and_vali
 from king_recreation.phases.select_canonical_derivations import (
     select_canonical_derivations,
 )
+from king_recreation.phases.select_canonical_derivations.artifacts import (
+    commit_selection_snapshot,
+)
 from king_recreation.phases.visualize_analysis import visualize_all
 
 
 def main():
     parser = argparse.ArgumentParser(description="King Recreation Pipeline")
     parser.add_argument("--classes", help="Path to custom classes CSV file")
+    parser.add_argument(
+        "-c",
+        "--commit-snapshot",
+        action="store_true",
+        help="Commit the selection snapshot to data/",
+    )
     args = parser.parse_args()
 
     print("[1/10] Creating corpus from Cherokee Nation Dictionary...")
@@ -33,6 +42,9 @@ def main():
 
     print("\n[5/10] Selecting cannonical derivations...")
     select_canonical_derivations()
+
+    if args.commit_snapshot:
+        commit_selection_snapshot()
 
     print("\n[6/10] Identifying derivational suffix connections...")
     identify_derived_verbs(args.classes)
