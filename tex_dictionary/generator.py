@@ -125,12 +125,12 @@ def verb_config_to_tex(
         parts.append("de")
 
     pronoun_map = {
-        ("a", False, False): "a",
-        ("a", True, False): "ka",
-        ("a", False, True): "ani",
-        ("b", False, False): "u",
-        ("b", True, False): "u",
-        ("b", False, True): "uni",
+        ("a", False, False): r"\textcolor{Red}{Set A}",
+        ("a", True, False): r"\textcolor{Red}{Set A (k)}",
+        ("a", False, True): r"\textcolor{Red}{Set A (pl)}",
+        ("b", False, False): r"\textcolor{RoyalBlue}{Set B}",
+        ("b", True, False): r"\textcolor{RoyalBlue}{Set B}",
+        ("b", False, True): r"\textcolor{RoyalBlue}{Set B (pl)}",
     }
 
     set_flaire = pronoun_map[
@@ -139,7 +139,8 @@ def verb_config_to_tex(
         config.pron.plural_pronouns,
     ]
 
-    parts.append(italic(set_flaire))
+    # parts.append(italic(set_flaire, escape=False))
+    parts.append(NoEscape(set_flaire))
 
     if not config.pron.middle_voice.value == "none":
         parts.append(config.pron.middle_voice.value.replace("_", "/").lower())
@@ -303,6 +304,7 @@ def generate_tex_files():
     main_tex_content = [
         r"\documentclass[oneside,openany]{book}",
         r"\usepackage{fontspec}",
+        r"\usepackage[dvipsnames]{xcolor}",
         r"\usepackage{booktabs}",
         r"\usepackage{tabularx}",
         r"\usepackage{needspace}",
