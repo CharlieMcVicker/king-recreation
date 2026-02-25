@@ -1,5 +1,5 @@
 {
-    "summary": "1892/3182",
+    "summary": "1897/3189",
     "failures": [
         {
             "definition": "he/she is bouncing it",
@@ -11172,6 +11172,15 @@
             "corpus_id": 1524
         },
         {
+            "definition": "he/she has an object (refers to a solid object)",
+            "failed_forms": [
+                "present_1sg: expected 'akih', got [\"aki'h\"]",
+                "imperative: expected 'tsahehsti', got [\"tsa'hehsti\"]"
+            ],
+            "class": "stative-h",
+            "corpus_id": 1530
+        },
+        {
             "definition": "he/she is yawning",
             "failed_forms": [
                 "imperative: expected 'tsahalhokvla', got ['tsahalhoka']",
@@ -11377,6 +11386,14 @@
             ],
             "class": "cause[pres2]",
             "corpus_id": 1612
+        },
+        {
+            "definition": "it\u2019s happening to him",
+            "failed_forms": [
+                "imperative: expected 'tsalhstahsi', got ['tsalhstanhsi']"
+            ],
+            "class": "apl",
+            "corpus_id": 1616
         },
         {
             "definition": "it\u2019s happening to him",

@@ -216,7 +216,11 @@ def stems_are_consistent(
     if log:
         print("")
     h_candidate = derived_stems.get("present")
-    g_candidate = derived_stems.get("present_1sg")
+    g_candidate = (
+        derived_stems.get("present_1sg")
+        if use_glottal_grade("present_1sg", config=pron_config, stative=stative)
+        else None
+    )
 
     if h_candidate is None:
         print(derived_stems)
