@@ -218,7 +218,7 @@ def render_verb_entry(
 
     content.append(r"\textbf{Definition: } " + unicode_to_latex(verb.definition))
 
-    label = verb_tex + unicode_to_latex(" (" + verb.definition + ")")
+    label = verb_tex + italic(" " + verb.definition)
 
     content.append(r"\addcontentsline{toc}{" + toc_level + "}{" + label + "}")
     content.append(r"\\[0.5em]")
@@ -306,7 +306,7 @@ def generate_tex_files():
         r"\usepackage{booktabs}",
         r"\usepackage{tabularx}",
         r"\usepackage{needspace}",
-        r"\usepackage[paperwidth=5.5in, paperheight=8.5in, margin=0.5in, headheight=14pt]{geometry}",
+        r"\usepackage[paperwidth=8.5in, paperheight=11in, margin=0.5in, headheight=14pt]{geometry}",
         r"\usepackage{fancyhdr}",
         r"\usepackage{titlesec}",
         r"\titleformat{\subsection}{\normalfont\large\bfseries}{}{0pt}{}",
