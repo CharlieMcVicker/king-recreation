@@ -21,7 +21,7 @@ from king_recreation.reconstruction import (
 )
 
 
-def reconstruct_and_validate(classes_path=None):
+def reconstruct_and_validate(classes_path=None, allow_drops: bool = False):
     """
     Reconstruct verbs from derived roots and validate against the original corpus.
 
@@ -298,12 +298,13 @@ def reconstruct_and_validate(classes_path=None):
 
         if missing_selections:
             print(
-                "[ERROR] The following user-selected rows are no longer valid or generated:"
+                f"[{'WARNING' if allow_drops else 'ERROR'}] The following user-selected rows are no longer valid or generated:"
             )
             for row in missing_selections:
                 print(f"  - ID: {row.get('corpus_id')}, Root: {row.get('h_grade')}")
-            print("Aborting save to prevent data loss.")
-            exit(1)
+            if not allow_drops:
+                print("Aborting save to prevent data loss.")
+                exit(1)
 
         save_validated_roots(validated_rows)
 

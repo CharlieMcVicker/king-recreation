@@ -21,6 +21,12 @@ def main():
     parser = argparse.ArgumentParser(description="King Recreation Pipeline")
     parser.add_argument("--classes", help="Path to custom classes CSV file")
     parser.add_argument(
+        "-d",
+        "--allow-dropping",
+        action="store_true",
+        help="Allow user selected rows to be dropped during reconstruction validation. If not set, aborts run if rows would be dropped.",
+    )
+    parser.add_argument(
         "-c",
         "--commit-snapshot",
         action="store_true",
@@ -38,7 +44,7 @@ def main():
     identify_prefixes()
 
     print("\n[4/10] Validating derivations via reconstruction...")
-    reconstruct_and_validate(classes_path=args.classes)
+    reconstruct_and_validate(classes_path=args.classes, allow_drops=args.allow_dropping)
 
     print("\n[5/10] Selecting cannonical derivations...")
     select_canonical_derivations()
