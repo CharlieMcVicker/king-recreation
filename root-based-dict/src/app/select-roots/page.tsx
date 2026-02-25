@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getValidatedRootsRows } from "@/lib/data";
+import { getValidatedRootsRows, getChangedVerbIds } from "@/lib/data";
 import SelectRootsWorkflow from "@/components/SelectRootsWorkflow";
 
 export const metadata: Metadata = {
@@ -8,11 +8,17 @@ export const metadata: Metadata = {
 };
 
 export default async function SelectRootsPage() {
-  const rootsData = await getValidatedRootsRows();
+  const [rootsData, changedVerbIds] = await Promise.all([
+    getValidatedRootsRows(),
+    getChangedVerbIds(),
+  ]);
 
   return (
     <main className="container mx-auto py-8 px-4">
-      <SelectRootsWorkflow initialData={rootsData} />
+      <SelectRootsWorkflow
+        initialData={rootsData}
+        changedOptionsIds={changedVerbIds}
+      />
     </main>
   );
 }

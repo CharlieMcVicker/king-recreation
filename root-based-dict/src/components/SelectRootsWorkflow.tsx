@@ -48,13 +48,16 @@ interface ValidatedRootRow {
 
 interface SelectRootsWorkflowProps {
   initialData: ValidatedRootRow[];
+  changedOptionsIds?: number[];
 }
 
 export default function SelectRootsWorkflow({
   initialData,
+  changedOptionsIds = [],
 }: SelectRootsWorkflowProps) {
   const [showAllRows, setShowAllRows] = useState(false);
   const [showOnlyUnreviewed, setShowOnlyUnreviewed] = useState(false);
+  const [showOnlyChanged, setShowOnlyChanged] = useState(false);
 
   // Group data by corpus_id
   const { groupedData, allCorpusIds } = useMemo(() => {
@@ -73,13 +76,28 @@ export default function SelectRootsWorkflow({
   }, [initialData]);
 
   const uniqueCorpusIds = useMemo(() => {
-    if (!showOnlyUnreviewed) return allCorpusIds;
+    let ids = allCorpusIds;
 
-    return allCorpusIds.filter((id) => {
-      const derivations = groupedData[id] || [];
-      return !derivations.some((d) => d.user_selected === "x");
-    });
-  }, [allCorpusIds, showOnlyUnreviewed, groupedData]);
+    if (showOnlyUnreviewed) {
+      ids = ids.filter((id) => {
+        const derivations = groupedData[id] || [];
+        return !derivations.some((d) => d.user_selected === "x");
+      });
+    }
+
+    if (showOnlyChanged) {
+      const changedSet = new Set(changedOptionsIds);
+      ids = ids.filter((id) => changedSet.has(id));
+    }
+
+    return ids;
+  }, [
+    allCorpusIds,
+    showOnlyUnreviewed,
+    showOnlyChanged,
+    groupedData,
+    changedOptionsIds,
+  ]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedDerivationIndex, setSelectedDerivationIndex] = useState(0);
@@ -282,7 +300,11 @@ export default function SelectRootsWorkflow({
               {uniqueCorpusIds.length}
             </div>
             <div className="text-xs text-zinc-500">
-              {showOnlyUnreviewed ? "Unreviewed words" : "Words reviewed"}
+              {showOnlyUnreviewed
+                ? "Unreviewed words"
+                : showOnlyChanged
+                  ? "Words with changed options"
+                  : "Words reviewed"}
             </div>
           </div>
 
@@ -516,6 +538,29 @@ export default function SelectRootsWorkflow({
                 className={`w-4 h-4 ${showOnlyUnreviewed ? "fill-current" : ""}`}
               />
               {showOnlyUnreviewed ? "Unreviewed Only" : "Show All Verbs"}
+            </button>
+
+            <button
+              onClick={() => {
+                setShowOnlyChanged(!showOnlyChanged);
+                setCurrentIndex(0);
+              }}
+              disabled={changedOptionsIds.length === 0}
+              className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-colors disabled:opacity-30 ${
+                showOnlyChanged
+                  ? "bg-indigo-100 text-indigo-900 dark:bg-indigo-900/40 dark:text-indigo-100"
+                  : "text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
+              }`}
+            >
+              <AlertCircle
+                className={`w-4 h-4 ${showOnlyChanged ? "fill-current" : ""}`}
+              />
+              Review New Options
+              {changedOptionsIds.length > 0 && (
+                <span className="ml-1 px-1.5 py-0.5 rounded-full bg-indigo-500 text-white text-[10px] font-bold">
+                  {changedOptionsIds.length}
+                </span>
+              )}
             </button>
           </div>
 

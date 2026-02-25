@@ -37,6 +37,46 @@ export async function getMatchCounts(): Promise<any[]> {
   return result.data;
 }
 
+export async function getChangedVerbIds(): Promise<number[]> {
+  const dataPath = path.join(DATA_DIR, "verb_selection_snapshot.json");
+  const reportsPath = path.join(REPORTS_DIR, "verb_selection_snapshot.json");
+
+  if (!fs.existsSync(dataPath) || !fs.existsSync(reportsPath)) return [];
+
+  const data1 = JSON.parse(fs.readFileSync(dataPath, "utf-8"));
+  const data2 = JSON.parse(fs.readFileSync(reportsPath, "utf-8"));
+
+  const diffIds: number[] = [];
+  const map1 = new Map<number, any>(
+    data1.map((item: any) => [item.corpus_id, item]),
+  );
+
+  for (const item2 of data2) {
+    const item1 = map1.get(item2.corpus_id);
+    if (!item1) {
+      diffIds.push(item2.corpus_id);
+      continue;
+    }
+
+    const str1 = JSON.stringify(item1.options);
+    const str2 = JSON.stringify(item2.options);
+
+    if (str1 !== str2) {
+      diffIds.push(item2.corpus_id);
+    }
+  }
+
+  // Check for items in map1 that are not in data2
+  const ids2 = new Set(data2.map((i: any) => i.corpus_id));
+  for (const [id, _] of map1) {
+    if (!ids2.has(id) && !diffIds.includes(id)) {
+      diffIds.push(id);
+    }
+  }
+
+  return diffIds;
+}
+
 export async function getStemDerivationFailures(): Promise<any[]> {
   const filePath = path.join(REPORTS_DIR, "stem_derivation_failures.csv");
   if (!fs.existsSync(filePath)) return [];
