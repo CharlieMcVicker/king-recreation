@@ -10,6 +10,7 @@ import {
   getPronominalSetName,
 } from "@/lib/data-shared";
 import CorpusTable from "./CorpusTable";
+import { ChevronLeft, GitBranch } from "lucide-react";
 import { ConfigFlags } from "@/app/reconstructable-verbs/ConfigFlags";
 import Link from "next/link";
 
@@ -49,8 +50,19 @@ function VerbRow({ verb, dictionary, depth = 0, label }: VerbRowProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Definition & Pills Slot */}
           <div className="lg:col-span-5 flex flex-col gap-3">
-            <div className="text-lg font-medium text-gray-900 dark:text-gray-100">
-              {verb.definition}
+            <div className="flex items-center gap-3">
+              <div className="text-lg font-medium text-gray-900 dark:text-gray-100">
+                {verb.definition}
+              </div>
+              {verb.corpus_id && (
+                <Link
+                  href={`/select-roots?corpusId=${verb.corpus_id}`}
+                  className="p-1.5 rounded-lg text-zinc-400 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all"
+                  title="Change derivation"
+                >
+                  <GitBranch className="w-4 h-4" />
+                </Link>
+              )}
             </div>
           </div>
 

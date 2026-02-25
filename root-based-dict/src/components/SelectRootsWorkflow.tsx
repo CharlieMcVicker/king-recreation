@@ -49,11 +49,13 @@ interface ValidatedRootRow {
 interface SelectRootsWorkflowProps {
   initialData: ValidatedRootRow[];
   changedOptionsIds?: number[];
+  initialCorpusId?: number;
 }
 
 export default function SelectRootsWorkflow({
   initialData,
   changedOptionsIds = [],
+  initialCorpusId,
 }: SelectRootsWorkflowProps) {
   const [showAllRows, setShowAllRows] = useState(false);
   const [showOnlyUnreviewed, setShowOnlyUnreviewed] = useState(false);
@@ -100,6 +102,20 @@ export default function SelectRootsWorkflow({
   ]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Set initial index if initialCorpusId is provided
+  useEffect(() => {
+    if (initialCorpusId !== undefined) {
+      const index = uniqueCorpusIds.indexOf(initialCorpusId);
+      if (index !== -1) {
+        setCurrentIndex(index);
+      } else if (allCorpusIds.includes(initialCorpusId)) {
+        // If not found in filtered list but exists in data, clear filters
+        setShowOnlyUnreviewed(false);
+        setShowOnlyChanged(false);
+      }
+    }
+  }, [initialCorpusId, uniqueCorpusIds, allCorpusIds]);
   const [selectedDerivationIndex, setSelectedDerivationIndex] = useState(0);
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState<{
