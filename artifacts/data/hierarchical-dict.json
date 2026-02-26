@@ -225,6 +225,50 @@
             }
           }
         ]
+      },
+      {
+        "class_name": "stative-h",
+        "verbs": [
+          {
+            "definition": "he/she has an object (refers to a solid object)",
+            "h_grade_root": "",
+            "glottal_grade_root": "",
+            "post_root_morpheme": null,
+            "class_name": "stative-h",
+            "config": {
+              "pre": {
+                "translocutive": false,
+                "translocutiveImpOnly": false,
+                "partitive": false,
+                "distributive": false
+              },
+              "pron": {
+                "set_type": "b",
+                "stem_type": "con",
+                "allow_h_metathesis": false,
+                "middle_voice": "none",
+                "middle_voice_h_metathesis": false,
+                "plural_pronouns": false,
+                "use_ka_variant": false,
+                "use_aki_for_1st_set_b": true,
+                "uwa_replaces_v": false,
+                "use_3rd_person_object": false
+              },
+              "stative": false
+            },
+            "corpus_id": 1530,
+            "entry_no": 1596,
+            "derivations": [],
+            "original_data": {},
+            "segmented_forms": {
+              "present": "u--h",
+              "present_1sg": "aki--h",
+              "imperfective": "u--h",
+              "perfective": "u--h",
+              "imperative": "tsa--hehsti"
+            }
+          }
+        ]
       }
     ]
   },
@@ -1697,6 +1741,46 @@
         "class_name": "hih-lh",
         "verbs": [
           {
+            "definition": "he/she is putting on a belt",
+            "h_grade_root": ":tlo",
+            "glottal_grade_root": ":tlo",
+            "post_root_morpheme": null,
+            "class_name": "hih-lh",
+            "config": {
+              "pre": {
+                "translocutive": false,
+                "translocutiveImpOnly": false,
+                "partitive": false,
+                "distributive": false
+              },
+              "pron": {
+                "set_type": "a",
+                "stem_type": "vowel_a",
+                "allow_h_metathesis": false,
+                "middle_voice": "ata_:",
+                "middle_voice_h_metathesis": false,
+                "plural_pronouns": false,
+                "use_ka_variant": false,
+                "use_aki_for_1st_set_b": false,
+                "uwa_replaces_v": false,
+                "use_3rd_person_object": false
+              },
+              "stative": false
+            },
+            "corpus_id": 7,
+            "entry_no": 11,
+            "derivations": [],
+            "original_data": {},
+            "segmented_forms": {
+              "present": "a->ata->:tlo-hih",
+              "present_1sg": "k-ata->:tlo-hih",
+              "imperfective": "a->ata->:tlo-hih",
+              "perfective": "u->ata->:tlo-lh",
+              "imperative": "h-ata->:tlo-ka",
+              "infinitive": "u->ata->:tlo-hst"
+            }
+          },
+          {
             "definition": "he/she is strapping it",
             "h_grade_root": ":tlo",
             "glottal_grade_root": ":tlo",
@@ -1893,6 +1977,46 @@
       {
         "class_name": "ih-vh",
         "verbs": [
+          {
+            "definition": "it’s ripping",
+            "h_grade_root": ":tsakal",
+            "glottal_grade_root": ":tsakal",
+            "post_root_morpheme": null,
+            "class_name": "ih-vh",
+            "config": {
+              "pre": {
+                "translocutive": false,
+                "translocutiveImpOnly": false,
+                "partitive": false,
+                "distributive": false
+              },
+              "pron": {
+                "set_type": "a",
+                "stem_type": "vowel_a",
+                "allow_h_metathesis": false,
+                "middle_voice": "ata_:",
+                "middle_voice_h_metathesis": false,
+                "plural_pronouns": false,
+                "use_ka_variant": false,
+                "use_aki_for_1st_set_b": false,
+                "uwa_replaces_v": false,
+                "use_3rd_person_object": false
+              },
+              "stative": false
+            },
+            "corpus_id": 25,
+            "entry_no": 29,
+            "derivations": [],
+            "original_data": {},
+            "segmented_forms": {
+              "present": "a->ata->:tsakal-ih",
+              "present_1sg": "k-ata->:tsakal-i'",
+              "imperfective": "a->ata->:tsakal-ihsk",
+              "perfective": "u->ata->:tsakal-vh",
+              "imperative": "h-ata->:tsakal-a",
+              "infinitive": "u->ata->:tsakal-ht"
+            }
+          },
           {
             "definition": "he/she is ripping it",
             "h_grade_root": ":tsakal",
@@ -7718,45 +7842,6 @@
               "present": "k-at-h",
               "imperfective": "k-at-h",
               "imperative": "h-at-hehsti"
-            }
-          },
-          {
-            "definition": "he/she has an object (refers to a solid object)",
-            "h_grade_root": "",
-            "glottal_grade_root": "",
-            "post_root_morpheme": null,
-            "class_name": "stative-h",
-            "config": {
-              "pre": {
-                "translocutive": false,
-                "translocutiveImpOnly": false,
-                "partitive": false,
-                "distributive": false
-              },
-              "pron": {
-                "set_type": "b",
-                "stem_type": "con",
-                "allow_h_metathesis": false,
-                "middle_voice": "none",
-                "middle_voice_h_metathesis": false,
-                "plural_pronouns": false,
-                "use_ka_variant": false,
-                "use_aki_for_1st_set_b": true,
-                "uwa_replaces_v": false,
-                "use_3rd_person_object": false
-              },
-              "stative": false
-            },
-            "corpus_id": 1530,
-            "entry_no": 1596,
-            "derivations": [],
-            "original_data": {},
-            "segmented_forms": {
-              "present": "u--h",
-              "present_1sg": "aki--h",
-              "imperfective": "u--h",
-              "perfective": "u--h",
-              "imperative": "tsa--hehsti"
             }
           }
         ]
@@ -24209,58 +24294,6 @@
     ]
   },
   {
-    "h_grade_root": "tlo",
-    "glottal_grade_root": "tlo",
-    "slug": "dGxvfHRsbw",
-    "classes": [
-      {
-        "class_name": "hih-lh",
-        "verbs": [
-          {
-            "definition": "he/she is putting on a belt",
-            "h_grade_root": "tlo",
-            "glottal_grade_root": "tlo",
-            "post_root_morpheme": null,
-            "class_name": "hih-lh",
-            "config": {
-              "pre": {
-                "translocutive": false,
-                "translocutiveImpOnly": false,
-                "partitive": false,
-                "distributive": false
-              },
-              "pron": {
-                "set_type": "a",
-                "stem_type": "vowel_a",
-                "allow_h_metathesis": false,
-                "middle_voice": "ata",
-                "middle_voice_h_metathesis": false,
-                "plural_pronouns": false,
-                "use_ka_variant": false,
-                "use_aki_for_1st_set_b": false,
-                "uwa_replaces_v": false,
-                "use_3rd_person_object": false
-              },
-              "stative": false
-            },
-            "corpus_id": 7,
-            "entry_no": 11,
-            "derivations": [],
-            "original_data": {},
-            "segmented_forms": {
-              "present": "a->ata-tlo-hih",
-              "present_1sg": "k-ata-tlo-hih",
-              "imperfective": "a->ata-tlo-hih",
-              "perfective": "u->ata-tlo-lh",
-              "imperative": "h-ata-tlo-ka",
-              "infinitive": "u->ata-tlo-hst"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
     "h_grade_root": "to",
     "glottal_grade_root": "to",
     "slug": "dG98dG8",
@@ -24304,58 +24337,6 @@
               "present_1sg": "tsi-to-k",
               "imperfective": "ka-to-k",
               "imperative": "hi-to-kehsti"
-            }
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "h_grade_root": "tsakal",
-    "glottal_grade_root": "tsakal",
-    "slug": "dHNha2FsfHRzYWthbA",
-    "classes": [
-      {
-        "class_name": "ih-vh",
-        "verbs": [
-          {
-            "definition": "it’s ripping",
-            "h_grade_root": "tsakal",
-            "glottal_grade_root": "tsakal",
-            "post_root_morpheme": null,
-            "class_name": "ih-vh",
-            "config": {
-              "pre": {
-                "translocutive": false,
-                "translocutiveImpOnly": false,
-                "partitive": false,
-                "distributive": false
-              },
-              "pron": {
-                "set_type": "a",
-                "stem_type": "vowel_a",
-                "allow_h_metathesis": false,
-                "middle_voice": "ata",
-                "middle_voice_h_metathesis": false,
-                "plural_pronouns": false,
-                "use_ka_variant": false,
-                "use_aki_for_1st_set_b": false,
-                "uwa_replaces_v": false,
-                "use_3rd_person_object": false
-              },
-              "stative": false
-            },
-            "corpus_id": 25,
-            "entry_no": 29,
-            "derivations": [],
-            "original_data": {},
-            "segmented_forms": {
-              "present": "a->ata-tsakal-ih",
-              "present_1sg": "k-ata-tsakal-i'",
-              "imperfective": "a->ata-tsakal-ihsk",
-              "perfective": "u->ata-tsakal-vh",
-              "imperative": "h-ata-tsakal-a",
-              "infinitive": "u->ata-tsakal-ht"
             }
           }
         ]
