@@ -62,7 +62,7 @@ Human-edited files that represent the program's working state, manually validate
 | :------------------------------------ | :--------------------------------------------------------- | :-------------------------- |
 | `validated_reconstructable_roots.csv` | User-validated root selections and configurations.         | `reconstruct_from_roots.py` |
 | `root_ids.csv`                        | Unique identifiers for roots based on h-grade and g-grade. | `group_hierarchical.py`     |
-| `derivational_suffix_connections.csv` | Relationships between roots and derivational suffixes.     | `group_hierarchical.py`     |
+| `derivational_suffix_connections.csv` | Relationships between roots and derivational suffixes.     | `identify_derived_verbs.py` |
 
 ## Debug (`artifacts/debug/`)
 
