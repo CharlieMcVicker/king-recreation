@@ -151,6 +151,16 @@ export function normalize(s: string) {
   return s.trim().toLowerCase().replace(/['’]/g, "'");
 }
 
+export function toBase64Url(str: string): string {
+  // Browser-safe base64url for UTF-8
+  const utf8Bytes = new TextEncoder().encode(str);
+  const binString = String.fromCodePoint(...utf8Bytes);
+  return btoa(binString)
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+}
+
 export function getEndingSlug(endings: Record<string, string>): string {
   const endingKeys = [
     "present",
@@ -160,23 +170,11 @@ export function getEndingSlug(endings: Record<string, string>): string {
     "infinitive",
   ];
   const key = endingKeys.map((k) => endings[k] || "").join("|");
-  // Browser-safe base64url for UTF-8
-  const utf8Bytes = new TextEncoder().encode(key);
-  const binString = String.fromCodePoint(...utf8Bytes);
-  return btoa(binString)
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
+  return toBase64Url(key);
 }
 
 export function getMorphemeSlug(name: string): string {
-  // Browser-safe base64url for UTF-8
-  const utf8Bytes = new TextEncoder().encode(name);
-  const binString = String.fromCodePoint(...utf8Bytes);
-  return btoa(binString)
-    .replace(/\+/g, "-")
-    .replace(/\//g, "_")
-    .replace(/=+$/, "");
+  return toBase64Url(name);
 }
 
 export function getPronominalSetName(

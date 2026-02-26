@@ -587,3 +587,84 @@ export async function updateUserSelection(
 
   fs.writeFileSync(filePath, csv);
 }
+export async function getRootIdsRows(): Promise<any[]> {
+  const filePath = path.join(process.cwd(), "../curated/root_ids.csv");
+  if (!fs.existsSync(filePath)) return [];
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const result = Papa.parse(fileContent, {
+    header: true,
+    skipEmptyLines: true,
+    dynamicTyping: true,
+  });
+  return result.data;
+}
+
+export async function updateRootId(
+  corpusId: number,
+  rootId: string,
+): Promise<void> {
+  const filePath = path.join(process.cwd(), "../curated/root_ids.csv");
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const parsed = Papa.parse(fileContent, {
+    header: true,
+    skipEmptyLines: true,
+    dynamicTyping: true,
+  });
+
+  const rows = parsed.data as any[];
+  const rowIndex = rows.findIndex((row) => row.corpus_id === corpusId);
+
+  if (rowIndex === -1) {
+    throw new Error(`Corpus ID ${corpusId} not found in root_ids.csv`);
+  }
+
+  rows[rowIndex].root_id = rootId;
+  rows[rowIndex].user_edited = "x";
+
+  const csv = Papa.unparse(rows, {
+    quotes: false,
+    quoteChar: '"',
+    escapeChar: '"',
+    delimiter: ",",
+    header: true,
+    newline: "\n",
+    skipEmptyLines: false,
+  });
+
+  fs.writeFileSync(filePath, csv);
+}
+export async function updateRootIdsBulk(
+  updates: { corpusId: number; rootId: string }[],
+): Promise<void> {
+  const filePath = path.join(process.cwd(), "../curated/root_ids.csv");
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const parsed = Papa.parse(fileContent, {
+    header: true,
+    skipEmptyLines: true,
+    dynamicTyping: true,
+  });
+
+  const rows = parsed.data as any[];
+  const updateMap = new Map<number, string>(
+    updates.map((u) => [u.corpusId, u.rootId]),
+  );
+
+  rows.forEach((row) => {
+    if (updateMap.has(row.corpus_id)) {
+      row.root_id = updateMap.get(row.corpus_id);
+      row.user_edited = "x";
+    }
+  });
+
+  const csv = Papa.unparse(rows, {
+    quotes: false,
+    quoteChar: '"',
+    escapeChar: '"',
+    delimiter: ",",
+    header: true,
+    newline: "\n",
+    skipEmptyLines: false,
+  });
+
+  fs.writeFileSync(filePath, csv);
+}
