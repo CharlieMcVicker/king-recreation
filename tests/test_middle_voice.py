@@ -80,6 +80,7 @@ def test_middle_atalen():
         (MiddleVoice.NONE, (h_grade, None), False),
         (MiddleVoice.AT, ("alen", None), False),
         (MiddleVoice.ATA, ("len", None), False),
+        (MiddleVoice.ATA_LONG, (":len", None), False),
     ]
     _test_identify_and_reconstruct(h_grade, g_grade, expected)
 
@@ -151,5 +152,6 @@ def test_hide():
         (MiddleVoice.AT, ("ihsgal", "ihsgal"), False),
         (MiddleVoice.ATI, ("hsgal", "hsgal"), False),
         (MiddleVoice.ATI_V, ("vhsgal", "vhsgal"), False),
+        (MiddleVoice.ATI_LONG, (":hsgal", ":hsgal"), False),
     ]
     _test_identify_and_reconstruct(h_grade, g_grade, expected)

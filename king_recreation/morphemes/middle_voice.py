@@ -34,8 +34,10 @@ class MiddleVoice(Enum):
     AT = "at"
     AT_PRE_C = "at_pre_c"
     ATA = "ata"
+    ATA_LONG = "ata_:"
     ATAT = "atat"
     ATI = "ati"
+    ATI_LONG = "ati_:"
     ATI_V = "ati_v"
     ALI = "ali"
     AL_ALI = "al_ali"
@@ -80,6 +82,12 @@ class MiddleVoice(Enum):
                     "v" + g_grade_stripped if g_grade_stripped is not None else None
                 )
 
+            if self in [MiddleVoice.ATI_LONG, MiddleVoice.ATA_LONG]:
+                h_grade_stripped = ":" + h_grade_stripped
+                g_grade_stripped = (
+                    ":" + g_grade_stripped if g_grade_stripped is not None else None
+                )
+
             return (h_grade_stripped, g_grade_stripped)
         else:
             return None
@@ -89,7 +97,7 @@ class MiddleVoice(Enum):
             return stem
 
         h_grade, g_grade, _ = self.get_form()
-        if self == MiddleVoice.ATI_V:
+        if self in [MiddleVoice.ATI_V, MiddleVoice.ATI_LONG, MiddleVoice.ATA_LONG]:
             # drop v
             stem = ">" + stem
 
@@ -117,8 +125,10 @@ class MiddleVoice(Enum):
             MiddleVoice.AT: ("at", "at", Constraint.PRE_V),
             MiddleVoice.AT_PRE_C: ("at", "at", Constraint.PRE_C_NO_S),
             MiddleVoice.ATA: ("ata", "ata", Constraint.PRE_C),
+            MiddleVoice.ATA_LONG: ("ata", "ata", Constraint.NONE),
             MiddleVoice.ATAT: ("atat", "atat", Constraint.PRE_V),
             MiddleVoice.ATI: ("ati", "ati", Constraint.PRE_C),
+            MiddleVoice.ATI_LONG: ("ati", "ati", Constraint.NONE),
             MiddleVoice.ATI_V: ("ati", "ati", Constraint.PRE_V),
             MiddleVoice.ALI: ("ali", "ali", Constraint.PRE_C),
             MiddleVoice.AL_ALI: ("al", "ali", Constraint.PRE_C),

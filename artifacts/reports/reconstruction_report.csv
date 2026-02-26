@@ -1,86 +1,114 @@
 definition,class,root,success,ambiguous_forms,notes
 it’s bouncing,go-in,,True,,
+it’s bouncing,go-in,:t,True,,
 it’s bouncing,go-in,at,True,,
 it’s bouncing,go-in,atat,True,,
 it’s bouncing,go-in,t,True,,
 he/she is limping,go-in[perf2],,True,,
+he/she is limping,go-in[perf2],:t,True,,
 he/she is limping,go-in[perf2],at,True,,
 he/she is limping,go-in[perf2],atat,True,,
 he/she is limping,go-in[perf2],t,True,,
+he/she is bouncing it,cause,:tinvt,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is bouncing it,cause,atatinvt,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is bouncing it,cause,atinvt,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is bouncing it,cause,invt,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is bouncing it,cause,tinvt,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she is bouncing it,cause[perf3],:tinvt,False,present_1sg,Ambiguity implies lossy rule reversal
 he/she is bouncing it,cause[perf3],atatinvt,False,present_1sg,Ambiguity implies lossy rule reversal
 he/she is bouncing it,cause[perf3],atinvt,False,present_1sg,Ambiguity implies lossy rule reversal
 he/she is bouncing it,cause[perf3],invt,False,present_1sg,Ambiguity implies lossy rule reversal
 he/she is bouncing it,cause[perf3],tinvt,False,present_1sg,Ambiguity implies lossy rule reversal
+he/she is bouncing it,cause[pres2-perf3],:tinvtih,False,,
 he/she is bouncing it,cause[pres2-perf3],atatinvtih,False,,
 he/she is bouncing it,cause[pres2-perf3],atinvtih,False,,
 he/she is bouncing it,cause[pres2-perf3],invtih,False,,
 he/she is bouncing it,cause[pres2-perf3],tinvtih,False,,
+he/she is bouncing it,cause[pres2],:tinvtih,False,,
 he/she is bouncing it,cause[pres2],atatinvtih,False,,
 he/she is bouncing it,cause[pres2],atinvtih,False,,
 he/she is bouncing it,cause[pres2],invtih,False,,
 he/she is bouncing it,cause[pres2],tinvtih,False,,
+he/she is putting on a belt,hih-lh,:tlo,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is putting on a belt,hih-lh,atatlo,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is putting on a belt,hih-lh,atlo,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is putting on a belt,hih-lh,tlo,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she is praying,cause,:tolihst,True,,
 he/she is praying,cause,atatolihst,True,,
 he/she is praying,cause,atolihst,True,,
 he/she is praying,cause,olihst,True,,
 he/she is praying,cause,tolihst,True,,
+he/she is praying,cause[perf3],:tolihst,False,,
 he/she is praying,cause[perf3],atatolihst,False,,
 he/she is praying,cause[perf3],atolihst,False,,
 he/she is praying,cause[perf3],olihst,False,,
 he/she is praying,cause[perf3],tolihst,False,,
+he/she is praying,cause[pres2-perf3],:tolihstih,False,,
 he/she is praying,cause[pres2-perf3],atatolihstih,False,,
 he/she is praying,cause[pres2-perf3],atolihstih,False,,
 he/she is praying,cause[pres2-perf3],olihstih,False,,
 he/she is praying,cause[pres2-perf3],tolihstih,False,,
+he/she is praying,cause[pres2],:tolihstih,False,,
 he/she is praying,cause[pres2],atatolihstih,False,,
 he/she is praying,cause[pres2],atolihstih,False,,
 he/she is praying,cause[pres2],olihstih,False,,
 he/she is praying,cause[pres2],tolihstih,False,,
+he/she is fanning himself/herself,apl-active,:nhoy,True,,
 he/she is fanning himself/herself,apl-active,anhoy,True,,
 he/she is fanning himself/herself,apl-active,atanhoy,True,,
 he/she is fanning himself/herself,apl-active,nhoy,True,,
+he/she is fanning himself/herself,apl-active-a,:nhoy,False,,
 he/she is fanning himself/herself,apl-active-a,anhoy,False,,
 he/she is fanning himself/herself,apl-active-a,atanhoy,False,,
 he/she is fanning himself/herself,apl-active-a,nhoy,False,,
+he/she is visiting,be-at,:whahthvh,True,,
+he/she is visiting,be-at,:whahthvhit,True,,
 he/she is visiting,be-at,atawhahthvh,True,,
 he/she is visiting,be-at,atawhahthvhit,True,,
 he/she is visiting,be-at,awhahthvh,True,,
 he/she is visiting,be-at,awhahthvhit,True,,
 he/she is visiting,be-at,whahthvh,True,,
 he/she is visiting,be-at,whahthvhit,True,,
+he/she is stretching,cause,:yhahst,True,,
 he/she is stretching,cause,atayhahst,True,,
 he/she is stretching,cause,ayhahst,True,,
 he/she is stretching,cause,yhahst,True,,
+he/she is stretching,cause[perf3],:yhahst,False,,
 he/she is stretching,cause[perf3],atayhahst,False,,
 he/she is stretching,cause[perf3],ayhahst,False,,
 he/she is stretching,cause[perf3],yhahst,False,,
+he/she is stretching,cause[pres2-perf3],:yhahstih,False,,
 he/she is stretching,cause[pres2-perf3],atayhahstih,False,,
 he/she is stretching,cause[pres2-perf3],ayhahstih,False,,
 he/she is stretching,cause[pres2-perf3],yhahstih,False,,
+he/she is stretching,cause[pres2],:yhahstih,False,,
 he/she is stretching,cause[pres2],atayhahstih,False,,
 he/she is stretching,cause[pres2],ayhahstih,False,,
 he/she is stretching,cause[pres2],yhahstih,False,,
+he/she is denying him/her,hih-hil[imp2],:y,True,present_1sg;imperative,Ambiguity implies lossy rule reversal
 he/she is denying him/her,hih-hil[imp2],atay,True,present_1sg;imperative,Ambiguity implies lossy rule reversal
 he/she is denying him/her,hih-hil[imp2],ay,True,present_1sg;imperative,Ambiguity implies lossy rule reversal
 he/she is denying him/her,hih-hil[imp2],y,True,present_1sg;imperative,Ambiguity implies lossy rule reversal
+he/she is committing adultery,apl[imp4],:yhon,True,,
 he/she is committing adultery,apl[imp4],atayhon,True,,
 he/she is committing adultery,apl[imp4],ayhon,True,,
 he/she is committing adultery,apl[imp4],yhon,True,,
+it’s ripping,ih-vh,:tsakal,True,present_1sg,Ambiguity implies lossy rule reversal
 it’s ripping,ih-vh,atatsakal,True,present_1sg,Ambiguity implies lossy rule reversal
 it’s ripping,ih-vh,atsakal,True,present_1sg,Ambiguity implies lossy rule reversal
 it’s ripping,ih-vh,tsakal,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she is looking at himself/herself in a mirror,apl-active,:kh,True,,
 he/she is looking at himself/herself in a mirror,apl-active,akh,True,,
 he/she is looking at himself/herself in a mirror,apl-active,atakh,True,,
 he/she is looking at himself/herself in a mirror,apl-active,kh,True,,
+he/she is looking at himself/herself in a mirror,apl-active-a,:kh,False,,
 he/she is looking at himself/herself in a mirror,apl-active-a,akh,False,,
 he/she is looking at himself/herself in a mirror,apl-active-a,atakh,False,,
 he/she is looking at himself/herself in a mirror,apl-active-a,kh,False,,
+it’s beginning,ih-vh,:len,True,,
+it’s beginning,ih-vh,:len,True,imperative,Ambiguity implies lossy rule reversal
+it’s beginning,ih-vh,:len,True,,
+it’s beginning,ih-vh,:len,True,,
 it’s beginning,ih-vh,alen,True,,
 it’s beginning,ih-vh,alen,True,imperative,Ambiguity implies lossy rule reversal
 it’s beginning,ih-vh,alen,True,,
@@ -97,6 +125,10 @@ it’s beginning,ih-vh,talen,True,,
 it’s beginning,ih-vh,talen,True,imperative,Ambiguity implies lossy rule reversal
 it’s beginning,ih-vh,talen,True,,
 it’s beginning,ih-vh,talen,True,,
+it’s beginning,stative,:lenih,False,,
+it’s beginning,stative,:lenih,False,imperative,Ambiguity implies lossy rule reversal
+it’s beginning,stative,:lenih,False,,
+it’s beginning,stative,:lenih,False,,
 it’s beginning,stative,alenih,False,,
 it’s beginning,stative,alenih,False,imperative,Ambiguity implies lossy rule reversal
 it’s beginning,stative,alenih,False,,
@@ -113,90 +145,119 @@ it’s beginning,stative,talenih,False,,
 it’s beginning,stative,talenih,False,imperative,Ambiguity implies lossy rule reversal
 it’s beginning,stative,talenih,False,,
 it’s beginning,stative,talenih,False,,
+he/she is shopping,episodic[inf2],:nanehs,True,,
 he/she is shopping,episodic[inf2],ananehs,True,,
 he/she is shopping,episodic[inf2],atananehs,True,,
 he/she is shopping,episodic[inf2],nanehs,True,,
+he/she is shopping,hvsk-nh[inf3],:nanehsv,True,,
 he/she is shopping,hvsk-nh[inf3],ananehsv,True,,
 he/she is shopping,hvsk-nh[inf3],atananehsv,True,,
 he/she is shopping,hvsk-nh[inf3],nanehsv,True,,
+he/she is shopping,sk-h,:nanehsvhv,False,,
 he/she is shopping,sk-h,ananehsvhv,False,,
 he/she is shopping,sk-h,atananehsvhv,False,,
 he/she is shopping,sk-h,nanehsvhv,False,,
+he/she is shopping,sk-h[imp2],:nanehsvhv,False,,
 he/she is shopping,sk-h[imp2],ananehsvhv,False,,
 he/she is shopping,sk-h[imp2],atananehsvhv,False,,
 he/she is shopping,sk-h[imp2],nanehsvhv,False,,
+he/she is taking off running,cause,:nawhst,True,,
 he/she is taking off running,cause,anawhst,True,,
 he/she is taking off running,cause,atanawhst,True,,
 he/she is taking off running,cause,nawhst,True,,
+he/she is taking off running,cause[perf3],:nawhst,False,,
 he/she is taking off running,cause[perf3],anawhst,False,,
 he/she is taking off running,cause[perf3],atanawhst,False,,
 he/she is taking off running,cause[perf3],nawhst,False,,
+he/she is taking off running,cause[pres2-perf3],:nawhstih,False,,
 he/she is taking off running,cause[pres2-perf3],anawhstih,False,,
 he/she is taking off running,cause[pres2-perf3],atanawhstih,False,,
 he/she is taking off running,cause[pres2-perf3],nawhstih,False,,
+he/she is taking off running,cause[pres2],:nawhstih,False,,
 he/she is taking off running,cause[pres2],anawhstih,False,,
 he/she is taking off running,cause[pres2],atanawhstih,False,,
 he/she is taking off running,cause[pres2],nawhstih,False,,
+he/she is changing,v-vhs,:netl,True,,
+he/she is changing,v-vhs,:netliy,True,,
 he/she is changing,v-vhs,anetl,True,,
 he/she is changing,v-vhs,anetliy,True,,
 he/she is changing,v-vhs,atanetl,True,,
 he/she is changing,v-vhs,atanetliy,True,,
 he/she is changing,v-vhs,netl,True,,
 he/she is changing,v-vhs,netliy,True,,
+he/she is taking turns with him/her,cause,:netliyvhst,True,,
 he/she is taking turns with him/her,cause,anetliyvhst,True,,
 he/she is taking turns with him/her,cause,atanetliyvhst,True,,
 he/she is taking turns with him/her,cause,netliyvhst,True,,
+he/she is taking turns with him/her,cause[perf3],:netliyvhst,False,,
 he/she is taking turns with him/her,cause[perf3],anetliyvhst,False,,
 he/she is taking turns with him/her,cause[perf3],atanetliyvhst,False,,
 he/she is taking turns with him/her,cause[perf3],netliyvhst,False,,
+he/she is taking turns with him/her,cause[pres2-perf3],:netliyvhstih,False,,
 he/she is taking turns with him/her,cause[pres2-perf3],anetliyvhstih,False,,
 he/she is taking turns with him/her,cause[pres2-perf3],atanetliyvhstih,False,,
 he/she is taking turns with him/her,cause[pres2-perf3],netliyvhstih,False,,
+he/she is taking turns with him/her,cause[pres2],:netliyvhstih,False,,
 he/she is taking turns with him/her,cause[pres2],anetliyvhstih,False,,
 he/she is taking turns with him/her,cause[pres2],atanetliyvhstih,False,,
 he/she is taking turns with him/her,cause[pres2],netliyvhstih,False,,
+he/she is thinking,apl-active-h,:nht,True,,
 he/she is thinking,apl-active-h,anht,True,,
 he/she is thinking,apl-active-h,atanht,True,,
 he/she is thinking,apl-active-h,nht,True,,
+he/she is pondering,o,:nhtheh,True,,
+he/she is pondering,o,:nhthehil,True,,
 he/she is pondering,o,anhtheh,True,,
 he/she is pondering,o,anhthehil,True,,
 he/she is pondering,o,atanhtheh,True,,
 he/she is pondering,o,atanhthehil,True,,
 he/she is pondering,o,nhtheh,True,,
 he/she is pondering,o,nhthehil,True,,
+he/she is crawling,go[pres2],:nhsin,True,,
 he/she is crawling,go[pres2],anhsin,True,,
 he/she is crawling,go[pres2],atanhsin,True,,
 he/she is crawling,go[pres2],nhsin,True,,
+it’s twisting,oh-ol,:nuthey,True,,
 it’s twisting,oh-ol,anuthey,True,,
 it’s twisting,oh-ol,atanuthey,True,,
 it’s twisting,oh-ol,nuthey,True,,
+he/she is ordering it,sk-s-hst,:nv,False,present_1sg,Ambiguity implies lossy rule reversal
 he/she is ordering it,sk-s-hst,anv,False,present_1sg,Ambiguity implies lossy rule reversal
 he/she is ordering it,sk-s-hst,atanv,False,present_1sg,Ambiguity implies lossy rule reversal
 he/she is ordering it,sk-s-hst,nv,False,present_1sg,Ambiguity implies lossy rule reversal
+he/she is ordering it,sk-s-la,:nv,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is ordering it,sk-s-la,anv,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is ordering it,sk-s-la,atanv,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is ordering it,sk-s-la,nv,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she is cooking a meal,episodic,:hstay,True,,
 he/she is cooking a meal,episodic,ahstay,True,,
 he/she is cooking a meal,episodic,atahstay,True,,
 he/she is cooking a meal,episodic,hstay,True,,
+he/she is cooking a meal,hvsk-nh[inf2],:hstayv,True,,
 he/she is cooking a meal,hvsk-nh[inf2],ahstayv,True,,
 he/she is cooking a meal,hvsk-nh[inf2],atahstayv,True,,
 he/she is cooking a meal,hvsk-nh[inf2],hstayv,True,,
+it’s burning (refers to flames),i-a-i,:welak,True,,
 it’s burning (refers to flames),i-a-i,atawelak,True,,
 it’s burning (refers to flames),i-a-i,awelak,True,,
 it’s burning (refers to flames),i-a-i,welak,True,,
+he/she is resting,cause,:wehsolvhst,True,,
 he/she is resting,cause,atawehsolvhst,True,,
 he/she is resting,cause,awehsolvhst,True,,
 he/she is resting,cause,wehsolvhst,True,,
+he/she is resting,cause[perf3],:wehsolvhst,False,,
 he/she is resting,cause[perf3],atawehsolvhst,False,,
 he/she is resting,cause[perf3],awehsolvhst,False,,
 he/she is resting,cause[perf3],wehsolvhst,False,,
+he/she is resting,cause[pres2-perf3],:wehsolvhstih,False,,
 he/she is resting,cause[pres2-perf3],atawehsolvhstih,False,,
 he/she is resting,cause[pres2-perf3],awehsolvhstih,False,,
 he/she is resting,cause[pres2-perf3],wehsolvhstih,False,,
+he/she is resting,cause[pres2],:wehsolvhstih,False,,
 he/she is resting,cause[pres2],atawehsolvhstih,False,,
 he/she is resting,cause[pres2],awehsolvhstih,False,,
 he/she is resting,cause[pres2],wehsolvhstih,False,,
+he/she is bathing,o,:w,True,,
 he/she is bathing,o,ataw,True,,
 he/she is bathing,o,aw,True,,
 he/she is bathing,o,w,True,,
@@ -239,14 +300,24 @@ he/she is laying it down (refers to a long object),i-a-i,,True,,
 he/she is laying it down (refers to a long object),i-a-i,,True,,
 he/she is laying it down (refers to a long object),i-a-i,t,True,,
 he/she is laying it down (refers to a long object),i-a-i,t,True,,
+he/she is rising (from a prone position),ih-vh,:t,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is rising (from a prone position),ih-vh,atit,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is rising (from a prone position),ih-vh,it,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is rising (from a prone position),ih-vh,t,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is rising (from a prone position),ih-vh,vt,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she is scattering it,a,:kaley,True,,
 he/she is scattering it,a,atikaley,True,,
 he/she is scattering it,a,ikaley,True,,
 he/she is scattering it,a,kaley,True,,
 he/she is scattering it,a,vkaley,True,,
+it’s scattering,become,:kaley,False,,
+it’s scattering,become,:kaley,False,imperative,Ambiguity implies lossy rule reversal
+it’s scattering,become,:kaley,False,,
+it’s scattering,become,:kaley,False,,
+it’s scattering,become,:kaleyo,False,,
+it’s scattering,become,:kaleyo,False,imperative,Ambiguity implies lossy rule reversal
+it’s scattering,become,:kaleyo,False,,
+it’s scattering,become,:kaleyo,False,,
 it’s scattering,become,atikaley,False,,
 it’s scattering,become,atikaley,False,imperative,Ambiguity implies lossy rule reversal
 it’s scattering,become,atikaley,False,,
@@ -287,6 +358,14 @@ it’s scattering,become,vkaleyo,False,,
 it’s scattering,become,vkaleyo,False,imperative,Ambiguity implies lossy rule reversal
 it’s scattering,become,vkaleyo,False,,
 it’s scattering,become,vkaleyo,False,,
+it’s scattering,become[inf3],:kaley,True,,
+it’s scattering,become[inf3],:kaley,True,imperative,Ambiguity implies lossy rule reversal
+it’s scattering,become[inf3],:kaley,True,,
+it’s scattering,become[inf3],:kaley,True,,
+it’s scattering,become[inf3],:kaleyo,True,,
+it’s scattering,become[inf3],:kaleyo,True,imperative,Ambiguity implies lossy rule reversal
+it’s scattering,become[inf3],:kaleyo,True,,
+it’s scattering,become[inf3],:kaleyo,True,,
 it’s scattering,become[inf3],atikaley,True,,
 it’s scattering,become[inf3],atikaley,True,imperative,Ambiguity implies lossy rule reversal
 it’s scattering,become[inf3],atikaley,True,,
@@ -327,6 +406,8 @@ it’s scattering,become[inf3],vkaleyo,True,,
 it’s scattering,become[inf3],vkaleyo,True,imperative,Ambiguity implies lossy rule reversal
 it’s scattering,become[inf3],vkaleyo,True,,
 it’s scattering,become[inf3],vkaleyo,True,,
+he/she is spinning,oh-ol[inf2],:kwalv,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she is spinning,oh-ol[inf2],:kwalvtey,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is spinning,oh-ol[inf2],atikwalv,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is spinning,oh-ol[inf2],atikwalvtey,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is spinning,oh-ol[inf2],ikwalv,True,present_1sg,Ambiguity implies lossy rule reversal
@@ -338,22 +419,27 @@ he/she is spinning,oh-ol[inf2],vkwalvtey,True,present_1sg,Ambiguity implies loss
 he/she is saying it,vnh-ih-a,,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is saying it,vnh-ih-a,,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is saying it,vnh-ih-a,at,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she is running over him/her,cause,:nvt,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is running over him/her,cause,atinvt,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is running over him/her,cause,invt,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is running over him/her,cause,nvt,True,present_1sg,Ambiguity implies lossy rule reversal
 he/she is running over him/her,cause,vnvt,True,present_1sg,Ambiguity implies lossy rule reversal
+he/she is running over him/her,cause[perf3],:nvt,False,present_1sg,Ambiguity implies lossy rule reversal
 he/she is running over him/her,cause[perf3],atinvt,False,present_1sg,Ambiguity implies lossy rule reversal
 he/she is running over him/her,cause[perf3],invt,False,present_1sg,Ambiguity implies lossy rule reversal
 he/she is running over him/her,cause[perf3],nvt,False,present_1sg,Ambiguity implies lossy rule reversal
 he/she is running over him/her,cause[perf3],vnvt,False,present_1sg,Ambiguity implies lossy rule reversal
+he/she is running over him/her,cause[pres2-perf3],:nvtih,False,,
 he/she is running over him/her,cause[pres2-perf3],atinvtih,False,,
 he/she is running over him/her,cause[pres2-perf3],invtih,False,,
 he/she is running over him/her,cause[pres2-perf3],nvtih,False,,
 he/she is running over him/her,cause[pres2-perf3],vnvtih,False,,
+he/she is running over him/her,cause[pres2],:nvtih,False,,
 he/she is running over him/her,cause[pres2],atinvtih,False,,
 he/she is running over him/her,cause[pres2],invtih,False,,
 he/she is running over him/her,cause[pres2],nvtih,False,,
 he/she is running over him/her,cause[pres2],vnvtih,False,,
+he/she is hiding,hvsk-han,:hskal,True,,
 he/she is hiding,hvsk-han,atihskal,True,,
 he/she is hiding,hvsk-han,hskal,True,,
 he/she is hiding,hvsk-han,ihskal,True,,
@@ -362,10 +448,12 @@ he/she is leaving it behind (refers to a long object),a,tihs,True,,
 he/she is leaving it behind (refers to a long object),a,tihs,True,,
 he/she is leaving it behind (refers to a long object),a,tihsiy,True,,
 he/she is leaving it behind (refers to a long object),a,tihsiy,True,,
+he/she is drinking it,sk-h,:tha,False,,
 he/she is drinking it,sk-h,atitha,False,,
 he/she is drinking it,sk-h,itha,False,,
 he/she is drinking it,sk-h,tha,False,,
 he/she is drinking it,sk-h,vtha,False,,
+he/she is drinking it,sk-h[imp2],:tha,True,,
 he/she is drinking it,sk-h[imp2],atitha,True,,
 he/she is drinking it,sk-h[imp2],itha,True,,
 he/she is drinking it,sk-h[imp2],tha,True,,
@@ -1201,6 +1289,12 @@ he/she is smelling it (refers to sniffing),cause[pres2-perf3],alhsvhstih,False,,
 he/she is smelling it (refers to sniffing),cause[pres2-perf3],hsvhstih,False,,
 he/she is smelling it (refers to sniffing),cause[pres2],alhsvhstih,False,,
 he/she is smelling it (refers to sniffing),cause[pres2],hsvhstih,False,,
+they are gathering,cause[perf2],:lh,True,,
+they are gathering,cause[perf2],:lh,True,,
+they are gathering,cause[perf2],:lhi,True,,
+they are gathering,cause[perf2],:lhi,True,,
+they are gathering,cause[perf2],:lhihs,True,,
+they are gathering,cause[perf2],:lhihs,True,,
 they are gathering,cause[perf2],alh,True,,
 they are gathering,cause[perf2],alh,True,,
 they are gathering,cause[perf2],alhi,True,,
@@ -1219,6 +1313,8 @@ they are gathering,cause[perf2],lhi,True,,
 they are gathering,cause[perf2],lhi,True,,
 they are gathering,cause[perf2],lhihs,True,,
 they are gathering,cause[perf2],lhihs,True,,
+they are gathering,cause[pres2-perf2],:lhihsih,False,,
+they are gathering,cause[pres2-perf2],:lhihsih,False,,
 they are gathering,cause[pres2-perf2],alhihsih,False,,
 they are gathering,cause[pres2-perf2],alhihsih,False,,
 they are gathering,cause[pres2-perf2],atalhihsih,False,,
@@ -1875,45 +1971,59 @@ he/she is finding it (refers to a long object),ih-vh[inf2],yvwhahth,True,,
 he/she is finding it (refers to a long object),ih-vh[inf2],yvwhahth,False,,
 he/she is taking it somewhere (refers to a long object),ih-vh,yvwhit,True,,
 he/she is taking it somewhere (refers to a long object),ih-vh,yvwhit,False,,
+he/she is making an X,cause,:nhawhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause,anhawhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause,atanhawhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause,nhawhst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is making an X,cause[perf3],:nhawhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[perf3],anhawhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[perf3],atanhawhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[perf3],nhawhst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is making an X,cause[pres2-perf3],:nhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[pres2-perf3],anhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[pres2-perf3],atanhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[pres2-perf3],nhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is making an X,cause[pres2],:nhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[pres2],anhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[pres2],atanhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is making an X,cause[pres2],nhawhstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is conjuring,e-aka,:nhehs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is conjuring,e-aka,anhehs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is conjuring,e-aka,atanhehs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is conjuring,e-aka,nhehs,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is accepting him/her,become,:nilv,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is accepting him/her,become,anilv,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is accepting him/her,become,atanilv,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is accepting him/her,become,nilv,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is dodging,cause,:nvtihst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause,anvtihst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause,atanvtihst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause,nvtihst,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is dodging,cause[perf3],:nvtihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[perf3],anvtihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[perf3],atanvtihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[perf3],nvtihst,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is dodging,cause[pres2-perf3],:nvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[pres2-perf3],anvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[pres2-perf3],atanvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[pres2-perf3],nvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is dodging,cause[pres2],:nvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[pres2],anvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[pres2],atanvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is dodging,cause[pres2],nvtihstih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is performing baptism,o,:w,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is performing baptism,o,ataw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is performing baptism,o,aw,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is performing baptism,o,w,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is giving up,sk-s-hi-hihst,:yo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hi-hihst,atayo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hi-hihst,ayo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hi-hihst,yo,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is giving up,sk-s-hst,:yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hst,atayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hst,ayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hst,yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is giving up,sk-s-hst[imp2],:yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hst[imp2],atayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hst[imp2],ayo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is giving up,sk-s-hst[imp2],yo,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
@@ -2903,29 +3013,37 @@ he/she is putting it on,cause[perf3],vnht,False,present;present_1sg;imperfective
 he/she is putting it on,cause[pres2-perf3],vnhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she is putting it on,cause[pres2],vnhtih,False,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
 he/she has something on (refers to objects),stative,vnht,True,present;present_1sg;imperfective;perfective;imperative;infinitive,Ambiguity implies lossy rule reversal
+he/she is in prayer,stative,:tolihst,False,,
 he/she is in prayer,stative,atatolihst,False,,
 he/she is in prayer,stative,atolihst,False,,
 he/she is in prayer,stative,olihst,False,,
 he/she is in prayer,stative,tolihst,False,,
+he/she is in prayer,stative[inf2],:tolihst,True,,
 he/she is in prayer,stative[inf2],atatolihst,True,,
 he/she is in prayer,stative[inf2],atolihst,True,,
 he/she is in prayer,stative[inf2],olihst,True,,
 he/she is in prayer,stative[inf2],tolihst,True,,
+he/she loves,stative,:keyuh,False,,
 he/she loves,stative,akeyuh,False,,
 he/she loves,stative,atakeyuh,False,,
 he/she loves,stative,keyuh,False,,
+he/she loves,stative-s,:keyu,False,,
 he/she loves,stative-s,akeyu,False,,
 he/she loves,stative-s,atakeyu,False,,
 he/she loves,stative-s,keyu,False,,
+it’s wrinkled,stative,:nekoyuh,False,,
 it’s wrinkled,stative,anekoyuh,False,,
 it’s wrinkled,stative,atanekoyuh,False,,
 it’s wrinkled,stative,nekoyuh,False,,
+it’s wrinkled,stative-s,:nekoyu,True,,
 it’s wrinkled,stative-s,anekoyu,True,,
 it’s wrinkled,stative-s,atanekoyu,True,,
 it’s wrinkled,stative-s,nekoyu,True,,
+it’s in view,stative,:yvlath,False,,
 it’s in view,stative,atayvlath,False,,
 it’s in view,stative,ayvlath,False,,
 it’s in view,stative,yvlath,False,,
+it’s in view,stative-h,:yvlat,True,,
 it’s in view,stative-h,atayvlat,True,,
 it’s in view,stative-h,ayvlat,True,,
 it’s in view,stative-h,yvlat,True,,
@@ -2934,24 +3052,29 @@ he/she is throwing it,go-in,,True,,
 he/she is throwing it,go-in,at,True,,
 he/she is having a birthday,ih-vh,atethiy,True,,
 he/she is having a birthday,ih-vh,ethiy,True,,
+it’s hot,stative,:lhehk,True,,
 it’s hot,stative,atilhehk,True,,
 it’s hot,stative,ilhehk,True,,
 it’s hot,stative,lhehk,True,,
 it’s hot,stative,tilhehk,True,,
 it’s hot,stative,vlhehk,True,,
+it’s hot,stative-k,:lheh,True,,
 it’s hot,stative-k,atilheh,True,,
 it’s hot,stative-k,ilheh,True,,
 it’s hot,stative-k,lheh,True,,
 it’s hot,stative-k,tilheh,True,,
 it’s hot,stative-k,vlheh,True,,
+he/she is in hiding,stative,:hskalh,False,,
 he/she is in hiding,stative,atihskalh,False,,
 he/she is in hiding,stative,hskalh,False,,
 he/she is in hiding,stative,ihskalh,False,,
 he/she is in hiding,stative,vhskalh,False,,
+he/she is in hiding,stative-h,:hskal,True,,
 he/she is in hiding,stative-h,atihskal,True,,
 he/she is in hiding,stative-h,hskal,True,,
 he/she is in hiding,stative-h,ihskal,True,,
 he/she is in hiding,stative-h,vhskal,True,,
+he/she is getting well,sk-s-hi-hihst,:w,True,,
 he/she is getting well,sk-s-hi-hihst,atiw,True,,
 he/she is getting well,sk-s-hi-hihst,iw,True,,
 he/she is getting well,sk-s-hi-hihst,vw,True,,
