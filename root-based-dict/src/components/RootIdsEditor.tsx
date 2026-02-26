@@ -357,7 +357,7 @@ export default function RootIdsEditor({
           <div className="flex items-center gap-3">
             {inputRootId.trim() && (
               <Link
-                href={`/review-root-ids/group/${toBase64Url(inputRootId.trim())}`}
+                href={`/review-root-ids/groups/${toBase64Url(inputRootId.trim())}`}
                 className="text-[10px] font-black uppercase tracking-widest bg-indigo-50 text-indigo-600 dark:bg-indigo-900/20 dark:text-indigo-400 px-3 py-1.5 rounded-lg border border-indigo-100 dark:border-indigo-800/30 hover:bg-indigo-100 dark:hover:bg-indigo-900/40 transition-all flex items-center gap-2"
               >
                 <Zap className="w-3 h-3" />
