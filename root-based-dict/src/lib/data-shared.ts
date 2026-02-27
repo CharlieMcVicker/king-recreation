@@ -134,13 +134,17 @@ export interface EndingGroup {
 
 export interface DerivationalConnection {
   user_approved: string;
+  from_root_id: string;
   from_h_grade: string;
   from_g_grade: string;
   from_class: string;
+  from_stem_type: string;
   from_corpus_ids: string;
+  to_root_id: string;
   to_h_grade: string;
   to_g_grade: string;
   to_class: string;
+  to_stem_type: string;
   to_corpus_ids: string;
   to_form_type: string;
   to_stem: string;

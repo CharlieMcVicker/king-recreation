@@ -137,8 +137,15 @@ export async function getNearMisses(): Promise<any[]> {
   return result.data;
 }
 
+let corpusCache: any[] | null = null;
+
 export async function getCorpus(): Promise<any[]> {
-  const filePath = path.join(ARTIFACTS_DATA_DIR, "corpus.csv");
+  if (corpusCache) return corpusCache;
+
+  let filePath = path.join(ARTIFACTS_DATA_DIR, "corpus.csv");
+  if (!fs.existsSync(filePath)) {
+    filePath = path.join(process.cwd(), "../artifacts/corpora/corpus.csv");
+  }
   if (!fs.existsSync(filePath)) return [];
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const result = Papa.parse(fileContent, {
@@ -146,6 +153,7 @@ export async function getCorpus(): Promise<any[]> {
     skipEmptyLines: true,
     dynamicTyping: true,
   });
+  corpusCache = result.data;
   return result.data;
 }
 
@@ -179,9 +187,8 @@ export async function getConnections(): Promise<DerivationalConnection[]> {
   const result = Papa.parse(fileContent, {
     header: true,
     skipEmptyLines: true,
-    dynamicTyping: true,
   });
-  return result.data as any[];
+  return result.data as DerivationalConnection[];
 }
 
 export async function getRoots(): Promise<RootGroup[]> {
@@ -655,6 +662,81 @@ export async function updateRootIdsBulk(
       row.user_edited = "x";
     }
   });
+
+  const csv = Papa.unparse(rows, {
+    quotes: false,
+    quoteChar: '"',
+    escapeChar: '"',
+    delimiter: ",",
+    header: true,
+    newline: "\n",
+    skipEmptyLines: false,
+  });
+
+  fs.writeFileSync(filePath, csv);
+}
+
+export async function getDefinitions(
+  corpusIds: string | number | null | undefined,
+): Promise<{ id: number; definition: string }[]> {
+  const ids = String(corpusIds || "")
+    .split(";")
+    .map((id) => parseInt(id.trim(), 10))
+    .filter((id) => !isNaN(id));
+  const corpus = await getCorpus();
+  const corpusMap = new Map<number, string>(
+    corpus.map((c: any) => [c.corpus_id, c.definition]),
+  );
+
+  return ids.map((id) => ({
+    id,
+    definition: corpusMap.get(id) || "No definition found",
+  }));
+}
+
+export async function updateDerivationalConnection(
+  key: {
+    from_root_id: string;
+    from_h_grade: string;
+    from_g_grade: string;
+    from_class: string;
+    to_root_id: string;
+    to_h_grade: string;
+    to_g_grade: string;
+    to_class: string;
+  },
+  approved: boolean,
+): Promise<void> {
+  const filePath = path.join(
+    CONNECTIONS_DATA_DIR,
+    "derivational_suffix_connections.csv",
+  );
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const parsed = Papa.parse(fileContent, {
+    header: true,
+    skipEmptyLines: true,
+  });
+
+  const rows = parsed.data as any[];
+  const rowIndex = rows.findIndex(
+    (row) =>
+      row.from_root_id === key.from_root_id &&
+      row.from_h_grade === key.from_h_grade &&
+      row.from_g_grade === key.from_g_grade &&
+      row.from_class === key.from_class &&
+      row.to_root_id === key.to_root_id &&
+      row.to_h_grade === key.to_h_grade &&
+      row.to_g_grade === key.to_g_grade &&
+      row.to_class === key.to_class,
+  );
+
+  if (rowIndex === -1) {
+    throw new Error(
+      `Connection not found in derivational_suffix_connections.csv`,
+    );
+  }
+
+  rows[rowIndex].user_approved = approved ? "x" : "";
 
   const csv = Papa.unparse(rows, {
     quotes: false,
