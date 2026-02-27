@@ -7,41 +7,39 @@ Create a standalone sequential review interface for assigning and verifying `roo
 ## Background
 
 The `root_ids.csv` file maps a `corpus_id` to a `root_id`. The pipeline auto-generates a default `root_id` (e.g. `h_grade|g_grade`), but humans can override this. When a human edits a `root_id`, they must set `user_edited = "x"`. This ensures the pipeline respects the manual override on subsequent runs.
-The goal of this editor is to allow rapid triage of unreviewed rows, or bulk editing of existing rows.
+The goal of this editor is to allow rapid triage of unreviewed rows, or bulk editing of existing rows, grouped by their assigned `root_id`.
 
 ## Features & Requirements
 
 ### 1. Route & Layout
 
-- Create a new Next.js route: `/review-root-ids`.
-- Provide a header similar to the existing `/select-roots` workflow:
-  - Display the current word's `definition`.
-  - Display the `corpus_id`.
-  - Show traversal progress (e.g., `45 / 600 reviewed`).
-  - Next/Prev arrow buttons (with `Left`/`Right` keyboard shortcuts).
+- **Index/Entry Point (`/review-root-ids`)**: Gather all unique `root_id` groupings present in the curated CSV, and automatically redirect the user to the first group in the sorted sequence.
+- **Group Sequence Editor (`/review-root-ids/groups/[rootIdEncoded]`)**: A specialized Next.js route that identifies a specific `root_id` grouping. Slugs are base64url encoded strings to safely transfer complex IDs (like pipes or quotes) via URL routing.
+- Provide a responsive header layout:
+  - Display the current active `root_id` as the title.
+  - Display total groups and sequence position.
+  - Next/Prev arrow buttons (with `Left`/`Right` keyboard shortcuts) to step through groups.
+  - A contextual **"View in Dictionary"** link pointing back to the main linguistic dictionary view (`/[slug]`), powered by calculating which reconstructable root encompasses the current verbs.
 
 ### 2. The Data Display
 
-- **Current Word Details:** Display the `h_grade`, `g_grade`, `class`, and `post_root_morpheme` for the focused `corpus_id`.
-- **Primary Action (Input):** Render a text input focused on the `root_id`.
-  - By default, it shows the current `root_id`.
-  - The user can type a new `root_id`.
-  - Hitting `Enter` saves the assignment and auto-advances to the next word.
+- **Group Level Triage:** View all `corpus_ids` assigned to this `root_id` in a list format.
+- For each item, display: `definition`, `corpus_id`, `class`, `h_grade`, `g_grade`, and `post_root_morpheme`.
+- **Review Status:** Visually distinguish rows that have already been reviewed (`user_edited == "x"`).
 
-### 3. Contextual Grouping (The "Sibling" List)
+### 3. Bulk & Sequential Editing Workflow
 
-- To help the user understand why a `root_id` is assigned, the UI **must** display a list or table of _all other words in the dataset_ that currently share the same `root_id`.
-- For example, if the current word has `root_id = "a|a"`, query the dataset for all other `corpus_ids` where `root_id == "a|a"` and display their definitions, corpus IDs, and forms below the main input.
-- _Reactivity:_ If the user types a new `root_id` in the input (e.g., changing "a|a" to "b|b"), this list should ideally immediately update to show the words in the "b|b" group, providing instant feedback on the merge they are about to perform.
+- **Multi-select items:** Select specific verbs, or toggle "Select All", to target them for editing.
+- **Target `root_id` input:** Provide a text input to supply a new `root_id` for the selected words.
+- Hitting **"Apply"** sends the selected `corpus_id`s and the new `root_id` to the server.
+- _Reactivity:_ Once the bulk update resolves, the local state is updated to reflect the new `root_id` assignments. If all words in a group were removed (moved to another group), the UI gracefully guides the user to the Next Group sequence.
 
-### 4. Filtering & Fast Triage
+### 4. Dictionary Context Synchronization
 
-- Include a prominent toggle switch in the header: **"Unreviewed Only"** vs **"Show All"**.
-- Default this to "Unreviewed Only".
-- An item is "Unreviewed" if `user_edited` is blank.
-- When traversing in "Unreviewed" mode, saving an edit (which sets `user_edited = "x"`) means the item will be filtered out on the next refresh/traversal. Ensure the index management handles this smoothly without skipping items.
+- Expose bidirectional navigation to link the data curation step directly to its linguistic outcome:
+  - From the Dictionary detail (`/[slug]`), expose an **"Edit Root ID Group"** button that computes the shared `root_id` and navigates the user to the matching sequence editor securely (via base64url encoding).
 
 ### 5. Backend Integration
 
-- Implement an API endpoint (e.g., `/api/curated/root-ids`) to handle POST requests.
-- The endpoint reads `/curated/root_ids.csv`, finds the row by `corpus_id`, updates the `root_id` field, sets `user_edited` to `"x"`, and rewrites the file.
+- Implemented an API endpoint (`/api/curated/root-ids/bulk`) to handle POST requests encompassing multiple updates.
+- The endpoint maps over the requested arrays of object updates, identifies matches in `/curated/root_ids.csv`, patches the corresponding `root_id` fields, sets `user_edited` to `"x"`, and flushes the modified data safely to disk.
