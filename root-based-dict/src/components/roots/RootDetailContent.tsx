@@ -12,7 +12,8 @@ import {
 import RootClassEntry from "@/components/roots/RootClassEntry";
 import SubvariantFilter from "@/components/roots/SubvariantFilter";
 import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, Edit3 } from "lucide-react";
+import { toBase64Url } from "@/lib/data-shared";
 
 interface RootDetailContentProps {
   rootGroup: RootGroup;
@@ -20,6 +21,7 @@ interface RootDetailContentProps {
   dictionary: DictionaryEntry[];
   connections: DerivationalConnection[];
   allVerbs: ReconstructableVerb[];
+  rootIdGroup?: string | null;
 }
 
 export default function RootDetailContent({
@@ -28,6 +30,7 @@ export default function RootDetailContent({
   dictionary,
   connections,
   allVerbs,
+  rootIdGroup,
 }: RootDetailContentProps) {
   const [selectedVariant, setSelectedVariant] = useState("All");
 
@@ -137,11 +140,22 @@ export default function RootDetailContent({
             <h1 className="text-4xl font-bold text-gray-900 dark:text-gray-100 mb-1">
               {rootGroup.h_grade_root}
             </h1>
-            {rootGroup.glottal_grade_root && (
-              <p className="text-xl text-gray-500 dark:text-zinc-500 italic">
-                ({rootGroup.glottal_grade_root})
-              </p>
-            )}
+            <div className="flex items-center gap-4">
+              {rootGroup.glottal_grade_root && (
+                <p className="text-xl text-gray-500 dark:text-zinc-500 italic">
+                  ({rootGroup.glottal_grade_root})
+                </p>
+              )}
+              {rootIdGroup && (
+                <Link
+                  href={`/review-root-ids/groups/${toBase64Url(rootIdGroup)}`}
+                  className="flex items-center gap-1.5 px-3 py-1 bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 rounded-full text-xs font-bold hover:bg-indigo-100 dark:hover:bg-indigo-900/40 transition-colors border border-indigo-100 dark:border-indigo-800/30"
+                >
+                  <Edit3 className="w-3 h-3" />
+                  Edit Root ID Group
+                </Link>
+              )}
+            </div>
           </div>
 
           <SubvariantFilter

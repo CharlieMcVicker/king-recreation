@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getRootIdsRows } from "@/lib/data";
+import { getRootIdsRows, getRoots } from "@/lib/data";
 import RootGroupSequenceEditor from "@/components/RootGroupSequenceEditor";
 import { notFound } from "next/navigation";
 import { toBase64Url } from "@/lib/data-shared";
@@ -61,6 +61,17 @@ export default async function RootGroupSequencePage({
       ? sortedRootIds[currentIndex + 1]
       : null;
 
+  const roots = await getRoots();
+  const groupCorpusIds = new Set(
+    rootIdsData
+      .filter((r: any) => (r.root_id || "").trim() === currentRootId.trim())
+      .map((r: any) => r.corpus_id),
+  );
+  const matchingRoot = roots.find((r) =>
+    r.classes.some((cls) => cls.verbs.some((v) => groupCorpusIds.has(v.id))),
+  );
+  const rootSlug = matchingRoot?.slug || null;
+
   return (
     <main className="container mx-auto py-8 px-4">
       <RootGroupSequenceEditor
@@ -70,6 +81,7 @@ export default async function RootGroupSequencePage({
         nextRootId={nextRootId}
         currentIndex={currentIndex}
         totalGroups={sortedRootIds.length}
+        rootSlug={rootSlug}
       />
     </main>
   );

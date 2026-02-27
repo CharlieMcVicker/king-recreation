@@ -4,6 +4,7 @@ import {
   getDictionaryEntries,
   getConnections,
   getReconstructableVerbs,
+  getRootIdsRows,
 } from "@/lib/data";
 import RootDetailContent from "@/components/roots/RootDetailContent";
 import Link from "next/link";
@@ -83,6 +84,11 @@ export default async function RootDetailPage({
     entryNos.has(Number(e["No."])),
   );
 
+  const rootIdsRows = await getRootIdsRows();
+  const rootIdGroup =
+    rootIdsRows.find((row) => rootCorpusIds.has(row.corpus_id))?.root_id ||
+    null;
+
   return (
     <RootDetailContent
       rootGroup={rootGroup}
@@ -90,6 +96,7 @@ export default async function RootDetailPage({
       dictionary={rootDictionary}
       connections={connections}
       allVerbs={allVerbs}
+      rootIdGroup={rootIdGroup}
     />
   );
 }

@@ -38,6 +38,7 @@ interface RootGroupSequenceEditorProps {
   nextRootId: string | null;
   currentIndex: number;
   totalGroups: number;
+  rootSlug?: string | null;
 }
 
 export default function RootGroupSequenceEditor({
@@ -47,6 +48,7 @@ export default function RootGroupSequenceEditor({
   nextRootId,
   currentIndex,
   totalGroups,
+  rootSlug,
 }: RootGroupSequenceEditorProps) {
   const router = useRouter();
   const [data, setData] = useState(initialData);
@@ -215,6 +217,15 @@ export default function RootGroupSequenceEditor({
             <h1 className="text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 font-mono">
               "{rootId || <span className="text-zinc-300 italic">None</span>}"
             </h1>
+            {rootSlug && (
+              <Link
+                href={`/${rootSlug}`}
+                className="inline-flex items-center gap-2 mt-2 text-sm text-indigo-500 hover:text-indigo-600 font-bold transition-colors group/link"
+              >
+                View in Dictionary
+                <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 transition-transform" />
+              </Link>
+            )}
           </div>
 
           <div className="flex items-center gap-8">
