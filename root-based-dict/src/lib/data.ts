@@ -191,6 +191,22 @@ export async function getConnections(): Promise<DerivationalConnection[]> {
   return result.data as DerivationalConnection[];
 }
 
+export async function getDerivationalConnectionsForCorpus(
+  corpusId: number,
+): Promise<DerivationalConnection[]> {
+  const connections = await getConnections();
+  const idStr = String(corpusId);
+  return connections.filter((conn) => {
+    const fromIds = String(conn.from_corpus_ids || "")
+      .split(";")
+      .map((s) => s.trim());
+    const toIds = String(conn.to_corpus_ids || "")
+      .split(";")
+      .map((s) => s.trim());
+    return fromIds.includes(idStr) || toIds.includes(idStr);
+  });
+}
+
 export async function getRoots(): Promise<RootGroup[]> {
   const filePath = path.join(ARTIFACTS_DATA_DIR, "hierarchical-dict.json");
   const fileContent = fs.readFileSync(filePath, "utf-8");
@@ -604,6 +620,15 @@ export async function getRootIdsRows(): Promise<any[]> {
     dynamicTyping: true,
   });
   return result.data;
+}
+
+export async function searchRootIds(rootIdFragment: string): Promise<any[]> {
+  const rows = await getRootIdsRows();
+  if (!rootIdFragment) return [];
+  const fragment = rootIdFragment.toLowerCase();
+  return rows.filter((row) =>
+    (row.root_id || "").toLowerCase().includes(fragment),
+  );
 }
 
 export async function updateRootId(

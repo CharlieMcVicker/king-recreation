@@ -10,6 +10,7 @@ import {
   Keyboard,
   List,
   Zap,
+  LayoutDashboard,
 } from "lucide-react";
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
@@ -278,6 +279,12 @@ export default function RootIdsEditor({
                 <CheckCircle2 className="w-3.5 h-3.5" /> Reviewed
               </div>
             )}
+            <Link
+              href={`/lexical-review/${currentCorpusId}`}
+              className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-400 text-[10px] font-black uppercase border border-indigo-100 dark:border-indigo-800/30 hover:bg-indigo-100 transition-colors"
+            >
+              <LayoutDashboard className="w-3.5 h-3.5" /> Lexical Dashboard
+            </Link>
             {message && (
               <div
                 className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase border animate-in fade-in slide-in-from-top-2 ${
@@ -405,6 +412,13 @@ export default function RootIdsEditor({
                     <CheckCircle2 className="w-4 h-4" />
                   </span>
                 )}
+                <Link
+                  href={`/lexical-review/${s.corpus_id}`}
+                  className="p-2 rounded-lg text-zinc-400 hover:text-indigo-600 transition-colors"
+                  title="View Dashboard"
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                </Link>
               </div>
             ))
           )}

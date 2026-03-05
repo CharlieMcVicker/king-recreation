@@ -1,5 +1,21 @@
 import { NextResponse } from "next/server";
-import { updateDerivationalConnection } from "@/lib/data";
+import {
+  updateDerivationalConnection,
+  getDerivationalConnectionsForCorpus,
+} from "@/lib/data";
+
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const corpusId = searchParams.get("corpusId");
+
+  if (corpusId) {
+    const id = parseInt(corpusId, 10);
+    const results = await getDerivationalConnectionsForCorpus(id);
+    return NextResponse.json(results);
+  }
+
+  return NextResponse.json({ error: "corpusId required" }, { status: 400 });
+}
 
 export async function POST(request: Request) {
   try {

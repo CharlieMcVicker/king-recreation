@@ -10,7 +10,9 @@ import {
   Database,
   Info,
   ExternalLink,
+  LayoutDashboard,
 } from "lucide-react";
+import Link from "next/link";
 
 interface Definition {
   id: number;
@@ -262,6 +264,18 @@ export default function ReviewDerivations({
                 Base Word
               </h2>
             </div>
+            <div className="flex gap-2">
+              {current.from_corpus_ids.split(";").map((id) => (
+                <Link
+                  key={id}
+                  href={`/lexical-review/${id.trim()}`}
+                  className="p-2 rounded-lg bg-zinc-50 dark:bg-zinc-800 text-zinc-400 hover:text-indigo-600 border border-zinc-200 dark:border-zinc-700 transition-colors"
+                  title={`View Dashboard for ${id.trim()}`}
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                </Link>
+              ))}
+            </div>
           </div>
 
           <div className="space-y-8">
@@ -337,6 +351,18 @@ export default function ReviewDerivations({
               <h2 className="text-xl font-black uppercase tracking-tight text-zinc-400">
                 Derived Word
               </h2>
+            </div>
+            <div className="flex gap-2">
+              {current.to_corpus_ids.split(";").map((id) => (
+                <Link
+                  key={id}
+                  href={`/lexical-review/${id.trim()}`}
+                  className="p-2 rounded-lg bg-zinc-50 dark:bg-zinc-800 text-zinc-400 hover:text-indigo-600 border border-zinc-200 dark:border-zinc-700 transition-colors"
+                  title={`View Dashboard for ${id.trim()}`}
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                </Link>
+              ))}
             </div>
           </div>
 

@@ -1,5 +1,26 @@
 import { NextResponse } from "next/server";
-import { updateRootId } from "@/lib/data";
+import { updateRootId, searchRootIds, getRootIdsRows } from "@/lib/data";
+
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const search = searchParams.get("search");
+  const corpusId = searchParams.get("corpusId");
+
+  if (search) {
+    const results = await searchRootIds(search);
+    return NextResponse.json(results);
+  }
+
+  if (corpusId) {
+    const id = parseInt(corpusId, 10);
+    const rows = await getRootIdsRows();
+    const row = rows.find((r) => r.corpus_id === id);
+    return NextResponse.json(row || null);
+  }
+
+  const rows = await getRootIdsRows();
+  return NextResponse.json(rows);
+}
 
 export async function POST(request: Request) {
   try {

@@ -14,7 +14,9 @@ import {
   Filter,
   Eye,
   EyeOff,
+  LayoutDashboard,
 } from "lucide-react";
+import Link from "next/link";
 
 interface ValidatedRootRow {
   corpus_id: number;
@@ -302,6 +304,13 @@ export default function SelectRootsWorkflow({
                 Pipeline Selected
               </span>
             )}
+            <Link
+              href={`/lexical-review/${currentCorpusId}`}
+              className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-indigo-50 text-indigo-700 dark:bg-indigo-900/20 dark:text-indigo-400 text-[10px] font-bold uppercase tracking-wider border border-indigo-100 dark:border-indigo-800/30 hover:bg-indigo-100 transition-colors"
+            >
+              <LayoutDashboard className="w-3 h-3" />
+              Lexical Dashboard
+            </Link>
           </div>
           <p className="text-sm text-zinc-500 flex items-center gap-2">
             <Database className="w-4 h-4" />

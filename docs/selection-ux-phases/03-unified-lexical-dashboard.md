@@ -18,8 +18,8 @@ By bringing these three editable state streams into a single route or extended v
 
 ### 1. Integration or New Route
 
-- **Option A (Preferred):** Extend the existing `SelectRootsWorkflow` (`/src/components/SelectRootsWorkflow.tsx`). Add a new "Lexical Metadata" panel directly below the main comparison table.
-- **Option B:** Create a new `/lexical-review` route that imports the `<SelectRootsWorkflow />` component (in read-only mode) as a "Hero" section, and renders the Root/Suffix components below.
+- **Option A:** Extend the existing `SelectRootsWorkflow` (`/src/components/SelectRootsWorkflow.tsx`). Add a new "Lexical Metadata" panel directly below the main comparison table.
+- **Option B (Preferred):** Create a new `/lexical-review/[corpus_id]` route that displays the selected and available root derivations as a "Hero" section, and renders the Root/Suffix components below. This ensures the primary verb-selection UI remains lightweight while providing a deep-dive contextual page per word.
 
 ### 2. Root Assignment Component
 
