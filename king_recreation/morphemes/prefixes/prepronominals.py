@@ -41,21 +41,15 @@ def apply_prepronominal(
     if config.distributive:
         new_forms = []
         for w in current_forms:
-            if form_name == "infinitive" or (form_name == "imperative" and not stative):
-                new_forms.extend(["ts-" + w, "ti-" + w, "t-" + w])
-            else:
-                new_forms.extend(["te-" + w, "t-" + w])
+            for p in get_distributive_forms(form_name, stative):
+                new_forms.append(p + "-" + w)
         current_forms = list(set(new_forms))
 
     if config.partitive:
         new_forms = []
         for w in current_forms:
-            if form_name == "infinitive":
-                new_forms.extend(["iy-" + w, "i-" + w, ">ø-" + w])
-            else:
-                # Manual 'hn'/'hw' cases removed here as they are now handled
-                # by the 'nh'/'wh' respelling reform in preprocessing.
-                new_forms.extend(["ni-" + w, "n-" + w])
+            for p in get_partitive_forms(form_name):
+                new_forms.append(p + "-" + w)
         current_forms = list(set(new_forms))
 
     if config.translocutive or (
@@ -63,7 +57,24 @@ def apply_prepronominal(
     ):
         new_forms = []
         for w in current_forms:
-            new_forms.extend(["wi-" + w, "w-" + w])
+            for p in get_translocutive_forms(form_name):
+                new_forms.append(p + "-" + w)
         current_forms = list(set(new_forms))
 
     return current_forms
+
+
+def get_translocutive_forms(form_name: str) -> List[str]:
+    return ["wi", "w"]
+
+
+def get_partitive_forms(form_name: str) -> List[str]:
+    if form_name == "infinitive":
+        return ["iy", "i", ">ø"]
+    return ["ni", "n"]
+
+
+def get_distributive_forms(form_name: str, stative: bool) -> List[str]:
+    if form_name == "infinitive" or (form_name == "imperative" and not stative):
+        return ["ts", "ti", "t"]
+    return ["te", "t"]
