@@ -34,5 +34,5 @@ class PrefixConfig:
             stative=(data.get("stative", "") == "True"),
         )
 
-    def apply_prepronominals(self, base: str, form_name: str):
-        return apply_prepronominal(base, self.pre, form_name, self.stative)
+    def apply_prepronominals(self, base: str, aspect: str):
+        return apply_prepronominal(base, self.pre, aspect, self.stative)

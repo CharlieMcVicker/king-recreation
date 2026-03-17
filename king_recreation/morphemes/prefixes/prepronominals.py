@@ -34,47 +34,45 @@ class PrePronominalConfig:
 
 
 def apply_prepronominal(
-    word: str, config: PrePronominalConfig, form_name: str, stative: bool
+    word: str, config: PrePronominalConfig, aspect: str, stative: bool
 ) -> List[str]:
     current_forms = [word]
 
     if config.distributive:
         new_forms = []
         for w in current_forms:
-            for p in get_distributive_forms(form_name, stative):
+            for p in get_distributive_forms(aspect, stative):
                 new_forms.append(p + "-" + w)
         current_forms = list(set(new_forms))
 
     if config.partitive:
         new_forms = []
         for w in current_forms:
-            for p in get_partitive_forms(form_name):
+            for p in get_partitive_forms(aspect):
                 new_forms.append(p + "-" + w)
         current_forms = list(set(new_forms))
 
-    if config.translocutive or (
-        form_name == "imperative" and config.translocutiveImpOnly
-    ):
+    if config.translocutive or (aspect == "imperative" and config.translocutiveImpOnly):
         new_forms = []
         for w in current_forms:
-            for p in get_translocutive_forms(form_name):
+            for p in get_translocutive_forms(aspect):
                 new_forms.append(p + "-" + w)
         current_forms = list(set(new_forms))
 
     return current_forms
 
 
-def get_translocutive_forms(form_name: str) -> List[str]:
+def get_translocutive_forms(aspect: str) -> List[str]:
     return ["wi", "w"]
 
 
-def get_partitive_forms(form_name: str) -> List[str]:
-    if form_name == "infinitive":
+def get_partitive_forms(aspect: str) -> List[str]:
+    if aspect == "infinitive":
         return ["iy", "i", ">ø"]
     return ["ni", "n"]
 
 
-def get_distributive_forms(form_name: str, stative: bool) -> List[str]:
-    if form_name == "infinitive" or (form_name == "imperative" and not stative):
+def get_distributive_forms(aspect: str, stative: bool) -> List[str]:
+    if aspect == "infinitive" or (aspect == "imperative" and not stative):
         return ["ts", "ti", "t"]
     return ["te", "t"]

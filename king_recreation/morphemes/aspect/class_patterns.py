@@ -9,6 +9,7 @@ from king_recreation.h_alternation import (
 )
 from king_recreation.morphemes.aspect.strip import StrippedVerbRow
 from king_recreation.phonology_data import VOWEL_SET
+from king_recreation.word_spec import FORM_NAME_TO_ASPECT
 
 
 @dataclass(frozen=True)
@@ -141,9 +142,8 @@ class ExpandedClassPattern:
             if not form_val:
                 continue
 
-            cls_pattern = self.get(fn)
-            if fn == "present_1sg" and not cls_pattern:
-                cls_pattern = self.get("present")
+            aspect = FORM_NAME_TO_ASPECT.get(fn, fn)
+            cls_pattern = self.get(aspect)
 
             if cls_pattern is None:
                 cls_pattern = ""
@@ -158,7 +158,7 @@ class ExpandedClassPattern:
                 setattr(stripped_row, fn, stripped_stem)
 
             # allow h alternates
-            elif fn in ["present_1sg", "imperative"]:
+            elif aspect in ["present", "imperative"]:
                 for hless_suffix in possible_alternates(
                     literal_suffix, fix_clusters=False
                 ):

@@ -12,9 +12,9 @@ from king_recreation.morphemes.prefixes import PrefixConfig
 from king_recreation.morphemes.prefixes.pronominals import (
     PronominalConfig,
     get_prefix_details,
-    get_pronominal_set_name,
     use_glottal_grade,
 )
+from king_recreation.word_spec import build_wordspec
 
 
 def drop_dropped_phones(s: str) -> str:
@@ -130,9 +130,8 @@ class ReconstructionEngine:
         if not class_info:
             return []
 
-        glottal_grade = use_glottal_grade(
-            form_name, verb.config.pron, verb.config.stative
-        )
+        spec = build_wordspec(form_name, verb.config.pron, verb.config.stative)
+        glottal_grade = use_glottal_grade(spec.set_name)
         root = self.root_for_form(verb, glottal_grade)
 
         if root is None:
@@ -140,9 +139,7 @@ class ReconstructionEngine:
 
         # apply aspect suffix
 
-        ending_pattern = class_info.get(form_name, "")
-        if form_name == "present_1sg" and not ending_pattern:
-            ending_pattern = class_info.present
+        ending_pattern = class_info.get(spec.aspect, "")
 
         # just phonological content of ending
         literal_ending = ending_pattern.replace("*", "").replace("@", "")
@@ -193,19 +190,19 @@ class ReconstructionEngine:
             layered_candidates = []
 
             for stem in stems if isinstance(stems, list) else [stems]:
-                set_name = get_pronominal_set_name(
-                    fn, verb.config.pron, verb.config.stative
-                )
+                spec = build_wordspec(fn, verb.config.pron, verb.config.stative)
+                set_name = spec.set_name
                 if not set_name:
                     raise Exception("WAHH")
-                    candidates = [stem]
                 else:
                     candidates = self.generate_pronominal_forms(
                         stem, set_name, verb.config.pron
                     )
 
                 for c in candidates:
-                    layered_candidates.extend(verb.config.apply_prepronominals(c, fn))
+                    layered_candidates.extend(
+                        verb.config.apply_prepronominals(c, spec.aspect)
+                    )
 
                 form_options[fn] = layered_candidates
 

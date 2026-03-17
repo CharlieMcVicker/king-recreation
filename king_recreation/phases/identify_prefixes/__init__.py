@@ -21,6 +21,7 @@ from king_recreation.phases.identify_prefixes.artifacts import (
     save_stripped_roots,
 )
 from king_recreation.phases.preprocess_ced.artifacts import load_corpus
+from king_recreation.word_spec import FORM_NAME_TO_ASPECT, build_wordspec
 
 
 @dataclass
@@ -72,7 +73,10 @@ def strip_prepronominals(
     stripped = {}
     for fn, word in forms.items():
         current = word
-        if config.translocutive or (fn == "imperative" and config.translocutiveImpOnly):
+        aspect = FORM_NAME_TO_ASPECT.get(fn, fn)
+        if config.translocutive or (
+            aspect == "imperative" and config.translocutiveImpOnly
+        ):
             if current.startswith("wi"):
                 current = current[2:]
             elif current.startswith("w"):
@@ -82,7 +86,7 @@ def strip_prepronominals(
             else:
                 return None
         if config.partitive:
-            if fn == "infinitive":
+            if aspect == "infinitive":
                 if current.startswith("iy"):
                     current = current[2:]
                 elif current.startswith("i"):
@@ -99,7 +103,7 @@ def strip_prepronominals(
                 else:
                     return None
         if config.distributive:
-            if fn == "infinitive" or (fn == "imperative" and not stative):
+            if aspect == "infinitive" or (aspect == "imperative" and not stative):
                 if current.startswith("ts"):
                     current = current[2:]
                 # fixed by tone... if ti21, we need to not strip
@@ -132,7 +136,8 @@ def derive_pronominals(
     derived_stems = {}
     metathesis_used = False
     for fn, word in intermediate_forms.items():
-        stem, fn_metathesis_used = detach_prefix(word, fn, pron_config, stative)
+        spec = build_wordspec(fn, pron_config, stative)
+        stem, fn_metathesis_used = detach_prefix(word, spec.set_name, pron_config)
         metathesis_used = metathesis_used or fn_metathesis_used
         if stem is None:
             if log:
@@ -216,9 +221,11 @@ def stems_are_consistent(
     if log:
         print("")
     h_candidate = derived_stems.get("present")
+
+    spec_1sg = build_wordspec("present_1sg", pron_config, stative)
     g_candidate = (
         derived_stems.get("present_1sg")
-        if use_glottal_grade("present_1sg", config=pron_config, stative=stative)
+        if use_glottal_grade(spec_1sg.set_name)
         else None
     )
 
@@ -229,7 +236,8 @@ def stems_are_consistent(
     # check that h and g grades are consistent within grades
     passing = True
     for fn, s in derived_stems.items():
-        if use_glottal_grade(fn, pron_config, stative) and g_candidate is not None:
+        spec = build_wordspec(fn, pron_config, stative)
+        if use_glottal_grade(spec.set_name) and g_candidate is not None:
             check = is_strict_compatible(s, g_candidate)
             passing &= check
             if log:

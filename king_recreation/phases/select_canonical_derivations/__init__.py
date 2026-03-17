@@ -15,6 +15,7 @@ from king_recreation.phases.select_canonical_derivations.artifacts import (
     save_selection_snapshot,
 )
 from king_recreation.reconstruction import ReconstructableVerb
+from king_recreation.word_spec import build_wordspec
 
 
 class EnhancedJSONEncoder(json.JSONEncoder):
@@ -185,7 +186,8 @@ def select_canonical_derivations():
         h_root = row["h_grade"]
 
         glottal_root = None
-        if use_glottal_grade("present_1sg", config.pron, config.stative):
+        spec_1sg = build_wordspec("present_1sg", config.pron, config.stative)
+        if use_glottal_grade(spec_1sg.set_name):
             glottal_root = row["g_grade"]
             if glottal_root == "" and not h_root == "":
                 glottal_root = None

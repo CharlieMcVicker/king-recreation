@@ -19,6 +19,7 @@ from king_recreation.reconstruction import (
     ReconstructionEngine,
     desegment,
 )
+from king_recreation.word_spec import build_wordspec
 
 
 def reconstruct_and_validate(classes_path=None, allow_drops: bool = False):
@@ -82,7 +83,8 @@ def reconstruct_and_validate(classes_path=None, allow_drops: bool = False):
         h_root = stem_row["h_grade"]
 
         glottal_root = None
-        if use_glottal_grade("present_1sg", config.pron, config.stative):
+        spec_1sg = build_wordspec("present_1sg", config.pron, config.stative)
+        if use_glottal_grade(spec_1sg.set_name):
             glottal_root = stem_row["g_grade"]
 
             if glottal_root == "" and not h_root == "":
