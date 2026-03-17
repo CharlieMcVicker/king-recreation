@@ -4,7 +4,7 @@ import RootIdsEditor from "@/components/RootIdsEditor";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Review Root IDs | King Match Explorer",
+  title: "Review Root IDs | Root-based dictionary",
   description:
     "Sequential review interface for assigning and verifying root_id groupings",
 };

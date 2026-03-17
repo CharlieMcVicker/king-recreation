@@ -3,7 +3,7 @@ import { getValidatedRootsRows, getChangedVerbIds } from "@/lib/data";
 import SelectRootsWorkflow from "@/components/SelectRootsWorkflow";
 
 export const metadata: Metadata = {
-  title: "Select Roots | King Match Explorer",
+  title: "Select Roots | Root-based dictionary",
   description: "Workflow for selecting correct root forms",
 };
 

@@ -17,8 +17,8 @@ import {
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "King Match Explorer",
-  description: "Linguistic analysis of King's classes",
+  title: "Root-based dictionary",
+  description: "A morpheme-aware Cherokee dictionary",
 };
 
 import MobileNav from "@/components/MobileNav";

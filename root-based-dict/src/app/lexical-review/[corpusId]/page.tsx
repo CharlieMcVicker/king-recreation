@@ -8,7 +8,7 @@ import Link from "next/link";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Lexical Review | King Match Explorer",
+  title: "Lexical Review | Root-based dictionary",
   description:
     "Unified dashboard for root assignments and derivational context.",
 };

@@ -4,7 +4,7 @@ import RootGroupEditor from "@/components/RootGroupEditor";
 import { notFound } from "next/navigation";
 
 export const metadata: Metadata = {
-  title: "Group Edit Root IDs | King Match Explorer",
+  title: "Group Edit Root IDs | Root-based dictionary",
   description: "Bulk edit interface for root_id groups",
 };
 

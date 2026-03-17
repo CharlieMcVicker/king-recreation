@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { toBase64Url } from "@/lib/data-shared";
 
 export const metadata: Metadata = {
-  title: "Group Sequence Edit Root IDs | King Match Explorer",
+  title: "Group Sequence Edit Root IDs | Root-based dictionary",
   description: "Grouped review interface for root_id groups in sequence",
 };
 
