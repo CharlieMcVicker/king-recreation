@@ -163,10 +163,31 @@ class ReconstructionEngine:
         else:
             return [root + "-" + literal_ending]
 
-    def get_base_stems(self, verb: ReconstructableVerb):
-        base_stems = {}
+    def reconstruct_spec(self, verb: ReconstructableVerb, spec: WordSpec) -> List[str]:
+        # 1. Get the base stems (stem + aspect suffix)
+        stems = self.get_base_stems_for_form(verb, spec)
+        if not stems:
+            return []
 
-        for form_name in [
+        # 2. Attach pronominal prefixes
+        final_forms = []
+        for stem in stems:
+            # Note: spec.set_name is already resolved by build_wordspec or provided manually
+            candidates = self.generate_pronominal_forms(
+                stem, spec.set_name, verb.config.pron
+            )
+
+            # 3. Attach pre-pronominal prefixes
+            for c in candidates:
+                # verb.config.apply_prepronominals handles translocutive/partitive/distributive
+                final_forms.extend(verb.config.apply_prepronominals(c, spec.aspect))
+
+        return list(set(final_forms))
+
+    def reconstruct_verb(self, verb: ReconstructableVerb) -> List[Dict[str, str]]:
+        form_options = {}
+
+        for fn in [
             "present",
             "present_1sg",
             "imperfective",
@@ -174,36 +195,9 @@ class ReconstructionEngine:
             "imperative",
             "infinitive",
         ]:
-            spec = build_wordspec(form_name, verb.config.pron, verb.config.stative)
-            stems = self.get_base_stems_for_form(verb, spec)
-            if stems:
-                base_stems[form_name] = stems
-
-        return base_stems
-
-    def reconstruct_verb(self, verb: ReconstructableVerb) -> List[Dict[str, str]]:
-        base_stems = self.get_base_stems(verb)
-
-        form_options = {}
-        for fn, stems in base_stems.items():
-            # Apply Prepronominals
-            layered_candidates = []
-
-            for stem in stems if isinstance(stems, list) else [stems]:
-                spec = build_wordspec(fn, verb.config.pron, verb.config.stative)
-                set_name = spec.set_name
-                if not set_name:
-                    raise Exception("WAHH")
-                else:
-                    candidates = self.generate_pronominal_forms(
-                        stem, set_name, verb.config.pron
-                    )
-
-                for c in candidates:
-                    layered_candidates.extend(
-                        verb.config.apply_prepronominals(c, spec.aspect)
-                    )
-
-                form_options[fn] = layered_candidates
+            spec = build_wordspec(fn, verb.config.pron, verb.config.stative)
+            options = self.reconstruct_spec(verb, spec)
+            if options:
+                form_options[fn] = options
 
         return [{fn: set(opts or []) for fn, opts in form_options.items()}]
