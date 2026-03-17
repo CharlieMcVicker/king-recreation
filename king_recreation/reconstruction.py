@@ -14,7 +14,7 @@ from king_recreation.morphemes.prefixes.pronominals import (
     get_prefix_details,
     use_glottal_grade,
 )
-from king_recreation.word_spec import build_wordspec
+from king_recreation.word_spec import WordSpec, build_wordspec
 
 
 def drop_dropped_phones(s: str) -> str:
@@ -125,12 +125,11 @@ class ReconstructionEngine:
 
         return root
 
-    def get_base_stems_for_form(self, verb: ReconstructableVerb, form_name: str):
+    def get_base_stems_for_form(self, verb: ReconstructableVerb, spec: WordSpec):
         class_info = self.classes.get(verb.class_name)
         if not class_info:
             return []
 
-        spec = build_wordspec(form_name, verb.config.pron, verb.config.stative)
         glottal_grade = use_glottal_grade(spec.set_name)
         root = self.root_for_form(verb, glottal_grade)
 
@@ -175,7 +174,8 @@ class ReconstructionEngine:
             "imperative",
             "infinitive",
         ]:
-            stems = self.get_base_stems_for_form(verb, form_name)
+            spec = build_wordspec(form_name, verb.config.pron, verb.config.stative)
+            stems = self.get_base_stems_for_form(verb, spec)
             if stems:
                 base_stems[form_name] = stems
 
