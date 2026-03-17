@@ -134,14 +134,16 @@ def identify_derived_verbs(
             continue
 
         sample_verb = group["verbs"][0]
-        for form_type in ["perfective", "infinitive"]:
+        for aspect in ["perfective", "infinitive"]:
             original_class = sample_verb.class_name
             optns = [original_class]
             if "[" in original_class:
                 optns.append(re.sub(r"(\[[^\[\]]*\])", "", original_class))
             for class_name in optns:
                 sample_verb.class_name = class_name
-                base_stems = engine.get_base_stems_for_form(sample_verb, form_type)
+                base_stems = engine.get_base_stems_for_form(
+                    sample_verb, aspect, glottal_grade=False
+                )
                 if not base_stems:
                     continue
 
@@ -166,7 +168,7 @@ def identify_derived_verbs(
                             "g_grade": group["g_grade"],
                             "class_name": class_name,
                             "stem_type": group["stem_type"],
-                            "form_type": form_type,
+                            "form_type": aspect,
                             "stem": stem,
                         }
                     )

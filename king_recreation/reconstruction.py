@@ -125,12 +125,13 @@ class ReconstructionEngine:
 
         return root
 
-    def get_base_stems_for_form(self, verb: ReconstructableVerb, spec: WordSpec):
+    def get_base_stems_for_form(
+        self, verb: ReconstructableVerb, aspect: str, glottal_grade: bool
+    ):
         class_info = self.classes.get(verb.class_name)
         if not class_info:
             return []
 
-        glottal_grade = use_glottal_grade(spec.set_name)
         root = self.root_for_form(verb, glottal_grade)
 
         if root is None:
@@ -138,7 +139,7 @@ class ReconstructionEngine:
 
         # apply aspect suffix
 
-        ending_pattern = class_info.get(spec.aspect, "")
+        ending_pattern = class_info.get(aspect, "")
 
         # just phonological content of ending
         literal_ending = ending_pattern.replace("*", "").replace("@", "")
@@ -165,7 +166,9 @@ class ReconstructionEngine:
 
     def reconstruct_spec(self, verb: ReconstructableVerb, spec: WordSpec) -> List[str]:
         # 1. Get the base stems (stem + aspect suffix)
-        stems = self.get_base_stems_for_form(verb, spec)
+        stems = self.get_base_stems_for_form(
+            verb, aspect=spec.aspect, glottal_grade=use_glottal_grade(spec.set_name)
+        )
         if not stems:
             return []
 
