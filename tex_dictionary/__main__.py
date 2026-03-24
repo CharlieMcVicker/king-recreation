@@ -18,7 +18,8 @@ def run_xelatex():
         print("XeLaTeX found. Compiling main.tex...")
         # Change to the tex directory to run xelatex
         original_cwd = os.getcwd()
-        os.chdir(TEX_DIR)
+        abs_tex_dir = os.path.abspath(TEX_DIR)
+        os.chdir(abs_tex_dir)
         try:
             # Run twice to resolve TOC
             for _ in range(2):
@@ -30,6 +31,34 @@ def run_xelatex():
                 )
             if os.path.exists("main.pdf"):
                 print(f"Main PDF generated at {os.path.abspath('main.pdf')}")
+
+                # Generate Companion Document
+                os.chdir(original_cwd)
+                from tex_dictionary.companion_generator import generate_companion_tex
+
+                try:
+                    if generate_companion_tex():
+                        print("Companion TeX generated. Compiling companion.tex...")
+                        os.chdir(abs_tex_dir)
+                        # Run twice for internal links and TOC
+                        for _ in range(2):
+                            subprocess.run(
+                                ["xelatex", "-interaction=batchmode", "companion.tex"],
+                                check=True,
+                                stdout=subprocess.DEVNULL,
+                                stderr=subprocess.DEVNULL,
+                            )
+                        if os.path.exists("companion.pdf"):
+                            print(
+                                f"Companion PDF generated at {os.path.abspath('companion.pdf')}"
+                            )
+                        else:
+                            print("XeLaTeX finished but companion.pdf was not found.")
+                except Exception as ex:
+                    print(f"Warning: Companion generation failed: {ex}")
+                finally:
+                    os.chdir(abs_tex_dir)
+
                 print("Compiling booklet.tex...")
                 subprocess.run(
                     ["xelatex", "-interaction=batchmode", "booklet.tex"],

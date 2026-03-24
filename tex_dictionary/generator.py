@@ -64,6 +64,60 @@ def get_cnd_entry(cid, form_name, corpus_to_cnd, cnd) -> Dict[str, str]:
     return cnd.get(entry_ref, {})
 
 
+def format_toneless_with_bold(
+    verb: ReconstructableVerb, form_name: str, toneless_surface: str
+) -> NoEscape:
+    """
+    Attempts to bold the aspect suffix in the toneless surface string
+    by matching against the segmented form.
+    """
+    segmented = verb.segmented_forms.get(form_name)
+    if (
+        not segmented
+        or segmented == "---"
+        or not toneless_surface
+        or toneless_surface == "---"
+    ):
+        return NoEscape(unicode_to_latex(toneless_surface))
+
+    # Basic heuristic: if the segmented form has N segments, and the last is aspect
+    # we try to find the aspect in the toneless surface.
+    # But wait, toneless_surface already has phones dropped.
+    # It's better to just use a simplified version of format_segmented_verb here too.
+    parts = re.split(r"(-|->)", segmented)
+    segments = parts[0::2]
+
+    config = verb.config
+    num_pre = sum(
+        [config.pre.translocutive, config.pre.partitive, config.pre.distributive]
+    )
+    # Heuristic for imperative
+    if (
+        form_name == "imperative"
+        and config.pre.translocutiveImpOnly
+        and not config.pre.translocutive
+    ):
+        num_pre += 1
+
+    aspect_idx = len(segments) - 1
+
+    # Reconstruct the string with bolding
+    # This is tricky because toneless_surface doesn't have hyphens.
+    # Let's just use the logic from companion_generator but simpler (no color)
+    from king_recreation.reconstruction import drop_dropped_phones
+
+    formatted = []
+    for i, seg in enumerate(segments):
+        clean_seg = drop_dropped_phones(seg).replace(":", "")
+        clean_seg = unicode_to_latex(clean_seg)
+        if i == aspect_idx:
+            formatted.append(r"\textbf{" + clean_seg + "}")
+        else:
+            formatted.append(clean_seg)
+
+    return NoEscape("".join(formatted))
+
+
 def generate_verb_table(verb: ReconstructableVerb, corpus_to_cnd, cnd):
     forms = [
         "present",
@@ -98,6 +152,10 @@ def generate_verb_table(verb: ReconstructableVerb, corpus_to_cnd, cnd):
         syllabary = cnd_entry.get("syllabary", "---")
         surface = cnd_entry.get("tone", "---")
         toneless = cnd_entry.get("no_tone", "---")
+
+        # Apply bolding to toneless if possible
+        if not toneless == "---":
+            toneless = format_toneless_with_bold(verb, fn, toneless)
 
         table.add_row((label, syllabary, surface, toneless))
 
@@ -315,8 +373,8 @@ def generate_tex_files():
         r"\titleformat{\subsubsection}[hang]{\normalfont\normalsize\bfseries}{}{0pt}{}",
         r"\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{}{0pt}{}",
         r"\setcounter{tocdepth}{4}",
-        r"\setmainfont{Noto Sans Cherokee}[AutoFakeBold=1.5, AutoFakeSlant=0.2]",
-        r"\title{Cherokee Root-based Dictionary}",
+        r"\setmainfont{Noto Sans Cherokee}[BoldFont={Noto Sans Cherokee}, BoldFeatures={FakeBold=3.5}, AutoFakeSlant=0.2]",
+        r"\title{Cherokee Root-based Dictionary\\[1ex]\large DRAFT DO NOT CIRCULATE}",
         r"\author{Charlie ᏣᎵ McVicker}",
         r"\pagestyle{fancy}",
         r"\fancyhf{}",

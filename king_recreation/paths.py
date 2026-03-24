@@ -51,6 +51,7 @@ VALIDATED_MATCHES_PATH = os.path.join(ARTIFACTS_DATA_DIR, "matches_validated.csv
 DERIVATIONAL_CONNECTIONS_PATH = os.path.join(
     CURATED_DIR, "derivational_suffix_connections.csv"
 )
+ASPECT_CLASS_MASCOTS_PATH = os.path.join(CURATED_DIR, "aspect_class_mascots.csv")
 
 
 # -----------------------------------------------------------------------------
@@ -117,3 +118,5 @@ VISUALIZATIONS_PATH = VISUALIZATIONS_DIR
 TEX_DIR = os.path.join(ARTIFACTS_DIR, "tex")
 TEX_ROOTS_DIR = os.path.join(TEX_DIR, "roots")
 MAIN_TEX_PATH = os.path.join(TEX_DIR, "main.tex")
+MAIN_TOC_PATH = os.path.join(TEX_DIR, "main.toc")
+COMPANION_TEX_PATH = os.path.join(TEX_DIR, "companion.tex")
