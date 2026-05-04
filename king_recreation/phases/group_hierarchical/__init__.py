@@ -12,7 +12,10 @@ from king_recreation.phases.group_hierarchical.artifacts import (
 from king_recreation.phases.select_canonical_derivations.artifacts import (
     load_reconstructable_verbs as load_raw_reconstructable_verbs,
 )
-from king_recreation.reconstruction import EnhancedJSONEncoder, ReconstructableVerb
+from king_recreation.reconstruction import ReconstructableVerb
+from king_recreation.utils import EnhancedJSONEncoderFactory
+
+EnhancedJSONEncoder = EnhancedJSONEncoderFactory(lambda d: d.pop("user_selected", None))
 
 
 @dataclass

@@ -3,7 +3,7 @@ import json
 import re
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Dict, List, Optional
+from typing import List, Optional
 
 from king_recreation.h_alternation import possible_alternates, prevent_C_glottal_cluster
 from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
@@ -14,7 +14,8 @@ from king_recreation.morphemes.prefixes.pronominals import (
     get_prefix_details,
     use_glottal_grade,
 )
-from king_recreation.word_spec import WordSpec, build_wordspec
+from king_recreation.morphology_types import Aspect
+from king_recreation.word_spec import WordSpec
 
 
 def drop_dropped_phones(s: str) -> str:
@@ -50,6 +51,7 @@ class ReconstructableVerb:
     segmented_forms: dict = field(
         default_factory=dict,
     )
+    user_selected: bool = False
 
     # TODO: IS THIS DEAD?
     @staticmethod
@@ -81,7 +83,7 @@ class ReconstructionEngine:
     def __init__(self, classes_path: Optional[str]):
         registry = PatternRegistry.get_instance()
         registry.load_from_csv(classes_path)
-        # Create the name -> pattern map expected by reconstruct_verb
+        # Create the name -> pattern map for class lookups
         self.classes = {p.name: p for p in registry.expanded_patterns}
 
     # _load_classes_raw removed as it is replaced by ClassPatterns.from_csv
@@ -126,7 +128,7 @@ class ReconstructionEngine:
         return root
 
     def get_base_stems_for_form(
-        self, verb: ReconstructableVerb, aspect: str, glottal_grade: bool
+        self, verb: ReconstructableVerb, aspect: Aspect, glottal_grade: bool
     ):
         class_info = self.classes.get(verb.class_name)
         if not class_info:
@@ -137,9 +139,8 @@ class ReconstructionEngine:
         if root is None:
             return None
 
-        # apply aspect suffix
-
-        ending_pattern = class_info.get(aspect, "")
+        # apply aspect suffix — ExpandedClassPattern fields are named by aspect value
+        ending_pattern = class_info.get(aspect.value, "")
 
         # just phonological content of ending
         literal_ending = ending_pattern.replace("*", "").replace("@", "")
@@ -186,21 +187,3 @@ class ReconstructionEngine:
                 final_forms.extend(verb.config.apply_prepronominals(c, spec.aspect))
 
         return list(set(final_forms))
-
-    def reconstruct_verb(self, verb: ReconstructableVerb) -> List[Dict[str, str]]:
-        form_options = {}
-
-        for fn in [
-            "present",
-            "present_1sg",
-            "imperfective",
-            "perfective",
-            "imperative",
-            "infinitive",
-        ]:
-            spec = build_wordspec(fn, verb.config.pron, verb.config.stative)
-            options = self.reconstruct_spec(verb, spec)
-            if options:
-                form_options[fn] = options
-
-        return [{fn: set(opts or []) for fn, opts in form_options.items()}]

@@ -1,8 +1,9 @@
 import re
-from dataclasses import asdict, dataclass
+from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
 
 from king_recreation.morphemes.prefixes.pronominals import MiddleVoice, StemType
+from king_recreation.morphology_types import Aspect
 from king_recreation.phases.identify_derived_verbs.artifacts import (
     load_existing_approvals_data,
     load_root_overrides,
@@ -18,6 +19,7 @@ from king_recreation.reconstruction import (
     ReconstructionEngine,
     desegment,
 )
+from king_recreation.utils import to_dict
 
 
 def group_verbs_by_root(
@@ -78,9 +80,6 @@ class DerivedVerbConnection:
     to_form_type: str
     to_stem: str
 
-    def to_dict(self):
-        return asdict(self)
-
     @classmethod
     def from_dict(cls, data):
         return cls(**data)
@@ -134,7 +133,7 @@ def identify_derived_verbs(
             continue
 
         sample_verb = group["verbs"][0]
-        for aspect in ["perfective", "infinitive"]:
+        for aspect in [Aspect.PERFECTIVE, Aspect.INFINITIVE]:
             original_class = sample_verb.class_name
             optns = [original_class]
             if "[" in original_class:
@@ -168,7 +167,7 @@ def identify_derived_verbs(
                             "g_grade": group["g_grade"],
                             "class_name": class_name,
                             "stem_type": group["stem_type"],
-                            "form_type": aspect,
+                            "form_type": aspect.value,
                             "stem": stem,
                         }
                     )
@@ -245,7 +244,7 @@ def identify_derived_verbs(
         "to_stem",
     ]
 
-    rows = [c.to_dict() for c in connections]
+    rows = [to_dict(c) for c in connections]
     save_derivational_connections(
         sorted(
             rows,

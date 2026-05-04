@@ -9,6 +9,7 @@ from king_recreation.paths import (
     ROOT_IDS_PATH,
     ROOTS_BY_CLASS_PATH,
 )
+from king_recreation.utils import EnhancedJSONEncoder
 
 
 def load_root_overrides() -> Dict[str, str]:
@@ -90,7 +91,7 @@ def load_derivational_connections() -> List[Dict]:
 def save_open_forms(open_forms_map: Dict):
     os.makedirs(os.path.dirname(OPEN_FORMS_PATH), exist_ok=True)
     with open(OPEN_FORMS_PATH, "w", encoding="utf-8") as f:
-        json.dump(open_forms_map, f, indent=4, sort_keys=True)
+        json.dump(open_forms_map, f, indent=4, sort_keys=True, cls=EnhancedJSONEncoder)
 
 
 def load_open_forms() -> Dict:

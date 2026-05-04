@@ -1,16 +1,44 @@
 from collections import defaultdict
 from typing import List
 
-from king_recreation.morphemes.aspect.class_patterns import (
-    ExpandedClassPattern,
-    StrippedVerbRow,
-)
+from king_recreation.dictionary_forms import ALL_FORM_NAMES, FORM_NAME_TO_ASPECT
+from king_recreation.morphemes.aspect.class_patterns import ExpandedClassPattern
 from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
 from king_recreation.phases.identify_aspect_classes.artifacts import (
+    StrippedVerbRow,
     save_matches,
     save_stripped_corpus,
 )
 from king_recreation.phases.preprocess_ced.artifacts import load_corpus
+
+
+def strip_verb_forms(
+    cls: ExpandedClassPattern, verb: dict[str, str]
+) -> StrippedVerbRow:
+    """
+    Dictionary-aware function: iterates over dictionary form-name columns
+    and uses the morphological strip_form() to remove aspect suffixes.
+    """
+    stripped_row = StrippedVerbRow(
+        corpus_id=verb.get("corpus_id", ""),
+        definition=verb.get("definition", ""),
+        verb_class=cls.name,
+    )
+
+    for fn in ALL_FORM_NAMES:
+        form_val = verb.get(fn)
+        if not form_val:
+            continue
+
+        aspect = FORM_NAME_TO_ASPECT.get(fn)
+        if aspect is None:
+            continue
+
+        stripped_stem = cls.strip_form(aspect, form_val)
+        if stripped_stem is not None:
+            setattr(stripped_row, fn, stripped_stem)
+
+    return stripped_row
 
 
 def group_matches_by_macro(
@@ -133,7 +161,7 @@ def identify_aspect_classes(classes_path=None):
 
             cls = classes_map.get(match["class"])
             if cls:
-                stripped_corpus_data.append(cls.strip_verb(verb))
+                stripped_corpus_data.append(strip_verb_forms(cls, verb))
 
     save_matches(matches_data)
 

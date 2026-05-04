@@ -2,6 +2,7 @@ import json
 from dataclasses import asdict, dataclass
 from typing import Dict, List, Optional, Tuple
 
+from king_recreation.dictionary_forms import FORM_NAME_TO_ASPECT, build_wordspec
 from king_recreation.h_alternation import grades_are_compatible
 from king_recreation.morphemes.middle_voice import MiddleVoice
 from king_recreation.morphemes.post_root_morphemes import match_post_root_morphemes
@@ -13,6 +14,7 @@ from king_recreation.morphemes.prefixes.pronominals import (
     detach_prefix,
     use_glottal_grade,
 )
+from king_recreation.morphology_types import Aspect
 from king_recreation.phases.identify_aspect_classes.artifacts import (
     load_stripped_corpus,
 )
@@ -21,7 +23,6 @@ from king_recreation.phases.identify_prefixes.artifacts import (
     save_stripped_roots,
 )
 from king_recreation.phases.preprocess_ced.artifacts import load_corpus
-from king_recreation.word_spec import FORM_NAME_TO_ASPECT, build_wordspec
 
 
 @dataclass
@@ -73,9 +74,13 @@ def strip_prepronominals(
     stripped = {}
     for fn, word in forms.items():
         current = word
-        aspect = FORM_NAME_TO_ASPECT.get(fn, fn)
+        aspect = FORM_NAME_TO_ASPECT.get(fn)
+        if aspect is None:
+            stripped[fn] = current
+            continue
+
         if config.translocutive or (
-            aspect == "imperative" and config.translocutiveImpOnly
+            aspect == Aspect.IMPERATIVE and config.translocutiveImpOnly
         ):
             if current.startswith("wi"):
                 current = current[2:]
@@ -86,7 +91,7 @@ def strip_prepronominals(
             else:
                 return None
         if config.partitive:
-            if aspect == "infinitive":
+            if aspect == Aspect.INFINITIVE:
                 if current.startswith("iy"):
                     current = current[2:]
                 elif current.startswith("i"):
@@ -103,7 +108,9 @@ def strip_prepronominals(
                 else:
                     return None
         if config.distributive:
-            if aspect == "infinitive" or (aspect == "imperative" and not stative):
+            if aspect == Aspect.INFINITIVE or (
+                aspect == Aspect.IMPERATIVE and not stative
+            ):
                 if current.startswith("ts"):
                     current = current[2:]
                 # fixed by tone... if ti21, we need to not strip

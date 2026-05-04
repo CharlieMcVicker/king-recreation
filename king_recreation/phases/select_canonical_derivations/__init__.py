@@ -1,9 +1,9 @@
 import dataclasses
 import json
 from collections import defaultdict
-from enum import Enum
 from typing import List
 
+from king_recreation.dictionary_forms import build_wordspec
 from king_recreation.morphemes.prefixes import PrefixConfig
 from king_recreation.morphemes.prefixes.pronominals import use_glottal_grade
 from king_recreation.phases.reconstruct_and_validate.artifacts import (
@@ -15,18 +15,15 @@ from king_recreation.phases.select_canonical_derivations.artifacts import (
     save_selection_snapshot,
 )
 from king_recreation.reconstruction import ReconstructableVerb
-from king_recreation.word_spec import build_wordspec
+from king_recreation.utils import EnhancedJSONEncoderFactory
 
-
-class EnhancedJSONEncoder(json.JSONEncoder):
-    def default(self, o):
-        if dataclasses.is_dataclass(o):
-            d = dataclasses.asdict(o)
-            d.pop("original_data", None)
-            return d
-        if isinstance(o, Enum):
-            return o.value
-        return super().default(o)
+# handle special rule
+EnhancedJSONEncoder = EnhancedJSONEncoderFactory(
+    dict_modification=lambda d: (
+        d.pop("original_data", None),
+        d.pop("user_selected", None),
+    )
+)
 
 
 def dedupe_roots(validated_verbs: list[ReconstructableVerb]):

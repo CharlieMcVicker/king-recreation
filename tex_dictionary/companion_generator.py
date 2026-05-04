@@ -6,6 +6,7 @@ from pylatex import Command, Document, NoEscape, Package, Tabularx
 from pylatex.utils import bold, italic
 from pylatexenc.latexencode import unicode_to_latex
 
+from king_recreation.dictionary_forms import build_wordspec
 from king_recreation.h_alternation import prevent_C_glottal_cluster
 from king_recreation.morphemes.aspect.class_patterns import (
     ClassMacro,
@@ -14,7 +15,6 @@ from king_recreation.morphemes.aspect.class_patterns import (
 from king_recreation.morphemes.middle_voice import MiddleVoice
 from king_recreation.paths import CLASSES_DATA_PATH, COMPANION_TEX_PATH, MAIN_TOC_PATH
 from king_recreation.reconstruction import ReconstructableVerb, drop_dropped_phones
-from king_recreation.word_spec import build_wordspec
 from tex_dictionary.companion_data import (
     AspectClass,
     load_aspect_classes,

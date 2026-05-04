@@ -1,6 +1,8 @@
 from dataclasses import dataclass
 from typing import List
 
+from king_recreation.morphology_types import Aspect
+
 
 @dataclass(frozen=True)
 class PrePronominalConfig:
@@ -34,7 +36,7 @@ class PrePronominalConfig:
 
 
 def apply_prepronominal(
-    word: str, config: PrePronominalConfig, aspect: str, stative: bool
+    word: str, config: PrePronominalConfig, aspect: Aspect, stative: bool
 ) -> List[str]:
     current_forms = [word]
 
@@ -52,7 +54,9 @@ def apply_prepronominal(
                 new_forms.append(p + "-" + w)
         current_forms = list(set(new_forms))
 
-    if config.translocutive or (aspect == "imperative" and config.translocutiveImpOnly):
+    if config.translocutive or (
+        aspect == Aspect.IMPERATIVE and config.translocutiveImpOnly
+    ):
         new_forms = []
         for w in current_forms:
             for p in get_translocutive_forms(aspect):
@@ -62,17 +66,17 @@ def apply_prepronominal(
     return current_forms
 
 
-def get_translocutive_forms(aspect: str) -> List[str]:
+def get_translocutive_forms(aspect: Aspect) -> List[str]:
     return ["wi", "w"]
 
 
-def get_partitive_forms(aspect: str) -> List[str]:
-    if aspect == "infinitive":
+def get_partitive_forms(aspect: Aspect) -> List[str]:
+    if aspect == Aspect.INFINITIVE:
         return ["iy", "i", ">ø"]
     return ["ni", "n"]
 
 
-def get_distributive_forms(aspect: str, stative: bool) -> List[str]:
-    if aspect == "infinitive" or (aspect == "imperative" and not stative):
+def get_distributive_forms(aspect: Aspect, stative: bool) -> List[str]:
+    if aspect == Aspect.INFINITIVE or (aspect == Aspect.IMPERATIVE and not stative):
         return ["ts", "ti", "t"]
     return ["te", "t"]

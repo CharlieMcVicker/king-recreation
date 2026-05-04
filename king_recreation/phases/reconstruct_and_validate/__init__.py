@@ -1,6 +1,7 @@
 import json
 from typing import List
 
+from king_recreation.dictionary_forms import ALL_FORM_NAMES, build_wordspec
 from king_recreation.morphemes.prefixes import PrefixConfig
 from king_recreation.morphemes.prefixes.pronominals import use_glottal_grade
 from king_recreation.phases.identify_prefixes.artifacts import load_stripped_roots
@@ -19,7 +20,6 @@ from king_recreation.reconstruction import (
     ReconstructionEngine,
     desegment,
 )
-from king_recreation.word_spec import build_wordspec
 
 
 def reconstruct_and_validate(classes_path=None, allow_drops: bool = False):
@@ -59,14 +59,7 @@ def reconstruct_and_validate(classes_path=None, allow_drops: bool = False):
 
     reconstructable_verbs: list[ReconstructableVerb] = []
     consistency_analysis = []
-    forms = [
-        "present",
-        "present_1sg",
-        "imperfective",
-        "perfective",
-        "imperative",
-        "infinitive",
-    ]
+    forms = ALL_FORM_NAMES
 
     for stem_row in derived_roots:
         definition = stem_row["definition"]
@@ -114,7 +107,18 @@ def reconstruct_and_validate(classes_path=None, allow_drops: bool = False):
     validated_rows: List[dict] = []
 
     for verb in reconstructable_verbs:
-        generated_sets = engine.reconstruct_verb(verb)
+        # Reconstruct all forms for this verb (dictionary-aware iteration)
+        form_options = {}
+        for fn in forms:
+            spec = build_wordspec(fn, verb.config.pron, verb.config.stative)
+            options = engine.reconstruct_spec(verb, spec)
+            if options:
+                form_options[fn] = options
+        generated_sets = (
+            [{fn: set(opts or []) for fn, opts in form_options.items()}]
+            if form_options
+            else []
+        )
         matches_all = True
         failed_forms = []
         ref = (

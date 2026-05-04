@@ -7,9 +7,8 @@ from king_recreation.h_alternation import (
     prevent_C_glottal_cluster,
     recreate_C_glottal_clusters,
 )
-from king_recreation.morphemes.aspect.strip import StrippedVerbRow
+from king_recreation.morphology_types import Aspect
 from king_recreation.phonology_data import VOWEL_SET
-from king_recreation.word_spec import FORM_NAME_TO_ASPECT
 
 
 @dataclass(frozen=True)
@@ -119,72 +118,55 @@ class ExpandedClassPattern:
 
         return form_val.endswith(literal_suffix)
 
-    def strip_verb(self, verb) -> Optional[StrippedVerbRow]:
-        # Create stripped row
+    def strip_form(self, aspect: Aspect, form_val: str) -> Optional[str]:
+        """
+        Strip the aspect suffix for a given aspect from a surface form value.
 
-        stripped_row = StrippedVerbRow(
-            corpus_id=verb.get("corpus_id", ""),
-            definition=verb.get("definition", ""),
-            verb_class=self.name,
-        )
+        Returns the stripped stem, or None if no suffix match was found.
+        This is a pure morphological operation — no dictionary column awareness.
+        """
+        if not form_val:
+            return None
 
-        # Strip suffixes
-        forms = [
-            "present",
-            "present_1sg",
-            "imperfective",
-            "perfective",
-            "imperative",
-            "infinitive",
-        ]
-        for fn in forms:
-            form_val = verb.get(fn)
-            if not form_val:
-                continue
+        cls_pattern = self.get(aspect.value)
 
-            aspect = FORM_NAME_TO_ASPECT.get(fn, fn)
-            cls_pattern = self.get(aspect)
+        if cls_pattern is None:
+            cls_pattern = ""
 
-            if cls_pattern is None:
-                cls_pattern = ""
+        # Strip Literal Suffix
+        literal_suffix = cls_pattern.replace("*", "").replace("@", "")
 
-            # Strip Literal Suffix
-            literal_suffix = cls_pattern.replace("*", "").replace("@", "")
+        if form_val.endswith(literal_suffix):
+            return form_val[: -len(literal_suffix)] if literal_suffix else form_val
 
-            if form_val.endswith(literal_suffix):
-                stripped_stem = (
-                    form_val[: -len(literal_suffix)] if literal_suffix else form_val
-                )
-                setattr(stripped_row, fn, stripped_stem)
-
-            # allow h alternates
-            elif aspect in ["present", "imperative"]:
-                for hless_suffix in possible_alternates(
-                    literal_suffix, fix_clusters=False
-                ):
-                    fixed_hless_suffix = prevent_C_glottal_cluster(hless_suffix)
-                    if form_val.endswith(fixed_hless_suffix):
+        # Allow h alternates for aspects that permit h-alternation.
+        # Sort by length descending so we greedily match the longest alternate
+        # first (e.g. strip 'vsk before vsk to avoid leaving a trailing glottal).
+        if aspect.allows_h_alternation:
+            alternates = sorted(
+                possible_alternates(literal_suffix, fix_clusters=False),
+                key=len,
+                reverse=True,
+            )
+            for hless_suffix in alternates:
+                fixed_hless_suffix = prevent_C_glottal_cluster(hless_suffix)
+                if form_val.endswith(fixed_hless_suffix):
+                    return (
+                        form_val[: -len(fixed_hless_suffix)]
+                        if fixed_hless_suffix
+                        else form_val
+                    )
+                elif hless_suffix.startswith("'"):
+                    form_with_glottals = recreate_C_glottal_clusters(form_val)
+                    if form_with_glottals.endswith(hless_suffix):
                         stripped_stem = (
-                            form_val[: -len(fixed_hless_suffix)]
-                            if fixed_hless_suffix
-                            else form_val
+                            form_with_glottals[: -len(hless_suffix)]
+                            if hless_suffix
+                            else form_with_glottals
                         )
-                        setattr(stripped_row, fn, stripped_stem)
-                    elif hless_suffix.startswith("'"):
-                        form_with_glottals = recreate_C_glottal_clusters(form_val)
-                        if form_with_glottals.endswith(hless_suffix):
-                            stripped_stem = (
-                                form_with_glottals[: -len(hless_suffix)]
-                                if hless_suffix
-                                else form_with_glottals
-                            )
-                            setattr(
-                                stripped_row,
-                                fn,
-                                prevent_C_glottal_cluster(stripped_stem),
-                            )
+                        return prevent_C_glottal_cluster(stripped_stem)
 
-        return stripped_row
+        return None
 
 
 @dataclass

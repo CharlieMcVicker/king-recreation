@@ -6,6 +6,7 @@ from king_recreation.morphemes.prefixes.prepronominals import (
     apply_prepronominal,
 )
 from king_recreation.morphemes.prefixes.pronominals import PronominalConfig
+from king_recreation.morphology_types import Aspect
 
 
 @dataclass
@@ -34,5 +35,5 @@ class PrefixConfig:
             stative=(data.get("stative", "") == "True"),
         )
 
-    def apply_prepronominals(self, base: str, aspect: str):
+    def apply_prepronominals(self, base: str, aspect: Aspect):
         return apply_prepronominal(base, self.pre, aspect, self.stative)
