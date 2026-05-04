@@ -11,6 +11,7 @@ from king_recreation.morphemes.aspect.class_patterns import (
     ClassMacro,
     ExpandedClassPattern,
 )
+from king_recreation.morphemes.middle_voice import MiddleVoice
 from king_recreation.paths import CLASSES_DATA_PATH, COMPANION_TEX_PATH, MAIN_TOC_PATH
 from king_recreation.reconstruction import ReconstructableVerb, drop_dropped_phones
 from king_recreation.word_spec import build_wordspec
@@ -19,6 +20,7 @@ from tex_dictionary.companion_data import (
     load_aspect_classes,
     sort_classes_by_frequency,
 )
+from tex_dictionary.generator import verb_config_to_tex
 from tex_dictionary.mascot_resolver import MascotResolver
 from tex_dictionary.toc_parser import parse_main_toc
 
@@ -500,11 +502,19 @@ def generate_companion_tex():
 
         # 2. Detailed verb lists for each variant
         for class_name in sorted_class_names:
-            group_verbs = class_groups[class_name]
+            group_verbs: List[ReconstructableVerb] = class_groups[class_name]
             doc.append(NoEscape(r"\needspace{1in}"))
             doc.append(NoEscape(r"\subsection*{" + unicode_to_latex(class_name) + "}"))
             # Verbs List directly below
-            for v in group_verbs:
+            sorted_group_verbs = sorted(
+                group_verbs,
+                key=lambda v: (
+                    v.h_grade_root,
+                    v.glottal_grade_root,
+                    not v.config.pron.middle_voice == MiddleVoice.NONE,
+                ),
+            )
+            for v in sorted_group_verbs:
                 p = "???"
                 v_base_class = v.class_name.split("[")[0]
                 if v_base_class in toc_data:
@@ -551,7 +561,17 @@ def generate_companion_tex():
                                 v, found_form, v.segmented_forms.get(found_form, "")
                             )
                             cleaned_def = clean_latex_text(entry["definition"])
-                            line = f"{reduced_tex} \\textit{{{unicode_to_latex(cleaned_def)}}} \\dotfill {p}\\\\"
+                            assert isinstance(v, ReconstructableVerb)
+                            root_str = f"{v.h_grade_root}"
+                            if (
+                                v.glottal_grade_root
+                                and not v.glottal_grade_root == v.h_grade_root
+                            ):
+                                root_str += f" / {v.glottal_grade_root}"
+                            tex_to_use = verb_config_to_tex(
+                                v, root_str=root_str, parent_classes=[]
+                            )
+                            line = f"{tex_to_use} \\textit{{{unicode_to_latex(cleaned_def)}}} \\dotfill {p}\\\\"
                             doc.append(NoEscape(line))
                             break
             doc.append(NoEscape(r"\vspace{1em}"))

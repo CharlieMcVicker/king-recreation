@@ -180,7 +180,7 @@ def verb_config_to_tex(
         parts.append("ni")
 
     if config.pre.distributive:
-        parts.append("de")
+        parts.append("te")
 
     pronoun_map = {
         ("a", False, False): r"\textcolor{Red}{Set A}",
