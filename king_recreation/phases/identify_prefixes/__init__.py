@@ -14,7 +14,7 @@ from king_recreation.morphemes.prefixes.pronominals import (
     detach_prefix,
     use_glottal_grade,
 )
-from king_recreation.morphology_types import Aspect
+from king_recreation.morphology_types import Aspect, PronominalSet
 from king_recreation.phases.identify_aspect_classes.artifacts import (
     load_stripped_corpus,
 )
@@ -144,7 +144,8 @@ def derive_pronominals(
     metathesis_used = False
     for fn, word in intermediate_forms.items():
         spec = build_wordspec(fn, pron_config, stative)
-        stem, fn_metathesis_used = detach_prefix(word, spec.set_name, pron_config)
+        key = (spec.person, spec.number, spec.pronominal_set)
+        stem, fn_metathesis_used = detach_prefix(word, key, pron_config)
         metathesis_used = metathesis_used or fn_metathesis_used
         if stem is None:
             if log:
@@ -232,7 +233,7 @@ def stems_are_consistent(
     spec_1sg = build_wordspec("present_1sg", pron_config, stative)
     g_candidate = (
         derived_stems.get("present_1sg")
-        if use_glottal_grade(spec_1sg.set_name)
+        if use_glottal_grade(spec_1sg.person, spec_1sg.number, spec_1sg.pronominal_set)
         else None
     )
 
@@ -244,7 +245,10 @@ def stems_are_consistent(
     passing = True
     for fn, s in derived_stems.items():
         spec = build_wordspec(fn, pron_config, stative)
-        if use_glottal_grade(spec.set_name) and g_candidate is not None:
+        if (
+            use_glottal_grade(spec.person, spec.number, spec.pronominal_set)
+            and g_candidate is not None
+        ):
             check = is_strict_compatible(s, g_candidate)
             passing &= check
             if log:
@@ -316,7 +320,11 @@ class PrefixDeriver:
         valid_derivations: list[PrefixDerivation] = []
 
         for pre_config, stative, intermediate in iter_pre_configs(forms):
-            set_type = "b" if intermediate["present"].startswith("u") else "a"
+            set_type = (
+                PronominalSet.SET_B
+                if intermediate["present"].startswith("u")
+                else PronominalSet.SET_A
+            )
             ka = intermediate["present"].startswith("k")
             aki = intermediate.get("present_1sg", "").startswith(
                 "aki"

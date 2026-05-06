@@ -77,7 +77,7 @@ def reconstruct_and_validate(classes_path=None, allow_drops: bool = False):
 
         glottal_root = None
         spec_1sg = build_wordspec("present_1sg", config.pron, config.stative)
-        if use_glottal_grade(spec_1sg.set_name):
+        if use_glottal_grade(spec_1sg.person, spec_1sg.number, spec_1sg.pronominal_set):
             glottal_root = stem_row["g_grade"]
 
             if glottal_root == "" and not h_root == "":

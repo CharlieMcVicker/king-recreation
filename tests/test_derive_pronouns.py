@@ -1,5 +1,6 @@
 from king_recreation.morphemes.prefixes import PronominalConfig
 from king_recreation.morphemes.prefixes.pronominals import StemType
+from king_recreation.morphology_types import PronominalSet
 from king_recreation.phases.identify_prefixes import PrefixDeriver, derive_pronominals
 
 
@@ -10,7 +11,7 @@ def test_angry_with_config():
         "imperfective": "unhalvs",
     }
     pron_config = PronominalConfig(
-        set_type="b",
+        set_type=PronominalSet.SET_B,
         stem_type=StemType.CONSONANT,
         allow_h_metathesis=True,
         use_aki_for_1st_set_b=True,

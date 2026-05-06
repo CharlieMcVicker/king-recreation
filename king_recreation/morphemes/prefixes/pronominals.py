@@ -5,6 +5,7 @@ from typing import Dict, Optional, Tuple
 
 from king_recreation.metathesis import demetathesize_h, metathesize_h
 from king_recreation.morphemes.middle_voice import MiddleVoice
+from king_recreation.morphology_types import Number, Person, PronominalSet
 
 
 class StemType(Enum):
@@ -58,7 +59,7 @@ class StemModification(Enum):
 
 @dataclass(frozen=True)
 class PronominalConfig:
-    set_type: str  # 'a' or 'b'
+    set_type: PronominalSet  # SET_A or SET_B
     stem_type: StemType
     allow_h_metathesis: bool = False
     middle_voice: MiddleVoice = MiddleVoice.NONE
@@ -77,8 +78,14 @@ class PronominalConfig:
 
     @staticmethod
     def from_row(row: dict[str, str]):
+        set_type_str = row["set_a_b"].lower()
+        set_type = (
+            PronominalSet.SET_A
+            if set_type_str in ["a", "set a"]
+            else PronominalSet.SET_B
+        )
         return PronominalConfig(
-            set_type=row["set_a_b"],
+            set_type=set_type,
             stem_type=StemType(row["stem_type"]),
             allow_h_metathesis=row["allow_h_metathesis"] == "True",
             middle_voice=MiddleVoice(row["middle_voice"]),
@@ -98,12 +105,19 @@ class PronominalConfig:
             clean_data["stem_type"] = StemType(clean_data["stem_type"])
         if "middle_voice" in clean_data and isinstance(clean_data["middle_voice"], str):
             clean_data["middle_voice"] = MiddleVoice(clean_data["middle_voice"])
+        if "set_type" in clean_data and isinstance(clean_data["set_type"], str):
+            set_type_str = clean_data["set_type"].lower()
+            clean_data["set_type"] = (
+                PronominalSet.SET_A
+                if set_type_str in ["a", "set a"]
+                else PronominalSet.SET_B
+            )
         return PronominalConfig(**clean_data)
 
     def to_row(self):
         row = {}
 
-        row["set_a_b"] = self.set_type
+        row["set_a_b"] = self.set_type.value
         row["stem_type"] = self.stem_type.value
         row["allow_h_metathesis"] = str(self.allow_h_metathesis)
         row["middle_voice"] = self.middle_voice.value
@@ -162,15 +176,16 @@ class ConfiguredPrefix:
         return stem
 
 
-def get_prefix_details(set_name: str, config: PronominalConfig) -> ConfiguredPrefix:
-    res = _get_prefix_details(set_name, config)
+def get_prefix_details(
+    key: Tuple[Person, Number, PronominalSet], config: PronominalConfig
+) -> ConfiguredPrefix:
+    res = _get_prefix_details(key, config)
     if isinstance(res, PrefixForms):
         return res.select(config.stem_type)
     elif isinstance(res, ConfiguredPrefix):
         return res
     else:
-        print(set_name)
-        raise Exception("Failed to get prefix details", set_name, config)
+        raise Exception("Failed to get prefix details", key, config)
 
 
 @dataclass
@@ -209,149 +224,151 @@ class PrefixForms:
 
 
 def _get_prefix_details(
-    set_name: str, config: PronominalConfig
-) -> Tuple[str, StemModification]:
-    if set_name == "1st Set B":
-        return PrefixForms(
-            aspirated=ConfiguredPrefix("akh", allow_h_metathesis=True),
-            s=ConfiguredPrefix("akh", allow_h_metathesis=True),
-            consonant=(
-                ConfiguredPrefix("aki", allow_h_metathesis=True)
-                if config.use_aki_for_1st_set_b
-                else ConfiguredPrefix("ak", allow_h_metathesis=True)
-            ),
-            vowel=ConfiguredPrefix("akw", allow_h_metathesis=True),
-        )
+    key: Tuple[Person, Number, PronominalSet], config: PronominalConfig
+) -> PrefixForms:
+    person, number, p_set = key
 
-    if set_name == "1pl Set B":
-        return PrefixForms(
-            consonant=(ConfiguredPrefix("oki")),
-            glottal=ConfiguredPrefix(
-                "oki", stem_modification=StemModification.GLOTTAL_DROP
-            ),
-            vowel=ConfiguredPrefix("og"),
-        )
+    if p_set == PronominalSet.SET_B:
+        if person == Person.FIRST:
+            if number == Number.PLURAL:
+                return PrefixForms(
+                    consonant=(ConfiguredPrefix("oki")),
+                    glottal=ConfiguredPrefix(
+                        "oki", stem_modification=StemModification.GLOTTAL_DROP
+                    ),
+                    vowel=ConfiguredPrefix("og"),
+                )
+            else:
+                return PrefixForms(
+                    aspirated=ConfiguredPrefix("akh", allow_h_metathesis=True),
+                    s=ConfiguredPrefix("akh", allow_h_metathesis=True),
+                    consonant=(
+                        ConfiguredPrefix("aki", allow_h_metathesis=True)
+                        if config.use_aki_for_1st_set_b
+                        else ConfiguredPrefix("ak", allow_h_metathesis=True)
+                    ),
+                    vowel=ConfiguredPrefix("akw", allow_h_metathesis=True),
+                )
+        if person == Person.SECOND:
+            if number == Number.PLURAL:
+                return PrefixForms(
+                    consonant=ConfiguredPrefix("itsi"),
+                    glottal=ConfiguredPrefix(
+                        "itsi", stem_modification=StemModification.GLOTTAL_DROP
+                    ),
+                    vowel=ConfiguredPrefix("its"),
+                )
+            else:
+                return PrefixForms(
+                    aspirated=ConfiguredPrefix("ts", allow_h_metathesis=True),
+                    s=ConfiguredPrefix("t", allow_h_metathesis=True),
+                    consonant=ConfiguredPrefix("tsa", allow_h_metathesis=True),
+                    vowel=ConfiguredPrefix("ts", allow_h_metathesis=True),
+                )
+        if person == Person.THIRD:
+            if number == Number.PLURAL:
+                return PrefixForms(
+                    consonant=ConfiguredPrefix("uni"),
+                    glottal=ConfiguredPrefix(
+                        "uni", stem_modification=StemModification.GLOTTAL_DROP
+                    ),
+                    vowel=ConfiguredPrefix("un"),
+                )
+            else:
+                return PrefixForms(
+                    consonant=ConfiguredPrefix("u"),
+                    long_start=ConfiguredPrefix("uwa"),
+                    glottal=ConfiguredPrefix(
+                        "u", stem_modification=StemModification.GLOTTAL_DROP
+                    ),
+                    vowel=ConfiguredPrefix("uw", allow_h_metathesis=True),
+                    vowel_overrides={
+                        "a": ConfiguredPrefix("u", StemModification.A_REPLACE),
+                        "v": (
+                            ConfiguredPrefix("uwa", StemModification.V_REPLACE)
+                            if config.uwa_replaces_v
+                            else ConfiguredPrefix("uw")
+                        ),
+                    },
+                )
 
-    if set_name == "2nd Set B":
-        return PrefixForms(
-            aspirated=ConfiguredPrefix("ts", allow_h_metathesis=True),
-            s=ConfiguredPrefix("t", allow_h_metathesis=True),
-            consonant=ConfiguredPrefix("tsa", allow_h_metathesis=True),
-            vowel=ConfiguredPrefix("ts", allow_h_metathesis=True),
-        )
+    if p_set == PronominalSet.SET_A:
+        if person == Person.FIRST:
+            if number == Number.PLURAL:
+                return PrefixForms(
+                    consonant=ConfiguredPrefix("otsi"),
+                    glottal=ConfiguredPrefix(
+                        "otsi", stem_modification=StemModification.GLOTTAL_DROP
+                    ),
+                    vowel=ConfiguredPrefix("ots"),
+                )
+            else:
+                return PrefixForms(
+                    consonant=ConfiguredPrefix("tsi"), vowel=ConfiguredPrefix("k")
+                )
+        if person == Person.SECOND:
+            if number == Number.PLURAL:
+                return PrefixForms(
+                    consonant=ConfiguredPrefix("itsi"),
+                    glottal=ConfiguredPrefix(
+                        "itsi", stem_modification=StemModification.GLOTTAL_DROP
+                    ),
+                    vowel=ConfiguredPrefix("its"),
+                )
+            else:
+                return PrefixForms(
+                    consonant=ConfiguredPrefix("hi"), vowel=ConfiguredPrefix("h")
+                )
+        if person == Person.THIRD:
+            if number == Number.PLURAL:
+                return PrefixForms(
+                    consonant=ConfiguredPrefix("ani"),
+                    glottal=ConfiguredPrefix(
+                        "ani", stem_modification=StemModification.GLOTTAL_DROP
+                    ),
+                    vowel=ConfiguredPrefix("an"),
+                )
+            else:
+                if config.use_ka_variant:
+                    return PrefixForms(
+                        consonant=ConfiguredPrefix("ka", allow_h_metathesis=True),
+                        vowel=ConfiguredPrefix("k", allow_h_metathesis=True),
+                    )
+                return PrefixForms(
+                    consonant=ConfiguredPrefix("a"),
+                    vowel=ConfiguredPrefix(""),
+                    vowel_overrides={
+                        "a": ConfiguredPrefix("a", StemModification.A_REPLACE)
+                    },
+                )
 
-    if set_name == "2pl Set B":
-        return PrefixForms(
-            consonant=ConfiguredPrefix("itsi"),
-            glottal=ConfiguredPrefix(
-                "itsi", stem_modification=StemModification.GLOTTAL_DROP
-            ),
-            vowel=ConfiguredPrefix("its"),
-        )
-
-    if set_name == "3rd Set B":
-        return PrefixForms(
-            consonant=ConfiguredPrefix("u"),
-            long_start=ConfiguredPrefix("uwa"),
-            glottal=ConfiguredPrefix(
-                "u", stem_modification=StemModification.GLOTTAL_DROP
-            ),
-            vowel=ConfiguredPrefix("uw", allow_h_metathesis=True),
-            vowel_overrides={
-                "a": ConfiguredPrefix("u", StemModification.A_REPLACE),
-                "v": (
-                    ConfiguredPrefix("uwa", StemModification.V_REPLACE)
-                    if config.uwa_replaces_v
-                    else ConfiguredPrefix("uw")
-                ),
-            },
-        )
-
-    if set_name == "3pl Set B":
-        return PrefixForms(
-            consonant=ConfiguredPrefix("uni"),
-            glottal=ConfiguredPrefix(
-                "uni", stem_modification=StemModification.GLOTTAL_DROP
-            ),
-            vowel=ConfiguredPrefix("un"),
-        )
-
-    if set_name == "1st Set A":
-        return PrefixForms(
-            consonant=ConfiguredPrefix("tsi"), vowel=ConfiguredPrefix("k")
-        )
-
-    if set_name == "1pl Set A":
-        return PrefixForms(
-            consonant=ConfiguredPrefix("otsi"),
-            glottal=ConfiguredPrefix(
-                "otsi", stem_modification=StemModification.GLOTTAL_DROP
-            ),
-            vowel=ConfiguredPrefix("ots"),
-        )
-
-    if set_name == "2nd Set A":
-        return PrefixForms(
-            consonant=ConfiguredPrefix("hi"), vowel=ConfiguredPrefix("h")
-        )
-
-    if set_name == "2pl Set A":
-        return PrefixForms(
-            consonant=ConfiguredPrefix("itsi"),
-            glottal=ConfiguredPrefix(
-                "itsi", stem_modification=StemModification.GLOTTAL_DROP
-            ),
-            vowel=ConfiguredPrefix("its"),
-        )
-
-    if set_name == "3rd Set A":
-        if config.use_ka_variant:
+    if p_set == PronominalSet.PERSON_TO_PERSON:
+        if person == Person.FIRST_TO_THIRD:
             return PrefixForms(
-                consonant=ConfiguredPrefix("ka", allow_h_metathesis=True),
-                vowel=ConfiguredPrefix("k", allow_h_metathesis=True),
+                consonant=ConfiguredPrefix("tsi"),
+                long_start=ConfiguredPrefix("tsiya"),
+                glottal=ConfiguredPrefix(
+                    "tsi", stem_modification=StemModification.GLOTTAL_DROP
+                ),
+                vowel=ConfiguredPrefix("tsiy"),
             )
-        # Some H-stems take k- even if not 'ka-variant' in the traditional sense?
-        # No, let's keep it strict. If it works, it works.
-        return PrefixForms(
-            consonant=ConfiguredPrefix("a"),
-            vowel=ConfiguredPrefix(""),
-            vowel_overrides={"a": ConfiguredPrefix("a", StemModification.A_REPLACE)},
-        )
-
-    if set_name == "3pl Set A":
-        return PrefixForms(
-            consonant=ConfiguredPrefix("ani"),
-            glottal=ConfiguredPrefix(
-                "ani", stem_modification=StemModification.GLOTTAL_DROP
-            ),
-            vowel=ConfiguredPrefix("an"),
-        )
-
-    if set_name == "1st to 3rd":
-        return PrefixForms(
-            consonant=ConfiguredPrefix("tsi"),
-            long_start=ConfiguredPrefix("tsiya"),
-            glottal=ConfiguredPrefix(
-                "tsi", stem_modification=StemModification.GLOTTAL_DROP
-            ),
-            vowel=ConfiguredPrefix("tsiy"),
-        )
-
-    if set_name == "2nd to 3rd":
-        return PrefixForms(
-            consonant=ConfiguredPrefix("hi"),
-            long_start=ConfiguredPrefix("hiya"),
-            glottal=ConfiguredPrefix(
-                "hi", stem_modification=StemModification.GLOTTAL_DROP
-            ),
-            vowel=ConfiguredPrefix("hiy"),
-        )
+        if person == Person.SECOND_TO_THIRD:
+            return PrefixForms(
+                consonant=ConfiguredPrefix("hi"),
+                long_start=ConfiguredPrefix("hiya"),
+                glottal=ConfiguredPrefix(
+                    "hi", stem_modification=StemModification.GLOTTAL_DROP
+                ),
+                vowel=ConfiguredPrefix("hiy"),
+            )
 
     return None
 
 
-def detach_prefix(word: str, set_name: str, config: PronominalConfig):
-    prefix = get_prefix_details(set_name, config)
+def detach_prefix(
+    word: str, key: Tuple[Person, Number, PronominalSet], config: PronominalConfig
+):
+    prefix = get_prefix_details(key, config)
 
     stem = prefix.detach(word, config.allow_h_metathesis)
 
@@ -361,5 +378,13 @@ def detach_prefix(word: str, set_name: str, config: PronominalConfig):
     return stem, metathesis_used
 
 
-def use_glottal_grade(set_name: str) -> bool:
-    return set_name in ["2nd to 3rd", "1st to 3rd", "1st Set A"]
+def use_glottal_grade(person: Person, number: Number, p_set: PronominalSet) -> bool:
+    if p_set == PronominalSet.PERSON_TO_PERSON:
+        return True
+    if (
+        p_set == PronominalSet.SET_A
+        and person == Person.FIRST
+        and number == Number.SINGULAR
+    ):
+        return True
+    return False

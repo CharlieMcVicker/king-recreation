@@ -21,3 +21,22 @@ class Aspect(Enum):
     def allows_h_alternation(self) -> bool:
         """Present and imperative forms permit h-alternation in aspect suffixes."""
         return self in (Aspect.PRESENT, Aspect.IMPERATIVE)
+
+
+class Person(Enum):
+    FIRST = "1st"
+    SECOND = "2nd"
+    THIRD = "3rd"
+    FIRST_TO_THIRD = "1st to 3rd"
+    SECOND_TO_THIRD = "2nd to 3rd"
+
+
+class Number(Enum):
+    SINGULAR = "singular"
+    PLURAL = "plural"
+
+
+class PronominalSet(Enum):
+    SET_A = "a"
+    SET_B = "b"
+    PERSON_TO_PERSON = "PersonToPerson"

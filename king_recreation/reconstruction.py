@@ -3,7 +3,7 @@ import json
 import re
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import List, Optional
+from typing import List, Optional, Tuple
 
 from king_recreation.h_alternation import possible_alternates, prevent_C_glottal_cluster
 from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
@@ -14,7 +14,7 @@ from king_recreation.morphemes.prefixes.pronominals import (
     get_prefix_details,
     use_glottal_grade,
 )
-from king_recreation.morphology_types import Aspect
+from king_recreation.morphology_types import Aspect, Number, Person, PronominalSet
 from king_recreation.word_spec import WordSpec
 
 
@@ -89,9 +89,12 @@ class ReconstructionEngine:
     # _load_classes_raw removed as it is replaced by ClassPatterns.from_csv
 
     def generate_pronominal_forms(
-        self, stem: str, set_name: str, config: PronominalConfig
+        self,
+        stem: str,
+        key: Tuple[Person, Number, PronominalSet],
+        config: PronominalConfig,
     ) -> List[str]:
-        prefix = get_prefix_details(set_name, config)
+        prefix = get_prefix_details(key, config)
 
         stems_to_try = [(stem, False)]
 
@@ -168,7 +171,11 @@ class ReconstructionEngine:
     def reconstruct_spec(self, verb: ReconstructableVerb, spec: WordSpec) -> List[str]:
         # 1. Get the base stems (stem + aspect suffix)
         stems = self.get_base_stems_for_form(
-            verb, aspect=spec.aspect, glottal_grade=use_glottal_grade(spec.set_name)
+            verb,
+            aspect=spec.aspect,
+            glottal_grade=use_glottal_grade(
+                spec.person, spec.number, spec.pronominal_set
+            ),
         )
         if not stems:
             return []
@@ -176,10 +183,9 @@ class ReconstructionEngine:
         # 2. Attach pronominal prefixes
         final_forms = []
         for stem in stems:
-            # Note: spec.set_name is already resolved by build_wordspec or provided manually
-            candidates = self.generate_pronominal_forms(
-                stem, spec.set_name, verb.config.pron
-            )
+            # key = (person, number, p_set)
+            key = (spec.person, spec.number, spec.pronominal_set)
+            candidates = self.generate_pronominal_forms(stem, key, verb.config.pron)
 
             # 3. Attach pre-pronominal prefixes
             for c in candidates:
