@@ -43,17 +43,30 @@ To cleanly separate the stative and eventful paradigms without complicating the 
 - When grouping derivations by `corpus_id` for user selection, the interface must prompt the user to first select the correct canonical `row_spec`.
 - If a mixed `row_spec` is selected, the interface must allow the user to select _both_ the canonical stative derivation and the canonical eventful derivation.
 
-## Next Steps for the Next Agent (Phase 1: Pure Refactors)
+## Completed Work: Pronominal System Overhaul (Phase 1)
 
-To begin this implementation safely without breaking current program output, the first agent should focus on these "pure" refactors:
+The first phase of the refactor is complete. The pronominal system has been migrated from magic strings to a type-safe Enum system.
 
-1. **Introduce `Scope` Enum and `FormSpec` Abstraction:**
-   - **`Scope`:** Define the `Scope` enum in the core models. A `Scope` tells us _which fields_ of the corpus row the analysis is trying to account for. Values: `STATIVE_WITH_IMP`, `STATIVE_NO_IMP`, `EVENTFUL`, `EVENTFUL_INF_ONLY`, `EVENTFUL_IMP_INF`. Update the aspect class indentification phase to assume _every_ row is `Scope.EVENTFUL` and add `scope` to each CSV artifact saved to disk. Simply pass along this value unchanged, like you would `corpus_id`.
-   - **`FormSpec` (Currying `WordSpec`):** Create an intermediate object `FormSpec` containing `aspect: Aspect`, `person: str`, `allow_set_a: bool`, and `stative: bool` (which will eventually be dropped). This prevents requiring a `PronominalConfig` too early. Create a function `(Scope, form) -> FormSpec` which throws an unimplemented error if `Scope` is not `eventful`.
-   - **Downstream Operations & Mapping:** The mapping will become `(Scope, form_name) -> FormSpec` early in the pipeline, and later `(FormSpec, PronominalConfig) -> WordSpec`. Update `calculate_set_name` and `build_wordspec` to use this new curried approach. For now, the `(Scope, form_name) -> FormSpec` scaffolding functions should throw `NotImplementedError` for any value other than `Scope.EVENTFUL`. This lays the structural groundwork without changing behavior and acts as a tripwire for future work.
-2. **Refactor Aspect Class System:**
+1. **Enum Migration:** `Person`, `Number`, and `PronominalSet` Enums have been implemented.
+2. **WordSpec & FormSpec:** The core specification models now use these Enums. `calculate_pronominal_key` handles the routing logic structurally.
+3. **Dictionary Bridge:** A centralized bridge exists in `dictionary_forms.py` to map dictionary columns to their morphological requirements via `FormSpec`.
+4. **Engine Updates:** All morphological engines (prefix derivation, reconstruction) have been updated to use the new Enum-based specifying API.
+
+---
+
+## Next Steps: Scope-Aware Pipeline
+
+The next phase focuses on implementing the `Scope` architecture to support distinct stative verb mappings.
+
+1. **Introduce `Scope` Enum and Artifact Persistence:**
+   - Define the `Scope` enum in `morphology_types.py`. Values: `STATIVE_WITH_IMP`, `STATIVE_NO_IMP`, `EVENTFUL`, `EVENTFUL_INF_ONLY`, `EVENTFUL_IMP_INF`.
+   - Update `identify_aspect_classes` phase to assign `Scope.EVENTFUL` to all rows and propagate this field through all CSV artifacts (`corpus_no_asp.csv`, `corpus_no_pre_no_asp.csv`, etc.).
+2. **Make `get_form_spec` Scope-Aware:**
+   - Update `get_form_spec(scope: Scope, form_name: str) -> FormSpec` in `dictionary_forms.py`.
+   - Implement the mapping logic for stative scopes (e.g., mapping both "incompletive" and "imperative" to `Aspect.INCOMPLETIVE` for statives).
+3. **Refactor Aspect Class System:**
    - Create a new function inside the aspect class system (morphological engine) that operates on `(Aspect, form_string, allow_h_alternation)` tuples.
-   - Update `identify_aspect_classes` to construct this list of tuples dynamically based on the row's `RowSpec` value, and pass it to the new function.
-   - This cleanly removes the current bad design where dictionary "form names" leak into the `get_candidates_combined` function.
-   - Write unit tests passing in multiple entries with the _same_ `Aspect` (e.g., testing the system's ability to handle multiple `Aspect.INCOMPLETIVE` forms for statives, even if the current pipeline doesn't use that feature yet).
-3. **Robust Prefix Identification:** Update `identify_prefixes` to be fully robust to missing form data (since future split rows will omit forms like infinitive or imperative). Add unit tests proving that it correctly skips and processes rows with dropped forms without crashing.
+   - This removes the dependency on dictionary "form names" within the core morphological matching logic.
+4. **Robust Prefix Identification:** 
+   - Ensure `identify_prefixes` is fully robust to missing form data (since future split rows will omit forms like infinitive or imperative).
+   - Add unit tests proving that it correctly skips and processes rows with dropped forms without crashing.

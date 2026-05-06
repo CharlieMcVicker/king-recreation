@@ -1,62 +1,58 @@
-# Implementation Plan: Stative Verb Refactor (Phase 1)
+# Implementation Plan: Stative Verb Refactor
 
-This plan outlines the "pure refactor" phase to introduce the `Scope` and `FormSpec` abstractions. These changes decouple dictionary column concepts from the morphological engine and lay the groundwork for stative verb support.
+This plan outlines the staged approach to support stative verb morphology. We have completed the structural foundation by overhauled the pronominal system. Future phases will focus on making the pipeline "scope-aware".
 
-## Core Models & Types
+## Phase 1: Pronominal System Overhaul [COMPLETED]
 
-### [MODIFY] [morphology_types.py](file:///Users/charlesmcvicker/code/king-recreation/king_recreation/morphology_types.py)
-- **Introduce `Scope` Enum:**
-  - Values: `STATIVE_WITH_IMP`, `STATIVE_NO_IMP`, `EVENTFUL`, `EVENTFUL_INF_ONLY`, `EVENTFUL_IMP_INF`.
-  - This enum tells the pipeline which fields of the corpus row the current analysis is accounting for.
+The pronominal system has been migrated from magic strings to type-safe Enums. **Do not introduce string-based "set_names" in new code.**
 
-### [MODIFY] [word_spec.py](file:///Users/charlesmcvicker/code/king-recreation/king_recreation/word_spec.py)
-- **Define `FormSpec` Dataclass:**
-  ```python
-  @dataclass(frozen=True)
-  class FormSpec:
-      aspect: Aspect
-      person: str
-      allow_set_a: bool
-      stative: bool
-  ```
-- **Refactor `calculate_set_name`:**
-  - New signature: `calculate_set_name(spec: FormSpec, config: PronominalConfig) -> Optional[str]`
-  - Simplified logic: `target_set_is_a = verb_is_set_a and spec.allow_set_a`.
-  - This removes the hard-coded `Aspect.PERFECTIVE`/`Aspect.INFINITIVE` checks from the core pronoun logic.
+### 1. Structural Types (`king_recreation/morphology_types.py`)
+- **Implemented Enums:** `Person`, `Number`, `PronominalSet`.
+- **Note:** Always use these Enums for morphological specification.
 
-## Dictionary Bridge
+### 2. Specification Models (`king_recreation/word_spec.py`)
+- **`FormSpec`**: Captures abstract requirements for a form (Aspect, Person, Stative-ness).
+- **`WordSpec`**: Fully resolved morphological key.
+- **`calculate_pronominal_key`**: Core routing logic that maps features to a `(Person, Number, PronominalSet)` tuple.
 
-### [MODIFY] [dictionary_forms.py](file:///Users/charlesmcvicker/code/king-recreation/king_recreation/dictionary_forms.py)
-- **Implement `get_form_spec(scope: Scope, form_name: str) -> FormSpec`:**
-  - Acts as the translator between a dictionary column and its structural requirements.
-  - For `Scope.EVENTFUL`, use existing `FORM_NAME_TO_ASPECT` and `FORM_NAME_TO_PERSON`.
-  - Set `allow_set_a` to `False` for `PERFECTIVE` and `INFINITIVE`, and `True` for others (maintaining current behavior).
-  - Throw `NotImplementedError` for non-`EVENTFUL` scopes for now.
-- **Update `build_wordspec`:**
-  - New signature: `build_wordspec(form_spec: FormSpec, config: PronominalConfig) -> WordSpec`
-  - It now receives a pre-calculated `FormSpec` and "enriches" it with the verb's lexical config.
+### 3. Dictionary Bridge (`king_recreation/dictionary_forms.py`)
+- **`get_form_spec(form_name: str) -> FormSpec`**: Central map between dictionary columns and their requirements.
+- **`build_wordspec(form_name: str, config: PronominalConfig, stative: bool) -> WordSpec`**: Final resolution of a word's morphology.
 
-## Pipeline & Artifact Persistence
+### 4. Pronominal Engine (`king_recreation/morphemes/prefixes/pronominals.py`)
+- **`PronominalConfig`**: Now uses `PronominalSet` Enum.
+- **Mapping Lookup**: String-based `if/else` chains replaced with structured Enum lookups.
 
-### [MODIFY] [artifacts.py](file:///Users/charlesmcvicker/code/king-recreation/king_recreation/phases/identify_aspect_classes/artifacts.py)
-- Update `StrippedVerbRow` to include a `scope` field (defaulting to `"EVENTFUL"`).
-- Update `dict_keys` to ensure `scope` is written to `corpus_no_asp.csv`.
+---
 
-### [MODIFY] [artifacts.py](file:///Users/charlesmcvicker/code/king-recreation/king_recreation/phases/identify_prefixes/artifacts.py)
-- Ensure `save_stripped_roots` preserves the `scope` column when writing to `corpus_no_pre_no_asp.csv`.
+## Phase 2: Scope-Aware Pipeline [FUTURE WORK]
 
-### [MODIFY] [artifacts.py](file:///Users/charlesmcvicker/code/king-recreation/king_recreation/phases/identify_derived_verbs/artifacts.py)
-- Update `save_derivational_connections` to include the `scope` field in the output CSV.
+The goal of this phase is to allow the pipeline to handle different "scopes" (e.g., Eventful vs. Stative) which dictate which dictionary forms are available and how they map to morphology.
 
-### [MODIFY] [identify_aspect_classes/__init__.py](file:///Users/charlesmcvicker/code/king-recreation/king_recreation/phases/identify_aspect_classes/__init__.py)
-- Update the main loop to assign `Scope.EVENTFUL` to all rows.
-- Ensure the value is passed through to the artifact saving logic.
+### 1. Define `Scope` Enum (`king_recreation/morphology_types.py`)
+- Values: `STATIVE_WITH_IMP`, `STATIVE_NO_IMP`, `EVENTFUL`, `EVENTFUL_INF_ONLY`, `EVENTFUL_IMP_INF`.
+- This enum tells the pipeline which fields of the corpus row the current analysis is accounting for.
 
-## Verification Plan
+### 2. Update `get_form_spec` Signature
+- **New Signature:** `get_form_spec(scope: Scope, form_name: str) -> FormSpec`
+- **Logic:**
+  - For `Scope.EVENTFUL`, maintain current mappings.
+  - For `Scope.STATIVE_*`, implement the 2-aspect mapping (Present/Incompletive).
+  - Throw `NotImplementedError` for unsupported Scope/Form combinations.
 
-### Automated Tests
-- `tests/test_dictionary_bridge.py`: Verify `get_form_spec` returns correct `FormSpec` for all `EVENTFUL` forms.
-- `tests/test_pronoun_routing.py`: Verify `calculate_set_name` correctly handles `allow_set_a` toggle.
+### 3. Pipeline & Artifact Persistence
+- **Identify Aspect Classes**: Assign a `Scope` to each verb row (initially defaulting to `EVENTFUL`).
+- **Artifacts**: Add a `scope` column to:
+  - `corpus_no_asp.csv`
+  - `corpus_no_pre_no_asp.csv`
+  - `reconstructable_verbs.json`
+- This ensures that downstream phases (Prefix identification, Reconstruction) know which morphological rules to apply.
 
-### Manual Verification
-- Run the full pipeline and verify that `artifacts/corpora/*.csv` files now contain a `scope` column populated with `EVENTFUL`.
+### 4. Verification
+- Verify that `EVENTFUL` rows continue to reconstruct perfectly.
+- Add tripwire tests for `Scope.STATIVE` that expect `NotImplementedError`.
+
+## Design Principles
+1. **No Magic Strings**: All morphological lookups must use Enums or Enum-tuples.
+2. **Scoping Early**: The `Scope` should be identified as early as possible in the pipeline (Dictionary ingest) and persisted through all artifacts.
+3. **Pure Refactor First**: Ensure the new `Scope` architecture works for `EVENTFUL` verbs before implementing the actual stative logic.
