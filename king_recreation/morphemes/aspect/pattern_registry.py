@@ -12,6 +12,7 @@ from king_recreation.morphemes.aspect.class_patterns import (
     ClassMacro,
     ExpandedClassPattern,
 )
+from king_recreation.morphology_types import Aspect
 
 CLASSES_PATH = "data/classes.csv"
 
@@ -129,6 +130,8 @@ class PatternRegistry:
         # Always check for empty suffix match (if any pattern has empty ending)
         if "" in self.lookup_maps[form_type]:
             candidates.extend(self.lookup_maps[form_type][""])
+        if allow_suffix_alternation and "" in self.lookup_maps_alternated[form_type]:
+            candidates.extend(self.lookup_maps_alternated[form_type][""])
 
         sorted_lengths = sorted(
             list(self.valid_ending_lengths[form_type]), reverse=True
@@ -152,7 +155,7 @@ class PatternRegistry:
                     if cand.check_preconditions(
                         preceding_text,
                         suffix_val=cand.get(form_type),
-                        h_alternated_form=form_type in ["imperative", "present_1sg"],
+                        h_alternated_form=allow_suffix_alternation,
                     ):
                         candidates.append(cand)
 
@@ -169,44 +172,36 @@ class PatternRegistry:
 
         return candidates
 
-    def get_candidates_combined(self, verb):
+    def get_candidates_combined(
+        self, forms: List[tuple[str, Aspect, bool]]
+    ) -> set[ExpandedClassPattern]:
         """
         Get initial candidates by intersecting matches from available forms.
-        Returns a set of unique ExpandedClassPattern objects.
+        forms: list of (surface_form, aspect, allow_suffix_alternation)
         """
-        forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
+        if not forms:
+            return set()
 
-        # Identify available forms
-        available_forms = [f for f in forms if verb.get(f)]
+        # Intersect matches for all provided forms
+        candidate_set: Optional[set[ExpandedClassPattern]] = None
 
-        if not available_forms:
-            return (
-                set()
-            )  # No forms to match against? Or should we return all? Return none seems safer.
+        for surface_form, aspect, allow_alt in forms:
+            if not surface_form:
+                continue
 
-        # Start with candidates from the first available form (usually present)
-        primary_form = available_forms[0]
-        candidate_set = set(self.get_candidates(verb.get(primary_form), primary_form))
-
-        # Intersect with other forms to narrow down
-        # Optimization: Only intersect if candidate_set is large?
-        # For correctness, we must intersect or just union?
-        # WAIT. If a pattern matches Present but mismatches Imperfective, it is NOT a match.
-        # So intersection is correct for finding patterns that are consistent with ALL present forms.
-        # PatternRegistry.get_candidates returns patterns whose LITERAL SUFFIX matches the verb form.
-        # If a pattern has Imperfective suffix "abc" and verb has "xyz", it won't be returned by get_candidates(imperf).
-        # So yes, Intersection is the way.
-
-        for form in available_forms[1:]:
-            matches_for_form = set(
+            form_type = aspect.value
+            matches = set(
                 self.get_candidates(
-                    verb.get(form),
-                    form,
-                    allow_suffix_alternation=(form == "imperative"),
+                    surface_form, form_type, allow_suffix_alternation=allow_alt
                 )
             )
-            candidate_set.intersection_update(matches_for_form)
+
+            if candidate_set is None:
+                candidate_set = matches
+            else:
+                candidate_set.intersection_update(matches)
+
             if not candidate_set:
                 break
 
-        return candidate_set
+        return candidate_set or set()

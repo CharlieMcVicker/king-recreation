@@ -1,7 +1,7 @@
 from collections import defaultdict
 from typing import List
 
-from king_recreation.dictionary_forms import ALL_FORM_NAMES, FORM_NAME_TO_ASPECT
+from king_recreation.dictionary_forms import ALL_FORM_NAMES, get_form_spec
 from king_recreation.morphemes.aspect.class_patterns import ExpandedClassPattern
 from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
 from king_recreation.phases.identify_aspect_classes.artifacts import (
@@ -30,9 +30,8 @@ def strip_verb_forms(
         if not form_val:
             continue
 
-        aspect = FORM_NAME_TO_ASPECT.get(fn)
-        if aspect is None:
-            continue
+        form_spec = get_form_spec(fn)
+        aspect = form_spec.aspect
 
         stripped_stem = cls.strip_form(aspect, form_val)
         if stripped_stem is not None:
@@ -105,8 +104,22 @@ def group_matches_by_macro(
 
 
 def get_matches_for_verb(verb, registry: PatternRegistry):
-    # 1. OPTIMIZED LOOKUP
-    candidate_patterns = registry.get_candidates_combined(verb)
+    # 1. Prepare form tuples for candidate lookup
+    form_tuples = []
+    for fn in ALL_FORM_NAMES:
+        surface_form = verb.get(fn)
+        if not surface_form:
+            continue
+
+        form_spec = get_form_spec(fn)
+
+        # "Cheese" the alternation logic: allow suffix alternation for present_1sg and imperative
+        allow_alt = fn in ["present_1sg", "imperative"]
+
+        form_tuples.append((surface_form, form_spec.aspect, allow_alt))
+
+    # 2. OPTIMIZED LOOKUP
+    candidate_patterns = registry.get_candidates_combined(form_tuples)
 
     matches = group_matches_by_macro(registry, candidate_patterns, verb)
 
