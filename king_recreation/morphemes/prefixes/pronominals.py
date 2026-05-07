@@ -1,6 +1,7 @@
 import re
 from dataclasses import dataclass, field
 from enum import Enum
+from typing import Any
 
 from king_recreation.metathesis import demetathesize_h, metathesize_h
 from king_recreation.morphemes.middle_voice import MiddleVoice
@@ -97,7 +98,7 @@ class PronominalConfig:
         )
 
     @staticmethod
-    def from_dict(data: dict) -> "PronominalConfig":
+    def from_dict(data: dict[str, Any]) -> "PronominalConfig":
         # Handle Enums
         clean_data = data.copy()
         if "stem_type" in clean_data and isinstance(clean_data["stem_type"], str):
@@ -224,7 +225,7 @@ class PrefixForms:
 
 def _get_prefix_details(
     key: tuple[Person, Number, PronominalSet], config: PronominalConfig
-) -> "PrefixForms | ConfiguredPrefix":
+) -> PrefixForms | ConfiguredPrefix | None:
     person, number, p_set = key
 
     if p_set == PronominalSet.SET_B:

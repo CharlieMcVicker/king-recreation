@@ -43,7 +43,7 @@ from king_recreation.phases.select_canonical_derivations.artifacts import (
 
 def _prepare_filtered_matches(
     matches: list[dict[str, Any]], validated_matches_path: str
-) -> dict[tuple, dict[str, Any]]:
+) -> dict[tuple[Any, ...], dict[str, Any]]:
     filtered_matches = {}
     for row in matches:
         verb = row["definition"]
@@ -70,7 +70,8 @@ def _prepare_filtered_matches(
 
 
 def _analyze_class_matches(
-    filtered_matches: dict[tuple, dict[str, Any]], pattern_registry: PatternRegistry
+    filtered_matches: dict[tuple[Any, ...], dict[str, Any]],
+    pattern_registry: PatternRegistry,
 ) -> list[dict[str, Any]]:
     class_counts = defaultdict(lambda: defaultdict(int))
     for row in filtered_matches.values():
@@ -89,7 +90,7 @@ def _analyze_class_matches(
 
 
 def _analyze_verb_coverage(
-    filtered_matches: dict[tuple, dict[str, Any]], all_verbs: set
+    filtered_matches: dict[tuple[Any, ...], dict[str, Any]], all_verbs: set[str]
 ) -> dict[str, Any]:
     total_verb_count = len(all_verbs)
     coverage_summary = {}
@@ -131,7 +132,7 @@ def _analyze_verb_coverage(
 
 def _get_unmatched_verbs(
     filtered_matches: dict[tuple, dict[str, Any]],
-    all_verbs: set,
+    all_verbs: set[str],
     corpus: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
     verb_forms_map = {row["corpus_id"]: row for row in corpus}
@@ -508,7 +509,7 @@ def analyze_pipeline_run(classes_path: str | None = None) -> None:
     pattern_registry = PatternRegistry.get_instance()
     pattern_registry.load_from_csv(classes_path)
 
-    all_verbs = set(
+    all_verbs: set[str] = set(
         row["corpus_id"] if "corpus_id" in row else row["definition"] for row in corpus
     )
     total_verb_count = len(all_verbs)

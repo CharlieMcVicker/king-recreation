@@ -1,11 +1,11 @@
 import csv
 import os
-from typing import Dict, List
+from typing import Any
 
 from king_recreation.paths import CORPUS_NO_PRE_NO_ASP_PATH, PRE_PARSING_FAILURES_PATH
 
 
-def save_stripped_roots(labeled_data: List[Dict]):
+def save_stripped_roots(labeled_data: list[dict[str, Any]]) -> None:
     if not labeled_data:
         return
 
@@ -29,14 +29,14 @@ def save_stripped_roots(labeled_data: List[Dict]):
     print(f"Success: {len(labeled_data)}")
 
 
-def load_stripped_roots() -> List[Dict]:
+def load_stripped_roots() -> list[dict[str, Any]]:
     if not os.path.exists(CORPUS_NO_PRE_NO_ASP_PATH):
         return []
     with open(CORPUS_NO_PRE_NO_ASP_PATH, "r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def save_prefix_parsing_failures(failures: List[Dict]):
+def save_prefix_parsing_failures(failures: list[dict[str, Any]]) -> None:
     if not failures:
         return
     keys = failures[0].keys()
@@ -47,7 +47,7 @@ def save_prefix_parsing_failures(failures: List[Dict]):
     print(f"Failures: {len(failures)}")
 
 
-def load_prefix_parsing_failures() -> List[Dict]:
+def load_prefix_parsing_failures() -> list[dict[str, Any]]:
     if not os.path.exists(PRE_PARSING_FAILURES_PATH):
         return []
     with open(PRE_PARSING_FAILURES_PATH, "r", encoding="utf-8") as f:

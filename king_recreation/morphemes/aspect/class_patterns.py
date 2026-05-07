@@ -31,7 +31,9 @@ class ExpandedClassPattern:
         default=None, hash=False, compare=False
     )
 
-    def macro_name(self):
+    def macro_name(self) -> str:
+        if self._original_data is None:
+            return self.name
         return self._original_data.get("class", self.name)
 
     def get(self, form: str, default: str = "") -> str:

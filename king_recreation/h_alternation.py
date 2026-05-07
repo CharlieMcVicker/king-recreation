@@ -85,7 +85,9 @@ def _drop_h_in_deaffricated_lateral(h_grade: str) -> str:
 
 
 def possible_alternates(h_form: str, fix_clusters: bool = True) -> list[str]:
-    WAYS_TO_DROP = [
+    from typing import Callable
+
+    WAYS_TO_DROP: list[Callable[[str], str]] = [
         lambda x: x,
         _drop_h_in_deaffricated_lateral,
         _drop_first_h,

@@ -1,5 +1,3 @@
-from typing import List, Union
-
 from king_recreation.reconstruction import ReconstructableVerb
 from king_recreation.tone.models import (
     Environment,
@@ -40,7 +38,7 @@ def get_tonicity_for_form(verb: ReconstructableVerb, form_name: str) -> Tonicity
 
 
 # to be populated from docs/tone_mvp.md
-H1_INFERENCES = {
+H1_INFERENCES: dict[H1Config, list[list[VowelTone | Consonant]]] = {
     # Long PRE_C
     H1Config(True, GlottalPosition.PRE_C, Environment.SPREAD): [
         [VowelTone.lh, VowelTone.hl]
@@ -139,14 +137,14 @@ H1_INFERENCES = {
 def get_possible_glottal_positions(
     env: Environment,
     tone: VowelTone,
-    prev_tone: VowelTone = None,
+    prev_tone: VowelTone | None = None,
     has_glottal: bool = False,
     has_following_c: bool = False,
-) -> List[H1Config]:
+) -> list[H1Config]:
     """
     Search H1_INFERENCES for underlying configurations that could produce the observed tone.
     """
-    results = []
+    results: list[H1Config] = []
     for config, sequences in H1_INFERENCES.items():
         if config.env != env:
             continue
@@ -192,7 +190,7 @@ def generate_underlying_forms(
     initial_lh: LocalHighTone = LocalHighTone.NONE,
     initial_pl: bool = False,
     tonicity: Tonicity = Tonicity.TONIC,
-) -> List[LexedForm]:
+) -> list[LexedForm]:
     """
     Generate all possible underlying form objects (LexedForm) from a surface form string.
     """
@@ -204,7 +202,13 @@ def generate_underlying_forms(
     prev_tone = None
 
     # Path state: (tokens, lh, pl, pt, skip_surface_glottal)
-    initial_path = ([], initial_lh, initial_pl, prev_tone, False)
+    initial_path: tuple[
+        list[HistoricalVowel | Consonant | MorphemeBoundary],
+        LocalHighTone,
+        bool,
+        VowelTone | None,
+        bool,
+    ] = ([], initial_lh, initial_pl, prev_tone, False)
     paths = [initial_path]
 
     for i, seg in enumerate(tone_sequence):
@@ -355,7 +359,7 @@ def generate_underlying_forms(
 
 def predict_h1_for_form(
     form_str: str, tonicity: Tonicity = Tonicity.TONIC
-) -> List[tuple[Vowel, List[H1Config]]]:
+) -> list[tuple[Vowel, list[H1Config]]]:
     """
     Wrapper around generate_underlying_forms to maintain compatibility with tests.
     """
@@ -398,10 +402,10 @@ def predict_h1_for_form(
 
 
 def infer_surface_forms(
-    lexed: Union[LexedForm, str],
+    lexed: "LexedForm | str",
     initial_lh: LocalHighTone = LocalHighTone.NONE,
     tonicity: Tonicity = Tonicity.TONIC,
-) -> List[str]:
+) -> list[str]:
     """
     Forward inference: Generate possible surface forms from a LexedForm (or string).
     """
@@ -411,8 +415,11 @@ def infer_surface_forms(
     tokens = lexed.tokens
 
     def solve(
-        u_idx: int, local_high: LocalHighTone, prev_long: bool, surface_tones: List[str]
-    ) -> List[str]:
+        u_idx: int,
+        local_high: LocalHighTone,
+        prev_long: bool,
+        surface_tones: list[str | None],
+    ) -> list[str]:
         if u_idx >= len(tokens):
             res = []
             for k, token in enumerate(tokens):

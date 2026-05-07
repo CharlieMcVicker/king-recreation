@@ -8,7 +8,7 @@ from typing import Any, Callable
 
 
 def _default_encoder(
-    o: Any, dict_modification: Callable[[dict], None] | None = None
+    o: Any, dict_modification: Callable[[dict[str, Any]], None] | None = None
 ) -> Any:
     if isinstance(o, Enum):
         return o.value
@@ -17,7 +17,7 @@ def _default_encoder(
         # Use vars() for a shallow copy instead of asdict()
         # This allows the encoder to recursively call default()
         # on nested objects like Enums or other Dataclasses.
-        d = dict(vars(o))
+        d: dict[str, Any] = dict(vars(o))
 
         if dict_modification:
             dict_modification(d)
@@ -26,7 +26,9 @@ def _default_encoder(
     raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
 
 
-def to_dict(o: Any, dict_modification: Callable[[dict], None] | None = None) -> Any:
+def to_dict(
+    o: Any, dict_modification: Callable[[dict[str, Any]], None] | None = None
+) -> Any:
     try:
         converted = _default_encoder(o, dict_modification)
     except TypeError:
@@ -40,7 +42,7 @@ def to_dict(o: Any, dict_modification: Callable[[dict], None] | None = None) -> 
 
 
 def EnhancedJSONEncoderFactory(
-    dict_modification: Callable[[dict], None] | None = None,
+    dict_modification: Callable[[dict[str, Any]], None] | None = None,
 ) -> type[json.JSONEncoder]:
 
     class EnhancedJSONEncoder(json.JSONEncoder):

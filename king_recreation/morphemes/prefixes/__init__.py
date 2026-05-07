@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Any
 
 from king_recreation.morphemes.prefixes.prepronominals import (
     PrePronominalConfig,
@@ -27,7 +28,7 @@ class PrefixConfig:
         return {"stative": str(self.stative), **self.pre.to_row(), **self.pron.to_row()}
 
     @staticmethod
-    def from_dict(data: dict) -> "PrefixConfig":
+    def from_dict(data: dict[str, Any]) -> "PrefixConfig":
         return PrefixConfig(
             pre=PrePronominalConfig.from_dict(data.get("pre", {})),
             pron=PronominalConfig.from_dict(data.get("pron", {})),

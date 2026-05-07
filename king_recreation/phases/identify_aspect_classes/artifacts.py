@@ -1,7 +1,6 @@
 import csv
 import os
 from dataclasses import asdict, dataclass
-from typing import Dict, List, Optional
 
 from king_recreation.paths import CORPUS_NO_ASP_PATH, MATCHES_PATH
 
@@ -11,7 +10,7 @@ class StrippedVerbRow:
     corpus_id: str
     definition: str
     verb_class: str
-    post_root_morpheme: Optional[str] = None
+    post_root_morpheme: str | None = None
     present: str = ""
     present_1sg: str = ""
     imperfective: str = ""
@@ -35,7 +34,7 @@ class StrippedVerbRow:
         ]
 
     @staticmethod
-    def write_csv(filename, data: List["StrippedVerbRow"]):
+    def write_csv(filename: str, data: list["StrippedVerbRow"]) -> None:
         stripped_dicts = [x.to_dict() for x in data]
         with open(filename, mode="w", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=StrippedVerbRow.dict_keys())
@@ -51,7 +50,7 @@ class StrippedVerbRow:
         return StrippedVerbRow(**asdict(self))
 
 
-def save_matches(matches_data: List[Dict[str, str]]):
+def save_matches(matches_data: list[dict[str, str]]) -> None:
     fieldnames = [
         "corpus_id",
         "definition",
@@ -64,19 +63,19 @@ def save_matches(matches_data: List[Dict[str, str]]):
     print(f"Matches written to {MATCHES_PATH}")
 
 
-def load_matches() -> List[Dict[str, str]]:
+def load_matches() -> list[dict[str, str]]:
     if not os.path.exists(MATCHES_PATH):
         return []
     with open(MATCHES_PATH, mode="r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def save_stripped_corpus(data: List[StrippedVerbRow]):
+def save_stripped_corpus(data: list[StrippedVerbRow]) -> None:
     StrippedVerbRow.write_csv(CORPUS_NO_ASP_PATH, data)
     print(f"Endings Stripped Corpus written to {CORPUS_NO_ASP_PATH}")
 
 
-def load_stripped_corpus() -> List[Dict[str, str]]:
+def load_stripped_corpus() -> list[dict[str, str]]:
     if not os.path.exists(CORPUS_NO_ASP_PATH):
         return []
     with open(CORPUS_NO_ASP_PATH, mode="r", encoding="utf-8") as f:

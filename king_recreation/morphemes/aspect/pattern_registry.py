@@ -2,6 +2,7 @@ import csv
 import os
 import re
 from collections import defaultdict
+from typing import Any
 
 from king_recreation.h_alternation import (
     possible_alternates,
@@ -22,17 +23,17 @@ class PatternRegistry:
     def __init__(self) -> None:
         self.macros: list[ClassMacro] = []
         self.macros_order: dict[str, int] = {}
-        self.macros_by_parent: dict[str, list[ClassMacro]] = defaultdict(list)
+        self.macros_by_parent: defaultdict[str, list[ClassMacro]] = defaultdict(list)
         self.expanded_patterns: list[ExpandedClassPattern] = []
         # Map[form_type, Map[ending_string, list[ExpandedClassPattern]]]
-        self.lookup_maps: dict[str, dict[str, list[ExpandedClassPattern]]] = (
-            defaultdict(lambda: defaultdict(list))
-        )
-        self.lookup_maps_alternated: dict[
-            str, dict[str, list[ExpandedClassPattern]]
+        self.lookup_maps: defaultdict[
+            str, defaultdict[str, list[ExpandedClassPattern]]
+        ] = defaultdict(lambda: defaultdict(list))
+        self.lookup_maps_alternated: defaultdict[
+            str, defaultdict[str, list[ExpandedClassPattern]]
         ] = defaultdict(lambda: defaultdict(list))
         # Keep track of all valid ending lengths to optimize substring checks
-        self.valid_ending_lengths: dict[str, set[int]] = defaultdict(set)
+        self.valid_ending_lengths: defaultdict[str, set[int]] = defaultdict(set)
 
     @classmethod
     def get_instance(cls) -> "PatternRegistry":
@@ -43,7 +44,7 @@ class PatternRegistry:
     def macro_key(self, macro_name: str) -> tuple[int]:
         return (self.macros_order.get(macro_name, 999),)
 
-    def key_for_pattern_name(self, pattern_name: str) -> tuple:
+    def key_for_pattern_name(self, pattern_name: str) -> tuple[Any, ...]:
         # Regex captures the base name and then the digits for each form if present
         # eg. v'vsk[perf2-inf2]
         # --> ("v'vsk", 0, 0, 2, 0, 2)
@@ -62,7 +63,7 @@ class PatternRegistry:
             0,
         )
 
-    def key_for_pattern(self, cls_pattern: ExpandedClassPattern) -> tuple:
+    def key_for_pattern(self, cls_pattern: ExpandedClassPattern) -> tuple[Any, ...]:
         return self.key_for_pattern_name(cls_pattern.name)
 
     def load_from_csv(self, path: str | None = None) -> None:
@@ -101,7 +102,7 @@ class PatternRegistry:
         for pattern in self.expanded_patterns:
             self._index_pattern(pattern)
 
-    def _index_pattern(self, pattern: ExpandedClassPattern):
+    def _index_pattern(self, pattern: ExpandedClassPattern) -> None:
         forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
         for form in forms:
             pattern_str = pattern.get(form)

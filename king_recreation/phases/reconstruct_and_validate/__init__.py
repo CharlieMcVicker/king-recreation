@@ -1,4 +1,5 @@
 import json
+from typing import Any
 
 from king_recreation.dictionary_forms import ALL_FORM_NAMES, build_wordspec
 from king_recreation.morphemes.prefixes import PrefixConfig
@@ -176,7 +177,7 @@ def reconstruct_and_validate(
             )
 
             # Check if this matches a user selected row
-            def get_identity_key(r: dict) -> tuple:
+            def get_identity_key(r: dict[str, Any]) -> tuple[Any, ...]:
                 return (
                     str(r.get("corpus_id", "")),
                     r.get("class", ""),
@@ -272,7 +273,7 @@ def reconstruct_and_validate(
     # Save Validated Roots CSV
     if validated_rows:
         # Verify all user selections were preserved
-        def get_identity_key_simple(r: dict) -> tuple:
+        def get_identity_key_simple(r: dict[str, Any]) -> tuple[Any, ...]:
             return (
                 str(r.get("corpus_id", "")),
                 r.get("class", ""),

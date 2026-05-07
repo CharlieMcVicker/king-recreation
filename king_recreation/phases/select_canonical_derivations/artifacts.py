@@ -1,6 +1,6 @@
 import json
 import os
-from typing import List
+from typing import Any
 
 from king_recreation.paths import (
     RECONSTRUCTABLE_VERBS_PATH,
@@ -10,14 +10,16 @@ from king_recreation.paths import (
 from king_recreation.reconstruction import ReconstructableVerb
 
 
-def save_reconstructable_verbs(data: list, encoder_cls):
+def save_reconstructable_verbs(
+    data: list[ReconstructableVerb], encoder_cls: type[json.JSONEncoder]
+) -> None:
     os.makedirs(os.path.dirname(RECONSTRUCTABLE_VERBS_PATH), exist_ok=True)
     with open(RECONSTRUCTABLE_VERBS_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, cls=encoder_cls, indent=4)
     print(f"Artifacts saved to {RECONSTRUCTABLE_VERBS_PATH}")
 
 
-def load_reconstructable_verbs() -> List[ReconstructableVerb]:
+def load_reconstructable_verbs() -> list[ReconstructableVerb]:
     if not os.path.exists(RECONSTRUCTABLE_VERBS_PATH):
         return []
     with open(RECONSTRUCTABLE_VERBS_PATH, "r", encoding="utf-8") as f:
@@ -25,7 +27,10 @@ def load_reconstructable_verbs() -> List[ReconstructableVerb]:
     return [ReconstructableVerb.from_dict(item) for item in data]
 
 
-def save_selection_snapshot(snapshot_data: list, encoder_cls=None):
+def save_selection_snapshot(
+    snapshot_data: list[dict[str, Any]],
+    encoder_cls: type[json.JSONEncoder] | None = None,
+) -> None:
     """
     Saves a snapshot of all options and selections for each verb.
     """
@@ -35,7 +40,7 @@ def save_selection_snapshot(snapshot_data: list, encoder_cls=None):
     print(f"Selection snapshot saved to {VERB_SELECTION_SNAPSHOT_VOLATILE_PATH}")
 
 
-def commit_selection_snapshot():
+def commit_selection_snapshot() -> None:
     """
     Commits the volatile selection snapshot to the canonical data directory.
     """

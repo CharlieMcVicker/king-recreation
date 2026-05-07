@@ -1,4 +1,5 @@
 import re
+from typing import Any
 
 from king_recreation.phases.preprocess_ced.artifacts import (
     load_manual_corrections,
@@ -10,7 +11,9 @@ from king_recreation.phases.preprocess_ced.artifacts import (
 )
 
 
-def apply_patches(data: list[dict], corrections: list[dict]) -> list[dict]:
+def apply_patches(
+    data: list[dict[str, Any]], corrections: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
     """
     Apply patches to the corpus data.
     """

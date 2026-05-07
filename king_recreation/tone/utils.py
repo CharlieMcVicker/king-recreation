@@ -1,17 +1,18 @@
 import unicodedata
 from dataclasses import dataclass
 from enum import Enum
+from typing import Any
 
 from king_recreation.phases.preprocess_ced import respell_consonants
 from king_recreation.phonology_data import VOWEL_SET
-from king_recreation.reconstruction import drop_dropped_phones
+from king_recreation.reconstruction import ReconstructableVerb, drop_dropped_phones
 
 
 @dataclass
 class Consonant:
     value: str
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.value
 
 
@@ -28,7 +29,7 @@ class VowelTone(Enum):
 
     @staticmethod
     def from_mark_and_length(mark: str | None, long: bool) -> "VowelTone":
-        mapping = {
+        mapping: dict[str | None, tuple[VowelTone, VowelTone]] = {
             ACUTE: (VowelTone.h, VowelTone.hh),
             GRAVE: (VowelTone.l, VowelTone.lf),
             D_ACUTE: (VowelTone.s, VowelTone.sh),
@@ -39,11 +40,11 @@ class VowelTone(Enum):
         short, long_tone = mapping.get(mark, (VowelTone.l, VowelTone.ll))
         return long_tone if long else short
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.value
 
 
-TONE_VALUE_TO_ENUM = {v.value: v for v in VowelTone}
+TONE_VALUE_TO_ENUM: dict[str, VowelTone] = {v.value: v for v in VowelTone}
 
 
 ACUTE = "\u0301"  # acute
@@ -59,7 +60,7 @@ class Vowel:
     quality: str
     tone: VowelTone
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.quality + str(self.tone)
 
 
@@ -67,7 +68,7 @@ def split_diacritics(raw: str) -> str:
     return unicodedata.normalize("NFD", raw)
 
 
-def safe_get(l: list, idx: int):
+def safe_get(l: list[Any], idx: int) -> Any | None:
     if idx < len(l):
         return l[idx]
     else:
@@ -108,8 +109,12 @@ def read_tone_sequence(raw_str: str) -> list[Vowel | Consonant]:
 
 
 def get_tone_sequence_for_form(
-    verb, form_name: str, cnd_corpus: dict, corpus_id_to_entries: dict
+    verb: ReconstructableVerb,
+    form_name: str,
+    cnd_corpus: dict[str, dict[str, str]],
+    corpus_id_to_entries: dict[int, dict[str, str]],
 ) -> list[Vowel | Consonant]:
+    assert verb.corpus_id is not None, "Expected corpus id"
     entry_map = corpus_id_to_entries.get(verb.corpus_id)
     if not entry_map:
         return []

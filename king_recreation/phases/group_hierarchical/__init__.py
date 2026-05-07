@@ -1,7 +1,7 @@
 import base64
 from collections import defaultdict
 from dataclasses import dataclass, field
-from typing import Any, DefaultDict
+from typing import Any
 
 from king_recreation.phases.group_hierarchical.artifacts import (
     load_derivational_connections,
@@ -73,11 +73,11 @@ def build_verb_index(
 def build_connection_graphs(
     derivational_connections: list[dict[str, str]],
     verbs_by_id: dict[int, ReconstructableVerb],
-) -> tuple[dict[int, int], DefaultDict[int, list[dict[str, Any]]]]:
+) -> tuple[dict[int, int], defaultdict[int, list[dict[str, Any]]]]:
     parent_map = {}
     children_map = defaultdict(list)
 
-    def add_connection(from_ids_str, to_ids_str, conn_type):
+    def add_connection(from_ids_str: str, to_ids_str: str, conn_type: str) -> None:
         children = parse_ids(from_ids_str)
         parents = parse_ids(to_ids_str)
 
@@ -123,7 +123,7 @@ def identify_top_level_nodes(
 def build_tree_node(
     verb_id: int,
     verbs_by_id: dict[int, ReconstructableVerb],
-    children_map: DefaultDict[int, list[dict[str, Any]]],
+    children_map: defaultdict[int, list[dict[str, Any]]],
 ) -> ReconstructableVerb:
     verb = verbs_by_id[verb_id]
 
@@ -152,7 +152,7 @@ def sync_root_ids(
     synthetic_to_root_id = {}
 
     # Helper to clean strings
-    def clean(s):
+    def clean(s: str | None) -> str:
         return s if s is not None else ""
 
     for i, verb in enumerate(all_verbs):
@@ -229,10 +229,10 @@ def group_roots_final(
     top_level_ids: list[int],
     all_verbs: list[ReconstructableVerb],
     verbs_by_id: dict[int, ReconstructableVerb],
-    children_map: DefaultDict[int, list[dict[str, Any]]],
+    children_map: defaultdict[int, list[dict[str, Any]]],
     verb_to_root_id: dict[int, str],
     synthetic_to_root_id: dict[str, str],
-) -> DefaultDict[str, dict[str, Any]]:
+) -> defaultdict[str, dict[str, Any]]:
     # dict[str, {"classes": dict[str,list]}]
     root_groups = defaultdict(lambda: {"classes": defaultdict(list)})
 

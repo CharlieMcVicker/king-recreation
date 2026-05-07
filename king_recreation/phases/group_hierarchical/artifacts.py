@@ -10,14 +10,14 @@ from king_recreation.paths import (
 )
 
 
-def load_derivational_connections() -> List[Dict[str, str]]:
+def load_derivational_connections() -> list[dict[str, str]]:
     if not os.path.exists(DERIVATIONAL_CONNECTIONS_PATH):
         return []
     with open(DERIVATIONAL_CONNECTIONS_PATH, "r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def load_root_ids_map(root_ids_path: str) -> Dict[str, str]:
+def load_root_ids_map(root_ids_path: str) -> dict[str, str]:
     """Loads a mapping of corpus_id -> root_id from the CSV, respecting user edits."""
     overrides = {}
     if not os.path.exists(root_ids_path):
@@ -41,7 +41,7 @@ def load_root_ids_map(root_ids_path: str) -> Dict[str, str]:
     return overrides
 
 
-def load_root_ids_overrides() -> Dict[str, str]:
+def load_root_ids_overrides() -> dict[str, str]:
     return load_root_ids_map(ROOT_IDS_PATH)
 
 

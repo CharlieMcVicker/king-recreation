@@ -1,7 +1,7 @@
 import csv
 import json
 import os
-from typing import Dict, List
+from typing import Any
 
 from king_recreation.paths import (
     CONSISTENCY_ANALYSIS_PATH,
@@ -13,7 +13,7 @@ from king_recreation.paths import (
 )
 
 
-def load_existing_validated_roots() -> List[Dict]:
+def load_existing_validated_roots() -> list[dict[str, Any]]:
     """
     Loads roots previously marked as user_selected.
     """
@@ -29,7 +29,7 @@ def load_existing_validated_roots() -> List[Dict]:
     return user_selected_rows
 
 
-def save_consistency_analysis(data: list):
+def save_consistency_analysis(data: list[dict[str, Any]]) -> None:
     forms = [
         "present",
         "present_1sg",
@@ -51,14 +51,14 @@ def save_consistency_analysis(data: list):
         writer.writerows(data)
 
 
-def load_consistency_analysis() -> List[Dict]:
+def load_consistency_analysis() -> list[dict[str, Any]]:
     if not os.path.exists(CONSISTENCY_ANALYSIS_PATH):
         return []
     with open(CONSISTENCY_ANALYSIS_PATH, "r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def save_validated_matches(data: list):
+def save_validated_matches(data: list[dict[str, Any]]) -> None:
     if not data:
         return
     keys = ["corpus_id", "definition", "class", "scope"]
@@ -69,14 +69,14 @@ def save_validated_matches(data: list):
         writer.writerows(data)
 
 
-def load_validated_matches() -> List[Dict]:
+def load_validated_matches() -> list[dict[str, Any]]:
     if not os.path.exists(VALIDATED_MATCHES_PATH):
         return []
     with open(VALIDATED_MATCHES_PATH, "r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def save_reconstruction_report(data: list):
+def save_reconstruction_report(data: list[dict[str, Any]]) -> None:
     os.makedirs(os.path.dirname(RECONSTRUCTION_REPORT_PATH), exist_ok=True)
     with open(RECONSTRUCTION_REPORT_PATH, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(
@@ -94,27 +94,27 @@ def save_reconstruction_report(data: list):
         writer.writerows(data)
 
 
-def load_reconstruction_report() -> List[Dict]:
+def load_reconstruction_report() -> list[dict[str, Any]]:
     if not os.path.exists(RECONSTRUCTION_REPORT_PATH):
         return []
     with open(RECONSTRUCTION_REPORT_PATH, "r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def save_reconstruction_validation(data: dict):
+def save_reconstruction_validation(data: dict[str, Any]) -> None:
     os.makedirs(os.path.dirname(RECONSTRUCTION_VALIDATION_PATH), exist_ok=True)
     with open(RECONSTRUCTION_VALIDATION_PATH, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4)
 
 
-def load_reconstruction_validation() -> Dict:
+def load_reconstruction_validation() -> dict[str, Any]:
     if not os.path.exists(RECONSTRUCTION_VALIDATION_PATH):
         return {}
     with open(RECONSTRUCTION_VALIDATION_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
-def save_validated_roots(data: list):
+def save_validated_roots(data: list[dict[str, Any]]) -> None:
     if not data:
         return
 
@@ -157,14 +157,14 @@ def save_validated_roots(data: list):
         writer.writerows(data)
 
 
-def load_validated_roots() -> List[Dict]:
+def load_validated_roots() -> list[dict[str, Any]]:
     if not os.path.exists(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH):
         return []
     with open(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH, "r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def save_reconstruction_failures(data: list):
+def save_reconstruction_failures(data: list[dict[str, Any]]) -> None:
     os.makedirs(os.path.dirname(RECONSTRUCTION_FAILURES_PATH), exist_ok=True)
     with open(RECONSTRUCTION_FAILURES_PATH, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(
@@ -175,7 +175,7 @@ def save_reconstruction_failures(data: list):
         writer.writerows(data)
 
 
-def load_reconstruction_failures() -> List[Dict]:
+def load_reconstruction_failures() -> list[dict[str, Any]]:
     if not os.path.exists(RECONSTRUCTION_FAILURES_PATH):
         return []
     with open(RECONSTRUCTION_FAILURES_PATH, "r", encoding="utf-8") as f:

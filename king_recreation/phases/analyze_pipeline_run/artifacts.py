@@ -1,7 +1,7 @@
 import csv
 import json
 import os
-from typing import Any, Dict, List
+from typing import Any
 
 from king_recreation.paths import (
     CLASS_MATCH_COUNTS_PATH,
@@ -19,14 +19,14 @@ from king_recreation.paths import (
 # --- Private generic I/O helpers ---
 
 
-def _load_csv(path: str) -> List[Dict[str, str]]:
+def _load_csv(path: str) -> list[dict[str, str]]:
     if not os.path.exists(path):
         return []
     with open(path, mode="r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def _save_csv(path: str, data: List[Dict[str, Any]], fieldnames: List[str]) -> None:
+def _save_csv(path: str, data: list[dict[str, Any]], fieldnames: list[str]) -> None:
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, mode="w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)

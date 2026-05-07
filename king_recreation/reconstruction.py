@@ -3,6 +3,7 @@ import json
 import re
 from dataclasses import dataclass, field
 from enum import Enum
+from typing import Any
 
 from king_recreation.h_alternation import possible_alternates, prevent_C_glottal_cluster
 from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
@@ -44,17 +45,17 @@ class ReconstructableVerb:
     corpus_id: int | None = None
     entry_no: int | None = None
     derivations: list["ReconstructableVerb"] = field(default_factory=list)
-    original_data: dict = field(
+    original_data: dict[str, Any] = field(
         default_factory=dict, repr=False, hash=False, compare=False
     )
-    segmented_forms: dict = field(
+    segmented_forms: dict[str, str] = field(
         default_factory=dict,
     )
     user_selected: bool = False
 
     # TODO: IS THIS DEAD?
     @staticmethod
-    def from_dict(data: dict) -> "ReconstructableVerb":
+    def from_dict(data: dict[str, Any]) -> "ReconstructableVerb":
         clean_data = data.copy()
         if "config" in clean_data:
             clean_data["config"] = PrefixConfig.from_dict(clean_data["config"])

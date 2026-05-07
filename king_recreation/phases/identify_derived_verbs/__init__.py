@@ -1,5 +1,6 @@
 import re
 from dataclasses import dataclass
+from typing import Any
 
 from king_recreation.morphemes.prefixes.pronominals import MiddleVoice, StemType
 from king_recreation.morphology_types import Aspect
@@ -23,9 +24,9 @@ from king_recreation.utils import to_dict
 
 def group_verbs_by_root(
     verbs: list[ReconstructableVerb], root_id_overrides: dict[str, str] | None = None
-) -> dict[tuple[str, str, str], dict]:
+) -> dict[tuple[str, str, str], dict[str, Any]]:
     """Groups ReconstructableVerb objects by (root_id, class, stem_type)."""
-    root_groups: dict[tuple[str, str, str], dict] = {}
+    root_groups: dict[tuple[str, str, str], dict[str, Any]] = {}
     root_id_overrides = root_id_overrides or {}
 
     for verb in verbs:
@@ -80,7 +81,7 @@ class DerivedVerbConnection:
     to_stem: str
 
     @classmethod
-    def from_dict(cls, data: dict) -> "DerivedVerbConnection":
+    def from_dict(cls, data: dict[str, Any]) -> "DerivedVerbConnection":
         return cls(**data)
 
 
@@ -125,7 +126,7 @@ def identify_derived_verbs(
     engine = ReconstructionEngine(classes_path)
 
     # Map of (stem) -> list of root group info
-    open_forms_map: dict[str, list[dict]] = {}
+    open_forms_map: dict[str, list[dict[str, Any]]] = {}
 
     for key, group in root_groups.items():
         if group["class"].startswith("stative"):

@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from typing import Any
 
 from king_recreation.morphology_types import Aspect
 
@@ -20,7 +21,7 @@ class PrePronominalConfig:
         )
 
     @staticmethod
-    def from_dict(data: dict) -> "PrePronominalConfig":
+    def from_dict(data: dict[str, Any]) -> "PrePronominalConfig":
         return PrePronominalConfig(**data)
 
     def to_row(self) -> dict[str, str]:

@@ -1,5 +1,6 @@
 from dataclasses import dataclass, field
 from enum import Enum
+from typing import Any
 
 from king_recreation.phonology_data import VOWEL_SET
 from king_recreation.tone.utils import TONE_VALUE_TO_ENUM, Consonant, Vowel, VowelTone
@@ -7,7 +8,7 @@ from king_recreation.tone.utils import TONE_VALUE_TO_ENUM, Consonant, Vowel, Vow
 
 @dataclass(frozen=True)
 class MorphemeBoundary:
-    def __str__(self):
+    def __str__(self) -> str:
         return "-"
 
 
@@ -123,7 +124,7 @@ class HistoricalVowel:
     h2: bool = False
     derived_env: Environment | None = field(default=None, compare=False)
 
-    def __str__(self):
+    def __str__(self) -> str:
         v = self.quality * (2 if self.length else 1)
         if self.glottal_position in [GlottalPosition.PRE_C, GlottalPosition.NO_C]:
             v += "'"
@@ -136,7 +137,7 @@ class HistoricalVowel:
 class LexedForm:
     tokens: list[HistoricalVowel | Consonant | MorphemeBoundary]
 
-    def __str__(self):
+    def __str__(self) -> str:
         res = []
         pending_post_c = False
         for i, token in enumerate(self.tokens):
@@ -162,7 +163,7 @@ class LexedForm:
             res.append("'")
         return "".join(res)
 
-    def __eq__(self, other):
+    def __eq__(self, other: Any) -> bool:
         if isinstance(other, str):
             return str(self) == other
         if isinstance(other, LexedForm):

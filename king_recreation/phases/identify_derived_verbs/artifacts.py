@@ -1,7 +1,7 @@
 import csv
 import json
 import os
-from typing import Dict, List, Tuple
+from typing import Any
 
 from king_recreation.paths import (
     DERIVATIONAL_CONNECTIONS_PATH,
@@ -12,7 +12,7 @@ from king_recreation.paths import (
 from king_recreation.utils import EnhancedJSONEncoder
 
 
-def load_root_overrides() -> Dict[str, str]:
+def load_root_overrides() -> dict[str, str]:
     """Loads a mapping of corpus_id -> root_id from the CSV, respecting user edits."""
     overrides = {}
     if not os.path.exists(ROOT_IDS_PATH):
@@ -36,7 +36,7 @@ def load_root_overrides() -> Dict[str, str]:
     return overrides
 
 
-def load_existing_approvals_data(key_fields: List[str]) -> Dict[Tuple, str]:
+def load_existing_approvals_data(key_fields: list[str]) -> dict[tuple[Any, ...], str]:
     """Loads user_approved flags from an existing CSV file."""
     approvals = {}
     if os.path.exists(DERIVATIONAL_CONNECTIONS_PATH):
@@ -48,7 +48,7 @@ def load_existing_approvals_data(key_fields: List[str]) -> Dict[Tuple, str]:
     return approvals
 
 
-def save_root_mapping(root_groups: Dict):
+def save_root_mapping(root_groups: dict[str, Any]) -> None:
     """Saves the root-to-class mapping to a CSV file."""
     mapping_rows = []
     for key in sorted(root_groups.keys()):
@@ -70,38 +70,42 @@ def save_root_mapping(root_groups: Dict):
     )
 
 
-def load_root_mapping() -> List[Dict]:
+def load_root_mapping() -> list[dict[str, Any]]:
     if not os.path.exists(ROOTS_BY_CLASS_PATH):
         return []
     with open(ROOTS_BY_CLASS_PATH, "r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def save_derivational_connections(rows: List[Dict], fieldnames: List[str]):
+def save_derivational_connections(
+    rows: list[dict[str, Any]], fieldnames: list[str]
+) -> None:
     save_csv_artifact(DERIVATIONAL_CONNECTIONS_PATH, fieldnames, rows)
 
 
-def load_derivational_connections() -> List[Dict]:
+def load_derivational_connections() -> list[dict[str, Any]]:
     if not os.path.exists(DERIVATIONAL_CONNECTIONS_PATH):
         return []
     with open(DERIVATIONAL_CONNECTIONS_PATH, "r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def save_open_forms(open_forms_map: Dict):
+def save_open_forms(open_forms_map: dict[str, Any]) -> None:
     os.makedirs(os.path.dirname(OPEN_FORMS_PATH), exist_ok=True)
     with open(OPEN_FORMS_PATH, "w", encoding="utf-8") as f:
         json.dump(open_forms_map, f, indent=4, sort_keys=True, cls=EnhancedJSONEncoder)
 
 
-def load_open_forms() -> Dict:
+def load_open_forms() -> dict[str, Any]:
     if not os.path.exists(OPEN_FORMS_PATH):
         return {}
     with open(OPEN_FORMS_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
-def save_csv_artifact(path: str, fieldnames: List[str], rows: List[Dict]):
+def save_csv_artifact(
+    path: str, fieldnames: list[str], rows: list[dict[str, Any]]
+) -> None:
     """Saves a list of dictionaries to a CSV artifact, ensuring the directory exists."""
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8", newline="") as f:

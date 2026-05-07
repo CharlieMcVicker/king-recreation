@@ -1,7 +1,7 @@
 import io
 import json
 from csv import DictReader, DictWriter
-from typing import List, Union
+from typing import Any
 
 from king_recreation.paths import (
     CHEROKEE_NATION_DICTIONARY_PATH,
@@ -18,7 +18,11 @@ from king_recreation.tone.utils import (
 )
 
 
-def load_data():
+def load_data() -> (
+    tuple[
+        list[ReconstructableVerb], dict[str, dict[str, str]], dict[int, dict[str, str]]
+    ]
+):
     """Load the necessary data for tone analysis."""
     with open(RECONSTRUCTABLE_VERBS_PATH, "r") as f:
         reconstructable_verbs_raw = json.load(f)
@@ -26,7 +30,9 @@ def load_data():
 
     with open(CORPUS_TO_CND_PATH, "r") as f:
         reader = DictReader(f)
-        corpus_id_to_entries = {int(r["corpus_id"]): r for r in reader}
+        corpus_id_to_entries: dict[int, dict[str, str]] = {
+            int(r["corpus_id"]): r for r in reader
+        }
 
     with open(CHEROKEE_NATION_DICTIONARY_PATH, "r") as f:
         content = f.read()
@@ -34,7 +40,9 @@ def load_data():
             content = content[1:]
         reader = DictReader(io.StringIO(content))
         # Entry No. is the primary key used in corpus_to_cnd mapping
-        cnd_corpus = {r.get("Entry No.", "").strip(): r for r in reader}
+        cnd_corpus: dict[str, dict[str, str]] = {
+            r.get("Entry No.", "").strip(): r for r in reader
+        }
 
     return verbs, cnd_corpus, corpus_id_to_entries
 
@@ -72,15 +80,18 @@ def is_eligible(verb: ReconstructableVerb) -> bool:
 
 
 def get_stem_tones(
-    verb: ReconstructableVerb, form_name: str, cnd_corpus, corpus_id_to_entries
-):
+    verb: ReconstructableVerb,
+    form_name: str,
+    cnd_corpus: dict[str, dict[str, str]],
+    corpus_id_to_entries: dict[int, dict[str, str]],
+) -> str | None:
     segmented = verb.segmented_forms.get(form_name)
     if not segmented:
         return None
 
     # Access each form and the tones on it in the parsed format from utils
-    # tone_sequence is a List[Union[Vowel, Consonant]]
-    tone_sequence: List[Union[Vowel, Consonant]] = get_tone_sequence_for_form(
+    # tone_sequence is a list[Vowel | Consonant]
+    tone_sequence: list[Vowel | Consonant] = get_tone_sequence_for_form(
         verb, form_name, cnd_corpus, corpus_id_to_entries
     )
 
@@ -111,7 +122,11 @@ FORMS = [
 ]
 
 
-def write_elligible_verbs(verbs, cnd_corpus, corpus_id_to_entries):
+def write_elligible_verbs(
+    verbs: list[ReconstructableVerb],
+    cnd_corpus: dict[str, dict[str, str]],
+    corpus_id_to_entries: dict[int, dict[str, str]],
+) -> list[tuple[ReconstructableVerb, dict[str, Any]]]:
 
     eligible_count = 0
 

@@ -12,7 +12,7 @@ from king_recreation.paths import (
 )
 
 
-def load_cnd_corpus() -> Dict[str, Dict[str, str]]:
+def load_cnd_corpus() -> dict[str, dict[str, str]]:
     if not os.path.exists(CHEROKEE_NATION_DICTIONARY_PATH):
         return {}
     with open(CHEROKEE_NATION_DICTIONARY_PATH, "r", encoding="utf-8") as f:

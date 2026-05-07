@@ -55,7 +55,7 @@ def dedupe_roots(
 
         # 3. Sort candidates to pick one deterministically
         # Priority: con > aspirated > s_stem > others
-        def get_stem_priority(v):
+        def get_stem_priority(v: ReconstructableVerb) -> int:
             st = v.original_data.get("stem_type", "")
             if st == "con":
                 return 0

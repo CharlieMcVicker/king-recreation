@@ -8,8 +8,6 @@ from king_recreation.paths import POST_ROOT_MORPHEMES_PATH
 class PostRootMorpheme:
     name: str
     form: str
-    name: str
-    form: str
     classes: list[str]
 
     @staticmethod
@@ -91,7 +89,7 @@ def match_post_root_morphemes(row: dict[str, str]) -> list[dict[str, str]]:
                     else:
                         break
                 else:
-                    match_row[form] = None
+                    match_row[form] = ""
             else:
                 rows.append(match_row)
     return rows
