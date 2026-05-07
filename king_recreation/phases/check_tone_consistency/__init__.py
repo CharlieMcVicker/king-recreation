@@ -19,7 +19,7 @@ from king_recreation.tone.utils import (
 )
 
 
-def check_tone_consistency(interactive=False):
+def check_tone_consistency(interactive: bool = False) -> None:
     """
     Check tone consistency for reconstructed verbs against the Cherokee Nation Dictionary.
 

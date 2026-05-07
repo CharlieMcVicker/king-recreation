@@ -1,5 +1,4 @@
 from enum import Enum
-from typing import List, Optional, Tuple
 
 from king_recreation.h_alternation import grades_are_compatible
 from king_recreation.metathesis import demetathesize_h, metathesize_h
@@ -13,7 +12,7 @@ class Constraint(Enum):
     PRE_S = "pre_s"
     PRE_C_NO_S = "pre_c_no_s"
 
-    def matches(self, root: str):
+    def matches(self, root: str) -> bool:
         if self == Constraint.NONE or len(root) == 0:
             return True
         elif self == Constraint.PRE_S:
@@ -43,7 +42,7 @@ class MiddleVoice(Enum):
     AL_ALI = "al_ali"
     # ALH_ALI = "alh_ali"
 
-    def try_strip_form(self, form: str):
+    def try_strip_form(self, form: str) -> str | None:
         """
         messy bad, no good h alt checking
         """
@@ -58,8 +57,8 @@ class MiddleVoice(Enum):
             return None
 
     def try_strip(
-        self, h_grade: str, g_grade: Optional[str], allow_metathesis: bool
-    ) -> Optional[Tuple[str, Optional[str]]]:
+        self, h_grade: str, g_grade: str | None, allow_metathesis: bool
+    ) -> tuple[str, str | None] | None:
         if self == MiddleVoice.NONE:
             return h_grade, g_grade
 
@@ -92,7 +91,7 @@ class MiddleVoice(Enum):
         else:
             return None
 
-    def apply(self, stem: str, is_glottal_grade: bool, allow_metathesis: bool):
+    def apply(self, stem: str, is_glottal_grade: bool, allow_metathesis: bool) -> str:
         if self == MiddleVoice.NONE:
             return stem
 
@@ -108,10 +107,10 @@ class MiddleVoice(Enum):
                 h_grade, stem = metathesize_h(h_grade, stem)
             return h_grade + "-" + stem
 
-    def get_form(self):
+    def get_form(self) -> tuple[str, str, Constraint]:
         return MiddleVoice.form_maps()[self]
 
-    def metathesizing_form(self):
+    def metathesizing_form(self) -> bool:
         META_FORMS = [
             MiddleVoice.ALI,
             MiddleVoice.AT,
@@ -119,7 +118,7 @@ class MiddleVoice(Enum):
         return self in META_FORMS
 
     @staticmethod
-    def form_maps():
+    def form_maps() -> dict["MiddleVoice", tuple[str, str, Constraint]]:
         return {
             MiddleVoice.NONE: ("", "", Constraint.NONE),
             MiddleVoice.AT: ("at", "at", Constraint.PRE_V),
@@ -137,8 +136,8 @@ class MiddleVoice(Enum):
 
     @staticmethod
     def identify_middle_voice(
-        h_grade: str, g_grade: Optional[str], log=False
-    ) -> List[Tuple["MiddleVoice", Tuple[str, Optional[str], bool]]]:
+        h_grade: str, g_grade: str | None, log: bool = False
+    ) -> list[tuple["MiddleVoice", tuple[str, str | None], bool]]:
         possibilities = []
         for voice in MiddleVoice:
             for allow_meta in [False, True] if voice.metathesizing_form() else [False]:

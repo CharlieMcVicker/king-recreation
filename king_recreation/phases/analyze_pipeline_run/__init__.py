@@ -2,7 +2,7 @@ import argparse
 import os
 import re
 from collections import Counter, defaultdict
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 import pandas as pd
 
@@ -42,8 +42,8 @@ from king_recreation.phases.select_canonical_derivations.artifacts import (
 
 
 def _prepare_filtered_matches(
-    matches: List[Dict[str, Any]], validated_matches_path: str
-) -> Dict[tuple, Dict[str, Any]]:
+    matches: list[dict[str, Any]], validated_matches_path: str
+) -> dict[tuple, dict[str, Any]]:
     filtered_matches = {}
     for row in matches:
         verb = row["definition"]
@@ -70,8 +70,8 @@ def _prepare_filtered_matches(
 
 
 def _analyze_class_matches(
-    filtered_matches: Dict[tuple, Dict[str, Any]], pattern_registry: PatternRegistry
-) -> List[Dict[str, Any]]:
+    filtered_matches: dict[tuple, dict[str, Any]], pattern_registry: PatternRegistry
+) -> list[dict[str, Any]]:
     class_counts = defaultdict(lambda: defaultdict(int))
     for row in filtered_matches.values():
         class_counts[row["class"].split("[")[0]][row["scope"]] += 1
@@ -89,8 +89,8 @@ def _analyze_class_matches(
 
 
 def _analyze_verb_coverage(
-    filtered_matches: Dict[tuple, Dict[str, Any]], all_verbs: set
-) -> Dict[str, Any]:
+    filtered_matches: dict[tuple, dict[str, Any]], all_verbs: set
+) -> dict[str, Any]:
     total_verb_count = len(all_verbs)
     coverage_summary = {}
 
@@ -130,10 +130,10 @@ def _analyze_verb_coverage(
 
 
 def _get_unmatched_verbs(
-    filtered_matches: Dict[tuple, Dict[str, Any]],
+    filtered_matches: dict[tuple, dict[str, Any]],
     all_verbs: set,
-    corpus: List[Dict[str, Any]],
-) -> List[Dict[str, Any]]:
+    corpus: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
     verb_forms_map = {row["corpus_id"]: row for row in corpus}
     form_fields = [
         "definition",
@@ -158,7 +158,7 @@ def _get_unmatched_verbs(
     return unmatched_data
 
 
-def _analyze_root_ambiguity() -> List[Dict[str, Any]]:
+def _analyze_root_ambiguity() -> list[dict[str, Any]]:
     reconstructable_verbs = load_reconstructable_verbs()
     if reconstructable_verbs is None:
         return []
@@ -186,7 +186,7 @@ def _analyze_root_ambiguity() -> List[Dict[str, Any]]:
     return root_ambiguity_data
 
 
-def _analyze_macro_variants(pattern_registry: PatternRegistry) -> Dict[str, Any]:
+def _analyze_macro_variants(pattern_registry: PatternRegistry) -> dict[str, Any]:
     reconstructable_verbs = load_reconstructable_verbs()
     if reconstructable_verbs is None:
         return {}
@@ -266,7 +266,7 @@ def _analyze_macro_variants(pattern_registry: PatternRegistry) -> Dict[str, Any]
     return analysis
 
 
-def _identify_dead_variants(macro_variant_data: Dict[str, Any]) -> List[Dict[str, Any]]:
+def _identify_dead_variants(macro_variant_data: dict[str, Any]) -> list[dict[str, Any]]:
     """
     Summarizes which variants of which macros are never used across the entire corpus.
     """
@@ -286,7 +286,7 @@ def _identify_dead_variants(macro_variant_data: Dict[str, Any]) -> List[Dict[str
     return dead_variants
 
 
-def _save_variant_match_csv(macro_variant_data: Dict[str, Any]) -> None:
+def _save_variant_match_csv(macro_variant_data: dict[str, Any]) -> None:
     flattened_data = []
     for macro_name, data in macro_variant_data.items():
         if "variant_stats" in data:
@@ -317,7 +317,7 @@ def _save_variant_match_csv(macro_variant_data: Dict[str, Any]) -> None:
     )
 
 
-def _save_variation_match_csv(macro_variant_data: Dict[str, Any]) -> None:
+def _save_variation_match_csv(macro_variant_data: dict[str, Any]) -> None:
     flattened_data = []
     for macro_name, data in macro_variant_data.items():
         if data.get("can_have_variants", False) and "slots" in data:
@@ -361,7 +361,7 @@ def _save_variation_match_csv(macro_variant_data: Dict[str, Any]) -> None:
     )
 
 
-def _analyze_ending_profiles(profiles_path: str):
+def _analyze_ending_profiles(profiles_path: str) -> None:
     """
     Analyzes the distribution of surface sequences and their match percentages.
     """
@@ -399,7 +399,7 @@ def _analyze_ending_profiles(profiles_path: str):
     #     print(f"  {str(interval):<15}: {count} sequences")
 
 
-def _analyze_roots_by_macro(registry: PatternRegistry):
+def _analyze_roots_by_macro(registry: PatternRegistry) -> None:
     data = load_reconstructable_verbs()
     if data is None:
         return
@@ -452,7 +452,7 @@ def _analyze_roots_by_macro(registry: PatternRegistry):
     )
 
 
-def _analyze_verb_status():
+def _analyze_verb_status() -> None:
     corpus_data = load_corpus()
     no_asp_ids = set(row.get("corpus_id", None) for row in load_corpus_no_asp())
     no_pre_ids = set(row.get("corpus_id", None) for row in load_corpus_no_pre())
@@ -481,7 +481,7 @@ def _analyze_verb_status():
     )
 
 
-def analyze_pipeline_run(classes_path: Optional[str] = None):
+def analyze_pipeline_run(classes_path: str | None = None) -> None:
     """
     Analyze the results of the pipeline and generate summary statistics.
 

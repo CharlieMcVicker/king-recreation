@@ -1,6 +1,5 @@
 import csv
 from dataclasses import dataclass
-from typing import Dict, List, Set
 
 from king_recreation.paths import POST_ROOT_MORPHEMES_PATH
 
@@ -9,10 +8,12 @@ from king_recreation.paths import POST_ROOT_MORPHEMES_PATH
 class PostRootMorpheme:
     name: str
     form: str
-    classes: List[str]
+    name: str
+    form: str
+    classes: list[str]
 
     @staticmethod
-    def from_row(row):
+    def from_row(row: dict[str, str]) -> "PostRootMorpheme":
         return PostRootMorpheme(
             name=f'{row["name"]}[{row["subcase"]}]' if row["subcase"] else row["name"],
             form=row["form"],
@@ -20,7 +21,7 @@ class PostRootMorpheme:
         )
 
 
-def load_post_root_morphemes():
+def load_post_root_morphemes() -> list[PostRootMorpheme]:
     # Load Morphemes
     morphemes = []
     with open(POST_ROOT_MORPHEMES_PATH, "r", encoding="utf-8") as f:
@@ -32,12 +33,14 @@ def load_post_root_morphemes():
 
 
 class PostRootMorphemeRegistry:
-    _instance = None
+    _instance: "PostRootMorphemeRegistry | None" = None
 
-    def __init__(self):
-        self.morphemes: List[PostRootMorpheme] = load_post_root_morphemes()
-        self.morphemes_by_name = {m.name: m for m in self.morphemes}
-        self.class_map = self.create_class_map()
+    def __init__(self) -> None:
+        self.morphemes: list[PostRootMorpheme] = load_post_root_morphemes()
+        self.morphemes_by_name: dict[str, PostRootMorpheme] = {
+            m.name: m for m in self.morphemes
+        }
+        self.class_map: dict[str, set[str]] = self.create_class_map()
 
     @classmethod
     def get_instance(cls) -> "PostRootMorphemeRegistry":
@@ -45,8 +48,8 @@ class PostRootMorphemeRegistry:
             cls._instance = cls()
         return cls._instance
 
-    def create_class_map(self):
-        class_map: Dict[str, Set[str]] = {}
+    def create_class_map(self) -> dict[str, set[str]]:
+        class_map: dict[str, set[str]] = {}
         for prm in self.morphemes:
             for verb_class in prm.classes:
                 if verb_class not in class_map:
@@ -55,7 +58,7 @@ class PostRootMorphemeRegistry:
         return class_map
 
 
-def match_post_root_morphemes(row: dict[str, str]) -> List[dict[str, str]]:
+def match_post_root_morphemes(row: dict[str, str]) -> list[dict[str, str]]:
     reg = PostRootMorphemeRegistry.get_instance()
     rows = [row]
     forms = [

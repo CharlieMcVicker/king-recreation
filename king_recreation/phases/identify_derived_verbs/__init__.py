@@ -1,6 +1,5 @@
 import re
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Tuple
 
 from king_recreation.morphemes.prefixes.pronominals import MiddleVoice, StemType
 from king_recreation.morphology_types import Aspect
@@ -23,10 +22,10 @@ from king_recreation.utils import to_dict
 
 
 def group_verbs_by_root(
-    verbs: List[ReconstructableVerb], root_id_overrides: Optional[Dict[str, str]] = None
-) -> Dict[Tuple[str, str, str], Dict]:
+    verbs: list[ReconstructableVerb], root_id_overrides: dict[str, str] | None = None
+) -> dict[tuple[str, str, str], dict]:
     """Groups ReconstructableVerb objects by (root_id, class, stem_type)."""
-    root_groups: Dict[Tuple[str, str, str], Dict] = {}
+    root_groups: dict[tuple[str, str, str], dict] = {}
     root_id_overrides = root_id_overrides or {}
 
     for verb in verbs:
@@ -81,13 +80,13 @@ class DerivedVerbConnection:
     to_stem: str
 
     @classmethod
-    def from_dict(cls, data):
+    def from_dict(cls, data: dict) -> "DerivedVerbConnection":
         return cls(**data)
 
 
 def identify_derived_verbs(
-    classes_path: str = None,
-):
+    classes_path: str | None = None,
+) -> None:
     """
     Identify which validated verbs appear to be derived from other verbs.
 
@@ -125,8 +124,8 @@ def identify_derived_verbs(
 
     engine = ReconstructionEngine(classes_path)
 
-    # Map of (stem) -> List of root group info
-    open_forms_map: Dict[str, List[Dict]] = {}
+    # Map of (stem) -> list of root group info
+    open_forms_map: dict[str, list[dict]] = {}
 
     for key, group in root_groups.items():
         if group["class"].startswith("stative"):
@@ -174,7 +173,7 @@ def identify_derived_verbs(
 
             sample_verb.class_name = original_class
 
-    connections: List[DerivedVerbConnection] = []
+    connections: list[DerivedVerbConnection] = []
     for key, group in root_groups.items():
         # Check against h_grade root
         root = group["h_grade"]

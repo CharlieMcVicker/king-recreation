@@ -34,7 +34,7 @@ def _is_compatible_with_vowel_restoration(restored: str, syncopated: str) -> boo
     j = 0
     quality_shift = False
     skipped = False
-    skipped_idx = None
+    skipped_idx = -1
     while i < len(restored) and j < len(syncopated):
         if restored[i] == syncopated[j]:
             i += 1
@@ -80,11 +80,11 @@ def _is_compatible_with_vowel_restoration(restored: str, syncopated: str) -> boo
     return True
 
 
-def _drop_h_in_deaffricated_lateral(h_grade: str):
+def _drop_h_in_deaffricated_lateral(h_grade: str) -> str:
     return h_grade.replace("lh", "tl", 1)
 
 
-def possible_alternates(h_form: str, fix_clusters=True) -> list[str]:
+def possible_alternates(h_form: str, fix_clusters: bool = True) -> list[str]:
     WAYS_TO_DROP = [
         lambda x: x,
         _drop_h_in_deaffricated_lateral,

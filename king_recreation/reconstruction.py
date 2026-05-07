@@ -3,7 +3,6 @@ import json
 import re
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import List, Optional, Tuple
 
 from king_recreation.h_alternation import possible_alternates, prevent_C_glottal_cluster
 from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
@@ -38,13 +37,13 @@ def desegment(s: str) -> str:
 class ReconstructableVerb:
     definition: str
     h_grade_root: str
-    glottal_grade_root: Optional[str]
-    post_root_morpheme: Optional[str]
+    glottal_grade_root: str | None
+    post_root_morpheme: str | None
     class_name: str
     config: PrefixConfig
-    corpus_id: Optional[int] = None
-    entry_no: Optional[int] = None
-    derivations: List["ReconstructableVerb"] = field(default_factory=list)
+    corpus_id: int | None = None
+    entry_no: int | None = None
+    derivations: list["ReconstructableVerb"] = field(default_factory=list)
     original_data: dict = field(
         default_factory=dict, repr=False, hash=False, compare=False
     )
@@ -80,7 +79,7 @@ class EnhancedJSONEncoder(json.JSONEncoder):
 
 
 class ReconstructionEngine:
-    def __init__(self, classes_path: Optional[str]):
+    def __init__(self, classes_path: str | None) -> None:
         registry = PatternRegistry.get_instance()
         registry.load_from_csv(classes_path)
         # Create the name -> pattern map for class lookups
@@ -91,9 +90,9 @@ class ReconstructionEngine:
     def generate_pronominal_forms(
         self,
         stem: str,
-        key: Tuple[Person, Number, PronominalSet],
+        key: tuple[Person, Number, PronominalSet],
         config: PronominalConfig,
-    ) -> List[str]:
+    ) -> list[str]:
         prefix = get_prefix_details(key, config)
 
         stems_to_try = [(stem, False)]
@@ -107,7 +106,7 @@ class ReconstructionEngine:
 
     def root_for_form(
         self, verb: ReconstructableVerb, glottal_grade: bool
-    ) -> Optional[str]:
+    ) -> str | None:
         # Determine Grade
         # Default: h-grade
         root = verb.glottal_grade_root if glottal_grade else verb.h_grade_root
@@ -132,7 +131,7 @@ class ReconstructionEngine:
 
     def get_base_stems_for_form(
         self, verb: ReconstructableVerb, aspect: Aspect, glottal_grade: bool
-    ):
+    ) -> list[str] | None:
         class_info = self.classes.get(verb.class_name)
         if not class_info:
             return []
@@ -168,7 +167,7 @@ class ReconstructionEngine:
         else:
             return [root + "-" + literal_ending]
 
-    def reconstruct_spec(self, verb: ReconstructableVerb, spec: WordSpec) -> List[str]:
+    def reconstruct_spec(self, verb: ReconstructableVerb, spec: WordSpec) -> list[str]:
         # 1. Get the base stems (stem + aspect suffix)
         stems = self.get_base_stems_for_form(
             verb,

@@ -4,10 +4,12 @@ import json
 import time
 from enum import Enum
 from functools import partial, wraps
-from typing import Callable, Dict
+from typing import Any, Callable
 
 
-def _default_encoder(o, dict_modification: Callable[[Dict], None] = None):
+def _default_encoder(
+    o: Any, dict_modification: Callable[[dict], None] | None = None
+) -> Any:
     if isinstance(o, Enum):
         return o.value
 
@@ -24,7 +26,7 @@ def _default_encoder(o, dict_modification: Callable[[Dict], None] = None):
     raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
 
 
-def to_dict(o, dict_modification: Callable[[Dict], None] = None):
+def to_dict(o: Any, dict_modification: Callable[[dict], None] | None = None) -> Any:
     try:
         converted = _default_encoder(o, dict_modification)
     except TypeError:
@@ -38,7 +40,7 @@ def to_dict(o, dict_modification: Callable[[Dict], None] = None):
 
 
 def EnhancedJSONEncoderFactory(
-    dict_modification: Callable[[Dict], None] = None,
+    dict_modification: Callable[[dict], None] | None = None,
 ) -> type[json.JSONEncoder]:
 
     class EnhancedJSONEncoder(json.JSONEncoder):

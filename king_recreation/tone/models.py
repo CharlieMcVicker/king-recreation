@@ -1,6 +1,5 @@
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import List, Optional, Union
 
 from king_recreation.phonology_data import VOWEL_SET
 from king_recreation.tone.utils import TONE_VALUE_TO_ENUM, Consonant, Vowel, VowelTone
@@ -14,7 +13,7 @@ class MorphemeBoundary:
 
 def tone_sequence_from_corpus_form(
     s: str,
-) -> List[Union[Consonant, Vowel, MorphemeBoundary]]:
+) -> list[Consonant | Vowel | MorphemeBoundary]:
     if not s:
         return []
 
@@ -58,7 +57,7 @@ class LocalHighTone(Enum):
     TWO_PREV = 1
     PREV = 2
 
-    def advance(self):
+    def advance(self) -> "LocalHighTone":
         """
         Move forward in syllables, and update local hightone counter
         """
@@ -120,9 +119,9 @@ class H1Config:
 class HistoricalVowel:
     quality: str
     length: bool  # True for long, False for short
-    glottal_position: Union[GlottalPosition, None] = None
+    glottal_position: GlottalPosition | None = None
     h2: bool = False
-    derived_env: Optional["Environment"] = field(default=None, compare=False)
+    derived_env: Environment | None = field(default=None, compare=False)
 
     def __str__(self):
         v = self.quality * (2 if self.length else 1)
@@ -135,7 +134,7 @@ class HistoricalVowel:
 
 @dataclass(frozen=True)
 class LexedForm:
-    tokens: List[Union[HistoricalVowel, Consonant, MorphemeBoundary]]
+    tokens: list[HistoricalVowel | Consonant | MorphemeBoundary]
 
     def __str__(self):
         res = []

@@ -9,8 +9,11 @@ import seaborn as sns
 
 
 def _plot_class_distribution(
-    df, value_vars: list[str], output_prefix: str, sort_by: str = None
-):
+    df: pd.DataFrame,
+    value_vars: list[str],
+    output_prefix: str,
+    sort_by: str | None = None,
+) -> None:
     # Filter for existing columns to avoid errors if some are missing
     value_vars = [v for v in value_vars if v in df.columns]
 
@@ -58,7 +61,7 @@ def _plot_class_distribution(
         create_plot(df_filtered, "Filtered")
 
 
-def plot_class_distribution(csv_path, output_prefix):
+def plot_class_distribution(csv_path: str, output_prefix: str) -> None:
     """Generates a bar chart showing verbs matched by each class."""
     if not os.path.exists(csv_path):
         print(f"Warning: {csv_path} not found. Skipping class distribution plot.")
@@ -86,7 +89,7 @@ def plot_class_distribution(csv_path, output_prefix):
         )
 
 
-def plot_verb_coverage(json_path, output_path):
+def plot_verb_coverage(json_path: str, output_path: str) -> None:
     """Generates a figure with two subplots: Match Counts and Coverage %."""
     if not os.path.exists(json_path):
         print(f"Warning: {json_path} not found. Skipping verb coverage plot.")
@@ -167,7 +170,7 @@ def plot_verb_coverage(json_path, output_path):
     plt.close()
 
 
-def plot_near_miss_heatmap(csv_path, output_prefix):
+def plot_near_miss_heatmap(csv_path: str, output_prefix: str) -> None:
     """Generates a heatmap of pass rates for stem-final checks."""
     if not os.path.exists(csv_path):
         print(f"Warning: {csv_path} not found. Skipping near-miss heatmap.")
@@ -216,7 +219,7 @@ def plot_near_miss_heatmap(csv_path, output_prefix):
         create_heatmap(df, filter_zeros)
 
 
-def plot_root_ambiguity_histogram(csv_path, output_path):
+def plot_root_ambiguity_histogram(csv_path: str, output_path: str) -> None:
     """Generates a histogram of root ambiguity counts."""
     if not os.path.exists(csv_path):
         print(f"Warning: {csv_path} not found. Skipping root ambiguity histogram.")
@@ -259,7 +262,7 @@ def plot_root_ambiguity_histogram(csv_path, output_path):
     plt.close()
 
 
-def plot_class_match_histogram(csv_path, output_path):
+def plot_class_match_histogram(csv_path: str, output_path: str) -> None:
     """Generates a histogram showing distribution of class sizes (by match count)."""
     if not os.path.exists(csv_path):
         print(f"Warning: {csv_path} not found. Skipping class match histogram.")
@@ -326,7 +329,7 @@ def plot_class_match_histogram(csv_path, output_path):
     plt.close()
 
 
-def plot_macro_variants(json_path, output_dir):
+def plot_macro_variants(json_path: str, output_dir: str) -> None:
     """Generates a bar chart for each macro class showing variant frequency."""
     if not os.path.exists(json_path):
         print(f"Warning: {json_path} not found. Skipping macro variant plots.")
@@ -381,7 +384,7 @@ def plot_macro_variants(json_path, output_dir):
         plt.close()
 
 
-def plot_variant_match_histograms(csv_path, output_dir):
+def plot_variant_match_histograms(csv_path: str, output_dir: str) -> None:
     """Generates histograms for variant match statistics."""
     if not os.path.exists(csv_path):
         print(f"Warning: {csv_path} not found. Skipping variant match histograms.")
@@ -449,7 +452,7 @@ def plot_variant_match_histograms(csv_path, output_dir):
     plt.close()
 
 
-def plot_variation_match_histograms(csv_path, output_dir):
+def plot_variation_match_histograms(csv_path: str, output_dir: str) -> None:
     """Generates histograms for variation match statistics."""
     if not os.path.exists(csv_path):
         print(f"Warning: {csv_path} not found. Skipping variation match histograms.")
@@ -519,7 +522,7 @@ def plot_variation_match_histograms(csv_path, output_dir):
     plt.close()
 
 
-def plot_class_sequence_counts(csv_path, output_path):
+def plot_class_sequence_counts(csv_path: str, output_path: str) -> None:
     """Generates a histogram of how many unique surface sequences each class has."""
     if not os.path.exists(csv_path):
         print(f"Warning: {csv_path} not found. Skipping class sequence counts plot.")
@@ -551,7 +554,7 @@ def plot_class_sequence_counts(csv_path, output_path):
     plt.close()
 
 
-def plot_sequence_match_percentage(csv_path, output_path):
+def plot_sequence_match_percentage(csv_path: str, output_path: str) -> None:
     """Generates a histogram of what percentage of a class's matches each sequence makes up."""
     if not os.path.exists(csv_path):
         print(
@@ -598,7 +601,7 @@ from king_recreation.phases.visualize_analysis.artifacts import (
 )
 
 
-def visualize_all():
+def visualize_all() -> None:
     """
     Generate visualizations of data from pipeline runs.
 

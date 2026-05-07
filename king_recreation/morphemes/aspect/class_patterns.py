@@ -1,6 +1,5 @@
 import itertools
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Tuple
 
 from king_recreation.h_alternation import (
     possible_alternates,
@@ -25,10 +24,12 @@ class ExpandedClassPattern:
     imperative: str
     infinitive: str
 
-    preconditions: Tuple[str, ...] = field(default_factory=tuple)
+    preconditions: tuple[str, ...] = field(default_factory=tuple)
 
     # Store original row just in case we need extra fields later without breaking changes
-    _original_data: Dict[str, str] = field(default=None, hash=False, compare=False)
+    _original_data: dict[str, str] | None = field(
+        default=None, hash=False, compare=False
+    )
 
     def macro_name(self):
         return self._original_data.get("class", self.name)
@@ -118,7 +119,7 @@ class ExpandedClassPattern:
 
         return form_val.endswith(literal_suffix)
 
-    def strip_form(self, aspect: Aspect, form_val: str) -> Optional[str]:
+    def strip_form(self, aspect: Aspect, form_val: str) -> str | None:
         """
         Strip the aspect suffix for a given aspect from a surface form value.
 
@@ -177,18 +178,18 @@ class ClassMacro:
 
     parent_name: str
     name: str
-    present: List[str]
-    imperfective: List[str]
-    perfective: List[str]
-    imperative: List[str]
-    infinitive: List[str]
+    present: list[str]
+    imperfective: list[str]
+    perfective: list[str]
+    imperative: list[str]
+    infinitive: list[str]
 
-    preconditions: List[str]
+    preconditions: list[str]
 
-    _original_data: Dict[str, str] = field(default_factory=dict)
+    _original_data: dict[str, str] = field(default_factory=dict)
 
     @staticmethod
-    def from_row(row: Dict[str, str]) -> "ClassMacro":
+    def from_row(row: dict[str, str]) -> "ClassMacro":
         parent_name = row.get("class", "")
         subname = row.get("subclass", "")
         if subname:
@@ -196,7 +197,7 @@ class ClassMacro:
         else:
             name = parent_name
 
-        def parse_field(field_name):
+        def parse_field(field_name: str) -> list[str]:
             val = row.get(field_name, "")
             return [v.strip() for v in val.split(";")]
 
@@ -212,7 +213,7 @@ class ClassMacro:
             _original_data=row,
         )
 
-    def expand(self) -> List[ExpandedClassPattern]:
+    def expand(self) -> list[ExpandedClassPattern]:
         shorthands = {
             "present": "pres",
             "imperfective": "imperf",
@@ -261,6 +262,18 @@ class ClassMacro:
             if suffixes:
                 expanded_data["name"] = f"{self.name}[{'-'.join(suffixes)}]"
 
-            expanded_patterns.append(ExpandedClassPattern(**expanded_data))
+            expanded_patterns.append(
+                ExpandedClassPattern(
+                    parent_name=expanded_data["parent_name"],
+                    name=expanded_data["name"],
+                    preconditions=expanded_data["preconditions"],
+                    _original_data=expanded_data["_original_data"],
+                    present=expanded_data["present"],
+                    imperfective=expanded_data["imperfective"],
+                    perfective=expanded_data["perfective"],
+                    imperative=expanded_data["imperative"],
+                    infinitive=expanded_data["infinitive"],
+                )
+            )
 
         return expanded_patterns

@@ -2,7 +2,6 @@ import csv
 import os
 import re
 from collections import defaultdict
-from typing import Dict, List, Optional
 
 from king_recreation.h_alternation import (
     possible_alternates,
@@ -18,19 +17,22 @@ CLASSES_PATH = "data/classes.csv"
 
 
 class PatternRegistry:
-    _instance = None
+    _instance: "PatternRegistry | None" = None
 
-    def __init__(self):
-        self.macros: List[ClassMacro] = []
-        self.macros_order = {}
-        self.macros_by_parent = defaultdict(list)
-        self.expanded_patterns: List[ExpandedClassPattern] = []
-        # Map[form_type, Map[ending_string, List[ExpandedClassPattern]]]
-        self.lookup_maps: Dict[str, Dict[str, List[ExpandedClassPattern]]] = (
+    def __init__(self) -> None:
+        self.macros: list[ClassMacro] = []
+        self.macros_order: dict[str, int] = {}
+        self.macros_by_parent: dict[str, list[ClassMacro]] = defaultdict(list)
+        self.expanded_patterns: list[ExpandedClassPattern] = []
+        # Map[form_type, Map[ending_string, list[ExpandedClassPattern]]]
+        self.lookup_maps: dict[str, dict[str, list[ExpandedClassPattern]]] = (
             defaultdict(lambda: defaultdict(list))
         )
+        self.lookup_maps_alternated: dict[
+            str, dict[str, list[ExpandedClassPattern]]
+        ] = defaultdict(lambda: defaultdict(list))
         # Keep track of all valid ending lengths to optimize substring checks
-        self.valid_ending_lengths: Dict[str, set] = defaultdict(set)
+        self.valid_ending_lengths: dict[str, set[int]] = defaultdict(set)
 
     @classmethod
     def get_instance(cls) -> "PatternRegistry":
@@ -38,7 +40,7 @@ class PatternRegistry:
             cls._instance = cls()
         return cls._instance
 
-    def macro_key(self, macro_name):
+    def macro_key(self, macro_name: str) -> tuple[int]:
         return (self.macros_order.get(macro_name, 999),)
 
     def key_for_pattern_name(self, pattern_name: str) -> tuple:
@@ -63,7 +65,7 @@ class PatternRegistry:
     def key_for_pattern(self, cls_pattern: ExpandedClassPattern) -> tuple:
         return self.key_for_pattern_name(cls_pattern.name)
 
-    def load_from_csv(self, path: Optional[str] = None):
+    def load_from_csv(self, path: str | None = None) -> None:
         if not path:
             path = CLASSES_PATH
         if not os.path.exists(path):
@@ -115,7 +117,7 @@ class PatternRegistry:
 
     def get_candidates(
         self, verb_form: str, form_type: str, allow_suffix_alternation: bool = False
-    ) -> List[ExpandedClassPattern]:
+    ) -> list[ExpandedClassPattern]:
         """
         Returns all patterns that match the ending of the verb_form for the given form_type.
         """
@@ -173,7 +175,7 @@ class PatternRegistry:
         return candidates
 
     def get_candidates_combined(
-        self, forms: List[tuple[str, Aspect, bool]]
+        self, forms: list[tuple[str, Aspect, bool]]
     ) -> set[ExpandedClassPattern]:
         """
         Get initial candidates by intersecting matches from available forms.
@@ -183,7 +185,7 @@ class PatternRegistry:
             return set()
 
         # Intersect matches for all provided forms
-        candidate_set: Optional[set[ExpandedClassPattern]] = None
+        candidate_set: set[ExpandedClassPattern] | None = None
 
         for surface_form, aspect, allow_alt in forms:
             if not surface_form:

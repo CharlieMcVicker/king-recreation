@@ -1,6 +1,5 @@
 import json
 from dataclasses import asdict, dataclass
-from typing import Dict, List, Optional, Tuple
 
 from king_recreation.dictionary_forms import FORM_NAME_TO_ASPECT, build_wordspec
 from king_recreation.h_alternation import grades_are_compatible
@@ -29,11 +28,11 @@ from king_recreation.phases.preprocess_ced.artifacts import load_corpus
 class PrefixDerivation:
     config: PrefixConfig
     h_grade: str
-    g_grade: Optional[str]
-    stems: Dict[str, str]  # form_name -> stripped_stem (pronominal base)
+    g_grade: str | None
+    stems: dict[str, str]  # form_name -> stripped_stem (pronominal base)
     metathesis_involved: bool = False
 
-    def to_row(self):
+    def to_row(self) -> dict[str, str]:
         row = {}
 
         for fn, stem in self.stems.items():
@@ -69,8 +68,8 @@ def is_strict_compatible(s1: str, s2: str) -> bool:
 
 
 def strip_prepronominals(
-    forms: Dict[str, str], config: PrePronominalConfig, stative: bool
-) -> Optional[Dict[str, str]]:
+    forms: dict[str, str], config: PrePronominalConfig, stative: bool
+) -> dict[str, str] | None:
     stripped = {}
     for fn, word in forms.items():
         current = word
@@ -133,11 +132,11 @@ def strip_prepronominals(
 
 
 def derive_pronominals(
-    intermediate_forms: Dict[str, str],
+    intermediate_forms: dict[str, str],
     pron_config: PronominalConfig,
     stative: bool,
-    log=False,
-) -> Optional[PrefixDerivation]:
+    log: bool = False,
+) -> PrefixDerivation | None:
     if log:
         print("\n\nDerivation begins\n" + json.dumps(pron_config.to_row(), indent=2))
     derived_stems = {}
@@ -177,7 +176,7 @@ def derive_pronominals(
         return None
 
 
-def derive_middle(der: PrefixDerivation) -> List[PrefixDerivation]:
+def derive_middle(der: PrefixDerivation) -> list[PrefixDerivation]:
     der_dict = asdict(der)
     pron_dict = asdict(der.config.pron)
     options = []
@@ -215,8 +214,8 @@ def stems_are_consistent(
     derived_stems: dict[str, str],
     pron_config: PronominalConfig,
     stative: bool,
-    log=False,
-) -> Optional[Tuple[str, str]]:
+    log: bool = False,
+) -> tuple[str, str | None] | None:
     """
     Check if a set of derived stems are consistent.
 
@@ -300,8 +299,11 @@ def iter_pre_configs(forms):
 
 class PrefixDeriver:
     def derive_row(
-        self, row: Dict[str, str], ref: Dict[str, str] = None, log=False
-    ) -> List[PrefixDerivation]:
+        self,
+        row: dict[str, str],
+        ref: dict[str, str] | None = None,
+        log: bool = False,
+    ) -> list[PrefixDerivation]:
         form_names = [
             "present",
             "present_1sg",
@@ -389,7 +391,7 @@ class PrefixDeriver:
         return valid_derivations
 
 
-def identify_prefixes():
+def identify_prefixes() -> None:
     """
     Identify and strip pre-pronominal, pronominal, and middle-voice prefixes.
 

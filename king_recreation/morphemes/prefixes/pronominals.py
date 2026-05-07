@@ -1,7 +1,6 @@
 import re
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Dict, Optional, Tuple
 
 from king_recreation.metathesis import demetathesize_h, metathesize_h
 from king_recreation.morphemes.middle_voice import MiddleVoice
@@ -77,7 +76,7 @@ class PronominalConfig:
     use_3rd_person_object: bool = False  # Use 1->3 and 2->3 forms (imp_type='to_3rd')
 
     @staticmethod
-    def from_row(row: dict[str, str]):
+    def from_row(row: dict[str, str]) -> "PronominalConfig":
         set_type_str = row["set_a_b"].lower()
         set_type = (
             PronominalSet.SET_A
@@ -114,7 +113,7 @@ class PronominalConfig:
             )
         return PronominalConfig(**clean_data)
 
-    def to_row(self):
+    def to_row(self) -> dict[str, str]:
         row = {}
 
         row["set_a_b"] = self.set_type.value
@@ -153,7 +152,7 @@ class ConfiguredPrefix:
 
         return form + "-" + stem
 
-    def detach(self, word: str, allow_h_metathesis: bool) -> Optional[str]:
+    def detach(self, word: str, allow_h_metathesis: bool) -> str | None:
         if self.allow_h_metathesis and allow_h_metathesis:
             return demetathesize_h(self.form, word)
 
@@ -177,7 +176,7 @@ class ConfiguredPrefix:
 
 
 def get_prefix_details(
-    key: Tuple[Person, Number, PronominalSet], config: PronominalConfig
+    key: tuple[Person, Number, PronominalSet], config: PronominalConfig
 ) -> ConfiguredPrefix:
     res = _get_prefix_details(key, config)
     if isinstance(res, PrefixForms):
@@ -192,11 +191,11 @@ def get_prefix_details(
 class PrefixForms:
     consonant: ConfiguredPrefix
     vowel: ConfiguredPrefix
-    vowel_overrides: Dict[str, ConfiguredPrefix] = field(default_factory=dict)
-    aspirated: Optional[ConfiguredPrefix] = None
-    s: Optional[ConfiguredPrefix] = None
-    glottal: Optional[ConfiguredPrefix] = None
-    long_start: Optional[ConfiguredPrefix] = None
+    vowel_overrides: dict[str, ConfiguredPrefix] = field(default_factory=dict)
+    aspirated: ConfiguredPrefix | None = None
+    s: ConfiguredPrefix | None = None
+    glottal: ConfiguredPrefix | None = None
+    long_start: ConfiguredPrefix | None = None
 
     def select(self, stem: StemType) -> ConfiguredPrefix:
         if stem == StemType.ASPIRATED:
@@ -224,8 +223,8 @@ class PrefixForms:
 
 
 def _get_prefix_details(
-    key: Tuple[Person, Number, PronominalSet], config: PronominalConfig
-) -> PrefixForms:
+    key: tuple[Person, Number, PronominalSet], config: PronominalConfig
+) -> "PrefixForms | ConfiguredPrefix":
     person, number, p_set = key
 
     if p_set == PronominalSet.SET_B:
@@ -366,8 +365,8 @@ def _get_prefix_details(
 
 
 def detach_prefix(
-    word: str, key: Tuple[Person, Number, PronominalSet], config: PronominalConfig
-):
+    word: str, key: tuple[Person, Number, PronominalSet], config: PronominalConfig
+) -> tuple[str | None, bool]:
     prefix = get_prefix_details(key, config)
 
     stem = prefix.detach(word, config.allow_h_metathesis)

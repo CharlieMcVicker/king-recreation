@@ -1,5 +1,4 @@
 import json
-from typing import List
 
 from king_recreation.dictionary_forms import ALL_FORM_NAMES, build_wordspec
 from king_recreation.morphemes.prefixes import PrefixConfig
@@ -22,7 +21,9 @@ from king_recreation.reconstruction import (
 )
 
 
-def reconstruct_and_validate(classes_path=None, allow_drops: bool = False):
+def reconstruct_and_validate(
+    classes_path: str | None = None, allow_drops: bool = False
+) -> None:
     """
     Reconstruct verbs from derived roots and validate against the original corpus.
 
@@ -103,8 +104,8 @@ def reconstruct_and_validate(classes_path=None, allow_drops: bool = False):
     success_count = 0
     failures = []
     report_data = []
-    validated_verbs: List[ReconstructableVerb] = []
-    validated_rows: List[dict] = []
+    validated_verbs: list[ReconstructableVerb] = []
+    validated_rows: list[dict] = []
 
     for verb in reconstructable_verbs:
         # Reconstruct all forms for this verb (dictionary-aware iteration)
@@ -175,7 +176,7 @@ def reconstruct_and_validate(classes_path=None, allow_drops: bool = False):
             )
 
             # Check if this matches a user selected row
-            def get_identity_key(r):
+            def get_identity_key(r: dict) -> tuple:
                 return (
                     str(r.get("corpus_id", "")),
                     r.get("class", ""),
@@ -271,7 +272,7 @@ def reconstruct_and_validate(classes_path=None, allow_drops: bool = False):
     # Save Validated Roots CSV
     if validated_rows:
         # Verify all user selections were preserved
-        def get_identity_key_simple(r):
+        def get_identity_key_simple(r: dict) -> tuple:
             return (
                 str(r.get("corpus_id", "")),
                 r.get("class", ""),

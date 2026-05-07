@@ -39,7 +39,7 @@ def apply_patches(data: list[dict], corrections: list[dict]) -> list[dict]:
     return data
 
 
-def respell_consonants(s):
+def respell_consonants(s: str) -> str:
     # Rewrite rules for aspiration marking
     # Order matters: t->th before d->t, k->kh before g->k
     # Exception: ts should stay ts (not become ths)
@@ -70,7 +70,7 @@ def respell_consonants(s):
     return s
 
 
-def clean_string(s):
+def clean_string(s: str) -> str:
     if not s or s == "-----":
         return ""
     # Remove tones [1234], glottal stops [?], periods [.], and apostrophes ['’] (which are glottal stops in new source)
@@ -79,7 +79,7 @@ def clean_string(s):
     return respell_consonants(s)
 
 
-def clean_row(row):
+def clean_row(row: dict[str, str]) -> dict[str, str]:
     definition = row.get("definition", "").strip()
 
     present = clean_string(row.get("3rd present", ""))
@@ -128,7 +128,7 @@ def clean_row(row):
     }
 
 
-def create_corpus_from_cn_dict():
+def create_corpus_from_cn_dict() -> None:
     """
     Create a corpus CSV with one row per lexical item.
 
@@ -321,7 +321,7 @@ def create_corpus_from_cn_dict():
     save_mapping(mapping_data, mapping_fieldnames)
 
 
-def process_ced():
+def process_ced() -> None:
     processed_data = []
     rows = read_original_ced()
 

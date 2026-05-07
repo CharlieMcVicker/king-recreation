@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import List
 
 from king_recreation.morphology_types import Aspect
 
@@ -12,7 +11,7 @@ class PrePronominalConfig:
     distributive: bool = False
 
     @staticmethod
-    def from_row(row: dict[str, str]):
+    def from_row(row: dict[str, str]) -> "PrePronominalConfig":
         return PrePronominalConfig(
             translocutive=row["translocutive"] == "True",
             translocutiveImpOnly=row["translocutive_imp_only"] == "True",
@@ -37,7 +36,7 @@ class PrePronominalConfig:
 
 def apply_prepronominal(
     word: str, config: PrePronominalConfig, aspect: Aspect, stative: bool
-) -> List[str]:
+) -> list[str]:
     current_forms = [word]
 
     if config.distributive:
@@ -66,17 +65,17 @@ def apply_prepronominal(
     return current_forms
 
 
-def get_translocutive_forms(aspect: Aspect) -> List[str]:
+def get_translocutive_forms(aspect: Aspect) -> list[str]:
     return ["wi", "w"]
 
 
-def get_partitive_forms(aspect: Aspect) -> List[str]:
+def get_partitive_forms(aspect: Aspect) -> list[str]:
     if aspect == Aspect.INFINITIVE:
         return ["iy", "i", ">ø"]
     return ["ni", "n"]
 
 
-def get_distributive_forms(aspect: Aspect, stative: bool) -> List[str]:
+def get_distributive_forms(aspect: Aspect, stative: bool) -> list[str]:
     if aspect == Aspect.INFINITIVE or (aspect == Aspect.IMPERATIVE and not stative):
         return ["ts", "ti", "t"]
     return ["te", "t"]

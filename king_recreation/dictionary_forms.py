@@ -9,7 +9,6 @@ Morphological-core modules should import from word_spec directly.
 """
 
 import logging
-from typing import Dict
 
 from king_recreation.morphemes.prefixes.pronominals import PronominalConfig
 from king_recreation.word_spec import (
@@ -23,7 +22,7 @@ from king_recreation.word_spec import (
 )
 
 # Dictionary column name -> morphological Aspect
-FORM_NAME_TO_ASPECT: Dict[str, Aspect] = {
+FORM_NAME_TO_ASPECT: dict[str, Aspect] = {
     "present": Aspect.PRESENT,
     "present_1sg": Aspect.PRESENT,
     "imperfective": Aspect.IMPERFECTIVE,
@@ -33,7 +32,7 @@ FORM_NAME_TO_ASPECT: Dict[str, Aspect] = {
 }
 
 # Dictionary column name -> grammatical person
-FORM_NAME_TO_PERSON: Dict[str, Person] = {
+FORM_NAME_TO_PERSON: dict[str, Person] = {
     "present": Person.THIRD,
     "imperfective": Person.THIRD,
     "perfective": Person.THIRD,

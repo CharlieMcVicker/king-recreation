@@ -1,7 +1,6 @@
 import dataclasses
 import json
 from collections import defaultdict
-from typing import List
 
 from king_recreation.dictionary_forms import build_wordspec
 from king_recreation.morphemes.prefixes import PrefixConfig
@@ -26,7 +25,9 @@ EnhancedJSONEncoder = EnhancedJSONEncoderFactory(
 )
 
 
-def dedupe_roots(validated_verbs: list[ReconstructableVerb]):
+def dedupe_roots(
+    validated_verbs: list[ReconstructableVerb],
+) -> tuple[list[ReconstructableVerb], list[ReconstructableVerb], list[dict]]:
     roots_by_corpus_id: dict[str, list[ReconstructableVerb]] = {}
     for verb in validated_verbs:
         c_id = verb.corpus_id
@@ -125,7 +126,7 @@ def dedupe_roots(validated_verbs: list[ReconstructableVerb]):
     return deduped_roots, dropped, snapshot_data
 
 
-def enrich_glottal_grades(verbs: List[ReconstructableVerb]):
+def enrich_glottal_grades(verbs: list[ReconstructableVerb]) -> None:
     """
     If an h_grade_root has exactly one attested glottal_grade_root across all
     verbs, apply that glottal_grade_root to any verbs sharing the same
@@ -152,7 +153,7 @@ def enrich_glottal_grades(verbs: List[ReconstructableVerb]):
         print(f"[INFO] Enriched {enriched_count} verbs with inferred glottal grades.")
 
 
-def select_canonical_derivations():
+def select_canonical_derivations() -> None:
     """
     Select canonical derivations to represent verbs going forward. It is at this
     step that all over-generation is reduced and a single canonical derivation

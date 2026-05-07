@@ -1,7 +1,6 @@
 import unicodedata
 from dataclasses import dataclass
 from enum import Enum
-from typing import List, Union
 
 from king_recreation.phases.preprocess_ced import respell_consonants
 from king_recreation.phonology_data import VOWEL_SET
@@ -28,7 +27,7 @@ class VowelTone(Enum):
     s = "4"
 
     @staticmethod
-    def from_mark_and_length(mark: str, long: bool):
+    def from_mark_and_length(mark: str | None, long: bool) -> "VowelTone":
         mapping = {
             ACUTE: (VowelTone.h, VowelTone.hh),
             GRAVE: (VowelTone.l, VowelTone.lf),
@@ -68,15 +67,15 @@ def split_diacritics(raw: str) -> str:
     return unicodedata.normalize("NFD", raw)
 
 
-def safe_get(l, idx):
+def safe_get(l: list, idx: int):
     if idx < len(l):
         return l[idx]
     else:
         return None
 
 
-def read_tone_sequence(raw: str) -> List[Union[Vowel, Consonant]]:
-    raw = list(c for c in raw)
+def read_tone_sequence(raw_str: str) -> list[Vowel | Consonant]:
+    raw = list(c for c in raw_str)
     seq = []
     idx = 0
     while idx < len(raw):
@@ -109,8 +108,8 @@ def read_tone_sequence(raw: str) -> List[Union[Vowel, Consonant]]:
 
 
 def get_tone_sequence_for_form(
-    verb, form_name, cnd_corpus, corpus_id_to_entries
-) -> List[Vowel]:
+    verb, form_name: str, cnd_corpus: dict, corpus_id_to_entries: dict
+) -> list[Vowel | Consonant]:
     entry_map = corpus_id_to_entries.get(verb.corpus_id)
     if not entry_map:
         return []
@@ -136,7 +135,9 @@ def get_tone_sequence_for_form(
     return read_tone_sequence(tone_raw)
 
 
-def apply_tone_to_segmentation(segmented: str, tone_seq: List[Vowel]) -> str:
+def apply_tone_to_segmentation(
+    segmented: str, tone_seq: list[Vowel | Consonant]
+) -> str:
     # Preprocess segmented form to remove dropped phones (markers like >a, i@, v*)
     segmented = drop_dropped_phones(segmented)
 

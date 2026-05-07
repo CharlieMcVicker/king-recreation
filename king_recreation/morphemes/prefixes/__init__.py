@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import Dict
 
 from king_recreation.morphemes.prefixes.prepronominals import (
     PrePronominalConfig,
@@ -16,7 +15,7 @@ class PrefixConfig:
     stative: bool
 
     @staticmethod
-    def from_row(stem_row: Dict[str, str]) -> "VerbConfig":
+    def from_row(stem_row: dict[str, str]) -> "PrefixConfig":
         pre_config = PrePronominalConfig.from_row(stem_row)
         pron_config = PronominalConfig.from_row(stem_row)
 
@@ -24,16 +23,16 @@ class PrefixConfig:
             pre=pre_config, pron=pron_config, stative=stem_row["stative"] == "True"
         )
 
-    def to_row(self):
+    def to_row(self) -> dict[str, str]:
         return {"stative": str(self.stative), **self.pre.to_row(), **self.pron.to_row()}
 
     @staticmethod
-    def from_dict(data: dict) -> "VerbConfig":
+    def from_dict(data: dict) -> "PrefixConfig":
         return PrefixConfig(
             pre=PrePronominalConfig.from_dict(data.get("pre", {})),
             pron=PronominalConfig.from_dict(data.get("pron", {})),
             stative=(data.get("stative", "") == "True"),
         )
 
-    def apply_prepronominals(self, base: str, aspect: Aspect):
+    def apply_prepronominals(self, base: str, aspect: Aspect) -> list[str]:
         return apply_prepronominal(base, self.pre, aspect, self.stative)

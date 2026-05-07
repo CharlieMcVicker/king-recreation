@@ -1,5 +1,4 @@
 from collections import defaultdict
-from typing import List
 
 from king_recreation.dictionary_forms import ALL_FORM_NAMES, get_form_spec
 from king_recreation.morphemes.aspect.class_patterns import ExpandedClassPattern
@@ -44,7 +43,7 @@ def group_matches_by_macro(
     registry: PatternRegistry,
     candidate_patterns: set[ExpandedClassPattern],
     verb: dict[str, str],
-):
+) -> list[dict[str, str]]:
     forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
     present_verb_forms = [f for f in forms if verb.get(f)]
 
@@ -103,7 +102,9 @@ def group_matches_by_macro(
     return matches
 
 
-def get_matches_for_verb(verb, registry: PatternRegistry):
+def get_matches_for_verb(
+    verb: dict[str, str], registry: PatternRegistry
+) -> list[dict[str, str]]:
     # 1. Prepare form tuples for candidate lookup
     form_tuples = []
     for fn in ALL_FORM_NAMES:
@@ -126,7 +127,7 @@ def get_matches_for_verb(verb, registry: PatternRegistry):
     return matches
 
 
-def identify_aspect_classes(classes_path=None):
+def identify_aspect_classes(classes_path: str | None = None) -> None:
     """
     Identify aspect classes for all verbs in a corpus.
 
@@ -155,7 +156,7 @@ def identify_aspect_classes(classes_path=None):
     corpus_rows = load_corpus()
 
     matches_data = []
-    stripped_corpus_data: List[StrippedVerbRow] = []
+    stripped_corpus_data: list[StrippedVerbRow] = []
 
     for verb in corpus_rows:
         matches = get_matches_for_verb(verb, registry)

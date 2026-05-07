@@ -1,5 +1,4 @@
 from dataclasses import dataclass
-from typing import Optional, Tuple
 
 from king_recreation.morphemes.prefixes.pronominals import PronominalConfig
 from king_recreation.morphology_types import Aspect, Number, Person, PronominalSet
@@ -35,7 +34,7 @@ class WordSpec:
 
 def calculate_pronominal_key(
     aspect: Aspect, person: Person, config: PronominalConfig, stative: bool
-) -> Optional[Tuple[Person, Number, PronominalSet]]:
+) -> tuple[Person, Number, PronominalSet] | None:
     """
     Determines the pronominal set components based on grammatical features.
     """

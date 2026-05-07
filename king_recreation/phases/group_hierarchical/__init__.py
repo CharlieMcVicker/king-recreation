@@ -1,7 +1,7 @@
 import base64
 from collections import defaultdict
 from dataclasses import dataclass, field
-from typing import Any, DefaultDict, Dict, List, Optional, Tuple
+from typing import Any, DefaultDict
 
 from king_recreation.phases.group_hierarchical.artifacts import (
     load_derivational_connections,
@@ -21,33 +21,33 @@ EnhancedJSONEncoder = EnhancedJSONEncoderFactory(lambda d: d.pop("user_selected"
 @dataclass
 class RootClassNode:
     class_name: str
-    verbs: List[ReconstructableVerb] = field(default_factory=list)
+    verbs: list[ReconstructableVerb] = field(default_factory=list)
 
 
 @dataclass
 class RootNode:
     h_grade_root: str
-    glottal_grade_root: Optional[str]
+    glottal_grade_root: str | None
     slug: str
-    classes: List[RootClassNode] = field(default_factory=list)
+    classes: list[RootClassNode] = field(default_factory=list)
 
 
-def get_root_slug(h_grade: str, g_grade: Optional[str]) -> str:
+def get_root_slug(h_grade: str, g_grade: str | None) -> str:
     key = f"{h_grade}|{g_grade or ''}"
     utf8_bytes = key.encode("utf-8")
     return base64.urlsafe_b64encode(utf8_bytes).decode("utf-8").replace("=", "")
 
 
-def parse_ids(id_str: str) -> List[int]:
+def parse_ids(id_str: str) -> list[int]:
     if not id_str:
         return []
     return [int(x.strip()) for x in id_str.split(";") if x.strip().isdigit()]
 
 
-def load_all_data() -> Tuple[
-    List[ReconstructableVerb],
-    List[Dict[str, str]],
-    Dict[str, str],
+def load_all_data() -> tuple[
+    list[ReconstructableVerb],
+    list[dict[str, str]],
+    dict[str, str],
 ]:
     all_verbs = load_raw_reconstructable_verbs()
     derivational_connections = load_derivational_connections()
@@ -61,8 +61,8 @@ def load_all_data() -> Tuple[
 
 
 def build_verb_index(
-    all_verbs: List[ReconstructableVerb],
-) -> Dict[int, ReconstructableVerb]:
+    all_verbs: list[ReconstructableVerb],
+) -> dict[int, ReconstructableVerb]:
     verbs_by_id = {}
     for v in all_verbs:
         if v.corpus_id is not None:
@@ -71,9 +71,9 @@ def build_verb_index(
 
 
 def build_connection_graphs(
-    derivational_connections: List[Dict[str, str]],
-    verbs_by_id: Dict[int, ReconstructableVerb],
-) -> Tuple[Dict[int, int], DefaultDict[int, List[Dict[str, Any]]]]:
+    derivational_connections: list[dict[str, str]],
+    verbs_by_id: dict[int, ReconstructableVerb],
+) -> tuple[dict[int, int], DefaultDict[int, list[dict[str, Any]]]]:
     parent_map = {}
     children_map = defaultdict(list)
 
@@ -109,8 +109,8 @@ def build_connection_graphs(
 
 
 def identify_top_level_nodes(
-    all_verbs: List[ReconstructableVerb], parent_map: Dict[int, int]
-) -> List[int]:
+    all_verbs: list[ReconstructableVerb], parent_map: dict[int, int]
+) -> list[int]:
     top_level_ids = []
     for verb in all_verbs:
         cid = verb.corpus_id
@@ -122,8 +122,8 @@ def identify_top_level_nodes(
 
 def build_tree_node(
     verb_id: int,
-    verbs_by_id: Dict[int, ReconstructableVerb],
-    children_map: DefaultDict[int, List[Dict[str, Any]]],
+    verbs_by_id: dict[int, ReconstructableVerb],
+    children_map: DefaultDict[int, list[dict[str, Any]]],
 ) -> ReconstructableVerb:
     verb = verbs_by_id[verb_id]
 
@@ -139,9 +139,9 @@ def build_tree_node(
 
 
 def sync_root_ids(
-    all_verbs: List[ReconstructableVerb],
-    overrides: Dict[str, str],
-) -> Tuple[Dict[int, str], Dict[str, str]]:
+    all_verbs: list[ReconstructableVerb],
+    overrides: dict[str, str],
+) -> tuple[dict[int, str], dict[str, str]]:
 
     # 1. Parse existing root_ids.csv to find user overrides
     # NOTE: overrides are now passed in via load_root_ids_map from utils
@@ -226,13 +226,13 @@ def sync_root_ids(
 
 
 def group_roots_final(
-    top_level_ids: List[int],
-    all_verbs: List[ReconstructableVerb],
-    verbs_by_id: Dict[int, ReconstructableVerb],
-    children_map: DefaultDict[int, List[Dict[str, Any]]],
-    verb_to_root_id: Dict[int, str],
-    synthetic_to_root_id: Dict[str, str],
-) -> DefaultDict[str, Dict[str, Any]]:
+    top_level_ids: list[int],
+    all_verbs: list[ReconstructableVerb],
+    verbs_by_id: dict[int, ReconstructableVerb],
+    children_map: DefaultDict[int, list[dict[str, Any]]],
+    verb_to_root_id: dict[int, str],
+    synthetic_to_root_id: dict[str, str],
+) -> DefaultDict[str, dict[str, Any]]:
     # dict[str, {"classes": dict[str,list]}]
     root_groups = defaultdict(lambda: {"classes": defaultdict(list)})
 
@@ -264,12 +264,12 @@ def group_roots_final(
 
 
 def build_final_hierarchy(
-    root_groups: Dict[str, Any],
-) -> List[RootNode]:
+    root_groups: dict[str, Any],
+) -> list[RootNode]:
 
     # helper to format a single root node
     def format_node(
-        key: Tuple[str, str], override_root_id: Optional[str] = None
+        key: tuple[str, str], override_root_id: str | None = None
     ) -> RootNode:
         h, g = key
         # Use root_id for grouping if provided, otherwise reconstruct it
