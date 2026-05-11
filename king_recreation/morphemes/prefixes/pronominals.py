@@ -25,10 +25,10 @@ class StemType(Enum):
             # we can't know the suffix used here
             return True
         if self == StemType.ASPIRATED:
-            # begins with consonant sequence then s
-            return re.match("^[^aeiouvhs]+h", stem)
+            # begins with consonant sequence then h
+            return bool(re.match("^[^aeiouvhs]+h", stem))
         elif self == StemType.CONSONANT:
-            return re.match("^[^aeiouvs']", stem)
+            return bool(re.match("^[^aeiouvs']", stem))
         elif self == StemType.LONG_START:
             return stem.startswith(":")
         elif self == StemType.S_STEM:

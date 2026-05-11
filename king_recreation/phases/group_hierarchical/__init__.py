@@ -1,7 +1,7 @@
 import base64
 from collections import defaultdict
 from dataclasses import dataclass, field
-from typing import Any
+from typing import Any, cast
 
 from king_recreation.phases.group_hierarchical.artifacts import (
     load_derivational_connections,
@@ -15,7 +15,12 @@ from king_recreation.phases.select_canonical_derivations.artifacts import (
 from king_recreation.reconstruction import ReconstructableVerb
 from king_recreation.utils import EnhancedJSONEncoderFactory
 
-EnhancedJSONEncoder = EnhancedJSONEncoderFactory(lambda d: d.pop("user_selected", None))
+
+def _remove_user_selected(d: dict[str, Any]) -> None:
+    d.pop("user_selected", None)
+
+
+EnhancedJSONEncoder = EnhancedJSONEncoderFactory(_remove_user_selected)
 
 
 @dataclass
@@ -234,17 +239,21 @@ def group_roots_final(
     synthetic_to_root_id: dict[str, str],
 ) -> defaultdict[str, dict[str, Any]]:
     # dict[str, {"classes": dict[str,list]}]
-    root_groups = defaultdict(lambda: {"classes": defaultdict(list)})
+    root_groups: defaultdict[str, dict[str, Any]] = defaultdict(
+        lambda: {"classes": defaultdict(list), "h": "", "g": ""}
+    )
 
     for vid in top_level_ids:
         verb = verbs_by_id[vid]
         root_id = verb_to_root_id.get(vid)
+        if root_id is None:
+            continue
         h = verb.h_grade_root
         g = verb.glottal_grade_root
         cls = verb.class_name
         tree_node = build_tree_node(vid, verbs_by_id, children_map)
 
-        if "h" not in root_groups[root_id]:
+        if not root_groups[root_id].get("h"):
             root_groups[root_id]["h"] = h
             root_groups[root_id]["g"] = g or ""
         root_groups[root_id]["classes"][cls].append(tree_node)
@@ -252,10 +261,12 @@ def group_roots_final(
     for i, verb in enumerate(all_verbs):
         if verb.corpus_id is None:
             root_id = synthetic_to_root_id.get(f"synthetic-{i}")
+            if root_id is None:
+                continue
             h = verb.h_grade_root
             g = verb.glottal_grade_root
             cls = verb.class_name
-            if "h" not in root_groups[root_id]:
+            if not root_groups[root_id].get("h"):
                 root_groups[root_id]["h"] = h
                 root_groups[root_id]["g"] = g or ""
             root_groups[root_id]["classes"][cls].append(verb)
@@ -281,13 +292,15 @@ def build_final_hierarchy(
             data = {"classes": {}, "h": h, "g": g}
 
         classes_list = []
-        for cls_name, verbs in data["classes"].items():
+        classes_dict = cast(dict[str, list[Any]], data["classes"])
+        for cls_name, verbs in classes_dict.items():
             classes_list.append(RootClassNode(class_name=cls_name, verbs=verbs))
         classes_list.sort(key=lambda x: x.class_name)
 
+        data_dict = cast(dict[str, Any], data)
         node = RootNode(
-            h_grade_root=data["h"],
-            glottal_grade_root=data["g"],
+            h_grade_root=data_dict["h"],
+            glottal_grade_root=data_dict["g"],
             slug=get_root_slug_from_id(root_id),
             classes=classes_list,
         )

@@ -22,7 +22,7 @@ def load_existing_validated_roots() -> list[dict[str, Any]]:
     user_selected_rows = []
     with open(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
-        if "user_selected" in reader.fieldnames:
+        if reader.fieldnames and "user_selected" in reader.fieldnames:
             for row in reader:
                 if row.get("user_selected") == "x":
                     user_selected_rows.append(row)

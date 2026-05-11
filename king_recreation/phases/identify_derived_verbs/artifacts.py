@@ -48,7 +48,7 @@ def load_existing_approvals_data(key_fields: list[str]) -> dict[tuple[Any, ...],
     return approvals
 
 
-def save_root_mapping(root_groups: dict[str, Any]) -> None:
+def save_root_mapping(root_groups: dict[Any, dict[str, Any]]) -> None:
     """Saves the root-to-class mapping to a CSV file."""
     mapping_rows = []
     for key in sorted(root_groups.keys()):

@@ -1,4 +1,5 @@
 import os
+from typing import Any, cast
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -105,7 +106,7 @@ def main():
     groups = df.groupby(["class", "form"])
 
     count = 0
-    for (cls_name, form_name), group in groups:
+    for (cls_name, form_name), group in cast(Any, groups):
         if group.empty:
             continue
 

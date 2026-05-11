@@ -106,7 +106,7 @@ def reconstruct_and_validate(
     failures = []
     report_data = []
     validated_verbs: list[ReconstructableVerb] = []
-    validated_rows: list[dict] = []
+    validated_rows: list[dict[str, Any]] = []
 
     for verb in reconstructable_verbs:
         # Reconstruct all forms for this verb (dictionary-aware iteration)
@@ -151,7 +151,7 @@ def reconstruct_and_validate(
             failed_forms = ["Generation Failed"]
         else:
             for fn in forms:
-                ref_word = ref.get(fn)
+                ref_word = ref.get(fn) if ref else None
                 if not ref_word:
                     continue
                 if ref_word not in desegmented_forms.get(fn, set()):
@@ -177,28 +177,46 @@ def reconstruct_and_validate(
             )
 
             # Check if this matches a user selected row
-            def get_identity_key(r: dict[str, Any]) -> tuple[Any, ...]:
+            def get_identity_key(r: dict[str, Any]) -> tuple[str, ...]:
+                def normalize_bool(v: Any) -> str:
+                    if (
+                        v is None
+                        or v == ""
+                        or v is False
+                        or v == "False"
+                        or v == "None"
+                    ):
+                        return "False"
+                    if v is True or v == "True" or v == "x":
+                        return "True"
+                    return str(v)
+
+                def normalize_str(v: Any) -> str:
+                    if v is None:
+                        return ""
+                    return str(v)
+
                 return (
-                    str(r.get("corpus_id", "")),
-                    r.get("class", ""),
-                    r.get("h_grade", ""),
-                    r.get("g_grade", ""),
-                    r.get("post_root_morpheme", "") or "",
+                    normalize_str(r.get("corpus_id")),
+                    normalize_str(r.get("class")),
+                    normalize_str(r.get("h_grade")),
+                    normalize_str(r.get("g_grade")),
+                    normalize_str(r.get("post_root_morpheme")),
                     # Add all configuration fields to be specific
-                    r.get("metathesis_involved", ""),
-                    r.get("set_a_b", ""),
-                    r.get("stem_type", ""),
-                    r.get("allow_h_metathesis", ""),
-                    r.get("middle_voice", ""),
-                    r.get("ka_variant", ""),
-                    r.get("aki_1st", ""),
-                    r.get("uwa_v", ""),
-                    r.get("3rd_person_object", ""),
-                    r.get("translocutive", ""),
-                    r.get("translocutive_imp_only", ""),
-                    r.get("partitive", ""),
-                    r.get("distributive", ""),
-                    r.get("distributive_fut_prog", ""),
+                    normalize_bool(r.get("metathesis_involved")),
+                    normalize_str(r.get("set_a_b")),
+                    normalize_str(r.get("stem_type")),
+                    normalize_bool(r.get("allow_h_metathesis")),
+                    normalize_str(r.get("middle_voice")),
+                    normalize_bool(r.get("ka_variant")),
+                    normalize_bool(r.get("aki_1st")),
+                    normalize_bool(r.get("uwa_v")),
+                    normalize_bool(r.get("3rd_person_object")),
+                    normalize_bool(r.get("translocutive")),
+                    normalize_bool(r.get("translocutive_imp_only")),
+                    normalize_bool(r.get("partitive")),
+                    normalize_bool(r.get("distributive")),
+                    normalize_bool(r.get("distributive_fut_prog")),
                 )
 
             current_key = get_identity_key(verb.original_data)
@@ -273,28 +291,40 @@ def reconstruct_and_validate(
     # Save Validated Roots CSV
     if validated_rows:
         # Verify all user selections were preserved
-        def get_identity_key_simple(r: dict[str, Any]) -> tuple[Any, ...]:
+        def get_identity_key_simple(r: dict[str, Any]) -> tuple[str, ...]:
+            def normalize_bool(v: Any) -> str:
+                if v is None or v == "" or v is False or v == "False" or v == "None":
+                    return "False"
+                if v is True or v == "True" or v == "x":
+                    return "True"
+                return str(v)
+
+            def normalize_str(v: Any) -> str:
+                if v is None:
+                    return ""
+                return str(v)
+
             return (
-                str(r.get("corpus_id", "")),
-                r.get("class", ""),
-                r.get("h_grade", ""),
-                r.get("g_grade", ""),
-                r.get("post_root_morpheme", "") or "",
+                normalize_str(r.get("corpus_id")),
+                normalize_str(r.get("class")),
+                normalize_str(r.get("h_grade")),
+                normalize_str(r.get("g_grade")),
+                normalize_str(r.get("post_root_morpheme")),
                 # Add all configuration fields to be specific
-                r.get("metathesis_involved", ""),
-                r.get("set_a_b", ""),
-                r.get("stem_type", ""),
-                r.get("allow_h_metathesis", ""),
-                r.get("middle_voice", ""),
-                r.get("ka_variant", ""),
-                r.get("aki_1st", ""),
-                r.get("uwa_v", ""),
-                r.get("3rd_person_object", ""),
-                r.get("translocutive", ""),
-                r.get("translocutive_imp_only", ""),
-                r.get("partitive", ""),
-                r.get("distributive", ""),
-                r.get("distributive_fut_prog", ""),
+                normalize_bool(r.get("metathesis_involved")),
+                normalize_str(r.get("set_a_b")),
+                normalize_str(r.get("stem_type")),
+                normalize_bool(r.get("allow_h_metathesis")),
+                normalize_str(r.get("middle_voice")),
+                normalize_bool(r.get("ka_variant")),
+                normalize_bool(r.get("aki_1st")),
+                normalize_bool(r.get("uwa_v")),
+                normalize_bool(r.get("3rd_person_object")),
+                normalize_bool(r.get("translocutive")),
+                normalize_bool(r.get("translocutive_imp_only")),
+                normalize_bool(r.get("partitive")),
+                normalize_bool(r.get("distributive")),
+                normalize_bool(r.get("distributive_fut_prog")),
             )
 
         generated_keys = {get_identity_key_simple(r) for r in validated_rows}

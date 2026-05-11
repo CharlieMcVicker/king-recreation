@@ -1,7 +1,7 @@
 import csv
 import json
 import os
-from typing import Any, Dict, List
+from typing import Any
 
 from king_recreation.paths import (
     DERIVATIONAL_CONNECTIONS_PATH,
@@ -45,7 +45,7 @@ def load_root_ids_overrides() -> dict[str, str]:
     return load_root_ids_map(ROOT_IDS_PATH)
 
 
-def save_root_ids(csv_rows: List[Dict], fieldnames: List[str]):
+def save_root_ids(csv_rows: list[dict[str, Any]], fieldnames: list[str]) -> None:
     os.makedirs(os.path.dirname(ROOT_IDS_PATH), exist_ok=True)
     with open(ROOT_IDS_PATH, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -53,7 +53,7 @@ def save_root_ids(csv_rows: List[Dict], fieldnames: List[str]):
         writer.writerows(csv_rows)
 
 
-def load_root_ids() -> List[Dict]:
+def load_root_ids() -> list[dict[str, Any]]:
     if not os.path.exists(ROOT_IDS_PATH):
         return []
     with open(ROOT_IDS_PATH, "r", encoding="utf-8") as f:

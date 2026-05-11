@@ -564,6 +564,7 @@ def infer_surface_forms(
             # Plain vowel
             env = Environment.from_state(local_high, prev_long, tonicity)
             new_tones = list(surface_tones)
+            next_lh = local_high.advance()
             if new_tones[u_idx] is None:
                 if env == Environment.SPREAD and token.length:
                     new_tones[u_idx] = token.quality + "33"

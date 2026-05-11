@@ -160,7 +160,9 @@ def derive_pronominals(
             metathesis_used == pron_config.allow_h_metathesis
         ):
             return PrefixDerivation(
-                config=PrefixConfig(pre=None, pron=pron_config, stative=stative),
+                config=PrefixConfig(
+                    pre=PrePronominalConfig(), pron=pron_config, stative=stative
+                ),
                 h_grade=h_grade,
                 g_grade=g_grade,
                 stems=derived_stems,
@@ -322,12 +324,13 @@ class PrefixDeriver:
         valid_derivations: list[PrefixDerivation] = []
 
         for pre_config, stative, intermediate in iter_pre_configs(forms):
+            present_form = intermediate.get("present", "")
             set_type = (
                 PronominalSet.SET_B
-                if intermediate["present"].startswith("u")
+                if present_form.startswith("u")
                 else PronominalSet.SET_A
             )
-            ka = intermediate["present"].startswith("k")
+            ka = present_form.startswith("k")
             aki = intermediate.get("present_1sg", "").startswith(
                 "aki"
             ) or intermediate.get("present_1sg", "").startswith("akhi")
@@ -357,7 +360,7 @@ class PrefixDeriver:
                                     allow_h_metathesis=allow_h_metathesis,
                                     plural_pronouns=plural,
                                     use_ka_variant=ka,
-                                    uwa_replaces_v=uwa,
+                                    uwa_replaces_v=bool(uwa),
                                     use_aki_for_1st_set_b=aki,
                                     use_3rd_person_object=use_3rd,
                                 )
@@ -445,4 +448,4 @@ def identify_prefixes() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    identify_prefixes()

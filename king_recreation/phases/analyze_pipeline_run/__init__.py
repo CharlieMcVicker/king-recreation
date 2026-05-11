@@ -131,7 +131,7 @@ def _analyze_verb_coverage(
 
 
 def _get_unmatched_verbs(
-    filtered_matches: dict[tuple, dict[str, Any]],
+    filtered_matches: dict[tuple[Any, ...], dict[str, Any]],
     all_verbs: set[str],
     corpus: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
@@ -588,20 +588,6 @@ if __name__ == "__main__":
     analyze_pipeline_run(args.classes)
 
     if args.visualize:
-        from king_recreation.visualize_analysis import run_all_visualizations
+        from king_recreation.phases.visualize_analysis import visualize_all
 
-        run_all_visualizations()
-
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Analyze match data.")
-    parser.add_argument("--visualize", action="store_true", help="Run visualization.")
-    parser.add_argument("--classes", help="Path to classes CSV file")
-    args = parser.parse_args()
-
-    analyze_pipeline_run(args.classes)
-
-    if args.visualize:
-        from king_recreation.visualize_analysis import run_all_visualizations
-
-        run_all_visualizations()
+        visualize_all()

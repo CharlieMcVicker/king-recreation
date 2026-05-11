@@ -3,7 +3,7 @@ import json
 import re
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any
+from typing import Any, cast
 
 from king_recreation.h_alternation import possible_alternates, prevent_C_glottal_cluster
 from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
@@ -67,13 +67,17 @@ class ReconstructableVerb:
             clean_data["derivations"] = [
                 ReconstructableVerb.from_dict(d) for d in clean_data["derivations"]
             ]
+        if "corpus_id" in clean_data and clean_data["corpus_id"] is not None:
+            clean_data["corpus_id"] = int(clean_data["corpus_id"])
+        if "entry_no" in clean_data and clean_data["entry_no"] is not None:
+            clean_data["entry_no"] = int(clean_data["entry_no"])
         return ReconstructableVerb(**clean_data)
 
 
 class EnhancedJSONEncoder(json.JSONEncoder):
     def default(self, o):
         if dataclasses.is_dataclass(o):
-            return dataclasses.asdict(o)
+            return dataclasses.asdict(cast(Any, o))
         if isinstance(o, Enum):
             return o.value
         return super().default(o)

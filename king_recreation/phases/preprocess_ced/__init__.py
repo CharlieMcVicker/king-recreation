@@ -82,7 +82,7 @@ def clean_string(s: str) -> str:
     return respell_consonants(s)
 
 
-def clean_row(row: dict[str, str]) -> dict[str, str]:
+def clean_row(row: dict[str, str]) -> dict[str, Any]:
     definition = row.get("definition", "").strip()
 
     present = clean_string(row.get("3rd present", ""))

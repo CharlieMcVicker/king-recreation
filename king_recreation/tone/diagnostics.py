@@ -1,5 +1,6 @@
 import os
 from csv import DictReader, DictWriter
+from typing import Any, cast
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -249,9 +250,10 @@ def generate_prediction_charts(overall_perc, form_stats):
         plt.ylim(0, 100)
 
         for i, p in enumerate(ax.patches):
+            p_any = cast(Any, p)
             ax.annotate(
-                f"{p.get_height():.1f}%",
-                (p.get_x() + p.get_width() / 2.0, p.get_height()),
+                f"{p_any.get_height():.1f}%",
+                (p_any.get_x() + p_any.get_width() / 2.0, p_any.get_height()),
                 ha="center",
                 va="center",
                 xytext=(0, 9),

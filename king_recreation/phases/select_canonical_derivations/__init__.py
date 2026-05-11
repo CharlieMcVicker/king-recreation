@@ -1,6 +1,7 @@
 import dataclasses
 import json
 from collections import defaultdict
+from typing import Any
 
 from king_recreation.dictionary_forms import build_wordspec
 from king_recreation.morphemes.prefixes import PrefixConfig
@@ -16,21 +17,24 @@ from king_recreation.phases.select_canonical_derivations.artifacts import (
 from king_recreation.reconstruction import ReconstructableVerb
 from king_recreation.utils import EnhancedJSONEncoderFactory
 
+
 # handle special rule
+def _remove_special_fields(d: dict[str, Any]) -> None:
+    d.pop("original_data", None)
+    d.pop("user_selected", None)
+
+
 EnhancedJSONEncoder = EnhancedJSONEncoderFactory(
-    dict_modification=lambda d: (
-        d.pop("original_data", None),
-        d.pop("user_selected", None),
-    )
+    dict_modification=_remove_special_fields
 )
 
 
 def dedupe_roots(
     validated_verbs: list[ReconstructableVerb],
-) -> tuple[list[ReconstructableVerb], list[ReconstructableVerb], list[dict]]:
-    roots_by_corpus_id: dict[str, list[ReconstructableVerb]] = {}
+) -> tuple[list[ReconstructableVerb], list[ReconstructableVerb], list[dict[str, Any]]]:
+    roots_by_corpus_id: dict[int | str, list[ReconstructableVerb]] = {}
     for verb in validated_verbs:
-        c_id = verb.corpus_id
+        c_id = verb.corpus_id if verb.corpus_id is not None else "synthetic"
         if not c_id in roots_by_corpus_id:
             roots_by_corpus_id[c_id] = [verb]
         else:

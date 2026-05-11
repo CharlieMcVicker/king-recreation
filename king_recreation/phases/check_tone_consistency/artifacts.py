@@ -2,7 +2,7 @@ import csv
 import io
 import json
 import os
-from typing import Any, Dict, List
+from typing import Any
 
 from king_recreation.paths import (
     CHEROKEE_NATION_DICTIONARY_PATH,
@@ -36,7 +36,7 @@ def load_tone_analysis_json() -> Any:
         return json.load(f)
 
 
-def save_tone_analysis_csv(data: List[Dict], fieldnames: List[str]):
+def save_tone_analysis_csv(data: list[dict[str, Any]], fieldnames: list[str]) -> None:
     os.makedirs(os.path.dirname(ENDING_TONE_ANALYSIS_CSV_PATH), exist_ok=True)
     with open(ENDING_TONE_ANALYSIS_CSV_PATH, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -44,14 +44,16 @@ def save_tone_analysis_csv(data: List[Dict], fieldnames: List[str]):
         writer.writerows(data)
 
 
-def load_tone_analysis_csv() -> List[Dict]:
+def load_tone_analysis_csv() -> list[dict[str, Any]]:
     if not os.path.exists(ENDING_TONE_ANALYSIS_CSV_PATH):
         return []
     with open(ENDING_TONE_ANALYSIS_CSV_PATH, "r", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
-def save_class_ending_profiles(data: List[Dict], fieldnames: List[str]):
+def save_class_ending_profiles(
+    data: list[dict[str, Any]], fieldnames: list[str]
+) -> None:
     os.makedirs(os.path.dirname(CLASS_ENDING_PROFILES_CSV_PATH), exist_ok=True)
     with open(CLASS_ENDING_PROFILES_CSV_PATH, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -59,7 +61,7 @@ def save_class_ending_profiles(data: List[Dict], fieldnames: List[str]):
         writer.writerows(data)
 
 
-def load_class_ending_profiles() -> List[Dict]:
+def load_class_ending_profiles() -> list[dict[str, Any]]:
     if not os.path.exists(CLASS_ENDING_PROFILES_CSV_PATH):
         return []
     with open(CLASS_ENDING_PROFILES_CSV_PATH, "r", encoding="utf-8") as f:
