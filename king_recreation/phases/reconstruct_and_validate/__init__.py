@@ -1,7 +1,11 @@
 import json
 from typing import Any
 
-from king_recreation.dictionary_forms import ALL_FORM_NAMES, build_wordspec
+from king_recreation.dictionary_forms import (
+    ALL_FORM_NAMES,
+    DictionaryVerb,
+    build_wordspec,
+)
 from king_recreation.morphemes.prefixes import PrefixConfig
 from king_recreation.morphemes.prefixes.pronominals import use_glottal_grade
 from king_recreation.phases.identify_prefixes.artifacts import load_stripped_roots
@@ -16,7 +20,7 @@ from king_recreation.phases.reconstruct_and_validate.artifacts import (
     save_validated_roots,
 )
 from king_recreation.reconstruction import (
-    ReconstructableVerb,
+    MorphologicalVerb,
     ReconstructionEngine,
     desegment,
 )
@@ -59,7 +63,7 @@ def reconstruct_and_validate(
     corpus = load_corpus()
     full_corpus_map = {row["corpus_id"]: row for row in corpus}
 
-    reconstructable_verbs: list[ReconstructableVerb] = []
+    dictionary_verbs: list[DictionaryVerb] = []
     consistency_analysis = []
     forms = ALL_FORM_NAMES
 
@@ -68,9 +72,6 @@ def reconstruct_and_validate(
         cls_name = stem_row["class"]
 
         config = PrefixConfig.from_row(stem_row)
-
-        # Optional: We could re-verify consistency here, but derive_stems checks it.
-        # We assume if it's in derived_roots, it passed basic consistency.
 
         post_root_morpheme = stem_row["post_root_morpheme"]
         post_root_morpheme = post_root_morpheme if post_root_morpheme else None
@@ -85,35 +86,41 @@ def reconstruct_and_validate(
             if glottal_root == "" and not h_root == "":
                 glottal_root = None
 
-        verb = ReconstructableVerb(
-            definition=definition,
+        morphology = MorphologicalVerb(
             h_grade_root=h_root,
             glottal_grade_root=glottal_root,
             class_name=cls_name,
             post_root_morpheme=post_root_morpheme,
             config=config,
+        )
+
+        verb = DictionaryVerb(
+            definition=definition,
+            morphology=morphology,
             corpus_id=int(stem_row["corpus_id"]) if "corpus_id" in stem_row else None,
             original_data=stem_row,
         )
-        reconstructable_verbs.append(verb)
+        dictionary_verbs.append(verb)
 
     print(
-        f"Found {len(reconstructable_verbs)} reconstructable candidates from derived roots."
+        f"Found {len(dictionary_verbs)} reconstructable candidates from derived roots."
     )
 
     # Validation Phase
     success_count = 0
     failures = []
     report_data = []
-    validated_verbs: list[ReconstructableVerb] = []
+    validated_verbs: list[DictionaryVerb] = []
     validated_rows: list[dict[str, Any]] = []
 
-    for verb in reconstructable_verbs:
+    for verb in dictionary_verbs:
         # Reconstruct all forms for this verb (dictionary-aware iteration)
         form_options = {}
         for fn in forms:
-            spec = build_wordspec(fn, verb.config.pron, verb.config.stative)
-            options = engine.reconstruct_spec(verb, spec)
+            spec = build_wordspec(
+                fn, verb.morphology.config.pron, verb.morphology.config.stative
+            )
+            options = engine.reconstruct_spec(verb.morphology, spec)
             if options:
                 form_options[fn] = options
         generated_sets = (
@@ -238,7 +245,7 @@ def reconstruct_and_validate(
                 {
                     "definition": verb.definition,
                     "failed_forms": failed_forms,
-                    "class": verb.class_name,
+                    "class": verb.morphology.class_name,
                     "corpus_id": verb.corpus_id,
                 }
             )
@@ -248,8 +255,8 @@ def reconstruct_and_validate(
         report_data.append(
             {
                 "definition": verb.definition,
-                "class": verb.class_name,
-                "root": verb.h_grade_root,  # Use h-grade as primary for report
+                "class": verb.morphology.class_name,
+                "root": verb.morphology.h_grade_root,  # Use h-grade as primary for report
                 "success": matches_all,
                 "ambiguous_forms": ";".join(ambiguous_forms),
                 "notes": (
@@ -258,14 +265,14 @@ def reconstruct_and_validate(
             }
         )
 
-    print(f"Validation Success: {success_count}/{len(reconstructable_verbs)}")
+    print(f"Validation Success: {success_count}/{len(dictionary_verbs)}")
 
     # Save Consistency Analysis
     save_consistency_analysis(consistency_analysis)
 
     # Save Matches Validated
     validated_matches_data = []
-    for d, verb in zip(report_data, reconstructable_verbs):
+    for d, verb in zip(report_data, dictionary_verbs):
         if d["success"]:
             validated_matches_data.append(
                 {
@@ -283,7 +290,7 @@ def reconstruct_and_validate(
 
     save_reconstruction_validation(
         {
-            "summary": f"{success_count}/{len(reconstructable_verbs)}",
+            "summary": f"{success_count}/{len(dictionary_verbs)}",
             "failures": failures,
         }
     )

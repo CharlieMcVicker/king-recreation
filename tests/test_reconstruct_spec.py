@@ -1,7 +1,7 @@
 from king_recreation.morphemes.prefixes import PrefixConfig
 from king_recreation.morphemes.prefixes.prepronominals import PrePronominalConfig
 from king_recreation.morphemes.prefixes.pronominals import PronominalConfig, StemType
-from king_recreation.reconstruction import ReconstructableVerb, ReconstructionEngine
+from king_recreation.reconstruction import MorphologicalVerb, ReconstructionEngine
 from king_recreation.word_spec import Aspect, Number, Person, PronominalSet, WordSpec
 
 
@@ -9,9 +9,8 @@ def test_reconstruct_spec():
     # Setup engine
     engine = ReconstructionEngine("data/classes.csv")
 
-    # Create a verb (simplified for testing)
-    verb = ReconstructableVerb(
-        definition="it is happening",
+    # Create a MorphologicalVerb
+    verb = MorphologicalVerb(
         h_grade_root="ni",
         glottal_grade_root="ni",  # Same for this example
         post_root_morpheme=None,

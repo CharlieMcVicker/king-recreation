@@ -2,6 +2,7 @@ import re
 from dataclasses import dataclass
 from typing import Any
 
+from king_recreation.dictionary_forms import DictionaryVerb
 from king_recreation.morphemes.prefixes.pronominals import MiddleVoice, StemType
 from king_recreation.morphology_types import Aspect
 from king_recreation.phases.identify_derived_verbs.artifacts import (
@@ -14,26 +15,24 @@ from king_recreation.phases.identify_derived_verbs.artifacts import (
 from king_recreation.phases.select_canonical_derivations.artifacts import (
     load_reconstructable_verbs,
 )
-from king_recreation.reconstruction import (
-    ReconstructableVerb,
-    ReconstructionEngine,
-    desegment,
-)
+from king_recreation.reconstruction import ReconstructionEngine, desegment
 from king_recreation.utils import to_dict
 
 
 def group_verbs_by_root(
-    verbs: list[ReconstructableVerb], root_id_overrides: dict[str, str] | None = None
+    verbs: list[DictionaryVerb], root_id_overrides: dict[str, str] | None = None
 ) -> dict[tuple[str, str, str], dict[str, Any]]:
-    """Groups ReconstructableVerb objects by (root_id, class, stem_type)."""
+    """Groups DictionaryVerb objects by (root_id, class, stem_type)."""
     root_groups: dict[tuple[str, str, str], dict[str, Any]] = {}
     root_id_overrides = root_id_overrides or {}
 
     for verb in verbs:
-        stem_type = verb.config.pron.stem_type.value
+        stem_type = verb.morphology.config.pron.stem_type.value
 
         # Determine Root ID
-        root_id = f"{verb.h_grade_root}|{verb.glottal_grade_root or ''}"
+        root_id = (
+            f"{verb.morphology.h_grade_root}|{verb.morphology.glottal_grade_root or ''}"
+        )
         if verb.corpus_id is not None:
             cid = str(verb.corpus_id)
             if cid in root_id_overrides:
@@ -44,15 +43,15 @@ def group_verbs_by_root(
 
         key = (
             root_id,
-            verb.class_name,
+            verb.morphology.class_name,
             stem_type,
         )
         if key not in root_groups:
             root_groups[key] = {
                 "root_id": root_id,
-                "h_grade": verb.h_grade_root,
-                "g_grade": verb.glottal_grade_root or "",
-                "class": verb.class_name,
+                "h_grade": verb.morphology.h_grade_root,
+                "g_grade": verb.morphology.glottal_grade_root or "",
+                "class": verb.morphology.class_name,
                 "stem_type": stem_type,
                 "corpus_ids": [],
                 "verbs": [],
@@ -134,14 +133,14 @@ def identify_derived_verbs(
 
         sample_verb = group["verbs"][0]
         for aspect in [Aspect.PERFECTIVE, Aspect.INFINITIVE]:
-            original_class = sample_verb.class_name
+            original_class = sample_verb.morphology.class_name
             optns = [original_class]
             if "[" in original_class:
                 optns.append(re.sub(r"(\[[^\[\]]*\])", "", original_class))
             for class_name in optns:
-                sample_verb.class_name = class_name
+                sample_verb.morphology.class_name = class_name
                 base_stems = engine.get_base_stems_for_form(
-                    sample_verb, aspect, glottal_grade=False
+                    sample_verb.morphology, aspect, glottal_grade=False
                 )
                 if not base_stems:
                     continue
@@ -149,12 +148,16 @@ def identify_derived_verbs(
                 for stem in [
                     desegment(
                         s
-                        if sample_verb.config.pron.middle_voice == MiddleVoice.NONE
+                        if sample_verb.morphology.config.pron.middle_voice
+                        == MiddleVoice.NONE
                         else "-".join(s.split("-")[1:])
                     )
                     for s in base_stems
                 ]:
-                    if sample_verb.config.pron.stem_type == StemType.LONG_START:
+                    if (
+                        sample_verb.morphology.config.pron.stem_type
+                        == StemType.LONG_START
+                    ):
                         stem = ":" + stem
                     if stem not in open_forms_map:
                         open_forms_map[stem] = []
@@ -172,7 +175,7 @@ def identify_derived_verbs(
                         }
                     )
 
-            sample_verb.class_name = original_class
+            sample_verb.morphology.class_name = original_class
 
     connections: list[DerivedVerbConnection] = []
     for key, group in root_groups.items():

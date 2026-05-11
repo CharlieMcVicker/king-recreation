@@ -3,8 +3,8 @@ import json
 import os
 from typing import Any, Dict, List, Optional, Tuple
 
+from king_recreation.dictionary_forms import DictionaryVerb
 from king_recreation.paths import ASPECT_CLASS_MASCOTS_PATH, RECONSTRUCTABLE_VERBS_PATH
-from king_recreation.reconstruction import ReconstructableVerb
 from tex_dictionary.generator import (
     get_cnd_entry,
     load_cnd,
@@ -20,7 +20,7 @@ class MascotResolver:
         self.cnd = load_cnd()
         self.manual_mascots = self._load_manual_mascots()
 
-    def _load_all_verbs(self) -> List[ReconstructableVerb]:
+    def _load_all_verbs(self) -> List[DictionaryVerb]:
         if not os.path.exists(RECONSTRUCTABLE_VERBS_PATH):
             return []
         with open(RECONSTRUCTABLE_VERBS_PATH, "r", encoding="utf-8") as f:
@@ -30,7 +30,7 @@ class MascotResolver:
 
         def collect_verbs(v_list: List[Dict]):
             for item in v_list:
-                verb = ReconstructableVerb.from_dict(item)
+                verb = DictionaryVerb.from_dict(item)
                 verbs.append(verb)
                 if "derivations" in item:
                     collect_verbs(item["derivations"])
@@ -54,9 +54,9 @@ class MascotResolver:
                     mapping[(full_cls, variant)] = int(cid)
         return mapping
 
-    def get_variant_label(self, verb: ReconstructableVerb) -> str:
+    def get_variant_label(self, verb: DictionaryVerb) -> str:
         parts = []
-        config = verb.config
+        config = verb.morphology.config
         if config.pre.translocutive:
             parts.append("Translocutive")
         if config.pre.partitive:
@@ -71,21 +71,19 @@ class MascotResolver:
             return "Plain"
         return " + ".join(parts)
 
-    def get_verbs_for_class(self, class_name: str) -> List[ReconstructableVerb]:
+    def get_verbs_for_class(self, class_name: str) -> List[DictionaryVerb]:
         """
         Returns all verbs whose class_name matches the given class_name (ignoring [tags]).
         """
         matching = []
         for v in self.all_verbs:
             # Match 'cause' to 'cause' and 'cause[perf2]'
-            v_base_class = v.class_name.split("[")[0]
+            v_base_class = v.morphology.class_name.split("[")[0]
             if v_base_class == class_name:
                 matching.append(v)
         return matching
 
-    def resolve_mascot(
-        self, class_name: str, variant: str
-    ) -> Optional[ReconstructableVerb]:
+    def resolve_mascot(self, class_name: str, variant: str) -> Optional[DictionaryVerb]:
         # 1. Manual override
         manual_cid = self.manual_mascots.get((class_name, variant))
         if manual_cid:
@@ -104,7 +102,7 @@ class MascotResolver:
             return None
 
         # 3. Alphabetical sort by toneless Present form
-        def get_sort_key(verb: ReconstructableVerb):
+        def get_sort_key(verb: DictionaryVerb):
             cnd_entry = get_cnd_entry(
                 verb.corpus_id, "present", self.corpus_to_cnd, self.cnd
             )
@@ -114,7 +112,7 @@ class MascotResolver:
         matching_verbs.sort(key=get_sort_key)
         return matching_verbs[0]
 
-    def get_mascot_data(self, verb: ReconstructableVerb) -> Dict[str, Any]:
+    def get_mascot_data(self, verb: DictionaryVerb) -> Dict[str, Any]:
         forms = [
             "present",
             "present_1sg",

@@ -9,8 +9,11 @@ Morphological-core modules should import from word_spec directly.
 """
 
 import logging
+from dataclasses import dataclass, field
+from typing import Any
 
 from king_recreation.morphemes.prefixes.pronominals import PronominalConfig
+from king_recreation.reconstruction import MorphologicalVerb
 from king_recreation.word_spec import (
     Aspect,
     FormSpec,
@@ -20,6 +23,42 @@ from king_recreation.word_spec import (
     WordSpec,
     calculate_pronominal_key,
 )
+
+# ... (existing mappings)
+
+
+@dataclass
+class DictionaryVerb:
+    definition: str
+    morphology: MorphologicalVerb
+    corpus_id: int | None = None
+    entry_no: int | None = None
+    derivations: list["DictionaryVerb"] = field(default_factory=list)
+    original_data: dict[str, Any] = field(
+        default_factory=dict, repr=False, hash=False, compare=False
+    )
+    segmented_forms: dict[str, str] = field(
+        default_factory=dict,
+    )
+    user_selected: bool = False
+
+    @staticmethod
+    def from_dict(data: dict[str, Any]) -> "DictionaryVerb":
+        clean_data = data.copy()
+        if "morphology" in clean_data:
+            clean_data["morphology"] = MorphologicalVerb.from_dict(
+                clean_data["morphology"]
+            )
+        if "derivations" in clean_data:
+            clean_data["derivations"] = [
+                DictionaryVerb.from_dict(d) for d in clean_data["derivations"]
+            ]
+        if "corpus_id" in clean_data and clean_data["corpus_id"] is not None:
+            clean_data["corpus_id"] = int(clean_data["corpus_id"])
+        if "entry_no" in clean_data and clean_data["entry_no"] is not None:
+            clean_data["entry_no"] = int(clean_data["entry_no"])
+        return DictionaryVerb(**clean_data)
+
 
 # Dictionary column name -> morphological Aspect
 FORM_NAME_TO_ASPECT: dict[str, Aspect] = {

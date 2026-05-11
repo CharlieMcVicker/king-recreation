@@ -2,16 +2,16 @@ import json
 import os
 from typing import Any
 
+from king_recreation.dictionary_forms import DictionaryVerb
 from king_recreation.paths import (
     RECONSTRUCTABLE_VERBS_PATH,
     VERB_SELECTION_SNAPSHOT_CANONICAL_PATH,
     VERB_SELECTION_SNAPSHOT_VOLATILE_PATH,
 )
-from king_recreation.reconstruction import ReconstructableVerb
 
 
 def save_reconstructable_verbs(
-    data: list[ReconstructableVerb], encoder_cls: type[json.JSONEncoder]
+    data: list[DictionaryVerb], encoder_cls: type[json.JSONEncoder]
 ) -> None:
     os.makedirs(os.path.dirname(RECONSTRUCTABLE_VERBS_PATH), exist_ok=True)
     with open(RECONSTRUCTABLE_VERBS_PATH, "w", encoding="utf-8") as f:
@@ -19,12 +19,12 @@ def save_reconstructable_verbs(
     print(f"Artifacts saved to {RECONSTRUCTABLE_VERBS_PATH}")
 
 
-def load_reconstructable_verbs() -> list[ReconstructableVerb]:
+def load_reconstructable_verbs() -> list[DictionaryVerb]:
     if not os.path.exists(RECONSTRUCTABLE_VERBS_PATH):
         return []
     with open(RECONSTRUCTABLE_VERBS_PATH, "r", encoding="utf-8") as f:
         data = json.load(f)
-    return [ReconstructableVerb.from_dict(item) for item in data]
+    return [DictionaryVerb.from_dict(item) for item in data]
 
 
 def save_selection_snapshot(

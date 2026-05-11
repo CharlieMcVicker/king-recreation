@@ -1,6 +1,6 @@
 from typing import cast
 
-from king_recreation.reconstruction import ReconstructableVerb
+from king_recreation.dictionary_forms import DictionaryVerb
 from king_recreation.tone.models import (
     Environment,
     GlottalPosition,
@@ -20,13 +20,13 @@ from king_recreation.tone.utils import (
 )
 
 
-def get_tonicity_for_form(verb: ReconstructableVerb, form_name: str) -> Tonicity:
+def get_tonicity_for_form(verb: DictionaryVerb, form_name: str) -> Tonicity:
     """Determine the tonicity for a given verb form."""
     if form_name == "infinitive":
         return Tonicity.INFINITIVE
 
-    if form_name == "imperative" and not verb.config.stative:
-        pre = verb.config.pre
+    if form_name == "imperative" and not verb.morphology.config.stative:
+        pre = verb.morphology.config.pre
         has_pre = (
             pre.translocutive
             or pre.translocutiveImpOnly

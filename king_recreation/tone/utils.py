@@ -3,9 +3,10 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any
 
+from king_recreation.dictionary_forms import DictionaryVerb
 from king_recreation.phases.preprocess_ced import respell_consonants
 from king_recreation.phonology_data import VOWEL_SET
-from king_recreation.reconstruction import ReconstructableVerb, drop_dropped_phones
+from king_recreation.reconstruction import drop_dropped_phones
 
 
 @dataclass
@@ -109,7 +110,7 @@ def read_tone_sequence(raw_str: str) -> list[Vowel | Consonant]:
 
 
 def get_tone_sequence_for_form(
-    verb: ReconstructableVerb,
+    verb: DictionaryVerb,
     form_name: str,
     cnd_corpus: dict[str, dict[str, str]],
     corpus_id_to_entries: dict[int, dict[str, str]],

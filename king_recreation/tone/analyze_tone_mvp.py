@@ -43,7 +43,7 @@ def main():
                         {
                             "corpus_id": corpus_id,
                             "definition": verb.definition,
-                            "class": verb.class_name,
+                            "class": verb.morphology.class_name,
                             "form": fn,
                             "surface_stem": surface_stem,
                             "underlying_stem": str(uf),

@@ -3,7 +3,7 @@ import json
 from collections import defaultdict
 from typing import Any
 
-from king_recreation.dictionary_forms import build_wordspec
+from king_recreation.dictionary_forms import DictionaryVerb, build_wordspec
 from king_recreation.morphemes.prefixes import PrefixConfig
 from king_recreation.morphemes.prefixes.pronominals import use_glottal_grade
 from king_recreation.phases.reconstruct_and_validate.artifacts import (
@@ -14,7 +14,7 @@ from king_recreation.phases.select_canonical_derivations.artifacts import (
     save_reconstructable_verbs,
     save_selection_snapshot,
 )
-from king_recreation.reconstruction import ReconstructableVerb
+from king_recreation.reconstruction import MorphologicalVerb
 from king_recreation.utils import EnhancedJSONEncoderFactory
 
 
@@ -30,9 +30,9 @@ EnhancedJSONEncoder = EnhancedJSONEncoderFactory(
 
 
 def dedupe_roots(
-    validated_verbs: list[ReconstructableVerb],
-) -> tuple[list[ReconstructableVerb], list[ReconstructableVerb], list[dict[str, Any]]]:
-    roots_by_corpus_id: dict[int | str, list[ReconstructableVerb]] = {}
+    validated_verbs: list[DictionaryVerb],
+) -> tuple[list[DictionaryVerb], list[DictionaryVerb], list[dict[str, Any]]]:
+    roots_by_corpus_id: dict[int | str, list[DictionaryVerb]] = {}
     for verb in validated_verbs:
         c_id = verb.corpus_id if verb.corpus_id is not None else "synthetic"
         if not c_id in roots_by_corpus_id:
@@ -52,14 +52,14 @@ def dedupe_roots(
         # Identify pipeline choice (shortest h_grade_root, tie-broken deterministically)
 
         # 1. Find min length
-        min_len = min(len(v.h_grade_root) for v in vl)
+        min_len = min(len(v.morphology.h_grade_root) for v in vl)
 
         # 2. Filter to candidates with min length
-        candidates = [v for v in vl if len(v.h_grade_root) == min_len]
+        candidates = [v for v in vl if len(v.morphology.h_grade_root) == min_len]
 
         # 3. Sort candidates to pick one deterministically
         # Priority: con > aspirated > s_stem > others
-        def get_stem_priority(v: ReconstructableVerb) -> int:
+        def get_stem_priority(v: DictionaryVerb) -> int:
             st = v.original_data.get("stem_type", "")
             if st == "con":
                 return 0
@@ -72,8 +72,8 @@ def dedupe_roots(
         candidates.sort(
             key=lambda v: (
                 get_stem_priority(v),
-                v.h_grade_root,
-                v.class_name,
+                v.morphology.h_grade_root,
+                v.morphology.class_name,
                 json.dumps(v.original_data, sort_keys=True),
             )
         )
@@ -114,7 +114,7 @@ def dedupe_roots(
 
         # Check for user override
         selected = [v for v in vl if getattr(v, "user_selected", False)]
-        unique_selected_roots = {v.h_grade_root for v in selected}
+        unique_selected_roots = {v.morphology.h_grade_root for v in selected}
         if len(unique_selected_roots) > 1:
             print(
                 f"[ERROR] Multiple conflicting user_selected roots for corpus_id {c_id}: {list(unique_selected_roots)}"
@@ -130,7 +130,7 @@ def dedupe_roots(
     return deduped_roots, dropped, snapshot_data
 
 
-def enrich_glottal_grades(verbs: list[ReconstructableVerb]) -> None:
+def enrich_glottal_grades(verbs: list[DictionaryVerb]) -> None:
     """
     If an h_grade_root has exactly one attested glottal_grade_root across all
     verbs, apply that glottal_grade_root to any verbs sharing the same
@@ -139,8 +139,10 @@ def enrich_glottal_grades(verbs: list[ReconstructableVerb]) -> None:
     # h_grade -> set of non-null glottal_grade_root values
     g_grades_by_h = defaultdict(set)
     for v in verbs:
-        if v.glottal_grade_root is not None:
-            g_grades_by_h[v.h_grade_root].add(v.glottal_grade_root)
+        if v.morphology.glottal_grade_root is not None:
+            g_grades_by_h[v.morphology.h_grade_root].add(
+                v.morphology.glottal_grade_root
+            )
 
     # h_grade -> single non-null g_grade if it's the only one
     enrichment_map = {
@@ -149,8 +151,11 @@ def enrich_glottal_grades(verbs: list[ReconstructableVerb]) -> None:
 
     enriched_count = 0
     for v in verbs:
-        if v.glottal_grade_root is None and v.h_grade_root in enrichment_map:
-            v.glottal_grade_root = enrichment_map[v.h_grade_root]
+        if (
+            v.morphology.glottal_grade_root is None
+            and v.morphology.h_grade_root in enrichment_map
+        ):
+            v.morphology.glottal_grade_root = enrichment_map[v.morphology.h_grade_root]
             enriched_count += 1
 
     if enriched_count > 0:
@@ -177,7 +182,7 @@ def select_canonical_derivations() -> None:
 
     validated_verbs = []
     for row in rows:
-        # Reconstruct ReconstructableVerb object
+        # Reconstruct DictionaryVerb object
         config = PrefixConfig.from_row(row)
 
         definition = row["definition"]
@@ -199,13 +204,17 @@ def select_canonical_derivations() -> None:
             int(row["entry_no"]) if "entry_no" in row and row["entry_no"] else None
         )
 
-        verb = ReconstructableVerb(
-            definition=definition,
+        morphology = MorphologicalVerb(
             h_grade_root=h_root,
             glottal_grade_root=glottal_root,
             class_name=cls_name,
             post_root_morpheme=post_root_morpheme,
             config=config,
+        )
+
+        verb = DictionaryVerb(
+            definition=definition,
+            morphology=morphology,
             corpus_id=corpus_id,
             entry_no=entry_no,
             original_data=row,  # Keep it if we want to pass it further, though JSON serialization dumps fields

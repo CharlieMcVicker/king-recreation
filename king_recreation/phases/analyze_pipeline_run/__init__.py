@@ -167,8 +167,8 @@ def _analyze_root_ambiguity() -> list[dict[str, Any]]:
     # Group corpus_ids by h_grade_root then glottal_grade
     root_groups = defaultdict(lambda: defaultdict(set))
     for verb in reconstructable_verbs:
-        h_grade = verb.h_grade_root
-        glottal_grade = verb.glottal_grade_root
+        h_grade = verb.morphology.h_grade_root
+        glottal_grade = verb.morphology.glottal_grade_root
         corpus_id = verb.corpus_id
         root_groups[h_grade][glottal_grade].add(corpus_id)
 
@@ -218,7 +218,7 @@ def _analyze_macro_variants(pattern_registry: PatternRegistry) -> dict[str, Any]
         }
 
     for verb in reconstructable_verbs:
-        class_name = verb.class_name or ""
+        class_name = verb.morphology.class_name or ""
         match = re.match(pattern_regex, class_name)
         if not match:
             continue
@@ -414,8 +414,8 @@ def _analyze_roots_by_macro(registry: PatternRegistry) -> None:
     final_letters_by_class = defaultdict(set)
 
     for entry in data:
-        class_name = entry.class_name.split("[")[0]
-        h_grade_root = entry.h_grade_root
+        class_name = entry.morphology.class_name.split("[")[0]
+        h_grade_root = entry.morphology.h_grade_root
         key = (
             classes_to_parents[class_name],
             class_name,

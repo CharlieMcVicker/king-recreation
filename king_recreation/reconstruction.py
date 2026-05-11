@@ -1,7 +1,7 @@
 import dataclasses
 import json
 import re
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from enum import Enum
 from typing import Any, cast
 
@@ -35,43 +35,22 @@ def desegment(s: str) -> str:
 
 
 @dataclass
-class ReconstructableVerb:
-    definition: str
+class MorphologicalVerb:
     h_grade_root: str
     glottal_grade_root: str | None
     post_root_morpheme: str | None
     class_name: str
     config: PrefixConfig
-    corpus_id: int | None = None
-    entry_no: int | None = None
-    derivations: list["ReconstructableVerb"] = field(default_factory=list)
-    original_data: dict[str, Any] = field(
-        default_factory=dict, repr=False, hash=False, compare=False
-    )
-    segmented_forms: dict[str, str] = field(
-        default_factory=dict,
-    )
-    user_selected: bool = False
 
-    # TODO: IS THIS DEAD?
     @staticmethod
-    def from_dict(data: dict[str, Any]) -> "ReconstructableVerb":
+    def from_dict(data: dict[str, Any]) -> "MorphologicalVerb":
         clean_data = data.copy()
         if "config" in clean_data:
             clean_data["config"] = PrefixConfig.from_dict(clean_data["config"])
         if "post_root_morpheme" in clean_data:
             val = clean_data["post_root_morpheme"]
-            # turn "" to None
             clean_data["post_root_morpheme"] = val if val else None
-        if "derivations" in clean_data:
-            clean_data["derivations"] = [
-                ReconstructableVerb.from_dict(d) for d in clean_data["derivations"]
-            ]
-        if "corpus_id" in clean_data and clean_data["corpus_id"] is not None:
-            clean_data["corpus_id"] = int(clean_data["corpus_id"])
-        if "entry_no" in clean_data and clean_data["entry_no"] is not None:
-            clean_data["entry_no"] = int(clean_data["entry_no"])
-        return ReconstructableVerb(**clean_data)
+        return MorphologicalVerb(**clean_data)
 
 
 class EnhancedJSONEncoder(json.JSONEncoder):
@@ -109,9 +88,7 @@ class ReconstructionEngine:
                 candidates.append(res)
         return candidates
 
-    def root_for_form(
-        self, verb: ReconstructableVerb, glottal_grade: bool
-    ) -> str | None:
+    def root_for_form(self, verb: MorphologicalVerb, glottal_grade: bool) -> str | None:
         # Determine Grade
         # Default: h-grade
         root = verb.glottal_grade_root if glottal_grade else verb.h_grade_root
@@ -135,7 +112,7 @@ class ReconstructionEngine:
         return root
 
     def get_base_stems_for_form(
-        self, verb: ReconstructableVerb, aspect: Aspect, glottal_grade: bool
+        self, verb: MorphologicalVerb, aspect: Aspect, glottal_grade: bool
     ) -> list[str] | None:
         class_info = self.classes.get(verb.class_name)
         if not class_info:
@@ -172,7 +149,7 @@ class ReconstructionEngine:
         else:
             return [root + "-" + literal_ending]
 
-    def reconstruct_spec(self, verb: ReconstructableVerb, spec: WordSpec) -> list[str]:
+    def reconstruct_spec(self, verb: MorphologicalVerb, spec: WordSpec) -> list[str]:
         # 1. Get the base stems (stem + aspect suffix)
         stems = self.get_base_stems_for_form(
             verb,

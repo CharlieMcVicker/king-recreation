@@ -8,6 +8,7 @@ from pylatex import Tabularx
 from pylatex.utils import NoEscape, bold, italic
 from pylatexenc.latexencode import unicode_to_latex
 
+from king_recreation.dictionary_forms import DictionaryVerb
 from king_recreation.morphemes.post_root_morphemes import PostRootMorphemeRegistry
 from king_recreation.paths import (
     CHEROKEE_NATION_DICTIONARY_PATH,
@@ -17,7 +18,6 @@ from king_recreation.paths import (
     TEX_ROOTS_DIR,
 )
 from king_recreation.phases.group_hierarchical import RootClassNode, RootNode
-from king_recreation.reconstruction import ReconstructableVerb
 
 
 def strip_tone(s):
@@ -65,7 +65,7 @@ def get_cnd_entry(cid, form_name, corpus_to_cnd, cnd) -> Dict[str, str]:
 
 
 def format_toneless_with_bold(
-    verb: ReconstructableVerb, form_name: str, toneless_surface: str
+    verb: DictionaryVerb, form_name: str, toneless_surface: str
 ) -> NoEscape:
     """
     Attempts to bold the aspect suffix in the toneless surface string
@@ -87,7 +87,7 @@ def format_toneless_with_bold(
     parts = re.split(r"(-|->)", segmented)
     segments = parts[0::2]
 
-    config = verb.config
+    config = verb.morphology.config
     num_pre = sum(
         [config.pre.translocutive, config.pre.partitive, config.pre.distributive]
     )
@@ -118,7 +118,7 @@ def format_toneless_with_bold(
     return NoEscape("".join(formatted))
 
 
-def generate_verb_table(verb: ReconstructableVerb, corpus_to_cnd, cnd):
+def generate_verb_table(verb: DictionaryVerb, corpus_to_cnd, cnd):
     forms = [
         "present",
         "present_1sg",
@@ -163,15 +163,13 @@ def generate_verb_table(verb: ReconstructableVerb, corpus_to_cnd, cnd):
     return table
 
 
-def verb_config_to_tex(
-    verb: ReconstructableVerb, root_str: str, parent_classes: list[str]
-):
+def verb_config_to_tex(verb: DictionaryVerb, root_str: str, parent_classes: list[str]):
     if not parent_classes:
         parent_classes = []
 
     parts = []
 
-    config = verb.config
+    config = verb.morphology.config
 
     if config.pre.translocutive:
         parts.append("wi")
@@ -205,9 +203,9 @@ def verb_config_to_tex(
 
     parts.append(bold(root_str.replace(" ", "")))
 
-    if verb.post_root_morpheme:
+    if verb.morphology.post_root_morpheme:
         prm = PostRootMorphemeRegistry.get_instance().morphemes_by_name.get(
-            verb.post_root_morpheme
+            verb.morphology.post_root_morpheme
         )
         if prm:
             parts.append(prm.form)
@@ -215,7 +213,7 @@ def verb_config_to_tex(
     for class_name in parent_classes:
         parts.append("[" + class_name + "]")
 
-    parts.append("[" + verb.class_name + "]")
+    parts.append("[" + verb.morphology.class_name + "]")
 
     return "{-}".join(
         p if isinstance(p, NoEscape) else unicode_to_latex(p) for p in parts
@@ -232,7 +230,7 @@ def load_hierarchical_data(path: str) -> List[RootNode]:
         for cls_data in root_data.get("classes", []):
             verbs = []
             for v_data in cls_data.get("verbs", []):
-                verbs.append(ReconstructableVerb.from_dict(v_data))
+                verbs.append(DictionaryVerb.from_dict(v_data))
 
             classes.append(
                 RootClassNode(class_name=cls_data["class_name"], verbs=verbs)
@@ -250,7 +248,7 @@ def load_hierarchical_data(path: str) -> List[RootNode]:
 
 
 def render_verb_entry(
-    verb: ReconstructableVerb, root_str: str, corpus_to_cnd, cnd, parent_classes=None
+    verb: DictionaryVerb, root_str: str, corpus_to_cnd, cnd, parent_classes=None
 ) -> List[str]:
     if parent_classes is None:
         parent_classes = []
@@ -294,7 +292,7 @@ def render_verb_entry(
                     root_str,
                     corpus_to_cnd,
                     cnd,
-                    parent_classes=parent_classes + [verb.class_name],
+                    parent_classes=parent_classes + [verb.morphology.class_name],
                 )
             )
 

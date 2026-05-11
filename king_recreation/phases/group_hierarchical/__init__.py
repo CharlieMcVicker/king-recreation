@@ -3,6 +3,7 @@ from collections import defaultdict
 from dataclasses import dataclass, field
 from typing import Any, cast
 
+from king_recreation.dictionary_forms import DictionaryVerb
 from king_recreation.phases.group_hierarchical.artifacts import (
     load_derivational_connections,
     load_root_ids_overrides,
@@ -12,7 +13,6 @@ from king_recreation.phases.group_hierarchical.artifacts import (
 from king_recreation.phases.select_canonical_derivations.artifacts import (
     load_reconstructable_verbs as load_raw_reconstructable_verbs,
 )
-from king_recreation.reconstruction import ReconstructableVerb
 from king_recreation.utils import EnhancedJSONEncoderFactory
 
 
@@ -26,7 +26,7 @@ EnhancedJSONEncoder = EnhancedJSONEncoderFactory(_remove_user_selected)
 @dataclass
 class RootClassNode:
     class_name: str
-    verbs: list[ReconstructableVerb] = field(default_factory=list)
+    verbs: list[DictionaryVerb] = field(default_factory=list)
 
 
 @dataclass
@@ -50,7 +50,7 @@ def parse_ids(id_str: str) -> list[int]:
 
 
 def load_all_data() -> tuple[
-    list[ReconstructableVerb],
+    list[DictionaryVerb],
     list[dict[str, str]],
     dict[str, str],
 ]:
@@ -66,8 +66,8 @@ def load_all_data() -> tuple[
 
 
 def build_verb_index(
-    all_verbs: list[ReconstructableVerb],
-) -> dict[int, ReconstructableVerb]:
+    all_verbs: list[DictionaryVerb],
+) -> dict[int, DictionaryVerb]:
     verbs_by_id = {}
     for v in all_verbs:
         if v.corpus_id is not None:
@@ -77,7 +77,7 @@ def build_verb_index(
 
 def build_connection_graphs(
     derivational_connections: list[dict[str, str]],
-    verbs_by_id: dict[int, ReconstructableVerb],
+    verbs_by_id: dict[int, DictionaryVerb],
 ) -> tuple[dict[int, int], defaultdict[int, list[dict[str, Any]]]]:
     parent_map = {}
     children_map = defaultdict(list)
@@ -114,7 +114,7 @@ def build_connection_graphs(
 
 
 def identify_top_level_nodes(
-    all_verbs: list[ReconstructableVerb], parent_map: dict[int, int]
+    all_verbs: list[DictionaryVerb], parent_map: dict[int, int]
 ) -> list[int]:
     top_level_ids = []
     for verb in all_verbs:
@@ -127,9 +127,9 @@ def identify_top_level_nodes(
 
 def build_tree_node(
     verb_id: int,
-    verbs_by_id: dict[int, ReconstructableVerb],
+    verbs_by_id: dict[int, DictionaryVerb],
     children_map: defaultdict[int, list[dict[str, Any]]],
-) -> ReconstructableVerb:
+) -> DictionaryVerb:
     verb = verbs_by_id[verb_id]
 
     children = children_map.get(verb_id, [])
@@ -144,7 +144,7 @@ def build_tree_node(
 
 
 def sync_root_ids(
-    all_verbs: list[ReconstructableVerb],
+    all_verbs: list[DictionaryVerb],
     overrides: dict[str, str],
 ) -> tuple[dict[int, str], dict[str, str]]:
 
@@ -161,10 +161,10 @@ def sync_root_ids(
         return s if s is not None else ""
 
     for i, verb in enumerate(all_verbs):
-        h = verb.h_grade_root
-        g = verb.glottal_grade_root
-        cls = verb.class_name
-        morph = verb.post_root_morpheme
+        h = verb.morphology.h_grade_root
+        g = verb.morphology.glottal_grade_root
+        cls = verb.morphology.class_name
+        morph = verb.morphology.post_root_morpheme
         defn = verb.definition
 
         # Determine Corpus ID Key
@@ -232,8 +232,8 @@ def sync_root_ids(
 
 def group_roots_final(
     top_level_ids: list[int],
-    all_verbs: list[ReconstructableVerb],
-    verbs_by_id: dict[int, ReconstructableVerb],
+    all_verbs: list[DictionaryVerb],
+    verbs_by_id: dict[int, DictionaryVerb],
     children_map: defaultdict[int, list[dict[str, Any]]],
     verb_to_root_id: dict[int, str],
     synthetic_to_root_id: dict[str, str],
@@ -248,9 +248,9 @@ def group_roots_final(
         root_id = verb_to_root_id.get(vid)
         if root_id is None:
             continue
-        h = verb.h_grade_root
-        g = verb.glottal_grade_root
-        cls = verb.class_name
+        h = verb.morphology.h_grade_root
+        g = verb.morphology.glottal_grade_root
+        cls = verb.morphology.class_name
         tree_node = build_tree_node(vid, verbs_by_id, children_map)
 
         if not root_groups[root_id].get("h"):
@@ -263,9 +263,9 @@ def group_roots_final(
             root_id = synthetic_to_root_id.get(f"synthetic-{i}")
             if root_id is None:
                 continue
-            h = verb.h_grade_root
-            g = verb.glottal_grade_root
-            cls = verb.class_name
+            h = verb.morphology.h_grade_root
+            g = verb.morphology.glottal_grade_root
+            cls = verb.morphology.class_name
             if not root_groups[root_id].get("h"):
                 root_groups[root_id]["h"] = h
                 root_groups[root_id]["g"] = g or ""

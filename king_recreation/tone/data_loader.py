@@ -3,13 +3,13 @@ import json
 from csv import DictReader, DictWriter
 from typing import Any
 
+from king_recreation.dictionary_forms import DictionaryVerb
 from king_recreation.paths import (
     CHEROKEE_NATION_DICTIONARY_PATH,
     CORPUS_TO_CND_PATH,
     RECONSTRUCTABLE_VERBS_PATH,
     STEMS_WITH_TONE_CORPUS_PATH,
 )
-from king_recreation.reconstruction import ReconstructableVerb
 from king_recreation.tone.utils import (
     Consonant,
     Vowel,
@@ -19,14 +19,12 @@ from king_recreation.tone.utils import (
 
 
 def load_data() -> (
-    tuple[
-        list[ReconstructableVerb], dict[str, dict[str, str]], dict[int, dict[str, str]]
-    ]
+    tuple[list[DictionaryVerb], dict[str, dict[str, str]], dict[int, dict[str, str]]]
 ):
     """Load the necessary data for tone analysis."""
     with open(RECONSTRUCTABLE_VERBS_PATH, "r") as f:
         reconstructable_verbs_raw = json.load(f)
-    verbs = [ReconstructableVerb.from_dict(v) for v in reconstructable_verbs_raw]
+    verbs = [DictionaryVerb.from_dict(v) for v in reconstructable_verbs_raw]
 
     with open(CORPUS_TO_CND_PATH, "r") as f:
         reader = DictReader(f)
@@ -47,7 +45,7 @@ def load_data() -> (
     return verbs, cnd_corpus, corpus_id_to_entries
 
 
-def is_eligible(verb: ReconstructableVerb) -> bool:
+def is_eligible(verb: DictionaryVerb) -> bool:
     """
     Filter verbs based on the Tone MVP criteria:
     - No prepronominal prefixes
@@ -56,7 +54,7 @@ def is_eligible(verb: ReconstructableVerb) -> bool:
     - Root does not start with 'a'
     """
     # 1. No prepronominal prefixes (translocutive, partitive, distributive)
-    pre = verb.config.pre
+    pre = verb.morphology.config.pre
     if (
         pre.translocutive
         or pre.translocutiveImpOnly
@@ -66,21 +64,21 @@ def is_eligible(verb: ReconstructableVerb) -> bool:
         return False
 
     # 2. No middle voice (MiddleVoice.NONE)
-    if verb.config.pron.middle_voice.value != "none":
+    if verb.morphology.config.pron.middle_voice.value != "none":
         return False
 
-    if verb.config.pron.use_3rd_person_object:
+    if verb.morphology.config.pron.use_3rd_person_object:
         return False
 
     # 3. Root does not start with 'a' (specifically roots beginning with vowel 'a')
-    if verb.h_grade_root.lower().startswith("a"):
+    if verb.morphology.h_grade_root.lower().startswith("a"):
         return False
 
     return True
 
 
 def get_stem_tones(
-    verb: ReconstructableVerb,
+    verb: DictionaryVerb,
     form_name: str,
     cnd_corpus: dict[str, dict[str, str]],
     corpus_id_to_entries: dict[int, dict[str, str]],
@@ -106,7 +104,7 @@ def get_stem_tones(
     # (User will implement H2 and H1 logic here)
     combined = apply_tone_to_segmentation(segmented, tone_sequence)
     parts = combined.split("-")
-    end_parts = 3 if verb.post_root_morpheme else 2
+    end_parts = 3 if verb.morphology.post_root_morpheme else 2
     stem_tones = "-".join(parts[-end_parts:]) if len(parts) >= end_parts else combined
 
     return stem_tones
@@ -123,10 +121,10 @@ FORMS = [
 
 
 def write_elligible_verbs(
-    verbs: list[ReconstructableVerb],
+    verbs: list[DictionaryVerb],
     cnd_corpus: dict[str, dict[str, str]],
     corpus_id_to_entries: dict[int, dict[str, str]],
-) -> list[tuple[ReconstructableVerb, dict[str, Any]]]:
+) -> list[tuple[DictionaryVerb, dict[str, Any]]]:
 
     eligible_count = 0
 

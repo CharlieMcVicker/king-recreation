@@ -6,7 +6,7 @@ from pylatex import Command, Document, NoEscape, Package, Tabularx
 from pylatex.utils import bold, italic
 from pylatexenc.latexencode import unicode_to_latex
 
-from king_recreation.dictionary_forms import build_wordspec
+from king_recreation.dictionary_forms import DictionaryVerb, build_wordspec
 from king_recreation.h_alternation import prevent_C_glottal_cluster
 from king_recreation.morphemes.aspect.class_patterns import (
     ClassMacro,
@@ -14,7 +14,7 @@ from king_recreation.morphemes.aspect.class_patterns import (
 )
 from king_recreation.morphemes.middle_voice import MiddleVoice
 from king_recreation.paths import CLASSES_DATA_PATH, COMPANION_TEX_PATH, MAIN_TOC_PATH
-from king_recreation.reconstruction import ReconstructableVerb, drop_dropped_phones
+from king_recreation.reconstruction import drop_dropped_phones
 from tex_dictionary.companion_data import (
     AspectClass,
     load_aspect_classes,
@@ -84,7 +84,7 @@ def load_expanded_patterns() -> Dict[str, ExpandedClassPattern]:
 
 
 def format_segmented_verb(
-    verb: ReconstructableVerb, form_name: str, segmented_form: str
+    verb: DictionaryVerb, form_name: str, segmented_form: str
 ) -> NoEscape:
     """
     Applies phonological reductions (drops - and handles operators)
@@ -97,7 +97,7 @@ def format_segmented_verb(
     parts = re.split(r"(-|->)", segmented_form)
     segments = parts[0::2]
 
-    config = verb.config
+    config = verb.morphology.config
     num_pre = sum(
         [config.pre.translocutive, config.pre.partitive, config.pre.distributive]
     )
@@ -189,7 +189,7 @@ def format_segmented_verb(
 
     # 5. Emit TeX
     # Determine pronoun color
-    spec = build_wordspec(form_name, config.pron, config.stative)
+    spec = build_wordspec(form_name, config.pron, verb.morphology.config.stative)
     color = "black"
     if "Set A" in spec.set_name:
         color = "Red"
@@ -380,7 +380,7 @@ def generate_companion_tex():
         class_groups = {}
         for fn in relevant_full_names:
             for v in resolver.get_verbs_for_class(fn):
-                class_groups.setdefault(v.class_name, []).append(v)
+                class_groups.setdefault(v.morphology.class_name, []).append(v)
 
         sorted_class_names = sorted(class_groups.keys())
         base_endings = get_base_endings(aspect_classes, base_cls.name)
@@ -391,7 +391,7 @@ def generate_companion_tex():
         for class_name in sorted_class_names:
             group_verbs = class_groups[class_name]
 
-            def get_mascot_score(verb: ReconstructableVerb):
+            def get_mascot_score(verb: DictionaryVerb):
                 label = resolver.get_variant_label(verb)
                 return (0 if label == "Plain" else 1, verb.definition.lower())
 
@@ -502,21 +502,21 @@ def generate_companion_tex():
 
         # 2. Detailed verb lists for each variant
         for class_name in sorted_class_names:
-            group_verbs: List[ReconstructableVerb] = class_groups[class_name]
+            group_verbs: List[DictionaryVerb] = class_groups[class_name]
             doc.append(NoEscape(r"\needspace{1in}"))
             doc.append(NoEscape(r"\subsection*{" + unicode_to_latex(class_name) + "}"))
             # Verbs List directly below
             sorted_group_verbs = sorted(
                 group_verbs,
                 key=lambda v: (
-                    v.h_grade_root,
-                    v.glottal_grade_root,
-                    not v.config.pron.middle_voice == MiddleVoice.NONE,
+                    v.morphology.h_grade_root,
+                    v.morphology.glottal_grade_root,
+                    not v.morphology.config.pron.middle_voice == MiddleVoice.NONE,
                 ),
             )
             for v in sorted_group_verbs:
                 p = "???"
-                v_base_class = v.class_name.split("[")[0]
+                v_base_class = v.morphology.class_name.split("[")[0]
                 if v_base_class in toc_data:
                     for entry in toc_data[v_base_class]:
                         if entry["definition"].strip() == v.definition.strip():
@@ -561,13 +561,14 @@ def generate_companion_tex():
                                 v, found_form, v.segmented_forms.get(found_form, "")
                             )
                             cleaned_def = clean_latex_text(entry["definition"])
-                            assert isinstance(v, ReconstructableVerb)
-                            root_str = f"{v.h_grade_root}"
+                            assert isinstance(v, DictionaryVerb)
+                            root_str = f"{v.morphology.h_grade_root}"
                             if (
-                                v.glottal_grade_root
-                                and not v.glottal_grade_root == v.h_grade_root
+                                v.morphology.glottal_grade_root
+                                and not v.morphology.glottal_grade_root
+                                == v.morphology.h_grade_root
                             ):
-                                root_str += f" / {v.glottal_grade_root}"
+                                root_str += f" / {v.morphology.glottal_grade_root}"
                             tex_to_use = verb_config_to_tex(
                                 v, root_str=root_str, parent_classes=[]
                             )

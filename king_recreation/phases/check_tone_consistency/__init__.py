@@ -68,7 +68,7 @@ def check_tone_consistency(interactive: bool = False) -> None:
     class_profile_to_verbs = defaultdict(set)
 
     for verb in reconstructable_verbs:
-        cls = verb.class_name
+        cls = verb.morphology.class_name
         profile = []
 
         main_profile_forms = [
@@ -261,7 +261,7 @@ def check_tone_consistency(interactive: bool = False) -> None:
         return
 
     for verb in reconstructable_verbs:
-        print(f"\nVerb: {verb.definition} ({verb.h_grade_root})")
+        print(f"\nVerb: {verb.definition} ({verb.morphology.h_grade_root})")
         print(
             f"{'Form':<15} | {'Segmented':<30} | {'Combined':<30} | {'Reference':<30}"
         )
