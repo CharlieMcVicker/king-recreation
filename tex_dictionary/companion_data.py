@@ -1,6 +1,6 @@
 import csv
 from dataclasses import dataclass
-from typing import Dict, List
+from typing import Any, Dict, List
 
 from king_recreation.paths import (
     ASPECT_CLASS_MASCOTS_PATH,
@@ -104,7 +104,9 @@ def load_mascot_map() -> Dict[str, str]:
     return mascot_map
 
 
-def select_deterministic_mascot(candidate_verbs: List[Dict]) -> Dict:
+def select_deterministic_mascot(
+    candidate_verbs: List[Dict[str, Any]],
+) -> Dict[str, Any]:
     """
     Deterministic fallback for mascot selection: pick the alphabetically first occurring
     verb by its present form.

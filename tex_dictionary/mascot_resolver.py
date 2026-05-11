@@ -28,7 +28,7 @@ class MascotResolver:
 
         verbs = []
 
-        def collect_verbs(v_list: List[Dict]):
+        def collect_verbs(v_list: List[Dict[str, Any]]):
             for item in v_list:
                 verb = DictionaryVerb.from_dict(item)
                 verbs.append(verb)

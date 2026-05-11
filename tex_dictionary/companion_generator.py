@@ -13,6 +13,7 @@ from king_recreation.morphemes.aspect.class_patterns import (
     ExpandedClassPattern,
 )
 from king_recreation.morphemes.middle_voice import MiddleVoice
+from king_recreation.morphology_types import PronominalSet
 from king_recreation.paths import CLASSES_DATA_PATH, COMPANION_TEX_PATH, MAIN_TOC_PATH
 from king_recreation.reconstruction import drop_dropped_phones
 from tex_dictionary.companion_data import (
@@ -187,15 +188,14 @@ def format_segmented_verb(
                 new_chars[i]["role"] = chars_with_role[i]["role"]
         chars_with_role = new_chars
 
-    # 5. Emit TeX
     # Determine pronoun color
     spec = build_wordspec(form_name, config.pron, verb.morphology.config.stative)
     color = "black"
-    if "Set A" in spec.set_name:
+    if spec.pronominal_set == PronominalSet.SET_A:
         color = "Red"
-    elif "Set B" in spec.set_name:
+    elif spec.pronominal_set == PronominalSet.SET_B:
         color = "RoyalBlue"
-    elif "to" in spec.set_name:
+    elif spec.pronominal_set == PronominalSet.PERSON_TO_PERSON:
         color = "Purple"
 
     formatted_parts = []
@@ -468,7 +468,7 @@ def generate_companion_tex():
                 )
 
                 if is_derived and base_ending is not None and ending == base_ending:
-                    rule_row.append("")
+                    rule_row.append(NoEscape(""))
                 else:
                     rule_row.append(
                         NoEscape(bold(unicode_to_latex(clean_latex_text(ending))))

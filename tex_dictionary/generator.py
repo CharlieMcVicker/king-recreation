@@ -10,6 +10,7 @@ from pylatexenc.latexencode import unicode_to_latex
 
 from king_recreation.dictionary_forms import DictionaryVerb
 from king_recreation.morphemes.post_root_morphemes import PostRootMorphemeRegistry
+from king_recreation.morphology_types import PronominalSet
 from king_recreation.paths import (
     CHEROKEE_NATION_DICTIONARY_PATH,
     CORPUS_TO_CND_PATH,
@@ -181,12 +182,12 @@ def verb_config_to_tex(verb: DictionaryVerb, root_str: str, parent_classes: list
         parts.append("te")
 
     pronoun_map = {
-        ("a", False, False): r"\textcolor{Red}{Set A}",
-        ("a", True, False): r"\textcolor{Red}{Set A (k)}",
-        ("a", False, True): r"\textcolor{Red}{Set A (pl)}",
-        ("b", False, False): r"\textcolor{RoyalBlue}{Set B}",
-        ("b", True, False): r"\textcolor{RoyalBlue}{Set B}",
-        ("b", False, True): r"\textcolor{RoyalBlue}{Set B (pl)}",
+        (PronominalSet.SET_A, False, False): r"\textcolor{Red}{Set A}",
+        (PronominalSet.SET_A, True, False): r"\textcolor{Red}{Set A (k)}",
+        (PronominalSet.SET_A, False, True): r"\textcolor{Red}{Set A (pl)}",
+        (PronominalSet.SET_B, False, False): r"\textcolor{RoyalBlue}{Set B}",
+        (PronominalSet.SET_B, True, False): r"\textcolor{RoyalBlue}{Set B}",
+        (PronominalSet.SET_B, False, True): r"\textcolor{RoyalBlue}{Set B (pl)}",
     }
 
     set_flaire = pronoun_map[

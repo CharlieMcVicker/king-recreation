@@ -1,6 +1,6 @@
 import os
 import re
-from typing import Dict, List
+from typing import Any, Dict, List
 
 
 def _extract_balanced(content: str, pos: int):
@@ -48,7 +48,7 @@ def _extract_tags(label: str) -> List[str]:
 
 def parse_main_toc(
     toc_path: str, known_class_names: List[str]
-) -> Dict[str, List[Dict]]:
+) -> Dict[str, List[Dict[str, Any]]]:
     """
     Parses the main.toc file to extract verb definitions, TeX representations,
     and their page numbers, grouped by aspect class.
