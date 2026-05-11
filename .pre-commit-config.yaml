@@ -26,3 +26,21 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
+      - id: pyright-king-recreation
+        name: Pyright (king_recreation)
+        entry: npx basedpyright --level error king_recreation
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: pyright-tests
+        name: Pyright (tests)
+        entry: npx basedpyright --level error tests
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: pyright-tex-dictionary
+        name: Pyright (tex_dictionary)
+        entry: npx basedpyright --level error tex_dictionary
+        language: system
+        pass_filenames: false
+        always_run: true
