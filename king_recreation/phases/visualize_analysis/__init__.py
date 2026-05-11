@@ -2,6 +2,7 @@ import argparse
 import json
 import os
 import shutil
+from typing import Any, cast
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -36,14 +37,18 @@ def _plot_class_distribution(
             .index.tolist()
         )
 
-    def create_plot(data, suffix):
+    def create_plot(data: pd.DataFrame, suffix: str) -> None:
         # Filter order to only include classes present in the data
         present_classes = set(data["class"].unique())
         class_order = [c for c in full_class_order if c in present_classes]
 
         plt.figure(figsize=(12, 8))
         sns.barplot(
-            data=data, x="class", y="Count", hue="Match Type", order=class_order
+            data=cast(Any, data),
+            x="class",
+            y="Count",
+            hue="Match Type",
+            order=class_order,
         )
         plt.title(f"Verb Matches per Class ({suffix})")
         plt.xticks(rotation=45, ha="right")
@@ -56,9 +61,9 @@ def _plot_class_distribution(
 
     # Filtered version (only classes with at least one match in any category)
     active_classes = df[(df[value_vars] > 0).any(axis=1)]["class"]
-    df_filtered = df_melted[df_melted["class"].isin(active_classes)]
+    df_filtered = df_melted[df_melted["class"].isin(cast(Any, active_classes))]
     if not df_filtered.empty:
-        create_plot(df_filtered, "Filtered")
+        create_plot(cast(pd.DataFrame, df_filtered), "Filtered")
 
 
 def plot_class_distribution(csv_path: str, output_prefix: str) -> None:
@@ -124,7 +129,7 @@ def plot_verb_coverage(json_path: str, output_path: str) -> None:
 
     # 1. Match Counts (Grouped Bar Chart)
     sns.barplot(
-        data=df_counts,
+        data=cast(Any, df_counts),
         x="Combination",
         y="Count",
         hue="Match Count",
@@ -140,7 +145,7 @@ def plot_verb_coverage(json_path: str, output_path: str) -> None:
 
     # 2. Coverage Percentage (Bar Chart)
     sns.barplot(
-        data=df_pct,
+        data=cast(Any, df_pct),
         x="Combination",
         y="Coverage",
         ax=ax2,
@@ -158,8 +163,8 @@ def plot_verb_coverage(json_path: str, output_path: str) -> None:
         # Find the x-position for this combination
         # Since 'order=combinations', i corresponds to the x-tick
         ax2.text(
-            i,
-            row["Coverage"] + 1,
+            float(cast(Any, i)),
+            float(cast(Any, row["Coverage"])) + 1,
             f"{row['Coverage']:.1f}%",
             ha="center",
             color="black",
@@ -182,7 +187,7 @@ def plot_near_miss_heatmap(csv_path: str, output_prefix: str) -> None:
 
     rate_cols = [c for c in df.columns if c.endswith("_rate")]
 
-    def create_heatmap(data, filtered):
+    def create_heatmap(data: pd.DataFrame, filtered: bool) -> None:
         subset = data.copy()
 
         if filtered:
@@ -239,18 +244,20 @@ def plot_root_ambiguity_histogram(csv_path: str, output_path: str) -> None:
 
     plt.figure(figsize=(10, 6))
     sns.barplot(
-        data=counts, x="Verbs per Root", y="Number of Root Pairs", color="skyblue"
+        data=cast(Any, counts),
+        x="Verbs per Root",
+        y="Number of Root Pairs",
+        color="skyblue",
     )
 
     plt.title("Root Ambiguity Histogram")
     plt.xlabel("Number of Verbs Sharing a Root Pair")
     plt.ylabel("Frequency (Number of Root Pairs)")
 
-    # Add value labels on top of bars
     for index, row in counts.iterrows():
         plt.text(
-            index,
-            row["Number of Root Pairs"],
+            cast(float, index),
+            float(cast(Any, row["Number of Root Pairs"])),
             str(row["Number of Root Pairs"]),
             color="black",
             ha="center",
@@ -301,7 +308,7 @@ def plot_class_match_histogram(csv_path: str, output_path: str) -> None:
 
     # Use barplot for spacing (shrink/width control)
     sns.barplot(
-        data=bucket_counts,
+        data=cast(Any, bucket_counts),
         x="Bucket",
         y="Class Count",
         color="skyblue",
@@ -356,13 +363,13 @@ def plot_macro_variants(json_path: str, output_dir: str) -> None:
 
         # Convert Counter to DataFrame
         df_variants = pd.DataFrame(
-            list(combinations.items()), columns=["Variant", "Count"]
+            list(combinations.items()), columns=cast(Any, ["Variant", "Count"])
         )
         df_variants = df_variants.sort_values(by="Count", ascending=False)
 
         plt.figure(figsize=(10, 6))
         sns.barplot(
-            data=df_variants,
+            data=cast(Any, df_variants),
             x="Variant",
             y="Count",
             hue="Variant",
@@ -409,7 +416,11 @@ def plot_variant_match_histograms(csv_path: str, output_dir: str) -> None:
     # 1. Histogram of Total Match Counts (Absolute)
     plt.figure(figsize=(10, 6))
     sns.histplot(
-        df["match_count"], kde=False, bins=30, color="skyblue", edgecolor="black"
+        cast(Any, df["match_count"]),
+        kde=False,
+        bins=30,
+        color="skyblue",
+        edgecolor="black",
     )
     plt.title("Distribution of Variant Match Counts (Absolute)")
     plt.xlabel("Number of Verbs Matched per Variant")
@@ -421,7 +432,11 @@ def plot_variant_match_histograms(csv_path: str, output_dir: str) -> None:
     # 2. Histogram of Match Percentages
     plt.figure(figsize=(10, 6))
     sns.histplot(
-        df["match_percent"], kde=False, bins=20, color="salmon", edgecolor="black"
+        cast(Any, df["match_percent"]),
+        kde=False,
+        bins=20,
+        color="salmon",
+        edgecolor="black",
     )
     plt.title("Distribution of Variant Match Percentages")
     plt.xlabel("Percentage of Class Matches")
@@ -432,13 +447,13 @@ def plot_variant_match_histograms(csv_path: str, output_dir: str) -> None:
 
     # 3. Histogram of Average Variant Match Count per Class
     # Group by class and calculate mean match count
-    class_averages = (
-        df.groupby("macro_class")["match_count"].mean().reset_index(name="avg_matches")
-    )
+    class_averages = cast(
+        Any, df.groupby("macro_class")["match_count"].mean()
+    ).reset_index(name="avg_matches")
 
     plt.figure(figsize=(10, 6))
     sns.histplot(
-        class_averages["avg_matches"],
+        cast(Any, class_averages["avg_matches"]),
         kde=False,
         bins=20,
         color="lightgreen",
@@ -477,7 +492,11 @@ def plot_variation_match_histograms(csv_path: str, output_dir: str) -> None:
     # 1. Histogram of Total Match Counts (Absolute)
     plt.figure(figsize=(10, 6))
     sns.histplot(
-        df["match_count"], kde=False, bins=30, color="skyblue", edgecolor="black"
+        cast(Any, df["match_count"]),
+        kde=False,
+        bins=30,
+        color="skyblue",
+        edgecolor="black",
     )
     plt.title("Distribution of Variation Match Counts (Absolute)")
     plt.xlabel("Number of Verbs Matched per Variation")
@@ -489,7 +508,11 @@ def plot_variation_match_histograms(csv_path: str, output_dir: str) -> None:
     # 2. Histogram of Match Percentages
     plt.figure(figsize=(10, 6))
     sns.histplot(
-        df["match_percent"], kde=False, bins=20, color="salmon", edgecolor="black"
+        cast(Any, df["match_percent"]),
+        kde=False,
+        bins=20,
+        color="salmon",
+        edgecolor="black",
     )
     plt.title("Distribution of Variation Match Percentages")
     plt.xlabel("Percentage of Class Matches")
@@ -500,13 +523,13 @@ def plot_variation_match_histograms(csv_path: str, output_dir: str) -> None:
 
     # 3. Histogram of Average Variation Match Count per Class
     # Group by class and calculate mean match count
-    class_averages = (
-        df.groupby("macro_class")["match_count"].mean().reset_index(name="avg_matches")
-    )
+    class_averages = cast(
+        Any, df.groupby("macro_class")["match_count"].mean()
+    ).reset_index(name="avg_matches")
 
     plt.figure(figsize=(10, 6))
     sns.histplot(
-        class_averages["avg_matches"],
+        cast(Any, class_averages["avg_matches"]),
         kde=False,
         bins=20,
         color="lightgreen",
@@ -533,14 +556,16 @@ def plot_class_sequence_counts(csv_path: str, output_path: str) -> None:
         return
 
     # Count rows per class
-    sequence_counts = df.groupby("class").size().reset_index(name="Sequence Count")
+    sequence_counts = cast(Any, df.groupby("class").size()).reset_index(
+        name="Sequence Count"
+    )
 
     plt.figure(figsize=(10, 6))
     # histogram of the counts
     sns.histplot(
-        sequence_counts["Sequence Count"],
+        cast(Any, sequence_counts["Sequence Count"]),
         kde=False,
-        bins=range(1, sequence_counts["Sequence Count"].max() + 2),
+        bins=range(1, int(sequence_counts["Sequence Count"].max()) + 2),
         color="skyblue",
         edgecolor="navy",
     )
@@ -572,7 +597,7 @@ def plot_sequence_match_percentage(csv_path: str, output_path: str) -> None:
 
     plt.figure(figsize=(10, 6))
     sns.histplot(
-        df["percentage"],
+        cast(Any, df["percentage"]),
         kde=False,
         bins=20,
         color="salmon",

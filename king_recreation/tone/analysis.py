@@ -1,3 +1,5 @@
+from typing import cast
+
 from king_recreation.reconstruction import ReconstructableVerb
 from king_recreation.tone.models import (
     Environment,
@@ -318,7 +320,9 @@ def generate_underlying_forms(
                     next_v_long = False
                     for k in range(i + 1, len(tone_sequence)):
                         if isinstance(tone_sequence[k], Vowel):
-                            next_v_long = len(tone_sequence[k].tone.value) == 2
+                            v = cast(Vowel, tone_sequence[k])
+                            if v.tone:
+                                next_v_long = len(v.tone.value) == 2
                             break
 
                     h2_blocks = seg.tone == VowelTone.hh or (
@@ -453,7 +457,7 @@ def infer_surface_forms(
                 if isinstance(tokens[k], HistoricalVowel):
                     next_v = tokens[k]
                     break
-            is_next_long = next_v.length if next_v else False
+            is_next_long = cast(HistoricalVowel, next_v).length if next_v else False
 
             if token.length:
                 h2_tone_enum = VowelTone.hh if is_next_long else VowelTone.lh
@@ -493,7 +497,8 @@ def infer_surface_forms(
                                     break
                             if prev_v_idx != -1:
                                 new_tones[prev_v_idx] = (
-                                    tokens[prev_v_idx].quality + v_tones[0].value
+                                    cast(HistoricalVowel, tokens[prev_v_idx]).quality
+                                    + v_tones[0].value
                                 )
                             new_tones[u_idx] = (
                                 token.quality + v_tones[1].value + "".join(c_inline)
@@ -519,7 +524,8 @@ def infer_surface_forms(
                                     break
                             if prev_v_idx != -1:
                                 new_tones[prev_v_idx] = (
-                                    tokens[prev_v_idx].quality + v_tones[0].value
+                                    cast(HistoricalVowel, tokens[prev_v_idx]).quality
+                                    + v_tones[0].value
                                 )
 
                     results.extend(
@@ -529,7 +535,9 @@ def infer_surface_forms(
                 # No H1 rule, but what if H2 is present?
                 if h2:
                     new_tones = list(surface_tones)
-                    new_tones[u_idx] = token.quality + h2_tone_enum.value
+                    new_tones[u_idx] = token.quality + (
+                        h2_tone_enum.value if h2_tone_enum else ""
+                    )
                     next_lh = LocalHighTone.PREV if h2_blocks else local_high.advance()
                     results.extend(solve(u_idx + 1, next_lh, token.length, new_tones))
                 else:
@@ -546,7 +554,9 @@ def infer_surface_forms(
             # H2 only
             new_tones = list(surface_tones)
             if new_tones[u_idx] is None:
-                new_tones[u_idx] = token.quality + h2_tone_enum.value
+                new_tones[u_idx] = token.quality + (
+                    h2_tone_enum.value if h2_tone_enum else ""
+                )
 
             next_lh = LocalHighTone.PREV if h2_blocks else local_high.advance()
             results.extend(solve(u_idx + 1, next_lh, token.length, new_tones))

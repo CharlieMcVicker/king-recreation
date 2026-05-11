@@ -1,5 +1,6 @@
 import itertools
 from dataclasses import dataclass, field
+from typing import Any
 
 from king_recreation.h_alternation import (
     possible_alternates,
@@ -97,6 +98,8 @@ class ExpandedClassPattern:
     def match_alternated_endings(self, forms: dict[str, str], form_name: str):
         suffix = self.get(form_name)
         form_val = forms.get(form_name)
+        if form_val is None:
+            raise ValueError(f"No value for form {form_name}")
         for alt_suffix in possible_alternates(suffix, fix_clusters=False):
             if self._match_ending(recreate_C_glottal_clusters(form_val), alt_suffix):
                 return True
@@ -104,9 +107,10 @@ class ExpandedClassPattern:
         return False
 
     def match_ending(self, forms: dict[str, str], form_name: str):
-        return self._match_ending(
-            suffix=self.get(form_name), form_val=forms.get(form_name)
-        )
+        form_val = forms.get(form_name)
+        if form_val is None:
+            raise ValueError(f"No value for form {form_name}")
+        return self._match_ending(suffix=self.get(form_name), form_val=form_val)
 
     def _match_ending(self, form_val: str, suffix: str):
         # Policy: Vacuous Matching
@@ -244,7 +248,7 @@ class ClassMacro:
         for combo in itertools.product(*field_options):
             # combo is a list of (index, value) tuples corresponding to form_fields order
 
-            expanded_data = {
+            expanded_data: dict[str, Any] = {
                 "parent_name": self.parent_name,
                 "name": self.name,
                 "preconditions": tuple(self.preconditions),
