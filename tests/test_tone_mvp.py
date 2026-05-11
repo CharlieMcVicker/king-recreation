@@ -7,6 +7,7 @@ from king_recreation.tone.models import (
     Environment,
     GlottalPosition,
     H1Config,
+    HistoricalVowel,
     LexedForm,
     Tonicity,
 )
@@ -157,7 +158,9 @@ def test_h2_long_next():
 def test_h2_parsing():
     lf = LexedForm.from_str("ga/li")
     # tokens: [Consonant(g), HistoricalVowel(a, h2=True), Consonant(l), HistoricalVowel(i)]
-    assert lf.tokens[1].h2
+    v = lf.tokens[1]
+    assert isinstance(v, HistoricalVowel)
+    assert v.h2
     assert str(lf) == "ga/li"
 
 

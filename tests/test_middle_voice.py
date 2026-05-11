@@ -1,11 +1,13 @@
-from typing import List, Tuple
+from typing import Sequence, Tuple
 
 from king_recreation.morphemes.middle_voice import MiddleVoice
 from king_recreation.reconstruction import desegment
 
 
 def _test_identify_and_reconstruct(
-    h_grade, g_grade, expected: List[Tuple[MiddleVoice, Tuple[str, str | None]]]
+    h_grade,
+    g_grade,
+    expected: Sequence[Tuple[MiddleVoice, Tuple[str, str | None], bool]],
 ):
     result = MiddleVoice.identify_middle_voice(h_grade, g_grade, log=True)
 
@@ -141,6 +143,7 @@ def test_alhino_strip():
     print(res)
     _, _, con = MiddleVoice.ALI.get_form()
     assert res
+    assert res[1] is not None
     assert con.matches(res[0])
     assert con.matches(res[1])
 
