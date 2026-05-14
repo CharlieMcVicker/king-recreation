@@ -6,16 +6,17 @@ from pylatex import Command, Document, NoEscape, Package, Tabularx
 from pylatex.utils import bold, italic
 from pylatexenc.latexencode import unicode_to_latex
 
-from king_recreation.dictionary_forms import DictionaryVerb, build_wordspec
-from king_recreation.h_alternation import prevent_C_glottal_cluster
-from king_recreation.morphemes.aspect.class_patterns import (
-    ClassMacro,
-    ExpandedClassPattern,
+from dictionary_pipeline.dictionary_forms import DictionaryVerb, build_wordspec
+from dictionary_pipeline.paths import (
+    CLASSES_DATA_PATH,
+    COMPANION_TEX_PATH,
+    MAIN_TOC_PATH,
 )
-from king_recreation.morphemes.middle_voice import MiddleVoice
-from king_recreation.morphology_types import PronominalSet
-from king_recreation.paths import CLASSES_DATA_PATH, COMPANION_TEX_PATH, MAIN_TOC_PATH
-from king_recreation.reconstruction import drop_dropped_phones
+from morphology.h_alternation import prevent_C_glottal_cluster
+from morphology.morphemes.aspect.class_patterns import ClassMacro, ExpandedClassPattern
+from morphology.morphemes.middle_voice import MiddleVoice
+from morphology.morphology_types import PronominalSet
+from morphology.reconstruction import drop_dropped_phones
 from tex_dictionary.companion_data import (
     AspectClass,
     load_aspect_classes,

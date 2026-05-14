@@ -1,7 +1,7 @@
 from typing import Sequence, Tuple
 
-from king_recreation.morphemes.middle_voice import MiddleVoice
-from king_recreation.reconstruction import desegment
+from morphology.morphemes.middle_voice import MiddleVoice
+from morphology.reconstruction import desegment
 
 
 def _test_identify_and_reconstruct(

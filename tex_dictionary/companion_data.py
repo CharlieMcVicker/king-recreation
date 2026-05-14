@@ -2,7 +2,7 @@ import csv
 from dataclasses import dataclass
 from typing import Any, Dict, List
 
-from king_recreation.paths import (
+from dictionary_pipeline.paths import (
     ASPECT_CLASS_MASCOTS_PATH,
     CLASS_MATCH_COUNTS_PATH,
     CLASSES_DATA_PATH,

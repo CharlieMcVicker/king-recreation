@@ -1,9 +1,9 @@
-from king_recreation.tone.analysis import (
+from dictionary_pipeline.tone.analysis import (
     check_prediction,
     generate_underlying_forms,
     predict_h1_for_form,
 )
-from king_recreation.tone.models import (
+from dictionary_pipeline.tone.models import (
     Environment,
     GlottalPosition,
     H1Config,

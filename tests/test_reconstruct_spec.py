@@ -1,8 +1,8 @@
-from king_recreation.morphemes.prefixes import PrefixConfig
-from king_recreation.morphemes.prefixes.prepronominals import PrePronominalConfig
-from king_recreation.morphemes.prefixes.pronominals import PronominalConfig, StemType
-from king_recreation.reconstruction import MorphologicalVerb, ReconstructionEngine
-from king_recreation.word_spec import Aspect, Number, Person, PronominalSet, WordSpec
+from morphology.morphemes.prefixes import PrefixConfig
+from morphology.morphemes.prefixes.prepronominals import PrePronominalConfig
+from morphology.morphemes.prefixes.pronominals import PronominalConfig, StemType
+from morphology.reconstruction import MorphologicalVerb, ReconstructionEngine
+from morphology.word_spec import Aspect, Number, Person, PronominalSet, WordSpec
 
 
 def test_reconstruct_spec():

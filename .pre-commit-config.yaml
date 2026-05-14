@@ -26,9 +26,15 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
-      - id: pyright-king-recreation
-        name: Pyright (king_recreation)
-        entry: npx basedpyright --level error king_recreation
+      - id: pyright-morphology
+        name: Pyright (morphology)
+        entry: npx basedpyright --level error morphology
+        language: system
+        pass_filenames: false
+        always_run: true
+      - id: pyright-dictionary-pipeline
+        name: Pyright (dictionary_pipeline)
+        entry: npx basedpyright --level error dictionary_pipeline
         language: system
         pass_filenames: false
         always_run: true

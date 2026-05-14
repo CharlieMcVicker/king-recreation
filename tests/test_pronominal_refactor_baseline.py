@@ -1,9 +1,9 @@
-from king_recreation.morphemes.prefixes.pronominals import (
+from morphology.morphemes.prefixes.pronominals import (
     PronominalConfig,
     StemType,
     get_prefix_details,
 )
-from king_recreation.word_spec import (
+from morphology.word_spec import (
     Aspect,
     Number,
     Person,

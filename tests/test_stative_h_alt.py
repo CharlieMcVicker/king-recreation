@@ -1,6 +1,6 @@
-from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
-from king_recreation.phases.identify_aspect_classes import get_matches_for_verb
-from king_recreation.phases.preprocess_ced.artifacts import load_corpus
+from dictionary_pipeline.phases.identify_aspect_classes import get_matches_for_verb
+from dictionary_pipeline.phases.preprocess_ced.artifacts import load_corpus
+from morphology.morphemes.aspect.pattern_registry import PatternRegistry
 
 
 def test_be_alive():

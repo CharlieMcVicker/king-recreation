@@ -1,7 +1,10 @@
-from king_recreation.morphemes.prefixes import PronominalConfig
-from king_recreation.morphemes.prefixes.pronominals import StemType
-from king_recreation.morphology_types import PronominalSet
-from king_recreation.phases.identify_prefixes import PrefixDeriver, derive_pronominals
+from dictionary_pipeline.phases.identify_prefixes import (
+    PrefixDeriver,
+    derive_pronominals,
+)
+from morphology.morphemes.prefixes import PronominalConfig
+from morphology.morphemes.prefixes.pronominals import StemType
+from morphology.morphology_types import PronominalSet
 
 
 def test_angry_with_config():

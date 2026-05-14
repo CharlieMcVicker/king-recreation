@@ -1,7 +1,7 @@
 import os
 import tempfile
 
-from king_recreation.morphemes.aspect.pattern_registry import PatternRegistry
+from morphology.morphemes.aspect.pattern_registry import PatternRegistry
 
 
 def test_macro_expansion():

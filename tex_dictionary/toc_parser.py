@@ -126,7 +126,7 @@ def parse_main_toc(
 
 
 if __name__ == "__main__":
-    from king_recreation.paths import MAIN_TOC_PATH
+    from dictionary_pipeline.paths import MAIN_TOC_PATH
     from tex_dictionary.companion_data import load_aspect_classes
 
     classes = load_aspect_classes()

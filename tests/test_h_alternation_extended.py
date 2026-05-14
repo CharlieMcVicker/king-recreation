@@ -1,5 +1,5 @@
-from king_recreation.h_alternation import _drop_first_h
-from king_recreation.phases.identify_prefixes import is_strict_compatible
+from dictionary_pipeline.phases.identify_prefixes import is_strict_compatible
+from morphology.h_alternation import _drop_first_h
 
 
 def test_blinking_vowel_restoration():

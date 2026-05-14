@@ -1,6 +1,6 @@
 import pytest
 
-from king_recreation.morphemes.post_root_morphemes import (
+from morphology.morphemes.post_root_morphemes import (
     PostRootMorpheme,
     PostRootMorphemeRegistry,
     match_post_root_morphemes,

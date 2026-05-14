@@ -1,6 +1,6 @@
-from king_recreation.dictionary_forms import build_wordspec
-from king_recreation.morphemes.prefixes.pronominals import PronominalConfig, StemType
-from king_recreation.word_spec import Aspect, Number, Person, PronominalSet
+from dictionary_pipeline.dictionary_forms import build_wordspec
+from morphology.morphemes.prefixes.pronominals import PronominalConfig, StemType
+from morphology.word_spec import Aspect, Number, Person, PronominalSet
 
 
 def test_build_wordspec_present_1sg():

@@ -8,17 +8,17 @@ from pylatex import Tabularx
 from pylatex.utils import NoEscape, bold, italic
 from pylatexenc.latexencode import unicode_to_latex
 
-from king_recreation.dictionary_forms import DictionaryVerb
-from king_recreation.morphemes.post_root_morphemes import PostRootMorphemeRegistry
-from king_recreation.morphology_types import PronominalSet
-from king_recreation.paths import (
+from dictionary_pipeline.dictionary_forms import DictionaryVerb
+from dictionary_pipeline.paths import (
     CHEROKEE_NATION_DICTIONARY_PATH,
     CORPUS_TO_CND_PATH,
     HIERARCHICAL_DICT_PATH,
     MAIN_TEX_PATH,
     TEX_ROOTS_DIR,
 )
-from king_recreation.phases.group_hierarchical import RootClassNode, RootNode
+from dictionary_pipeline.phases.group_hierarchical import RootClassNode, RootNode
+from morphology.morphemes.post_root_morphemes import PostRootMorphemeRegistry
+from morphology.morphology_types import PronominalSet
 
 
 def strip_tone(s):
@@ -105,7 +105,7 @@ def format_toneless_with_bold(
     # Reconstruct the string with bolding
     # This is tricky because toneless_surface doesn't have hyphens.
     # Let's just use the logic from companion_generator but simpler (no color)
-    from king_recreation.reconstruction import drop_dropped_phones
+    from morphology.reconstruction import drop_dropped_phones
 
     formatted = []
     for i, seg in enumerate(segments):

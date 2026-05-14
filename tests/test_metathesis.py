@@ -1,4 +1,4 @@
-from king_recreation.metathesis import demetathesize_h, metathesize_h
+from morphology.metathesis import demetathesize_h, metathesize_h
 
 
 def _metathesis_case(pro_form, stem, expected):

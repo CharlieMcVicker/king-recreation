@@ -3,7 +3,7 @@ import shutil
 import subprocess
 import sys
 
-from king_recreation.paths import TEX_DIR
+from dictionary_pipeline.paths import TEX_DIR
 from tex_dictionary.generator import generate_tex_files
 
 

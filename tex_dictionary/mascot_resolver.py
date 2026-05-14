@@ -3,8 +3,11 @@ import json
 import os
 from typing import Any, Dict, List, Optional, Tuple
 
-from king_recreation.dictionary_forms import DictionaryVerb
-from king_recreation.paths import ASPECT_CLASS_MASCOTS_PATH, RECONSTRUCTABLE_VERBS_PATH
+from dictionary_pipeline.dictionary_forms import DictionaryVerb
+from dictionary_pipeline.paths import (
+    ASPECT_CLASS_MASCOTS_PATH,
+    RECONSTRUCTABLE_VERBS_PATH,
+)
 from tex_dictionary.generator import (
     get_cnd_entry,
     load_cnd,
