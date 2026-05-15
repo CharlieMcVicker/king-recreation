@@ -219,7 +219,6 @@ def reconstruct_and_validate(
                     normalize_bool(r.get("translocutive_imp_only")),
                     normalize_bool(r.get("partitive")),
                     normalize_bool(r.get("distributive")),
-                    normalize_bool(r.get("distributive_fut_prog")),
                 )
 
             current_key = get_identity_key(verb.original_data)
@@ -327,7 +326,6 @@ def reconstruct_and_validate(
                 normalize_bool(r.get("translocutive_imp_only")),
                 normalize_bool(r.get("partitive")),
                 normalize_bool(r.get("distributive")),
-                normalize_bool(r.get("distributive_fut_prog")),
             )
 
         generated_keys = {get_identity_key_simple(r) for r in validated_rows}

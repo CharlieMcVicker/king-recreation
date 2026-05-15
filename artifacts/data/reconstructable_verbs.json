@@ -4288,6 +4288,45 @@
         }
     },
     {
+        "definition": "he/she is holding it in his/her hand",
+        "morphology": {
+            "h_grade_root": "yh",
+            "glottal_grade_root": "y",
+            "post_root_morpheme": null,
+            "class_name": "stative-eh",
+            "config": {
+                "pre": {
+                    "translocutive": false,
+                    "translocutiveImpOnly": false,
+                    "partitive": false,
+                    "distributive": false
+                },
+                "pron": {
+                    "set_type": "a",
+                    "stem_type": "con",
+                    "allow_h_metathesis": false,
+                    "middle_voice": "none",
+                    "middle_voice_h_metathesis": false,
+                    "plural_pronouns": false,
+                    "use_ka_variant": false,
+                    "use_aki_for_1st_set_b": false,
+                    "uwa_replaces_v": false,
+                    "use_3rd_person_object": false
+                },
+                "stative": true
+            }
+        },
+        "corpus_id": 217,
+        "entry_no": 223,
+        "derivations": [],
+        "segmented_forms": {
+            "present": "a-yh-eh",
+            "present_1sg": "tsi-y-eh",
+            "imperfective": "a-yh-eh",
+            "perfective": "a-yh-eh"
+        }
+    },
+    {
         "definition": "he/she is quilting it",
         "morphology": {
             "h_grade_root": "yhehkal",
@@ -5211,7 +5250,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 273,
@@ -7146,6 +7185,45 @@
         }
     },
     {
+        "definition": "they are standing (refers to a congregation)",
+        "morphology": {
+            "h_grade_root": "ton",
+            "glottal_grade_root": null,
+            "post_root_morpheme": null,
+            "class_name": "stative-a'",
+            "config": {
+                "pre": {
+                    "translocutive": false,
+                    "translocutiveImpOnly": false,
+                    "partitive": false,
+                    "distributive": false
+                },
+                "pron": {
+                    "set_type": "a",
+                    "stem_type": "con",
+                    "allow_h_metathesis": false,
+                    "middle_voice": "none",
+                    "middle_voice_h_metathesis": false,
+                    "plural_pronouns": true,
+                    "use_ka_variant": false,
+                    "use_aki_for_1st_set_b": false,
+                    "uwa_replaces_v": false,
+                    "use_3rd_person_object": false
+                },
+                "stative": true
+            }
+        },
+        "corpus_id": 365,
+        "entry_no": 372,
+        "derivations": [],
+        "segmented_forms": {
+            "present": "ani-ton-a'",
+            "present_1sg": "otsi-ton-a'",
+            "imperfective": "ani-ton-a'",
+            "perfective": "ani-ton-a'"
+        }
+    },
+    {
         "definition": "they are asleep (refers to more than two)",
         "morphology": {
             "h_grade_root": "lhin",
@@ -7171,7 +7249,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 366,
@@ -7181,6 +7259,45 @@
             "present": "ani-lhin-",
             "present_1sg": "otsi-lhin-",
             "imperfective": "ani-lhin-"
+        }
+    },
+    {
+        "definition": "they are sitting (refers to a congregation)",
+        "morphology": {
+            "h_grade_root": "''n",
+            "glottal_grade_root": null,
+            "post_root_morpheme": null,
+            "class_name": "stative",
+            "config": {
+                "pre": {
+                    "translocutive": false,
+                    "translocutiveImpOnly": false,
+                    "partitive": false,
+                    "distributive": false
+                },
+                "pron": {
+                    "set_type": "a",
+                    "stem_type": "glottal",
+                    "allow_h_metathesis": false,
+                    "middle_voice": "none",
+                    "middle_voice_h_metathesis": false,
+                    "plural_pronouns": true,
+                    "use_ka_variant": false,
+                    "use_aki_for_1st_set_b": false,
+                    "uwa_replaces_v": false,
+                    "use_3rd_person_object": false
+                },
+                "stative": true
+            }
+        },
+        "corpus_id": 367,
+        "entry_no": 374,
+        "derivations": [],
+        "segmented_forms": {
+            "present": "ani->''n-",
+            "present_1sg": "otsi->''n-",
+            "imperfective": "ani->''n-",
+            "perfective": "ani->''n-"
         }
     },
     {
@@ -10107,7 +10224,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 502,
@@ -13832,7 +13949,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 746,
@@ -13953,7 +14070,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 759,
@@ -14197,7 +14314,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 772,
@@ -14700,6 +14817,46 @@
             "perfective": "u-nh-vhs",
             "imperative": "hi-nh-uka",
             "infinitive": "u-nh-vhst"
+        }
+    },
+    {
+        "definition": "he/she is holding it (refers to a flexible object)",
+        "morphology": {
+            "h_grade_root": "nh",
+            "glottal_grade_root": "'n",
+            "post_root_morpheme": null,
+            "class_name": "stative-eh",
+            "config": {
+                "pre": {
+                    "translocutive": false,
+                    "translocutiveImpOnly": false,
+                    "partitive": false,
+                    "distributive": false
+                },
+                "pron": {
+                    "set_type": "a",
+                    "stem_type": "con",
+                    "allow_h_metathesis": false,
+                    "middle_voice": "none",
+                    "middle_voice_h_metathesis": false,
+                    "plural_pronouns": false,
+                    "use_ka_variant": true,
+                    "use_aki_for_1st_set_b": false,
+                    "uwa_replaces_v": false,
+                    "use_3rd_person_object": false
+                },
+                "stative": true
+            }
+        },
+        "corpus_id": 814,
+        "entry_no": 844,
+        "derivations": [],
+        "segmented_forms": {
+            "present": "ka-nh-eh",
+            "present_1sg": "tsi-'n-eh",
+            "imperfective": "ka-nh-eh",
+            "perfective": "ka-nh-eh",
+            "imperative": "hi-nh-ehehsti"
         }
     },
     {
@@ -16488,7 +16645,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 887,
@@ -16650,7 +16807,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 893,
@@ -16769,7 +16926,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 899,
@@ -16890,7 +17047,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 903,
@@ -17991,7 +18148,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 970,
@@ -19378,7 +19535,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1067,
@@ -20276,7 +20433,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1235,
@@ -20723,7 +20880,7 @@
                     "uwa_replaces_v": true,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1323,
@@ -20763,7 +20920,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1450,
@@ -20804,7 +20961,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1459,
@@ -20844,7 +21001,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1470,
@@ -20967,7 +21124,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1478,
@@ -21006,7 +21163,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1480,
@@ -21088,7 +21245,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1483,
@@ -21208,7 +21365,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1489,
@@ -21248,7 +21405,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1505,
@@ -21330,7 +21487,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1508,
@@ -21493,7 +21650,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1530,
@@ -21615,7 +21772,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1535,
@@ -21696,7 +21853,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1537,
@@ -21775,7 +21932,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1545,
@@ -21897,7 +22054,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1554,
@@ -21937,7 +22094,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1557,
@@ -22059,7 +22216,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1569,
@@ -22138,7 +22295,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1576,
@@ -22178,7 +22335,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1592,
@@ -22219,7 +22376,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": true
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1593,
@@ -22260,7 +22417,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1597,
@@ -22464,7 +22621,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1613,
@@ -22504,7 +22661,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1614,
@@ -22583,7 +22740,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1618,
@@ -22623,7 +22780,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1621,
@@ -22663,7 +22820,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1622,
@@ -22703,7 +22860,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1623,
@@ -22742,7 +22899,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1629,
@@ -22782,7 +22939,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1639,
@@ -22822,7 +22979,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1642,
@@ -22863,7 +23020,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1646,
@@ -22903,7 +23060,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1677,
@@ -23025,7 +23182,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": true
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1693,
@@ -23230,7 +23387,7 @@
                     "uwa_replaces_v": true,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1709,
@@ -23311,7 +23468,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1729,
@@ -23351,7 +23508,7 @@
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 },
-                "stative": false
+                "stative": true
             }
         },
         "corpus_id": 1730,
@@ -23486,6 +23643,46 @@
             "perfective": "w-u--nh",
             "imperative": "w-hi--hvka",
             "infinitive": "w-u--ht"
+        }
+    },
+    {
+        "definition": "he/she is heading in the direction of",
+        "morphology": {
+            "h_grade_root": "kht",
+            "glottal_grade_root": "kat",
+            "post_root_morpheme": null,
+            "class_name": "stative-h",
+            "config": {
+                "pre": {
+                    "translocutive": true,
+                    "translocutiveImpOnly": false,
+                    "partitive": false,
+                    "distributive": false
+                },
+                "pron": {
+                    "set_type": "a",
+                    "stem_type": "con",
+                    "allow_h_metathesis": false,
+                    "middle_voice": "none",
+                    "middle_voice_h_metathesis": false,
+                    "plural_pronouns": false,
+                    "use_ka_variant": false,
+                    "use_aki_for_1st_set_b": false,
+                    "uwa_replaces_v": false,
+                    "use_3rd_person_object": false
+                },
+                "stative": true
+            }
+        },
+        "corpus_id": 1765,
+        "entry_no": 1834,
+        "derivations": [],
+        "segmented_forms": {
+            "present": "w-a-kht-h",
+            "present_1sg": "wi-tsi-kat-h",
+            "imperfective": "w-a-kht-h",
+            "perfective": "w-a-kht-h",
+            "imperative": "w-hi-kht-hehsti"
         }
     },
     {

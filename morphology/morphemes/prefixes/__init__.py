@@ -27,12 +27,24 @@ class PrefixConfig:
     def to_row(self) -> dict[str, str]:
         return {"stative": str(self.stative), **self.pre.to_row(), **self.pron.to_row()}
 
+    @classmethod
+    def get_row_keys(cls) -> list[str]:
+        return (
+            ["stative"]
+            + PrePronominalConfig.get_row_keys()
+            + PronominalConfig.get_row_keys()
+        )
+
     @staticmethod
     def from_dict(data: dict[str, Any]) -> "PrefixConfig":
+        stative_val = data.get("stative")
+        stative = (
+            stative_val if isinstance(stative_val, bool) else (stative_val == "True")
+        )
         return PrefixConfig(
             pre=PrePronominalConfig.from_dict(data.get("pre", {})),
             pron=PronominalConfig.from_dict(data.get("pron", {})),
-            stative=(data.get("stative", "") == "True"),
+            stative=stative,
         )
 
     def apply_prepronominals(self, base: str, aspect: Aspect) -> list[str]:

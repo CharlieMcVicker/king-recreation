@@ -281,7 +281,7 @@ def stems_are_consistent(
     return h_candidate, g_candidate
 
 
-def iter_pre_configs(forms):
+def iter_pre_configs(forms, stative_hint: bool = False):
     """
     Iterate over valid pre-configs
     """
@@ -290,7 +290,9 @@ def iter_pre_configs(forms):
         for t2 in t2_opts:
             for p in [False, True]:
                 for d in [False, True]:
-                    for stative in [False, True] if d else [False]:
+                    # Use the hint if provided, otherwise fallback to distributive-based logic
+                    stative_opts = [stative_hint]
+                    for stative in stative_opts:
                         pre_config = PrePronominalConfig(t, t2, p, d)
                         intermediate = strip_prepronominals(forms, pre_config, stative)
                         if intermediate is None:
@@ -322,8 +324,11 @@ class PrefixDeriver:
             return []
 
         valid_derivations: list[PrefixDerivation] = []
+        stative_hint = row.get("stative") == "True"
 
-        for pre_config, stative, intermediate in iter_pre_configs(forms):
+        for pre_config, stative, intermediate in iter_pre_configs(
+            forms, stative_hint=stative_hint
+        ):
             present_form = intermediate.get("present", "")
             set_type = (
                 PronominalSet.SET_B

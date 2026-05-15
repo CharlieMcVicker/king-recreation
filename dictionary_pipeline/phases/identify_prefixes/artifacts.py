@@ -1,34 +1,32 @@
 import csv
 import os
+from dataclasses import dataclass
 from typing import Any
 
 from dictionary_pipeline.paths import (
     CORPUS_NO_PRE_NO_ASP_PATH,
     PRE_PARSING_FAILURES_PATH,
 )
+from dictionary_pipeline.row_models import AspectInfo, RootInfo, RowModelBase, VerbMeta
+from morphology.morphemes.prefixes import PrefixConfig
+
+
+@dataclass
+class StrippedRootRow(RowModelBase):
+    meta: VerbMeta
+    aspect: AspectInfo
+    roots: RootInfo
+    config: PrefixConfig
+    metathesis_involved: bool = False
 
 
 def save_stripped_roots(labeled_data: list[dict[str, Any]]) -> None:
     if not labeled_data:
         return
 
-    form_names = [
-        "present",
-        "present_1sg",
-        "imperfective",
-        "perfective",
-        "imperative",
-        "infinitive",
-    ]
-    keys = labeled_data[0].keys()
-    keys = [k for k in keys if k not in form_names]
-
-    with open(CORPUS_NO_PRE_NO_ASP_PATH, "w", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=keys)
-        writer.writeheader()
-        writer.writerows(
-            {k: v for k, v in row.items() if k in keys} for row in labeled_data
-        )
+    # Convert to StrippedRootRow to ensure schema consistency
+    rows = [StrippedRootRow.from_row(d) for d in labeled_data]
+    StrippedRootRow.write_csv(CORPUS_NO_PRE_NO_ASP_PATH, rows)
     print(f"Success: {len(labeled_data)}")
 
 

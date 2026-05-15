@@ -3,51 +3,26 @@ import os
 from dataclasses import asdict, dataclass
 
 from dictionary_pipeline.paths import CORPUS_NO_ASP_PATH, MATCHES_PATH
+from dictionary_pipeline.row_models import (
+    AspectInfo,
+    CorpusForms,
+    RowModelBase,
+    VerbMeta,
+)
 
 
 @dataclass
-class StrippedVerbRow:
-    corpus_id: str
-    definition: str
-    verb_class: str
-    post_root_morpheme: str | None = None
-    present: str = ""
-    present_1sg: str = ""
-    imperfective: str = ""
-    perfective: str = ""
-    imperative: str = ""
-    infinitive: str = ""
-
-    @staticmethod
-    def dict_keys():
-        return [
-            "corpus_id",
-            "definition",
-            "class",
-            "post_root_morpheme",
-            "present",
-            "present_1sg",
-            "imperfective",
-            "perfective",
-            "imperative",
-            "infinitive",
-        ]
-
-    @staticmethod
-    def write_csv(filename: str, data: list["StrippedVerbRow"]) -> None:
-        stripped_dicts = [x.to_dict() for x in data]
-        with open(filename, mode="w", encoding="utf-8", newline="") as f:
-            writer = csv.DictWriter(f, fieldnames=StrippedVerbRow.dict_keys())
-            writer.writeheader()
-            writer.writerows(stripped_dicts)
-
-    def to_dict(self):
-        d = asdict(self)
-        d["class"] = d.pop("verb_class")
-        return d
+class StrippedVerbRow(RowModelBase):
+    meta: VerbMeta
+    aspect: AspectInfo
+    forms: CorpusForms
 
     def copy(self):
-        return StrippedVerbRow(**asdict(self))
+        return StrippedVerbRow(
+            meta=VerbMeta(**asdict(self.meta)),
+            aspect=AspectInfo(**asdict(self.aspect)),
+            forms=CorpusForms(**asdict(self.forms)),
+        )
 
 
 def save_matches(matches_data: list[dict[str, str]]) -> None:

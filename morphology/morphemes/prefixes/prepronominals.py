@@ -34,6 +34,10 @@ class PrePronominalConfig:
 
         return row
 
+    @classmethod
+    def get_row_keys(cls) -> list[str]:
+        return ["translocutive", "translocutive_imp_only", "partitive", "distributive"]
+
 
 def apply_prepronominal(
     word: str, config: PrePronominalConfig, aspect: Aspect, stative: bool

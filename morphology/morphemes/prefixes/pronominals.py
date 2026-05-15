@@ -130,6 +130,21 @@ class PronominalConfig:
 
         return row
 
+    @classmethod
+    def get_row_keys(cls) -> list[str]:
+        return [
+            "set_a_b",
+            "stem_type",
+            "allow_h_metathesis",
+            "middle_voice",
+            "middle_voice_h_metathesis",
+            "plural",
+            "ka_variant",
+            "aki_1st",
+            "uwa_v",
+            "3rd_person_object",
+        ]
+
 
 @dataclass
 class ConfiguredPrefix:

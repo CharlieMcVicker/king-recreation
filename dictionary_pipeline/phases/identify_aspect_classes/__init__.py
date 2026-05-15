@@ -7,6 +7,7 @@ from dictionary_pipeline.phases.identify_aspect_classes.artifacts import (
     save_stripped_corpus,
 )
 from dictionary_pipeline.phases.preprocess_ced.artifacts import load_corpus
+from dictionary_pipeline.row_models import AspectInfo, CorpusForms, VerbMeta
 from morphology.morphemes.aspect.class_patterns import ExpandedClassPattern
 from morphology.morphemes.aspect.pattern_registry import PatternRegistry
 
@@ -19,9 +20,15 @@ def strip_verb_forms(
     and uses the morphological strip_form() to remove aspect suffixes.
     """
     stripped_row = StrippedVerbRow(
-        corpus_id=verb.get("corpus_id", ""),
-        definition=verb.get("definition", ""),
-        verb_class=cls.name,
+        meta=VerbMeta(
+            corpus_id=verb.get("corpus_id", ""),
+            definition=verb.get("definition", ""),
+        ),
+        aspect=AspectInfo(
+            verb_class=cls.name,
+            stative=(cls.parent_name == "stative"),
+        ),
+        forms=CorpusForms(),
     )
 
     for fn in ALL_FORM_NAMES:
@@ -34,7 +41,7 @@ def strip_verb_forms(
 
         stripped_stem = cls.strip_form(aspect, form_val)
         if stripped_stem is not None:
-            setattr(stripped_row, fn, stripped_stem)
+            setattr(stripped_row.forms, fn, stripped_stem)
 
     return stripped_row
 

@@ -1,6 +1,7 @@
 import csv
 import json
 import os
+from dataclasses import dataclass
 from typing import Any
 
 from dictionary_pipeline.paths import (
@@ -114,47 +115,33 @@ def load_reconstruction_validation() -> dict[str, Any]:
         return json.load(f)
 
 
+from dictionary_pipeline.row_models import (
+    AspectInfo,
+    RootInfo,
+    RowModelBase,
+    UserCurationInfo,
+    VerbMeta,
+)
+from morphology.morphemes.prefixes import PrefixConfig
+
+
+@dataclass
+class ValidatedRootRow(RowModelBase):
+    meta: VerbMeta
+    curation: UserCurationInfo
+    aspect: AspectInfo
+    roots: RootInfo
+    config: PrefixConfig
+    metathesis_involved: bool = False
+    segmented_forms: str = ""
+
+
 def save_validated_roots(data: list[dict[str, Any]]) -> None:
     if not data:
         return
 
-    fieldnames = [
-        "corpus_id",
-        "entry_no",
-        "user_selected",
-        "pipeline_selected",
-        "definition",
-        "stative",
-        "class",
-        "post_root_morpheme",
-        "h_grade",
-        "g_grade",
-        "metathesis_involved",
-        "set_a_b",
-        "stem_type",
-        "allow_h_metathesis",
-        "middle_voice",
-        "middle_voice_h_metathesis",
-        "plural",
-        "ka_variant",
-        "aki_1st",
-        "uwa_v",
-        "3rd_person_object",
-        "translocutive",
-        "translocutive_imp_only",
-        "partitive",
-        "distributive",
-        "distributive_fut_prog",
-        "segmented_forms",
-    ]
-
-    os.makedirs(os.path.dirname(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH), exist_ok=True)
-    with open(
-        VALIDATED_RECONSTRUCTABLE_ROOTS_PATH, "w", encoding="utf-8", newline=""
-    ) as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(data)
+    rows = [ValidatedRootRow.from_row(d) for d in data]
+    ValidatedRootRow.write_csv(VALIDATED_RECONSTRUCTABLE_ROOTS_PATH, rows)
 
 
 def load_validated_roots() -> list[dict[str, Any]]:
