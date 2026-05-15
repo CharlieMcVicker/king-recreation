@@ -10,6 +10,7 @@ Morphological-core modules should import from word_spec directly.
 
 import logging
 from dataclasses import dataclass, field
+from enum import Enum
 from typing import Any
 
 from morphology.morphemes.prefixes.pronominals import PronominalConfig
@@ -25,6 +26,15 @@ from morphology.word_spec import (
 )
 
 # ... (existing mappings)
+
+
+class Prediction(str, Enum):
+    """
+    Enum saying which fields of a verb are being modeled in a given
+    derivation
+    """
+
+    FULL_EVENTFUL = "FullEventful"
 
 
 @dataclass
@@ -80,15 +90,20 @@ FORM_NAME_TO_PERSON: dict[str, Person] = {
     "present_1sg": Person.FIRST,
 }
 
+
+FORM_NAMES_FOR_PREDICTION = {
+    Prediction.FULL_EVENTFUL: [
+        "present",
+        "present_1sg",
+        "imperfective",
+        "perfective",
+        "imperative",
+        "infinitive",
+    ]
+}
+
 # All dictionary form columns (for iterating over dictionary rows)
-ALL_FORM_NAMES = [
-    "present",
-    "present_1sg",
-    "imperfective",
-    "perfective",
-    "imperative",
-    "infinitive",
-]
+ALL_FORM_NAMES = FORM_NAMES_FOR_PREDICTION[Prediction.FULL_EVENTFUL]
 
 # Aspect-only forms (no person variants like present_1sg)
 ASPECT_FORM_NAMES = [

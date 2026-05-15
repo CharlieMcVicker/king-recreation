@@ -44,36 +44,33 @@ def read_original_cnd() -> list[dict[str, Any]]:
         return list(csv.DictReader(io.StringIO(content)))
 
 
-def save_corpus(data: list[dict[str, Any]], fieldnames: list[str]) -> None:
+from dictionary_pipeline.row_models import PatchRow, ProcessedRow
+
+
+def save_corpus(data: list[ProcessedRow]) -> None:
     ensure_output_dir()
-    with open(CORPUS_PATH, mode="w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(data)
+    ProcessedRow.write_csv(CORPUS_PATH, data)
     print(f"Processed data written to {CORPUS_PATH}")
 
 
-def save_raw_corpus(data: list[dict[str, Any]], fieldnames: list[str]) -> None:
+def save_raw_corpus(data: list[ProcessedRow]) -> None:
     ensure_output_dir()
-    with open(CORPUS_RAW_PATH, mode="w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=fieldnames)
-        writer.writeheader()
-        writer.writerows(data)
+    ProcessedRow.write_csv(CORPUS_RAW_PATH, data)
     print(f"Raw processed data written to {CORPUS_RAW_PATH}")
 
 
-def load_manual_corrections() -> list[dict[str, Any]]:
+def load_manual_corrections() -> list[PatchRow]:
     if not os.path.exists(MANUAL_CORRECTIONS_PATH):
         return []
     with open(MANUAL_CORRECTIONS_PATH, mode="r", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+        return [PatchRow.from_row(row) for row in csv.DictReader(f)]
 
 
-def load_corpus() -> list[dict[str, Any]]:
+def load_corpus() -> list[ProcessedRow]:
     if not os.path.exists(CORPUS_PATH):
         return []
     with open(CORPUS_PATH, mode="r", encoding="utf-8") as f:
-        return list(csv.DictReader(f))
+        return [ProcessedRow.from_row(row) for row in csv.DictReader(f)]
 
 
 def save_mapping(data: list[dict[str, Any]], fieldnames: list[str]) -> None:

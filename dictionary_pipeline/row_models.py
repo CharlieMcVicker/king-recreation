@@ -1,8 +1,9 @@
 import csv
 import os
 from dataclasses import dataclass, fields, is_dataclass
-from enum import Enum
 from typing import Any
+
+from dictionary_pipeline.dictionary_forms import Prediction
 
 
 def flatten_to_dict(obj: Any) -> dict[str, Any]:
@@ -66,28 +67,40 @@ def get_all_fieldnames(cls: Any) -> list[str]:
     return fieldnames
 
 
-class Prediction(str, Enum):
-    FULL_EVENTFUL = "FullEventful"
-
-
 @dataclass
 class VerbMeta:
     corpus_id: str
     definition: str
-    prediction: Prediction
-    entry_no: str | None = None
+    entry_no: str
 
     @classmethod
     def get_row_keys(cls) -> list[str]:
-        return ["corpus_id", "definition", "entry_no", "prediction"]
+        return ["corpus_id", "entry_no", "definition"]
 
     @classmethod
     def from_row(cls, row: dict[str, str]) -> "VerbMeta":
         return cls(
             corpus_id=row.get("corpus_id", ""),
             definition=row.get("definition", ""),
-            prediction=Prediction(row["prediction"]),
-            entry_no=row.get("entry_no"),
+            entry_no=row["entry_no"],
+        )
+
+
+@dataclass(kw_only=True)
+class PredictionMeta(VerbMeta):
+    prediction: Prediction
+
+    @classmethod
+    def get_row_keys(cls) -> list[str]:
+        return super().get_row_keys() + ["prediction"]
+
+    @classmethod
+    def from_row(cls, row: dict[str, str]) -> "PredictionMeta":
+        return cls(
+            corpus_id=row.get("corpus_id", ""),
+            definition=row.get("definition", ""),
+            entry_no=row["entry_no"],
+            prediction=Prediction(row.get("prediction", "FullEventful")),
         )
 
 
@@ -227,3 +240,14 @@ class RowModelBase:
                     else:
                         kwargs[f.name] = val
         return cls(**kwargs)
+
+
+@dataclass
+class ProcessedRow(RowModelBase):
+    meta: PredictionMeta
+    forms: CorpusForms
+
+
+@dataclass
+class PatchRow(ProcessedRow):
+    notes: str = ""

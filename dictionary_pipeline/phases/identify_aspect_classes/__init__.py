@@ -1,29 +1,37 @@
 from collections import defaultdict
 
-from dictionary_pipeline.dictionary_forms import ALL_FORM_NAMES, get_form_spec
+from dictionary_pipeline.dictionary_forms import (
+    ALL_FORM_NAMES,
+    FORM_NAMES_FOR_PREDICTION,
+    get_form_spec,
+)
 from dictionary_pipeline.phases.identify_aspect_classes.artifacts import (
     StrippedVerbRow,
     save_matches,
     save_stripped_corpus,
 )
 from dictionary_pipeline.phases.preprocess_ced.artifacts import load_corpus
-from dictionary_pipeline.row_models import AspectInfo, CorpusForms, Prediction, VerbMeta
+from dictionary_pipeline.row_models import (
+    AspectInfo,
+    CorpusForms,
+    PredictionMeta,
+    ProcessedRow,
+)
 from morphology.morphemes.aspect.class_patterns import ExpandedClassPattern
 from morphology.morphemes.aspect.pattern_registry import PatternRegistry
 
 
-def strip_verb_forms(
-    cls: ExpandedClassPattern, verb: dict[str, str]
-) -> StrippedVerbRow:
+def strip_verb_forms(cls: ExpandedClassPattern, verb: ProcessedRow) -> StrippedVerbRow:
     """
     Dictionary-aware function: iterates over dictionary form-name columns
     and uses the morphological strip_form() to remove aspect suffixes.
     """
     stripped_row = StrippedVerbRow(
-        meta=VerbMeta(
-            corpus_id=verb.get("corpus_id", ""),
-            definition=verb.get("definition", ""),
-            prediction=Prediction(verb["prediction"]),
+        meta=PredictionMeta(
+            corpus_id=verb.meta.corpus_id,
+            definition=verb.meta.definition,
+            entry_no=verb.meta.entry_no,
+            prediction=verb.meta.prediction,
         ),
         aspect=AspectInfo(
             verb_class=cls.name,
@@ -32,8 +40,8 @@ def strip_verb_forms(
         forms=CorpusForms(),
     )
 
-    for fn in ALL_FORM_NAMES:
-        form_val = verb.get(fn)
+    for fn in FORM_NAMES_FOR_PREDICTION[stripped_row.meta.prediction]:
+        form_val = getattr(verb.forms, fn)
         if not form_val:
             continue
 
@@ -50,12 +58,12 @@ def strip_verb_forms(
 def group_matches_by_macro(
     registry: PatternRegistry,
     candidate_patterns: set[ExpandedClassPattern],
-    verb: dict[str, str],
+    verb: ProcessedRow,
 ) -> list[dict[str, str]]:
     forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
-    present_verb_forms = [f for f in forms if verb.get(f)]
+    present_verb_forms = [f for f in forms if getattr(verb.forms, f)]
 
-    definition = verb.get("definition", "unknown")
+    definition = verb.meta.definition or "unknown"
 
     matches = []
     # Group by Macro for preference logic
@@ -90,9 +98,13 @@ def group_matches_by_macro(
 
             # Check Ending Match (Already mostly done by lookup/intersect, but verifying specifics like * or @)
             all_endings_match = True
+            from dataclasses import asdict
+
+            verb_forms_dict = asdict(verb.forms)
             for form in forms:
-                if not cls.match_ending(verb, form) and not (
-                    form == "imperative" and cls.match_alternated_endings(verb, form)
+                if not cls.match_ending(verb_forms_dict, form) and not (
+                    form == "imperative"
+                    and cls.match_alternated_endings(verb_forms_dict, form)
                 ):
                     all_endings_match = False
                     break
@@ -111,12 +123,12 @@ def group_matches_by_macro(
 
 
 def get_matches_for_verb(
-    verb: dict[str, str], registry: PatternRegistry
+    verb: ProcessedRow, registry: PatternRegistry
 ) -> list[dict[str, str]]:
     # 1. Prepare form tuples for candidate lookup
     form_tuples = []
     for fn in ALL_FORM_NAMES:
-        surface_form = verb.get(fn)
+        surface_form = getattr(verb.forms, fn, "")
         if not surface_form:
             continue
 
@@ -169,7 +181,7 @@ def identify_aspect_classes(classes_path: str | None = None) -> None:
     for verb in corpus_rows:
         matches = get_matches_for_verb(verb, registry)
         for m in matches:
-            m["corpus_id"] = verb.get("corpus_id", "")
+            m["corpus_id"] = verb.meta.corpus_id
         matches_data.extend(matches)
 
         # Identify candidates for stripping

@@ -117,17 +117,17 @@ def load_reconstruction_validation() -> dict[str, Any]:
 
 from dictionary_pipeline.row_models import (
     AspectInfo,
+    PredictionMeta,
     RootInfo,
     RowModelBase,
     UserCurationInfo,
-    VerbMeta,
 )
 from morphology.morphemes.prefixes import PrefixConfig
 
 
 @dataclass
 class ValidatedRootRow(RowModelBase):
-    meta: VerbMeta
+    meta: PredictionMeta
     curation: UserCurationInfo
     aspect: AspectInfo
     roots: RootInfo

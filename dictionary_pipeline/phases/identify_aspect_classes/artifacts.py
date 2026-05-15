@@ -6,20 +6,20 @@ from dictionary_pipeline.paths import CORPUS_NO_ASP_PATH, MATCHES_PATH
 from dictionary_pipeline.row_models import (
     AspectInfo,
     CorpusForms,
+    PredictionMeta,
     RowModelBase,
-    VerbMeta,
 )
 
 
 @dataclass
 class StrippedVerbRow(RowModelBase):
-    meta: VerbMeta
+    meta: PredictionMeta
     aspect: AspectInfo
     forms: CorpusForms
 
     def copy(self):
         return StrippedVerbRow(
-            meta=VerbMeta(**asdict(self.meta)),
+            meta=PredictionMeta(**asdict(self.meta)),
             aspect=AspectInfo(**asdict(self.aspect)),
             forms=CorpusForms(**asdict(self.forms)),
         )

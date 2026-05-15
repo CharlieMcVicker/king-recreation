@@ -57,7 +57,7 @@ def reconstruct_and_validate(
 
     # Load raw Corpus
     corpus = load_corpus()
-    full_corpus_map = {row["corpus_id"]: row for row in corpus}
+    full_corpus_map = {row.meta.corpus_id: row for row in corpus}
 
     dictionary_verbs: list[DictionaryVerb] = []
     consistency_analysis = []
@@ -137,7 +137,7 @@ def reconstruct_and_validate(
 
         if ref:
             verb.entry_no = (lambda x: int(x) if x is not None else None)(
-                ref.get("entry_no", None)
+                ref.meta.entry_no
             )
 
         # Capture options for report
@@ -154,7 +154,7 @@ def reconstruct_and_validate(
             failed_forms = ["Generation Failed"]
         else:
             for fn in forms:
-                ref_word = ref.get(fn) if ref else None
+                ref_word = getattr(ref.forms, fn) if ref else None
                 if not ref_word:
                     continue
                 if ref_word not in desegmented_forms.get(fn, set()):
