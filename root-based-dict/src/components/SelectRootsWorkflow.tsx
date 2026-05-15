@@ -18,35 +18,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 
-interface ValidatedRootRow {
-  corpus_id: number;
-  entry_no: number;
-  user_selected: string;
-  pipeline_selected: string;
-  definition: string;
-  stative: boolean;
-  class: string;
-  post_root_morpheme: string;
-  h_grade: string;
-  g_grade: string;
-  metathesis_involved: boolean;
-  set_a_b: string;
-  stem_type: string;
-  allow_h_metathesis: boolean;
-  middle_voice: string;
-  middle_voice_h_metathesis: boolean;
-  plural: boolean;
-  ka_variant: boolean;
-  aki_1st: boolean;
-  uwa_v: boolean;
-  "3rd_person_object": boolean;
-  translocutive: boolean;
-  translocutive_imp_only: boolean;
-  partitive: boolean;
-  distributive: boolean;
-  distributive_fut_prog: boolean;
-  segmented_forms: string; // JSON string
-}
+import { ValidatedRootRow } from "@/lib/data-shared";
 
 interface SelectRootsWorkflowProps {
   initialData: ValidatedRootRow[];
@@ -69,11 +41,11 @@ export default function SelectRootsWorkflow({
     const ids: number[] = [];
 
     initialData.forEach((row) => {
-      if (!groups[row.corpus_id]) {
-        groups[row.corpus_id] = [];
-        ids.push(row.corpus_id);
+      if (!groups[row.meta.corpus_id]) {
+        groups[row.meta.corpus_id] = [];
+        ids.push(row.meta.corpus_id);
       }
-      groups[row.corpus_id].push(row);
+      groups[row.meta.corpus_id].push(row);
     });
 
     return { groupedData: groups, allCorpusIds: ids };
@@ -85,7 +57,7 @@ export default function SelectRootsWorkflow({
     if (showOnlyUnreviewed) {
       ids = ids.filter((id) => {
         const derivations = groupedData[id] || [];
-        return !derivations.some((d) => d.user_selected === "x");
+        return !derivations.some((d) => d.curation.user_selected === "x");
       });
     }
 
@@ -139,13 +111,13 @@ export default function SelectRootsWorkflow({
   useEffect(() => {
     if (derivations.length > 0) {
       const userSelectedIndex = derivations.findIndex(
-        (d) => d.user_selected === "x",
+        (d) => d.curation.user_selected === "x",
       );
       if (userSelectedIndex !== -1) {
         setSelectedDerivationIndex(userSelectedIndex);
       } else {
         const pipelineSelectedIndex = derivations.findIndex(
-          (d) => d.pipeline_selected === "x",
+          (d) => d.curation.pipeline_selected === "x",
         );
         setSelectedDerivationIndex(
           pipelineSelectedIndex !== -1 ? pipelineSelectedIndex : 0,
@@ -218,29 +190,32 @@ export default function SelectRootsWorkflow({
   const selectedDerivation =
     derivations[selectedDerivationIndex] || derivations[0];
 
+  const getValue = (obj: any, path: string) => {
+    return path.split(".").reduce((acc, part) => acc && acc[part], obj);
+  };
+
   const rows = useMemo(
     () => [
-      { label: "Class", key: "class" },
-      { label: "Stem Type", key: "stem_type" },
-      { label: "H Grade", key: "h_grade" },
-      { label: "G Grade", key: "g_grade" },
-      { label: "Morpheme", key: "post_root_morpheme" },
-      { label: "Stative", key: "stative" },
+      { label: "Class", key: "aspect.verb_class" },
+      { label: "Stem Type", key: "config.pron.stem_type" },
+      { label: "H Grade", key: "roots.h_grade" },
+      { label: "G Grade", key: "roots.g_grade" },
+      { label: "Morpheme", key: "aspect.post_root_morpheme" },
+      { label: "Stative", key: "aspect.stative" },
       { label: "Metathesis", key: "metathesis_involved" },
-      { label: "Set A/B", key: "set_a_b" },
-      { label: "Allow H Meta", key: "allow_h_metathesis" },
-      { label: "Middle Voice", key: "middle_voice" },
-      { label: "MV H Meta", key: "middle_voice_h_metathesis" },
-      { label: "Plural", key: "plural" },
-      { label: "Ka Variant", key: "ka_variant" },
-      { label: "Aki 1st", key: "aki_1st" },
-      { label: "Uwa V", key: "uwa_v" },
-      { label: "3rd Obj", key: "3rd_person_object" },
-      { label: "Transloc", key: "translocutive" },
-      { label: "Transloc (Imp Only)", key: "translocutive_imp_only" },
-      { label: "Partitive", key: "partitive" },
-      { label: "Distributive", key: "distributive" },
-      { label: "Dist (Fut/Prog)", key: "distributive_fut_prog" },
+      { label: "Set A/B", key: "config.pron.set_type" },
+      { label: "Allow H Meta", key: "config.pron.allow_h_metathesis" },
+      { label: "Middle Voice", key: "config.pron.middle_voice" },
+      { label: "MV H Meta", key: "config.pron.middle_voice_h_metathesis" },
+      { label: "Plural", key: "config.pron.plural_pronouns" },
+      { label: "Ka Variant", key: "config.pron.use_ka_variant" },
+      { label: "Aki 1st", key: "config.pron.use_aki_for_1st_set_b" },
+      { label: "Uwa V", key: "config.pron.uwa_replaces_v" },
+      { label: "3rd Obj", key: "config.pron.use_3rd_person_object" },
+      { label: "Transloc", key: "config.pre.translocutive" },
+      { label: "Transloc (Imp)", key: "config.pre.translocutiveImpOnly" },
+      { label: "Partitive", key: "config.pre.partitive" },
+      { label: "Distributive", key: "config.pre.distributive" },
     ],
     [],
   );
@@ -250,9 +225,9 @@ export default function SelectRootsWorkflow({
 
     const redundant = new Set<string>();
     rows.forEach((row) => {
-      const firstVal = (derivations[0] as any)[row.key];
+      const firstVal = getValue(derivations[0], row.key);
       const allSame = derivations.every(
-        (d) => (d as any)[row.key] === firstVal,
+        (d) => getValue(d, row.key) === firstVal,
       );
       if (allSame) {
         redundant.add(row.key);
@@ -287,18 +262,18 @@ export default function SelectRootsWorkflow({
         <div className="space-y-1">
           <div className="flex items-center gap-3">
             <h1 className="text-2xl font-bold text-gray-900 dark:text-zinc-100 italic">
-              "{derivations[0]?.definition}"
+              "{derivations[0]?.meta.definition}"
             </h1>
             <span className="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-xs font-mono text-zinc-500">
               ID: {currentCorpusId}
             </span>
-            {selectedDerivation?.user_selected === "x" && (
+            {selectedDerivation?.curation.user_selected === "x" && (
               <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-wider border border-emerald-100 dark:border-emerald-800/30">
                 <CheckCircle2 className="w-3 h-3" />
                 User Approved
               </span>
             )}
-            {selectedDerivation?.pipeline_selected === "x" && (
+            {selectedDerivation?.curation.pipeline_selected === "x" && (
               <span className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-amber-50 text-amber-700 dark:bg-amber-900/20 dark:text-amber-400 text-[10px] font-bold uppercase tracking-wider border border-amber-100 dark:border-amber-800/30">
                 <AlertCircle className="w-3 h-3" />
                 Pipeline Selected
@@ -314,7 +289,7 @@ export default function SelectRootsWorkflow({
           </div>
           <p className="text-sm text-zinc-500 flex items-center gap-2">
             <Database className="w-4 h-4" />
-            Entry No. {derivations[0]?.entry_no}
+            Entry No. {derivations[0]?.meta.entry_no}
           </p>
         </div>
 
@@ -364,12 +339,12 @@ export default function SelectRootsWorkflow({
                 </th>
                 {derivations.map((derivation, idx) => {
                   const isSelected = idx === selectedDerivationIndex;
-                  const isPipeline = derivation.pipeline_selected === "x";
-                  const isUser = derivation.user_selected === "x";
+                  const isPipeline = derivation.curation.pipeline_selected === "x";
+                  const isUser = derivation.curation.user_selected === "x";
                   const pipelineDiffers =
-                    derivation.pipeline_selected === "x" &&
-                    derivation.user_selected !== "x" &&
-                    derivations.some((d) => d.user_selected === "x");
+                    derivation.curation.pipeline_selected === "x" &&
+                    derivation.curation.user_selected !== "x" &&
+                    derivations.some((d) => d.curation.user_selected === "x");
 
                   return (
                     <th
@@ -443,9 +418,9 @@ export default function SelectRootsWorkflow({
                     {row.label}
                   </td>
                   {derivations.map((derivation, devIdx) => {
-                    const val = (derivation as any)[row.key];
+                    const val = getValue(derivation, row.key);
                     const selectedVal = selectedDerivation
-                      ? (selectedDerivation as any)[row.key]
+                      ? getValue(selectedDerivation, row.key)
                       : undefined;
                     const isDiff =
                       devIdx !== selectedDerivationIndex &&

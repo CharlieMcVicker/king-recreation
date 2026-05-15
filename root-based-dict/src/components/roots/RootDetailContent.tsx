@@ -82,10 +82,10 @@ export default function RootDetailContent({
       // The old logic filtered classes by name.
       // Let's keep filteredClasses logic but applies to all.
 
-      if (!verb.post_root_morpheme) {
+      if (!verb.morphology.post_root_morpheme) {
         baseVerbs.push(verb);
       } else {
-        const tag = verb.post_root_morpheme;
+        const tag = verb.morphology.post_root_morpheme;
         if (!derivedVerbsMap.has(tag)) {
           derivedVerbsMap.set(tag, []);
         }

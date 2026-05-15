@@ -1,32 +1,77 @@
-export interface ReconstructableVerb {
-  definition: string;
+export interface PrePronominalConfig {
+  translocutive: boolean;
+  translocutiveImpOnly: boolean;
+  partitive: boolean;
+  distributive: boolean;
+}
+
+export interface PronominalConfig {
+  set_type: string;
+  stem_type: string;
+  allow_h_metathesis: boolean;
+  middle_voice: string;
+  middle_voice_h_metathesis: boolean;
+  plural_pronouns: boolean;
+  use_ka_variant: boolean;
+  use_aki_for_1st_set_b: boolean;
+  uwa_replaces_v: boolean;
+  use_3rd_person_object: boolean;
+}
+
+export interface PrefixConfig {
+  pre: PrePronominalConfig;
+  pron: PronominalConfig;
+  stative: boolean;
+}
+
+export interface MorphologicalVerb {
   h_grade_root: string;
   glottal_grade_root: string | null;
-  class_name: string;
   post_root_morpheme: string | null;
+  class_name: string;
+  config: PrefixConfig;
+}
+
+export interface ReconstructableVerb {
+  definition: string;
+  morphology: MorphologicalVerb;
   corpus_id: number | null;
-  entry_no?: number;
-  config: {
-    pre: {
-      translocutive: boolean;
-      translocutiveImpOnly?: boolean;
-      partitive: boolean;
-      distributive: boolean;
-      distributiveImpIsFutProg?: boolean;
-    };
-    pron: {
-      set_type: string;
-      stem_type: string;
-      allow_h_metathesis: boolean;
-      middle_voice: string;
-      use_ka_variant: boolean;
-      long_start?: boolean;
-      use_aki_for_1st_set_b: boolean;
-      uwa_replaces_v?: boolean;
-      use_3rd_person_object: boolean;
-    };
-  };
+  entry_no: number | null;
   derivations?: ReconstructableVerb[];
+  user_selected?: boolean;
+  segmented_forms?: Record<string, string>;
+}
+
+export interface VerbMeta {
+  corpus_id: number;
+  definition: string;
+  entry_no: number | null;
+}
+
+export interface UserCurationInfo {
+  user_selected: string | null;
+  pipeline_selected: string | null;
+}
+
+export interface AspectInfo {
+  verb_class: string;
+  post_root_morpheme: string | null;
+  stative: boolean;
+}
+
+export interface RootInfo {
+  h_grade: string;
+  g_grade: string | null;
+}
+
+export interface ValidatedRootRow {
+  meta: VerbMeta;
+  curation: UserCurationInfo;
+  aspect: AspectInfo;
+  roots: RootInfo;
+  config: PrefixConfig;
+  metathesis_involved: boolean;
+  segmented_forms: string;
 }
 
 export interface ClassDefinition {
@@ -183,7 +228,7 @@ export function getMorphemeSlug(name: string): string {
 
 export function getPronominalSetName(
   formName: string,
-  config: ReconstructableVerb["config"]["pron"],
+  config: PronominalConfig,
 ): string | null {
   const { set_type, use_3rd_person_object } = config;
 

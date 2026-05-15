@@ -7,7 +7,6 @@ import {
   DerivationalConnection,
   resolveClassEndings,
   getEndingSlug,
-  getPronominalSetName,
 } from "@/lib/data-shared";
 import CorpusTable from "./CorpusTable";
 import { ChevronLeft, GitBranch } from "lucide-react";
@@ -44,7 +43,7 @@ function VerbRow({ verb, dictionary, depth = 0, label }: VerbRowProps) {
         )}
 
         <h4 className="text-xs font-semibold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest leading-none">
-          With <ConfigFlags config={verb.config} verb={verb} />
+          With <ConfigFlags config={verb.morphology.config} verb={verb} />
         </h4>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -85,7 +84,7 @@ function VerbRow({ verb, dictionary, depth = 0, label }: VerbRowProps) {
                   verb={child as ReconstructableVerb & { id: number }}
                   dictionary={dictionary}
                   depth={depth + 1}
-                  label={`Derived: [${child.class_name}]`}
+                  label={`Derived: [${child.morphology.class_name}]`}
                 />
               ))}
             </div>
@@ -102,7 +101,7 @@ export default function RootClassEntry({
   dictionary,
 }: RootClassEntryProps) {
   // All verbs in this group share the same class_name
-  const className = verbs?.[0]?.class_name;
+  const className = verbs?.[0]?.morphology.class_name;
   if (!className) return null; // Safety check
 
   const endings = resolveClassEndings(className, classes);

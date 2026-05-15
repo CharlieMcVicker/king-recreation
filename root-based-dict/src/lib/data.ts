@@ -541,7 +541,7 @@ function findCorpusEntries(definition: string, dictionary: DictionaryEntry[]) {
   return dictionary.filter((e) => e["No."] === groupNo);
 }
 
-export async function getValidatedRootsRows(): Promise<any[]> {
+export async function getValidatedRootsRows(): Promise<ValidatedRootRow[]> {
   const filePath = path.join(
     process.cwd(),
     "../curated/validated_reconstructable_roots.csv",
@@ -553,7 +553,57 @@ export async function getValidatedRootsRows(): Promise<any[]> {
     skipEmptyLines: true,
     dynamicTyping: true,
   });
-  return result.data;
+
+  return (result.data as any[]).map((row) => ({
+    meta: {
+      corpus_id: row.corpus_id,
+      definition: row.definition,
+      entry_no: row.entry_no,
+    },
+    curation: {
+      user_selected: row.user_selected,
+      pipeline_selected: row.pipeline_selected,
+    },
+    aspect: {
+      verb_class: row.class,
+      post_root_morpheme: row.post_root_morpheme,
+      stative: row.stative === true || row.stative === "True",
+    },
+    roots: {
+      h_grade: row.h_grade,
+      g_grade: row.g_grade,
+    },
+    config: {
+      pre: {
+        translocutive: row.translocutive === true || row.translocutive === "True",
+        translocutiveImpOnly:
+          row.translocutive_imp_only === true ||
+          row.translocutive_imp_only === "True",
+        partitive: row.partitive === true || row.partitive === "True",
+        distributive: row.distributive === true || row.distributive === "True",
+      },
+      pron: {
+        set_type: row.set_a_b,
+        stem_type: row.stem_type,
+        allow_h_metathesis:
+          row.allow_h_metathesis === true || row.allow_h_metathesis === "True",
+        middle_voice: row.middle_voice,
+        middle_voice_h_metathesis:
+          row.middle_voice_h_metathesis === true ||
+          row.middle_voice_h_metathesis === "True",
+        plural_pronouns: row.plural === true || row.plural === "True",
+        use_ka_variant: row.ka_variant === true || row.ka_variant === "True",
+        use_aki_for_1st_set_b: row.aki_1st === true || row.aki_1st === "True",
+        uwa_replaces_v: row.uwa_v === true || row.uwa_v === "True",
+        use_3rd_person_object:
+          row["3rd_person_object"] === true || row["3rd_person_object"] === "True",
+      },
+      stative: row.stative === true || row.stative === "True",
+    },
+    metathesis_involved:
+      row.metathesis_involved === true || row.metathesis_involved === "True",
+    segmented_forms: row.segmented_forms,
+  }));
 }
 
 export async function updateUserSelection(

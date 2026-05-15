@@ -1,14 +1,13 @@
-import React from "react";
-import { ReconstructableVerb } from "@/lib/data-shared";
+import { ReconstructableVerb, PrefixConfig } from "@/lib/data-shared";
 
 interface ConfigFlagsProps {
-  config: ReconstructableVerb["config"];
+  config: PrefixConfig;
   className?: string;
 }
 
 function middleVoiceFlare({
   pron: { middle_voice },
-}: ReconstructableVerb["config"]) {
+}: PrefixConfig) {
   return {
     label: middle_voice.replace("_", "/"),
     active: middle_voice !== "none",

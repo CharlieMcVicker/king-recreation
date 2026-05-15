@@ -74,7 +74,7 @@ export default function EndingRootEntry({
                       {verb.definition}
                     </div>
 
-                    <ConfigFlags config={verb.config} verb={verb} />
+                    <ConfigFlags config={verb.morphology.config} verb={verb} />
                   </div>
 
                   {/* Forms Slot */}
