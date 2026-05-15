@@ -411,9 +411,8 @@ def identify_prefixes() -> None:
     * CORPUS_NO_PRE_NO_ASP_PATH: Corpus with all valid configurations of prefixes stripped.
     * PRE_PARSING_FAILURES_PATH: List of verbs that failed parsing and reasons.
     """
-
     corpus = load_corpus()
-    full_corpus = {r["corpus_id"]: r for r in corpus}
+    full_corpus = {r.meta.corpus_id: r for r in corpus}
 
     deriver = PrefixDeriver()
     labeled_data = []
@@ -422,7 +421,13 @@ def identify_prefixes() -> None:
     rows = load_stripped_corpus()
     for row in rows:
         ref = full_corpus.get(row["corpus_id"])
-        derivations = deriver.derive_row(row, ref)
+        if ref:
+            # ref is ProcessedRow, we need dict for derive_row which expects a dict or ProcessedRow.
+            # wait, derive_row expects a dict.
+            ref_dict = ref.to_dict()
+        else:
+            ref_dict = None
+        derivations = deriver.derive_row(row, ref_dict)
         if not derivations:
             failures.append(row)
         else:

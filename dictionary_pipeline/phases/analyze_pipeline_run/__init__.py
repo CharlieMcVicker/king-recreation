@@ -41,6 +41,7 @@ from dictionary_pipeline.phases.reconstruct_and_validate.artifacts import (
 from dictionary_pipeline.phases.select_canonical_derivations.artifacts import (
     load_reconstructable_verbs,
 )
+from dictionary_pipeline.row_models import ProcessedRow
 from morphology.morphemes.aspect.pattern_registry import PatternRegistry
 
 
@@ -136,9 +137,9 @@ def _analyze_verb_coverage(
 def _get_unmatched_verbs(
     filtered_matches: dict[tuple[Any, ...], dict[str, Any]],
     all_verbs: set[str],
-    corpus: list[dict[str, Any]],
+    corpus: list[ProcessedRow],
 ) -> list[dict[str, Any]]:
-    verb_forms_map = {row["corpus_id"]: row for row in corpus}
+    verb_forms_map = {row.meta.corpus_id: row for row in corpus}
     form_fields = [
         "definition",
         "present",
@@ -154,8 +155,9 @@ def _get_unmatched_verbs(
     for v in unmatched:
         data = {"corpus_id": v}
         if v in verb_forms_map:
-            for field in form_fields:
-                data[field] = verb_forms_map[v].get(field, "")
+            data["definition"] = verb_forms_map[v].meta.definition
+            for field in form_fields[1:]:
+                data[field] = getattr(verb_forms_map[v].forms, field, "")
         unmatched_data.append(data)
 
     unmatched_data.sort(key=lambda x: (x.get("perfective", "")[::-1], x["corpus_id"]))
@@ -466,7 +468,7 @@ def _analyze_verb_status() -> None:
 
     best_by_id = []
     for row in corpus_data:
-        id = row["corpus_id"]
+        id = row.meta.corpus_id
         best = "0.corpus"
         if id in no_asp_ids:
             best = "1.asp_stripped"
@@ -476,7 +478,11 @@ def _analyze_verb_status() -> None:
             best = "3.validated"
 
         best_by_id.append(
-            {"corpus_id": id, "definition": row["definition"], "furthest_corpus": best}
+            {
+                "corpus_id": id,
+                "definition": row.meta.definition,
+                "furthest_corpus": best,
+            }
         )
 
     save_furthest_corpus_by_id(
@@ -513,7 +519,8 @@ def analyze_pipeline_run(classes_path: str | None = None) -> None:
     pattern_registry.load_from_csv(classes_path)
 
     all_verbs: set[str] = set(
-        row["corpus_id"] if "corpus_id" in row else row["definition"] for row in corpus
+        row.meta.corpus_id if row.meta.corpus_id else row.meta.definition
+        for row in corpus
     )
     total_verb_count = len(all_verbs)
 

@@ -5,13 +5,13 @@ from morphology.morphemes.aspect.pattern_registry import PatternRegistry
 
 def test_be_alive():
     corpus = load_corpus()
-    verb_be_alive = next(row for row in corpus if row["corpus_id"] == "1067")
+    verb_be_alive = next(row for row in corpus if row.meta.corpus_id == "1067")
     assert verb_be_alive
     registry = PatternRegistry.get_instance()
     registry.load_from_csv()
 
     candidates = registry.get_candidates(
-        verb_be_alive["present_1sg"], "present", allow_suffix_alternation=True
+        verb_be_alive.forms.present_1sg, "present", allow_suffix_alternation=True
     )
     classes = set(c.name for c in candidates)
     assert "stative-h" in classes

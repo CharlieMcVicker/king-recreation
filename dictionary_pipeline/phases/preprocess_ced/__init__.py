@@ -9,35 +9,57 @@ from dictionary_pipeline.phases.preprocess_ced.artifacts import (
     save_mapping,
     save_raw_corpus,
 )
+from dictionary_pipeline.row_models import (
+    CorpusForms,
+    PatchRow,
+    Prediction,
+    PredictionMeta,
+    ProcessedRow,
+)
 
 
 def apply_patches(
-    data: list[dict[str, Any]], corrections: list[dict[str, Any]]
-) -> list[dict[str, Any]]:
+    data: list[ProcessedRow], corrections: list[PatchRow]
+) -> list[ProcessedRow]:
     """
     Apply patches to the corpus data.
     """
     # Create a mapping for quick lookup by corpus_id
-    data_map = {str(row["corpus_id"]): row for row in data}
+    data_map = {str(row.meta.corpus_id): row for row in data}
 
     for patch in corrections:
-        corpus_id = str(patch.get("corpus_id", "")).strip()
+        corpus_id = str(patch.meta.corpus_id).strip()
         if not corpus_id:
             continue
 
         if corpus_id in data_map:
             target_row = data_map[corpus_id]
-            for key, value in patch.items():
-                # Skip IDs and notes/metadata
-                if key in ["corpus_id", "notes"]:
+            for field_name in ["entry_no", "definition"]:
+                value = getattr(patch.meta, field_name)
+                if value == "NULL":
+                    value = ""
+                elif not (value and value.strip()):
                     continue
 
+                value = value.strip()
+                setattr(target_row.meta, field_name, value)
+
+            for field_name in [
+                "present",
+                "present_1sg",
+                "imperfective",
+                "perfective",
+                "imperative",
+                "infinitive",
+            ]:
+                value = getattr(patch.forms, field_name)
                 if value == "NULL":
-                    # Special value to drop a field
-                    target_row[key] = ""
-                elif value and value.strip():
-                    # Only overwrite if value is not empty (preserve original if empty)
-                    target_row[key] = value.strip()
+                    value = ""
+                elif not (value and value.strip()):
+                    continue
+
+                value = value.strip()
+                setattr(target_row.forms, field_name, value)
 
     return data
 
@@ -163,7 +185,7 @@ def create_corpus_from_cn_dict() -> None:
     for idx, (entry_no, rows) in enumerate(grouped_entries.items()):
         # Build a single verb dictionary from the rows
         verb_data = {
-            "corpus_id": idx,
+            "corpus_id": str(idx),
             "entry_no": entry_no,
             "definition": "",
             "present": "",
@@ -176,7 +198,7 @@ def create_corpus_from_cn_dict() -> None:
         }
 
         mapping_entry = {
-            "corpus_id": idx,
+            "corpus_id": str(idx),
             "present": "",
             "present_1sg": "",
             "imperfective": "",
@@ -291,28 +313,32 @@ def create_corpus_from_cn_dict() -> None:
             )
             > 1
         ):
-            processed_data.append(verb_data)
+            row = ProcessedRow(
+                meta=PredictionMeta(
+                    corpus_id=str(verb_data["corpus_id"]),
+                    definition=verb_data["definition"],
+                    entry_no=verb_data["entry_no"],
+                    prediction=Prediction(verb_data["prediction"]),
+                ),
+                forms=CorpusForms(
+                    present=verb_data.get("present", ""),
+                    present_1sg=verb_data.get("present_1sg", ""),
+                    imperfective=verb_data.get("imperfective", ""),
+                    perfective=verb_data.get("perfective", ""),
+                    imperative=verb_data.get("imperative", ""),
+                    infinitive=verb_data.get("infinitive", ""),
+                ),
+            )
+            processed_data.append(row)
             mapping_data.append(mapping_entry)
 
-    fieldnames = [
-        "corpus_id",
-        "entry_no",
-        "definition",
-        "prediction",
-        "present",
-        "present_1sg",
-        "imperfective",
-        "perfective",
-        "imperative",
-        "infinitive",
-    ]
-    save_raw_corpus(processed_data, fieldnames)
+    save_raw_corpus(processed_data)
 
     corrections = load_manual_corrections()
     if corrections:
         processed_data = apply_patches(processed_data, corrections)
 
-    save_corpus(processed_data, fieldnames)
+    save_corpus(processed_data)
 
     mapping_fieldnames = [
         "corpus_id",
@@ -332,28 +358,32 @@ def process_ced() -> None:
 
     for idx, row in enumerate(rows):
         verb_data = clean_row(row)
-        verb_data["corpus_id"] = idx
-        verb_data["prediction"] = "FullEventful"
-        processed_data.append(verb_data)
 
-    fieldnames = [
-        "corpus_id",
-        "definition",
-        "prediction",
-        "present",
-        "present_1sg",
-        "imperfective",
-        "perfective",
-        "imperative",
-        "infinitive",
-    ]
-    save_raw_corpus(processed_data, fieldnames)
+        processed_row = ProcessedRow(
+            meta=PredictionMeta(
+                corpus_id=str(idx),
+                definition=verb_data["definition"],
+                entry_no="",
+                prediction=Prediction(verb_data.get("prediction", "FullEventful")),
+            ),
+            forms=CorpusForms(
+                present=verb_data.get("present", ""),
+                present_1sg=verb_data.get("present_1sg", ""),
+                imperfective=verb_data.get("imperfective", ""),
+                perfective=verb_data.get("perfective", ""),
+                imperative=verb_data.get("imperative", ""),
+                infinitive=verb_data.get("infinitive", ""),
+            ),
+        )
+        processed_data.append(processed_row)
+
+    save_raw_corpus(processed_data)
 
     corrections = load_manual_corrections()
     if corrections:
         processed_data = apply_patches(processed_data, corrections)
 
-    save_corpus(processed_data, fieldnames)
+    save_corpus(processed_data)
 
 
 if __name__ == "__main__":
