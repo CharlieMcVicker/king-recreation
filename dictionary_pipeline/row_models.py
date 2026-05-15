@@ -1,6 +1,7 @@
 import csv
 import os
 from dataclasses import dataclass, fields, is_dataclass
+from enum import Enum
 from typing import Any
 
 
@@ -65,21 +66,27 @@ def get_all_fieldnames(cls: Any) -> list[str]:
     return fieldnames
 
 
+class Prediction(str, Enum):
+    FULL_EVENTFUL = "FullEventful"
+
+
 @dataclass
 class VerbMeta:
     corpus_id: str
     definition: str
+    prediction: Prediction
     entry_no: str | None = None
 
     @classmethod
     def get_row_keys(cls) -> list[str]:
-        return ["corpus_id", "definition", "entry_no"]
+        return ["corpus_id", "definition", "entry_no", "prediction"]
 
     @classmethod
     def from_row(cls, row: dict[str, str]) -> "VerbMeta":
         return cls(
             corpus_id=row.get("corpus_id", ""),
             definition=row.get("definition", ""),
+            prediction=Prediction(row["prediction"]),
             entry_no=row.get("entry_no"),
         )
 

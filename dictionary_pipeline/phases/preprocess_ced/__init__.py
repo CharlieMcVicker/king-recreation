@@ -172,6 +172,7 @@ def create_corpus_from_cn_dict() -> None:
             "perfective": "",
             "imperative": "",
             "infinitive": "",
+            "prediction": "FullEventful",
         }
 
         mapping_entry = {
@@ -297,6 +298,7 @@ def create_corpus_from_cn_dict() -> None:
         "corpus_id",
         "entry_no",
         "definition",
+        "prediction",
         "present",
         "present_1sg",
         "imperfective",
@@ -331,11 +333,13 @@ def process_ced() -> None:
     for idx, row in enumerate(rows):
         verb_data = clean_row(row)
         verb_data["corpus_id"] = idx
+        verb_data["prediction"] = "FullEventful"
         processed_data.append(verb_data)
 
     fieldnames = [
         "corpus_id",
         "definition",
+        "prediction",
         "present",
         "present_1sg",
         "imperfective",

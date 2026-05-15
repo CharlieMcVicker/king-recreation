@@ -10,6 +10,8 @@ import {
   DerivationalConnection,
   normalize,
   resolveClassEndings,
+  Prediction,
+  ValidatedRootRow,
 } from "./data-shared";
 
 // Re-export shared types/functions if needed by other server components
@@ -559,6 +561,7 @@ export async function getValidatedRootsRows(): Promise<ValidatedRootRow[]> {
       corpus_id: row.corpus_id,
       definition: row.definition,
       entry_no: row.entry_no,
+      prediction: row.prediction as Prediction || Prediction.FullEventful,
     },
     curation: {
       user_selected: row.user_selected,
