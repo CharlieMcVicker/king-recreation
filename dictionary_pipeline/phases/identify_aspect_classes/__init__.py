@@ -7,7 +7,7 @@ from dictionary_pipeline.phases.identify_aspect_classes.artifacts import (
     save_stripped_corpus,
 )
 from dictionary_pipeline.phases.preprocess_ced.artifacts import load_corpus
-from dictionary_pipeline.row_models import AspectInfo, CorpusForms, VerbMeta
+from dictionary_pipeline.row_models import AspectInfo, CorpusForms, Prediction, VerbMeta
 from morphology.morphemes.aspect.class_patterns import ExpandedClassPattern
 from morphology.morphemes.aspect.pattern_registry import PatternRegistry
 
@@ -23,6 +23,7 @@ def strip_verb_forms(
         meta=VerbMeta(
             corpus_id=verb.get("corpus_id", ""),
             definition=verb.get("definition", ""),
+            prediction=Prediction(verb["prediction"]),
         ),
         aspect=AspectInfo(
             verb_class=cls.name,

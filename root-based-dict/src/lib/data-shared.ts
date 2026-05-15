@@ -42,10 +42,15 @@ export interface ReconstructableVerb {
   segmented_forms?: Record<string, string>;
 }
 
+export enum Prediction {
+  FullEventful = "FullEventful",
+}
+
 export interface VerbMeta {
   corpus_id: number;
   definition: string;
   entry_no: number | null;
+  prediction: Prediction;
 }
 
 export interface UserCurationInfo {
