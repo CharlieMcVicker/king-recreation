@@ -26,7 +26,7 @@ export default async function LexicalReviewPage({
   }
 
   const allRootsData = await getValidatedRootsRows();
-  const derivations = allRootsData.filter((r) => r.corpus_id === id);
+  const derivations = allRootsData.filter((r) => r.meta.corpus_id === id);
 
   if (derivations.length === 0) {
     notFound();

@@ -21,16 +21,17 @@ export default function LexicalHero({ data }: LexicalHeroProps) {
 
   const main = data[0];
   const userSelected =
-    data.find((d) => d.user_selected === "x") ||
-    data.find((d) => d.pipeline_selected === "x") ||
+    data.find((d) => d.curation.user_selected === "x") ||
+    data.find((d) => d.curation.pipeline_selected === "x") ||
     main;
 
   const rows = [
-    { label: "Class", value: userSelected.class },
-    { label: "Stem Type", value: userSelected.stem_type },
-    { label: "H Grade", value: userSelected.h_grade },
-    { label: "G Grade", value: userSelected.g_grade },
-    { label: "Morpheme", value: userSelected.post_root_morpheme },
+    { label: "Class", value: userSelected.aspect.verb_class },
+    { label: "Stem Type", value: userSelected.config.pron.stem_type },
+    { label: "H Grade", value: userSelected.roots.h_grade },
+    { label: "G Grade", value: userSelected.roots.g_grade },
+    { label: "Morpheme", value: userSelected.aspect.post_root_morpheme },
+    { label: "Prediction", value: userSelected.meta.prediction },
   ];
 
   return (
@@ -55,13 +56,13 @@ export default function LexicalHero({ data }: LexicalHeroProps) {
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8">
             <div className="space-y-2">
               <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 italic">
-                "{main.definition}"
+                "{main.meta.definition}"
               </h2>
               <div className="flex items-center gap-2">
                 <span className="px-2 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-xs font-mono text-zinc-500">
-                  Corpus ID: {main.corpus_id}
+                  Corpus ID: {main.meta.corpus_id}
                 </span>
-                {userSelected.user_selected === "x" ? (
+                {userSelected.curation.user_selected === "x" ? (
                   <span className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 dark:bg-emerald-900/20 dark:text-emerald-400 text-[10px] font-bold uppercase tracking-wider border border-emerald-100 dark:border-emerald-800/30">
                     <CheckCircle2 className="w-3 h-3" />
                     Approved
@@ -75,7 +76,7 @@ export default function LexicalHero({ data }: LexicalHeroProps) {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 flex-1 max-w-2xl">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 flex-1 max-w-2xl">
               {rows.map((row, i) => (
                 <div key={i} className="space-y-1">
                   <div className="text-[10px] font-bold uppercase tracking-wider text-zinc-400">
@@ -83,7 +84,7 @@ export default function LexicalHero({ data }: LexicalHeroProps) {
                   </div>
                   <div
                     className="text-sm font-medium text-zinc-900 dark:text-zinc-100 truncate"
-                    title={row.value}
+                    title={row.value ?? ""}
                   >
                     {row.value || "-"}
                   </div>

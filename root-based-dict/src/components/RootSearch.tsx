@@ -20,7 +20,7 @@ export default function RootSearch({ initialRoots }: RootSearchProps) {
       const hGrade = (root.h_grade_root || "").toLowerCase();
       const gGrade = (root.glottal_grade_root || "").toLowerCase();
       const definitions = root.classes
-        .flatMap((cls) => cls.verbs.map((v) => v.definition.toLowerCase()))
+        .flatMap((cls) => cls.verbs.map((v) => v.meta.definition.toLowerCase()))
         .join(" ");
 
       return (
@@ -50,7 +50,7 @@ export default function RootSearch({ initialRoots }: RootSearchProps) {
         {filteredRoots.map((root) => {
           const allVerbs = root.classes.flatMap((cls) => cls.verbs);
           const uniqueDefinitions = Array.from(
-            new Set(allVerbs.map((v) => v.definition)),
+            new Set(allVerbs.map((v) => v.meta.definition)),
           );
 
           return (

@@ -225,7 +225,7 @@ export async function getRoots(): Promise<RootGroup[]> {
       return verbs.map((v) => {
         const vWithId = {
           ...v,
-          id: v.corpus_id ?? verbIndex,
+          id: v.meta.corpus_id !== null && v.meta.corpus_id !== undefined ? Number(v.meta.corpus_id) : verbIndex,
           derivations: v.derivations
             ? (addIds(v.derivations) as any[])
             : undefined,
@@ -361,8 +361,8 @@ export async function getMorphemeGroups(): Promise<MorphemeGroup[]> {
 
     root.classes.forEach((cls) => {
       cls.verbs.forEach((verb) => {
-        if (verb.post_root_morpheme) {
-          const { name, subcase } = parseMorpheme(verb.post_root_morpheme);
+        if (verb.morphology.post_root_morpheme) {
+          const { name, subcase } = parseMorpheme(verb.morphology.post_root_morpheme);
           const key = `${name}|${subcase}`;
 
           if (!morphemeVerbs.has(key)) {
@@ -481,10 +481,10 @@ export async function getVerbDetails(index: number) {
   const dictionary = await getDictionaryEntries();
 
   // Parse class endings
-  const endings = resolveClassEndings(verb.class_name, classes);
+  const endings = resolveClassEndings(verb.morphology.class_name, classes);
 
   // Find corpus forms
-  const corpusEntries = findCorpusEntries(verb.definition, dictionary);
+  const corpusEntries = findCorpusEntries(verb.meta.definition, dictionary);
 
   // Find related verbs (same root)
   const relatedVerbs = verbs
@@ -492,8 +492,8 @@ export async function getVerbDetails(index: number) {
     .filter(
       (v) =>
         v.index !== index &&
-        (v.h_grade_root === verb.h_grade_root ||
-          (v.h_grade_root === null && verb.h_grade_root === null)),
+        (v.morphology.h_grade_root === verb.morphology.h_grade_root ||
+          (v.morphology.h_grade_root === null && verb.morphology.h_grade_root === null)),
     );
 
   return {

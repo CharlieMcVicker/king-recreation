@@ -41,11 +41,13 @@ export default function SelectRootsWorkflow({
     const ids: number[] = [];
 
     initialData.forEach((row) => {
-      if (!groups[row.meta.corpus_id]) {
-        groups[row.meta.corpus_id] = [];
-        ids.push(row.meta.corpus_id);
+      const corpusId = Number(row.meta.corpus_id);
+      if (isNaN(corpusId)) return;
+      if (!groups[corpusId]) {
+        groups[corpusId] = [];
+        ids.push(corpusId);
       }
-      groups[row.meta.corpus_id].push(row);
+      groups[corpusId].push(row);
     });
 
     return { groupedData: groups, allCorpusIds: ids };
@@ -198,6 +200,7 @@ export default function SelectRootsWorkflow({
     () => [
       { label: "Class", key: "aspect.verb_class" },
       { label: "Stem Type", key: "config.pron.stem_type" },
+      { label: "Prediction", key: "meta.prediction" },
       { label: "H Grade", key: "roots.h_grade" },
       { label: "G Grade", key: "roots.g_grade" },
       { label: "Morpheme", key: "aspect.post_root_morpheme" },

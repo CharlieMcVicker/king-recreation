@@ -5,6 +5,7 @@ from dictionary_pipeline.dictionary_forms import (
     FORM_NAMES_FOR_PREDICTION,
     DictionaryVerb,
     Prediction,
+    PredictionMeta,
     build_wordspec,
 )
 from dictionary_pipeline.phases.identify_prefixes.artifacts import load_stripped_roots
@@ -90,10 +91,15 @@ def reconstruct_and_validate(
             config=config,
         )
 
-        verb = DictionaryVerb(
+        meta = PredictionMeta(
+            corpus_id=str(stem_row.get("corpus_id") or ""),
             definition=definition,
+            entry_no=str(stem_row.get("entry_no") or ""),
+            prediction=prediction,
+        )
+        verb = DictionaryVerb(
+            meta=meta,
             morphology=morphology,
-            corpus_id=int(stem_row["corpus_id"]) if "corpus_id" in stem_row else None,
             original_data=stem_row,
         )
         dictionary_verbs.append(verb)
@@ -111,22 +117,20 @@ def reconstruct_and_validate(
 
     for verb in dictionary_verbs:
         # Reconstruct all forms for this verb (dictionary-aware iteration)
-        prediction = Prediction(verb.original_data.get("prediction", "FullEventful"))
+        prediction = verb.meta.prediction
         forms = FORM_NAMES_FOR_PREDICTION[prediction]
 
         ref = (
-            full_corpus_map.get(str(verb.corpus_id))
-            if verb.corpus_id is not None
+            full_corpus_map.get(str(verb.meta.corpus_id))
+            if verb.meta.corpus_id
             else None
         )
         if not ref:
             # Fallback for old data or edge cases
-            ref = full_corpus_map.get(verb.definition)
+            ref = full_corpus_map.get(verb.meta.definition)
 
         if ref:
-            verb.entry_no = (lambda x: int(x) if x is not None else None)(
-                ref.meta.entry_no
-            )
+            verb.meta.entry_no = str(ref.meta.entry_no or "")
 
         form_options = {}
         for fn in forms:
@@ -177,8 +181,8 @@ def reconstruct_and_validate(
             verb.segmented_forms = segmented_forms
             validated_verbs.append(verb)
             # Inject entry_no into original_data so it persists to the CSV
-            if verb.entry_no is not None:
-                verb.original_data["entry_no"] = verb.entry_no
+            if verb.meta.entry_no:
+                verb.original_data["entry_no"] = verb.meta.entry_no
 
             # Inject segmented_forms into original_data so it persists to the CSV
             verb.original_data["segmented_forms"] = json.dumps(
@@ -244,10 +248,10 @@ def reconstruct_and_validate(
         else:
             failures.append(
                 {
-                    "definition": verb.definition,
+                    "definition": verb.meta.definition,
                     "failed_forms": failed_forms,
                     "class": verb.morphology.class_name,
-                    "corpus_id": verb.corpus_id,
+                    "corpus_id": verb.meta.corpus_id,
                 }
             )
 
@@ -255,7 +259,7 @@ def reconstruct_and_validate(
         ambiguous_forms = [fn for fn, opts in options.items() if len(opts) > 1]
         report_data.append(
             {
-                "definition": verb.definition,
+                "definition": verb.meta.definition,
                 "class": verb.morphology.class_name,
                 "root": verb.morphology.h_grade_root,  # Use h-grade as primary for report
                 "success": matches_all,
@@ -277,7 +281,7 @@ def reconstruct_and_validate(
         if d["success"]:
             validated_matches_data.append(
                 {
-                    "corpus_id": verb.corpus_id,
+                    "corpus_id": verb.meta.corpus_id,
                     "definition": d["definition"],
                     "class": d["class"],
                     "scope": "reconstructs",

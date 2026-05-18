@@ -3,7 +3,11 @@ import json
 from collections import defaultdict
 from typing import Any
 
-from dictionary_pipeline.dictionary_forms import DictionaryVerb
+from dictionary_pipeline.dictionary_forms import (
+    DictionaryVerb,
+    Prediction,
+    PredictionMeta,
+)
 from dictionary_pipeline.json_utils import EnhancedJSONEncoderFactory
 from dictionary_pipeline.phases.reconstruct_and_validate.artifacts import (
     load_validated_roots,
@@ -210,11 +214,16 @@ def select_canonical_derivations() -> None:
             config=config,
         )
 
-        verb = DictionaryVerb(
+        meta = PredictionMeta(
+            corpus_id=str(row.get("corpus_id") or ""),
             definition=definition,
+            entry_no=str(row.get("entry_no") or ""),
+            prediction=Prediction(row.get("prediction") or "FullEventful"),
+        )
+
+        verb = DictionaryVerb(
+            meta=meta,
             morphology=morphology,
-            corpus_id=corpus_id,
-            entry_no=entry_no,
             original_data=row,  # Keep it if we want to pass it further, though JSON serialization dumps fields
         )
         # Monkey-patch or attach user_selected for use in dedupe

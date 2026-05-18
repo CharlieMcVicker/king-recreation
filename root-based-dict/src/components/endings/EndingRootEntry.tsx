@@ -71,7 +71,7 @@ export default function EndingRootEntry({
                   {/* Definition & Pills Slot */}
                   <div className="lg:col-span-5 flex flex-col gap-3">
                     <div className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                      {verb.definition}
+                      {verb.meta.definition}
                     </div>
 
                     <ConfigFlags config={verb.morphology.config} verb={verb} />
