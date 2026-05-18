@@ -1,7 +1,6 @@
 from collections import defaultdict
 
 from dictionary_pipeline.dictionary_forms import (
-    ALL_FORM_NAMES,
     FORM_NAMES_FOR_PREDICTION,
     get_form_spec,
 )
@@ -19,6 +18,7 @@ from dictionary_pipeline.row_models import (
 )
 from morphology.morphemes.aspect.class_patterns import ExpandedClassPattern
 from morphology.morphemes.aspect.pattern_registry import PatternRegistry
+from morphology.word_spec import Aspect
 
 
 def strip_verb_forms(cls: ExpandedClassPattern, verb: ProcessedRow) -> StrippedVerbRow:
@@ -126,8 +126,8 @@ def get_matches_for_verb(
     verb: ProcessedRow, registry: PatternRegistry
 ) -> list[dict[str, str]]:
     # 1. Prepare form tuples for candidate lookup
-    form_tuples = []
-    for fn in ALL_FORM_NAMES:
+    form_tuples: list[tuple[str, Aspect, bool]] = []
+    for fn in FORM_NAMES_FOR_PREDICTION[verb.meta.prediction]:
         surface_form = getattr(verb.forms, fn, "")
         if not surface_form:
             continue
@@ -175,7 +175,7 @@ def identify_aspect_classes(classes_path: str | None = None) -> None:
     # Load raw corpus
     corpus_rows = load_corpus()
 
-    matches_data = []
+    matches_data: list[dict[str, str]] = []
     stripped_corpus_data: list[StrippedVerbRow] = []
 
     for verb in corpus_rows:
@@ -185,7 +185,7 @@ def identify_aspect_classes(classes_path: str | None = None) -> None:
         matches_data.extend(matches)
 
         # Identify candidates for stripping
-        seen_class_def = set()
+        seen_class_def: set[tuple[str, str]] = set()
 
         for match in matches:
             key = (match["definition"], match["class"])
