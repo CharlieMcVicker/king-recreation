@@ -106,15 +106,6 @@ FORM_NAMES_FOR_PREDICTION = {
 # All dictionary form columns (for iterating over dictionary rows)
 ALL_FORM_NAMES = FORM_NAMES_FOR_PREDICTION[Prediction.FULL_EVENTFUL]
 
-# Aspect-only forms (no person variants like present_1sg)
-ASPECT_FORM_NAMES = [
-    "present",
-    "imperfective",
-    "perfective",
-    "imperative",
-    "infinitive",
-]
-
 
 def get_form_spec(form_name: str) -> FormSpec:
     """
