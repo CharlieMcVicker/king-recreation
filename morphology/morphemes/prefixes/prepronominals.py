@@ -2,6 +2,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from morphology.morphology_types import Aspect
+from morphology.word_spec import WordSpec
 
 
 @dataclass(frozen=True)
@@ -40,30 +41,30 @@ class PrePronominalConfig:
 
 
 def apply_prepronominal(
-    word: str, config: PrePronominalConfig, aspect: Aspect, stative: bool
+    word: str, config: PrePronominalConfig, spec: WordSpec
 ) -> list[str]:
     current_forms = [word]
 
     if config.distributive:
         new_forms = []
         for w in current_forms:
-            for p in get_distributive_forms(aspect, stative):
+            for p in get_distributive_forms(spec):
                 new_forms.append(p + "-" + w)
         current_forms = list(set(new_forms))
 
     if config.partitive:
         new_forms = []
         for w in current_forms:
-            for p in get_partitive_forms(aspect):
+            for p in get_partitive_forms(spec.aspect):
                 new_forms.append(p + "-" + w)
         current_forms = list(set(new_forms))
 
     if config.translocutive or (
-        aspect == Aspect.IMPERATIVE and config.translocutiveImpOnly
+        spec.aspect == Aspect.IMPERATIVE and config.translocutiveImpOnly
     ):
         new_forms = []
         for w in current_forms:
-            for p in get_translocutive_forms(aspect):
+            for p in get_translocutive_forms(spec.aspect):
                 new_forms.append(p + "-" + w)
         current_forms = list(set(new_forms))
 
@@ -80,7 +81,9 @@ def get_partitive_forms(aspect: Aspect) -> list[str]:
     return ["ni", "n"]
 
 
-def get_distributive_forms(aspect: Aspect, stative: bool) -> list[str]:
-    if aspect == Aspect.INFINITIVE or (aspect == Aspect.IMPERATIVE and not stative):
+def get_distributive_forms(spec: WordSpec) -> list[str]:
+    if spec.aspect == Aspect.INFINITIVE or (
+        spec.aspect == Aspect.IMPERATIVE and not spec.stative
+    ):
         return ["ts", "ti", "t"]
     return ["te", "t"]

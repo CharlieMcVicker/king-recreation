@@ -145,6 +145,22 @@ class PronominalConfig:
             "3rd_person_object",
         ]
 
+    def produces_glottal_grade(self):
+        from morphology.morphology_types import Number, Person, PronominalSet
+
+        target_set = self.set_type
+        if self.plural_pronouns:
+            person, number, p_set = Person.FIRST, Number.PLURAL, target_set
+        elif self.use_3rd_person_object:
+            person, number, p_set = (
+                Person.FIRST_TO_THIRD,
+                Number.SINGULAR,
+                PronominalSet.PERSON_TO_PERSON,
+            )
+        else:
+            person, number, p_set = Person.FIRST, Number.SINGULAR, target_set
+        return use_glottal_grade(person, number, p_set)
+
 
 @dataclass
 class ConfiguredPrefix:

@@ -3,7 +3,7 @@ import json
 from collections import defaultdict
 from typing import Any
 
-from dictionary_pipeline.dictionary_forms import DictionaryVerb, build_wordspec
+from dictionary_pipeline.dictionary_forms import DictionaryVerb
 from dictionary_pipeline.json_utils import EnhancedJSONEncoderFactory
 from dictionary_pipeline.phases.reconstruct_and_validate.artifacts import (
     load_validated_roots,
@@ -14,7 +14,6 @@ from dictionary_pipeline.phases.select_canonical_derivations.artifacts import (
     save_selection_snapshot,
 )
 from morphology.morphemes.prefixes import PrefixConfig
-from morphology.morphemes.prefixes.pronominals import use_glottal_grade
 from morphology.reconstruction import MorphologicalVerb
 
 
@@ -193,8 +192,7 @@ def select_canonical_derivations() -> None:
         h_root = row["h_grade"]
 
         glottal_root = None
-        spec_1sg = build_wordspec("present_1sg", config.pron, config.stative)
-        if use_glottal_grade(spec_1sg.person, spec_1sg.number, spec_1sg.pronominal_set):
+        if config.pron.produces_glottal_grade():
             glottal_root = row["g_grade"]
             if glottal_root == "" and not h_root == "":
                 glottal_root = None

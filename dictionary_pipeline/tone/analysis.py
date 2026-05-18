@@ -25,7 +25,8 @@ def get_tonicity_for_form(verb: DictionaryVerb, form_name: str) -> Tonicity:
     if form_name == "infinitive":
         return Tonicity.INFINITIVE
 
-    if form_name == "imperative" and not verb.morphology.config.stative:
+    is_stative = verb.original_data.get("prediction") == "FullStative"
+    if form_name == "imperative" and not is_stative:
         pre = verb.morphology.config.pre
         has_pre = (
             pre.translocutive

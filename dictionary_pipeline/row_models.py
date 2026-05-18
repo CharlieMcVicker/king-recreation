@@ -37,6 +37,8 @@ def _resolve_type(field_type: Any) -> Any:
     if isinstance(field_type, str):
         if field_type == "VerbMeta":
             return VerbMeta
+        elif field_type == "PredictionMeta":
+            return PredictionMeta
         elif field_type == "AspectInfo":
             return AspectInfo
         elif field_type == "CorpusForms":
@@ -100,7 +102,7 @@ class PredictionMeta(VerbMeta):
             corpus_id=row.get("corpus_id", ""),
             definition=row.get("definition", ""),
             entry_no=row["entry_no"],
-            prediction=Prediction(row.get("prediction", "FullEventful")),
+            prediction=Prediction(row.get("prediction") or "FullEventful"),
         )
 
 
@@ -125,25 +127,22 @@ class UserCurationInfo:
 class AspectInfo:
     verb_class: str
     post_root_morpheme: str | None = None
-    stative: bool = False
 
     def to_row(self) -> dict[str, Any]:
         return {
             "class": self.verb_class,
             "post_root_morpheme": self.post_root_morpheme or "",
-            "stative": str(self.stative),
         }
 
     @classmethod
     def get_row_keys(cls) -> list[str]:
-        return ["class", "post_root_morpheme", "stative"]
+        return ["class", "post_root_morpheme"]
 
     @classmethod
     def from_row(cls, row: dict[str, str]) -> "AspectInfo":
         return cls(
             verb_class=row.get("class", ""),
             post_root_morpheme=row.get("post_root_morpheme"),
-            stative=row.get("stative") == "True",
         )
 
 

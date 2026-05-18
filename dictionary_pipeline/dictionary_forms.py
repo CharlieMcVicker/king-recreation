@@ -37,6 +37,15 @@ class Prediction(str, Enum):
     FULL_EVENTFUL = "FullEventful"
     """Attempts to predice all forms for a standard five-aspect verb"""
 
+    FULL_STATIVE = "FullStative"
+    """A true stative verb. Immediate is given as future progressive. Infinitive is blank."""
+
+
+PREDICTION_IS_STATIVE: dict[Prediction, bool] = {
+    Prediction.FULL_EVENTFUL: False,
+    Prediction.FULL_STATIVE: True,
+}
+
 
 @dataclass
 class DictionaryVerb:
@@ -72,13 +81,23 @@ class DictionaryVerb:
 
 
 # Dictionary column name -> morphological Aspect
-FORM_NAME_TO_ASPECT: dict[str, Aspect] = {
-    "present": Aspect.PRESENT,
-    "present_1sg": Aspect.PRESENT,
-    "imperfective": Aspect.IMPERFECTIVE,
-    "perfective": Aspect.PERFECTIVE,
-    "imperative": Aspect.IMPERATIVE,
-    "infinitive": Aspect.INFINITIVE,
+FORM_NAME_TO_ASPECT_FOR_PREDICTION: dict[Prediction, dict[str, Aspect]] = {
+    Prediction.FULL_EVENTFUL: {
+        "present": Aspect.PRESENT,
+        "present_1sg": Aspect.PRESENT,
+        "imperfective": Aspect.IMPERFECTIVE,
+        "perfective": Aspect.PERFECTIVE,
+        "imperative": Aspect.IMPERATIVE,
+        "infinitive": Aspect.INFINITIVE,
+    },
+    Prediction.FULL_STATIVE: {
+        "present": Aspect.PRESENT,
+        "present_1sg": Aspect.PRESENT,
+        "imperfective": Aspect.IMPERFECTIVE,
+        "perfective": Aspect.PERFECTIVE,
+        "imperative": Aspect.IMPERATIVE,
+        "infinitive": Aspect.INFINITIVE,
+    },
 }
 
 # Dictionary column name -> grammatical person
@@ -100,44 +119,74 @@ FORM_NAMES_FOR_PREDICTION = {
         "perfective",
         "imperative",
         "infinitive",
-    ]
+    ],
+    Prediction.FULL_STATIVE: [
+        "present",
+        "present_1sg",
+        "imperfective",
+        "perfective",
+        "imperative",
+        "infinitive",
+    ],
 }
 
 # All dictionary form columns (for iterating over dictionary rows)
 ALL_FORM_NAMES = FORM_NAMES_FOR_PREDICTION[Prediction.FULL_EVENTFUL]
 
 
-def get_form_spec(form_name: str) -> FormSpec:
+def get_form_spec(prediction: Prediction, form_name: str) -> FormSpec:
     """
     Bridge function: converts a dictionary form_name into a FormSpec.
     Currently hardcoded for Scope.EVENTFUL as per Phase 1 plan.
     """
     person = FORM_NAME_TO_PERSON.get(form_name, Person.THIRD)
-    aspect = FORM_NAME_TO_ASPECT.get(form_name, Aspect.PRESENT)
+    aspect = FORM_NAME_TO_ASPECT_FOR_PREDICTION[prediction].get(
+        form_name, Aspect.PRESENT
+    )
 
     # Maintain current behavior: PERFECTIVE and INFINITIVE force Set B
     allow_set_a = aspect not in (Aspect.PERFECTIVE, Aspect.INFINITIVE)
 
     return FormSpec(
+        name=form_name,
         aspect=aspect,
         person=person,
         allow_set_a=allow_set_a,
-        stative=False,  # This will be overridden in build_wordspec
+        stative=PREDICTION_IS_STATIVE[prediction],
     )
 
 
-def build_wordspec(form_name: str, config: PronominalConfig, stative: bool) -> WordSpec:
+def build_wordspec(
+    prediction: Prediction, config: PronominalConfig, form_name: str
+) -> WordSpec:
     """
     Bridge function: converts a dictionary form_name into a WordSpec.
     """
-    form_spec = get_form_spec(form_name)
+    # form_spec = get_form_spec(prediction, form_name)
     # Enrich with stative info from the verb
-    form_spec = FormSpec(
-        aspect=form_spec.aspect,
-        person=form_spec.person,
-        allow_set_a=form_spec.allow_set_a,
-        stative=stative,
-    )
+    # form_spec = FormSpec(
+    #     aspect=form_spec.aspect,
+    #     person=form_spec.person,
+    #     allow_set_a=form_spec.allow_set_a,
+    #     stative=stative,
+    # )
+
+    form_spec = get_form_spec(prediction, form_name)
+    return _build_wordspec(form_spec, config)
+
+
+def _build_wordspec(form_spec: FormSpec, config: PronominalConfig) -> WordSpec:
+    """
+    Bridge function: converts a dictionary form_name into a WordSpec.
+    """
+    # form_spec = get_form_spec(prediction, form_name)
+    # Enrich with stative info from the verb
+    # form_spec = FormSpec(
+    #     aspect=form_spec.aspect,
+    #     person=form_spec.person,
+    #     allow_set_a=form_spec.allow_set_a,
+    #     stative=stative,
+    # )
 
     key = calculate_pronominal_key(
         form_spec.aspect, form_spec.person, config, form_spec.stative
@@ -145,7 +194,7 @@ def build_wordspec(form_name: str, config: PronominalConfig, stative: bool) -> W
 
     if not key:
         logging.getLogger(__name__).warning(
-            f"No Pronominal Key resolvable for {form_name}. Falling back to 3rd Set A"
+            f"No Pronominal Key resolvable for {form_spec.name}. Falling back to 3rd Set A"
         )
         person, number, p_set = Person.THIRD, Number.SINGULAR, PronominalSet.SET_A
     else:
@@ -153,8 +202,8 @@ def build_wordspec(form_name: str, config: PronominalConfig, stative: bool) -> W
 
     return WordSpec(
         aspect=form_spec.aspect,
+        stative=form_spec.stative,
         person=person,
         number=number,
         pronominal_set=p_set,
-        stative=stative,
     )

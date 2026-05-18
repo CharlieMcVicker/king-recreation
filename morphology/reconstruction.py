@@ -171,6 +171,6 @@ class ReconstructionEngine:
             # 3. Attach pre-pronominal prefixes
             for c in candidates:
                 # verb.config.apply_prepronominals handles translocutive/partitive/distributive
-                final_forms.extend(verb.config.apply_prepronominals(c, spec.aspect))
+                final_forms.extend(verb.config.apply_prepronominals(c, spec))
 
         return list(set(final_forms))

@@ -189,8 +189,10 @@ def format_segmented_verb(
                 new_chars[i]["role"] = chars_with_role[i]["role"]
         chars_with_role = new_chars
 
-    # Determine pronoun color
-    spec = build_wordspec(form_name, config.pron, verb.morphology.config.stative)
+    from dictionary_pipeline.dictionary_forms import Prediction
+
+    prediction = Prediction(verb.original_data.get("prediction") or "FullEventful")
+    spec = build_wordspec(prediction, config.pron, form_name)
     color = "black"
     if spec.pronominal_set == PronominalSet.SET_A:
         color = "Red"

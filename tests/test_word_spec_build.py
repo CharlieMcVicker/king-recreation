@@ -1,4 +1,4 @@
-from dictionary_pipeline.dictionary_forms import build_wordspec
+from dictionary_pipeline.dictionary_forms import Prediction, build_wordspec
 from morphology.morphemes.prefixes.pronominals import PronominalConfig, StemType
 from morphology.word_spec import Aspect, Number, Person, PronominalSet
 
@@ -7,7 +7,7 @@ def test_build_wordspec_present_1sg():
     config = PronominalConfig(
         set_type=PronominalSet.SET_A, stem_type=StemType.CONSONANT
     )
-    spec = build_wordspec("present_1sg", config, stative=False)
+    spec = build_wordspec(Prediction.FULL_EVENTFUL, config, "present_1sg")
     assert spec.aspect == Aspect.PRESENT
     assert spec.person == Person.FIRST
     assert spec.number == Number.SINGULAR
@@ -18,7 +18,7 @@ def test_build_wordspec_infinitive_plural():
     config = PronominalConfig(
         set_type=PronominalSet.SET_A, stem_type=StemType.CONSONANT, plural_pronouns=True
     )
-    spec = build_wordspec("infinitive", config, stative=False)
+    spec = build_wordspec(Prediction.FULL_EVENTFUL, config, "infinitive")
     assert spec.aspect == Aspect.INFINITIVE
     # infinitive always uses Set B pronouns regardless of stative/set_a
     assert spec.person == Person.THIRD
@@ -32,7 +32,7 @@ def test_build_wordspec_imperative_to_3rd():
         stem_type=StemType.CONSONANT,
         use_3rd_person_object=True,
     )
-    spec = build_wordspec("imperative", config, stative=True)
+    spec = build_wordspec(Prediction.FULL_STATIVE, config, "imperative")
     assert spec.aspect == Aspect.IMPERATIVE
     assert spec.person == Person.SECOND_TO_THIRD
     assert spec.number == Number.SINGULAR
@@ -44,13 +44,13 @@ def test_build_wordspec_perfective_stative():
         set_type=PronominalSet.SET_A, stem_type=StemType.CONSONANT
     )
     # Perfective for Set A + Stative should use Set A
-    spec = build_wordspec("perfective", config, stative=True)
+    spec = build_wordspec(Prediction.FULL_STATIVE, config, "perfective")
     assert spec.person == Person.THIRD
     assert spec.number == Number.SINGULAR
     assert spec.pronominal_set == PronominalSet.SET_A
 
     # Perfective for Set A + NON-Stative should use Set B
-    spec = build_wordspec("perfective", config, stative=False)
+    spec = build_wordspec(Prediction.FULL_EVENTFUL, config, "perfective")
     assert spec.person == Person.THIRD
     assert spec.number == Number.SINGULAR
     assert spec.pronominal_set == PronominalSet.SET_B
@@ -60,7 +60,7 @@ def test_build_wordspec_imperfective():
     config = PronominalConfig(
         set_type=PronominalSet.SET_A, stem_type=StemType.CONSONANT
     )
-    spec = build_wordspec("imperfective", config, stative=False)
+    spec = build_wordspec(Prediction.FULL_EVENTFUL, config, "imperfective")
     assert spec.aspect == Aspect.IMPERFECTIVE
     assert spec.person == Person.THIRD
     assert spec.number == Number.SINGULAR
