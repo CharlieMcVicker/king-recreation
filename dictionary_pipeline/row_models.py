@@ -3,7 +3,16 @@ import os
 from dataclasses import dataclass, fields, is_dataclass
 from typing import Any
 
-from dictionary_pipeline.dictionary_forms import Prediction
+from dictionary_pipeline.dictionary_forms import Prediction, PredictionMeta, VerbMeta
+
+__all__ = [
+    "Prediction",
+    "PredictionMeta",
+    "VerbMeta",
+    "ProcessedRow",
+    "PatchRow",
+    "CorpusForms",
+]
 
 
 def flatten_to_dict(obj: Any) -> dict[str, Any]:
@@ -67,43 +76,6 @@ def get_all_fieldnames(cls: Any) -> list[str]:
         else:
             fieldnames.append(f.name)
     return fieldnames
-
-
-@dataclass
-class VerbMeta:
-    corpus_id: str
-    definition: str
-    entry_no: str
-
-    @classmethod
-    def get_row_keys(cls) -> list[str]:
-        return ["corpus_id", "entry_no", "definition"]
-
-    @classmethod
-    def from_row(cls, row: dict[str, str]) -> "VerbMeta":
-        return cls(
-            corpus_id=row.get("corpus_id", ""),
-            definition=row.get("definition", ""),
-            entry_no=row["entry_no"],
-        )
-
-
-@dataclass(kw_only=True)
-class PredictionMeta(VerbMeta):
-    prediction: Prediction
-
-    @classmethod
-    def get_row_keys(cls) -> list[str]:
-        return super().get_row_keys() + ["prediction"]
-
-    @classmethod
-    def from_row(cls, row: dict[str, str]) -> "PredictionMeta":
-        return cls(
-            corpus_id=row.get("corpus_id", ""),
-            definition=row.get("definition", ""),
-            entry_no=row["entry_no"],
-            prediction=Prediction(row.get("prediction") or "FullEventful"),
-        )
 
 
 @dataclass

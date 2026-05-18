@@ -5,6 +5,7 @@ import {
   DictionaryEntry,
   getPronominalSetName,
   getCorpusForm,
+  Prediction,
 } from "@/lib/data-shared";
 
 const TAG_MAP: Record<string, string> = {
@@ -21,6 +22,7 @@ interface CorpusTableProps {
 }
 
 export default function CorpusTable({ verb, dictionary }: CorpusTableProps) {
+  const isStative = verb.meta.prediction === Prediction.FullStative;
   const forms = [
     {
       label: "Present-1sg",
@@ -46,7 +48,9 @@ export default function CorpusTable({ verb, dictionary }: CorpusTableProps) {
   ];
 
   const getCorpusLabel = (key: string) => {
-    return getCorpusForm(dictionary, verb.entry_no, key);
+    const entryNo = verb.meta.entry_no;
+    const parsed = entryNo !== null && entryNo !== undefined ? Number(entryNo) : undefined;
+    return getCorpusForm(dictionary, parsed && !isNaN(parsed) ? parsed : undefined, key);
   };
 
   const getPronounColor = (setName: string | null) => {
@@ -81,8 +85,8 @@ export default function CorpusTable({ verb, dictionary }: CorpusTableProps) {
             <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200 dark:border-zinc-800">
               {forms[1].label}
             </th>
-            <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-              {forms[2].label}
+            <th className={`px-3 py-2 text-left text-xs font-medium uppercase tracking-wider border-l border-gray-200 dark:border-zinc-800 ${isStative ? "text-gray-400/80 bg-gray-50/50 dark:bg-zinc-900/30" : "text-gray-500"}`}>
+              {forms[2].label} {isStative && "(N/A)"}
             </th>
           </tr>
         </thead>
@@ -120,16 +124,20 @@ export default function CorpusTable({ verb, dictionary }: CorpusTableProps) {
                 )}
               </div>
             </td>
-            <td className="px-3 py-4 whitespace-nowrap">
+            <td className={`px-3 py-4 whitespace-nowrap ${isStative ? "bg-gray-50/30 dark:bg-zinc-950/20" : ""}`}>
               <div className="flex flex-col">
                 <span
-                  className={`text-sm font-medium ${getPronounColor(
-                    getPronominalSetName("infinitive", verb.morphology.config.pron),
-                  )}`}
+                  className={
+                    isStative
+                      ? "text-zinc-400 dark:text-zinc-600 text-xs font-medium italic"
+                      : `text-sm font-medium ${getPronounColor(
+                          getPronominalSetName("infinitive", verb.morphology.config.pron),
+                        )}`
+                  }
                 >
-                  {getCorpusLabel("infinitive") || "-"}
+                  {isStative ? "∅ (Stative)" : (getCorpusLabel("infinitive") || "-")}
                 </span>
-                {getVariantTag("infinitive") && (
+                {!isStative && getVariantTag("infinitive") && (
                   <span className="text-[10px] text-gray-400 uppercase">
                     {getVariantTag("infinitive")}
                   </span>

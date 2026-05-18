@@ -33,10 +33,8 @@ export interface MorphologicalVerb {
 }
 
 export interface ReconstructableVerb {
-  definition: string;
+  meta: VerbMeta;
   morphology: MorphologicalVerb;
-  corpus_id: number | null;
-  entry_no: number | null;
   derivations?: ReconstructableVerb[];
   user_selected?: boolean;
   segmented_forms?: Record<string, string>;
@@ -44,12 +42,13 @@ export interface ReconstructableVerb {
 
 export enum Prediction {
   FullEventful = "FullEventful",
+  FullStative = "FullStative",
 }
 
 export interface VerbMeta {
-  corpus_id: number;
+  corpus_id: number | string;
   definition: string;
-  entry_no: number | null;
+  entry_no: number | string | null;
   prediction: Prediction;
 }
 

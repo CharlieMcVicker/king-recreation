@@ -51,11 +51,11 @@ function VerbRow({ verb, dictionary, depth = 0, label }: VerbRowProps) {
           <div className="lg:col-span-5 flex flex-col gap-3">
             <div className="flex items-center gap-3">
               <div className="text-lg font-medium text-gray-900 dark:text-gray-100">
-                {verb.definition}
+                {verb.meta.definition}
               </div>
-              {verb.corpus_id && (
+              {verb.meta.corpus_id && (
                 <Link
-                  href={`/select-roots?corpusId=${verb.corpus_id}`}
+                  href={`/select-roots?corpusId=${verb.meta.corpus_id}`}
                   className="p-1.5 rounded-lg text-zinc-400 hover:text-indigo-600 hover:bg-indigo-50 dark:hover:bg-indigo-900/20 transition-all"
                   title="Change derivation"
                 >
@@ -80,7 +80,7 @@ function VerbRow({ verb, dictionary, depth = 0, label }: VerbRowProps) {
             <div className="flex flex-col gap-6">
               {verb.derivations.map((child) => (
                 <VerbRow
-                  key={child.entry_no ?? child.definition} // Fallback key
+                  key={child.meta.entry_no ?? child.meta.definition} // Fallback key
                   verb={child as ReconstructableVerb & { id: number }}
                   dictionary={dictionary}
                   depth={depth + 1}

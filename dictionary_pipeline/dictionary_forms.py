@@ -48,11 +48,46 @@ PREDICTION_IS_STATIVE: dict[Prediction, bool] = {
 
 
 @dataclass
-class DictionaryVerb:
+class VerbMeta:
+    corpus_id: str
     definition: str
+    entry_no: str
+
+    @classmethod
+    def get_row_keys(cls) -> list[str]:
+        return ["corpus_id", "entry_no", "definition"]
+
+    @classmethod
+    def from_row(cls, row: dict[str, str]) -> "VerbMeta":
+        return cls(
+            corpus_id=row.get("corpus_id", ""),
+            definition=row.get("definition", ""),
+            entry_no=row["entry_no"],
+        )
+
+
+@dataclass(kw_only=True)
+class PredictionMeta(VerbMeta):
+    prediction: Prediction
+
+    @classmethod
+    def get_row_keys(cls) -> list[str]:
+        return super().get_row_keys() + ["prediction"]
+
+    @classmethod
+    def from_row(cls, row: dict[str, str]) -> "PredictionMeta":
+        return cls(
+            corpus_id=row.get("corpus_id", ""),
+            definition=row.get("definition", ""),
+            entry_no=row["entry_no"],
+            prediction=Prediction(row.get("prediction") or "FullEventful"),
+        )
+
+
+@dataclass
+class DictionaryVerb:
+    meta: PredictionMeta
     morphology: MorphologicalVerb
-    corpus_id: int | None = None
-    entry_no: int | None = None
     derivations: list["DictionaryVerb"] = field(default_factory=list)
     original_data: dict[str, Any] = field(
         default_factory=dict, repr=False, hash=False, compare=False
@@ -65,6 +100,25 @@ class DictionaryVerb:
     @staticmethod
     def from_dict(data: dict[str, Any]) -> "DictionaryVerb":
         clean_data = data.copy()
+        if "meta" in clean_data:
+            if isinstance(clean_data["meta"], dict):
+                clean_data["meta"] = PredictionMeta(
+                    corpus_id=str(clean_data["meta"].get("corpus_id", "")),
+                    definition=str(clean_data["meta"].get("definition", "")),
+                    entry_no=str(clean_data["meta"].get("entry_no", "")),
+                    prediction=Prediction(
+                        clean_data["meta"].get("prediction") or "FullEventful"
+                    ),
+                )
+        else:
+            clean_data["meta"] = PredictionMeta(
+                corpus_id=str(clean_data.pop("corpus_id", "") or ""),
+                definition=str(clean_data.pop("definition", "") or ""),
+                entry_no=str(clean_data.pop("entry_no", "") or ""),
+                prediction=Prediction(
+                    clean_data.pop("prediction", "FullEventful") or "FullEventful"
+                ),
+            )
         if "morphology" in clean_data:
             clean_data["morphology"] = MorphologicalVerb.from_dict(
                 clean_data["morphology"]
@@ -73,11 +127,45 @@ class DictionaryVerb:
             clean_data["derivations"] = [
                 DictionaryVerb.from_dict(d) for d in clean_data["derivations"]
             ]
-        if "corpus_id" in clean_data and clean_data["corpus_id"] is not None:
-            clean_data["corpus_id"] = int(clean_data["corpus_id"])
-        if "entry_no" in clean_data and clean_data["entry_no"] is not None:
-            clean_data["entry_no"] = int(clean_data["entry_no"])
         return DictionaryVerb(**clean_data)
+
+    @property
+    def corpus_id(self) -> int | None:
+        try:
+            return int(self.meta.corpus_id) if self.meta.corpus_id else None
+        except ValueError:
+            return None
+
+    @corpus_id.setter
+    def corpus_id(self, val: Any) -> None:
+        self.meta.corpus_id = str(val) if val is not None else ""
+
+    @property
+    def entry_no(self) -> int | None:
+        try:
+            return int(self.meta.entry_no) if self.meta.entry_no else None
+        except ValueError:
+            return None
+
+    @entry_no.setter
+    def entry_no(self, val: Any) -> None:
+        self.meta.entry_no = str(val) if val is not None else ""
+
+    @property
+    def definition(self) -> str:
+        return self.meta.definition
+
+    @definition.setter
+    def definition(self, val: str) -> None:
+        self.meta.definition = val
+
+    @property
+    def prediction(self) -> Prediction:
+        return self.meta.prediction
+
+    @prediction.setter
+    def prediction(self, val: Prediction) -> None:
+        self.meta.prediction = val
 
 
 # Dictionary column name -> morphological Aspect

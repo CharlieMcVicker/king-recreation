@@ -40,7 +40,8 @@ export default async function RootDetailPage({
   const collectEntryNos = (group: any) => {
     group.classes.forEach((c: any) => {
       c.verbs.forEach((v: any) => {
-        if (v.entry_no) entryNos.add(Number(v.entry_no));
+        const entryNo = v.meta?.entry_no ?? v.entry_no;
+        if (entryNo) entryNos.add(Number(entryNo));
       });
     });
   };
@@ -51,8 +52,8 @@ export default async function RootDetailPage({
   const allRootVerbs = rootGroup.classes.flatMap((c) => c.verbs);
   const rootCorpusIds = new Set(
     allRootVerbs
-      .map((v) => v.corpus_id)
-      .filter((id): id is number => id !== null),
+      .map((v) => Number(v.meta.corpus_id))
+      .filter((id) => !isNaN(id)),
   );
 
   const relevantConnections = connections.filter((conn) => {
@@ -73,11 +74,11 @@ export default async function RootDetailPage({
   });
 
   const connectedVerbs = allVerbs.filter(
-    (v) => v.corpus_id !== null && connectedCorpusIds.has(v.corpus_id),
+    (v) => v.meta.corpus_id !== null && connectedCorpusIds.has(Number(v.meta.corpus_id)),
   );
 
   connectedVerbs.forEach((v) => {
-    if (v.entry_no) entryNos.add(v.entry_no);
+    if (v.meta.entry_no) entryNos.add(Number(v.meta.entry_no));
   });
 
   const rootDictionary = dictionary.filter((e) =>
