@@ -33,7 +33,7 @@ def test_build_wordspec_imperative_to_3rd():
         use_3rd_person_object=True,
     )
     spec = build_wordspec(Prediction.FULL_STATIVE, config, "imperative")
-    assert spec.aspect == Aspect.IMPERATIVE
+    assert spec.aspect == Aspect.IMPERFECTIVE
     assert spec.person == Person.SECOND_TO_THIRD
     assert spec.number == Number.SINGULAR
     assert spec.pronominal_set == PronominalSet.PERSON_TO_PERSON

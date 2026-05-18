@@ -113,19 +113,7 @@ def reconstruct_and_validate(
         # Reconstruct all forms for this verb (dictionary-aware iteration)
         prediction = Prediction(verb.original_data.get("prediction", "FullEventful"))
         forms = FORM_NAMES_FOR_PREDICTION[prediction]
-        form_options = {}
-        for fn in forms:
-            spec = build_wordspec(prediction, verb.morphology.config.pron, fn)
-            options = engine.reconstruct_spec(verb.morphology, spec)
-            if options:
-                form_options[fn] = options
-        generated_sets = (
-            [{fn: set(opts or []) for fn, opts in form_options.items()}]
-            if form_options
-            else []
-        )
-        matches_all = True
-        failed_forms = []
+
         ref = (
             full_corpus_map.get(str(verb.corpus_id))
             if verb.corpus_id is not None
@@ -140,12 +128,30 @@ def reconstruct_and_validate(
                 ref.meta.entry_no
             )
 
+        form_options = {}
+        for fn in forms:
+            spec = build_wordspec(prediction, verb.morphology.config.pron, fn)
+            options = engine.reconstruct_spec(verb.morphology, spec)
+            if options:
+                form_options[fn] = options
+
+        generated_sets = (
+            [{fn: set(opts or []) for fn, opts in form_options.items()}]
+            if form_options
+            else []
+        )
+        matches_all = True
+        failed_forms = []
+
         # Capture options for report
         options = generated_sets[0] if generated_sets else {fn: set() for fn in forms}
 
-        desegmented_forms = {
-            fn: {desegment(s): s for s in options.get(fn, {})} for fn in options
-        }
+        desegmented_forms = {}
+        for fn in options:
+            desegmented_forms[fn] = {}
+            for s in options.get(fn, {}):
+                ds = desegment(s)
+                desegmented_forms[fn][ds] = s
 
         segmented_forms = {}
 

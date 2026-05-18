@@ -173,4 +173,16 @@ class ReconstructionEngine:
                 # verb.config.apply_prepronominals handles translocutive/partitive/distributive
                 final_forms.extend(verb.config.apply_prepronominals(c, spec))
 
+        # 4. Attach tense ending if present
+        if spec.tense_ending:
+            tense_forms = []
+            endings = [e.strip() for e in spec.tense_ending.split(",") if e.strip()]
+            for ending in endings:
+                for form in final_forms:
+                    if form.endswith("-"):
+                        tense_forms.append(form + ending)
+                    else:
+                        tense_forms.append(form + "-" + ending)
+            final_forms = tense_forms
+
         return list(set(final_forms))
