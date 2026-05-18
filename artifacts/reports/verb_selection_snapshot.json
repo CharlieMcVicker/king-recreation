@@ -47324,39 +47324,6 @@
                 "definition": "he/she has horns",
                 "entry_no": 744,
                 "morphology": {
-                    "class_name": "stative",
-                    "config": {
-                        "pre": {
-                            "distributive": true,
-                            "partitive": false,
-                            "translocutive": false,
-                            "translocutiveImpOnly": false
-                        },
-                        "pron": {
-                            "allow_h_metathesis": false,
-                            "middle_voice": "none",
-                            "middle_voice_h_metathesis": false,
-                            "plural_pronouns": false,
-                            "set_type": "b",
-                            "stem_type": "con",
-                            "use_3rd_person_object": false,
-                            "use_aki_for_1st_set_b": true,
-                            "use_ka_variant": false,
-                            "uwa_replaces_v": false
-                        }
-                    },
-                    "glottal_grade_root": null,
-                    "h_grade_root": "lhk",
-                    "post_root_morpheme": null
-                },
-                "pipeline_selected": false,
-                "user_selected": false
-            },
-            {
-                "corpus_id": 726,
-                "definition": "he/she has horns",
-                "entry_no": 744,
-                "morphology": {
                     "class_name": "stative-k",
                     "config": {
                         "pre": {
@@ -47383,7 +47350,40 @@
                     "post_root_morpheme": null
                 },
                 "pipeline_selected": true,
-                "user_selected": true
+                "user_selected": false
+            },
+            {
+                "corpus_id": 726,
+                "definition": "he/she has horns",
+                "entry_no": 744,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": true,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": true,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "lh",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -47500,26 +47500,20 @@
                     "post_root_morpheme": null
                 },
                 "pipeline_selected": true,
-                "user_selected": true
-            }
-        ]
-    },
-    {
-        "corpus_id": 730,
-        "definition": "he/she is wearing shoes",
-        "options": [
+                "user_selected": false
+            },
             {
-                "corpus_id": 730,
-                "definition": "he/she is wearing shoes",
-                "entry_no": 748,
+                "corpus_id": 729,
+                "definition": "he/she is wearing glasses",
+                "entry_no": 747,
                 "morphology": {
-                    "class_name": "stative",
+                    "class_name": "stative-h",
                     "config": {
                         "pre": {
                             "distributive": true,
                             "partitive": false,
                             "translocutive": false,
-                            "translocutiveImpOnly": false
+                            "translocutiveImpOnly": true
                         },
                         "pron": {
                             "allow_h_metathesis": false,
@@ -47535,12 +47529,18 @@
                         }
                     },
                     "glottal_grade_root": null,
-                    "h_grade_root": "alahsulh",
+                    "h_grade_root": "akhthinvt",
                     "post_root_morpheme": null
                 },
                 "pipeline_selected": false,
                 "user_selected": false
-            },
+            }
+        ]
+    },
+    {
+        "corpus_id": 730,
+        "definition": "he/she is wearing shoes",
+        "options": [
             {
                 "corpus_id": 730,
                 "definition": "he/she is wearing shoes",
@@ -47572,59 +47572,20 @@
                     "post_root_morpheme": null
                 },
                 "pipeline_selected": true,
-                "user_selected": true
-            }
-        ]
-    },
-    {
-        "corpus_id": 733,
-        "definition": "he/she is wearing socks",
-        "options": [
-            {
-                "corpus_id": 733,
-                "definition": "he/she is wearing socks",
-                "entry_no": 751,
-                "morphology": {
-                    "class_name": "stative",
-                    "config": {
-                        "pre": {
-                            "distributive": true,
-                            "partitive": false,
-                            "translocutive": false,
-                            "translocutiveImpOnly": false
-                        },
-                        "pron": {
-                            "allow_h_metathesis": false,
-                            "middle_voice": "ali",
-                            "middle_voice_h_metathesis": false,
-                            "plural_pronouns": false,
-                            "set_type": "b",
-                            "stem_type": "vowel_a",
-                            "use_3rd_person_object": false,
-                            "use_aki_for_1st_set_b": false,
-                            "use_ka_variant": false,
-                            "uwa_replaces_v": false
-                        }
-                    },
-                    "glottal_grade_root": null,
-                    "h_grade_root": "yoh",
-                    "post_root_morpheme": null
-                },
-                "pipeline_selected": false,
                 "user_selected": false
             },
             {
-                "corpus_id": 733,
-                "definition": "he/she is wearing socks",
-                "entry_no": 751,
+                "corpus_id": 730,
+                "definition": "he/she is wearing shoes",
+                "entry_no": 748,
                 "morphology": {
-                    "class_name": "stative",
+                    "class_name": "stative-h",
                     "config": {
                         "pre": {
                             "distributive": true,
                             "partitive": false,
                             "translocutive": false,
-                            "translocutiveImpOnly": false
+                            "translocutiveImpOnly": true
                         },
                         "pron": {
                             "allow_h_metathesis": false,
@@ -47640,12 +47601,18 @@
                         }
                     },
                     "glottal_grade_root": null,
-                    "h_grade_root": "aliyoh",
+                    "h_grade_root": "alahsul",
                     "post_root_morpheme": null
                 },
                 "pipeline_selected": false,
                 "user_selected": false
-            },
+            }
+        ]
+    },
+    {
+        "corpus_id": 733,
+        "definition": "he/she is wearing socks",
+        "options": [
             {
                 "corpus_id": 733,
                 "definition": "he/she is wearing socks",
@@ -47710,7 +47677,73 @@
                     "post_root_morpheme": null
                 },
                 "pipeline_selected": false,
-                "user_selected": true
+                "user_selected": false
+            },
+            {
+                "corpus_id": 733,
+                "definition": "he/she is wearing socks",
+                "entry_no": 751,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": true,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ali",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "yo",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 733,
+                "definition": "he/she is wearing socks",
+                "entry_no": 751,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": true,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "aliyo",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -48083,6 +48116,138 @@
                 "definition": "he/she lives",
                 "entry_no": 769,
                 "morphology": {
+                    "class_name": "stative-eh",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_e",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "",
+                    "h_grade_root": "",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 746,
+                "definition": "he/she lives",
+                "entry_no": 769,
+                "morphology": {
+                    "class_name": "stative-eh",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_o",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "",
+                    "h_grade_root": "",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 746,
+                "definition": "he/she lives",
+                "entry_no": 769,
+                "morphology": {
+                    "class_name": "stative-eh",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_u",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "",
+                    "h_grade_root": "",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 746,
+                "definition": "he/she lives",
+                "entry_no": 769,
+                "morphology": {
+                    "class_name": "stative-eh",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_v",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "",
+                    "h_grade_root": "",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 746,
+                "definition": "he/she lives",
+                "entry_no": 769,
+                "morphology": {
                     "class_name": "stative-h",
                     "config": {
                         "pre": {
@@ -48110,6 +48275,39 @@
                 },
                 "pipeline_selected": false,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 746,
+                "definition": "he/she lives",
+                "entry_no": 769,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_e",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "e",
+                    "h_grade_root": "e",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -48425,6 +48623,105 @@
                 },
                 "pipeline_selected": false,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 759,
+                "definition": "it is hanging (refers to flexible object)",
+                "entry_no": 789,
+                "morphology": {
+                    "class_name": "stative-a'",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "at",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "",
+                    "h_grade_root": "",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 759,
+                "definition": "it is hanging (refers to flexible object)",
+                "entry_no": 789,
+                "morphology": {
+                    "class_name": "stative-a'",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "at_pre_c",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "",
+                    "h_grade_root": "",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 759,
+                "definition": "it is hanging (refers to flexible object)",
+                "entry_no": 789,
+                "morphology": {
+                    "class_name": "stative-a'",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "at",
+                    "h_grade_root": "at",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -48870,6 +49167,105 @@
                             "partitive": false,
                             "translocutive": false,
                             "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "long",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": ":to",
+                    "h_grade_root": ":to",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 772,
+                "definition": "he/she is standing",
+                "entry_no": 802,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "to",
+                    "h_grade_root": "to",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 772,
+                "definition": "he/she is standing",
+                "entry_no": 802,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "con",
+                            "use_3rd_person_object": true,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "to",
+                    "h_grade_root": "to",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 772,
+                "definition": "he/she is standing",
+                "entry_no": 802,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
                         },
                         "pron": {
                             "allow_h_metathesis": false,
@@ -49655,210 +50051,6 @@
                 },
                 "pipeline_selected": true,
                 "user_selected": true
-            }
-        ]
-    },
-    {
-        "corpus_id": 814,
-        "definition": "he/she is holding it (refers to a flexible object)",
-        "options": [
-            {
-                "corpus_id": 814,
-                "definition": "he/she is holding it (refers to a flexible object)",
-                "entry_no": 844,
-                "morphology": {
-                    "class_name": "stative",
-                    "config": {
-                        "pre": {
-                            "distributive": false,
-                            "partitive": false,
-                            "translocutive": false,
-                            "translocutiveImpOnly": false
-                        },
-                        "pron": {
-                            "allow_h_metathesis": false,
-                            "middle_voice": "none",
-                            "middle_voice_h_metathesis": false,
-                            "plural_pronouns": false,
-                            "set_type": "a",
-                            "stem_type": "aspirated",
-                            "use_3rd_person_object": false,
-                            "use_aki_for_1st_set_b": false,
-                            "use_ka_variant": true,
-                            "uwa_replaces_v": false
-                        }
-                    },
-                    "glottal_grade_root": "'neh",
-                    "h_grade_root": "nheh",
-                    "post_root_morpheme": null
-                },
-                "pipeline_selected": false,
-                "user_selected": false
-            },
-            {
-                "corpus_id": 814,
-                "definition": "he/she is holding it (refers to a flexible object)",
-                "entry_no": 844,
-                "morphology": {
-                    "class_name": "stative",
-                    "config": {
-                        "pre": {
-                            "distributive": false,
-                            "partitive": false,
-                            "translocutive": false,
-                            "translocutiveImpOnly": false
-                        },
-                        "pron": {
-                            "allow_h_metathesis": false,
-                            "middle_voice": "none",
-                            "middle_voice_h_metathesis": false,
-                            "plural_pronouns": false,
-                            "set_type": "a",
-                            "stem_type": "con",
-                            "use_3rd_person_object": false,
-                            "use_aki_for_1st_set_b": false,
-                            "use_ka_variant": true,
-                            "uwa_replaces_v": false
-                        }
-                    },
-                    "glottal_grade_root": "'neh",
-                    "h_grade_root": "nheh",
-                    "post_root_morpheme": null
-                },
-                "pipeline_selected": false,
-                "user_selected": false
-            },
-            {
-                "corpus_id": 814,
-                "definition": "he/she is holding it (refers to a flexible object)",
-                "entry_no": 844,
-                "morphology": {
-                    "class_name": "stative-eh",
-                    "config": {
-                        "pre": {
-                            "distributive": false,
-                            "partitive": false,
-                            "translocutive": false,
-                            "translocutiveImpOnly": false
-                        },
-                        "pron": {
-                            "allow_h_metathesis": false,
-                            "middle_voice": "none",
-                            "middle_voice_h_metathesis": false,
-                            "plural_pronouns": false,
-                            "set_type": "a",
-                            "stem_type": "aspirated",
-                            "use_3rd_person_object": false,
-                            "use_aki_for_1st_set_b": false,
-                            "use_ka_variant": true,
-                            "uwa_replaces_v": false
-                        }
-                    },
-                    "glottal_grade_root": "'n",
-                    "h_grade_root": "nh",
-                    "post_root_morpheme": null
-                },
-                "pipeline_selected": false,
-                "user_selected": false
-            },
-            {
-                "corpus_id": 814,
-                "definition": "he/she is holding it (refers to a flexible object)",
-                "entry_no": 844,
-                "morphology": {
-                    "class_name": "stative-eh",
-                    "config": {
-                        "pre": {
-                            "distributive": false,
-                            "partitive": false,
-                            "translocutive": false,
-                            "translocutiveImpOnly": false
-                        },
-                        "pron": {
-                            "allow_h_metathesis": false,
-                            "middle_voice": "none",
-                            "middle_voice_h_metathesis": false,
-                            "plural_pronouns": false,
-                            "set_type": "a",
-                            "stem_type": "con",
-                            "use_3rd_person_object": false,
-                            "use_aki_for_1st_set_b": false,
-                            "use_ka_variant": true,
-                            "uwa_replaces_v": false
-                        }
-                    },
-                    "glottal_grade_root": "'n",
-                    "h_grade_root": "nh",
-                    "post_root_morpheme": null
-                },
-                "pipeline_selected": true,
-                "user_selected": true
-            },
-            {
-                "corpus_id": 814,
-                "definition": "he/she is holding it (refers to a flexible object)",
-                "entry_no": 844,
-                "morphology": {
-                    "class_name": "stative-h",
-                    "config": {
-                        "pre": {
-                            "distributive": false,
-                            "partitive": false,
-                            "translocutive": false,
-                            "translocutiveImpOnly": false
-                        },
-                        "pron": {
-                            "allow_h_metathesis": false,
-                            "middle_voice": "none",
-                            "middle_voice_h_metathesis": false,
-                            "plural_pronouns": false,
-                            "set_type": "a",
-                            "stem_type": "aspirated",
-                            "use_3rd_person_object": false,
-                            "use_aki_for_1st_set_b": false,
-                            "use_ka_variant": true,
-                            "uwa_replaces_v": false
-                        }
-                    },
-                    "glottal_grade_root": "'ne",
-                    "h_grade_root": "nhe",
-                    "post_root_morpheme": null
-                },
-                "pipeline_selected": false,
-                "user_selected": false
-            },
-            {
-                "corpus_id": 814,
-                "definition": "he/she is holding it (refers to a flexible object)",
-                "entry_no": 844,
-                "morphology": {
-                    "class_name": "stative-h",
-                    "config": {
-                        "pre": {
-                            "distributive": false,
-                            "partitive": false,
-                            "translocutive": false,
-                            "translocutiveImpOnly": false
-                        },
-                        "pron": {
-                            "allow_h_metathesis": false,
-                            "middle_voice": "none",
-                            "middle_voice_h_metathesis": false,
-                            "plural_pronouns": false,
-                            "set_type": "a",
-                            "stem_type": "con",
-                            "use_3rd_person_object": false,
-                            "use_aki_for_1st_set_b": false,
-                            "use_ka_variant": true,
-                            "uwa_replaces_v": false
-                        }
-                    },
-                    "glottal_grade_root": "'ne",
-                    "h_grade_root": "nhe",
-                    "post_root_morpheme": null
-                },
-                "pipeline_selected": false,
-                "user_selected": false
             }
         ]
     },
@@ -53858,6 +54050,105 @@
                 "definition": "he/she is holding it in his/her hand (refers to a long object)",
                 "entry_no": 917,
                 "morphology": {
+                    "class_name": "stative-eh",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "n",
+                    "h_grade_root": "n",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 887,
+                "definition": "he/she is holding it in his/her hand (refers to a long object)",
+                "entry_no": 917,
+                "morphology": {
+                    "class_name": "stative-eh",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "con",
+                            "use_3rd_person_object": true,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "n",
+                    "h_grade_root": "n",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 887,
+                "definition": "he/she is holding it in his/her hand (refers to a long object)",
+                "entry_no": 917,
+                "morphology": {
+                    "class_name": "stative-eh",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "long",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": ":n",
+                    "h_grade_root": ":n",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 887,
+                "definition": "he/she is holding it in his/her hand (refers to a long object)",
+                "entry_no": 917,
+                "morphology": {
                     "class_name": "stative-h",
                     "config": {
                         "pre": {
@@ -53931,6 +54222,105 @@
                             "partitive": false,
                             "translocutive": false,
                             "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "long",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": ":ne",
+                    "h_grade_root": ":ne",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 887,
+                "definition": "he/she is holding it in his/her hand (refers to a long object)",
+                "entry_no": 917,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "ne",
+                    "h_grade_root": "ne",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 887,
+                "definition": "he/she is holding it in his/her hand (refers to a long object)",
+                "entry_no": 917,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "con",
+                            "use_3rd_person_object": true,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "ne",
+                    "h_grade_root": "ne",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 887,
+                "definition": "he/she is holding it in his/her hand (refers to a long object)",
+                "entry_no": 917,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
                         },
                         "pron": {
                             "allow_h_metathesis": false,
@@ -54884,6 +55274,105 @@
                 },
                 "pipeline_selected": false,
                 "user_selected": false
+            },
+            {
+                "corpus_id": 899,
+                "definition": "he/she is lying down",
+                "entry_no": 929,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "aspirated",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "nv",
+                    "h_grade_root": "nh",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 899,
+                "definition": "he/she is lying down",
+                "entry_no": 929,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "nv",
+                    "h_grade_root": "nh",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 899,
+                "definition": "he/she is lying down",
+                "entry_no": 929,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "long",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": ":nv",
+                    "h_grade_root": ":nh",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -55304,6 +55793,105 @@
                 "definition": "he/she is holding some liquid",
                 "entry_no": 933,
                 "morphology": {
+                    "class_name": "stative-eh",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "aspirated",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "nvts",
+                    "h_grade_root": "nhts",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 903,
+                "definition": "he/she is holding some liquid",
+                "entry_no": 933,
+                "morphology": {
+                    "class_name": "stative-eh",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "nvts",
+                    "h_grade_root": "nhts",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 903,
+                "definition": "he/she is holding some liquid",
+                "entry_no": 933,
+                "morphology": {
+                    "class_name": "stative-eh",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "long",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": ":nvts",
+                    "h_grade_root": ":nhts",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 903,
+                "definition": "he/she is holding some liquid",
+                "entry_no": 933,
+                "morphology": {
                     "class_name": "stative-h",
                     "config": {
                         "pre": {
@@ -55377,6 +55965,105 @@
                             "partitive": false,
                             "translocutive": false,
                             "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "long",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": ":nvtse",
+                    "h_grade_root": ":nhtse",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 903,
+                "definition": "he/she is holding some liquid",
+                "entry_no": 933,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "aspirated",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "nvtse",
+                    "h_grade_root": "nhtse",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 903,
+                "definition": "he/she is holding some liquid",
+                "entry_no": 933,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "nvtse",
+                    "h_grade_root": "nhtse",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 903,
+                "definition": "he/she is holding some liquid",
+                "entry_no": 933,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
                         },
                         "pron": {
                             "allow_h_metathesis": false,
@@ -58628,6 +59315,105 @@
                 },
                 "pipeline_selected": false,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 970,
+                "definition": "it\u2019s hanging",
+                "entry_no": 1000,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "at",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "",
+                    "h_grade_root": "",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 970,
+                "definition": "it\u2019s hanging",
+                "entry_no": 1000,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "at_pre_c",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "",
+                    "h_grade_root": "",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 970,
+                "definition": "it\u2019s hanging",
+                "entry_no": 1000,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "at",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -59105,6 +59891,144 @@
                 },
                 "pipeline_selected": true,
                 "user_selected": true
+            }
+        ]
+    },
+    {
+        "corpus_id": 997,
+        "definition": "he/she is leading it by a leash",
+        "options": [
+            {
+                "corpus_id": 997,
+                "definition": "he/she is leading it by a leash",
+                "entry_no": 1027,
+                "morphology": {
+                    "class_name": "stative-eh",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_e",
+                            "use_3rd_person_object": true,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "elihsin",
+                    "h_grade_root": "elihsin",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": true,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 997,
+                "definition": "he/she is leading it by a leash",
+                "entry_no": 1027,
+                "morphology": {
+                    "class_name": "stative-eh",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_e",
+                            "use_3rd_person_object": true,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "elihsin",
+                    "h_grade_root": "elihsin",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 997,
+                "definition": "he/she is leading it by a leash",
+                "entry_no": 1027,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_e",
+                            "use_3rd_person_object": true,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "elihsine",
+                    "h_grade_root": "elihsine",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 997,
+                "definition": "he/she is leading it by a leash",
+                "entry_no": 1027,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_e",
+                            "use_3rd_person_object": true,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "elihsine",
+                    "h_grade_root": "elihsine",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -60449,6 +61373,39 @@
                 },
                 "pipeline_selected": true,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 1067,
+                "definition": "he/she is alive",
+                "entry_no": 1098,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "a",
+                            "stem_type": "vowel_v",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": true,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "vn",
+                    "h_grade_root": "vn",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -63462,6 +64419,276 @@
         ]
     },
     {
+        "corpus_id": 1451,
+        "definition": "he/she loves",
+        "options": [
+            {
+                "corpus_id": 1451,
+                "definition": "he/she loves",
+                "entry_no": 1517,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "at",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "akeyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1451,
+                "definition": "he/she loves",
+                "entry_no": 1517,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ata",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "keyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": true,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1451,
+                "definition": "he/she loves",
+                "entry_no": 1517,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ata_:",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": ":keyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1451,
+                "definition": "he/she loves",
+                "entry_no": 1517,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "atakeyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1451,
+                "definition": "he/she loves",
+                "entry_no": 1517,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "at",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "akeyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1451,
+                "definition": "he/she loves",
+                "entry_no": 1517,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ata",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "keyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1451,
+                "definition": "he/she loves",
+                "entry_no": 1517,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ata_:",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": ":keyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1451,
+                "definition": "he/she loves",
+                "entry_no": 1517,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "atakeyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            }
+        ]
+    },
+    {
         "corpus_id": 1459,
         "definition": "it\u2019s wrinkled",
         "options": [
@@ -63596,6 +64823,408 @@
                 },
                 "pipeline_selected": false,
                 "user_selected": false
+            },
+            {
+                "corpus_id": 1459,
+                "definition": "it\u2019s wrinkled",
+                "entry_no": 1525,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "at",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "anekoyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1459,
+                "definition": "it\u2019s wrinkled",
+                "entry_no": 1525,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ata",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "nekoyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1459,
+                "definition": "it\u2019s wrinkled",
+                "entry_no": 1525,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ata_:",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": ":nekoyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1459,
+                "definition": "it\u2019s wrinkled",
+                "entry_no": 1525,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "atanekoyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            }
+        ]
+    },
+    {
+        "corpus_id": 1462,
+        "definition": "he/she feels",
+        "options": [
+            {
+                "corpus_id": 1462,
+                "definition": "he/she feels",
+                "entry_no": 1528,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "at",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "anht",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1462,
+                "definition": "he/she feels",
+                "entry_no": 1528,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ata",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "nht",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": true,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1462,
+                "definition": "he/she feels",
+                "entry_no": 1528,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ata_:",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": ":nht",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1462,
+                "definition": "he/she feels",
+                "entry_no": 1528,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "atanht",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1462,
+                "definition": "he/she feels",
+                "entry_no": 1528,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "at",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "anht",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1462,
+                "definition": "he/she feels",
+                "entry_no": 1528,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ata",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "nht",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1462,
+                "definition": "he/she feels",
+                "entry_no": 1528,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ata_:",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": ":nht",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1462,
+                "definition": "he/she feels",
+                "entry_no": 1528,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "atanht",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -63714,6 +65343,138 @@
                             "partitive": false,
                             "translocutive": false,
                             "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "atayvlat",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1470,
+                "definition": "it\u2019s in view",
+                "entry_no": 1536,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "at",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "ayvlat",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1470,
+                "definition": "it\u2019s in view",
+                "entry_no": 1536,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ata",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "yvlat",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1470,
+                "definition": "it\u2019s in view",
+                "entry_no": 1536,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ata_:",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": ":yvlat",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1470,
+                "definition": "it\u2019s in view",
+                "entry_no": 1536,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
                         },
                         "pron": {
                             "allow_h_metathesis": false,
@@ -64313,6 +66074,204 @@
                 },
                 "pipeline_selected": false,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 1478,
+                "definition": "it\u2019s hot",
+                "entry_no": 1544,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "at",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "ilheh",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1478,
+                "definition": "it\u2019s hot",
+                "entry_no": 1544,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ati",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "lheh",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1478,
+                "definition": "it\u2019s hot",
+                "entry_no": 1544,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ati_:",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": ":lheh",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1478,
+                "definition": "it\u2019s hot",
+                "entry_no": 1544,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ati_v",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "vlheh",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1478,
+                "definition": "it\u2019s hot",
+                "entry_no": 1544,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "tilheh",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1478,
+                "definition": "it\u2019s hot",
+                "entry_no": 1544,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "atilheh",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -64464,6 +66423,171 @@
                             "partitive": false,
                             "translocutive": false,
                             "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "atihskal",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1480,
+                "definition": "he/she is in hiding",
+                "entry_no": 1546,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "at",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "ihskal",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1480,
+                "definition": "he/she is in hiding",
+                "entry_no": 1546,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ati",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "hskal",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1480,
+                "definition": "he/she is in hiding",
+                "entry_no": 1546,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ati_:",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": ":hskal",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1480,
+                "definition": "he/she is in hiding",
+                "entry_no": 1546,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ati_v",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "vhskal",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1480,
+                "definition": "he/she is in hiding",
+                "entry_no": 1546,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
                         },
                         "pron": {
                             "allow_h_metathesis": false,
@@ -65477,6 +67601,72 @@
                 },
                 "pipeline_selected": false,
                 "user_selected": false
+            },
+            {
+                "corpus_id": 1505,
+                "definition": "he/she is standing in liquid",
+                "entry_no": 1571,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "at",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "u",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1505,
+                "definition": "he/she is standing in liquid",
+                "entry_no": 1571,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "atu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -65664,6 +67854,144 @@
         ]
     },
     {
+        "corpus_id": 1516,
+        "definition": "he/she is possessive of him/her",
+        "options": [
+            {
+                "corpus_id": 1516,
+                "definition": "he/she is possessive of him/her",
+                "entry_no": 1582,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "con",
+                            "use_3rd_person_object": true,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "keyu",
+                    "h_grade_root": "keyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": true,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1516,
+                "definition": "he/she is possessive of him/her",
+                "entry_no": 1582,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "glottal",
+                            "use_3rd_person_object": true,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "'keyu",
+                    "h_grade_root": "'keyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1516,
+                "definition": "he/she is possessive of him/her",
+                "entry_no": 1582,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "con",
+                            "use_3rd_person_object": true,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "keyu",
+                    "h_grade_root": "keyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1516,
+                "definition": "he/she is possessive of him/her",
+                "entry_no": 1582,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "glottal",
+                            "use_3rd_person_object": true,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": "'keyu",
+                    "h_grade_root": "'keyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            }
+        ]
+    },
+    {
         "corpus_id": 1523,
         "definition": "he/she is late",
         "options": [
@@ -65843,6 +68171,39 @@
                 },
                 "pipeline_selected": true,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 1530,
+                "definition": "he/she has an object (refers to a solid object)",
+                "entry_no": 1596,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": true,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -65993,6 +68354,39 @@
                 },
                 "pipeline_selected": true,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 1535,
+                "definition": "there is dew",
+                "entry_no": 1601,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": true,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "hihsat",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -66512,6 +68906,39 @@
                 },
                 "pipeline_selected": true,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 1545,
+                "definition": "he/she is angry",
+                "entry_no": 1611,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": true,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": true,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "nhalv",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -66662,6 +69089,39 @@
                 },
                 "pipeline_selected": true,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 1554,
+                "definition": "he/she is in bed",
+                "entry_no": 1620,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "anhi",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -67424,6 +69884,39 @@
                 },
                 "pipeline_selected": true,
                 "user_selected": false
+            },
+            {
+                "corpus_id": 1576,
+                "definition": "he/she is inside it",
+                "entry_no": 1642,
+                "morphology": {
+                    "class_name": "stative-a'",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "ats",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -67463,6 +69956,39 @@
                 },
                 "pipeline_selected": true,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 1592,
+                "definition": "it\u2019s sticking out",
+                "entry_no": 1658,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "akhsat",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -67815,6 +70341,72 @@
                             "partitive": false,
                             "translocutive": false,
                             "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "aliyehsuhsth",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1613,
+                "definition": "he/she is wearing a ring",
+                "entry_no": 1679,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "ali",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "yehsuhsth",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1613,
+                "definition": "he/she is wearing a ring",
+                "entry_no": 1679,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
                         },
                         "pron": {
                             "allow_h_metathesis": false,
@@ -68591,6 +71183,72 @@
                 },
                 "pipeline_selected": false,
                 "user_selected": false
+            },
+            {
+                "corpus_id": 1622,
+                "definition": "he/she is wearing a hat",
+                "entry_no": 1688,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "al_ali",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "hskwethuh",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1622,
+                "definition": "he/she is wearing a hat",
+                "entry_no": 1688,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "alhskwethuh",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -68795,6 +71453,105 @@
                 },
                 "pipeline_selected": false,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 1623,
+                "definition": "it\u2019s dark",
+                "entry_no": 1689,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "al_ali",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "hsih",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1623,
+                "definition": "it\u2019s dark",
+                "entry_no": 1689,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "lhsih",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1623,
+                "definition": "it\u2019s dark",
+                "entry_no": 1689,
+                "morphology": {
+                    "class_name": "stative-k",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "alhsih",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -68867,6 +71624,39 @@
                 },
                 "pipeline_selected": true,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 1629,
+                "definition": "he/she has an object (refers to a flexible object)",
+                "entry_no": 1695,
+                "morphology": {
+                    "class_name": "stative-a'",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": true,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "n",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -68918,6 +71708,72 @@
                 "definition": "he/she has a liquid",
                 "entry_no": 1708,
                 "morphology": {
+                    "class_name": "stative-eh",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": false
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": true,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "n",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": true,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1642,
+                "definition": "he/she has a liquid",
+                "entry_no": 1708,
+                "morphology": {
+                    "class_name": "stative-eh",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": true,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "n",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
+            },
+            {
+                "corpus_id": 1642,
+                "definition": "he/she has a liquid",
+                "entry_no": 1708,
+                "morphology": {
                     "class_name": "stative-h",
                     "config": {
                         "pre": {
@@ -68943,8 +71799,41 @@
                     "h_grade_root": "ne",
                     "post_root_morpheme": null
                 },
-                "pipeline_selected": true,
+                "pipeline_selected": false,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 1642,
+                "definition": "he/she has a liquid",
+                "entry_no": 1708,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "con",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": true,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "ne",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -69017,6 +71906,39 @@
                 },
                 "pipeline_selected": true,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 1646,
+                "definition": "he/she knows it",
+                "entry_no": 1712,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_a",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "anht",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -69479,6 +72401,39 @@
                 },
                 "pipeline_selected": true,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 1729,
+                "definition": "he/she is confident",
+                "entry_no": 1795,
+                "morphology": {
+                    "class_name": "stative-s",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_o",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "ohiyu",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -69551,6 +72506,39 @@
                 },
                 "pipeline_selected": true,
                 "user_selected": true
+            },
+            {
+                "corpus_id": 1730,
+                "definition": "he/she is sitting",
+                "entry_no": 1796,
+                "morphology": {
+                    "class_name": "stative-h",
+                    "config": {
+                        "pre": {
+                            "distributive": false,
+                            "partitive": false,
+                            "translocutive": false,
+                            "translocutiveImpOnly": true
+                        },
+                        "pron": {
+                            "allow_h_metathesis": false,
+                            "middle_voice": "none",
+                            "middle_voice_h_metathesis": false,
+                            "plural_pronouns": false,
+                            "set_type": "b",
+                            "stem_type": "vowel_o",
+                            "use_3rd_person_object": false,
+                            "use_aki_for_1st_set_b": false,
+                            "use_ka_variant": false,
+                            "uwa_replaces_v": false
+                        }
+                    },
+                    "glottal_grade_root": null,
+                    "h_grade_root": "ol",
+                    "post_root_morpheme": null
+                },
+                "pipeline_selected": false,
+                "user_selected": false
             }
         ]
     },
@@ -70142,105 +73130,6 @@
                 "definition": "he/she is heading in the direction of",
                 "entry_no": 1834,
                 "morphology": {
-                    "class_name": "stative",
-                    "config": {
-                        "pre": {
-                            "distributive": false,
-                            "partitive": false,
-                            "translocutive": true,
-                            "translocutiveImpOnly": false
-                        },
-                        "pron": {
-                            "allow_h_metathesis": false,
-                            "middle_voice": "none",
-                            "middle_voice_h_metathesis": false,
-                            "plural_pronouns": false,
-                            "set_type": "a",
-                            "stem_type": "aspirated",
-                            "use_3rd_person_object": false,
-                            "use_aki_for_1st_set_b": false,
-                            "use_ka_variant": false,
-                            "uwa_replaces_v": false
-                        }
-                    },
-                    "glottal_grade_root": "kath",
-                    "h_grade_root": "khth",
-                    "post_root_morpheme": null
-                },
-                "pipeline_selected": false,
-                "user_selected": false
-            },
-            {
-                "corpus_id": 1765,
-                "definition": "he/she is heading in the direction of",
-                "entry_no": 1834,
-                "morphology": {
-                    "class_name": "stative",
-                    "config": {
-                        "pre": {
-                            "distributive": false,
-                            "partitive": false,
-                            "translocutive": true,
-                            "translocutiveImpOnly": false
-                        },
-                        "pron": {
-                            "allow_h_metathesis": false,
-                            "middle_voice": "none",
-                            "middle_voice_h_metathesis": false,
-                            "plural_pronouns": false,
-                            "set_type": "a",
-                            "stem_type": "con",
-                            "use_3rd_person_object": false,
-                            "use_aki_for_1st_set_b": false,
-                            "use_ka_variant": false,
-                            "uwa_replaces_v": false
-                        }
-                    },
-                    "glottal_grade_root": "kath",
-                    "h_grade_root": "khth",
-                    "post_root_morpheme": null
-                },
-                "pipeline_selected": false,
-                "user_selected": false
-            },
-            {
-                "corpus_id": 1765,
-                "definition": "he/she is heading in the direction of",
-                "entry_no": 1834,
-                "morphology": {
-                    "class_name": "stative",
-                    "config": {
-                        "pre": {
-                            "distributive": false,
-                            "partitive": false,
-                            "translocutive": true,
-                            "translocutiveImpOnly": false
-                        },
-                        "pron": {
-                            "allow_h_metathesis": false,
-                            "middle_voice": "none",
-                            "middle_voice_h_metathesis": false,
-                            "plural_pronouns": false,
-                            "set_type": "a",
-                            "stem_type": "long",
-                            "use_3rd_person_object": false,
-                            "use_aki_for_1st_set_b": false,
-                            "use_ka_variant": false,
-                            "uwa_replaces_v": false
-                        }
-                    },
-                    "glottal_grade_root": ":kath",
-                    "h_grade_root": ":khth",
-                    "post_root_morpheme": null
-                },
-                "pipeline_selected": false,
-                "user_selected": false
-            },
-            {
-                "corpus_id": 1765,
-                "definition": "he/she is heading in the direction of",
-                "entry_no": 1834,
-                "morphology": {
                     "class_name": "stative-h",
                     "config": {
                         "pre": {
@@ -70300,7 +73189,7 @@
                     "post_root_morpheme": null
                 },
                 "pipeline_selected": true,
-                "user_selected": true
+                "user_selected": false
             },
             {
                 "corpus_id": 1765,

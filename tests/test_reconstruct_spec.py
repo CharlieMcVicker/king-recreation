@@ -48,3 +48,15 @@ def test_reconstruct_spec():
     forms = engine.reconstruct_spec(verb, spec)
 
     assert "uni-ni-" in forms
+
+    # Test case: 3rd person plural prefix + perfective aspect + tense ending
+    spec_with_tense = WordSpec(
+        aspect=Aspect.PERFECTIVE,
+        person=Person.THIRD,
+        number=Number.PLURAL,
+        pronominal_set=PronominalSet.SET_B,
+        stative=False,
+        tense_ending="v'i",
+    )
+    forms_with_tense = engine.reconstruct_spec(verb, spec_with_tense)
+    assert "uni-ni-v'i" in forms_with_tense

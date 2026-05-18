@@ -3,7 +3,6 @@ import os
 from typing import Any
 
 from dictionary_pipeline.paths import (
-    CED_DATA_ORIGINAL_PATH,
     CHEROKEE_NATION_DICTIONARY_PATH,
     CORPUS_PATH,
     CORPUS_RAW_PATH,
@@ -16,17 +15,6 @@ def ensure_output_dir():
     output_data_dir = os.path.dirname(CORPUS_PATH)
     if not os.path.exists(output_data_dir):
         os.makedirs(output_data_dir)
-
-
-def read_original_ced() -> list[dict[str, Any]]:
-    data = []
-    if not os.path.exists(CED_DATA_ORIGINAL_PATH):
-        return []
-    with open(CED_DATA_ORIGINAL_PATH, mode="r", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            data.append(row)
-    return data
 
 
 def read_original_cnd() -> list[dict[str, Any]]:

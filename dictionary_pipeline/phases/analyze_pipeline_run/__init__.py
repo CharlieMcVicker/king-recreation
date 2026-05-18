@@ -480,6 +480,7 @@ def _analyze_verb_status() -> None:
         best_by_id.append(
             {
                 "corpus_id": id,
+                "prediction": row.meta.prediction.value,
                 "definition": row.meta.definition,
                 "furthest_corpus": best,
             }
@@ -487,7 +488,7 @@ def _analyze_verb_status() -> None:
 
     save_furthest_corpus_by_id(
         sorted(best_by_id, key=lambda x: (x["furthest_corpus"][0], x["corpus_id"])),
-        ["corpus_id", "definition", "furthest_corpus"],
+        ["corpus_id", "prediction", "definition", "furthest_corpus"],
     )
 
 

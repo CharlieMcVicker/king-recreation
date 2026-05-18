@@ -3,6 +3,7 @@ from collections import defaultdict
 from dictionary_pipeline.dictionary_forms import (
     FORM_NAMES_FOR_PREDICTION,
     get_form_spec,
+    strip_tense_ending,
 )
 from dictionary_pipeline.phases.identify_aspect_classes.artifacts import (
     StrippedVerbRow,
@@ -47,7 +48,10 @@ def strip_verb_forms(cls: ExpandedClassPattern, verb: ProcessedRow) -> StrippedV
         form_spec = get_form_spec(stripped_row.meta.prediction, fn)
         aspect = form_spec.aspect
 
-        stripped_stem = cls.strip_form(aspect, form_val)
+        form_val_no_tense, _ = strip_tense_ending(
+            fn, form_val, stripped_row.meta.prediction
+        )
+        stripped_stem = cls.strip_form(aspect, form_val_no_tense)
         if stripped_stem is not None:
             setattr(stripped_row.forms, fn, stripped_stem)
 
@@ -97,9 +101,13 @@ def group_matches_by_macro(
 
             # Check Ending Match (Already mostly done by lookup/intersect, but verifying specifics like * or @)
             all_endings_match = True
-            from dataclasses import asdict
 
-            verb_forms_dict = asdict(verb.forms)
+            verb_forms_dict = {}
+            for form in forms:
+                val = getattr(verb.forms, form)
+                stripped_val, _ = strip_tense_ending(form, val, verb.meta.prediction)
+                verb_forms_dict[form] = stripped_val
+
             for form in forms:
                 if not cls.match_ending(verb_forms_dict, form) and not (
                     form == "imperative"
@@ -136,7 +144,10 @@ def get_matches_for_verb(
         # "Cheese" the alternation logic: allow suffix alternation for present_1sg and imperative
         allow_alt = fn in ["present_1sg", "imperative"]
 
-        form_tuples.append((surface_form, form_spec.aspect, allow_alt))
+        surface_form_no_tense, _ = strip_tense_ending(
+            fn, surface_form, verb.meta.prediction
+        )
+        form_tuples.append((surface_form_no_tense, form_spec.aspect, allow_alt))
 
     # 2. OPTIMIZED LOOKUP
     candidate_patterns = registry.get_candidates_combined(form_tuples)

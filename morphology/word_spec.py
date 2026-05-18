@@ -22,6 +22,7 @@ class FormSpec:
     person: Person
     allow_set_a: bool
     stative: bool
+    tense_ending: str = ""
 
 
 @dataclass(frozen=True)
@@ -31,6 +32,7 @@ class WordSpec:
     number: Number
     pronominal_set: PronominalSet
     stative: bool  # True for inherently stative stems (changes pronoun routing)
+    tense_ending: str = ""
 
 
 def calculate_pronominal_key(

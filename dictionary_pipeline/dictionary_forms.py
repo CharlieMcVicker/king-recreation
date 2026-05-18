@@ -94,9 +94,8 @@ FORM_NAME_TO_ASPECT_FOR_PREDICTION: dict[Prediction, dict[str, Aspect]] = {
         "present": Aspect.PRESENT,
         "present_1sg": Aspect.PRESENT,
         "imperfective": Aspect.IMPERFECTIVE,
-        "perfective": Aspect.PERFECTIVE,
-        "imperative": Aspect.IMPERATIVE,
-        "infinitive": Aspect.INFINITIVE,
+        "perfective": Aspect.IMPERFECTIVE,
+        "imperative": Aspect.IMPERFECTIVE,
     },
 }
 
@@ -126,7 +125,6 @@ FORM_NAMES_FOR_PREDICTION = {
         "imperfective",
         "perfective",
         "imperative",
-        "infinitive",
     ],
 }
 
@@ -147,12 +145,27 @@ def get_form_spec(prediction: Prediction, form_name: str) -> FormSpec:
     # Maintain current behavior: PERFECTIVE and INFINITIVE force Set B
     allow_set_a = aspect not in (Aspect.PERFECTIVE, Aspect.INFINITIVE)
 
+    # Predict tense ending morphologically inside the function!
+    if form_name == "imperative" and prediction == Prediction.FULL_STATIVE:
+        tense_ending = "ehsti"
+    elif form_name == "imperfective":
+        tense_ending = "o'i"
+    elif form_name == "perfective":
+        tense_ending = "v'i"
+    elif form_name == "infinitive":
+        tense_ending = "i"
+    elif form_name in ("present", "present_1sg"):
+        tense_ending = "i,a"
+    else:
+        tense_ending = ""
+
     return FormSpec(
         name=form_name,
         aspect=aspect,
         person=person,
         allow_set_a=allow_set_a,
         stative=PREDICTION_IS_STATIVE[prediction],
+        tense_ending=tense_ending,
     )
 
 
@@ -206,4 +219,117 @@ def _build_wordspec(form_spec: FormSpec, config: PronominalConfig) -> WordSpec:
         person=person,
         number=number,
         pronominal_set=p_set,
+        tense_ending=form_spec.tense_ending,
     )
+
+
+class TenseEnding(str, Enum):
+    I = "i"
+    A = "a"
+    OI = "o'i"
+    VI = "v'i"
+    EHSTI = "ehsti"
+
+
+# Map each dictionary form name to its possible tense endings.
+TENSE_ENDINGS_BY_FORM: dict[str, list[str]] = {
+    "present": ["i", "a"],
+    "present_1sg": ["i", "a"],
+    "imperfective": ["o'i"],
+    "perfective": ["v'i"],
+    "imperative": [],  # Eventful has none, stative is handled dynamically
+    "infinitive": ["i"],
+}
+
+
+def get_tense_endings(form_name: str, prediction: Prediction) -> list[str]:
+    """
+    Get the list of possible tense endings for a given form name and verb prediction class.
+    """
+    if form_name == "imperative" and prediction == Prediction.FULL_STATIVE:
+        return [TenseEnding.EHSTI.value]
+    return TENSE_ENDINGS_BY_FORM.get(form_name, [])
+
+
+def get_tense_ending(form_name: str, val: str, prediction: Prediction) -> str:
+    """
+    Given a form name and a surface form value, returns the matched tense ending.
+    """
+    if not val:
+        return ""
+    if form_name == "imperative" and prediction == Prediction.FULL_STATIVE:
+        if val.endswith("ehsti"):
+            return "ehsti"
+
+    endings = TENSE_ENDINGS_BY_FORM.get(form_name, [])
+    for ending in endings:
+        if val.endswith(ending):
+            return ending
+    return ""
+
+
+def strip_tense_ending(
+    form_name: str, form_val: str, prediction: Prediction
+) -> tuple[str, str]:
+    """
+    Strips the tense ending from a form value based on the form name and verb prediction class.
+
+    Returns a tuple of (stripped_form_val, stripped_ending).
+    If no ending is matched, returns (form_val, "").
+    """
+    if not form_val:
+        return "", ""
+
+    if form_name == "imperative" and prediction == Prediction.FULL_STATIVE:
+        if form_val.endswith("ehsti"):
+            return form_val[:-5], "ehsti"
+
+    endings = TENSE_ENDINGS_BY_FORM.get(form_name, [])
+    for ending in endings:
+        if form_val.endswith(ending):
+            if ending == "i'a":
+                # For "i'a", only strip "a", leaving "i'"
+                return form_val[:-1], "a"
+            return form_val[: -len(ending)], ending
+
+    return form_val, ""
+
+
+def attach_tense_ending(
+    form_name: str, form_val: str, prediction: Prediction, original_form_val: str = ""
+) -> str:
+    """
+    Attaches the appropriate tense ending to a form value.
+    If original_form_val is provided, we can determine the exact ending (e.g. 'i' vs 'a' for present).
+    Otherwise, we use the first available ending.
+    """
+    if not form_val:
+        return ""
+
+    # Check if a tense ending is already attached
+    endings = get_tense_endings(form_name, prediction)
+    for ending in endings:
+        if ending == "i'a":
+            if form_val.endswith("i'a") or form_val.endswith("i'"):
+                # If it already ends in i'a, or ends in i' (which is the stripped state of i'a)
+                # and we want to attach, if it ends in i' we append 'a'
+                if form_val.endswith("i'"):
+                    return form_val + "a"
+                return form_val
+        elif form_val.endswith(ending):
+            return form_val
+
+    # Determine the ending to attach
+    ending_to_attach = ""
+    if original_form_val:
+        ending_to_attach = get_tense_ending(form_name, original_form_val, prediction)
+
+    if not ending_to_attach and endings:
+        # Fallback to the first ending in the list
+        # For present/present_1sg, default to "a"
+        if form_name in ("present", "present_1sg"):
+            ending_to_attach = "a"
+        else:
+            ending_to_attach = endings[0]
+
+    return form_val + ending_to_attach
