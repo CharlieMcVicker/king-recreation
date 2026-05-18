@@ -20,7 +20,6 @@ def test_reconstruct_spec():
             pron=PronominalConfig(
                 set_type=PronominalSet.SET_A, stem_type=StemType.CONSONANT
             ),
-            stative=False,
         ),
     )
 

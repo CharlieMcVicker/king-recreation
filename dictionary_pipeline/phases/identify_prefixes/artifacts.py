@@ -7,13 +7,18 @@ from dictionary_pipeline.paths import (
     CORPUS_NO_PRE_NO_ASP_PATH,
     PRE_PARSING_FAILURES_PATH,
 )
-from dictionary_pipeline.row_models import AspectInfo, RootInfo, RowModelBase, VerbMeta
+from dictionary_pipeline.row_models import (
+    AspectInfo,
+    PredictionMeta,
+    RootInfo,
+    RowModelBase,
+)
 from morphology.morphemes.prefixes import PrefixConfig
 
 
 @dataclass
 class StrippedRootRow(RowModelBase):
-    meta: VerbMeta
+    meta: PredictionMeta
     aspect: AspectInfo
     roots: RootInfo
     config: PrefixConfig

@@ -6,46 +6,34 @@ from morphology.morphemes.prefixes.prepronominals import (
     apply_prepronominal,
 )
 from morphology.morphemes.prefixes.pronominals import PronominalConfig
-from morphology.morphology_types import Aspect
+from morphology.word_spec import WordSpec
 
 
 @dataclass
 class PrefixConfig:
     pre: PrePronominalConfig
     pron: PronominalConfig
-    stative: bool
 
     @staticmethod
     def from_row(stem_row: dict[str, str]) -> "PrefixConfig":
         pre_config = PrePronominalConfig.from_row(stem_row)
         pron_config = PronominalConfig.from_row(stem_row)
 
-        return PrefixConfig(
-            pre=pre_config, pron=pron_config, stative=stem_row["stative"] == "True"
-        )
+        return PrefixConfig(pre=pre_config, pron=pron_config)
 
     def to_row(self) -> dict[str, str]:
-        return {"stative": str(self.stative), **self.pre.to_row(), **self.pron.to_row()}
+        return {**self.pre.to_row(), **self.pron.to_row()}
 
     @classmethod
     def get_row_keys(cls) -> list[str]:
-        return (
-            ["stative"]
-            + PrePronominalConfig.get_row_keys()
-            + PronominalConfig.get_row_keys()
-        )
+        return PrePronominalConfig.get_row_keys() + PronominalConfig.get_row_keys()
 
     @staticmethod
     def from_dict(data: dict[str, Any]) -> "PrefixConfig":
-        stative_val = data.get("stative")
-        stative = (
-            stative_val if isinstance(stative_val, bool) else (stative_val == "True")
-        )
         return PrefixConfig(
             pre=PrePronominalConfig.from_dict(data.get("pre", {})),
             pron=PronominalConfig.from_dict(data.get("pron", {})),
-            stative=stative,
         )
 
-    def apply_prepronominals(self, base: str, aspect: Aspect) -> list[str]:
-        return apply_prepronominal(base, self.pre, aspect, self.stative)
+    def apply_prepronominals(self, base: str, spec: WordSpec) -> list[str]:
+        return apply_prepronominal(base, self.pre, spec)

@@ -1,7 +1,11 @@
-import json
 from dataclasses import asdict, dataclass
 
-from dictionary_pipeline.dictionary_forms import FORM_NAME_TO_ASPECT, build_wordspec
+from dictionary_pipeline.dictionary_forms import (
+    FORM_NAMES_FOR_PREDICTION,
+    Prediction,
+    build_wordspec,
+    get_form_spec,
+)
 from dictionary_pipeline.phases.identify_aspect_classes.artifacts import (
     load_stripped_corpus,
 )
@@ -68,15 +72,16 @@ def is_strict_compatible(s1: str, s2: str) -> bool:
 
 
 def strip_prepronominals(
-    forms: dict[str, str], config: PrePronominalConfig, stative: bool
+    prediction: Prediction,
+    forms: dict[str, str],
+    config: PrePronominalConfig,
 ) -> dict[str, str] | None:
     stripped = {}
     for fn, word in forms.items():
         current = word
-        aspect = FORM_NAME_TO_ASPECT.get(fn)
-        if aspect is None:
-            stripped[fn] = current
-            continue
+        form_spec = get_form_spec(prediction, fn)
+        aspect = form_spec.aspect
+        stative = form_spec.stative
 
         if config.translocutive or (
             aspect == Aspect.IMPERATIVE and config.translocutiveImpOnly
@@ -112,8 +117,6 @@ def strip_prepronominals(
             ):
                 if current.startswith("ts"):
                     current = current[2:]
-                # fixed by tone... if ti21, we need to not strip
-                # only strip if ti2
                 elif current.startswith("ti"):
                     current = current[2:]
                 elif current.startswith("t"):
@@ -132,17 +135,17 @@ def strip_prepronominals(
 
 
 def derive_pronominals(
+    prediction: Prediction,
     intermediate_forms: dict[str, str],
     pron_config: PronominalConfig,
-    stative: bool,
     log: bool = False,
 ) -> PrefixDerivation | None:
     if log:
-        print("\n\nDerivation begins\n" + json.dumps(pron_config.to_row(), indent=2))
+        print("\n\nDerivation begins\n" + prediction)
     derived_stems = {}
     metathesis_used = False
     for fn, word in intermediate_forms.items():
-        spec = build_wordspec(fn, pron_config, stative)
+        spec = build_wordspec(prediction, pron_config, fn)
         key = (spec.person, spec.number, spec.pronominal_set)
         stem, fn_metathesis_used = detach_prefix(word, key, pron_config)
         metathesis_used = metathesis_used or fn_metathesis_used
@@ -152,7 +155,8 @@ def derive_pronominals(
             return None
 
         derived_stems[fn] = stem
-    res = stems_are_consistent(derived_stems, pron_config, stative, log=log)
+
+    res = stems_are_consistent(prediction, derived_stems, pron_config, log=log)
     if res is not None:
         h_grade, g_grade = res
         # Metathesis must be used if it is allowed
@@ -160,9 +164,7 @@ def derive_pronominals(
             metathesis_used == pron_config.allow_h_metathesis
         ):
             return PrefixDerivation(
-                config=PrefixConfig(
-                    pre=PrePronominalConfig(), pron=pron_config, stative=stative
-                ),
+                config=PrefixConfig(pre=PrePronominalConfig(), pron=pron_config),
                 h_grade=h_grade,
                 g_grade=g_grade,
                 stems=derived_stems,
@@ -201,7 +203,6 @@ def derive_middle(der: PrefixDerivation) -> list[PrefixDerivation]:
         der_dict["config"] = PrefixConfig(
             pre=der.config.pre,
             pron=PronominalConfig(**pron_dict),
-            stative=der.config.stative,
         )
 
         options.append(
@@ -213,9 +214,9 @@ def derive_middle(der: PrefixDerivation) -> list[PrefixDerivation]:
 
 
 def stems_are_consistent(
+    prediction: Prediction,
     derived_stems: dict[str, str],
     pron_config: PronominalConfig,
-    stative: bool,
     log: bool = False,
 ) -> tuple[str, str | None] | None:
     """
@@ -231,7 +232,7 @@ def stems_are_consistent(
         print("")
     h_candidate = derived_stems.get("present")
 
-    spec_1sg = build_wordspec("present_1sg", pron_config, stative)
+    spec_1sg = build_wordspec(prediction, pron_config, "present_1sg")
     g_candidate = (
         derived_stems.get("present_1sg")
         if use_glottal_grade(spec_1sg.person, spec_1sg.number, spec_1sg.pronominal_set)
@@ -245,7 +246,7 @@ def stems_are_consistent(
     # check that h and g grades are consistent within grades
     passing = True
     for fn, s in derived_stems.items():
-        spec = build_wordspec(fn, pron_config, stative)
+        spec = build_wordspec(prediction, pron_config, fn)
         if (
             use_glottal_grade(spec.person, spec.number, spec.pronominal_set)
             and g_candidate is not None
@@ -281,7 +282,7 @@ def stems_are_consistent(
     return h_candidate, g_candidate
 
 
-def iter_pre_configs(forms, stative_hint: bool = False):
+def iter_pre_configs(prediction: Prediction, forms: dict[str, str]):
     """
     Iterate over valid pre-configs
     """
@@ -290,32 +291,23 @@ def iter_pre_configs(forms, stative_hint: bool = False):
         for t2 in t2_opts:
             for p in [False, True]:
                 for d in [False, True]:
-                    # Use the hint if provided, otherwise fallback to distributive-based logic
-                    stative_opts = [stative_hint]
-                    for stative in stative_opts:
-                        pre_config = PrePronominalConfig(t, t2, p, d)
-                        intermediate = strip_prepronominals(forms, pre_config, stative)
-                        if intermediate is None:
-                            continue
-                        else:
-                            yield pre_config, stative, intermediate
+                    pre_config = PrePronominalConfig(t, t2, p, d)
+                    intermediate = strip_prepronominals(prediction, forms, pre_config)
+                    if intermediate is None:
+                        continue
+                    else:
+                        yield pre_config, intermediate
 
 
 class PrefixDeriver:
     def derive_row(
         self,
+        prediction: Prediction,
         row: dict[str, str],
         ref: dict[str, str] | None = None,
         log: bool = False,
     ) -> list[PrefixDerivation]:
-        form_names = [
-            "present",
-            "present_1sg",
-            "imperfective",
-            "perfective",
-            "imperative",
-            "infinitive",
-        ]
+        form_names = FORM_NAMES_FOR_PREDICTION[prediction]
         if ref:
             forms = {fn: row[fn] for fn in form_names if ref.get(fn)}
         else:
@@ -324,11 +316,8 @@ class PrefixDeriver:
             return []
 
         valid_derivations: list[PrefixDerivation] = []
-        stative_hint = row.get("stative") == "True"
 
-        for pre_config, stative, intermediate in iter_pre_configs(
-            forms, stative_hint=stative_hint
-        ):
+        for pre_config, intermediate in iter_pre_configs(prediction, forms):
             present_form = intermediate.get("present", "")
             set_type = (
                 PronominalSet.SET_B
@@ -370,9 +359,9 @@ class PrefixDeriver:
                                     use_3rd_person_object=use_3rd,
                                 )
                                 res = derive_pronominals(
+                                    prediction,
                                     intermediate,
                                     pron_config,
-                                    stative,
                                     log=log,
                                     # log="calling" in row["definition"],
                                 )
@@ -422,12 +411,11 @@ def identify_prefixes() -> None:
     for row in rows:
         ref = full_corpus.get(row["corpus_id"])
         if ref:
-            # ref is ProcessedRow, we need dict for derive_row which expects a dict or ProcessedRow.
-            # wait, derive_row expects a dict.
             ref_dict = ref.to_dict()
         else:
             ref_dict = None
-        derivations = deriver.derive_row(row, ref_dict)
+        prediction = Prediction(row.get("prediction", "FullEventful"))
+        derivations = deriver.derive_row(prediction, row, ref_dict)
         if not derivations:
             failures.append(row)
         else:

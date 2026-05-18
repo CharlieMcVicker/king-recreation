@@ -2,8 +2,9 @@ import json
 from typing import Any
 
 from dictionary_pipeline.dictionary_forms import (
-    ALL_FORM_NAMES,
+    FORM_NAMES_FOR_PREDICTION,
     DictionaryVerb,
+    Prediction,
     build_wordspec,
 )
 from dictionary_pipeline.phases.identify_prefixes.artifacts import load_stripped_roots
@@ -61,8 +62,6 @@ def reconstruct_and_validate(
 
     dictionary_verbs: list[DictionaryVerb] = []
     consistency_analysis = []
-    forms = ALL_FORM_NAMES
-
     for stem_row in derived_roots:
         definition = stem_row["definition"]
         cls_name = stem_row["class"]
@@ -74,8 +73,9 @@ def reconstruct_and_validate(
 
         h_root = stem_row["h_grade"]
 
+        prediction = Prediction(stem_row.get("prediction", "FullEventful"))
         glottal_root = None
-        spec_1sg = build_wordspec("present_1sg", config.pron, config.stative)
+        spec_1sg = build_wordspec(prediction, config.pron, "present_1sg")
         if use_glottal_grade(spec_1sg.person, spec_1sg.number, spec_1sg.pronominal_set):
             glottal_root = stem_row["g_grade"]
 
@@ -111,11 +111,11 @@ def reconstruct_and_validate(
 
     for verb in dictionary_verbs:
         # Reconstruct all forms for this verb (dictionary-aware iteration)
+        prediction = Prediction(verb.original_data.get("prediction", "FullEventful"))
+        forms = FORM_NAMES_FOR_PREDICTION[prediction]
         form_options = {}
         for fn in forms:
-            spec = build_wordspec(
-                fn, verb.morphology.config.pron, verb.morphology.config.stative
-            )
+            spec = build_wordspec(prediction, verb.morphology.config.pron, fn)
             options = engine.reconstruct_spec(verb.morphology, spec)
             if options:
                 form_options[fn] = options

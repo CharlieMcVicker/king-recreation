@@ -35,7 +35,6 @@ def strip_verb_forms(cls: ExpandedClassPattern, verb: ProcessedRow) -> StrippedV
         ),
         aspect=AspectInfo(
             verb_class=cls.name,
-            stative=(cls.parent_name == "stative"),
         ),
         forms=CorpusForms(),
     )
@@ -45,7 +44,7 @@ def strip_verb_forms(cls: ExpandedClassPattern, verb: ProcessedRow) -> StrippedV
         if not form_val:
             continue
 
-        form_spec = get_form_spec(fn)
+        form_spec = get_form_spec(stripped_row.meta.prediction, fn)
         aspect = form_spec.aspect
 
         stripped_stem = cls.strip_form(aspect, form_val)
@@ -132,7 +131,7 @@ def get_matches_for_verb(
         if not surface_form:
             continue
 
-        form_spec = get_form_spec(fn)
+        form_spec = get_form_spec(verb.meta.prediction, fn)
 
         # "Cheese" the alternation logic: allow suffix alternation for present_1sg and imperative
         allow_alt = fn in ["present_1sg", "imperative"]

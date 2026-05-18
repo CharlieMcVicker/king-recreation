@@ -34,14 +34,17 @@ def apply_patches(
 
         if corpus_id in data_map:
             target_row = data_map[corpus_id]
-            for field_name in ["entry_no", "definition"]:
+            for field_name in ["entry_no", "definition", "prediction"]:
                 value = getattr(patch.meta, field_name)
                 if value == "NULL":
                     value = ""
-                elif not (value and value.strip()):
+                elif isinstance(value, str) and not (value and value.strip()):
                     continue
 
-                value = value.strip()
+                if field_name == "prediction":
+                    value = Prediction(value)
+                elif isinstance(value, str):
+                    value = value.strip()
                 setattr(target_row.meta, field_name, value)
 
             for field_name in [

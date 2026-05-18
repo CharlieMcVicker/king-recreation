@@ -17,6 +17,7 @@ __all__ = [
 
 @dataclass(frozen=True)
 class FormSpec:
+    name: str
     aspect: Aspect
     person: Person
     allow_set_a: bool

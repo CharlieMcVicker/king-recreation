@@ -1,3 +1,4 @@
+from dictionary_pipeline.dictionary_forms import Prediction
 from dictionary_pipeline.phases.identify_prefixes import (
     PrefixDeriver,
     derive_pronominals,
@@ -19,7 +20,7 @@ def test_angry_with_config():
         allow_h_metathesis=True,
         use_aki_for_1st_set_b=True,
     )
-    res = derive_pronominals(stems, pron_config, stative=True, log=True)
+    res = derive_pronominals(Prediction.FULL_STATIVE, stems, pron_config, log=True)
 
     assert res
 
@@ -32,6 +33,6 @@ def test_angry():
     }
 
     d = PrefixDeriver()
-    res = d.derive_row(stems, stems, log=True)
+    res = d.derive_row(Prediction.FULL_STATIVE, stems, stems, log=True)
     print(res)
     assert len(res)
