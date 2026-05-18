@@ -35,6 +35,7 @@ class Prediction(str, Enum):
     """
 
     FULL_EVENTFUL = "FullEventful"
+    """Attempts to predice all forms for a standard five-aspect verb"""
 
 
 @dataclass
