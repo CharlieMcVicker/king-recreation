@@ -58,6 +58,12 @@ def group_verbs_by_root(
             }
         root_groups[key]["corpus_ids"].append(str(verb.corpus_id))
         root_groups[key]["verbs"].append(verb)
+
+    for key in root_groups:
+        root_groups[key]["corpus_ids"] = sorted(
+            list(set(root_groups[key]["corpus_ids"])),
+            key=lambda x: int(x) if x.isdigit() else 0,
+        )
     return root_groups
 
 
@@ -111,9 +117,11 @@ def identify_derived_verbs(
         "from_root_id",
         "from_class",
         "from_stem_type",
+        "from_corpus_ids",
         "to_root_id",
         "to_class",
         "to_stem_type",
+        "to_corpus_ids",
         "to_form_type",
         "to_stem",
     ]
@@ -201,9 +209,11 @@ def identify_derived_verbs(
                         group["root_id"],
                         group["class"],
                         group["stem_type"],
+                        ";".join(group["corpus_ids"]),
                         m["root_id"],
                         m["class_name"],
                         m["stem_type"],
+                        m["corpus_ids"],
                         m["form_type"],
                         m["stem"],
                     )
@@ -264,7 +274,10 @@ def identify_derived_verbs(
                     "from_g_grade",
                     "from_class",
                     "from_stem_type",
-                    "user_approved",
+                    "to_form_type",
+                    "to_stem",
+                    "to_corpus_ids",
+                    "from_corpus_ids",
                 ]
             ),
         ),
