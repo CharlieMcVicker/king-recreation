@@ -230,7 +230,12 @@ def stems_are_consistent(
     """
     if log:
         print("")
-    h_candidate = derived_stems.get("present")
+
+    h_candidate = (
+        derived_stems.get("infinitive")
+        if prediction in [Prediction.INF_EVENTFUL]
+        else derived_stems.get("present")
+    )
 
     spec_1sg = build_wordspec(prediction, pron_config, "present_1sg")
     g_candidate = (
@@ -240,7 +245,7 @@ def stems_are_consistent(
     )
 
     if h_candidate is None:
-        print(derived_stems)
+        print("No h_candidate for stems: ", derived_stems)
         return None
 
     # check that h and g grades are consistent within grades
@@ -434,8 +439,8 @@ def identify_prefixes() -> None:
                     int(row["corpus_id"]),
                     row["class"],
                     row["h_grade"],
-                    row["g_grade"],
                     row["stem_type"],
+                    row["g_grade"],
                 ),
             )
         )

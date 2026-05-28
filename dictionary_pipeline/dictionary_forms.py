@@ -11,40 +11,21 @@ Morphological-core modules should import from word_spec directly.
 import logging
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Any
+from typing import Any, Callable
 
 from morphology.morphemes.prefixes.pronominals import PronominalConfig
 from morphology.reconstruction import MorphologicalVerb
-from morphology.word_spec import (
-    Aspect,
-    FormSpec,
-    Number,
-    Person,
-    PronominalSet,
-    WordSpec,
-    calculate_pronominal_key,
-)
-
-# ... (existing mappings)
+from morphology.word_spec import Aspect, Number, Person, PronominalSet, WordSpec
 
 
-class Prediction(str, Enum):
-    """
-    Enum saying which fields of a verb are being modeled in a given
-    derivation
-    """
-
-    FULL_EVENTFUL = "FullEventful"
-    """Attempts to predice all forms for a standard five-aspect verb"""
-
-    FULL_STATIVE = "FullStative"
-    """A true stative verb. Immediate is given as future progressive. Infinitive is blank."""
-
-
-PREDICTION_IS_STATIVE: dict[Prediction, bool] = {
-    Prediction.FULL_EVENTFUL: False,
-    Prediction.FULL_STATIVE: True,
-}
+@dataclass(frozen=True)
+class FormSpec:
+    name: str
+    aspect: Aspect
+    person: Person
+    allow_set_a: bool
+    stative: bool
+    tense_ending: str = ""
 
 
 @dataclass
@@ -68,7 +49,7 @@ class VerbMeta:
 
 @dataclass(kw_only=True)
 class PredictionMeta(VerbMeta):
-    prediction: Prediction
+    prediction: "Prediction"
 
     @classmethod
     def get_row_keys(cls) -> list[str]:
@@ -160,13 +141,70 @@ class DictionaryVerb:
         self.meta.definition = val
 
     @property
-    def prediction(self) -> Prediction:
+    def prediction(self) -> "Prediction":
         return self.meta.prediction
 
     @prediction.setter
-    def prediction(self, val: Prediction) -> None:
+    def prediction(self, val: "Prediction") -> None:
         self.meta.prediction = val
 
+
+class Prediction(str, Enum):
+    """
+    Enum saying which fields of a verb are being modeled in a given
+    derivation
+    """
+
+    FULL_EVENTFUL = "FullEventful"
+    """Attempts to predice all forms for a standard five-aspect verb"""
+
+    FULL_STATIVE = "FullStative"
+    """A true stative verb. Immediate is given as future progressive. Infinitive is blank."""
+
+    INF_EVENTFUL = "InfEventful"
+    """A prediction made for _only_ the infinitive form of a verb. Used together
+    with a FULL_STATIVE to predict all forms of a row"""
+
+
+@dataclass
+class RowPredictionsSpec:
+    """
+    Captures how a row is predicted by a span of Predictions
+    (eg. FullStative + InfEventful)
+    """
+
+    name: str
+    row_test: Callable[[dict[str, str]], bool]
+    predictions: list[tuple[Prediction, Callable[[dict[str, str]], bool]]]
+
+
+form_exists = lambda form: lambda forms: bool(forms[form])
+
+ROW_PREDICTION_SPECS = [
+    RowPredictionsSpec(
+        name="FullEventful",
+        row_test=lambda _: True,
+        predictions=[(Prediction.FULL_EVENTFUL, lambda _: True)],
+    ),
+    RowPredictionsSpec(
+        name="FullStative",
+        row_test=lambda forms: not forms["imperative"]
+        or forms["imperative"].endswith("ehsti"),
+        predictions=[
+            (
+                Prediction.FULL_STATIVE,
+                lambda _: True,
+            ),
+            (Prediction.INF_EVENTFUL, form_exists("infinitive")),
+        ],
+    ),
+]
+
+PREDICTION_IS_STATIVE: dict[Prediction, bool] = {
+    Prediction.FULL_EVENTFUL: False,
+    Prediction.FULL_STATIVE: True,
+    Prediction.INF_EVENTFUL: False,
+}
 
 # Dictionary column name -> morphological Aspect
 FORM_NAME_TO_ASPECT_FOR_PREDICTION: dict[Prediction, dict[str, Aspect]] = {
@@ -184,6 +222,9 @@ FORM_NAME_TO_ASPECT_FOR_PREDICTION: dict[Prediction, dict[str, Aspect]] = {
         "imperfective": Aspect.IMPERFECTIVE,
         "perfective": Aspect.IMPERFECTIVE,
         "imperative": Aspect.IMPERFECTIVE,
+    },
+    Prediction.INF_EVENTFUL: {
+        "infinitive": Aspect.INFINITIVE,
     },
 }
 
@@ -213,6 +254,9 @@ FORM_NAMES_FOR_PREDICTION = {
         "imperfective",
         "perfective",
         "imperative",
+    ],
+    Prediction.INF_EVENTFUL: [
+        "infinitive",
     ],
 }
 
@@ -276,6 +320,80 @@ def build_wordspec(
     return _build_wordspec(form_spec, config)
 
 
+def calculate_pronominal_key(
+    form_spec: FormSpec, config: PronominalConfig
+) -> tuple[Person, Number, PronominalSet] | None:
+    """
+    Determines the pronominal set components based on grammatical features.
+    """
+    set_type = (
+        config.set_type
+    )  # This is already a PronominalSet (will be after config update)
+    use_3rd_person_object = config.use_3rd_person_object
+    plural = config.plural_pronouns
+    number = Number.PLURAL if plural else Number.SINGULAR
+
+    # set_type might still be a string "a" or "b" if config hasn't been updated yet,
+    # but we will update PronominalConfig to use the Enum.
+    # For now, let's be robust.
+    is_set_a = set_type in [PronominalSet.SET_A, "Set A", "a"]
+
+    # Aspect/Stative Logic:
+    # Most aspects use the verb's base set (set_a).
+    # Perfective and Infinitive force Set B UNLESS the verb is Set A, stative, AND it's not the infinitive.
+    target_set_is_a = is_set_a and form_spec.allow_set_a
+
+    target_set = PronominalSet.SET_A if target_set_is_a else PronominalSet.SET_B
+
+    if form_spec.person == Person.FIRST:
+        if plural:
+            return (Person.FIRST, Number.PLURAL, target_set)
+        else:
+            if use_3rd_person_object:
+                return (
+                    Person.FIRST_TO_THIRD,
+                    Number.SINGULAR,
+                    PronominalSet.PERSON_TO_PERSON,
+                )
+            else:
+                return (Person.FIRST, Number.SINGULAR, target_set)
+    elif form_spec.person == Person.SECOND:
+        if plural:
+            return (Person.SECOND, Number.PLURAL, target_set)
+        else:
+            if use_3rd_person_object:
+                return (
+                    Person.SECOND_TO_THIRD,
+                    Number.SINGULAR,
+                    PronominalSet.PERSON_TO_PERSON,
+                )
+            else:
+                return (Person.SECOND, Number.SINGULAR, target_set)
+
+    elif form_spec.person == Person.THIRD:
+        if plural:
+            return (Person.THIRD, Number.PLURAL, target_set)
+        else:
+            return (Person.THIRD, Number.SINGULAR, target_set)
+
+    # # Fallback for unexpected person (e.g. if person was empty but aspect was imperative)
+    # TODO: delete
+    # if aspect == Aspect.IMPERATIVE:
+    #     if plural:
+    #         return (Person.SECOND, Number.PLURAL, target_set)
+    #     else:
+    #         if use_3rd_person_object:
+    #             return (
+    #                 Person.SECOND_TO_THIRD,
+    #                 Number.SINGULAR,
+    #                 PronominalSet.PERSON_TO_PERSON,
+    #             )
+    #         else:
+    #             return (Person.SECOND, Number.SINGULAR, target_set)
+
+    return None
+
+
 def _build_wordspec(form_spec: FormSpec, config: PronominalConfig) -> WordSpec:
     """
     Bridge function: converts a dictionary form_name into a WordSpec.
@@ -289,9 +407,7 @@ def _build_wordspec(form_spec: FormSpec, config: PronominalConfig) -> WordSpec:
     #     stative=stative,
     # )
 
-    key = calculate_pronominal_key(
-        form_spec.aspect, form_spec.person, config, form_spec.stative
-    )
+    key = calculate_pronominal_key(form_spec, config)
 
     if not key:
         logging.getLogger(__name__).warning(

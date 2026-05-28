@@ -1,6 +1,7 @@
 import re
 from typing import Any
 
+from dictionary_pipeline.dictionary_forms import ROW_PREDICTION_SPECS
 from dictionary_pipeline.phases.preprocess_ced.artifacts import (
     load_manual_corrections,
     read_original_cnd,
@@ -164,148 +165,149 @@ def create_corpus_from_cn_dict() -> None:
     mapping_data = []
 
     for idx, (entry_no, rows) in enumerate(grouped_entries.items()):
-        for prediction in Prediction:
-            # Build a single verb dictionary from the rows
-            verb_data = {
-                "corpus_id": str(idx),
-                "entry_no": entry_no,
-                "definition": "",
-                "present": "",
-                "present_1sg": "",
-                "imperfective": "",
-                "perfective": "",
-                "imperative": "",
-                "infinitive": "",
-                "prediction": prediction.value,
-            }
+        # Build a single verb dictionary from the rows
+        verb_data = {
+            "corpus_id": str(idx),
+            "entry_no": entry_no,
+            "definition": "",
+            "present": "",
+            "present_1sg": "",
+            "imperfective": "",
+            "perfective": "",
+            "imperative": "",
+            "infinitive": "",
+        }
 
-            mapping_entry = {
-                "corpus_id": str(idx),
-                "present": "",
-                "present_1sg": "",
-                "imperfective": "",
-                "perfective": "",
-                "imperative": "",
-                "infinitive": "",
-            }
+        mapping_entry = {
+            "corpus_id": str(idx),
+            "present": "",
+            "present_1sg": "",
+            "imperfective": "",
+            "perfective": "",
+            "imperative": "",
+            "infinitive": "",
+        }
 
-            # Determine if this group is a verb.
-            is_verb = False
-            parts_of_speech = set()
+        # Determine if this group is a verb.
+        is_verb = False
+        parts_of_speech = set()
+        for row in rows:
+            pos = row.get("Part of speech", "").lower()
+            parts_of_speech.add(pos)
+            if pos.startswith("verb"):
+                is_verb = True
+
+        if not is_verb:
+            continue
+
+        # Get definition from the first row that has one
+        for row in rows:
+            gloss = row.get("Translation 1A", "").strip()
+            extra = row.get("Translation 1 sub entry")
+
+            if extra:
+                gloss = f"{gloss} ({extra})"
+
+            if gloss:
+                verb_data["definition"] = gloss
+                break
+
+        # Determine forms using best-match logic (matching frontend getCorpusForm)
+        def get_priority(sub):
+            if "animate" in sub and "inanimate" not in sub:
+                return 3
+            if "animate" in sub:
+                return 2
+            if "inanimate" in sub:
+                return 1
+            return 0
+
+        def select_form(predicate):
+            best_form = ""
+            best_entry_no = ""
+            best_priority = -1
             for row in rows:
-                pos = row.get("Part of speech", "").lower()
-                parts_of_speech.add(pos)
-                if pos.startswith("verb"):
-                    is_verb = True
+                sub = row.get("Grammar sub entry", "").strip().lower()
+                if predicate(sub):
+                    p = get_priority(sub)
+                    if p > best_priority:
+                        best_form = row.get("Practical", "").strip()
+                        best_entry_no = row.get("Entry No.", "").strip()
+                        best_priority = p
+            return clean_string(best_form), best_entry_no
 
-            if not is_verb:
-                continue
+        # Present
+        form, cnd_no = select_form(
+            lambda s: s.startswith("3rd person singular")
+            and not any(x in s for x in ["habitual", "past", "infinitive"])
+        )
+        verb_data["present"] = form
+        mapping_entry["present"] = cnd_no
 
-            # Get definition from the first row that has one
-            for row in rows:
-                gloss = row.get("Translation 1A", "").strip()
-                extra = row.get("Translation 1 sub entry")
+        # Present 1sg
+        form, cnd_no = select_form(lambda s: s.startswith("1st person singular"))
+        verb_data["present_1sg"] = form
+        mapping_entry["present_1sg"] = cnd_no
 
-                if extra:
-                    gloss = f"{gloss} ({extra})"
+        # Perfective
+        form, cnd_no = select_form(lambda s: "remote past" in s)
+        verb_data["perfective"] = form
+        mapping_entry["perfective"] = cnd_no
 
-                if gloss:
-                    verb_data["definition"] = gloss
-                    break
+        # Imperfective
+        form, cnd_no = select_form(lambda s: "habitual" in s)
+        verb_data["imperfective"] = form
+        mapping_entry["imperfective"] = cnd_no
 
-            # Determine forms using best-match logic (matching frontend getCorpusForm)
-            def get_priority(sub):
-                if "animate" in sub and "inanimate" not in sub:
-                    return 3
-                if "animate" in sub:
-                    return 2
-                if "inanimate" in sub:
-                    return 1
-                return 0
+        # Imperative
+        form, cnd_no = select_form(lambda s: "imperative" in s)
+        verb_data["imperative"] = form
+        mapping_entry["imperative"] = cnd_no
 
-            def select_form(predicate):
-                best_form = ""
-                best_entry_no = ""
-                best_priority = -1
-                for row in rows:
-                    sub = row.get("Grammar sub entry", "").strip().lower()
-                    if predicate(sub):
-                        p = get_priority(sub)
-                        if p > best_priority:
-                            best_form = row.get("Practical", "").strip()
-                            best_entry_no = row.get("Entry No.", "").strip()
-                            best_priority = p
-                return clean_string(best_form), best_entry_no
+        # Infinitive
+        form, cnd_no = select_form(lambda s: "infinitive" in s)
+        verb_data["infinitive"] = form
+        mapping_entry["infinitive"] = cnd_no
 
-            # Present
-            form, cnd_no = select_form(
-                lambda s: s.startswith("3rd person singular")
-                and not any(x in s for x in ["habitual", "past", "infinitive"])
+        if (
+            sum(
+                1
+                for form in [
+                    "present",
+                    "present_1sg",
+                    "imperfective",
+                    "perfective",
+                    "imperative",
+                    "infinitive",
+                ]
+                if verb_data.get(form)
             )
-            verb_data["present"] = form
-            mapping_entry["present"] = cnd_no
-
-            # Present 1sg
-            form, cnd_no = select_form(lambda s: s.startswith("1st person singular"))
-            verb_data["present_1sg"] = form
-            mapping_entry["present_1sg"] = cnd_no
-
-            # Perfective
-            form, cnd_no = select_form(lambda s: "remote past" in s)
-            verb_data["perfective"] = form
-            mapping_entry["perfective"] = cnd_no
-
-            # Imperfective
-            form, cnd_no = select_form(lambda s: "habitual" in s)
-            verb_data["imperfective"] = form
-            mapping_entry["imperfective"] = cnd_no
-
-            # Imperative
-            form, cnd_no = select_form(lambda s: "imperative" in s)
-            if prediction == Prediction.FULL_STATIVE:
-                if not form.endswith("ehsti"):
+            > 1
+        ):
+            for spec in ROW_PREDICTION_SPECS:
+                if not spec.row_test(verb_data):
                     continue
-            verb_data["imperative"] = form
-            mapping_entry["imperative"] = cnd_no
-
-            # Infinitive
-            form, cnd_no = select_form(lambda s: "infinitive" in s)
-            verb_data["infinitive"] = form
-            mapping_entry["infinitive"] = cnd_no
-
-            if (
-                sum(
-                    1
-                    for form in [
-                        "present",
-                        "present_1sg",
-                        "imperfective",
-                        "perfective",
-                        "imperative",
-                        "infinitive",
-                    ]
-                    if verb_data.get(form)
-                )
-                > 1
-            ):
-                row = ProcessedRow(
-                    meta=PredictionMeta(
-                        corpus_id=str(verb_data["corpus_id"]),
-                        definition=verb_data["definition"],
-                        entry_no=verb_data["entry_no"],
-                        prediction=Prediction(verb_data["prediction"]),
-                    ),
-                    forms=CorpusForms(
-                        present=verb_data.get("present", ""),
-                        present_1sg=verb_data.get("present_1sg", ""),
-                        imperfective=verb_data.get("imperfective", ""),
-                        perfective=verb_data.get("perfective", ""),
-                        imperative=verb_data.get("imperative", ""),
-                        infinitive=verb_data.get("infinitive", ""),
-                    ),
-                )
-                processed_data.append(row)
-                mapping_data.append(mapping_entry)
+                for prediction, test in spec.predictions:
+                    if not test(verb_data):
+                        continue
+                    row = ProcessedRow(
+                        meta=PredictionMeta(
+                            corpus_id=str(verb_data["corpus_id"]),
+                            definition=verb_data["definition"],
+                            entry_no=verb_data["entry_no"],
+                            prediction=Prediction(prediction),
+                        ),
+                        forms=CorpusForms(
+                            present=verb_data.get("present", ""),
+                            present_1sg=verb_data.get("present_1sg", ""),
+                            imperfective=verb_data.get("imperfective", ""),
+                            perfective=verb_data.get("perfective", ""),
+                            imperative=verb_data.get("imperative", ""),
+                            infinitive=verb_data.get("infinitive", ""),
+                        ),
+                    )
+                    processed_data.append(row)
+                    mapping_data.append(mapping_entry)
 
     save_raw_corpus(processed_data)
 

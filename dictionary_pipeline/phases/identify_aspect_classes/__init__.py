@@ -2,6 +2,7 @@ from collections import defaultdict
 
 from dictionary_pipeline.dictionary_forms import (
     FORM_NAMES_FOR_PREDICTION,
+    PREDICTION_IS_STATIVE,
     get_form_spec,
     strip_tense_ending,
 )
@@ -189,9 +190,16 @@ def identify_aspect_classes(classes_path: str | None = None) -> None:
     stripped_corpus_data: list[StrippedVerbRow] = []
 
     for verb in corpus_rows:
-        matches = get_matches_for_verb(verb, registry)
+        matches_raw = get_matches_for_verb(verb, registry)
+        matches = [
+            m
+            for m in matches_raw
+            if PREDICTION_IS_STATIVE[verb.meta.prediction]
+            == m["class"].startswith("stative")
+        ]
         for m in matches:
             m["corpus_id"] = verb.meta.corpus_id
+
         matches_data.extend(matches)
 
         # Identify candidates for stripping

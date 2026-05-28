@@ -81,8 +81,18 @@ def dedupe_roots(
             )
         )
 
-        pipeline_choice = candidates[0]
-        pipeline_choice.original_data["pipeline_selected"] = "x"
+        # only accept full predictions for pipeline selected
+        pipeline_choice = next(
+            (
+                c
+                for c in candidates
+                if c.meta.prediction
+                in [Prediction.FULL_EVENTFUL, Prediction.FULL_STATIVE]
+            ),
+            None,
+        )
+        if pipeline_choice:
+            pipeline_choice.original_data["pipeline_selected"] = "x"
 
         # Create snapshot entry for this corpus_id
         options_snapshot = []
@@ -128,7 +138,8 @@ def dedupe_roots(
             continue
 
         # Default logic: use pipeline choice
-        deduped_roots.append(pipeline_choice)
+        if pipeline_choice:
+            deduped_roots.append(pipeline_choice)
 
     return deduped_roots, dropped, snapshot_data
 
@@ -200,11 +211,6 @@ def select_canonical_derivations() -> None:
             glottal_root = row["g_grade"]
             if glottal_root == "" and not h_root == "":
                 glottal_root = None
-
-        corpus_id = int(row["corpus_id"]) if "corpus_id" in row else None
-        entry_no = (
-            int(row["entry_no"]) if "entry_no" in row and row["entry_no"] else None
-        )
 
         morphology = MorphologicalVerb(
             h_grade_root=h_root,
