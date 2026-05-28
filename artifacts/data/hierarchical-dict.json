@@ -398,6 +398,60 @@
     ]
   },
   {
+    "h_grade_root": "''n",
+    "glottal_grade_root": "",
+    "slug": "JydufA",
+    "classes": [
+      {
+        "class_name": "stative",
+        "verbs": [
+          {
+            "meta": {
+              "corpus_id": "367",
+              "definition": "they are sitting (refers to a congregation)",
+              "entry_no": "374",
+              "prediction": "FullStative"
+            },
+            "morphology": {
+              "h_grade_root": "''n",
+              "glottal_grade_root": null,
+              "post_root_morpheme": null,
+              "class_name": "stative",
+              "config": {
+                "pre": {
+                  "translocutive": false,
+                  "translocutiveImpOnly": false,
+                  "partitive": false,
+                  "distributive": false
+                },
+                "pron": {
+                  "set_type": "a",
+                  "stem_type": "glottal",
+                  "allow_h_metathesis": false,
+                  "middle_voice": "none",
+                  "middle_voice_h_metathesis": false,
+                  "plural_pronouns": true,
+                  "use_ka_variant": false,
+                  "use_aki_for_1st_set_b": false,
+                  "uwa_replaces_v": false,
+                  "use_3rd_person_object": false
+                }
+              }
+            },
+            "derivations": [],
+            "original_data": {},
+            "segmented_forms": {
+              "present": "ani->''n-a",
+              "present_1sg": "otsi->''n-a",
+              "imperfective": "ani->''n-o'i",
+              "perfective": "ani->''n-v'i"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
     "h_grade_root": "'hil",
     "glottal_grade_root": "",
     "slug": "J2hpbHw",
@@ -2124,20 +2178,20 @@
     "slug": "OnRvbGloc3R8OnRvbGloc3Q",
     "classes": [
       {
-        "class_name": "stative[inf2]",
+        "class_name": "stative",
         "verbs": [
           {
             "meta": {
               "corpus_id": "1450",
               "definition": "he/she is in prayer",
               "entry_no": "1516",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": ":tolihst",
               "glottal_grade_root": ":tolihst",
               "post_root_morpheme": null,
-              "class_name": "stative[inf2]",
+              "class_name": "stative",
               "config": {
                 "pre": {
                   "translocutive": false,
@@ -2166,8 +2220,7 @@
               "present_1sg": "akw-ata->:tolihst-i",
               "imperfective": "u->ata->:tolihst-o'i",
               "perfective": "u->ata->:tolihst-v'i",
-              "imperative": "ts-ata->:tolihst-ehsti",
-              "infinitive": "u->ata->:tolihst-oht-i"
+              "imperative": "ts-ata->:tolihst-ehsti"
             }
           }
         ]
@@ -3804,7 +3857,7 @@
               "corpus_id": "1677",
               "definition": "he/she is wearing pants",
               "entry_no": "1743",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "ahsul",
@@ -4323,20 +4376,20 @@
     "slug": "YWtoc2Voc3R8YWthaHNlaHN0",
     "classes": [
       {
-        "class_name": "stative[inf2]",
+        "class_name": "stative",
         "verbs": [
           {
             "meta": {
               "corpus_id": "1593",
               "definition": "he/she is watching him/her",
               "entry_no": "1659",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "akhsehst",
               "glottal_grade_root": "akahsehst",
               "post_root_morpheme": null,
-              "class_name": "stative[inf2]",
+              "class_name": "stative",
               "config": {
                 "pre": {
                   "translocutive": false,
@@ -4365,8 +4418,7 @@
               "present_1sg": "tsiy-akahsehst-i",
               "imperfective": "u->akhsehst-o'i",
               "perfective": "u->akhsehst-v'i",
-              "imperative": "hiy-akahsehst-ehsti",
-              "infinitive": "u->akhsehst-oht-i"
+              "imperative": "hiy-akahsehst-ehsti"
             }
           }
         ]
@@ -8026,7 +8078,7 @@
               "corpus_id": "1557",
               "definition": "he/she is wearing a shirt",
               "entry_no": "1623",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "anhuw",
@@ -9936,20 +9988,20 @@
         ]
       },
       {
-        "class_name": "stative[inf2]",
+        "class_name": "stative",
         "verbs": [
           {
             "meta": {
               "corpus_id": "1693",
               "definition": "he/she is listening to him/her",
               "entry_no": "1759",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "athvtahst",
               "glottal_grade_root": "athvtahst",
               "post_root_morpheme": null,
-              "class_name": "stative[inf2]",
+              "class_name": "stative",
               "config": {
                 "pre": {
                   "translocutive": false,
@@ -9978,8 +10030,7 @@
               "present_1sg": "tsiy-athvtahst-i",
               "imperfective": "u->athvtahst-o'i",
               "perfective": "u->athvtahst-v'i",
-              "imperative": "hiy-athvtahst-ehsti",
-              "infinitive": "u->athvtahst-oht-i"
+              "imperative": "hiy-athvtahst-ehsti"
             }
           }
         ]
@@ -10555,7 +10606,7 @@
               "corpus_id": "1489",
               "definition": "he/she is wearing an earring",
               "entry_no": "1555",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "atli'at",
@@ -10983,7 +11034,7 @@
               "corpus_id": "1576",
               "definition": "he/she is inside it",
               "entry_no": "1642",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "atsa'",
@@ -11423,7 +11474,7 @@
               "corpus_id": "1508",
               "definition": "he/she is willing",
               "entry_no": "1574",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "atvnv'ihst",
@@ -12592,7 +12643,7 @@
               "corpus_id": "1537",
               "definition": "it’s lonesome",
               "entry_no": "1603",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "hihsoht",
@@ -13814,7 +13865,7 @@
               "corpus_id": "1621",
               "definition": "he/she is sticking his/her head out",
               "entry_no": "1687",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "hskwalut",
@@ -15257,7 +15308,7 @@
               "corpus_id": "1618",
               "definition": "he/she is wearing a cap",
               "entry_no": "1684",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "hstul",
@@ -17339,7 +17390,7 @@
               "corpus_id": "273",
               "definition": "he/she knows how",
               "entry_no": "280",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "khtha",
@@ -17672,7 +17723,7 @@
               "corpus_id": "1597",
               "definition": "it’s foggy",
               "entry_no": "1663",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "khvhat",
@@ -18864,7 +18915,7 @@
               "corpus_id": "1483",
               "definition": "there’s an opening",
               "entry_no": "1549",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "lanvt",
@@ -19287,7 +19338,7 @@
               "corpus_id": "366",
               "definition": "they are asleep (refers to more than two)",
               "entry_no": "373",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "lhin",
@@ -19865,7 +19916,7 @@
               "corpus_id": "1614",
               "definition": "it’s cloudy",
               "entry_no": "1680",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "lokil",
@@ -21439,7 +21490,7 @@
               "corpus_id": "1639",
               "definition": "he/she is being mean",
               "entry_no": "1705",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "nekuts",
@@ -21494,7 +21545,7 @@
               "corpus_id": "893",
               "definition": "he/she lives (in sense of resides now)",
               "entry_no": "923",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "nel",
@@ -22665,7 +22716,7 @@
               "corpus_id": "1235",
               "definition": "it’s contaminated (refers to contaminated by visible foreign matter)",
               "entry_no": "1286",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "nhehsal",
@@ -24749,6 +24800,61 @@
               "perfective": "u-nvts-it-ol-v'i",
               "imperative": "hi-nvts-it-a",
               "infinitive": "u-nvts-it-ahst-i"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "h_grade_root": "o'",
+    "glottal_grade_root": "",
+    "slug": "byd8",
+    "classes": [
+      {
+        "class_name": "stative",
+        "verbs": [
+          {
+            "meta": {
+              "corpus_id": "723",
+              "definition": "he/she is called",
+              "entry_no": "741",
+              "prediction": "FullStative"
+            },
+            "morphology": {
+              "h_grade_root": "o'",
+              "glottal_grade_root": null,
+              "post_root_morpheme": null,
+              "class_name": "stative",
+              "config": {
+                "pre": {
+                  "translocutive": false,
+                  "translocutiveImpOnly": false,
+                  "partitive": false,
+                  "distributive": true
+                },
+                "pron": {
+                  "set_type": "b",
+                  "stem_type": "vowel_a",
+                  "allow_h_metathesis": false,
+                  "middle_voice": "at",
+                  "middle_voice_h_metathesis": false,
+                  "plural_pronouns": false,
+                  "use_ka_variant": false,
+                  "use_aki_for_1st_set_b": false,
+                  "uwa_replaces_v": false,
+                  "use_3rd_person_object": false
+                }
+              }
+            },
+            "derivations": [],
+            "original_data": {},
+            "segmented_forms": {
+              "present": "t-u->at-o'-a",
+              "present_1sg": "t-akw-at-o'-a",
+              "imperfective": "t-u->at-o'-o'i",
+              "perfective": "t-u->at-o'-v'i",
+              "imperative": "te-ts-at-o'-ehsti"
             }
           }
         ]
@@ -28146,7 +28252,7 @@
               "corpus_id": "1323",
               "definition": "he/she has something on (refers to objects)",
               "entry_no": "1380",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "vnht",
@@ -28537,7 +28643,7 @@
               "corpus_id": "1709",
               "definition": "he/she has an object (refers to a long object)",
               "entry_no": "1775",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "vy",
@@ -29171,7 +29277,7 @@
               "corpus_id": "502",
               "definition": "he/she is inside",
               "entry_no": "509",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "y",
@@ -30627,7 +30733,7 @@
               "corpus_id": "1569",
               "definition": "it is cold (refers to weather)",
               "entry_no": "1635",
-              "prediction": "FullEventful"
+              "prediction": "FullStative"
             },
             "morphology": {
               "h_grade_root": "yhvtl",

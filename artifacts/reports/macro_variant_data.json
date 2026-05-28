@@ -1798,45 +1798,38 @@
         "available_options": {
             "imp": 1,
             "imperf": 1,
-            "inf": 2,
+            "inf": 1,
             "perf": 1,
             "pres": 1
         },
-        "can_have_variants": true,
+        "can_have_variants": false,
         "combinations": {
-            "stative": 17,
-            "stative[inf2]": 3
+            "stative": 22
         },
         "slots": {
             "imp": {
-                "1": 20
+                "1": 22
             },
             "imperf": {
-                "1": 20
+                "1": 22
             },
             "inf": {
-                "1": 17,
-                "2": 3
+                "1": 22
             },
             "perf": {
-                "1": 20
+                "1": 22
             },
             "pres": {
-                "1": 20
+                "1": 22
             }
         },
-        "total_matches": 20,
+        "total_matches": 22,
         "unused_options": [],
         "variant_stats": [
             {
-                "count": 17,
-                "percent": 85.0,
+                "count": 22,
+                "percent": 100.0,
                 "variant": "stative"
-            },
-            {
-                "count": 3,
-                "percent": 15.0,
-                "variant": "stative[inf2]"
             }
         ]
     },
