@@ -1,5 +1,6 @@
 import dataclasses
 import json
+import os
 from collections import defaultdict
 from typing import Any
 
@@ -32,6 +33,99 @@ EnhancedJSONEncoder = EnhancedJSONEncoderFactory(
 )
 
 
+def sort_candidates(vl: list[DictionaryVerb]) -> list[DictionaryVerb]:
+    """
+    Sorts a list of DictionaryVerb candidates using deterministic heuristics:
+    1. Filter to candidates matching the minimum h_grade_root length.
+    2. Sort tie-breaks by: stem_type priority, h_grade_root, class_name, and raw dict representation.
+    """
+    if not vl:
+        return []
+
+    # 1. Find min length
+    min_len = min(len(v.morphology.h_grade_root) for v in vl)
+
+    # 2. Filter to candidates with min length
+    candidates = [v for v in vl if len(v.morphology.h_grade_root) == min_len]
+
+    # 3. Sort candidates to pick one deterministically
+    # Priority: con > aspirated > s_stem > others
+    def get_stem_priority(v: DictionaryVerb) -> int:
+        st = v.original_data.get("stem_type", "")
+        if st == "con":
+            return 0
+        if st == "aspirated":
+            return 1
+        if st == "s_stem":
+            return 2
+        return 3
+
+    candidates.sort(
+        key=lambda v: (
+            get_stem_priority(v),
+            v.morphology.h_grade_root,
+            v.morphology.class_name,
+            json.dumps(v.original_data, sort_keys=True),
+        )
+    )
+    return candidates
+
+
+def load_stative_shims() -> dict[str, dict[str, Any]]:
+    import csv
+
+    from dictionary_pipeline.paths import STATIVE_SHIMS_PATH
+
+    if not os.path.exists(STATIVE_SHIMS_PATH):
+        return {}
+    shims = {}
+    with open(STATIVE_SHIMS_PATH, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            c_id = row.get("corpus_id")
+            if c_id:
+                shims[c_id.strip()] = {k: v for k, v in row.items() if k != "corpus_id"}
+    return shims
+
+
+def match_shim_config(verb: DictionaryVerb, config_row: dict[str, Any]) -> bool:
+    def normalize_bool(v: Any) -> str:
+        if v is None or v == "" or v is False or v == "False" or v == "None":
+            return "False"
+        if v is True or v == "True" or v == "x":
+            return "True"
+        return str(v)
+
+    def normalize_str(v: Any) -> str:
+        if v is None:
+            return ""
+        return str(v).strip()
+
+    # Compare each field in config_row
+    for k, expected in config_row.items():
+        actual = verb.original_data.get(k)
+        if k in (
+            "metathesis_involved",
+            "allow_h_metathesis",
+            "middle_voice_h_metathesis",
+            "plural",
+            "ka_variant",
+            "aki_1st",
+            "uwa_v",
+            "3rd_person_object",
+            "translocutive",
+            "translocutive_imp_only",
+            "partitive",
+            "distributive",
+        ):
+            if normalize_bool(actual) != normalize_bool(expected):
+                return False
+        else:
+            if normalize_str(actual) != normalize_str(expected):
+                return False
+    return True
+
+
 def dedupe_roots(
     validated_verbs: list[DictionaryVerb],
 ) -> tuple[list[DictionaryVerb], list[DictionaryVerb], list[dict[str, Any]]]:
@@ -53,33 +147,7 @@ def dedupe_roots(
     ):
         vl = roots_by_corpus_id[c_id]
         # Identify pipeline choice (shortest h_grade_root, tie-broken deterministically)
-
-        # 1. Find min length
-        min_len = min(len(v.morphology.h_grade_root) for v in vl)
-
-        # 2. Filter to candidates with min length
-        candidates = [v for v in vl if len(v.morphology.h_grade_root) == min_len]
-
-        # 3. Sort candidates to pick one deterministically
-        # Priority: con > aspirated > s_stem > others
-        def get_stem_priority(v: DictionaryVerb) -> int:
-            st = v.original_data.get("stem_type", "")
-            if st == "con":
-                return 0
-            if st == "aspirated":
-                return 1
-            if st == "s_stem":
-                return 2
-            return 3
-
-        candidates.sort(
-            key=lambda v: (
-                get_stem_priority(v),
-                v.morphology.h_grade_root,
-                v.morphology.class_name,
-                json.dumps(v.original_data, sort_keys=True),
-            )
-        )
+        candidates = sort_candidates(vl)
 
         # only accept full predictions for pipeline selected
         pipeline_choice = next(
@@ -101,6 +169,7 @@ def dedupe_roots(
             v_dict.pop("original_data", None)
             v_dict.pop("segmented_forms", None)
             v_dict.pop("derivations", None)
+            v_dict.pop("shim", None)
             # Ensure user_selected is captured accurately in the dict
             v_dict["user_selected"] = getattr(v, "user_selected", False)
             v_dict["pipeline_selected"] = (
@@ -255,6 +324,54 @@ def select_canonical_derivations() -> None:
     save_selection_snapshot(snapshot_data, EnhancedJSONEncoder)
 
     enrich_glottal_grades(deduped_roots)
+
+    # Resolve and attach stative shims
+    stative_shims_map = load_stative_shims()
+
+    # Group InfEventful shims by h_grade_root across all validated verbs
+    inf_eventful_by_h_grade = defaultdict(list)
+    for verb in validated_verbs:
+        if verb.meta.prediction == Prediction.INF_EVENTFUL:
+            inf_eventful_by_h_grade[verb.morphology.h_grade_root].append(verb)
+
+    for canonical_verb in deduped_roots:
+        if canonical_verb.meta.prediction == Prediction.FULL_STATIVE:
+            c_id = canonical_verb.meta.corpus_id
+            if not c_id:
+                continue
+
+            # Find candidate InfEventful shims matching this root
+            shim_candidates = inf_eventful_by_h_grade.get(
+                canonical_verb.morphology.h_grade_root, []
+            )
+
+            if not shim_candidates:
+                continue
+
+            # Clear user_selected/pipeline_selected for all InfEventful shims first
+            for candidate in shim_candidates:
+                candidate.original_data["user_selected"] = ""
+                candidate.original_data["pipeline_selected"] = ""
+
+            chosen_shim = None
+            # Check user selection override in curated/stative_shims.csv
+            user_override = stative_shims_map.get(str(c_id))
+            if user_override:
+                for candidate in shim_candidates:
+                    if match_shim_config(candidate, user_override):
+                        chosen_shim = candidate
+                        chosen_shim.original_data["user_selected"] = "x"
+                        break
+
+            if not chosen_shim:
+                # Fall back to pipeline choice using the shared sorting function
+                sorted_shims = sort_candidates(shim_candidates)
+                if sorted_shims:
+                    chosen_shim = sorted_shims[0]
+                    chosen_shim.original_data["pipeline_selected"] = "x"
+
+            if chosen_shim:
+                canonical_verb.shim = chosen_shim
 
     # Save updated rows with pipeline_selected marks back to CSV
     save_validated_roots(rows)

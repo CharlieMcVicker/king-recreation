@@ -1,10 +1,10 @@
 ---
 id: TASK-1.1
 title: Update Pipeline and Backend to Resolve and Embed Stative Shims
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-05-29 13:15'
-updated_date: '2026-05-29 13:23'
+updated_date: '2026-05-29 13:48'
 labels:
   - feature
 dependencies: []

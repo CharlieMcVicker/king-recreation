@@ -36,6 +36,7 @@ export interface ReconstructableVerb {
   meta: VerbMeta;
   morphology: MorphologicalVerb;
   derivations?: ReconstructableVerb[];
+  shim?: ReconstructableVerb;
   user_selected?: boolean;
   segmented_forms?: Record<string, string>;
 }
@@ -43,6 +44,7 @@ export interface ReconstructableVerb {
 export enum Prediction {
   FullEventful = "FullEventful",
   FullStative = "FullStative",
+  InfEventful = "InfEventful",
 }
 
 export interface VerbMeta {

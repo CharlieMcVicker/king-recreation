@@ -63,8 +63,9 @@ export default function CorpusTable({ verb, dictionary }: CorpusTableProps) {
   };
 
   const getVariantTag = (key: string) => {
-    // Parse variant from class_name like "go[perf2-inf2]"
-    const match = verb.morphology.class_name.match(/\[(.*)\]/);
+    // If key is infinitive and we have a shim, read from the shim
+    const targetVerb = key === "infinitive" && verb.shim ? verb.shim : verb;
+    const match = targetVerb.morphology.class_name.match(/\[(.*)\]/);
     if (!match) return null;
     const mods = match[1].split("-");
 
@@ -85,8 +86,8 @@ export default function CorpusTable({ verb, dictionary }: CorpusTableProps) {
             <th className="px-3 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border-r border-gray-200 dark:border-zinc-800">
               {forms[1].label}
             </th>
-            <th className={`px-3 py-2 text-left text-xs font-medium uppercase tracking-wider border-l border-gray-200 dark:border-zinc-800 ${isStative ? "text-gray-400/80 bg-gray-50/50 dark:bg-zinc-900/30" : "text-gray-500"}`}>
-              {forms[2].label} {isStative && "(N/A)"}
+            <th className={`px-3 py-2 text-left text-xs font-medium uppercase tracking-wider border-l border-gray-200 dark:border-zinc-800 ${isStative && !verb.shim ? "text-gray-400/80 bg-gray-50/50 dark:bg-zinc-900/30" : "text-gray-500"}`}>
+              {forms[2].label} {isStative && !verb.shim && "(N/A)"}
             </th>
           </tr>
         </thead>
@@ -124,23 +125,32 @@ export default function CorpusTable({ verb, dictionary }: CorpusTableProps) {
                 )}
               </div>
             </td>
-            <td className={`px-3 py-4 whitespace-nowrap ${isStative ? "bg-gray-50/30 dark:bg-zinc-950/20" : ""}`}>
+            <td className={`px-3 py-4 whitespace-nowrap ${isStative && !verb.shim ? "bg-gray-50/30 dark:bg-zinc-950/20" : ""}`}>
               <div className="flex flex-col">
-                <span
-                  className={
-                    isStative
-                      ? "text-zinc-400 dark:text-zinc-600 text-xs font-medium italic"
-                      : `text-sm font-medium ${getPronounColor(
-                          getPronominalSetName("infinitive", verb.morphology.config.pron),
-                        )}`
-                  }
-                >
-                  {isStative ? "∅ (Stative)" : (getCorpusLabel("infinitive") || "-")}
-                </span>
-                {!isStative && getVariantTag("infinitive") && (
-                  <span className="text-[10px] text-gray-400 uppercase">
-                    {getVariantTag("infinitive")}
+                {isStative && !verb.shim ? (
+                  <span className="text-zinc-400 dark:text-zinc-600 text-xs font-medium italic">
+                    ∅ (Stative)
                   </span>
+                ) : (
+                  <>
+                    <span
+                      className={`text-sm font-medium ${getPronounColor(
+                        getPronominalSetName(
+                          "infinitive",
+                          verb.shim
+                            ? verb.shim.morphology.config.pron
+                            : verb.morphology.config.pron,
+                        ),
+                      )}`}
+                    >
+                      {getCorpusLabel("infinitive") || "-"}
+                    </span>
+                    {getVariantTag("infinitive") && (
+                      <span className="text-[10px] text-gray-400 uppercase">
+                        {getVariantTag("infinitive")}
+                      </span>
+                    )}
+                  </>
                 )}
               </div>
             </td>
