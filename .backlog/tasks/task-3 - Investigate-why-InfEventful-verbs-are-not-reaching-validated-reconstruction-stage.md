@@ -3,13 +3,17 @@ id: TASK-3
 title: >-
   Investigate why InfEventful verbs are not reaching validated reconstruction
   stage
-status: To Do
-assignee: []
+status: In Progress
+assignee:
+  - Antigravity
 created_date: '2026-05-29 13:48'
+updated_date: '2026-05-29 13:54'
 labels: []
 dependencies: []
+modified_files:
+  - dictionary_pipeline/phases/analyze_pipeline_run/__init__.py
 priority: medium
-ordinal: 10000
+ordinal: 1000
 ---
 
 ## Description
@@ -17,3 +21,11 @@ ordinal: 10000
 <!-- SECTION:DESCRIPTION:BEGIN -->
 Explore the pipeline phases, specifically preprocess_ced and reconstruct_and_validate, to understand why InfEventful predictions/stems are missing or dropping out before the validated reconstruction stage.
 <!-- SECTION:DESCRIPTION:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Grouped furthest corpus status report by both corpus_id and prediction to allow tracking individual predictions (e.g. InfEventful) through validation.
+
+Ran full pipeline to regenerate report and verify the changes. The report successfully shows different results per prediction under the same corpus ID.
+<!-- SECTION:NOTES:END -->
