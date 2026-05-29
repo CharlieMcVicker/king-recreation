@@ -4,6 +4,7 @@ from dataclasses import dataclass, fields, is_dataclass
 from typing import Any
 
 from dictionary_pipeline.dictionary_forms import Prediction, PredictionMeta, VerbMeta
+from morphology.morphemes.prefixes import PrefixConfig
 
 __all__ = [
     "Prediction",
@@ -12,6 +13,7 @@ __all__ = [
     "ProcessedRow",
     "PatchRow",
     "CorpusForms",
+    "ValidatedRootRow",
 ]
 
 
@@ -222,3 +224,18 @@ class ProcessedRow(RowModelBase):
 @dataclass
 class PatchRow(ProcessedRow):
     notes: str = ""
+
+
+@dataclass
+class ValidatedRootRow(RowModelBase):
+    """A single candidate row in curated/validated_reconstructable_roots.csv or
+    curated/stative_shims.csv. Multiple rows can share the same corpus_id;
+    user_selected / pipeline_selected mark which candidate is chosen."""
+
+    meta: PredictionMeta
+    curation: UserCurationInfo
+    aspect: AspectInfo
+    roots: RootInfo
+    config: PrefixConfig
+    metathesis_involved: bool = False
+    segmented_forms: str = ""

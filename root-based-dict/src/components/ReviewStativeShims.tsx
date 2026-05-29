@@ -93,46 +93,37 @@ export default function ReviewStativeShims({
     setIsSaving(true);
     const corpusId = Number(current.canonical.meta.corpus_id);
 
-    // Build shimKey matching StativeShimRow fields
-    const shimKey = shimToSave
-      ? {
-          prediction: shimToSave.meta.prediction,
-          class: shimToSave.aspect.verb_class,
-          h_grade: shimToSave.roots.h_grade,
-          g_grade: shimToSave.roots.g_grade,
-          post_root_morpheme: shimToSave.aspect.post_root_morpheme,
-          set_a_b: shimToSave.config.pron.set_type,
-          stem_type: shimToSave.config.pron.stem_type,
-          allow_h_metathesis: shimToSave.config.pron.allow_h_metathesis,
-          middle_voice: shimToSave.config.pron.middle_voice,
-          middle_voice_h_metathesis: shimToSave.config.pron.middle_voice_h_metathesis,
-          plural: shimToSave.config.pron.plural_pronouns,
-          ka_variant: shimToSave.config.pron.use_ka_variant,
-          aki_1st: shimToSave.config.pron.use_aki_for_1st_set_b,
-          uwa_v: shimToSave.config.pron.uwa_replaces_v,
-          "3rd_person_object": shimToSave.config.pron.use_3rd_person_object,
-          translocutive: shimToSave.config.pre.translocutive,
-          translocutive_imp_only: shimToSave.config.pre.translocutiveImpOnly,
-          partitive: shimToSave.config.pre.partitive,
-          distributive: shimToSave.config.pre.distributive,
-        }
+    // Find the index of the selected shim within current.shims
+    const rowIndex = shimToSave !== null
+      ? current.shims.findIndex((s: any) => s === shimToSave)
       : null;
 
     try {
       const response = await fetch("/api/curated/stative-shims", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ corpusId, shimKey }),
+        body: JSON.stringify({ corpusId, rowIndex }),
       });
 
       if (!response.ok) throw new Error("Failed to save");
 
-      // Update local state
+      // Update local state: mark the selected shim
       const updated = verbs.map((v) => {
         if (Number(v.canonical.meta.corpus_id) === corpusId) {
           return {
             ...v,
-            currentShim: shimKey ? { ...shimKey, corpus_id: corpusId } : null,
+            currentShim: shimToSave
+              ? {
+                  prediction: shimToSave.meta.prediction,
+                  class: shimToSave.aspect.verb_class,
+                  h_grade: shimToSave.roots.h_grade,
+                  g_grade: shimToSave.roots.g_grade,
+                  post_root_morpheme: shimToSave.aspect.post_root_morpheme,
+                  set_a_b: shimToSave.config.pron.set_type,
+                  stem_type: shimToSave.config.pron.stem_type,
+                  corpus_id: corpusId,
+                }
+              : null,
           };
         }
         return v;
@@ -141,11 +132,11 @@ export default function ReviewStativeShims({
       setVerbs(updated);
 
       // Auto-advance if reviewing unreviewed
-      if (shimKey && !showAll) {
+      if (shimToSave && !showAll) {
         if (currentIndex >= filteredVerbs.length - 1) {
           setCurrentIndex(Math.max(0, filteredVerbs.length - 2));
         }
-      } else if (shimKey) {
+      } else if (shimToSave) {
         if (currentIndex < filteredVerbs.length - 1) {
           setCurrentIndex(currentIndex + 1);
         }
@@ -156,6 +147,7 @@ export default function ReviewStativeShims({
       setIsSaving(false);
     }
   };
+
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {

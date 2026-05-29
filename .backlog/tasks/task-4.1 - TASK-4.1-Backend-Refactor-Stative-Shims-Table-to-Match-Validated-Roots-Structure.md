@@ -3,10 +3,11 @@ id: TASK-4.1
 title: >-
   TASK-4.1 - Backend: Refactor Stative Shims Table to Match Validated Roots
   Structure
-status: To Do
-assignee: []
+status: Done
+assignee:
+  - antigravity
 created_date: '2026-05-29 14:07'
-updated_date: '2026-05-29 14:13'
+updated_date: '2026-05-29 15:04'
 labels: []
 dependencies: []
 documentation:
@@ -39,8 +40,10 @@ Align the structure of curated/stative_shims.csv with curated/validated_reconstr
 ## Implementation Plan
 
 <!-- SECTION:PLAN:BEGIN -->
-1. Refactor `stative_shims.csv` schema to match `validated_reconstructable_roots.csv`.
-2. Update `dictionary_pipeline/row_models.py` to use a row model representing candidates in `stative_shims.csv` (e.g. reusing `ValidatedRootRow` or using an equivalent dataclass).
-3. Update `load_stative_shims()` in `dictionary_pipeline/phases/select_canonical_derivations/__init__.py` to load all candidate rows from `curated/stative_shims.csv` into a structured list of candidates.
-4. Write a Python migration script (or temporary setup code) to convert the existing single-row chosen shims in `stative_shims.csv` into the new multi-row format. Match each existing chosen shim back to the candidates for the corresponding stative verb, marking it as `user_selected = "x"`.
+1. Move ValidatedRootRow from reconstruct_and_validate/artifacts.py to row_models.py.
+2. Update load_stative_shims() in select_canonical_derivations/__init__.py to read the multi-row candidate structure grouped by corpus_id.
+3. Implement save_stative_shims() or inline writing inside select_canonical_derivations() to write all shim candidates back to stative_shims.csv, retaining user curation.
+4. Write a Python migration script to migrate current curated/stative_shims.csv entries to the new structure matching validated_reconstructable_roots.csv.
+5. Update root-based-dict/src/lib/data.ts (StativeShimRow, getStativeShims, updateStativeShim) and page.tsx to support the new structure.
+6. Verify and run pytest to ensure tests pass.
 <!-- SECTION:PLAN:END -->

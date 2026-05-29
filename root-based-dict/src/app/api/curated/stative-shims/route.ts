@@ -4,7 +4,7 @@ import { updateStativeShim } from "@/lib/data";
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { corpusId, shimKey } = body;
+    const { corpusId, rowIndex } = body;
 
     if (typeof corpusId !== "number") {
       return NextResponse.json(
@@ -13,8 +13,14 @@ export async function POST(request: Request) {
       );
     }
 
-    // shimKey can be null (to unbind) or an object containing the config keys
-    await updateStativeShim(corpusId, shimKey);
+    if (typeof rowIndex !== "number") {
+      return NextResponse.json(
+        { error: "Invalid request body. rowIndex is required as a number." },
+        { status: 400 },
+      );
+    }
+
+    await updateStativeShim(corpusId, rowIndex);
 
     return NextResponse.json({ success: true });
   } catch (error) {
