@@ -50,6 +50,8 @@ def _prepare_filtered_matches(
 ) -> dict[tuple[Any, ...], dict[str, Any]]:
     filtered_matches = {}
     for row in matches:
+        if row.get("prediction") not in ["FullEventful", "FullStative"]:
+            continue
         verb = row["definition"]
         corpus_id = row.get("corpus_id", "")
         cls = row["class"]
@@ -64,6 +66,8 @@ def _prepare_filtered_matches(
 
     validated_matches = load_validated_matches()
     for row in validated_matches:
+        if row.get("prediction") not in ["FullEventful", "FullStative"]:
+            continue
         verb = row["definition"]
         corpus_id = row.get("corpus_id", "")
         cls = row["class"]
@@ -541,6 +545,7 @@ def analyze_pipeline_run(classes_path: str | None = None) -> None:
     all_verbs: set[str] = set(
         row.meta.corpus_id if row.meta.corpus_id else row.meta.definition
         for row in corpus
+        if row.meta.prediction.value in ["FullEventful", "FullStative"]
     )
     total_verb_count = len(all_verbs)
 

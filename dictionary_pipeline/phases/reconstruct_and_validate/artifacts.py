@@ -62,7 +62,7 @@ def load_consistency_analysis() -> list[dict[str, Any]]:
 def save_validated_matches(data: list[dict[str, Any]]) -> None:
     if not data:
         return
-    keys = ["corpus_id", "definition", "class", "scope"]
+    keys = ["corpus_id", "definition", "class", "scope", "prediction"]
     os.makedirs(os.path.dirname(VALIDATED_MATCHES_PATH), exist_ok=True)
     with open(VALIDATED_MATCHES_PATH, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=keys)
