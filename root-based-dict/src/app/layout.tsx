@@ -12,6 +12,7 @@ import {
   BarChart3,
   Layers,
   ListTodo,
+  Link2,
 } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -84,6 +85,13 @@ export default function RootLayout({
               >
                 <GitCompare className="w-4 h-4" />
                 Review Derivations
+              </Link>
+              <Link
+                href="/review-stative-shims"
+                className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-md text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-zinc-800 transition-colors"
+              >
+                <Link2 className="w-4 h-4" />
+                Review Stative Shims
               </Link>
             </nav>
             <div className="p-4 border-t border-gray-200 dark:border-zinc-800">

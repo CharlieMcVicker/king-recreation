@@ -52,6 +52,7 @@ DERIVATIONAL_CONNECTIONS_PATH = os.path.join(
     CURATED_DIR, "derivational_suffix_connections.csv"
 )
 ASPECT_CLASS_MASCOTS_PATH = os.path.join(CURATED_DIR, "aspect_class_mascots.csv")
+STATIVE_SHIMS_PATH = os.path.join(CURATED_DIR, "stative_shims.csv")
 
 
 # -----------------------------------------------------------------------------

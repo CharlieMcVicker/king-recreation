@@ -828,3 +828,118 @@ export async function updateDerivationalConnection(
 
   fs.writeFileSync(filePath, csv);
 }
+
+export interface StativeShimRow {
+  corpus_id: number;
+  prediction: string;
+  class: string;
+  h_grade: string;
+  g_grade: string | null;
+  post_root_morpheme: string | null;
+  set_a_b: string;
+  stem_type: string;
+  allow_h_metathesis: boolean;
+  middle_voice: string;
+  middle_voice_h_metathesis: boolean;
+  plural: boolean;
+  ka_variant: boolean;
+  aki_1st: boolean;
+  uwa_v: boolean;
+  "3rd_person_object": boolean;
+  translocutive: boolean;
+  translocutive_imp_only: boolean;
+  partitive: boolean;
+  distributive: boolean;
+}
+
+export async function getStativeShims(): Promise<StativeShimRow[]> {
+  const filePath = path.join(CONNECTIONS_DATA_DIR, "stative_shims.csv");
+  if (!fs.existsSync(filePath)) return [];
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const result = Papa.parse(fileContent, {
+    header: true,
+    skipEmptyLines: true,
+    dynamicTyping: true,
+  });
+  return result.data as StativeShimRow[];
+}
+
+export async function updateStativeShim(
+  corpusId: number,
+  shimKey: {
+    prediction: string;
+    class: string;
+    h_grade: string;
+    g_grade: string | null;
+    post_root_morpheme: string | null;
+    set_a_b: string;
+    stem_type: string;
+    allow_h_metathesis: boolean;
+    middle_voice: string;
+    middle_voice_h_metathesis: boolean;
+    plural: boolean;
+    ka_variant: boolean;
+    aki_1st: boolean;
+    uwa_v: boolean;
+    "3rd_person_object": boolean;
+    translocutive: boolean;
+    translocutive_imp_only: boolean;
+    partitive: boolean;
+    distributive: boolean;
+  } | null,
+): Promise<void> {
+  const filePath = path.join(CONNECTIONS_DATA_DIR, "stative_shims.csv");
+  let fileContent = "";
+  if (fs.existsSync(filePath)) {
+    fileContent = fs.readFileSync(filePath, "utf-8");
+  }
+  const parsed = Papa.parse(fileContent, {
+    header: true,
+    skipEmptyLines: true,
+    dynamicTyping: true,
+  });
+
+  let rows = parsed.data as any[];
+
+  // Filter out any existing rows for this corpusId
+  rows = rows.filter((row) => Number(row.corpus_id) !== corpusId);
+
+  // If a new shimKey is provided, append it
+  if (shimKey) {
+    rows.push({
+      corpus_id: corpusId,
+      prediction: shimKey.prediction,
+      class: shimKey.class,
+      h_grade: shimKey.h_grade,
+      g_grade: shimKey.g_grade ?? "",
+      post_root_morpheme: shimKey.post_root_morpheme ?? "",
+      set_a_b: shimKey.set_a_b,
+      stem_type: shimKey.stem_type,
+      allow_h_metathesis: shimKey.allow_h_metathesis,
+      middle_voice: shimKey.middle_voice ?? "",
+      middle_voice_h_metathesis: shimKey.middle_voice_h_metathesis,
+      plural: shimKey.plural,
+      ka_variant: shimKey.ka_variant,
+      aki_1st: shimKey.aki_1st,
+      uwa_v: shimKey.uwa_v,
+      "3rd_person_object": shimKey["3rd_person_object"],
+      translocutive: shimKey.translocutive,
+      translocutive_imp_only: shimKey.translocutive_imp_only,
+      partitive: shimKey.partitive,
+      distributive: shimKey.distributive,
+    });
+  }
+
+  // Write back
+  const csv = Papa.unparse(rows, {
+    quotes: false,
+    quoteChar: '"',
+    escapeChar: '"',
+    delimiter: ",",
+    header: true,
+    newline: "\n",
+    skipEmptyLines: false,
+  });
+
+  fs.writeFileSync(filePath, csv);
+}

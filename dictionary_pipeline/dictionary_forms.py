@@ -8,6 +8,8 @@ Dictionary-pipeline modules should import from here.
 Morphological-core modules should import from word_spec directly.
 """
 
+from __future__ import annotations
+
 import logging
 from dataclasses import dataclass, field
 from enum import Enum
@@ -70,6 +72,7 @@ class DictionaryVerb:
     meta: PredictionMeta
     morphology: MorphologicalVerb
     derivations: list["DictionaryVerb"] = field(default_factory=list)
+    shim: "DictionaryVerb | None" = None
     original_data: dict[str, Any] = field(
         default_factory=dict, repr=False, hash=False, compare=False
     )
@@ -108,6 +111,8 @@ class DictionaryVerb:
             clean_data["derivations"] = [
                 DictionaryVerb.from_dict(d) for d in clean_data["derivations"]
             ]
+        if "shim" in clean_data and clean_data["shim"]:
+            clean_data["shim"] = DictionaryVerb.from_dict(clean_data["shim"])
         return DictionaryVerb(**clean_data)
 
     @property
