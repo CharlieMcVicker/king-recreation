@@ -30,6 +30,7 @@ def save_matches(matches_data: list[dict[str, str]]) -> None:
         "corpus_id",
         "definition",
         "class",
+        "prediction",
     ]
     with open(MATCHES_PATH, mode="w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)

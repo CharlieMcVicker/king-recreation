@@ -5,7 +5,6 @@ corpus_id,prediction,definition,furthest_corpus
 106,FullEventful,he/she is doing it,0.corpus
 1067,FullEventful,he/she is alive,0.corpus
 119,FullEventful,it’s raining,0.corpus
-119,InfEventful,it’s raining,0.corpus
 1235,FullEventful,it’s contaminated (refers to contaminated by visible foreign matter),0.corpus
 1277,FullEventful,he/she is shaking it (refers to a flexible object),0.corpus
 1285,FullEventful,it is hanging (refers to a long object),0.corpus
@@ -14,26 +13,19 @@ corpus_id,prediction,definition,furthest_corpus
 1323,FullEventful,he/she has something on (refers to objects),0.corpus
 143,FullEventful,he/she sees him/her,0.corpus
 1450,FullEventful,he/she is in prayer,0.corpus
-1450,InfEventful,he/she is in prayer,0.corpus
 1451,FullEventful,he/she loves,0.corpus
-1451,InfEventful,he/she loves,0.corpus
 1459,FullEventful,it’s wrinkled,0.corpus
 1462,FullEventful,he/she feels,0.corpus
-1462,InfEventful,he/she feels,0.corpus
 1470,FullEventful,it’s in view,0.corpus
-1470,InfEventful,it’s in view,0.corpus
 1478,FullEventful,it’s hot,0.corpus
 1479,FullEventful,he/she has a fever,0.corpus
 1480,FullEventful,he/she is in hiding,0.corpus
-1480,InfEventful,he/she is in hiding,0.corpus
 1483,FullEventful,there’s an opening,0.corpus
 1489,FullEventful,he/she is wearing an earring,0.corpus
 1493,FullEventful,he/she is sick,0.corpus
 1505,FullEventful,he/she is standing in liquid,0.corpus
-1505,InfEventful,he/she is standing in liquid,0.corpus
 1508,FullEventful,he/she is willing,0.corpus
 1516,FullEventful,he/she is possessive of him/her,0.corpus
-1516,InfEventful,he/she is possessive of him/her,0.corpus
 1530,FullEventful,he/she has an object (refers to a solid object),0.corpus
 1535,FullEventful,there is dew,0.corpus
 1537,FullEventful,it’s lonesome,0.corpus
@@ -47,37 +39,30 @@ corpus_id,prediction,definition,furthest_corpus
 1580,FullEventful,he/she is grinning,0.corpus
 1585,FullEventful,it’s rattling,0.corpus
 1592,FullEventful,it’s sticking out,0.corpus
-1592,InfEventful,it’s sticking out,0.corpus
 1593,FullEventful,he/she is watching him/her,0.corpus
-1593,InfEventful,he/she is watching him/her,0.corpus
 1597,FullEventful,it’s foggy,0.corpus
 1613,FullEventful,he/she is wearing a ring,0.corpus
 1614,FullEventful,it’s cloudy,0.corpus
 1618,FullEventful,he/she is wearing a cap,0.corpus
 162,FullEventful,he/she has possession of a vehicle,0.corpus
-162,InfEventful,he/she has possession of a vehicle,0.corpus
 1621,FullEventful,he/she is sticking his/her head out,0.corpus
 1622,FullEventful,he/she is wearing a hat,0.corpus
 1623,FullEventful,it’s dark,0.corpus
 1627,FullEventful,he/she likes him/her,0.corpus
 1629,FullEventful,he/she has an object (refers to a flexible object),0.corpus
 163,FullEventful,he/she is driving it (refers to a vehicle in motion or animal),0.corpus
-163,InfEventful,he/she is driving it (refers to a vehicle in motion or animal),0.corpus
 1632,FullEventful,they are together,0.corpus
 1639,FullEventful,he/she is being mean,0.corpus
 1642,FullEventful,he/she has a liquid,0.corpus
-1642,InfEventful,he/she has a liquid,0.corpus
 1646,FullEventful,he/she knows it,0.corpus
 1649,FullEventful,it is making a sound,0.corpus
 1677,FullEventful,he/she is wearing pants,0.corpus
 1693,FullEventful,he/she is listening to him/her,0.corpus
-1693,InfEventful,he/she is listening to him/her,0.corpus
 1704,FullEventful,he/she is in a hurry,0.corpus
 1709,FullEventful,he/she has an object (refers to a long object),0.corpus
 1711,FullEventful,he/she is yelling,0.corpus
 1719,FullEventful,he/she has it,0.corpus
 1721,FullEventful,he/she is worried,0.corpus
-1721,InfEventful,he/she is worried,0.corpus
 1729,FullEventful,he/she is confident,0.corpus
 1730,FullEventful,he/she is sitting,0.corpus
 1739,FullEventful,he/she is laughing,0.corpus
@@ -109,7 +94,6 @@ corpus_id,prediction,definition,furthest_corpus
 624,FullEventful,he/she is enduring it (idiom),0.corpus
 69,FullEventful,he/she is diving,0.corpus
 723,FullEventful,he/she is called,0.corpus
-723,InfEventful,he/she is called,0.corpus
 726,FullEventful,he/she has horns,0.corpus
 729,FullEventful,he/she is wearing glasses,0.corpus
 730,FullEventful,he/she is wearing shoes,0.corpus
@@ -128,10 +112,8 @@ corpus_id,prediction,definition,furthest_corpus
 903,FullEventful,he/she is holding some liquid,0.corpus
 920,FullEventful,he/she is flying,0.corpus
 965,FullEventful,it’s dripping,0.corpus
-965,InfEventful,it’s dripping,0.corpus
 970,FullEventful,it’s hanging,0.corpus
 997,FullEventful,he/she is leading it by a leash,0.corpus
-997,InfEventful,he/she is leading it by a leash,0.corpus
 1061,FullStative,it’s snowing,1.asp_stripped
 1064,FullStative,it’s leaking,1.asp_stripped
 1119,FullEventful,he/she is returning,1.asp_stripped
@@ -285,6 +267,7 @@ corpus_id,prediction,definition,furthest_corpus
 117,FullEventful,he/she is warming it,3.validated
 118,FullEventful,it’s getting warm,3.validated
 118,InfEventful,it’s getting warm,3.validated
+119,InfEventful,it’s raining,3.validated
 1221,FullEventful,he/she is ascending an incline,3.validated
 1224,FullEventful,he/she is making him/her angry,3.validated
 1229,FullEventful,he/she is cold,3.validated
@@ -316,15 +299,20 @@ corpus_id,prediction,definition,furthest_corpus
 140,FullEventful,he/she is target practicing,3.validated
 145,FullEventful,he/she is showing it to him/her,3.validated
 1450,FullStative,he/she is in prayer,3.validated
+1450,InfEventful,he/she is in prayer,3.validated
 1451,FullStative,he/she loves,3.validated
+1451,InfEventful,he/she loves,3.validated
 1459,FullStative,it’s wrinkled,3.validated
 1462,FullStative,he/she feels,3.validated
+1462,InfEventful,he/she feels,3.validated
 1470,FullStative,it’s in view,3.validated
+1470,InfEventful,it’s in view,3.validated
 1471,FullEventful,he/she is throwing it,3.validated
 1476,FullEventful,he/she is having a birthday,3.validated
 1478,FullStative,it’s hot,3.validated
 148,FullEventful,he/she is cutting it,3.validated
 1480,FullStative,he/she is in hiding,3.validated
+1480,InfEventful,he/she is in hiding,3.validated
 1481,FullEventful,he/she is getting well,3.validated
 1483,FullStative,there’s an opening,3.validated
 1485,FullEventful,he/she is disbelieving,3.validated
@@ -332,10 +320,12 @@ corpus_id,prediction,definition,furthest_corpus
 1489,FullStative,he/she is wearing an earring,3.validated
 149,FullEventful,he/she is chopping it up,3.validated
 1505,FullStative,he/she is standing in liquid,3.validated
+1505,InfEventful,he/she is standing in liquid,3.validated
 1507,FullEventful,he/she wants it,3.validated
 1508,FullStative,he/she is willing,3.validated
 1514,FullEventful,he/she is becoming warm,3.validated
 1516,FullStative,he/she is possessive of him/her,3.validated
+1516,InfEventful,he/she is possessive of him/her,3.validated
 152,FullEventful,he/she is scolding him/her,3.validated
 1523,FullEventful,he/she is late,3.validated
 1524,FullEventful,it’s decaying,3.validated
@@ -360,7 +350,9 @@ corpus_id,prediction,definition,furthest_corpus
 1576,FullStative,he/she is inside it,3.validated
 158,FullEventful,he/she is smothering him/her,3.validated
 1592,FullStative,it’s sticking out,3.validated
+1592,InfEventful,it’s sticking out,3.validated
 1593,FullStative,he/she is watching him/her,3.validated
+1593,InfEventful,he/she is watching him/her,3.validated
 1597,FullStative,it’s foggy,3.validated
 1599,FullEventful,he/she is not having luck at hunting,3.validated
 16,FullEventful,he/she is fanning himself/herself,3.validated
@@ -372,12 +364,15 @@ corpus_id,prediction,definition,furthest_corpus
 1614,FullStative,it’s cloudy,3.validated
 1616,FullEventful,it’s happening to him,3.validated
 1618,FullStative,he/she is wearing a cap,3.validated
+162,InfEventful,he/she has possession of a vehicle,3.validated
 1621,FullStative,he/she is sticking his/her head out,3.validated
 1622,FullStative,he/she is wearing a hat,3.validated
 1623,FullStative,it’s dark,3.validated
 1629,FullStative,he/she has an object (refers to a flexible object),3.validated
+163,InfEventful,he/she is driving it (refers to a vehicle in motion or animal),3.validated
 1639,FullStative,he/she is being mean,3.validated
 1642,FullStative,he/she has a liquid,3.validated
+1642,InfEventful,he/she has a liquid,3.validated
 1646,FullStative,he/she knows it,3.validated
 165,FullEventful,he/she is leaving it behind,3.validated
 166,FullEventful,he/she is placing it on something,3.validated
@@ -387,6 +382,7 @@ corpus_id,prediction,definition,furthest_corpus
 1684,FullEventful,he/she is becoming enraged,3.validated
 169,FullEventful,he/she is making him/her fly,3.validated
 1693,FullStative,he/she is listening to him/her,3.validated
+1693,InfEventful,he/she is listening to him/her,3.validated
 1698,FullEventful,he/she is forgetting it,3.validated
 1699,FullEventful,he/she is belching,3.validated
 1700,FullEventful,he/she is shivering,3.validated
@@ -396,6 +392,7 @@ corpus_id,prediction,definition,furthest_corpus
 1710,FullEventful,he/she is aching,3.validated
 172,FullEventful,it’s taking time,3.validated
 172,InfEventful,it’s taking time,3.validated
+1721,InfEventful,he/she is worried,3.validated
 1729,FullStative,he/she is confident,3.validated
 173,FullEventful,he/she is measuring it,3.validated
 1730,FullStative,he/she is sitting,3.validated
@@ -699,6 +696,7 @@ corpus_id,prediction,definition,furthest_corpus
 72,FullEventful,he/she is laying it down (refers to a long object),3.validated
 722,FullEventful,he/she is confronted with it,3.validated
 723,FullStative,he/she is called,3.validated
+723,InfEventful,he/she is called,3.validated
 724,FullEventful,he/she is staggering,3.validated
 725,FullEventful,he/she is getting a rash,3.validated
 726,FullStative,he/she has horns,3.validated
@@ -834,6 +832,7 @@ corpus_id,prediction,definition,furthest_corpus
 956,FullEventful,he/she is rolling him/her,3.validated
 96,FullEventful,he/she is pouring a liquid into a container,3.validated
 960,FullEventful,he/she is attaching the object behind it (refers to a flexible object),3.validated
+965,InfEventful,it’s dripping,3.validated
 969,FullEventful,he/she is piling it up,3.validated
 970,FullStative,it’s hanging,3.validated
 973,FullEventful,he/she is stabbing him/her,3.validated
@@ -846,3 +845,4 @@ corpus_id,prediction,definition,furthest_corpus
 986,FullEventful,he/she is sewing it,3.validated
 993,FullEventful,he/she is howling,3.validated
 997,FullStative,he/she is leading it by a leash,3.validated
+997,InfEventful,he/she is leading it by a leash,3.validated

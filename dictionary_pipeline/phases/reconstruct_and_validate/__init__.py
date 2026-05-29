@@ -285,6 +285,7 @@ def reconstruct_and_validate(
                     "definition": d["definition"],
                     "class": d["class"],
                     "scope": "reconstructs",
+                    "prediction": verb.meta.prediction.value,
                 }
             )
 

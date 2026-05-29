@@ -64,7 +64,11 @@ def group_matches_by_macro(
     candidate_patterns: set[ExpandedClassPattern],
     verb: ProcessedRow,
 ) -> list[dict[str, str]]:
-    forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
+    forms = [
+        f
+        for f in ["present", "imperfective", "perfective", "imperative", "infinitive"]
+        if f in FORM_NAMES_FOR_PREDICTION[verb.meta.prediction]
+    ]
     present_verb_forms = [f for f in forms if getattr(verb.forms, f)]
 
     definition = verb.meta.definition or "unknown"
@@ -199,6 +203,7 @@ def identify_aspect_classes(classes_path: str | None = None) -> None:
         ]
         for m in matches:
             m["corpus_id"] = verb.meta.corpus_id
+            m["prediction"] = verb.meta.prediction.value
 
         matches_data.extend(matches)
 

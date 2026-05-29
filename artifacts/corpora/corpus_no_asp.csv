@@ -24,7 +24,12 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 27,31,he/she is looking at himself/herself in a mirror,FullEventful,apl-active-a,,atakh,katakh,atakh,utakh,hatakhvl,utakhe
 29,33,it’s beginning,FullEventful,ih-vh,,atalen,,atalen,utalen,,utalen
 29,33,it’s beginning,FullStative,stative,,atalenih,,atalenihsk,utalenvh,,
+29,33,it’s beginning,InfEventful,hvsk-han,,,,,,,utalen
+29,33,it’s beginning,InfEventful,hvsk-nh[inf2],,,,,,,utalen
+29,33,it’s beginning,InfEventful,episodic,,,,,,,utalen
+29,33,it’s beginning,InfEventful,apl-active-a,,,,,,,utalen
 29,33,it’s beginning,InfEventful,ih-vh,,,,,,,utalen
+29,33,it’s beginning,InfEventful,vnh-ih-a,,,,,,,utalen
 30,34,he/she is shopping,FullEventful,sk-h,,atananehsvhv,katananehsvhv,atananehsvhv,utananehsvn,hatananehsvhvk,utananehsvhv
 30,34,he/she is shopping,FullEventful,sk-h[imp2],,atananehsvhv,katananehsvhv,atananehsvhv,utananehsvn,hatananehsvhvka,utananehsvhv
 30,34,he/she is shopping,FullEventful,hvsk-nh[inf3],,atananehsv,katananehsv,atananehsv,utananehsv,hatananehsv,utananehsv
@@ -82,6 +87,10 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 75,79,it’s scattering,FullStative,stative,,atikaleyok,,atikaleyok,utikaleyots,,
 75,79,it’s scattering,InfEventful,become,,,,,,,utikaleyoy
 75,79,it’s scattering,InfEventful,become[inf3],,,,,,,utikaleyo
+75,79,it’s scattering,InfEventful,sk-s-a[inf2],,,,,,,utikaleyoy
+75,79,it’s scattering,InfEventful,sk-h,,,,,,,utikaleyoy
+75,79,it’s scattering,InfEventful,hih-hil,,,,,,,utikaleyoy
+75,79,it’s scattering,InfEventful,oh-al,,,,,,,utikaleyoy
 76,80,he/she is spinning,FullEventful,oh-ol[inf2],,atikwalvtey,katikwalvtey,atikwalvtey,utikwalvtey,hatikwalvtey,utikwalvtey
 77,81,he/she is saying it,FullEventful,vnh-ih-a,,at,kat,at,ut,hat,ut
 78,82,he/she is running over him/her,FullEventful,cause,,atinvt,tsiyatinvt,atinvt,utinvt,hiyatinvt,utinvt
@@ -104,6 +113,10 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 94,98,it’s pouring into a container (refers to liquid),FullStative,stative,,atlik,,atlik,utlits,,
 94,98,it’s pouring into a container (refers to liquid),InfEventful,become,,,,,,,utliy
 94,98,it’s pouring into a container (refers to liquid),InfEventful,become[inf3],,,,,,,utli
+94,98,it’s pouring into a container (refers to liquid),InfEventful,sk-s-a[inf2],,,,,,,utliy
+94,98,it’s pouring into a container (refers to liquid),InfEventful,sk-h,,,,,,,utliy
+94,98,it’s pouring into a container (refers to liquid),InfEventful,hih-hil,,,,,,,utliy
+94,98,it’s pouring into a container (refers to liquid),InfEventful,oh-al,,,,,,,utliy
 95,99,he/she is drawing a liquid out of a container,FullEventful,ih-vh,,atl,tsitl,atl,utl,hitl,utlv
 95,99,he/she is drawing a liquid out of a container,FullEventful,ih-vh[inf2],,atl,tsitl,atl,utl,hitl,utl
 96,100,he/she is pouring a liquid into a container,FullEventful,cause,,atlihst,tsitlihst,atlihst,utlihst,hitlihst,utlihst
@@ -122,7 +135,17 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 109,113,he/she is preparing it,FullEventful,cause[pres2-perf3],,atvnv'ihstih,katvnv'ihstih,atvnv'ihst,utvnv'ihsth,hatvnv'ihst,utvnv'ihst
 112,116,it is shining (refers to sun or moon),FullEventful,ih-ihi,,akal,,akal,ukal,,ukal
 112,116,it is shining (refers to sun or moon),FullStative,stative,,akalih,,akalihsk,ukalihs,,
+112,116,it is shining (refers to sun or moon),InfEventful,become,,,,,,,ukalihi
+112,116,it is shining (refers to sun or moon),InfEventful,become[inf4],,,,,,,ukalih
+112,116,it is shining (refers to sun or moon),InfEventful,sk-s-hi-hihst,,,,,,,ukali
+112,116,it is shining (refers to sun or moon),InfEventful,sk-s-hst,,,,,,,ukalihi
+112,116,it is shining (refers to sun or moon),InfEventful,sk-h,,,,,,,ukalihi
+112,116,it is shining (refers to sun or moon),InfEventful,ih-il,,,,,,,ukalih
+112,116,it is shining (refers to sun or moon),InfEventful,hih-lh,,,,,,,ukalihi
+112,116,it is shining (refers to sun or moon),InfEventful,i-a-i,,,,,,,ukalih
 112,116,it is shining (refers to sun or moon),InfEventful,ih-ihi,,,,,,,ukal
+112,116,it is shining (refers to sun or moon),InfEventful,oh-al,,,,,,,ukalihi
+112,116,it is shining (refers to sun or moon),InfEventful,rev-i,,,,,,,ukalih
 113,117,he/she is breaking it (refers to a flexible object),FullEventful,sk-s-a[inf2],,akal,tsikal,akal,ukal,hika'l,ukal
 115,119,he/she is licking it,FullEventful,i-a-i,,akanat,tsikanat,akanat,ukanat,hikanat,ukanat
 117,121,he/she is warming it,FullEventful,cause,,akanawht,tsikanawot,akanawht,ukanawht,hikanawht,ukanawht
@@ -132,9 +155,23 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 118,122,it’s getting warm,FullEventful,sk-s-hi-hihst,,akanawo,,akanawo,ukanawo,,ukanawo
 118,122,it’s getting warm,FullEventful,sk-s-hst,,akanawo,,akanawo,ukanawo,,ukanawohi
 118,122,it’s getting warm,FullStative,stative,,akanawohsk,,akanawohsk,ukanawohs,,
+118,122,it’s getting warm,InfEventful,become,,,,,,,ukanawohi
+118,122,it’s getting warm,InfEventful,become[inf4],,,,,,,ukanawoh
 118,122,it’s getting warm,InfEventful,sk-s-hi-hihst,,,,,,,ukanawo
 118,122,it’s getting warm,InfEventful,sk-s-hst,,,,,,,ukanawohi
+118,122,it’s getting warm,InfEventful,sk-h,,,,,,,ukanawohi
+118,122,it’s getting warm,InfEventful,ih-il,,,,,,,ukanawoh
+118,122,it’s getting warm,InfEventful,hih-lh,,,,,,,ukanawohi
+118,122,it’s getting warm,InfEventful,i-a-i,,,,,,,ukanawoh
+118,122,it’s getting warm,InfEventful,oh-al,,,,,,,ukanawohi
+118,122,it’s getting warm,InfEventful,rev-i,,,,,,,ukanawoh
 119,123,it’s raining,FullStative,stative,,akahsk,,akahsk,ukanhan,,
+119,123,it’s raining,InfEventful,hvsk-han,,,,,,,ukan
+119,123,it’s raining,InfEventful,hvsk-nh[inf2],,,,,,,ukan
+119,123,it’s raining,InfEventful,episodic,,,,,,,ukan
+119,123,it’s raining,InfEventful,apl-active-a,,,,,,,ukan
+119,123,it’s raining,InfEventful,ih-vh,,,,,,,ukan
+119,123,it’s raining,InfEventful,vnh-ih-a,,,,,,,ukan
 127,132,he/she is eating it (refers to a single solid food),FullEventful,i-a-i,,ak,tsik,ak,uk,hik,uk
 128,133,he/she is picking it up,FullEventful,rev-gi,,a,tsi,a,u,hi,u
 128,133,he/she is picking it up,FullEventful,rev-i,,ak,tsik,ak,uk,hik,uk
@@ -171,7 +208,23 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 162,168,he/she has possession of a vehicle,FullStative,stative-h,,ahi'le,tsi'ile,ahi'le,,,
 162,168,he/she has possession of a vehicle,FullStative,stative-eh,,ahi'l,tsi'il,ahi'l,,,
 162,168,he/she has possession of a vehicle,FullStative,stative,,ahi'leh,tsi'ileh,ahi'leh,,,
+162,168,he/she has possession of a vehicle,InfEventful,become,,,,,,,uhi'lv
+162,168,he/she has possession of a vehicle,InfEventful,sk-s-hst,,,,,,,uhi'lv
+162,168,he/she has possession of a vehicle,InfEventful,sk-h,,,,,,,uhi'lv
+162,168,he/she has possession of a vehicle,InfEventful,go,,,,,,,uhi'l
+162,168,he/she has possession of a vehicle,InfEventful,hih-lh,,,,,,,uhi'lv
+162,168,he/she has possession of a vehicle,InfEventful,vnh-vsk[inf4],,,,,,,uhi'l
+162,168,he/she has possession of a vehicle,InfEventful,oh-al,,,,,,,uhi'lv
+162,168,he/she has possession of a vehicle,InfEventful,v-vhs,,,,,,,uhi'l
 163,169,he/she is driving it (refers to a vehicle in motion or animal),FullStative,stative,,ahi'l,tsi'il,ahi'lihs,uhi'lvhs,,
+163,169,he/she is driving it (refers to a vehicle in motion or animal),InfEventful,become,,,,,,,uhi'lv
+163,169,he/she is driving it (refers to a vehicle in motion or animal),InfEventful,sk-s-hst,,,,,,,uhi'lv
+163,169,he/she is driving it (refers to a vehicle in motion or animal),InfEventful,sk-h,,,,,,,uhi'lv
+163,169,he/she is driving it (refers to a vehicle in motion or animal),InfEventful,go,,,,,,,uhi'l
+163,169,he/she is driving it (refers to a vehicle in motion or animal),InfEventful,hih-lh,,,,,,,uhi'lv
+163,169,he/she is driving it (refers to a vehicle in motion or animal),InfEventful,vnh-vsk[inf4],,,,,,,uhi'l
+163,169,he/she is driving it (refers to a vehicle in motion or animal),InfEventful,oh-al,,,,,,,uhi'lv
+163,169,he/she is driving it (refers to a vehicle in motion or animal),InfEventful,v-vhs,,,,,,,uhi'l
 165,171,he/she is leaving it behind,FullEventful,a,,ahiy,tsi'iy,ahiy,uhiy,hihiy,uhiy
 166,172,he/she is placing it on something,FullEventful,hvsk-nh,,alha,tsilha,alha,ulha,hilha,ulho
 166,172,he/she is placing it on something,FullEventful,hvsk-nh[inf2],,alha,tsilha,alha,ulha,hilha,ulho
@@ -185,13 +238,19 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 172,178,it’s taking time,FullEventful,oh-ol[inf2],,alhi'ilit,,alhi'ilit,ulhi'ilit,,ulhi'ilita
 172,178,it’s taking time,FullEventful,oh-ol[inf3],,alhi'ilit,,alhi'ilit,ulhi'ilit,,ulhi'ilit
 172,178,it’s taking time,FullStative,stative,,alhi'ilitoh,,alhi'ilitoh,ulhi'ilitol,,
+172,178,it’s taking time,InfEventful,a,,,,,,,ulhi'ilit
+172,178,it’s taking time,InfEventful,become,,,,,,,ulhi'ilita
+172,178,it’s taking time,InfEventful,sk-s-hst,,,,,,,ulhi'ilita
+172,178,it’s taking time,InfEventful,sk-h,,,,,,,ulhi'ilita
+172,178,it’s taking time,InfEventful,hih-lh,,,,,,,ulhi'ilita
 172,178,it’s taking time,InfEventful,be-at,,,,,,,ulhi'ilit
-172,178,it’s taking time,InfEventful,oh-ol[inf2],,,,,,,ulhi'ilita
+172,178,it’s taking time,InfEventful,oh-al,,,,,,,ulhi'ilita
 172,178,it’s taking time,InfEventful,oh-ol[inf3],,,,,,,ulhi'ilit
 173,179,he/she is measuring it,FullEventful,o,,alhil,katlil,alhil,ulhil,halhil,ulhil
 175,181,it’s bending,FullEventful,vsk,,alhiyvhkwit,,alhiyvhkwit,ulhiyvhkwit,,ulhiyvhkwit
 175,181,it’s bending,FullStative,stative,,alhiyvhkwitvhsk,,alhiyvhkwitvhsk,ulhiyvhkwitvn,,
 175,181,it’s bending,InfEventful,vsk,,,,,,,ulhiyvhkwit
+175,181,it’s bending,InfEventful,vsk-post-v,,,,,,,ulhiyvhkwitv
 176,182,he/she is snorting,FullEventful,cause,,alhiyvhsanawhst,kaliyvhsanawhst,alhiyvhsanawhst,ulhiyvhsanawhst,halhiyvhsanawhst,ulhiyvhsanawhst
 176,182,he/she is snorting,FullEventful,cause[perf3],,alhiyvhsanawhst,kaliyvhsanawhst,alhiyvhsanawhst,ulhiyvhsanawhsth,halhiyvhsanawhst,ulhiyvhsanawhst
 176,182,he/she is snorting,FullEventful,cause[pres2],,alhiyvhsanawhstih,kaliyvhsanawhstih,alhiyvhsanawhst,ulhiyvhsanawhst,halhiyvhsanawhst,ulhiyvhsanawhst
@@ -245,9 +304,12 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 214,220,it’s becoming frosty (refers to the ground),FullEventful,episodic,,ayhahth,,ayhahth,uyhahth,,uyhahthvt
 214,220,it’s becoming frosty (refers to the ground),FullEventful,vnh-vsk,,ayhahthvh,,ayhahthvh,uyhahth,,uyhahthvt
 214,220,it’s becoming frosty (refers to the ground),FullStative,stative,,ayhahthvhvhsk,,ayhahthvhvhsk,uyhahthvnh,,
+214,220,it’s becoming frosty (refers to the ground),InfEventful,hvsk-han,,,,,,,uyhahthvt
 214,220,it’s becoming frosty (refers to the ground),InfEventful,hvsk-nh[inf2],,,,,,,uyhahthvt
 214,220,it’s becoming frosty (refers to the ground),InfEventful,episodic,,,,,,,uyhahthvt
-214,220,it’s becoming frosty (refers to the ground),InfEventful,vnh-vsk,,,,,,,uyhahthvt
+214,220,it’s becoming frosty (refers to the ground),InfEventful,apl-active-a,,,,,,,uyhahthvt
+214,220,it’s becoming frosty (refers to the ground),InfEventful,ih-vh,,,,,,,uyhahthvt
+214,220,it’s becoming frosty (refers to the ground),InfEventful,vnh-ih-a,,,,,,,uyhahthvt
 215,221,he/she is calling him/her,FullEventful,ih-vh,,ayhan,tsiyan,ayhan,uyhan,hiyan,uyhan
 216,222,he/she is taking it somewhere by hand,FullEventful,go,,ayh,tsiy,ayh,uyh,hiyh,uyh
 216,222,he/she is taking it somewhere by hand,FullEventful,go[pres2],,ayhek,tsiyek,ayh,uyh,hiyh,uyh
@@ -264,7 +326,12 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 223,229,he/she is swimming (refers to propelling oneself through the water),FullEventful,go[pres2],,ayhu'inek,kayu'inek,ayhu'in,uyhu'in,hayhu'in,uyhu'in
 224,230,it’s thundering,FullEventful,o,,ayhvtakwal,,ayhvtakwal,uyhvtakwal,,uyhvtakwal
 224,230,it’s thundering,FullStative,stative,,ayhvtakwalo',,ayhvtakwalohsk,uyhvtakwalo',,
+224,230,it’s thundering,InfEventful,become,,,,,,,uyhvtakwalo
+224,230,it’s thundering,InfEventful,sk-s-hst,,,,,,,uyhvtakwalo
+224,230,it’s thundering,InfEventful,sk-h,,,,,,,uyhvtakwalo
+224,230,it’s thundering,InfEventful,hih-lh,,,,,,,uyhvtakwalo
 224,230,it’s thundering,InfEventful,o,,,,,,,uyhvtakwal
+224,230,it’s thundering,InfEventful,oh-al,,,,,,,uyhvtakwalo
 228,234,he/she is bending it,FullEventful,vsk,,ayhvhkwit,tsiyvhkwit,ayhvhkwit,uyhvhkwit,hiyhvhkwitv',uyhvhkwit
 228,234,he/she is bending it,FullEventful,vsk[imp2],,ayhvhkwit,tsiyvhkwit,ayhvhkwit,uyhvhkwit,hiyhvhkwit,uyhvhkwit
 230,236,he/she is kicking him/her,FullEventful,rev-e,,ayhvhth,tsiyayvhth,ayhvhth,uyhvhth,hiyayhth,uyhvhth
@@ -281,7 +348,12 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 242,248,he/she is acting like him/her,FullEventful,vnh-vsk,,atsel,katsel,atsel,utsel,hatsel,utsel
 250,256,it’s blooming,FullEventful,vnh-vsk,,atsil,,atsil,utsil,,utsil
 250,256,it’s blooming,FullStative,stative,,atsilvhsk,,atsilvhsk,utsilvnh,,
-250,256,it’s blooming,InfEventful,vnh-vsk,,,,,,,utsil
+250,256,it’s blooming,InfEventful,hvsk-han,,,,,,,utsil
+250,256,it’s blooming,InfEventful,hvsk-nh[inf2],,,,,,,utsil
+250,256,it’s blooming,InfEventful,episodic,,,,,,,utsil
+250,256,it’s blooming,InfEventful,apl-active-a,,,,,,,utsil
+250,256,it’s blooming,InfEventful,ih-vh,,,,,,,utsil
+250,256,it’s blooming,InfEventful,vnh-ih-a,,,,,,,utsil
 253,259,he/she is lighting a fire,FullEventful,hvsk-han[inf2],,atsihsl,tsitsihsl,atsihsl,utsihsl,hitsihsl,utsihsl
 254,260,he/she is blowing,FullEventful,sk-h,,atsotha,katsotha,atsotha,utsotha,hatsot,utsotha
 254,260,he/she is blowing,FullEventful,sk-h[imp2],,atsotha,katsotha,atsotha,utsotha,hatsotha,utsotha
@@ -348,7 +420,12 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 309,316,he/she is starting,FullEventful,ih-vh,,alen,kalen,alen,ulen,halen,ulen
 311,318,it’s boiling,FullEventful,ih-vh,,alitl,,alitl,ulitl,,ulil
 311,318,it’s boiling,FullStative,stative,,alitlih,,alitlihsk,ulitlvh,,
+311,318,it’s boiling,InfEventful,hvsk-han,,,,,,,ulil
+311,318,it’s boiling,InfEventful,hvsk-nh[inf2],,,,,,,ulil
+311,318,it’s boiling,InfEventful,episodic,,,,,,,ulil
+311,318,it’s boiling,InfEventful,apl-active-a,,,,,,,ulil
 311,318,it’s boiling,InfEventful,ih-vh,,,,,,,ulil
+311,318,it’s boiling,InfEventful,vnh-ih-a,,,,,,,ulil
 314,321,he/she is thanking him/her,FullEventful,apl,,alihelitsh,tsiyali'elitsh,alihelitsh,ulihelitsh,hiyali'elitshi,ulihelitsh
 314,321,he/she is thanking him/her,FullEventful,apl[imp2],,alihelitsh,tsiyali'elitsh,alihelitsh,ulihelitsh,hiyali'elitshi,ulihelitsh
 314,321,he/she is thanking him/her,FullEventful,apl[imp3],,alihelitsh,tsiyali'elitsh,alihelitsh,ulihelitsh,hiyali'elitsh,ulihelitsh
@@ -378,7 +455,15 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 338,345,he/she is nodding his/her head,FullEventful,sk-h[imp2],,alhsku,kalihsku,alhsku,ulhskuy,halhskuyha,ulhsku
 339,346,it’s ending,FullEventful,i-a-i,,alhskwat,,alhskwat,ulhskwat,,ulhskwat
 339,346,it’s ending,FullStative,stative,,alhskwati',,alhskwatihsk,ulhskwat,,
+339,346,it’s ending,InfEventful,become,,,,,,,ulhskwati
+339,346,it’s ending,InfEventful,become[inf4],,,,,,,ulhskwat
+339,346,it’s ending,InfEventful,sk-s-hst,,,,,,,ulhskwati
+339,346,it’s ending,InfEventful,sk-h,,,,,,,ulhskwati
+339,346,it’s ending,InfEventful,ih-il,,,,,,,ulhskwat
+339,346,it’s ending,InfEventful,hih-lh,,,,,,,ulhskwati
 339,346,it’s ending,InfEventful,i-a-i,,,,,,,ulhskwat
+339,346,it’s ending,InfEventful,oh-al,,,,,,,ulhskwati
+339,346,it’s ending,InfEventful,rev-i,,,,,,,ulhskwat
 340,347,he/she is sticking his/her head out,FullEventful,i-vka,,alhskwalut,kalihskwalut,alhskwalut,ulhskwalut,halhskwalut,ulhskwalut
 341,348,he/she is taking his/her hat off,FullEventful,rev-gi,,alhskwethuh,kalihskwethuh,alhskwethuh,ulhskwethuh,halhskwethuh,ulhskwethuh
 341,348,he/she is taking his/her hat off,FullEventful,rev-i,,alhskwethuhk,kalihskwethuhk,alhskwethuhk,ulhskwethuhk,halhskwethuhk,ulhskwethuhk
@@ -450,6 +535,10 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 416,423,it’s fading,FullStative,stative,,ahskolvk,,ahskolvk,uhskolvts,,
 416,423,it’s fading,InfEventful,become,,,,,,,uhskolvy
 416,423,it’s fading,InfEventful,become[inf3],,,,,,,uhskolv
+416,423,it’s fading,InfEventful,sk-s-a[inf2],,,,,,,uhskolvy
+416,423,it’s fading,InfEventful,sk-h,,,,,,,uhskolvy
+416,423,it’s fading,InfEventful,hih-hil,,,,,,,uhskolvy
+416,423,it’s fading,InfEventful,oh-al,,,,,,,uhskolvy
 417,424,he/she is digging it,FullEventful,sk-s-la,,ahsko,kahsko,ahsko,uhsko,hahsko,uhsko
 417,424,he/she is digging it,FullEventful,sk-s-hst,,ahsko,kahsko,ahsko,uhsko,hahskola,uhsko
 419,426,he/she is finishing it,FullEventful,i-a-i,,ahskwat,tsihskwat,ahskwat,uhskwat,hihskwat,uhskwat
@@ -506,8 +595,14 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 467,474,it’s steaming,FullEventful,go,,athanol,,athanol,uthanol,,uthanol
 467,474,it’s steaming,FullEventful,go[pres2],,athanolek,,athanol,uthanol,,uthanol
 467,474,it’s steaming,FullStative,stative,,athanolek,,athanolek,uthanolvhs,,
+467,474,it’s steaming,InfEventful,become,,,,,,,uthanolv
+467,474,it’s steaming,InfEventful,sk-s-hst,,,,,,,uthanolv
+467,474,it’s steaming,InfEventful,sk-h,,,,,,,uthanolv
 467,474,it’s steaming,InfEventful,go,,,,,,,uthanol
-467,474,it’s steaming,InfEventful,go[pres2],,,,,,,uthanol
+467,474,it’s steaming,InfEventful,hih-lh,,,,,,,uthanolv
+467,474,it’s steaming,InfEventful,vnh-vsk[inf4],,,,,,,uthanol
+467,474,it’s steaming,InfEventful,oh-al,,,,,,,uthanolv
+467,474,it’s steaming,InfEventful,v-vhs,,,,,,,uthanol
 469,476,it’s exploding,FullEventful,rev-gi,,athahs,,athahs,uthahs,hathahs,uthahs
 469,476,it’s exploding,FullEventful,rev-i,,athahsk,,athahsk,uthahsk,hathahsk,uthahsk
 470,477,he/she is exploding it,FullEventful,cause,,athahskihst,tsithahskihst,athahskihst,uthahskihst,hathahskihst,uthahskihst
@@ -532,7 +627,11 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 487,494,he/she is borrowing him/her,FullEventful,sk-s-a,,athol,tsiyathol,athol,uthol,hiyathol,uthol
 488,495,it’s flashing (refers to reflected light),FullEventful,sk-s-a[inf2],,athoyaw,,athoyaw,uthoyaw,,uthoyaw
 488,495,it’s flashing (refers to reflected light),FullStative,stative,,athoyawhsk,,athoyawhsk,uthoyawhs,,
+488,495,it’s flashing (refers to reflected light),InfEventful,become,,,,,,,uthoyaw
 488,495,it’s flashing (refers to reflected light),InfEventful,sk-s-a[inf2],,,,,,,uthoyaw
+488,495,it’s flashing (refers to reflected light),InfEventful,sk-h,,,,,,,uthoyaw
+488,495,it’s flashing (refers to reflected light),InfEventful,hih-hil,,,,,,,uthoyaw
+488,495,it’s flashing (refers to reflected light),InfEventful,oh-al,,,,,,,uthoyaw
 489,496,he/she is taking a bite,FullEventful,rev-e,,atst,katsihst,atst,utst,hatst,utst
 490,497,he/she is lying,FullEventful,vsk-post-v,,atsko,katsihsko,atsko,utsko,hatsko,utsko
 491,498,he/she is taking a drink (refers to alcoholic beverage),FullEventful,rev-gi,,athu,ka'tu,athu,uthu,hathu,uthu
@@ -744,6 +843,12 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 722,740,he/she is confronted with it,FullEventful,sk-s-hst[imp2],,tutlo,takwatlo,tutlo,tutlo,titsatlo,tsutlohi
 722,740,he/she is confronted with it,FullEventful,sk-s-hst,,tutlo,takwatlo,tutlo,tutlo,titsatlohi,tsutlohi
 723,741,he/she is called,FullStative,stative,,tuto',takwato',tuto',tuto',tetsato',
+723,741,he/she is called,InfEventful,become,,,,,,,tsuto
+723,741,he/she is called,InfEventful,sk-s-hst,,,,,,,tsuto
+723,741,he/she is called,InfEventful,sk-h,,,,,,,tsuto
+723,741,he/she is called,InfEventful,hih-lh,,,,,,,tsuto
+723,741,he/she is called,InfEventful,o,,,,,,,tsut
+723,741,he/she is called,InfEventful,oh-al,,,,,,,tsuto
 724,742,he/she is staggering,FullEventful,cause,,tutokht,takwatokht,tutokht,tutokht,titsatokht,tsutokht
 724,742,he/she is staggering,FullEventful,cause[perf3],,tutokht,takwatokht,tutokht,tutokhth,titsatokht,tsutokht
 724,742,he/she is staggering,FullEventful,cause[pres2],,tutokhtih,takwatokhtih,tutokht,tutokht,titsatokht,tsutokht
@@ -926,7 +1031,12 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 895,925,it’s freezing,FullEventful,i-a-i,,kanehstalat,tsinehstalat,kanehstalat,unehstalat,hinehstalat,unehstalat
 896,926,it’s hailing,FullEventful,sk-s-a[inf2],,kanehsoy,,kanehsoy,unehsoy,,unehsoy
 896,926,it’s hailing,FullStative,stative,,kanehsoyhsk,,kanehsoyhsk,unehsoyhs,,
+896,926,it’s hailing,InfEventful,become,,,,,,,unehsoy
+896,926,it’s hailing,InfEventful,become[inf3],,,,,,,unehso
 896,926,it’s hailing,InfEventful,sk-s-a[inf2],,,,,,,unehsoy
+896,926,it’s hailing,InfEventful,sk-h,,,,,,,unehsoy
+896,926,it’s hailing,InfEventful,hih-hil,,,,,,,unehsoy
+896,926,it’s hailing,InfEventful,oh-al,,,,,,,unehsoy
 899,929,he/she is lying down,FullStative,stative-k,,kanh,tsinv,kanh,,hinh,
 899,929,he/she is lying down,FullStative,stative,,kanhk,tsinvk,kanhk,,hinhk,
 901,931,he/she is agitating liquid,FullEventful,apl-active,,kanhkwa',tsinhkwa',kanhkwa',unhkwa',hinhkwa',unhkwa'
@@ -950,6 +1060,8 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 921,951,it’s flooding,FullEventful,i-vka,,kanohuk,,kanohuk,unohuk,,unohuk
 921,951,it’s flooding,FullStative,stative,,kanohuki',,kanohukihsk,unohukan,,
 921,951,it’s flooding,InfEventful,i-vka,,,,,,,unohuk
+921,951,it’s flooding,InfEventful,oh-ol,,,,,,,unohuk
+921,951,it’s flooding,InfEventful,vsk-post-v,,,,,,,unohuko
 922,952,he/she is causing it to sound,FullEventful,cause,,kanoyhvlhihst,tsinoyvlihst,kanoyhvlhihst,unoyhvlhihst,hinoyhvlhihst,unoyhvlhihst
 922,952,he/she is causing it to sound,FullEventful,cause[perf3],,kanoyhvlhihst,tsinoyvlihst,kanoyhvlhihst,unoyhvlhihsth,hinoyhvlhihst,unoyhvlhihst
 922,952,he/she is causing it to sound,FullEventful,cause[pres2],,kanoyhvlhihstih,tsinoyvlihstih,kanoyhvlhihst,unoyhvlhihst,hinoyhvlhihst,unoyhvlhihst
@@ -959,7 +1071,6 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 924,954,it is blowing (refers to wind),FullEventful,vsk-post-v,,kanolv,,kanolv,unolv,,unolv
 924,954,it is blowing (refers to wind),FullStative,stative,,kanolv'vhsk,,kanolv'vhsk,unolvn,,
 924,954,it is blowing (refers to wind),InfEventful,vsk,,,,,,,unol
-924,954,it is blowing (refers to wind),InfEventful,vsk-long,,,,,,,unol
 924,954,it is blowing (refers to wind),InfEventful,vsk-post-v,,,,,,,unolv
 925,955,he/she is stealing it,FullEventful,rev-gi,,kanohs,tsinohs,kanohs,unohs,hinohs,unohs
 925,955,he/she is stealing it,FullEventful,rev-i,,kanohsk,tsinohsk,kanohsk,unohsk,hinohsk,unohsk
@@ -989,6 +1100,17 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 956,986,he/she is rolling him/her,FullEventful,hih-lh,,kahsakwale,tsiyahsakwale,kahsakwale,uwahsakwale,hiyahsakwale,uwahsakwale
 960,990,he/she is attaching the object behind it (refers to a flexible object),FullEventful,vsk,,kahsanenat,tsihsanenat,kahsanenat,uwahsanenat,hihsanenat,uwahsanenat
 965,995,it’s dripping,FullStative,stative,,kahskwo'ih,,kahskwo'ih,uwahskwol,,
+965,995,it’s dripping,InfEventful,become,,,,,,,uwahskwo'i
+965,995,it’s dripping,InfEventful,become[inf2],,,,,,,uwahskwo
+965,995,it’s dripping,InfEventful,become[inf4],,,,,,,uwahskwo'
+965,995,it’s dripping,InfEventful,sk-s-hst,,,,,,,uwahskwo'i
+965,995,it’s dripping,InfEventful,sk-h,,,,,,,uwahskwo'i
+965,995,it’s dripping,InfEventful,ih-il,,,,,,,uwahskwo'
+965,995,it’s dripping,InfEventful,hih-lh,,,,,,,uwahskwo'i
+965,995,it’s dripping,InfEventful,i-a-i,,,,,,,uwahskwo'
+965,995,it’s dripping,InfEventful,oh-al,,,,,,,uwahskwo'i
+965,995,it’s dripping,InfEventful,rev-i,,,,,,,uwahskwo'
+965,995,it’s dripping,InfEventful,rev-'i,,,,,,,uwahskwo
 968,998,he/she is whistling,FullEventful,become,,kahsvnh,tsihsvnh,kahsvnh,uwahsvnh,hihsvnh,uwahsvn
 969,999,he/she is piling it up,FullEventful,hvsk-han,,kahsvt,tsihsvt,kahsvt,uwahsvt,hihsvt,uwahsvt
 970,1000,it’s hanging,FullStative,stative-h,,kat,,kat,,hat,
@@ -1015,6 +1137,14 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 997,1027,he/she is leading it by a leash,FullStative,stative-h,,kelihsine,tsiyelihsine,kelihsine,,hiyelihsine,
 997,1027,he/she is leading it by a leash,FullStative,stative-eh,,kelihsin,tsiyelihsin,kelihsin,,hiyelihsin,
 997,1027,he/she is leading it by a leash,FullStative,stative,,kelihsineh,tsiyelihsineh,kelihsineh,,hiyelihsineh,
+997,1027,he/she is leading it by a leash,InfEventful,become,,,,,,,uwelihsinv
+997,1027,he/she is leading it by a leash,InfEventful,sk-s-hst,,,,,,,uwelihsinv
+997,1027,he/she is leading it by a leash,InfEventful,sk-h,,,,,,,uwelihsinv
+997,1027,he/she is leading it by a leash,InfEventful,go,,,,,,,uwelihsin
+997,1027,he/she is leading it by a leash,InfEventful,hih-lh,,,,,,,uwelihsinv
+997,1027,he/she is leading it by a leash,InfEventful,vnh-vsk[inf4],,,,,,,uwelihsin
+997,1027,he/she is leading it by a leash,InfEventful,oh-al,,,,,,,uwelihsinv
+997,1027,he/she is leading it by a leash,InfEventful,v-vhs,,,,,,,uwelihsin
 1014,1044,he/she is leading him/her by the hand,FullEventful,go,,kohin,tsiyo'in,kohin,uwohin,hiyo'in,uwohin
 1014,1044,he/she is leading him/her by the hand,FullEventful,go[pres2],,kohinek,tsiyo'inek,kohin,uwohin,hiyo'in,uwohin
 1015,1045,he/she is agreeing with him/her,FullEventful,apl,,kohiyhtan,tsiyo'iyhtan,kohiyhtan,uwohiyhtan,hiyo'iyhta,uwohiyhtan
@@ -1061,15 +1191,25 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1061,1092,it’s snowing,FullEventful,cause[perf2],,kuth,,kuth,uwuth,,uwuth
 1061,1092,it’s snowing,FullEventful,cause[pres2-perf2],,kuthih,,kuth,uwuth,,uwuth
 1061,1092,it’s snowing,FullStative,stative,,kuthih,,kuthihsk,uwuthanh,,
-1061,1092,it’s snowing,InfEventful,cause[perf2],,,,,,,uwuth
-1061,1092,it’s snowing,InfEventful,cause[pres2-perf2],,,,,,,uwuth
+1061,1092,it’s snowing,InfEventful,hvsk-nh,,,,,,,uwutho
+1061,1092,it’s snowing,InfEventful,hvsk-nh[inf2],,,,,,,uwutho
+1061,1092,it’s snowing,InfEventful,hvsk-nh[inf4],,,,,,,uwuth
+1061,1092,it’s snowing,InfEventful,episodic,,,,,,,uwutho
+1061,1092,it’s snowing,InfEventful,apl-active-a,,,,,,,uwutho
+1061,1092,it’s snowing,InfEventful,cause,,,,,,,uwuth
+1061,1092,it’s snowing,InfEventful,ih-vh,,,,,,,uwutho
+1061,1092,it’s snowing,InfEventful,vnh-ih-a,,,,,,,uwutho
 1063,1094,he/she is sifting it,FullEventful,cause,,kvkuhst,kvkuhst,kvkuhst,uwakuhst,hvkuhst,uwakuhst
 1063,1094,he/she is sifting it,FullEventful,cause[perf3],,kvkuhst,kvkuhst,kvkuhst,uwakuhsth,hvkuhst,uwakuhst
 1063,1094,he/she is sifting it,FullEventful,cause[pres2],,kvkuhstih,kvkuhstih,kvkuhst,uwakuhst,hvkuhst,uwakuhst
 1063,1094,he/she is sifting it,FullEventful,cause[pres2-perf3],,kvkuhstih,kvkuhstih,kvkuhst,uwakuhsth,hvkuhst,uwakuhst
 1064,1095,it’s leaking,FullEventful,sk-s-hst,,kvku,,kvku,uwaku,,uwaku
 1064,1095,it’s leaking,FullStative,stative,,kvkuhsk,,kvkuhsk,uwakuhs,,
+1064,1095,it’s leaking,InfEventful,become,,,,,,,uwaku
 1064,1095,it’s leaking,InfEventful,sk-s-hst,,,,,,,uwaku
+1064,1095,it’s leaking,InfEventful,sk-h,,,,,,,uwaku
+1064,1095,it’s leaking,InfEventful,hih-lh,,,,,,,uwaku
+1064,1095,it’s leaking,InfEventful,oh-al,,,,,,,uwaku
 1067,1098,he/she is alive,FullStative,stative-h,,kvn,kvn,kvn,,hvn,
 1067,1098,he/she is alive,FullStative,stative,,kvnh,kvn,kvnh,,hvnh,
 1070,1101,he/she is hitting him/her,FullEventful,hih-hil[imp2],,kvn,tsiyvn,kvn,uwan,hiyvn,uwan
@@ -1125,7 +1265,15 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1249,1300,he/she is fanning him/her,FullEventful,apl-active-a,,khanoy,tsinoy,khanoy,unhoy,hinoyvl,unhoye
 1253,1304,it’s misting,FullEventful,i-a-i,,khanuyolat,,khanuyolat,unhuyola't,,unhuyolat
 1253,1304,it’s misting,FullStative,stative,,khanuyolati',,khanuyolatihsk,unhuyola't,,
+1253,1304,it’s misting,InfEventful,become,,,,,,,unhuyolati
+1253,1304,it’s misting,InfEventful,become[inf4],,,,,,,unhuyolat
+1253,1304,it’s misting,InfEventful,sk-s-hst,,,,,,,unhuyolati
+1253,1304,it’s misting,InfEventful,sk-h,,,,,,,unhuyolati
+1253,1304,it’s misting,InfEventful,ih-il,,,,,,,unhuyolat
+1253,1304,it’s misting,InfEventful,hih-lh,,,,,,,unhuyolati
 1253,1304,it’s misting,InfEventful,i-a-i,,,,,,,unhuyolat
+1253,1304,it’s misting,InfEventful,oh-al,,,,,,,unhuyolati
+1253,1304,it’s misting,InfEventful,rev-i,,,,,,,unhuyolat
 1254,1305,he/she is straining it,FullEventful,cause,,khanvhsolvhst,tsinvhsolvhst,khanvhsolvhst,unhvhsolvhst,hinhvhsolvhst,unhvhsolvhst
 1254,1305,he/she is straining it,FullEventful,cause[perf3],,khanvhsolvhst,tsinvhsolvhst,khanvhsolvhst,unhvhsolvhsth,hinhvhsolvhst,unhvhsolvhst
 1254,1305,he/she is straining it,FullEventful,cause[pres2],,khanvhsolvhstih,tsinvhsolvhstih,khanvhsolvhst,unhvhsolvhst,hinhvhsolvhst,unhvhsolvhst
@@ -1162,20 +1310,55 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1309,1366,he/she is putting it on,FullEventful,cause[pres2-perf3],,nikvnhtih,nikvnhtih,nikvnht,nuwanhth,nhvnht,iyuwanht
 1323,1380,he/she has something on (refers to objects),FullStative,stative,,nuwanht,nakwvnht,nuwanht,nuwanht,nitsvnht,
 1450,1516,he/she is in prayer,FullStative,stative,,utatolihst,akwatatolihst,utatolihst,utatolihst,tsatatolihst,
+1450,1516,he/she is in prayer,InfEventful,hvsk-nh,,,,,,,utatolihsto
+1450,1516,he/she is in prayer,InfEventful,hvsk-nh[inf2],,,,,,,utatolihsto
+1450,1516,he/she is in prayer,InfEventful,hvsk-nh[inf4],,,,,,,utatolihst
+1450,1516,he/she is in prayer,InfEventful,episodic,,,,,,,utatolihsto
+1450,1516,he/she is in prayer,InfEventful,apl-active-a,,,,,,,utatolihsto
+1450,1516,he/she is in prayer,InfEventful,cause,,,,,,,utatolihst
+1450,1516,he/she is in prayer,InfEventful,ih-vh,,,,,,,utatolihsto
+1450,1516,he/she is in prayer,InfEventful,vnh-ih-a,,,,,,,utatolihsto
 1451,1517,he/she loves,FullStative,stative-s,,utakeyu,akwatakeyu,utakeyu,utakeyu,tsatakeyu,
 1451,1517,he/she loves,FullStative,stative,,utakeyuh,akwatakeyuh,utakeyuhs,utakeyuhs,tsatakeyuhs,
+1451,1517,he/she loves,InfEventful,hvsk-han,,,,,,,utakey
+1451,1517,he/she loves,InfEventful,hvsk-nh[inf2],,,,,,,utakey
+1451,1517,he/she loves,InfEventful,episodic,,,,,,,utakey
+1451,1517,he/she loves,InfEventful,apl-active-a,,,,,,,utakey
+1451,1517,he/she loves,InfEventful,ih-vh,,,,,,,utakey
+1451,1517,he/she loves,InfEventful,vnh-ih-a,,,,,,,utakey
 1459,1525,it’s wrinkled,FullStative,stative-s,,utanekoyu,akwatanekoyu,utanekoyu,utanekoyu,tsatanekoyu,
 1459,1525,it’s wrinkled,FullStative,stative,,utanekoyuh,akwatanekoyuh,utanekoyuhs,utanekoyuhs,tsatanekoyuhs,
 1462,1528,he/she feels,FullStative,stative-h,,utanht,akwatanht,utanht,utanht,tsatanht,
 1462,1528,he/she feels,FullStative,stative,,utanhth,akwatanhth,utanhth,utanhth,tsatanhth,
+1462,1528,he/she feels,InfEventful,become,,,,,,,utanhtati
+1462,1528,he/she feels,InfEventful,become[inf4],,,,,,,utanhtat
+1462,1528,he/she feels,InfEventful,sk-s-hst,,,,,,,utanhtati
+1462,1528,he/she feels,InfEventful,sk-h,,,,,,,utanhtati
+1462,1528,he/she feels,InfEventful,ih-il,,,,,,,utanhtat
+1462,1528,he/she feels,InfEventful,hih-lh,,,,,,,utanhtati
+1462,1528,he/she feels,InfEventful,i-a-i,,,,,,,utanhtat
+1462,1528,he/she feels,InfEventful,oh-al,,,,,,,utanhtati
+1462,1528,he/she feels,InfEventful,rev-i,,,,,,,utanhtat
 1470,1536,it’s in view,FullStative,stative-h,,utayvlat,akwatayvlat,utayvlat,utayvlat,tsatayvlat,
 1470,1536,it’s in view,FullStative,stative,,utayvlath,akwatayvlath,utayvlath,utayvlath,tsatayvlath,
+1470,1536,it’s in view,InfEventful,hvsk-han,,,,,,,utayvlat
+1470,1536,it’s in view,InfEventful,hvsk-nh[inf2],,,,,,,utayvlat
+1470,1536,it’s in view,InfEventful,episodic,,,,,,,utayvlat
+1470,1536,it’s in view,InfEventful,apl-active-a,,,,,,,utayvlat
+1470,1536,it’s in view,InfEventful,ih-vh,,,,,,,utayvlat
+1470,1536,it’s in view,InfEventful,vnh-ih-a,,,,,,,utayvlat
 1471,1537,he/she is throwing it,FullEventful,go-in,,ut,akwat,ut,ut,tsat,ut
 1476,1542,he/she is having a birthday,FullEventful,ih-vh,,utethiy,akwatethiy,utethiy,utethiy,tsatethiy,utethiy
 1478,1544,it’s hot,FullStative,stative-k,,utilheh,,utilheh,utilheh,tsatilheh,
 1478,1544,it’s hot,FullStative,stative,,utilhehk,,utilhehk,utilhehk,tsatilhehk,
 1480,1546,he/she is in hiding,FullStative,stative-h,,utihskal,akwatihskal,utihskal,utihskal,tsatihskal,
 1480,1546,he/she is in hiding,FullStative,stative,,utihskalh,akwatihskalh,utihskalh,utihskalh,tsatihskalh,
+1480,1546,he/she is in hiding,InfEventful,hvsk-han,,,,,,,utihskal
+1480,1546,he/she is in hiding,InfEventful,hvsk-nh[inf2],,,,,,,utihskal
+1480,1546,he/she is in hiding,InfEventful,episodic,,,,,,,utihskal
+1480,1546,he/she is in hiding,InfEventful,apl-active-a,,,,,,,utihskal
+1480,1546,he/she is in hiding,InfEventful,ih-vh,,,,,,,utihskal
+1480,1546,he/she is in hiding,InfEventful,vnh-ih-a,,,,,,,utihskal
 1481,1547,he/she is getting well,FullEventful,sk-s-hi-hihst,,utiw,akwatiw,utiw,utiw,tsatiw,utiw
 1483,1549,there’s an opening,FullStative,stative,,utlanvt,,utlanvt,utlanvt,,
 1484,1550,he/she has time,FullEventful,apl,,utlanvta't,akwatlanvta't,utlanvta't,utlanvta't,tsatlanvtati,utlanvta't
@@ -1189,6 +1372,12 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1489,1555,he/she is wearing an earring,FullStative,stative,,utli'at,akwatli'at,utli'at,utli'at,tsatli'at,
 1505,1571,he/she is standing in liquid,FullStative,stative-s,,utu,akwatu,utu,utu,tsatu,
 1505,1571,he/she is standing in liquid,FullStative,stative,,utuh,akwatuh,utuhs,utuhs,tsatuhs,
+1505,1571,he/she is standing in liquid,InfEventful,hvsk-nh,,,,,,,utu
+1505,1571,he/she is standing in liquid,InfEventful,hvsk-nh[inf2],,,,,,,utu
+1505,1571,he/she is standing in liquid,InfEventful,episodic,,,,,,,utu
+1505,1571,he/she is standing in liquid,InfEventful,apl-active-a,,,,,,,utu
+1505,1571,he/she is standing in liquid,InfEventful,ih-vh,,,,,,,utu
+1505,1571,he/she is standing in liquid,InfEventful,vnh-ih-a,,,,,,,utu
 1507,1573,he/she wants it,FullEventful,ih-vh,,utul,akwatul,utul,utul,tsatul,utul
 1508,1574,he/she is willing,FullStative,stative,,utvnv'ihst,akwatvnv'ihst,utvnv'ihst,utvnv'ihst,tsatvnv'ihst,
 1514,1580,he/she is becoming warm,FullEventful,sk-s-hi-hihst,,ukanawo,akikanawo,ukanawo,ukanawo,tsakanawo,ukanawo
@@ -1196,6 +1385,12 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1514,1580,he/she is becoming warm,FullEventful,sk-s-hst,,ukanawo,akikanawo,ukanawo,ukanawo,tsakanawohi,ukanawohi
 1516,1582,he/she is possessive of him/her,FullStative,stative-s,,ukeyu,tsikeyu,ukeyu,ukeyu,hikeyu,
 1516,1582,he/she is possessive of him/her,FullStative,stative,,ukeyuh,tsikeyu',ukeyuhs,ukeyuhs,hikeyuhs,
+1516,1582,he/she is possessive of him/her,InfEventful,hvsk-han,,,,,,,ukey
+1516,1582,he/she is possessive of him/her,InfEventful,hvsk-nh[inf2],,,,,,,ukey
+1516,1582,he/she is possessive of him/her,InfEventful,episodic,,,,,,,ukey
+1516,1582,he/she is possessive of him/her,InfEventful,apl-active-a,,,,,,,ukey
+1516,1582,he/she is possessive of him/her,InfEventful,ih-vh,,,,,,,ukey
+1516,1582,he/she is possessive of him/her,InfEventful,vnh-ih-a,,,,,,,ukey
 1523,1589,he/she is late,FullEventful,become,,ukonhiyo,akikonhiyo,ukonhiyo,ukonhiyo,tsakonhiyo,ukonhiyo
 1524,1590,it’s decaying,FullEventful,sk-s-hi-hihst,,uko,akiko,uko,uko,tsako,uko
 1524,1590,it’s decaying,FullEventful,sk-s-hst[imp2],,uko,akiko,uko,uko,tsako,ukohi
@@ -1237,7 +1432,21 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1576,1642,he/she is inside it,FullStative,stative,,utsa',akwatsa',utsa',utsa',tsatsa',
 1592,1658,it’s sticking out,FullStative,stative-h,,ukhsat,akwakhsat,ukhsat,ukhsat,tsakhsat,
 1592,1658,it’s sticking out,FullStative,stative,,ukhsath,akwakhsath,ukhsath,ukhsath,tsakhsath,
+1592,1658,it’s sticking out,InfEventful,hvsk-han,,,,,,,ukhsat
+1592,1658,it’s sticking out,InfEventful,hvsk-nh[inf2],,,,,,,ukhsat
+1592,1658,it’s sticking out,InfEventful,episodic,,,,,,,ukhsat
+1592,1658,it’s sticking out,InfEventful,apl-active-a,,,,,,,ukhsat
+1592,1658,it’s sticking out,InfEventful,ih-vh,,,,,,,ukhsat
+1592,1658,it’s sticking out,InfEventful,vnh-ih-a,,,,,,,ukhsat
 1593,1659,he/she is watching him/her,FullStative,stative,,ukhsehst,tsiyakahsehst,ukhsehst,ukhsehst,hiyakahsehst,
+1593,1659,he/she is watching him/her,InfEventful,hvsk-nh,,,,,,,ukhsehsto
+1593,1659,he/she is watching him/her,InfEventful,hvsk-nh[inf2],,,,,,,ukhsehsto
+1593,1659,he/she is watching him/her,InfEventful,hvsk-nh[inf4],,,,,,,ukhsehst
+1593,1659,he/she is watching him/her,InfEventful,episodic,,,,,,,ukhsehsto
+1593,1659,he/she is watching him/her,InfEventful,apl-active-a,,,,,,,ukhsehsto
+1593,1659,he/she is watching him/her,InfEventful,cause,,,,,,,ukhsehst
+1593,1659,he/she is watching him/her,InfEventful,ih-vh,,,,,,,ukhsehsto
+1593,1659,he/she is watching him/her,InfEventful,vnh-ih-a,,,,,,,ukhsehsto
 1597,1663,it’s foggy,FullStative,stative,,ukhvhat,akikhvhat,ukhvhat,ukhvhat,tsakhvhat,
 1599,1665,he/she is not having luck at hunting,FullEventful,go,,ukwhol,akikwhol,ukwhol,ukwhol,tsakwhol,ukwhol
 1599,1665,he/she is not having luck at hunting,FullEventful,go[pres2],,ukwholek,akikwholek,ukwhol,ukwhol,tsakwhol,ukwhol
@@ -1269,6 +1478,14 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1642,1708,he/she has a liquid,FullStative,stative-h,,une,akine,une,une,tsane,
 1642,1708,he/she has a liquid,FullStative,stative-eh,,un,akin,un,un,tsan,
 1642,1708,he/she has a liquid,FullStative,stative,,uneh,akineh,uneh,uneh,tsaneh,
+1642,1708,he/she has a liquid,InfEventful,hvsk-nh,,,,,,,une
+1642,1708,he/she has a liquid,InfEventful,hvsk-nh[inf2],,,,,,,une
+1642,1708,he/she has a liquid,InfEventful,episodic,,,,,,,une
+1642,1708,he/she has a liquid,InfEventful,apl-active,,,,,,,un
+1642,1708,he/she has a liquid,InfEventful,apl-active-a,,,,,,,une
+1642,1708,he/she has a liquid,InfEventful,apl,,,,,,,un
+1642,1708,he/she has a liquid,InfEventful,ih-vh,,,,,,,une
+1642,1708,he/she has a liquid,InfEventful,vnh-ih-a,,,,,,,une
 1646,1712,he/she knows it,FullStative,stative-h,,unht,akwanht,unht,unht,tsanht,
 1646,1712,he/she knows it,FullStative,stative,,unhth,akwanhth,unhth,unhth,tsanhth,
 1664,1730,he/she is receiving punishment,FullEventful,i-a-i,,uhstvt,akhstvt,uhstvt,uhstvt,tstvt,uhstvt
@@ -1280,6 +1497,14 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1684,1750,he/she is becoming enraged,FullEventful,sk-s-hst[imp2],,uthalhawo,akhthalhawo,uthalhawo,uthalhawo,tsthalhawo,uthalhawohi
 1684,1750,he/she is becoming enraged,FullEventful,sk-s-hst,,uthalhawo,akhthalhawo,uthalhawo,uthalhawo,tsthalhawohi,uthalhawohi
 1693,1759,he/she is listening to him/her,FullStative,stative,,uthvtahst,tsiyathvtahst,uthvtahst,uthvtahst,hiyathvtahst,
+1693,1759,he/she is listening to him/her,InfEventful,hvsk-nh,,,,,,,uthvtahsto
+1693,1759,he/she is listening to him/her,InfEventful,hvsk-nh[inf2],,,,,,,uthvtahsto
+1693,1759,he/she is listening to him/her,InfEventful,hvsk-nh[inf4],,,,,,,uthvtahst
+1693,1759,he/she is listening to him/her,InfEventful,episodic,,,,,,,uthvtahsto
+1693,1759,he/she is listening to him/her,InfEventful,apl-active-a,,,,,,,uthvtahsto
+1693,1759,he/she is listening to him/her,InfEventful,cause,,,,,,,uthvtahst
+1693,1759,he/she is listening to him/her,InfEventful,ih-vh,,,,,,,uthvtahsto
+1693,1759,he/she is listening to him/her,InfEventful,vnh-ih-a,,,,,,,uthvtahsto
 1698,1764,he/she is forgetting it,FullEventful,sk-s-a,,uwakhew,akwvkhew,uwakhew,uwakhew,witsvkhew,uwakhew
 1699,1765,he/she is belching,FullEventful,become,,uwakhule,akikhule,uwakhule,uwakhule,tsakhule,uwakhule'i
 1699,1765,he/she is belching,FullEventful,become[inf2],,uwakhule,akikhule,uwakhule,uwakhule,tsakhule,uwakhule
@@ -1292,6 +1517,17 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1719,1785,he/she has it,FullStative,stative-h,,uwekha,akikha,uwekha,uwekha,tsekha,
 1719,1785,he/she has it,FullStative,stative,,uwekhah,akikhah,uwekhah,uwekhah,tsekhah,
 1721,1787,he/she is worried,FullStative,stative,,uwelihi',akwelihi',uwelihihsk,uwelihihsk,tselihihsk,
+1721,1787,he/she is worried,InfEventful,become,,,,,,,uwelihi
+1721,1787,he/she is worried,InfEventful,become[inf4],,,,,,,uwelih
+1721,1787,he/she is worried,InfEventful,sk-s-hi-hihst,,,,,,,uweli
+1721,1787,he/she is worried,InfEventful,sk-s-hst,,,,,,,uwelihi
+1721,1787,he/she is worried,InfEventful,sk-h,,,,,,,uwelihi
+1721,1787,he/she is worried,InfEventful,ih-il,,,,,,,uwelih
+1721,1787,he/she is worried,InfEventful,hih-lh,,,,,,,uwelihi
+1721,1787,he/she is worried,InfEventful,i-a-i,,,,,,,uwelih
+1721,1787,he/she is worried,InfEventful,ih-ihi,,,,,,,uwel
+1721,1787,he/she is worried,InfEventful,oh-al,,,,,,,uwelihi
+1721,1787,he/she is worried,InfEventful,rev-i,,,,,,,uwelih
 1729,1795,he/she is confident,FullStative,stative-s,,uwohiyu,akwohiyu,uwohiyu,uwohiyu,tsohiyu,
 1729,1795,he/she is confident,FullStative,stative,,uwohiyuh,akwohiyuh,uwohiyuhs,uwohiyuhs,tsohiyuhs,
 1730,1796,he/she is sitting,FullStative,stative-h,,uwol,akwol,uwol,uwol,tsol,
