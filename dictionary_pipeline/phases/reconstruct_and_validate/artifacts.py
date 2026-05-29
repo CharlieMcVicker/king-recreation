@@ -1,7 +1,6 @@
 import csv
 import json
 import os
-from dataclasses import dataclass
 from typing import Any
 
 from dictionary_pipeline.paths import (
@@ -12,6 +11,7 @@ from dictionary_pipeline.paths import (
     VALIDATED_MATCHES_PATH,
     VALIDATED_RECONSTRUCTABLE_ROOTS_PATH,
 )
+from dictionary_pipeline.row_models import ValidatedRootRow
 
 
 def load_existing_validated_roots() -> list[dict[str, Any]]:
@@ -113,27 +113,6 @@ def load_reconstruction_validation() -> dict[str, Any]:
         return {}
     with open(RECONSTRUCTION_VALIDATION_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
-
-
-from dictionary_pipeline.row_models import (
-    AspectInfo,
-    PredictionMeta,
-    RootInfo,
-    RowModelBase,
-    UserCurationInfo,
-)
-from morphology.morphemes.prefixes import PrefixConfig
-
-
-@dataclass
-class ValidatedRootRow(RowModelBase):
-    meta: PredictionMeta
-    curation: UserCurationInfo
-    aspect: AspectInfo
-    roots: RootInfo
-    config: PrefixConfig
-    metathesis_involved: bool = False
-    segmented_forms: str = ""
 
 
 def save_validated_roots(data: list[dict[str, Any]]) -> None:

@@ -18,6 +18,7 @@ from dictionary_pipeline.phases.select_canonical_derivations.artifacts import (
     save_reconstructable_verbs,
     save_selection_snapshot,
 )
+from dictionary_pipeline.row_models import ValidatedRootRow
 from morphology.morphemes.prefixes import PrefixConfig
 from morphology.reconstruction import MorphologicalVerb
 
@@ -72,20 +73,148 @@ def sort_candidates(vl: list[DictionaryVerb]) -> list[DictionaryVerb]:
 
 
 def load_stative_shims() -> dict[str, dict[str, Any]]:
+    """Load curated/stative_shims.csv in the multi-row candidate format.
+
+    Returns a mapping of corpus_id -> curated override row for any corpus_id
+    that has a user_selected = 'x' row. This dict is used by match_shim_config
+    to honour user curation during the current pipeline run.
+
+    If the CSV uses the legacy single-row-per-corpus-id format (no
+    user_selected column), every row is treated as a curated override to
+    preserve backward compatibility until the migration script is run.
+    """
     import csv
 
     from dictionary_pipeline.paths import STATIVE_SHIMS_PATH
 
     if not os.path.exists(STATIVE_SHIMS_PATH):
         return {}
-    shims = {}
+
+    overrides: dict[str, dict[str, Any]] = {}
     with open(STATIVE_SHIMS_PATH, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames or []
+        has_user_selected = "user_selected" in fieldnames
+
         for row in reader:
-            c_id = row.get("corpus_id")
-            if c_id:
-                shims[c_id.strip()] = {k: v for k, v in row.items() if k != "corpus_id"}
-    return shims
+            c_id = row.get("corpus_id", "").strip()
+            if not c_id:
+                continue
+            if has_user_selected:
+                if row.get("user_selected") == "x":
+                    overrides[c_id] = {k: v for k, v in row.items() if k != "corpus_id"}
+            else:
+                # Legacy format: treat every row as an override
+                overrides[c_id] = {k: v for k, v in row.items() if k != "corpus_id"}
+    return overrides
+
+
+def save_stative_shims(
+    validated_verbs: list[DictionaryVerb],
+    stative_corpus_ids: set[str],
+    curated_overrides: dict[str, dict[str, Any]],
+) -> None:
+    """Write all INF_EVENTFUL shim candidates (grouped by corpus_id of their
+    parent FULL_STATIVE verb) to curated/stative_shims.csv in the same
+    multi-row format as validated_reconstructable_roots.csv.
+
+    For each corpus_id:
+    * All INF_EVENTFUL candidates sharing the same h_grade_root as the
+      parent FULL_STATIVE verb are written as candidate rows.
+    * pipeline_selected = 'x' is marked on the pipeline's chosen candidate
+      (using sort_candidates).
+    * If a user override exists in curated_overrides, we validate it still
+      matches a candidate in the current run and mark user_selected = 'x'.
+      If the override can no longer be matched, we bail (exit 1).
+
+    Args:
+        validated_verbs: all validated verbs from the current run (used to
+            find INF_EVENTFUL candidates).
+        stative_corpus_ids: corpus_ids of FULL_STATIVE verbs that need shims.
+        curated_overrides: mapping corpus_id -> override config dict as
+            returned by load_stative_shims().
+    """
+    from dictionary_pipeline.paths import STATIVE_SHIMS_PATH
+
+    # Build a lookup: h_grade_root -> list of INF_EVENTFUL verbs
+    inf_eventful_by_h_grade: dict[str, list[DictionaryVerb]] = defaultdict(list)
+    for verb in validated_verbs:
+        if verb.meta.prediction == Prediction.INF_EVENTFUL:
+            inf_eventful_by_h_grade[verb.morphology.h_grade_root].append(verb)
+
+    # Also need h_grade_root for each stative corpus_id from the canonical verbs
+    # We receive stative_corpus_ids but need the h_grade mapping — build it here
+    # by scanning validated_verbs for FULL_STATIVE entries.
+    stative_h_grade: dict[str, str] = {}
+    for verb in validated_verbs:
+        if verb.meta.prediction == Prediction.FULL_STATIVE:
+            c_id = str(verb.meta.corpus_id)
+            if c_id in stative_corpus_ids:
+                stative_h_grade[c_id] = verb.morphology.h_grade_root
+
+    all_rows: list[dict[str, Any]] = []
+    missing_overrides: list[str] = []
+
+    for c_id in sorted(stative_corpus_ids, key=lambda x: int(x) if x.isdigit() else 0):
+        h_grade = stative_h_grade.get(c_id)
+        if h_grade is None:
+            continue
+        shim_candidates = inf_eventful_by_h_grade.get(h_grade, [])
+        if not shim_candidates:
+            continue
+
+        # Determine pipeline selection
+        sorted_shims = sort_candidates(shim_candidates)
+        pipeline_choice = sorted_shims[0] if sorted_shims else None
+
+        # Determine user override match
+        user_override = curated_overrides.get(c_id)
+        user_chosen: DictionaryVerb | None = None
+        if user_override:
+            for candidate in shim_candidates:
+                if match_shim_config(candidate, user_override):
+                    user_chosen = candidate
+                    break
+            if user_chosen is None:
+                missing_overrides.append(c_id)
+
+        # Build candidate rows for this corpus_id
+        for candidate in shim_candidates:
+            row = candidate.original_data.copy()
+            # Ensure corpus_id is present
+            row["corpus_id"] = c_id
+            # Clear then set selection markers
+            row["user_selected"] = ""
+            row["pipeline_selected"] = ""
+            if user_chosen is not None and candidate is user_chosen:
+                row["user_selected"] = "x"
+            if pipeline_choice is not None and candidate is pipeline_choice:
+                row["pipeline_selected"] = "x"
+            all_rows.append(row)
+
+    if missing_overrides:
+        print(
+            "[ERROR] The following user-selected shim overrides no longer match any "
+            f"candidate in the current run: {missing_overrides}"
+        )
+        print("Aborting save to prevent data loss.")
+        exit(1)
+
+    if not all_rows:
+        return
+
+    # Write using ValidatedRootRow fieldnames for column-parity with validated roots
+    fieldnames = ValidatedRootRow.get_fieldnames()
+    # Ensure all expected columns are present in every row (fill missing with '')
+    os.makedirs(os.path.dirname(STATIVE_SHIMS_PATH), exist_ok=True)
+    import csv
+
+    with open(STATIVE_SHIMS_PATH, "w", encoding="utf-8", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames, extrasaction="ignore")
+        writer.writeheader()
+        for row in all_rows:
+            # Fill any missing fields with empty string
+            writer.writerow({fn: row.get(fn, "") for fn in fieldnames})
 
 
 def match_shim_config(verb: DictionaryVerb, config_row: dict[str, Any]) -> bool:
@@ -334,11 +463,14 @@ def select_canonical_derivations() -> None:
         if verb.meta.prediction == Prediction.INF_EVENTFUL:
             inf_eventful_by_h_grade[verb.morphology.h_grade_root].append(verb)
 
+    stative_corpus_ids: set[str] = set()
     for canonical_verb in deduped_roots:
         if canonical_verb.meta.prediction == Prediction.FULL_STATIVE:
             c_id = canonical_verb.meta.corpus_id
             if not c_id:
                 continue
+
+            stative_corpus_ids.add(str(c_id))
 
             # Find candidate InfEventful shims matching this root
             shim_candidates = inf_eventful_by_h_grade.get(
@@ -373,8 +505,12 @@ def select_canonical_derivations() -> None:
             if chosen_shim:
                 canonical_verb.shim = chosen_shim
 
-    # Save updated rows with pipeline_selected marks back to CSV
+    # Save updated rows with pipeline_selected marks back to validated roots CSV
     save_validated_roots(rows)
+
+    # Save shim candidates (all INF_EVENTFUL candidates for stative verbs)
+    # with pipeline_selected and user_selected marked, validating curated overrides
+    save_stative_shims(validated_verbs, stative_corpus_ids, stative_shims_map)
 
     # Save Fully Serialized Verbs
     save_reconstructable_verbs(deduped_roots, EnhancedJSONEncoder)
