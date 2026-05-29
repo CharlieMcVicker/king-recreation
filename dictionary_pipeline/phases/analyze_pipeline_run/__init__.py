@@ -460,34 +460,53 @@ def _analyze_roots_by_macro(registry: PatternRegistry) -> None:
 
 def _analyze_verb_status() -> None:
     corpus_data = load_corpus()
-    no_asp_ids = set(row.get("corpus_id", None) for row in load_corpus_no_asp())
-    no_pre_ids = set(row.get("corpus_id", None) for row in load_corpus_no_pre())
-    validated_ids = set(
-        row.get("corpus_id", None) for row in load_validated_reconstructable_roots()
+    no_asp_keys = set(
+        (row.get("corpus_id"), row.get("prediction"))
+        for row in load_corpus_no_asp()
+        if row.get("corpus_id") and row.get("prediction")
+    )
+    no_pre_keys = set(
+        (row.get("corpus_id"), row.get("prediction"))
+        for row in load_corpus_no_pre()
+        if row.get("corpus_id") and row.get("prediction")
+    )
+    validated_keys = set(
+        (row.get("corpus_id"), row.get("prediction"))
+        for row in load_validated_reconstructable_roots()
+        if row.get("corpus_id") and row.get("prediction")
     )
 
     best_by_id = []
     for row in corpus_data:
         id = row.meta.corpus_id
+        pred = row.meta.prediction.value
+        key = (id, pred)
         best = "0.corpus"
-        if id in no_asp_ids:
+        if key in no_asp_keys:
             best = "1.asp_stripped"
-        if id in no_pre_ids:
+        if key in no_pre_keys:
             best = "2.pre_stripped"
-        if id in validated_ids:
+        if key in validated_keys:
             best = "3.validated"
 
         best_by_id.append(
             {
                 "corpus_id": id,
-                "prediction": row.meta.prediction.value,
+                "prediction": pred,
                 "definition": row.meta.definition,
                 "furthest_corpus": best,
             }
         )
 
     save_furthest_corpus_by_id(
-        sorted(best_by_id, key=lambda x: (x["furthest_corpus"][0], x["corpus_id"])),
+        sorted(
+            best_by_id,
+            key=lambda x: (
+                x["furthest_corpus"][0],
+                x["corpus_id"],
+                x["prediction"],
+            ),
+        ),
         ["corpus_id", "prediction", "definition", "furthest_corpus"],
     )
 
