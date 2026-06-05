@@ -3,10 +3,10 @@ id: TASK-4.2
 title: >-
   TASK-4.2 - Backend: Implement Shim Configuration Matching and Pipeline
   Validation
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-05-29 14:07'
-updated_date: '2026-05-29 14:13'
+updated_date: '2026-05-29 17:01'
 labels: []
 dependencies:
   - TASK-4.4
@@ -52,3 +52,9 @@ Implement backend validation and join logic for stative shims. When reading cura
    - Incompatible shims fail validation.
    - The pipeline exits with error `exit(1)` when a previously saved user selection breaks compatibility.
 <!-- SECTION:PLAN:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Implemented validate_shim_compatibility() as code spec for TASK-4.4 rules, wired into both select_canonical_derivations() loop and save_stative_shims(). Exit(1) path now gives field-level mismatch detail. 21 new tests added (8 unit + 4 integration), all 76 suite tests pass.
+<!-- SECTION:NOTES:END -->

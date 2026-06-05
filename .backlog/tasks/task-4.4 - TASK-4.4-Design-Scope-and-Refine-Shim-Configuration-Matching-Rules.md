@@ -1,10 +1,10 @@
 ---
 id: TASK-4.4
 title: 'TASK-4.4 - Design: Scope and Refine Shim Configuration Matching Rules'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-05-29 14:10'
-updated_date: '2026-05-29 14:13'
+updated_date: '2026-05-29 17:01'
 labels: []
 dependencies: []
 documentation:
@@ -32,11 +32,14 @@ Scope and refine the configuration matching rules between FullStative verbs and 
 ## Implementation Plan
 
 <!-- SECTION:PLAN:BEGIN -->
-1. Write a design document or draft the validation function specification detailing the matching criteria:
-   - Root Grades: `h_grade` and `g_grade` must match.
-     - *Handle g_grade gracefully*: Since `g_grade` often cannot be derived and is null for either or both derivations (stative/shim), the matching logic must handle missing values gracefully (e.g. treated as compatible if either grade is empty/null/None).
-   - Pronominal Config: `middle_voice` and `plural` (plural pronouns) must match.
-   - Suffix Class & Morpheme: Suffix `class` and `post_root_morpheme` MUST NOT be matched. The shim is explaining the eventive infinitive form, which cannot be explained by the stative class.
-   - Set Type: `set_a_b` / `set_type` MUST NOT be matched, allowing Set A (shim) vs Set B (stative) divergence.
-2. Note that "Don't-Care" logic (loose matching when unused/undefined flags like `uwa_v` or `ka_variant` differ) is split into its own task (TASK-4.5) to be done as a separate, later ticket.
+Implemented as code spec via `validate_shim_compatibility()` in `dictionary_pipeline/phases/select_canonical_derivations/__init__.py`.
+
+Compatibility rules:
+- glottal_grade_root: must match unless either side is None (graceful handling for sticky g_grade)
+- middle_voice: must match
+- plural_pronouns: must match
+- suffix class (class_name): NOT matched — shim uses its own eventive class
+- post_root_morpheme: NOT matched
+- set_type (set_a_b): NOT matched — allows Set A shim with Set B stative
+- uwa_v, ka_variant: deferred to TASK-4.5 (don't-care for undefined flags)
 <!-- SECTION:PLAN:END -->
