@@ -72,6 +72,50 @@ def sort_candidates(vl: list[DictionaryVerb]) -> list[DictionaryVerb]:
     return candidates
 
 
+def validate_shim_compatibility(
+    base_verb: DictionaryVerb, shim_candidate: DictionaryVerb
+) -> tuple[bool, list[str]]:
+    """Validates whether a shim candidate (InfEventful) is compatible with a
+    base FullStative verb for infinitive prediction.
+
+    Rules (TASK-4.4):
+      - h_grade_root: pre-matched via h_grade lookup; not re-checked here.
+      - glottal_grade_root: must match unless *either* side is None (g_grade is
+        sticky and is often absent for one or both derivations).
+      - middle_voice: must match.
+      - plural_pronouns: must match.
+      - suffix class (class_name): NOT checked — shim uses its own eventive class.
+      - post_root_morpheme: NOT checked.
+      - set_type (set_a_b): NOT checked — shim may use Set A while stative uses Set B.
+
+    Returns:
+        (is_compatible, mismatches) where *mismatches* is a list of
+        human-readable descriptions of fields that did not agree.
+    """
+    mismatches: list[str] = []
+
+    base_g = base_verb.morphology.glottal_grade_root
+    shim_g = shim_candidate.morphology.glottal_grade_root
+    if base_g is not None and shim_g is not None and base_g != shim_g:
+        mismatches.append(f"glottal_grade_root: base={base_g!r} vs shim={shim_g!r}")
+
+    base_mv = base_verb.morphology.config.pron.middle_voice
+    shim_mv = shim_candidate.morphology.config.pron.middle_voice
+    if base_mv != shim_mv:
+        mismatches.append(
+            f"middle_voice: base={base_mv.value!r} vs shim={shim_mv.value!r}"
+        )
+
+    base_plural = base_verb.morphology.config.pron.plural_pronouns
+    shim_plural = shim_candidate.morphology.config.pron.plural_pronouns
+    if base_plural != shim_plural:
+        mismatches.append(
+            f"plural_pronouns: base={base_plural!r} vs shim={shim_plural!r}"
+        )
+
+    return len(mismatches) == 0, mismatches
+
+
 def load_stative_shims() -> dict[str, dict[str, Any]]:
     """Load curated/stative_shims.csv in the multi-row candidate format.
 
@@ -114,72 +158,81 @@ def save_stative_shims(
     stative_corpus_ids: set[str],
     curated_overrides: dict[str, dict[str, Any]],
 ) -> None:
-    """Write all INF_EVENTFUL shim candidates (grouped by corpus_id of their
-    parent FULL_STATIVE verb) to curated/stative_shims.csv in the same
+    """Write compatible INF_EVENTFUL shim candidates (grouped by corpus_id of
+    their parent FULL_STATIVE verb) to curated/stative_shims.csv in the same
     multi-row format as validated_reconstructable_roots.csv.
 
     For each corpus_id:
-    * All INF_EVENTFUL candidates sharing the same h_grade_root as the
-      parent FULL_STATIVE verb are written as candidate rows.
+    * INF_EVENTFUL candidates that pass validate_shim_compatibility() against
+      the parent FULL_STATIVE verb are written as candidate rows.
     * pipeline_selected = 'x' is marked on the pipeline's chosen candidate
-      (using sort_candidates).
+      (using sort_candidates on compatible candidates).
     * If a user override exists in curated_overrides, we validate it still
-      matches a candidate in the current run and mark user_selected = 'x'.
-      If the override can no longer be matched, we bail (exit 1).
+      matches a compatible candidate in the current run and mark
+      user_selected = 'x'.  If the override can no longer be matched
+      (config changed or failed compatibility), we bail (exit 1).
 
     Args:
         validated_verbs: all validated verbs from the current run (used to
-            find INF_EVENTFUL candidates).
+            find INF_EVENTFUL candidates and the FULL_STATIVE base verb).
         stative_corpus_ids: corpus_ids of FULL_STATIVE verbs that need shims.
         curated_overrides: mapping corpus_id -> override config dict as
             returned by load_stative_shims().
     """
     from dictionary_pipeline.paths import STATIVE_SHIMS_PATH
 
-    # Build a lookup: h_grade_root -> list of INF_EVENTFUL verbs
+    # Build lookups: h_grade_root -> list of INF_EVENTFUL verbs,
+    # and corpus_id -> FULL_STATIVE verb object (for compatibility checks).
     inf_eventful_by_h_grade: dict[str, list[DictionaryVerb]] = defaultdict(list)
     for verb in validated_verbs:
         if verb.meta.prediction == Prediction.INF_EVENTFUL:
             inf_eventful_by_h_grade[verb.morphology.h_grade_root].append(verb)
 
-    # Also need h_grade_root for each stative corpus_id from the canonical verbs
-    # We receive stative_corpus_ids but need the h_grade mapping — build it here
-    # by scanning validated_verbs for FULL_STATIVE entries.
     stative_h_grade: dict[str, str] = {}
+    stative_verbs: dict[str, DictionaryVerb] = {}
     for verb in validated_verbs:
         if verb.meta.prediction == Prediction.FULL_STATIVE:
             c_id = str(verb.meta.corpus_id)
             if c_id in stative_corpus_ids:
                 stative_h_grade[c_id] = verb.morphology.h_grade_root
+                stative_verbs[c_id] = verb
 
     all_rows: list[dict[str, Any]] = []
     missing_overrides: list[str] = []
 
     for c_id in sorted(stative_corpus_ids, key=lambda x: int(x) if x.isdigit() else 0):
         h_grade = stative_h_grade.get(c_id)
-        if h_grade is None:
+        stative_verb = stative_verbs.get(c_id)
+        if h_grade is None or stative_verb is None:
             continue
         shim_candidates = inf_eventful_by_h_grade.get(h_grade, [])
         if not shim_candidates:
             continue
 
-        # Determine pipeline selection
-        sorted_shims = sort_candidates(shim_candidates)
+        # Filter to candidates that pass compatibility rules (TASK-4.4).
+        compatible_candidates = [
+            c
+            for c in shim_candidates
+            if validate_shim_compatibility(stative_verb, c)[0]
+        ]
+
+        # Determine pipeline selection from compatible candidates only.
+        sorted_shims = sort_candidates(compatible_candidates)
         pipeline_choice = sorted_shims[0] if sorted_shims else None
 
-        # Determine user override match
+        # Determine user override match (must also be compatible).
         user_override = curated_overrides.get(c_id)
         user_chosen: DictionaryVerb | None = None
         if user_override:
-            for candidate in shim_candidates:
+            for candidate in compatible_candidates:
                 if match_shim_config(candidate, user_override):
                     user_chosen = candidate
                     break
             if user_chosen is None:
                 missing_overrides.append(c_id)
 
-        # Build candidate rows for this corpus_id
-        for candidate in shim_candidates:
+        # Build candidate rows for this corpus_id (compatible candidates only).
+        for candidate in compatible_candidates:
             row = candidate.original_data.copy()
             # Ensure corpus_id is present
             row["corpus_id"] = c_id
@@ -195,7 +248,9 @@ def save_stative_shims(
     if missing_overrides:
         print(
             "[ERROR] The following user-selected shim overrides no longer match any "
-            f"candidate in the current run: {missing_overrides}"
+            f"compatible candidate in the current run: {missing_overrides}. "
+            "The shim may have been invalidated by a change to the base verb's "
+            "configuration (middle_voice, plural_pronouns, or glottal_grade_root)."
         )
         print("Aborting save to prevent data loss.")
         exit(1)
@@ -485,19 +540,52 @@ def select_canonical_derivations() -> None:
                 candidate.original_data["user_selected"] = ""
                 candidate.original_data["pipeline_selected"] = ""
 
+            # Filter candidates to those that pass compatibility rules (TASK-4.4).
+            compatible_candidates = [
+                c
+                for c in shim_candidates
+                if validate_shim_compatibility(canonical_verb, c)[0]
+            ]
+
             chosen_shim = None
             # Check user selection override in curated/stative_shims.csv
             user_override = stative_shims_map.get(str(c_id))
             if user_override:
-                for candidate in shim_candidates:
+                for candidate in compatible_candidates:
                     if match_shim_config(candidate, user_override):
                         chosen_shim = candidate
                         chosen_shim.original_data["user_selected"] = "x"
                         break
 
+                if chosen_shim is None:
+                    # The user-selected row no longer matches any compatible candidate.
+                    # Determine whether it matched by config but failed compatibility,
+                    # or disappeared entirely, to give an informative error.
+                    config_matches = [
+                        c
+                        for c in shim_candidates
+                        if match_shim_config(c, user_override)
+                    ]
+                    if config_matches:
+                        _, mismatches = validate_shim_compatibility(
+                            canonical_verb, config_matches[0]
+                        )
+                        print(
+                            f"[ERROR] User-selected shim for corpus_id {c_id!r} is no "
+                            f"longer compatible with the base verb. "
+                            f"Mismatches: {mismatches}"
+                        )
+                    else:
+                        print(
+                            f"[ERROR] User-selected shim for corpus_id {c_id!r} no longer "
+                            f"matches any candidate in the current run "
+                            f"(derivation config changed)."
+                        )
+                    exit(1)
+
             if not chosen_shim:
-                # Fall back to pipeline choice using the shared sorting function
-                sorted_shims = sort_candidates(shim_candidates)
+                # Fall back to pipeline choice from compatible candidates only.
+                sorted_shims = sort_candidates(compatible_candidates)
                 if sorted_shims:
                     chosen_shim = sorted_shims[0]
                     chosen_shim.original_data["pipeline_selected"] = "x"
