@@ -71,6 +71,7 @@ export interface RootInfo {
 }
 
 export interface ValidatedRootRow {
+  originalIndex: number;
   meta: VerbMeta;
   curation: UserCurationInfo;
   aspect: AspectInfo;

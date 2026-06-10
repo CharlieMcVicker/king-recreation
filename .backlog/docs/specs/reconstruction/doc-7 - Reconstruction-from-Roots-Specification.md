@@ -84,3 +84,5 @@ Apply in order: `Distributive` -> `Partitive` -> `Translocutive`.
 1. **Candidate Sets**: The generator produces a set of all valid candidates for each form.
 2. **Validation**: Success is defined as the reference form existing within the set of candidates.
 3. **Consistency**: Verifies that the same class and root can generate all observed forms.
+4. **Canonical Derivations**: For canonical derivations, we are only interested in `FullStative` and `FullEventful` predictions. Shims (such as `InfEventful`) must not bloat these canonical selections. The pipeline and frontend selection interface should select/curate a canonical derivation from these full predictions first, and then apply shims if needed.
+
