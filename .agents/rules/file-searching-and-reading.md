@@ -43,6 +43,33 @@ ember find "authentication middleware" --json
 ember find "validate user token before request" --json
 ```
 
+Full command help:
+
+```
+Usage: ember find [OPTIONS] QUERY [PATH]
+
+  Search for code matching the query.
+
+  Performs hybrid search (BM25 + semantic embeddings). Can be run from any
+  subdirectory within the repository.
+
+  If PATH is provided, searches only within that path (relative to current
+  directory). Examples:     ember find "query"           # Search entire repo
+  ember find "query" .          # Search current directory subtree     ember
+  find "query" src/       # Search src/ subtree
+
+Options:
+  -k, --topk INTEGER     Number of results to return (default: from config).
+  --json                 Output results as JSON.
+  --in TEXT              Filter results by path glob (e.g., '*.py'). Cannot be
+                         used with PATH argument.
+  --lang TEXT            Filter results by language (e.g., 'py', 'ts').
+  --no-sync              Skip auto-sync check before searching (faster but may
+                         return stale results).
+  -C, --context INTEGER  Number of surrounding lines to show for each result.
+  --help                 Show this message and exit.
+```
+
 ---
 
 ## 2. Reading Code
@@ -54,6 +81,25 @@ Instead of reading entire files with standard file viewing tools, use `ember cat
 ```bash
 # Example reading a chunk
 ember cat <chunk_id>
+```
+
+Full command help:
+
+```
+Usage: ember cat [OPTIONS] IDENTIFIER
+
+  Display content of a search result by index or chunk ID.
+
+  Use after 'find' to view full chunk content. Can be run from any
+  subdirectory within the repository.
+
+  IDENTIFIER can be:   - Numeric index (e.g., '1', '2') from recent search
+  results   - Full chunk ID (e.g., 'blake3:a1b2c3d4...')   - Short hash prefix
+  (e.g., 'a1b2c3d4') - minimum 8 characters
+
+Options:
+  -C, --context INTEGER  Number of surrounding lines to show.
+  --help                 Show this message and exit.
 ```
 
 ---
