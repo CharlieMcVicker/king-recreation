@@ -3,10 +3,10 @@ id: TASK-4.3
 title: >-
   TASK-4.3 - Frontend: Restrict Candidates and Implement Diffed Comparison Table
   for Shims
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-05-29 14:07'
-updated_date: '2026-05-29 14:13'
+updated_date: '2026-06-10 17:07'
 labels: []
 dependencies:
   - TASK-4.1
@@ -32,12 +32,12 @@ Update the Next.js Review Stative Shims page and ReviewStativeShims component to
 
 ## Acceptance Criteria
 <!-- AC:BEGIN -->
-- [ ] #1 The Review Stative Shims UI shows a tabular comparison of all candidate shims.
-- [ ] #2 Redundant fields (where all candidates have the same value) can be hidden with a toggle button, exactly like the SelectRootsWorkflow component.
-- [ ] #3 Different values between the selected/focused candidate and other options are highlighted (diffed).
-- [ ] #4 Only shims matching the scoped configuration criteria for the base derivation are shown as options.
-- [ ] #5 Saving a selection writes an "x" to user_selected in the new csv format via /api/curated/stative-shims API route.
-- [ ] #6 UI features responsive, premium styling matching existing Next.js layout guidelines.
+- [x] #1 The Review Stative Shims UI shows a tabular comparison of all candidate shims.
+- [x] #2 Redundant fields (where all candidates have the same value) can be hidden with a toggle button, exactly like the SelectRootsWorkflow component.
+- [x] #3 Different values between the selected/focused candidate and other options are highlighted (diffed).
+- [x] #4 Only shims matching the scoped configuration criteria for the base derivation are shown as options.
+- [x] #5 Saving a selection writes an "x" to user_selected in the new csv format via /api/curated/stative-shims API route.
+- [x] #6 UI features responsive, premium styling matching existing Next.js layout guidelines.
 <!-- AC:END -->
 
 ## Implementation Plan
@@ -53,3 +53,9 @@ Update the Next.js Review Stative Shims page and ReviewStativeShims component to
 4. Update the endpoint `/api/curated/stative-shims` in `root-based-dict/src/app/api/curated/stative-shims/route.ts` to receive selection updates and mark `user_selected = "x"` in the new csv format.
 5. Manually verify the UI locally in the browser, testing the side-by-side table, toggle button, keyboard shortcuts, and saving selections.
 <!-- SECTION:PLAN:END -->
+
+## Final Summary
+
+<!-- SECTION:FINAL_SUMMARY:BEGIN -->
+Implemented restricted shim candidates list in page.tsx and designed a premium, side-by-side diffed comparison table in ReviewStativeShims.tsx with a redundant rows toggle, keyboard navigation, and unbind support.
+<!-- SECTION:FINAL_SUMMARY:END -->

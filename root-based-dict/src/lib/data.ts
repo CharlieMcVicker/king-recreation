@@ -881,7 +881,7 @@ export async function getStativeShims(): Promise<StativeShimRow[]> {
  */
 export async function updateStativeShim(
   corpusId: number,
-  rowIndex: number,
+  rowIndex: number | null,
 ): Promise<void> {
   const filePath = path.join(CONNECTIONS_DATA_DIR, "stative_shims.csv");
   if (!fs.existsSync(filePath)) {
@@ -908,10 +908,12 @@ export async function updateStativeShim(
     throw new Error(`corpus_id ${corpusId} not found in stative_shims.csv`);
   }
 
-  if (rowIndex < 0 || rowIndex >= indices.length) {
-    throw new Error(
-      `Invalid rowIndex ${rowIndex} for corpusId ${corpusId}. Found ${indices.length} rows.`,
-    );
+  if (rowIndex !== null && rowIndex !== -1) {
+    if (rowIndex < 0 || rowIndex >= indices.length) {
+      throw new Error(
+        `Invalid rowIndex ${rowIndex} for corpusId ${corpusId}. Found ${indices.length} rows.`,
+      );
+    }
   }
 
   // Clear existing selections for this corpus_id
@@ -919,9 +921,11 @@ export async function updateStativeShim(
     rows[idx].user_selected = "";
   });
 
-  // Set new selection
-  const targetGlobalIndex = indices[rowIndex];
-  rows[targetGlobalIndex].user_selected = "x";
+  if (rowIndex !== null && rowIndex !== -1) {
+    // Set new selection
+    const targetGlobalIndex = indices[rowIndex];
+    rows[targetGlobalIndex].user_selected = "x";
+  }
 
   // Write back
   const csv = Papa.unparse(rows, {
