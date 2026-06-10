@@ -13,9 +13,9 @@ export async function POST(request: Request) {
       );
     }
 
-    if (typeof rowIndex !== "number") {
+    if (rowIndex !== null && rowIndex !== undefined && typeof rowIndex !== "number") {
       return NextResponse.json(
-        { error: "Invalid request body. rowIndex is required as a number." },
+        { error: "Invalid request body. rowIndex must be a number or null." },
         { status: 400 },
       );
     }

@@ -28,11 +28,33 @@ export default async function ReviewStativeShimsPage() {
         return;
       }
 
-      const shims = allValidatedRows.filter(
-        (r) =>
-          r.meta.prediction === "InfEventful" &&
-          r.roots.h_grade === canonical.roots.h_grade
-      );
+      const shims = allValidatedRows.filter((r) => {
+        if (r.meta.prediction !== "InfEventful") return false;
+        if (r.roots.h_grade !== canonical.roots.h_grade) return false;
+
+        // glottal_grade_root (g_grade): must match unless either side is null/empty/undefined
+        const baseG = canonical.roots.g_grade;
+        const shimG = r.roots.g_grade;
+        if (
+          baseG !== null && baseG !== undefined && baseG !== "" &&
+          shimG !== null && shimG !== undefined && shimG !== "" &&
+          baseG !== shimG
+        ) {
+          return false;
+        }
+
+        // middle_voice: must match
+        if (canonical.config.pron.middle_voice !== r.config.pron.middle_voice) {
+          return false;
+        }
+
+        // plural_pronouns (plural): must match
+        if (canonical.config.pron.plural_pronouns !== r.config.pron.plural_pronouns) {
+          return false;
+        }
+
+        return true;
+      });
       
       // Find currently selected shim in stative_shims.csv
       const currentShim = currentShims.find((s) => Number(s.corpus_id) === cid);

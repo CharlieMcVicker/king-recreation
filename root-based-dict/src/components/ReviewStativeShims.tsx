@@ -12,6 +12,8 @@ import {
   ExternalLink,
   Save,
   Trash2,
+  Eye,
+  EyeOff,
 } from "lucide-react";
 import Link from "next/link";
 import { ConfigFlags } from "@/app/reconstructable-verbs/ConfigFlags";
@@ -37,6 +39,20 @@ export default function ReviewStativeShims({
   const [showAll, setShowAll] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
   const [selectedShimIndex, setSelectedShimIndex] = useState<number | null>(null);
+  const [showAllRows, setShowAllRows] = useState(false);
+
+  // Filters state for dropdowns
+  const [filters, setFilters] = useState<{
+    verbClass: string | null;
+    use3rdPersonObject: boolean | null;
+    translocutiveImpOnly: boolean | null;
+    partitive: boolean | null;
+  }>({
+    verbClass: null,
+    use3rdPersonObject: null,
+    translocutiveImpOnly: null,
+    partitive: null,
+  });
 
   const filteredVerbs = useMemo(() => {
     if (showAll) return verbs;
@@ -45,16 +61,163 @@ export default function ReviewStativeShims({
 
   const current = filteredVerbs[currentIndex];
 
-  // Set the selected shim index when current verb changes
+  // Reset filters when changing current verb
   useEffect(() => {
-    if (!current) {
+    setFilters({
+      verbClass: null,
+      use3rdPersonObject: null,
+      translocutiveImpOnly: null,
+      partitive: null,
+    });
+  }, [currentIndex]);
+
+  const getValue = (obj: any, path: string) => {
+    return path.split(".").reduce((acc, part) => acc && acc[part], obj);
+  };
+
+  const rows = useMemo(
+    () => [
+      { label: "Class", key: "aspect.verb_class" },
+      { label: "Stem Type", key: "config.pron.stem_type" },
+      { label: "Prediction", key: "meta.prediction" },
+      { label: "H Grade", key: "roots.h_grade" },
+      { label: "G Grade", key: "roots.g_grade" },
+      { label: "Morpheme", key: "aspect.post_root_morpheme" },
+      { label: "Stative", key: "aspect.stative" },
+      { label: "Metathesis", key: "metathesis_involved" },
+      { label: "Set A/B", key: "config.pron.set_type" },
+      { label: "Allow H Meta", key: "config.pron.allow_h_metathesis" },
+      { label: "Middle Voice", key: "config.pron.middle_voice" },
+      { label: "MV H Meta", key: "config.pron.middle_voice_h_metathesis" },
+      { label: "Plural", key: "config.pron.plural_pronouns" },
+      { label: "Ka Variant", key: "config.pron.use_ka_variant" },
+      { label: "Aki 1st", key: "config.pron.use_aki_for_1st_set_b" },
+      { label: "Uwa V", key: "config.pron.uwa_replaces_v" },
+      { label: "3rd Obj", key: "config.pron.use_3rd_person_object" },
+      { label: "Transloc", key: "config.pre.translocutive" },
+      { label: "Transloc (Imp)", key: "config.pre.translocutiveImpOnly" },
+      { label: "Partitive", key: "config.pre.partitive" },
+      { label: "Distributive", key: "config.pre.distributive" },
+    ],
+    [],
+  );
+
+  const redundantRowKeys = useMemo(() => {
+    if (!current || current.shims.length <= 1) return new Set<string>();
+
+    const redundant = new Set<string>();
+    rows.forEach((row) => {
+      const firstVal = getValue(current.shims[0], row.key);
+      const allSame = current.shims.every(
+        (d) => getValue(d, row.key) === firstVal,
+      );
+      if (allSame) {
+        redundant.add(row.key);
+      }
+    });
+    return redundant;
+  }, [current, rows]);
+
+  const visibleRows = showAllRows
+    ? rows
+    : rows.filter((r) => !redundantRowKeys.has(r.key));
+
+  const renderCell = (val: any) => {
+    if (typeof val === "boolean") {
+      return val ? "Yes" : "No";
+    }
+    return val || "-";
+  };
+
+  const filteredShims = useMemo(() => {
+    if (!current) return [];
+    return current.shims.filter((shim) => {
+      if (filters.verbClass !== null && getValue(shim, "aspect.verb_class") !== filters.verbClass) {
+        return false;
+      }
+      if (
+        filters.use3rdPersonObject !== null &&
+        getValue(shim, "config.pron.use_3rd_person_object") !== filters.use3rdPersonObject
+      ) {
+        return false;
+      }
+      if (
+        filters.translocutiveImpOnly !== null &&
+        getValue(shim, "config.pre.translocutiveImpOnly") !== filters.translocutiveImpOnly
+      ) {
+        return false;
+      }
+      if (filters.partitive !== null && getValue(shim, "config.pre.partitive") !== filters.partitive) {
+        return false;
+      }
+      return true;
+    });
+  }, [current, filters]);
+
+  const filterFields = useMemo(() => [
+    { label: "Class", path: "aspect.verb_class", stateKey: "verbClass" as const },
+    { label: "3rd Obj", path: "config.pron.use_3rd_person_object", stateKey: "use3rdPersonObject" as const },
+    { label: "Transloc (Imp)", path: "config.pre.translocutiveImpOnly", stateKey: "translocutiveImpOnly" as const },
+    { label: "Partitive", path: "config.pre.partitive", stateKey: "partitive" as const },
+  ], []);
+
+  const getFieldOptions = (path: string) => {
+    if (!current) return [];
+    const values = current.shims.map((shim) => getValue(shim, path));
+    const unique = Array.from(new Set(values)).filter((v) => v !== undefined && v !== null);
+    unique.sort((a, b) => {
+      if (typeof a === "boolean" && typeof b === "boolean") {
+        return a === b ? 0 : a ? -1 : 1; // true first
+      }
+      return String(a).localeCompare(String(b));
+    });
+    return unique;
+  };
+
+  const countRemaining = (fieldStateKey: string, value: any) => {
+    if (!current) return 0;
+    return current.shims.filter((shim) => {
+      for (const field of filterFields) {
+        if (field.stateKey === fieldStateKey) {
+          if (getValue(shim, field.path) !== value) {
+            return false;
+          }
+        } else {
+          const filterVal = filters[field.stateKey];
+          if (filterVal !== null && getValue(shim, field.path) !== filterVal) {
+            return false;
+          }
+        }
+      }
+      return true;
+    }).length;
+  };
+
+  const countAllRemaining = (fieldStateKey: string) => {
+    if (!current) return 0;
+    return current.shims.filter((shim) => {
+      for (const field of filterFields) {
+        if (field.stateKey !== fieldStateKey) {
+          const filterVal = filters[field.stateKey];
+          if (filterVal !== null && getValue(shim, field.path) !== filterVal) {
+            return false;
+          }
+        }
+      }
+      return true;
+    }).length;
+  };
+
+  // Set the selected shim index when current verb changes or filteredShims changes
+  useEffect(() => {
+    if (!current || filteredShims.length === 0) {
       setSelectedShimIndex(null);
       return;
     }
 
     if (current.currentShim) {
-      // Find which shim in current.shims matches current.currentShim config
-      const idx = current.shims.findIndex((s) => {
+      // Find which shim in filteredShims matches current.currentShim config
+      const idx = filteredShims.findIndex((s) => {
         return (
           s.meta.prediction === current.currentShim.prediction &&
           s.aspect.verb_class === current.currentShim.class &&
@@ -77,15 +240,18 @@ export default function ReviewStativeShims({
           s.config.pre.distributive === current.currentShim.distributive
         );
       });
-      setSelectedShimIndex(idx !== -1 ? idx : null);
-    } else {
-      // Fallback to pipeline choice (the one with pipeline_selected === "x" or true)
-      const pipeIdx = current.shims.findIndex(
-        (s) => s.curation.pipeline_selected === "x" || s.curation.pipeline_selected === true
-      );
-      setSelectedShimIndex(pipeIdx !== -1 ? pipeIdx : 0);
+      if (idx !== -1) {
+        setSelectedShimIndex(idx);
+        return;
+      }
     }
-  }, [current]);
+
+    // Fallback to pipeline choice (the one with pipeline_selected === "x" or true)
+    const pipeIdx = filteredShims.findIndex(
+      (s) => s.curation.pipeline_selected === "x" || s.curation.pipeline_selected === true
+    );
+    setSelectedShimIndex(pipeIdx !== -1 ? pipeIdx : 0);
+  }, [current, filteredShims]);
 
   const handleSaveShim = async (shimToSave: any | null) => {
     if (!current) return;
@@ -151,7 +317,7 @@ export default function ReviewStativeShims({
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.target instanceof HTMLInputElement) return;
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLSelectElement) return;
 
       if (e.key === "ArrowLeft") {
         setCurrentIndex((prev) => Math.max(0, prev - 1));
@@ -159,16 +325,30 @@ export default function ReviewStativeShims({
         setCurrentIndex((prev) =>
           Math.min(filteredVerbs.length - 1, prev + 1),
         );
+      } else if (e.key === "ArrowUp" || e.key === "k") {
+        if (current && filteredShims.length > 0) {
+          setSelectedShimIndex((prev) => {
+            if (prev === null) return 0;
+            return Math.max(0, prev - 1);
+          });
+        }
+      } else if (e.key === "ArrowDown" || e.key === "j") {
+        if (current && filteredShims.length > 0) {
+          setSelectedShimIndex((prev) => {
+            if (prev === null) return 0;
+            return Math.min(filteredShims.length - 1, prev + 1);
+          });
+        }
       } else if (e.key === "Enter") {
-        if (current && selectedShimIndex !== null) {
-          handleSaveShim(current.shims[selectedShimIndex]);
+        if (current && selectedShimIndex !== null && filteredShims[selectedShimIndex]) {
+          handleSaveShim(filteredShims[selectedShimIndex]);
         }
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [currentIndex, filteredVerbs, selectedShimIndex, current]);
+  }, [currentIndex, filteredVerbs, selectedShimIndex, current, filteredShims]);
 
   useEffect(() => {
     setCurrentIndex(0);
@@ -361,7 +541,7 @@ export default function ReviewStativeShims({
         </div>
 
         {/* RIGHT COLUMN: Infinitive Shim candidates */}
-        <div className="md:col-span-7 bg-white dark:bg-zinc-900 rounded-3xl p-8 border border-zinc-200 dark:border-zinc-800 shadow-sm relative z-[1] space-y-6">
+        <div className="md:col-span-7 bg-white dark:bg-zinc-900 rounded-3xl p-8 border border-zinc-200 dark:border-zinc-800 shadow-sm relative z-[1] space-y-6 flex flex-col">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="bg-emerald-50 dark:bg-emerald-900/20 p-2 rounded-lg text-emerald-500">
@@ -372,114 +552,221 @@ export default function ReviewStativeShims({
               </h2>
             </div>
 
-            {current.currentShim && (
+            <div className="flex items-center gap-2">
               <button
-                onClick={() => handleSaveShim(null)}
-                disabled={isSaving}
-                className="flex items-center gap-1 text-xs text-rose-500 hover:text-rose-600 font-bold border border-rose-200 dark:border-rose-800 px-3 py-1.5 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/20 transition-all"
+                onClick={() => setShowAllRows(!showAllRows)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition-all ${
+                  showAllRows
+                    ? "bg-zinc-100 dark:bg-zinc-800 border-zinc-300 dark:border-zinc-700 text-zinc-900 dark:text-zinc-100"
+                    : "border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100"
+                }`}
               >
-                <Trash2 className="w-3.5 h-3.5" />
-                Unbind Shim
+                {showAllRows ? (
+                  <Eye className="w-3.5 h-3.5" />
+                ) : (
+                  <EyeOff className="w-3.5 h-3.5" />
+                )}
+                {showAllRows ? "Showing All" : "Hiding Shared"}
+                <span className="opacity-60 font-normal">
+                  ({redundantRowKeys.size} hidden)
+                </span>
               </button>
-            )}
+
+              {current.currentShim && (
+                <button
+                  onClick={() => handleSaveShim(null)}
+                  disabled={isSaving}
+                  className="flex items-center gap-1 text-xs text-rose-500 hover:text-rose-600 font-bold border border-rose-200 dark:border-rose-800 px-3 py-1.5 rounded-xl hover:bg-rose-50 dark:hover:bg-rose-950/20 transition-all"
+                >
+                  <Trash2 className="w-3.5 h-3.5" />
+                  Unbind
+                </button>
+              )}
+            </div>
           </div>
 
-          <div className="space-y-4 max-h-[50vh] overflow-y-auto pr-2">
-            {current.shims.length === 0 ? (
-              <div className="p-8 text-center text-zinc-500 bg-zinc-50 dark:bg-zinc-800/20 rounded-2xl border border-zinc-100 dark:border-zinc-800">
-                No InfEventful shims found matching root.
-              </div>
-            ) : (
-              current.shims.map((shim, idx) => {
-                const isSelected = selectedShimIndex === idx;
-                const isSaved =
-                  current.currentShim &&
-                  shim.meta.prediction === current.currentShim.prediction &&
-                  shim.aspect.verb_class === current.currentShim.class &&
-                  shim.roots.h_grade === current.currentShim.h_grade &&
-                  shim.roots.g_grade === current.currentShim.g_grade &&
-                  shim.aspect.post_root_morpheme === current.currentShim.post_root_morpheme &&
-                  shim.config.pron.set_type === current.currentShim.set_a_b &&
-                  shim.config.pron.stem_type === current.currentShim.stem_type;
-
-                const isPipelineSelected =
-                  shim.curation.pipeline_selected === "x" || shim.curation.pipeline_selected === true;
-
-                // Extract infinitive segmented form
-                let infSeg = "-";
-                if (shim.segmented_forms) {
-                  try {
-                    const parsedSeg = typeof shim.segmented_forms === "string"
-                      ? JSON.parse(shim.segmented_forms)
-                      : shim.segmented_forms;
-                    infSeg = parsedSeg.infinitive || "-";
-                  } catch (e) {}
-                }
+          {/* Dropdown Filters for Choices (shown when options > 5) */}
+          {current.shims.length > 5 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 p-5 bg-zinc-50 dark:bg-zinc-900/50 rounded-2xl border border-zinc-200 dark:border-zinc-800">
+              {filterFields.map((field) => {
+                const options = getFieldOptions(field.path);
+                const currentValue = filters[field.stateKey];
+                const allCount = countAllRemaining(field.stateKey);
 
                 return (
-                  <div
-                    key={idx}
-                    onClick={() => setSelectedShimIndex(idx)}
-                    className={`p-5 rounded-2xl border-2 cursor-pointer transition-all flex flex-col gap-4 relative ${
-                      isSelected
-                        ? "border-indigo-500 bg-indigo-50/10 dark:bg-indigo-900/10"
-                        : "border-zinc-200 dark:border-zinc-800 bg-white hover:bg-zinc-50 dark:bg-zinc-900 dark:hover:bg-zinc-800/50"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        {isSelected ? (
-                          <CheckCircle2 className="w-5 h-5 text-indigo-500" />
-                        ) : (
-                          <Circle className="w-5 h-5 text-zinc-300" />
-                        )}
-                        <span className="font-mono font-bold text-lg">
-                          {getCorpusForm(dictionary, Number(shim.meta.entry_no), "infinitive") || "-"}
-                        </span>
-                      </div>
-
-                      <div className="flex gap-2">
-                        {isSaved && (
-                          <span className="px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-400 text-[10px] font-black uppercase tracking-wider">
-                            Bound Choice
-                          </span>
-                        )}
-                        {isPipelineSelected && (
-                          <span className="px-2 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-400 text-[10px] font-black uppercase tracking-wider">
-                            Pipeline Default
-                          </span>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs">
-                      <div>
-                        <span className="text-zinc-400 uppercase tracking-wide text-[9px] font-bold block">
-                          Class
-                        </span>
-                        <span className="font-semibold">{shim.aspect.verb_class}</span>
-                      </div>
-                      <div>
-                        <span className="text-zinc-400 uppercase tracking-wide text-[9px] font-bold block">
-                          Morpheme
-                        </span>
-                        <span className="font-semibold">{shim.aspect.post_root_morpheme || "-"}</span>
-                      </div>
-                      <div>
-                        <span className="text-zinc-400 uppercase tracking-wide text-[9px] font-bold block">
-                          Segmented Inf
-                        </span>
-                        <span className="font-mono text-indigo-500 dark:text-indigo-400 font-bold truncate block">
-                          {infSeg}
-                        </span>
-                      </div>
-                      <div className="flex items-end justify-end">
-                        <ConfigFlags config={shim.config} />
-                      </div>
-                    </div>
+                  <div key={field.stateKey} className="flex flex-col gap-1.5">
+                    <label className="text-[10px] font-black uppercase tracking-wider text-zinc-400">
+                      {field.label}
+                    </label>
+                    <select
+                      value={currentValue === null ? "all" : String(currentValue)}
+                      onChange={(e) => {
+                        const val = e.target.value;
+                        setFilters((prev) => ({
+                          ...prev,
+                          [field.stateKey]:
+                            val === "all" ? null : val === "true" ? true : val === "false" ? false : val,
+                        }));
+                      }}
+                      className="bg-white dark:bg-zinc-900 text-xs font-bold text-zinc-800 dark:text-zinc-200 border border-zinc-200 dark:border-zinc-800 rounded-xl p-2.5 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all cursor-pointer"
+                    >
+                      <option value="all">All ({allCount})</option>
+                      {options.map((opt) => {
+                        const displayVal = typeof opt === "boolean" ? (opt ? "Yes" : "No") : String(opt);
+                        const count = countRemaining(field.stateKey, opt);
+                        return (
+                          <option key={String(opt)} value={String(opt)}>
+                            {displayVal} ({count})
+                          </option>
+                        );
+                      })}
+                    </select>
                   </div>
                 );
-              })
+              })}
+            </div>
+          )}
+
+          <div className="overflow-x-auto border border-zinc-200 dark:border-zinc-800 rounded-2xl">
+            {filteredShims.length === 0 ? (
+              <div className="p-8 text-center text-zinc-500 bg-zinc-50 dark:bg-zinc-800/20 rounded-2xl">
+                No shims match current filters.
+              </div>
+            ) : (
+              <table className="w-full text-left border-collapse table-fixed min-w-[500px]">
+                <thead>
+                  <tr className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800">
+                    <th className="w-32 p-3 text-xs font-bold uppercase tracking-wider text-zinc-400">
+                      Feature
+                    </th>
+                    {filteredShims.map((shim, idx) => {
+                      const isSelected = idx === selectedShimIndex;
+                      const isSaved =
+                        current.currentShim &&
+                        shim.meta.prediction === current.currentShim.prediction &&
+                        shim.aspect.verb_class === current.currentShim.class &&
+                        shim.roots.h_grade === current.currentShim.h_grade &&
+                        shim.roots.g_grade === current.currentShim.g_grade &&
+                        shim.aspect.post_root_morpheme === current.currentShim.post_root_morpheme &&
+                        shim.config.pron.set_type === current.currentShim.set_a_b &&
+                        shim.config.pron.stem_type === current.currentShim.stem_type;
+
+                      const isPipelineSelected =
+                        shim.curation.pipeline_selected === "x" || shim.curation.pipeline_selected === true;
+
+                      return (
+                        <th
+                          key={idx}
+                          onClick={() => setSelectedShimIndex(idx)}
+                          className={`p-3 cursor-pointer transition-colors border-l border-zinc-200 dark:border-zinc-800 ${
+                            isSelected
+                              ? "bg-indigo-50/50 dark:bg-indigo-900/10"
+                              : "hover:bg-zinc-100 dark:hover:bg-zinc-800/50"
+                          }`}
+                        >
+                          <div className="flex flex-col gap-1">
+                            <span
+                              className={`text-[10px] font-black uppercase tracking-wider ${
+                                isSelected
+                                  ? "text-indigo-600 dark:text-indigo-400"
+                                  : "text-zinc-500"
+                              }`}
+                            >
+                              Choice {idx + 1}
+                            </span>
+                            <span className="font-mono font-bold text-sm text-zinc-950 dark:text-zinc-100 text-wrap break-words">
+                              {getCorpusForm(dictionary, Number(shim.meta.entry_no), "infinitive") || "-"}
+                            </span>
+                            <div className="flex flex-wrap gap-1 mt-1">
+                              {isSaved && (
+                                <span className="px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-400 text-[8px] font-black uppercase tracking-wider">
+                                  Bound
+                                </span>
+                              )}
+                              {isPipelineSelected && (
+                                <span className="px-1.5 py-0.5 rounded bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-400 text-[8px] font-black uppercase tracking-wider">
+                                  Default
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </th>
+                      );
+                    })}
+                  </tr>
+                </thead>
+                <tbody>
+                  {visibleRows.map((row) => (
+                    <tr
+                      key={row.key}
+                      className="group hover:bg-zinc-50 dark:hover:bg-zinc-800/30 border-b border-zinc-100 dark:border-zinc-800/50"
+                    >
+                      <td className="p-2.5 text-xs font-bold text-zinc-400">
+                        {row.label}
+                      </td>
+                      {filteredShims.map((shim, devIdx) => {
+                        const val = getValue(shim, row.key);
+                        const selectedShim = filteredShims[selectedShimIndex ?? 0];
+                        const selectedVal = selectedShim
+                          ? getValue(selectedShim, row.key)
+                          : undefined;
+                        const isDiff =
+                          devIdx !== selectedShimIndex &&
+                          selectedShimIndex !== null &&
+                          val !== selectedVal;
+                        const isFocusColumn = devIdx === selectedShimIndex;
+
+                        return (
+                          <td
+                            key={devIdx}
+                            onClick={() => setSelectedShimIndex(devIdx)}
+                            className={`p-2.5 text-xs transition-colors cursor-pointer border-l border-zinc-100 dark:border-zinc-800/50 ${
+                              isFocusColumn
+                                ? "bg-indigo-50/20 dark:bg-indigo-900/5 font-semibold text-zinc-900 dark:text-zinc-100"
+                                : "text-zinc-650 dark:text-zinc-400"
+                            } ${isDiff ? "bg-amber-50 dark:bg-amber-900/10 text-amber-900 dark:text-amber-200" : ""}`}
+                          >
+                            {renderCell(val)}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+
+                  {/* Segmented Form Row */}
+                  <tr className="bg-zinc-50 dark:bg-zinc-950 border-b border-zinc-200 dark:border-zinc-800">
+                    <td className="p-2.5 text-xs font-bold text-zinc-400 italic">
+                      Segmented Inf
+                    </td>
+                    {filteredShims.map((shim, devIdx) => {
+                      let infSeg = "-";
+                      if (shim.segmented_forms) {
+                        try {
+                          const parsedSeg = typeof shim.segmented_forms === "string"
+                            ? JSON.parse(shim.segmented_forms)
+                            : shim.segmented_forms;
+                          infSeg = parsedSeg.infinitive || "-";
+                        } catch (e) {}
+                      }
+                      const isFocusColumn = devIdx === selectedShimIndex;
+
+                      return (
+                        <td
+                          key={devIdx}
+                          onClick={() => setSelectedShimIndex(devIdx)}
+                          className={`p-2.5 text-xs font-mono transition-colors cursor-pointer border-l border-zinc-200 dark:border-zinc-800 ${
+                            isFocusColumn
+                              ? "bg-indigo-50/30 dark:bg-indigo-900/10 font-bold text-indigo-600 dark:text-indigo-400"
+                              : "text-zinc-600 dark:text-zinc-400"
+                          }`}
+                        >
+                          {infSeg}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                </tbody>
+              </table>
             )}
           </div>
         </div>
@@ -489,11 +776,11 @@ export default function ReviewStativeShims({
       <div className="fixed bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl p-4 rounded-3xl border border-zinc-200 dark:border-zinc-800 shadow-2xl z-20 w-full max-w-xl">
         <button
           onClick={() => {
-            if (selectedShimIndex !== null) {
-              handleSaveShim(current.shims[selectedShimIndex]);
+            if (selectedShimIndex !== null && filteredShims[selectedShimIndex]) {
+              handleSaveShim(filteredShims[selectedShimIndex]);
             }
           }}
-          disabled={isSaving || selectedShimIndex === null}
+          disabled={isSaving || selectedShimIndex === null || !filteredShims[selectedShimIndex]}
           className="flex-1 h-14 bg-indigo-600 hover:bg-indigo-500 text-white rounded-2xl font-black uppercase tracking-widest flex items-center justify-center gap-3 transition-all active:scale-95 shadow-xl disabled:opacity-50"
         >
           {isSaving ? (
