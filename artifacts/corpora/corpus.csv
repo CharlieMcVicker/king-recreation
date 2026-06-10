@@ -146,7 +146,6 @@ corpus_id,entry_no,definition,prediction,present,present_1sg,imperfective,perfec
 214,220,it’s becoming frosty (refers to the ground),InfEventful,ayhahthvhvhska,,ayhahthvhvhsko'i,uyhahthvnhv'i,,uyhahthvthti
 215,221,he/she is calling him/her,FullEventful,ayhaniha,tsiyaniha,ayhanihsko'i,uyhanvhv'i,hiyana,uyhanhti
 216,222,he/she is taking it somewhere by hand,FullEventful,ayheka,tsiyeka,ayheko'i,uyhvhsv'i,hiyhuka,uyhvhsti
-217,223,he/she is holding it in his/her hand,FullEventful,ayheha,tsiyeha,ayheho'i,ayhehv'i,,
 217,223,he/she is holding it in his/her hand,FullStative,ayheha,tsiyeha,ayheho'i,ayhehv'i,,
 218,224,he/she is quilting it,FullEventful,ayhehkalhvhska,tsiyehkalhvhska,ayhehkalhvhsko'i,uyhehkalhanv'i,hiyhehkalhvka,uyhehkalhti
 219,225,he/she is making an incision,FullEventful,ayhelhoha,tsiyelhoha,ayhelhoho'i,uyhelhalv'i,hiyelaka,uyhelhsti
@@ -238,7 +237,6 @@ corpus_id,entry_no,definition,prediction,present,present_1sg,imperfective,perfec
 361,368,he/she is attempting it,FullEventful,anelhtiha,kanelhtiha,anelhtihsko'i,unelhthanv'i,hanelhta,unelhtohti
 362,369,he is getting married,FullEventful,anelati'a,kanelati'a,anelatihsko'i,unelatv'i,hanelata,unelatihsti
 363,370,he/she is remembering him/her,FullEventful,anhtati'a,tsiyanvtati'a,anhtatihsko'i,unhtatv'i,hiyanvtata,unhtatihsti
-365,372,they are standing (refers to a congregation),FullEventful,anitona'a,otsitona'a,anitona'o'i,anitona'v'i,,
 365,372,they are standing (refers to a congregation),FullStative,anitona'a,otsitona'a,anitona'o'i,anitona'v'i,,
 366,373,they are asleep (refers to more than two),FullEventful,anilhina,otsilhina,anilhino'i,,,
 366,373,they are asleep (refers to more than two),FullStative,anilhina,otsilhina,anilhino'i,,,
@@ -439,17 +437,13 @@ corpus_id,entry_no,definition,prediction,present,present_1sg,imperfective,perfec
 723,741,he/she is called,InfEventful,tuto'a,takwato'a,tuto'o'i,tuto'v'i,tetsato'ehsti,tsutohsti
 724,742,he/she is staggering,FullEventful,tutokhtiha,takwatokhtiha,tutokhtihsko'i,tutokhthanv'i,titsatokhta,tsutokhtohti
 725,743,he/she is getting a rash,FullEventful,tukwenothihska,takikwenothihska,tukwenothihsko'i,tukwenothihsv'i,titsakwenothihi,tsukwenothihsti
-726,744,he/she has horns,FullEventful,tulhka,takilhka,tulhko'i,tulhkv'i,tetsalhkehsti,
 726,744,he/she has horns,FullStative,tulhka,takilhka,tulhko'i,tulhkv'i,tetsalhkehsti,
 727,745,he/she is sneezing,FullEventful,tuyhvhstoyhska,takhiyvhstoyhska,tuyhvhstoyhsko'i,tuyhvhstoyhv'i,titshayvhstoyha,tsuyhvhstoyhsti
 728,746,he/she is vomiting,FullEventful,tukhstiha,takikhstiha,tukhstihsko'i,tukhsthanv'i,titsakhsta,tsukhstohti
-729,747,he/she is wearing glasses,FullEventful,tukhthinvtha,takwakhthinvtha,tukhthinvtho'i,tukhthinvthv'i,tetsakhthinvthehsti,tsukhthinvthti
 729,747,he/she is wearing glasses,FullStative,tukhthinvtha,takwakhthinvtha,tukhthinvtho'i,tukhthinvthv'i,tetsakhthinvthehsti,tsukhthinvthti
-729,747,he/she is wearing glasses,FullStative,tukhthinvtha,takwakhthinvtha,tukhthinvtho'i,tukhthinvthv'i,tetsakhthinvthehsti,tsukhthinvthti
-730,748,he/she is wearing shoes,FullEventful,tulahsulha,takwalahsulha,tulahsulho'i,tulahsulhv'i,tetsalahsulhehsti,
+729,747,he/she is wearing glasses,InfEventful,tukhthinvtha,takwakhthinvtha,tukhthinvtho'i,tukhthinvthv'i,tetsakhthinvthehsti,tsukhthinvthti
 730,748,he/she is wearing shoes,FullStative,tulahsulha,takwalahsulha,tulahsulho'i,tulahsulhv'i,tetsalahsulhehsti,
 732,750,he/she is wearing gloves,FullEventful,tuliyehsula,takwaliyehsula,tuliyehsulo'i,tuliyehsulv'i,thaliyehsulvka,tsuliyehsuloti
-733,751,he/she is wearing socks,FullEventful,tuliyoha,takwaliyoha,tuliyoho'i,tuliyohv'i,tetsaliyohehsti,
 733,751,he/she is wearing socks,FullStative,tuliyoha,takwaliyoha,tuliyoho'i,tuliyohv'i,tetsaliyohehsti,
 735,753,he/she is working,FullEventful,tulvwhihstaneha,takilvwhihstaneha,tulvwhihstaneho'i,tulvwhihstanelv'i,titsalvwhihstahsi,tsulvwhihstanehti
 737,755,he/she is making footsteps,FullEventful,tuhstanoyhvhka,takwahstanoyhvhka,tuhstanoyhvhko'i,tuhstanoyhvhkv'i,titsahstanoyhvla,tsuhstanoyhvlhihsti
@@ -487,6 +481,7 @@ corpus_id,entry_no,definition,prediction,present,present_1sg,imperfective,perfec
 812,842,he/she is sleepy,FullEventful,kalhvhska,tsi'lvhska,kalhvhsko'i,ulhvnhv'i,hilhvna,ulhvnhti
 813,843,he/she is taking it somewhere by hand (refers to a flexible object),FullEventful,kanheka,tsi'neka,kanheko'i,unhvhsv'i,hinhuka,unhvhsti
 814,844,he/she is holding it (refers to a flexible object),FullStative,kanheha,tsi'neha,kanhehv'i,kanheho'i,hinhehehsti,
+814,844,he/she is holding it (refers to a flexible object),InfEventful,kanheha,tsi'neha,kanhehv'i,kanheho'i,hinhehehsti,
 815,845,he/she is handling it (refers to a flexible object),FullEventful,kanhitoha,tsi'nitoha,kanhitoho'i,unhitolv'i,hinhita,unhitahsti
 818,848,he/she is eating it (refers to a flexible object),FullEventful,kayhe'a,tsiyaye'a,kayhehsko'i,uwayha'v'i,hiyayaka,uwayhehsti
 820,850,he/she is ripping it,FullEventful,katsakaliha,tsitsakali'a,katsakalihsko'i,uwatsakalvhv'i,hitsakala,uwatsakalhti
@@ -840,7 +835,6 @@ corpus_id,entry_no,definition,prediction,present,present_1sg,imperfective,perfec
 1745,1811,he/she is hungry,FullEventful,uyohsiha,akiyohsiha,uyohsihsko'i,uyohsihskv'i,tsayohsihsa,uyohsihsohti
 1754,1823,he/she is sending on object (refers to a long object),FullEventful,wati'a,witsiti'a,watihsko'i,wutv'i,whita,wutihsti
 1761,1830,he/she is sending it,FullEventful,wahvhska,witsi'vhska,wahvhsko'i,wunhv'i,whihvka,wuhti
-1765,1834,he/she is heading in the direction of,FullEventful,wakhthi,witsikathi,wakhtho'i,wakhthv'i,whikhthehsti,
 1765,1834,he/she is heading in the direction of,FullStative,wakhthi,witsikathi,wakhtho'i,wakhthv'i,whikhthehsti,
 1774,1845,he/she is sending it,FullEventful,wikakhahvhska,witsiyakhahvhska,wikakhahvhsko'i,wuwakhanv'i,whiyakhahvka,wuwakhohti
 1775,1846,he/she is sending it (refers to something liquid),FullEventful,wikanehvhska,witsine'vhska,wikanehvhsko'i,wunenhv'i,whinehvka,wunehti

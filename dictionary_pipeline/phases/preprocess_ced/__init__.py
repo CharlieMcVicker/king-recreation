@@ -1,3 +1,4 @@
+import os
 import re
 from typing import Any
 
@@ -24,8 +25,12 @@ def apply_patches(
     """
     Apply patches to the corpus data.
     """
-    # Create a mapping for quick lookup by corpus_id
-    data_map = {str(row.meta.corpus_id): row for row in data}
+    from collections import defaultdict
+
+    # Create a mapping for quick lookup of all rows with a given corpus_id
+    data_map = defaultdict(list)
+    for row in data:
+        data_map[str(row.meta.corpus_id)].append(row)
 
     for patch in corrections:
         corpus_id = str(patch.meta.corpus_id).strip()
@@ -33,36 +38,33 @@ def apply_patches(
             continue
 
         if corpus_id in data_map:
-            target_row = data_map[corpus_id]
-            for field_name in ["entry_no", "definition", "prediction"]:
-                value = getattr(patch.meta, field_name)
-                if value == "NULL":
-                    value = ""
-                elif isinstance(value, str) and not (value and value.strip()):
-                    continue
+            for target_row in data_map[corpus_id]:
+                for field_name in ["entry_no", "definition"]:
+                    value = getattr(patch.meta, field_name)
+                    if value == "NULL":
+                        value = ""
+                    elif isinstance(value, str) and not (value and value.strip()):
+                        continue
+                    if isinstance(value, str):
+                        value = value.strip()
+                    setattr(target_row.meta, field_name, value)
 
-                if field_name == "prediction":
-                    value = Prediction(value)
-                elif isinstance(value, str):
+                for field_name in [
+                    "present",
+                    "present_1sg",
+                    "imperfective",
+                    "perfective",
+                    "imperative",
+                    "infinitive",
+                ]:
+                    value = getattr(patch.forms, field_name)
+                    if value == "NULL":
+                        value = ""
+                    elif not (value and value.strip()):
+                        continue
+
                     value = value.strip()
-                setattr(target_row.meta, field_name, value)
-
-            for field_name in [
-                "present",
-                "present_1sg",
-                "imperfective",
-                "perfective",
-                "imperative",
-                "infinitive",
-            ]:
-                value = getattr(patch.forms, field_name)
-                if value == "NULL":
-                    value = ""
-                elif not (value and value.strip()):
-                    continue
-
-                value = value.strip()
-                setattr(target_row.forms, field_name, value)
+                    setattr(target_row.forms, field_name, value)
 
     return data
 
@@ -146,6 +148,22 @@ def create_corpus_from_cn_dict() -> None:
     * CORPUS_PATH: a CSV with one row per lexical item with all forms present, tone-less orthography.
     """
     rows = read_original_cnd()
+
+    # Load manual corrections to check for prediction overrides
+    import csv as std_csv
+
+    from dictionary_pipeline.paths import MANUAL_CORRECTIONS_PATH
+
+    corrections_raw = []
+    if os.path.exists(MANUAL_CORRECTIONS_PATH):
+        with open(MANUAL_CORRECTIONS_PATH, mode="r", encoding="utf-8") as f:
+            corrections_raw = list(std_csv.DictReader(f))
+
+    corrections_map = {}
+    for r in corrections_raw:
+        cid = r.get("corpus_id", "").strip()
+        if cid:
+            corrections_map[cid] = r
 
     # Group rows by "Entry No." (Using "No." column as primary ID, but it seems to repeat for forms)
     # The file has "No." column which groups forms of the same verb.
@@ -284,8 +302,22 @@ def create_corpus_from_cn_dict() -> None:
             )
             > 1
         ):
-            for spec in ROW_PREDICTION_SPECS:
-                if not spec.row_test(verb_data):
+            # Check if there is an override for this corpus_id
+            corpus_id_str = str(verb_data["corpus_id"])
+            forced_spec_name = None
+            patch = corrections_map.get(corpus_id_str)
+            if patch:
+                forced_spec_name = patch.get("prediction", "").strip() or None
+
+            specs_to_try = ROW_PREDICTION_SPECS
+            if forced_spec_name:
+                specs_to_try = [
+                    s for s in ROW_PREDICTION_SPECS if s.name == forced_spec_name
+                ]
+
+            for spec in specs_to_try:
+                # If prediction is forced, bypass row_test check
+                if not forced_spec_name and not spec.row_test(verb_data):
                     continue
                 for prediction, test in spec.predictions:
                     if not test(verb_data):
