@@ -45,8 +45,9 @@ We organize backlog documents under the following path namespaces in `.backlog/d
 - Example: `See the [Vacuous Matching Policy](doc-2) for details on blank form handling.`
 
 ### B. Source Code Referencing
-- Reference source code files using the `file://` scheme with absolute paths: `[basename](file:///absolute/path/to/file)`.
-- For specific logic, include line numbers: `[derive_stems.py:L12-30](file:///absolute/path/to/king-recreation/morphology/derive_stems.py#L12-L30)`.
+- Reference source code files using relative links from the document to the source code file.
+- Example: `[derive_stems.py](../../../../morphology/derive_stems.py)`
+- For specific logic, include line numbers: `[derive_stems.py:L12-30](../../../../morphology/derive_stems.py#L12-L30)`.
 
 ---
 
