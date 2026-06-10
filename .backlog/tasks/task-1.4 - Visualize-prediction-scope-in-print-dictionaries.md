@@ -4,6 +4,7 @@ title: Visualize prediction scope in print dictionaries
 status: To Do
 assignee: []
 created_date: '2026-05-29 13:16'
+updated_date: '2026-06-10 17:02'
 labels:
   - feature
 dependencies: []
@@ -23,3 +24,9 @@ Design and implement a visualization method to clearly show prediction scope in 
 - [ ] #1 Print layouts incorporate visual indicators/cues for prediction scope
 - [ ] #2 Visual representation is legible and consistent with dictionary style guide
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Visual prediction scope cues/indicators are currently not implemented in the TeX print layout generator. This task remains open to design and display indicators showing the prediction scope (e.g. FullStative vs InfEventful) for print dictionaries.
+<!-- SECTION:NOTES:END -->

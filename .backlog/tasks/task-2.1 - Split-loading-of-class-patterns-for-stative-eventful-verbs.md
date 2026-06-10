@@ -4,6 +4,7 @@ title: Split loading of class patterns for stative/eventful verbs
 status: To Do
 assignee: []
 created_date: '2026-05-29 13:16'
+updated_date: '2026-06-10 16:54'
 labels:
   - debt
 dependencies: []
@@ -24,3 +25,9 @@ Refactor the class pattern loading logic to separate stative and eventful verbs,
 - [ ] #2 Singleton instances that hold global state for class patterns are removed or replaced with safe context/dependency injection
 - [ ] #3 Existing unit tests pass and new tests verify independent loading of stative and eventful class patterns
 <!-- AC:END -->
+
+## Implementation Notes
+
+<!-- SECTION:NOTES:BEGIN -->
+Current codebase still uses singleton patterns for `PostRootMorphemeRegistry` and `PatternRegistry`, as seen in `morphology/morphemes/post_root_morphemes.py` and `morphology/morphemes/aspect/pattern_registry.py`. While `dictionary_pipeline/phases/identify_aspect_classes/__init__.py` has logic to differentiate stative and eventful verbs, the *loading* of class patterns itself does not appear to be explicitly split. This task remains relevant for addressing these technical debt items.
+<!-- SECTION:NOTES:END -->
