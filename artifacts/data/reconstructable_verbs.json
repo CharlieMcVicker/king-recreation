@@ -2289,20 +2289,20 @@
             "prediction": "FullEventful"
         },
         "morphology": {
-            "h_grade_root": "kal",
+            "h_grade_root": "akal",
             "glottal_grade_root": null,
             "post_root_morpheme": null,
             "class_name": "ih-ihi",
             "config": {
                 "pre": {
                     "translocutive": false,
-                    "translocutiveImpOnly": false,
+                    "translocutiveImpOnly": true,
                     "partitive": false,
                     "distributive": false
                 },
                 "pron": {
                     "set_type": "a",
-                    "stem_type": "con",
+                    "stem_type": "vowel_a",
                     "allow_h_metathesis": false,
                     "middle_voice": "none",
                     "middle_voice_h_metathesis": false,
@@ -2317,10 +2317,10 @@
         "derivations": [],
         "shim": null,
         "segmented_forms": {
-            "present": "a-kal-ih-a",
-            "imperfective": "a-kal-ihsk-o'i",
-            "perfective": "u-kal-ihs-v'i",
-            "infinitive": "u-kal-ihihst-i"
+            "present": "a->akal-ih-a",
+            "imperfective": "a->akal-ihsk-o'i",
+            "perfective": "u->akal-ihs-v'i",
+            "infinitive": "u->akal-ihihst-i"
         }
     },
     {
@@ -14379,6 +14379,49 @@
     },
     {
         "meta": {
+            "corpus_id": "723",
+            "definition": "he/she is called",
+            "entry_no": "741",
+            "prediction": "FullStative"
+        },
+        "morphology": {
+            "h_grade_root": "o'",
+            "glottal_grade_root": null,
+            "post_root_morpheme": null,
+            "class_name": "stative",
+            "config": {
+                "pre": {
+                    "translocutive": false,
+                    "translocutiveImpOnly": false,
+                    "partitive": false,
+                    "distributive": true
+                },
+                "pron": {
+                    "set_type": "b",
+                    "stem_type": "vowel_a",
+                    "allow_h_metathesis": false,
+                    "middle_voice": "at",
+                    "middle_voice_h_metathesis": false,
+                    "plural_pronouns": false,
+                    "use_ka_variant": false,
+                    "use_aki_for_1st_set_b": false,
+                    "uwa_replaces_v": false,
+                    "use_3rd_person_object": false
+                }
+            }
+        },
+        "derivations": [],
+        "shim": null,
+        "segmented_forms": {
+            "present": "t-u->at-o'-a",
+            "present_1sg": "t-akw-at-o'-a",
+            "imperfective": "t-u->at-o'-o'i",
+            "perfective": "t-u->at-o'-v'i",
+            "imperative": "te-ts-at-o'-ehsti"
+        }
+    },
+    {
+        "meta": {
             "corpus_id": "724",
             "definition": "he/she is staggering",
             "entry_no": "742",
@@ -14601,13 +14644,13 @@
             "corpus_id": "729",
             "definition": "he/she is wearing glasses",
             "entry_no": "747",
-            "prediction": "FullStative"
+            "prediction": "InfEventful"
         },
         "morphology": {
             "h_grade_root": "akhthinvt",
             "glottal_grade_root": "akathinvt",
             "post_root_morpheme": null,
-            "class_name": "stative-h",
+            "class_name": "hvsk-han",
             "config": {
                 "pre": {
                     "translocutive": false,
@@ -14616,7 +14659,7 @@
                     "distributive": true
                 },
                 "pron": {
-                    "set_type": "b",
+                    "set_type": "a",
                     "stem_type": "vowel_a",
                     "allow_h_metathesis": false,
                     "middle_voice": "none",
@@ -14632,11 +14675,7 @@
         "derivations": [],
         "shim": null,
         "segmented_forms": {
-            "present": "t-u->akhthinvt-h-a",
-            "present_1sg": "t-akw-akhthinvt-h-a",
-            "imperfective": "t-u->akhthinvt-h-o'i",
-            "perfective": "t-u->akhthinvt-h-v'i",
-            "imperative": "te-ts-akhthinvt-h-ehsti"
+            "infinitive": "ts-u->akhthinvt-ht-i"
         }
     },
     {
@@ -19919,6 +19958,45 @@
     },
     {
         "meta": {
+            "corpus_id": "997",
+            "definition": "he/she is leading it by a leash",
+            "entry_no": "1027",
+            "prediction": "InfEventful"
+        },
+        "morphology": {
+            "h_grade_root": "elihsin",
+            "glottal_grade_root": null,
+            "post_root_morpheme": null,
+            "class_name": "go",
+            "config": {
+                "pre": {
+                    "translocutive": false,
+                    "translocutiveImpOnly": false,
+                    "partitive": false,
+                    "distributive": false
+                },
+                "pron": {
+                    "set_type": "a",
+                    "stem_type": "vowel_e",
+                    "allow_h_metathesis": false,
+                    "middle_voice": "none",
+                    "middle_voice_h_metathesis": false,
+                    "plural_pronouns": false,
+                    "use_ka_variant": false,
+                    "use_aki_for_1st_set_b": false,
+                    "uwa_replaces_v": false,
+                    "use_3rd_person_object": true
+                }
+            }
+        },
+        "derivations": [],
+        "shim": null,
+        "segmented_forms": {
+            "infinitive": "uw-elihsin-vhst-i"
+        }
+    },
+    {
+        "meta": {
             "corpus_id": "1014",
             "definition": "he/she is leading him/her by the hand",
             "entry_no": "1044",
@@ -22505,13 +22583,13 @@
             "corpus_id": "1450",
             "definition": "he/she is in prayer",
             "entry_no": "1516",
-            "prediction": "FullStative"
+            "prediction": "InfEventful"
         },
         "morphology": {
             "h_grade_root": ":tolihst",
             "glottal_grade_root": ":tolihst",
             "post_root_morpheme": null,
-            "class_name": "stative",
+            "class_name": "cause",
             "config": {
                 "pre": {
                     "translocutive": false,
@@ -22520,7 +22598,7 @@
                     "distributive": false
                 },
                 "pron": {
-                    "set_type": "b",
+                    "set_type": "a",
                     "stem_type": "vowel_a",
                     "allow_h_metathesis": false,
                     "middle_voice": "ata_:",
@@ -22534,51 +22612,52 @@
             }
         },
         "derivations": [],
-        "shim": {
-            "meta": {
-                "corpus_id": "1450",
-                "definition": "he/she is in prayer",
-                "entry_no": "1516",
-                "prediction": "InfEventful"
-            },
-            "morphology": {
-                "h_grade_root": ":tolihst",
-                "glottal_grade_root": null,
-                "post_root_morpheme": null,
-                "class_name": "cause",
-                "config": {
-                    "pre": {
-                        "translocutive": false,
-                        "translocutiveImpOnly": false,
-                        "partitive": false,
-                        "distributive": false
-                    },
-                    "pron": {
-                        "set_type": "a",
-                        "stem_type": "vowel_a",
-                        "allow_h_metathesis": false,
-                        "middle_voice": "ata_:",
-                        "middle_voice_h_metathesis": false,
-                        "plural_pronouns": false,
-                        "use_ka_variant": false,
-                        "use_aki_for_1st_set_b": false,
-                        "uwa_replaces_v": false,
-                        "use_3rd_person_object": false
-                    }
+        "shim": null,
+        "segmented_forms": {
+            "infinitive": "u->ata->:tolihst-oht-i"
+        }
+    },
+    {
+        "meta": {
+            "corpus_id": "1451",
+            "definition": "he/she loves",
+            "entry_no": "1517",
+            "prediction": "FullStative"
+        },
+        "morphology": {
+            "h_grade_root": "keyu",
+            "glottal_grade_root": "keyu",
+            "post_root_morpheme": null,
+            "class_name": "stative-s",
+            "config": {
+                "pre": {
+                    "translocutive": false,
+                    "translocutiveImpOnly": false,
+                    "partitive": false,
+                    "distributive": false
+                },
+                "pron": {
+                    "set_type": "b",
+                    "stem_type": "vowel_a",
+                    "allow_h_metathesis": false,
+                    "middle_voice": "ata",
+                    "middle_voice_h_metathesis": false,
+                    "plural_pronouns": false,
+                    "use_ka_variant": false,
+                    "use_aki_for_1st_set_b": false,
+                    "uwa_replaces_v": false,
+                    "use_3rd_person_object": false
                 }
-            },
-            "derivations": [],
-            "shim": null,
-            "segmented_forms": {
-                "infinitive": "u->ata->:tolihst-oht-i"
             }
         },
+        "derivations": [],
+        "shim": null,
         "segmented_forms": {
-            "present": "u->ata->:tolihst-i",
-            "present_1sg": "akw-ata->:tolihst-i",
-            "imperfective": "u->ata->:tolihst-o'i",
-            "perfective": "u->ata->:tolihst-v'i",
-            "imperative": "ts-ata->:tolihst-ehsti"
+            "present": "u->ata-keyu-h-a",
+            "present_1sg": "akw-ata-keyu-h-a",
+            "imperfective": "u->ata-keyu-hs-o'i",
+            "perfective": "u->ata-keyu-hs-v'i",
+            "imperative": "ts-ata-keyu-hs-ehsti"
         }
     },
     {
@@ -22632,8 +22711,8 @@
             "prediction": "FullStative"
         },
         "morphology": {
-            "h_grade_root": "nht",
-            "glottal_grade_root": null,
+            "h_grade_root": "anht",
+            "glottal_grade_root": "anvt",
             "post_root_morpheme": null,
             "class_name": "stative-h",
             "config": {
@@ -22647,7 +22726,7 @@
                     "set_type": "b",
                     "stem_type": "vowel_a",
                     "allow_h_metathesis": false,
-                    "middle_voice": "ata",
+                    "middle_voice": "at",
                     "middle_voice_h_metathesis": false,
                     "plural_pronouns": false,
                     "use_ka_variant": false,
@@ -22666,7 +22745,7 @@
                 "prediction": "InfEventful"
             },
             "morphology": {
-                "h_grade_root": "nht",
+                "h_grade_root": "anht",
                 "glottal_grade_root": null,
                 "post_root_morpheme": "long",
                 "class_name": "i-a-i",
@@ -22681,7 +22760,7 @@
                         "set_type": "a",
                         "stem_type": "vowel_a",
                         "allow_h_metathesis": false,
-                        "middle_voice": "ata",
+                        "middle_voice": "at",
                         "middle_voice_h_metathesis": false,
                         "plural_pronouns": false,
                         "use_ka_variant": false,
@@ -22694,15 +22773,15 @@
             "derivations": [],
             "shim": null,
             "segmented_forms": {
-                "infinitive": "u->ata-nht-at-ihst-i"
+                "infinitive": "u->at-anht-at-ihst-i"
             }
         },
         "segmented_forms": {
-            "present": "u->ata-nht-h-a",
-            "present_1sg": "akw-ata-nht-h-a",
-            "imperfective": "u->ata-nht-h-o'i",
-            "perfective": "u->ata-nht-h-v'i",
-            "imperative": "ts-ata-nht-h-ehsti"
+            "present": "u->at-anht-h-a",
+            "present_1sg": "akw-at-anht-h-a",
+            "imperfective": "u->at-anht-h-o'i",
+            "perfective": "u->at-anht-h-v'i",
+            "imperative": "ts-at-anht-h-ehsti"
         }
     },
     {
@@ -22710,13 +22789,13 @@
             "corpus_id": "1470",
             "definition": "it\u2019s in view",
             "entry_no": "1536",
-            "prediction": "FullStative"
+            "prediction": "InfEventful"
         },
         "morphology": {
             "h_grade_root": "yvlat",
             "glottal_grade_root": null,
             "post_root_morpheme": null,
-            "class_name": "stative-h",
+            "class_name": "hvsk-han",
             "config": {
                 "pre": {
                     "translocutive": false,
@@ -22725,7 +22804,7 @@
                     "distributive": false
                 },
                 "pron": {
-                    "set_type": "b",
+                    "set_type": "a",
                     "stem_type": "vowel_a",
                     "allow_h_metathesis": false,
                     "middle_voice": "ata",
@@ -22739,51 +22818,9 @@
             }
         },
         "derivations": [],
-        "shim": {
-            "meta": {
-                "corpus_id": "1470",
-                "definition": "it\u2019s in view",
-                "entry_no": "1536",
-                "prediction": "InfEventful"
-            },
-            "morphology": {
-                "h_grade_root": "yvlat",
-                "glottal_grade_root": null,
-                "post_root_morpheme": null,
-                "class_name": "apl-active-a",
-                "config": {
-                    "pre": {
-                        "translocutive": false,
-                        "translocutiveImpOnly": false,
-                        "partitive": false,
-                        "distributive": false
-                    },
-                    "pron": {
-                        "set_type": "a",
-                        "stem_type": "vowel_a",
-                        "allow_h_metathesis": false,
-                        "middle_voice": "ata",
-                        "middle_voice_h_metathesis": false,
-                        "plural_pronouns": false,
-                        "use_ka_variant": false,
-                        "use_aki_for_1st_set_b": false,
-                        "uwa_replaces_v": false,
-                        "use_3rd_person_object": false
-                    }
-                }
-            },
-            "derivations": [],
-            "shim": null,
-            "segmented_forms": {
-                "infinitive": "u->ata-yvlat-ht-i"
-            }
-        },
+        "shim": null,
         "segmented_forms": {
-            "present": "u->ata-yvlat-h-a",
-            "present_1sg": "akw-ata-yvlat-h-a",
-            "imperfective": "u->ata-yvlat-h-o'i",
-            "perfective": "u->ata-yvlat-h-v'i",
-            "imperative": "ts-ata-yvlat-h-ehsti"
+            "infinitive": "u->ata-yvlat-ht-i"
         }
     },
     {
@@ -22921,13 +22958,13 @@
             "corpus_id": "1480",
             "definition": "he/she is in hiding",
             "entry_no": "1546",
-            "prediction": "FullStative"
+            "prediction": "InfEventful"
         },
         "morphology": {
             "h_grade_root": "vhskal",
             "glottal_grade_root": "vhskal",
             "post_root_morpheme": null,
-            "class_name": "stative-h",
+            "class_name": "hvsk-han",
             "config": {
                 "pre": {
                     "translocutive": false,
@@ -22936,7 +22973,7 @@
                     "distributive": false
                 },
                 "pron": {
-                    "set_type": "b",
+                    "set_type": "a",
                     "stem_type": "vowel_a",
                     "allow_h_metathesis": false,
                     "middle_voice": "ati_v",
@@ -22950,51 +22987,9 @@
             }
         },
         "derivations": [],
-        "shim": {
-            "meta": {
-                "corpus_id": "1480",
-                "definition": "he/she is in hiding",
-                "entry_no": "1546",
-                "prediction": "InfEventful"
-            },
-            "morphology": {
-                "h_grade_root": "vhskal",
-                "glottal_grade_root": null,
-                "post_root_morpheme": null,
-                "class_name": "apl-active-a",
-                "config": {
-                    "pre": {
-                        "translocutive": false,
-                        "translocutiveImpOnly": false,
-                        "partitive": false,
-                        "distributive": false
-                    },
-                    "pron": {
-                        "set_type": "a",
-                        "stem_type": "vowel_a",
-                        "allow_h_metathesis": false,
-                        "middle_voice": "ati_v",
-                        "middle_voice_h_metathesis": false,
-                        "plural_pronouns": false,
-                        "use_ka_variant": false,
-                        "use_aki_for_1st_set_b": false,
-                        "uwa_replaces_v": false,
-                        "use_3rd_person_object": false
-                    }
-                }
-            },
-            "derivations": [],
-            "shim": null,
-            "segmented_forms": {
-                "infinitive": "u->ati->vhskal-ht-i"
-            }
-        },
+        "shim": null,
         "segmented_forms": {
-            "present": "u->ati->vhskal-h-a",
-            "present_1sg": "akw-ati->vhskal-h-a",
-            "imperfective": "u->ati->vhskal-h-o'i",
-            "perfective": "u->ati->vhskal-h-v'i",
-            "imperative": "ts-ati->vhskal-h-ehsti"
+            "infinitive": "u->ati->vhskal-ht-i"
         }
     },
     {
@@ -23218,13 +23213,13 @@
             "corpus_id": "1505",
             "definition": "he/she is standing in liquid",
             "entry_no": "1571",
-            "prediction": "FullStative"
+            "prediction": "InfEventful"
         },
         "morphology": {
             "h_grade_root": "u",
             "glottal_grade_root": "u",
             "post_root_morpheme": null,
-            "class_name": "stative-s",
+            "class_name": "hvsk-nh",
             "config": {
                 "pre": {
                     "translocutive": false,
@@ -23233,7 +23228,7 @@
                     "distributive": false
                 },
                 "pron": {
-                    "set_type": "b",
+                    "set_type": "a",
                     "stem_type": "vowel_a",
                     "allow_h_metathesis": false,
                     "middle_voice": "at",
@@ -23247,51 +23242,9 @@
             }
         },
         "derivations": [],
-        "shim": {
-            "meta": {
-                "corpus_id": "1505",
-                "definition": "he/she is standing in liquid",
-                "entry_no": "1571",
-                "prediction": "InfEventful"
-            },
-            "morphology": {
-                "h_grade_root": "u",
-                "glottal_grade_root": null,
-                "post_root_morpheme": null,
-                "class_name": "apl-active-a",
-                "config": {
-                    "pre": {
-                        "translocutive": false,
-                        "translocutiveImpOnly": false,
-                        "partitive": false,
-                        "distributive": false
-                    },
-                    "pron": {
-                        "set_type": "a",
-                        "stem_type": "vowel_a",
-                        "allow_h_metathesis": false,
-                        "middle_voice": "at",
-                        "middle_voice_h_metathesis": false,
-                        "plural_pronouns": false,
-                        "use_ka_variant": false,
-                        "use_aki_for_1st_set_b": false,
-                        "uwa_replaces_v": false,
-                        "use_3rd_person_object": false
-                    }
-                }
-            },
-            "derivations": [],
-            "shim": null,
-            "segmented_forms": {
-                "infinitive": "u->at-u-ht-i"
-            }
-        },
+        "shim": null,
         "segmented_forms": {
-            "present": "u->at-u-h-a",
-            "present_1sg": "akw-at-u-h-a",
-            "imperfective": "u->at-u-hs-o'i",
-            "perfective": "u->at-u-hs-v'i",
-            "imperative": "ts-at-u-hs-ehsti"
+            "infinitive": "u->at-u-ht-i"
         }
     },
     {
@@ -23423,6 +23376,49 @@
             "perfective": "u-kanawo-hs-v'i",
             "imperative": "tsa-kanawo-hi",
             "infinitive": "u-kanawo-hihst-i"
+        }
+    },
+    {
+        "meta": {
+            "corpus_id": "1516",
+            "definition": "he/she is possessive of him/her",
+            "entry_no": "1582",
+            "prediction": "FullStative"
+        },
+        "morphology": {
+            "h_grade_root": "keyu",
+            "glottal_grade_root": "keyu",
+            "post_root_morpheme": null,
+            "class_name": "stative-s",
+            "config": {
+                "pre": {
+                    "translocutive": false,
+                    "translocutiveImpOnly": false,
+                    "partitive": false,
+                    "distributive": false
+                },
+                "pron": {
+                    "set_type": "b",
+                    "stem_type": "con",
+                    "allow_h_metathesis": false,
+                    "middle_voice": "none",
+                    "middle_voice_h_metathesis": false,
+                    "plural_pronouns": false,
+                    "use_ka_variant": false,
+                    "use_aki_for_1st_set_b": false,
+                    "uwa_replaces_v": false,
+                    "use_3rd_person_object": true
+                }
+            }
+        },
+        "derivations": [],
+        "shim": null,
+        "segmented_forms": {
+            "present": "u-keyu-h-a",
+            "present_1sg": "tsi-keyu-'-a",
+            "imperfective": "u-keyu-hs-o'i",
+            "perfective": "u-keyu-hs-v'i",
+            "imperative": "hi-keyu-hs-ehsti"
         }
     },
     {
@@ -24254,13 +24250,13 @@
             "corpus_id": "1592",
             "definition": "it\u2019s sticking out",
             "entry_no": "1658",
-            "prediction": "FullStative"
+            "prediction": "InfEventful"
         },
         "morphology": {
             "h_grade_root": "akhsat",
             "glottal_grade_root": null,
             "post_root_morpheme": null,
-            "class_name": "stative-h",
+            "class_name": "hvsk-han",
             "config": {
                 "pre": {
                     "translocutive": false,
@@ -24269,7 +24265,7 @@
                     "distributive": false
                 },
                 "pron": {
-                    "set_type": "b",
+                    "set_type": "a",
                     "stem_type": "vowel_a",
                     "allow_h_metathesis": false,
                     "middle_voice": "none",
@@ -24283,51 +24279,9 @@
             }
         },
         "derivations": [],
-        "shim": {
-            "meta": {
-                "corpus_id": "1592",
-                "definition": "it\u2019s sticking out",
-                "entry_no": "1658",
-                "prediction": "InfEventful"
-            },
-            "morphology": {
-                "h_grade_root": "akhsat",
-                "glottal_grade_root": null,
-                "post_root_morpheme": null,
-                "class_name": "apl-active-a",
-                "config": {
-                    "pre": {
-                        "translocutive": false,
-                        "translocutiveImpOnly": false,
-                        "partitive": false,
-                        "distributive": false
-                    },
-                    "pron": {
-                        "set_type": "a",
-                        "stem_type": "vowel_a",
-                        "allow_h_metathesis": false,
-                        "middle_voice": "none",
-                        "middle_voice_h_metathesis": false,
-                        "plural_pronouns": false,
-                        "use_ka_variant": false,
-                        "use_aki_for_1st_set_b": false,
-                        "uwa_replaces_v": false,
-                        "use_3rd_person_object": false
-                    }
-                }
-            },
-            "derivations": [],
-            "shim": null,
-            "segmented_forms": {
-                "infinitive": "u->akhsat-ht-i"
-            }
-        },
+        "shim": null,
         "segmented_forms": {
-            "present": "u->akhsat-h-a",
-            "present_1sg": "akw-akhsat-h-a",
-            "imperfective": "u->akhsat-h-o'i",
-            "perfective": "u->akhsat-h-v'i",
-            "imperative": "ts-akhsat-h-ehsti"
+            "infinitive": "u->akhsat-ht-i"
         }
     },
     {
@@ -24335,13 +24289,13 @@
             "corpus_id": "1593",
             "definition": "he/she is watching him/her",
             "entry_no": "1659",
-            "prediction": "FullStative"
+            "prediction": "InfEventful"
         },
         "morphology": {
             "h_grade_root": "akhsehst",
-            "glottal_grade_root": "akahsehst",
+            "glottal_grade_root": null,
             "post_root_morpheme": null,
-            "class_name": "stative",
+            "class_name": "cause",
             "config": {
                 "pre": {
                     "translocutive": false,
@@ -24350,7 +24304,7 @@
                     "distributive": false
                 },
                 "pron": {
-                    "set_type": "b",
+                    "set_type": "a",
                     "stem_type": "vowel_a",
                     "allow_h_metathesis": false,
                     "middle_voice": "none",
@@ -24364,51 +24318,9 @@
             }
         },
         "derivations": [],
-        "shim": {
-            "meta": {
-                "corpus_id": "1593",
-                "definition": "he/she is watching him/her",
-                "entry_no": "1659",
-                "prediction": "InfEventful"
-            },
-            "morphology": {
-                "h_grade_root": "akhsehst",
-                "glottal_grade_root": null,
-                "post_root_morpheme": null,
-                "class_name": "cause",
-                "config": {
-                    "pre": {
-                        "translocutive": false,
-                        "translocutiveImpOnly": false,
-                        "partitive": false,
-                        "distributive": false
-                    },
-                    "pron": {
-                        "set_type": "a",
-                        "stem_type": "vowel_a",
-                        "allow_h_metathesis": false,
-                        "middle_voice": "none",
-                        "middle_voice_h_metathesis": false,
-                        "plural_pronouns": false,
-                        "use_ka_variant": false,
-                        "use_aki_for_1st_set_b": false,
-                        "uwa_replaces_v": false,
-                        "use_3rd_person_object": false
-                    }
-                }
-            },
-            "derivations": [],
-            "shim": null,
-            "segmented_forms": {
-                "infinitive": "u->akhsehst-oht-i"
-            }
-        },
+        "shim": null,
         "segmented_forms": {
-            "present": "u->akhsehst-i",
-            "present_1sg": "tsiy-akahsehst-i",
-            "imperfective": "u->akhsehst-o'i",
-            "perfective": "u->akhsehst-v'i",
-            "imperative": "hiy-akahsehst-ehsti"
+            "infinitive": "u->akhsehst-oht-i"
         }
     },
     {
@@ -25058,13 +24970,13 @@
             "corpus_id": "1642",
             "definition": "he/she has a liquid",
             "entry_no": "1708",
-            "prediction": "FullStative"
+            "prediction": "InfEventful"
         },
         "morphology": {
             "h_grade_root": "ne",
             "glottal_grade_root": "ne",
             "post_root_morpheme": null,
-            "class_name": "stative-h",
+            "class_name": "hvsk-nh",
             "config": {
                 "pre": {
                     "translocutive": false,
@@ -25073,65 +24985,23 @@
                     "distributive": false
                 },
                 "pron": {
-                    "set_type": "b",
+                    "set_type": "a",
                     "stem_type": "con",
                     "allow_h_metathesis": false,
                     "middle_voice": "none",
                     "middle_voice_h_metathesis": false,
                     "plural_pronouns": false,
                     "use_ka_variant": false,
-                    "use_aki_for_1st_set_b": true,
+                    "use_aki_for_1st_set_b": false,
                     "uwa_replaces_v": false,
                     "use_3rd_person_object": false
                 }
             }
         },
         "derivations": [],
-        "shim": {
-            "meta": {
-                "corpus_id": "1642",
-                "definition": "he/she has a liquid",
-                "entry_no": "1708",
-                "prediction": "InfEventful"
-            },
-            "morphology": {
-                "h_grade_root": "ne",
-                "glottal_grade_root": null,
-                "post_root_morpheme": null,
-                "class_name": "apl-active-a",
-                "config": {
-                    "pre": {
-                        "translocutive": false,
-                        "translocutiveImpOnly": false,
-                        "partitive": false,
-                        "distributive": false
-                    },
-                    "pron": {
-                        "set_type": "a",
-                        "stem_type": "con",
-                        "allow_h_metathesis": false,
-                        "middle_voice": "none",
-                        "middle_voice_h_metathesis": false,
-                        "plural_pronouns": false,
-                        "use_ka_variant": false,
-                        "use_aki_for_1st_set_b": false,
-                        "uwa_replaces_v": false,
-                        "use_3rd_person_object": false
-                    }
-                }
-            },
-            "derivations": [],
-            "shim": null,
-            "segmented_forms": {
-                "infinitive": "u-ne-ht-i"
-            }
-        },
+        "shim": null,
         "segmented_forms": {
-            "present": "u-ne-h-a",
-            "present_1sg": "aki-ne-h-a",
-            "imperfective": "u-ne-h-o'i",
-            "perfective": "u-ne-h-v'i",
-            "imperative": "tsa-ne-h-ehsti"
+            "infinitive": "u-ne-ht-i"
         }
     },
     {
@@ -25313,13 +25183,13 @@
             "corpus_id": "1693",
             "definition": "he/she is listening to him/her",
             "entry_no": "1759",
-            "prediction": "FullStative"
+            "prediction": "InfEventful"
         },
         "morphology": {
             "h_grade_root": "athvtahst",
             "glottal_grade_root": "athvtahst",
             "post_root_morpheme": null,
-            "class_name": "stative",
+            "class_name": "cause",
             "config": {
                 "pre": {
                     "translocutive": false,
@@ -25328,7 +25198,7 @@
                     "distributive": false
                 },
                 "pron": {
-                    "set_type": "b",
+                    "set_type": "a",
                     "stem_type": "vowel_a",
                     "allow_h_metathesis": false,
                     "middle_voice": "none",
@@ -25342,51 +25212,9 @@
             }
         },
         "derivations": [],
-        "shim": {
-            "meta": {
-                "corpus_id": "1693",
-                "definition": "he/she is listening to him/her",
-                "entry_no": "1759",
-                "prediction": "InfEventful"
-            },
-            "morphology": {
-                "h_grade_root": "athvtahst",
-                "glottal_grade_root": null,
-                "post_root_morpheme": null,
-                "class_name": "cause",
-                "config": {
-                    "pre": {
-                        "translocutive": false,
-                        "translocutiveImpOnly": false,
-                        "partitive": false,
-                        "distributive": false
-                    },
-                    "pron": {
-                        "set_type": "a",
-                        "stem_type": "vowel_a",
-                        "allow_h_metathesis": false,
-                        "middle_voice": "none",
-                        "middle_voice_h_metathesis": false,
-                        "plural_pronouns": false,
-                        "use_ka_variant": false,
-                        "use_aki_for_1st_set_b": false,
-                        "uwa_replaces_v": false,
-                        "use_3rd_person_object": false
-                    }
-                }
-            },
-            "derivations": [],
-            "shim": null,
-            "segmented_forms": {
-                "infinitive": "u->athvtahst-oht-i"
-            }
-        },
+        "shim": null,
         "segmented_forms": {
-            "present": "u->athvtahst-i",
-            "present_1sg": "tsiy-athvtahst-i",
-            "imperfective": "u->athvtahst-o'i",
-            "perfective": "u->athvtahst-v'i",
-            "imperative": "hiy-athvtahst-ehsti"
+            "infinitive": "u->athvtahst-oht-i"
         }
     },
     {
@@ -25878,10 +25706,10 @@
             "prediction": "FullStative"
         },
         "morphology": {
-            "h_grade_root": "kht",
-            "glottal_grade_root": "kat",
+            "h_grade_root": "khth",
+            "glottal_grade_root": "kath",
             "post_root_morpheme": null,
-            "class_name": "stative-h",
+            "class_name": "stative",
             "config": {
                 "pre": {
                     "translocutive": true,
@@ -25906,11 +25734,11 @@
         "derivations": [],
         "shim": null,
         "segmented_forms": {
-            "present": "w-a-kht-h-i",
-            "present_1sg": "wi-tsi-kat-h-i",
-            "imperfective": "w-a-kht-h-o'i",
-            "perfective": "w-a-kht-h-v'i",
-            "imperative": "w-hi-kht-h-ehsti"
+            "present": "w-a-khth-i",
+            "present_1sg": "wi-tsi-kath-i",
+            "imperfective": "w-a-khth-o'i",
+            "perfective": "w-a-khth-v'i",
+            "imperative": "w-hi-khth-ehsti"
         }
     },
     {

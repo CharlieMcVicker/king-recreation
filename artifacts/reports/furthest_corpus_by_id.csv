@@ -68,16 +68,13 @@ corpus_id,prediction,definition,furthest_corpus
 1739,FullEventful,he/she is laughing,0.corpus
 1740,FullEventful,he/she is itching,0.corpus
 1745,FullEventful,he/she is hungry,0.corpus
-1765,FullEventful,he/she is heading in the direction of,0.corpus
 194,FullEventful,he/she is frolicking,0.corpus
 212,FullEventful,he/she is peeling it,0.corpus
-217,FullEventful,he/she is holding it in his/her hand,0.corpus
 235,FullEventful,he/she is walking,0.corpus
 244,FullEventful,he/she is spilling it (refers to a liquid or non-liquid like salt‚ sugar),0.corpus
 273,FullEventful,he/she knows how,0.corpus
 283,FullEventful,he/she is waiting for him/her,0.corpus
 335,FullEventful,he/she is shaking his/her head,0.corpus
-365,FullEventful,they are standing (refers to a congregation),0.corpus
 366,FullEventful,they are asleep (refers to more than two),0.corpus
 367,FullEventful,they are sitting (refers to a congregation),0.corpus
 389,FullEventful,he/she is closing it,0.corpus
@@ -94,17 +91,14 @@ corpus_id,prediction,definition,furthest_corpus
 624,FullEventful,he/she is enduring it (idiom),0.corpus
 69,FullEventful,he/she is diving,0.corpus
 723,FullEventful,he/she is called,0.corpus
-726,FullEventful,he/she has horns,0.corpus
-729,FullEventful,he/she is wearing glasses,0.corpus
-730,FullEventful,he/she is wearing shoes,0.corpus
 732,FullEventful,he/she is wearing gloves,0.corpus
-733,FullEventful,he/she is wearing socks,0.corpus
 737,FullEventful,he/she is making footsteps,0.corpus
 743,FullEventful,he/she is going,0.corpus
 746,FullEventful,he/she lives,0.corpus
 759,FullEventful,it is hanging (refers to flexible object),0.corpus
 772,FullEventful,he/she is standing,0.corpus
 810,FullEventful,he/she is tying him/her up,0.corpus
+814,InfEventful,he/she is holding it (refers to a flexible object),0.corpus
 841,FullEventful,he/she is taking it out of a container (refers to a long object),0.corpus
 887,FullEventful,he/she is holding it in his/her hand (refers to a long object),0.corpus
 893,FullEventful,he/she lives (in sense of resides now),0.corpus
@@ -703,7 +697,7 @@ corpus_id,prediction,definition,furthest_corpus
 727,FullEventful,he/she is sneezing,3.validated
 728,FullEventful,he/she is vomiting,3.validated
 729,FullStative,he/she is wearing glasses,3.validated
-729,FullStative,he/she is wearing glasses,3.validated
+729,InfEventful,he/she is wearing glasses,3.validated
 73,FullEventful,he/she is rising (from a prone position),3.validated
 730,FullStative,he/she is wearing shoes,3.validated
 733,FullStative,he/she is wearing socks,3.validated
