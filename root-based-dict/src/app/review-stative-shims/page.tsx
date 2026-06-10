@@ -3,7 +3,7 @@ import { getCorpusForm } from "@/lib/data-shared";
 import ReviewStativeShims from "@/components/ReviewStativeShims";
 
 export default async function ReviewStativeShimsPage() {
-  const allValidatedRows = await getValidatedRootsRows();
+  const allValidatedRows = await getValidatedRootsRows({ includeShims: true });
   const currentShims = await getStativeShims();
   const dictionary = await getDictionaryEntries();
 

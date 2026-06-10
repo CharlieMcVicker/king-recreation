@@ -146,12 +146,13 @@ export default function SelectRootsWorkflow({
     setIsSaving(true);
     setMessage(null);
     try {
+      const derivation = derivations[selectedDerivationIndex] || derivations[0];
       const response = await fetch("/api/select-roots", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           corpusId: currentCorpusId,
-          rowIndex: selectedDerivationIndex,
+          originalIndex: derivation.originalIndex,
         }),
       });
 
