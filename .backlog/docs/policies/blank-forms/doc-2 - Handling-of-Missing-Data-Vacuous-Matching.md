@@ -1,4 +1,9 @@
-# Policy: Handling of Missing Data (Vacuous Matching)
+---
+id: doc-2
+title: Handling of Missing Data (Vacuous Matching)
+type: specification
+created_date: '2026-06-10 16:10'
+---
 
 This document establishes the project-level policy for handling missing data (blank forms) in the verb corpus.
 
@@ -13,14 +18,14 @@ Missing data (blank forms) should be treated as **vacuously matching** any patte
 
 ### 1. Preprocessing
 
-- **Current State**: Converts varying "no data" markers to empty strings.
+- **Current State**: Converts varying "no data" markers to empty strings in [preprocess_ced/__init__.py](file:///Users/charlesmcvicker/code/king-recreation/dictionary_pipeline/phases/preprocess_ced/__init__.py).
 - **Policy Implication**: **No Change**. Maintain consistent normalization of missing data to empty strings (`""`).
 
 ### 2. Verb Classification (Matching)
 
 - **Goal**: Determine which conjugation classes a verb fits into.
 - **Policy Implication**:
-  - When checking if a verb matches a Class Pattern (e.g., _Class A_ requires suffix `-a` in the Imperative):
+  - When checking if a verb matches a Class Pattern (e.g., _Class A_ requires suffix `-a` in the Imperative) via [class_patterns.py:L116](file:///Users/charlesmcvicker/code/king-recreation/morphology/morphemes/aspect/class_patterns.py#L116):
     - If the verb has a string for the Imperative, it must match `-a`.
     - If the verb has a **blank** for the Imperative, it is considered a **MATCH** for `-a` (and `-i`, and `-u`, etc.).
   - **Result**: Verbs with missing forms will likely match _more_ classes than fully specified verbs. A verb with 4 missing forms will match every class that is compatible with its 1 known form.
@@ -51,4 +56,4 @@ Missing data (blank forms) should be treated as **vacuously matching** any patte
   - **Validation (The "No Contradiction" Test)**:
     - Compare `Generated Form` vs `Corpus Form`.
     - If `Corpus Form` is `""` (blank): **PASS**. The theory predicts a value, and the corpus does not contradict it.
-    - If `Corpus Form` is `"string"`: Must match exactly (as before).
+    - If `Corpus Form` is `"string"`: Must match exactly.
