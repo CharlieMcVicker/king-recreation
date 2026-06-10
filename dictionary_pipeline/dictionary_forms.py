@@ -115,6 +115,54 @@ class DictionaryVerb:
             clean_data["shim"] = DictionaryVerb.from_dict(clean_data["shim"])
         return DictionaryVerb(**clean_data)
 
+    @classmethod
+    def from_row(cls, row: dict[str, Any]) -> DictionaryVerb:
+        import json
+
+        from morphology.morphemes.prefixes import PrefixConfig
+
+        config = PrefixConfig.from_row(row)
+        definition = row.get("definition", "")
+        cls_name = row.get("class", "")
+        post_root_morpheme = row.get("post_root_morpheme")
+        post_root_morpheme = post_root_morpheme if post_root_morpheme else None
+
+        h_root = row.get("h_grade", "")
+
+        glottal_root = None
+        if config.pron.produces_glottal_grade():
+            glottal_root = row.get("g_grade")
+            if glottal_root == "" and not h_root == "":
+                glottal_root = None
+
+        morphology = MorphologicalVerb(
+            h_grade_root=h_root,
+            glottal_grade_root=glottal_root,
+            class_name=cls_name,
+            post_root_morpheme=post_root_morpheme,
+            config=config,
+        )
+
+        meta = PredictionMeta(
+            corpus_id=str(row.get("corpus_id") or ""),
+            definition=definition,
+            entry_no=str(row.get("entry_no") or ""),
+            prediction=Prediction(row.get("prediction") or "FullEventful"),
+        )
+
+        verb = cls(
+            meta=meta,
+            morphology=morphology,
+            original_data=row,
+        )
+        verb.user_selected = row.get("user_selected") == "x"
+        if "segmented_forms" in row and row["segmented_forms"]:
+            try:
+                verb.segmented_forms = json.loads(row["segmented_forms"])
+            except json.JSONDecodeError:
+                verb.segmented_forms = {}
+        return verb
+
     @property
     def corpus_id(self) -> int | None:
         try:
