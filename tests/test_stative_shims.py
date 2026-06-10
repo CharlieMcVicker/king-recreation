@@ -189,7 +189,6 @@ class TestLoadStativeShims:
 
         assert set(result.keys()) == {"42"}
         assert result["42"]["stem_type"] == "s_stem"
-        assert result["42"]["user_selected"] == "x"
 
     def test_legacy_format_treats_all_rows_as_overrides(self, tmp_path: Path) -> None:
         """Legacy format (no user_selected column): every row is treated as an override."""
@@ -704,3 +703,31 @@ class TestShimCompatibilityInPipeline:
 
         # No compatible candidates → no CSV written
         assert not shims_path.exists()
+
+
+## new test!
+validated_roots = """
+corpus_id,entry_no,definition,prediction,user_selected,pipeline_selected,class,post_root_morpheme,h_grade,g_grade,translocutive,translocutive_imp_only,partitive,distributive,set_a_b,stem_type,allow_h_metathesis,middle_voice,middle_voice_h_metathesis,plural,ka_variant,aki_1st,uwa_v,3rd_person_object,metathesis_involved,segmented_forms
+1450,1516,he/she is in prayer,FullStative,x,,stative,,:tolihst,,False,False,False,False,b,vowel_a,False,ata_:,False,False,False,False,False,False,False,"{""present"": ""u->ata->:tolihst-i"", ""present_1sg"": ""akw-ata->:tolihst-i"", ""imperfective"": ""u->ata->:tolihst-o'i"", ""perfective"": ""u->ata->:tolihst-v'i"", ""imperative"": ""ts-ata->:tolihst-ehsti""}"
+1450,1516,he/she is in prayer,InfEventful,,x,cause,,:tolihst,,False,False,False,False,a,vowel_a,False,ata_:,False,False,False,False,False,False,False,"{""infinitive"": ""u->ata->:tolihst-oht-i""}"
+"""
+
+
+def test_prayer_roots_compatibility() -> None:
+    """Check if the FullStative and InfEventful roots for 'he/she is in prayer'
+    are shim compatible.
+    """
+    csv_content = validated_roots.strip()
+
+    verbs = []
+    for row in csv.DictReader(csv_content.splitlines()):
+        verbs.append(DictionaryVerb.from_row(row))
+
+    assert len(verbs) == 2
+    base_verb = next(v for v in verbs if v.meta.prediction == Prediction.FULL_STATIVE)
+    shim_candidate = next(
+        v for v in verbs if v.meta.prediction == Prediction.INF_EVENTFUL
+    )
+
+    is_compatible, mismatches = validate_shim_compatibility(base_verb, shim_candidate)
+    assert is_compatible, f"Expected compatibility, but got mismatches: {mismatches}"

@@ -4,11 +4,7 @@ import os
 from collections import defaultdict
 from typing import Any
 
-from dictionary_pipeline.dictionary_forms import (
-    DictionaryVerb,
-    Prediction,
-    PredictionMeta,
-)
+from dictionary_pipeline.dictionary_forms import DictionaryVerb, Prediction
 from dictionary_pipeline.json_utils import EnhancedJSONEncoderFactory
 from dictionary_pipeline.phases.reconstruct_and_validate.artifacts import (
     load_validated_roots,
@@ -19,8 +15,6 @@ from dictionary_pipeline.phases.select_canonical_derivations.artifacts import (
     save_selection_snapshot,
 )
 from dictionary_pipeline.row_models import ValidatedRootRow
-from morphology.morphemes.prefixes import PrefixConfig
-from morphology.reconstruction import MorphologicalVerb
 
 
 # handle special rule
@@ -146,10 +140,18 @@ def load_stative_shims() -> dict[str, dict[str, Any]]:
                 continue
             if has_user_selected:
                 if row.get("user_selected") == "x":
-                    overrides[c_id] = {k: v for k, v in row.items() if k != "corpus_id"}
+                    overrides[c_id] = {
+                        k: v
+                        for k, v in row.items()
+                        if k not in ("corpus_id", "user_selected", "pipeline_selected")
+                    }
             else:
                 # Legacy format: treat every row as an override
-                overrides[c_id] = {k: v for k, v in row.items() if k != "corpus_id"}
+                overrides[c_id] = {
+                    k: v
+                    for k, v in row.items()
+                    if k not in ("corpus_id", "user_selected", "pipeline_selected")
+                }
     return overrides
 
 
@@ -157,6 +159,7 @@ def save_stative_shims(
     validated_verbs: list[DictionaryVerb],
     stative_corpus_ids: set[str],
     curated_overrides: dict[str, dict[str, Any]],
+    deduped_verbs: list[DictionaryVerb] | None = None,
 ) -> None:
     """Write compatible INF_EVENTFUL shim candidates (grouped by corpus_id of
     their parent FULL_STATIVE verb) to curated/stative_shims.csv in the same
@@ -178,6 +181,7 @@ def save_stative_shims(
         stative_corpus_ids: corpus_ids of FULL_STATIVE verbs that need shims.
         curated_overrides: mapping corpus_id -> override config dict as
             returned by load_stative_shims().
+        deduped_verbs: the canonical/deduped verbs from the current run.
     """
     from dictionary_pipeline.paths import STATIVE_SHIMS_PATH
 
@@ -190,12 +194,18 @@ def save_stative_shims(
 
     stative_h_grade: dict[str, str] = {}
     stative_verbs: dict[str, DictionaryVerb] = {}
-    for verb in validated_verbs:
+    source_verbs = deduped_verbs if deduped_verbs is not None else validated_verbs
+    for verb in source_verbs:
         if verb.meta.prediction == Prediction.FULL_STATIVE:
             c_id = str(verb.meta.corpus_id)
             if c_id in stative_corpus_ids:
-                stative_h_grade[c_id] = verb.morphology.h_grade_root
-                stative_verbs[c_id] = verb
+                is_selected = (
+                    getattr(verb, "user_selected", False)
+                    or verb.original_data.get("pipeline_selected") == "x"
+                )
+                if is_selected or c_id not in stative_verbs:
+                    stative_h_grade[c_id] = verb.morphology.h_grade_root
+                    stative_verbs[c_id] = verb
 
     all_rows: list[dict[str, Any]] = []
     missing_overrides: list[str] = []
@@ -449,51 +459,7 @@ def select_canonical_derivations() -> None:
 
     validated_verbs = []
     for row in rows:
-        # Reconstruct DictionaryVerb object
-        config = PrefixConfig.from_row(row)
-
-        definition = row["definition"]
-        cls_name = row["class"]
-        post_root_morpheme = row.get("post_root_morpheme")
-        post_root_morpheme = post_root_morpheme if post_root_morpheme else None
-
-        h_root = row["h_grade"]
-
-        glottal_root = None
-        if config.pron.produces_glottal_grade():
-            glottal_root = row["g_grade"]
-            if glottal_root == "" and not h_root == "":
-                glottal_root = None
-
-        morphology = MorphologicalVerb(
-            h_grade_root=h_root,
-            glottal_grade_root=glottal_root,
-            class_name=cls_name,
-            post_root_morpheme=post_root_morpheme,
-            config=config,
-        )
-
-        meta = PredictionMeta(
-            corpus_id=str(row.get("corpus_id") or ""),
-            definition=definition,
-            entry_no=str(row.get("entry_no") or ""),
-            prediction=Prediction(row.get("prediction") or "FullEventful"),
-        )
-
-        verb = DictionaryVerb(
-            meta=meta,
-            morphology=morphology,
-            original_data=row,  # Keep it if we want to pass it further, though JSON serialization dumps fields
-        )
-        # Monkey-patch or attach user_selected for use in dedupe
-        verb.user_selected = row.get("user_selected") == "x"
-        # Deserialize segmented_forms
-        if "segmented_forms" in row and row["segmented_forms"]:
-            try:
-                verb.segmented_forms = json.loads(row["segmented_forms"])
-            except json.JSONDecodeError:
-                verb.segmented_forms = {}
-
+        verb = DictionaryVerb.from_row(row)
         # Initialize pipeline_selected to empty string
         row["pipeline_selected"] = ""
         validated_verbs.append(verb)
@@ -598,7 +564,12 @@ def select_canonical_derivations() -> None:
 
     # Save shim candidates (all INF_EVENTFUL candidates for stative verbs)
     # with pipeline_selected and user_selected marked, validating curated overrides
-    save_stative_shims(validated_verbs, stative_corpus_ids, stative_shims_map)
+    save_stative_shims(
+        validated_verbs,
+        stative_corpus_ids,
+        stative_shims_map,
+        deduped_verbs=deduped_roots,
+    )
 
     # Save Fully Serialized Verbs
     save_reconstructable_verbs(deduped_roots, EnhancedJSONEncoder)
