@@ -676,6 +676,9 @@ corpus_id,definition,class,prediction
 517,he/she is taking a break,cause[pres2],FullEventful
 517,he/she is taking a break,cause[pres2-perf3],FullEventful
 519,he/she is whittling it,hvsk-han[inf2],FullEventful
+521,he/she is dying (refers to a human),sk-s-hi-hihst,FullEventful
+521,he/she is dying (refers to a human),sk-s-hst[imp2],FullEventful
+521,he/she is dying (refers to a human),sk-s-hst,FullEventful
 522,he/she is breaking it up,cause,FullEventful
 522,he/she is breaking it up,cause[perf3],FullEventful
 522,he/she is breaking it up,cause[pres2],FullEventful
@@ -1352,9 +1355,20 @@ corpus_id,definition,class,prediction
 1470,it’s in view,ih-vh,InfEventful
 1470,it’s in view,vnh-ih-a,InfEventful
 1471,he/she is throwing it,go-in,FullEventful
+1471,he/she is throwing it,stative,StativeNoImp
+1471,he/she is throwing it,go-in,ImpInfEventful
 1476,he/she is having a birthday,ih-vh,FullEventful
+1476,he/she is having a birthday,stative,StativeNoImp
+1476,he/she is having a birthday,apl-active-a,ImpInfEventful
+1476,he/she is having a birthday,ih-vh,ImpInfEventful
+1476,he/she is having a birthday,vnh-ih-a,ImpInfEventful
 1478,it’s hot,stative-k,FullStative
 1478,it’s hot,stative,FullStative
+1479,he/she has a fever,stative-k,StativeNoImp
+1479,he/she has a fever,stative,StativeNoImp
+1479,he/she has a fever,sk-s-hst[imp2],ImpInfEventful
+1479,he/she has a fever,sk-s-hst,ImpInfEventful
+1479,he/she has a fever,sk-h[imp2],ImpInfEventful
 1480,he/she is in hiding,stative-h,FullStative
 1480,he/she is in hiding,stative,FullStative
 1480,he/she is in hiding,hvsk-han,InfEventful
@@ -1364,16 +1378,43 @@ corpus_id,definition,class,prediction
 1480,he/she is in hiding,ih-vh,InfEventful
 1480,he/she is in hiding,vnh-ih-a,InfEventful
 1481,he/she is getting well,sk-s-hi-hihst,FullEventful
+1481,he/she is getting well,stative,StativeNoImp
+1481,he/she is getting well,sk-s-hi-hihst,ImpInfEventful
+1481,he/she is getting well,sk-s-hst,ImpInfEventful
+1481,he/she is getting well,sk-h[imp2],ImpInfEventful
+1481,he/she is getting well,rev-i,ImpInfEventful
 1483,there’s an opening,stative,FullStative
 1484,he/she has time,apl,FullEventful
 1484,he/she has time,apl[imp2],FullEventful
 1484,he/she has time,apl[imp3],FullEventful
+1484,he/she has time,stative,StativeNoImp
+1484,he/she has time,apl,ImpInfEventful
+1484,he/she has time,apl[imp2],ImpInfEventful
+1484,he/she has time,apl[imp3],ImpInfEventful
 1485,he/she is disbelieving,apl,FullEventful
 1485,he/she is disbelieving,apl[imp2],FullEventful
+1485,he/she is disbelieving,stative,StativeNoImp
+1485,he/she is disbelieving,apl,ImpInfEventful
+1485,he/she is disbelieving,apl[imp2],ImpInfEventful
 1487,he/she is taking revenge,become,FullEventful
 1487,he/she is taking revenge,become[inf2],FullEventful
 1487,he/she is taking revenge,become[inf4],FullEventful
+1487,he/she is taking revenge,stative,StativeNoImp
+1487,he/she is taking revenge,become,ImpInfEventful
+1487,he/she is taking revenge,become[inf2],ImpInfEventful
+1487,he/she is taking revenge,become[inf4],ImpInfEventful
+1487,he/she is taking revenge,sk-s-hst,ImpInfEventful
+1487,he/she is taking revenge,sk-h[imp2],ImpInfEventful
+1487,he/she is taking revenge,rev-i,ImpInfEventful
 1489,he/she is wearing an earring,stative,FullStative
+1493,he/she is sick,stative-k,StativeNoImp
+1493,he/she is sick,stative,StativeNoImp
+1493,he/she is sick,become,ImpInfEventful
+1493,he/she is sick,become[inf2],ImpInfEventful
+1493,he/she is sick,become[inf4],ImpInfEventful
+1493,he/she is sick,sk-s-hst,ImpInfEventful
+1493,he/she is sick,sk-h[imp2],ImpInfEventful
+1493,he/she is sick,rev-i,ImpInfEventful
 1505,he/she is standing in liquid,stative-s,FullStative
 1505,he/she is standing in liquid,stative,FullStative
 1505,he/she is standing in liquid,hvsk-nh,InfEventful
@@ -1383,10 +1424,20 @@ corpus_id,definition,class,prediction
 1505,he/she is standing in liquid,ih-vh,InfEventful
 1505,he/she is standing in liquid,vnh-ih-a,InfEventful
 1507,he/she wants it,ih-vh,FullEventful
+1507,he/she wants it,stative,StativeNoImp
+1507,he/she wants it,apl-active-a,ImpInfEventful
+1507,he/she wants it,ih-vh,ImpInfEventful
+1507,he/she wants it,vnh-ih-a,ImpInfEventful
 1508,he/she is willing,stative,FullStative
 1514,he/she is becoming warm,sk-s-hi-hihst,FullEventful
 1514,he/she is becoming warm,sk-s-hst[imp2],FullEventful
 1514,he/she is becoming warm,sk-s-hst,FullEventful
+1514,he/she is becoming warm,stative,StativeNoImp
+1514,he/she is becoming warm,sk-s-hi-hihst,ImpInfEventful
+1514,he/she is becoming warm,sk-s-hst[imp2],ImpInfEventful
+1514,he/she is becoming warm,sk-s-hst,ImpInfEventful
+1514,he/she is becoming warm,sk-h[imp2],ImpInfEventful
+1514,he/she is becoming warm,rev-i,ImpInfEventful
 1516,he/she is possessive of him/her,stative-s,FullStative
 1516,he/she is possessive of him/her,stative,FullStative
 1516,he/she is possessive of him/her,hvsk-han,InfEventful
@@ -1396,44 +1447,128 @@ corpus_id,definition,class,prediction
 1516,he/she is possessive of him/her,ih-vh,InfEventful
 1516,he/she is possessive of him/her,vnh-ih-a,InfEventful
 1523,he/she is late,become,FullEventful
+1523,he/she is late,stative,StativeNoImp
+1523,he/she is late,become,ImpInfEventful
+1523,he/she is late,sk-s-hst,ImpInfEventful
+1523,he/she is late,sk-h[imp2],ImpInfEventful
 1524,it’s decaying,sk-s-hi-hihst,FullEventful
 1524,it’s decaying,sk-s-hst[imp2],FullEventful
 1524,it’s decaying,sk-s-hst,FullEventful
+1524,it’s decaying,stative,StativeNoImp
+1524,it’s decaying,sk-s-hi-hihst,ImpInfEventful
+1524,it’s decaying,sk-s-hst[imp2],ImpInfEventful
+1524,it’s decaying,sk-s-hst,ImpInfEventful
+1524,it’s decaying,sk-h[imp2],ImpInfEventful
+1524,it’s decaying,rev-i,ImpInfEventful
 1530,he/she has an object (refers to a solid object),stative-h,FullStative
 1530,he/she has an object (refers to a solid object),stative,FullStative
 1531,he/she is yawning,apl-active,FullEventful
 1531,he/she is yawning,apl-active-a,FullEventful
+1531,he/she is yawning,stative,StativeNoImp
+1531,he/she is yawning,apl-active,ImpInfEventful
+1531,he/she is yawning,apl-active-a,ImpInfEventful
+1531,he/she is yawning,apl[imp4],ImpInfEventful
+1531,he/she is yawning,ih-vh,ImpInfEventful
+1531,he/she is yawning,vnh-ih-a,ImpInfEventful
 1534,he/she is having trouble breathing,cause,FullEventful
 1534,he/she is having trouble breathing,cause[perf3],FullEventful
 1534,he/she is having trouble breathing,cause[pres2],FullEventful
 1534,he/she is having trouble breathing,cause[pres2-perf3],FullEventful
+1534,he/she is having trouble breathing,stative,StativeNoImp
+1534,he/she is having trouble breathing,apl-active-a,ImpInfEventful
+1534,he/she is having trouble breathing,cause,ImpInfEventful
+1534,he/she is having trouble breathing,ih-vh,ImpInfEventful
+1534,he/she is having trouble breathing,vnh-ih-a,ImpInfEventful
 1535,there is dew,stative-h,FullStative
 1535,there is dew,stative,FullStative
 1536,he/she is lonesome,apl,FullEventful
 1536,he/she is lonesome,apl[imp2],FullEventful
+1536,he/she is lonesome,stative,StativeNoImp
+1536,he/she is lonesome,apl,ImpInfEventful
+1536,he/she is lonesome,apl[imp2],ImpInfEventful
 1537,it’s lonesome,stative,FullStative
 1544,he/she is becoming angry,become,FullEventful
 1544,he/she is becoming angry,become[inf2],FullEventful
 1544,he/she is becoming angry,become[inf4],FullEventful
+1544,he/she is becoming angry,stative,StativeNoImp
+1544,he/she is becoming angry,become,ImpInfEventful
+1544,he/she is becoming angry,become[inf2],ImpInfEventful
+1544,he/she is becoming angry,become[inf4],ImpInfEventful
+1544,he/she is becoming angry,sk-s-hst,ImpInfEventful
+1544,he/she is becoming angry,sk-h[imp2],ImpInfEventful
+1544,he/she is becoming angry,rev-i,ImpInfEventful
 1545,he/she is angry,stative-s,FullStative
 1545,he/she is angry,stative,FullStative
 1548,he/she is stubbing his/her toe,o,FullEventful
+1548,he/she is stubbing his/her toe,stative,StativeNoImp
+1548,he/she is stubbing his/her toe,sk-s-hst,ImpInfEventful
+1548,he/she is stubbing his/her toe,sk-h,ImpInfEventful
+1548,he/she is stubbing his/her toe,sk-h[imp2],ImpInfEventful
+1548,he/she is stubbing his/her toe,o,ImpInfEventful
 1551,he/she has a chill,cause,FullEventful
 1551,he/she has a chill,cause[perf3],FullEventful
 1551,he/she has a chill,cause[pres2],FullEventful
 1551,he/she has a chill,cause[pres2-perf3],FullEventful
+1551,he/she has a chill,stative,StativeNoImp
+1551,he/she has a chill,apl-active-a,ImpInfEventful
+1551,he/she has a chill,cause,ImpInfEventful
+1551,he/she has a chill,ih-vh,ImpInfEventful
+1551,he/she has a chill,vnh-ih-a,ImpInfEventful
 1554,he/she is in bed,stative-h,FullStative
 1554,he/she is in bed,stative,FullStative
 1557,he/she is wearing a shirt,stative,FullStative
 1561,he/she is buying it,sk-s-hi-hihst,FullEventful
 1561,he/she is buying it,sk-s-hst[imp2],FullEventful
 1561,he/she is buying it,sk-s-hst,FullEventful
+1561,he/she is buying it,stative,StativeNoImp
+1561,he/she is buying it,sk-s-hi-hihst,ImpInfEventful
+1561,he/she is buying it,sk-s-hst[imp2],ImpInfEventful
+1561,he/she is buying it,sk-s-hst,ImpInfEventful
+1561,he/she is buying it,sk-h[imp2],ImpInfEventful
+1561,he/she is buying it,rev-i,ImpInfEventful
 1563,he/she is looking for it,oh-al,FullEventful
+1563,he/she is looking for it,stative,StativeNoImp
+1563,he/she is looking for it,sk-s-a[inf2],ImpInfEventful
+1563,he/she is looking for it,sk-h,ImpInfEventful
+1563,he/she is looking for it,sk-h[imp2],ImpInfEventful
+1563,he/she is looking for it,hih-hil,ImpInfEventful
+1563,he/she is looking for it,oh-al,ImpInfEventful
+1564,he/she is afloat,stative-s,StativeNoImp
+1564,he/she is afloat,stative,StativeNoImp
+1564,he/she is afloat,hvsk-nh,ImpInfEventful
+1564,he/she is afloat,hvsk-nh[inf2],ImpInfEventful
+1564,he/she is afloat,apl-active-a,ImpInfEventful
+1564,he/she is afloat,ih-vh,ImpInfEventful
+1564,he/she is afloat,vnh-ih-a,ImpInfEventful
 1569,it is cold (refers to weather),stative,FullStative
 1570,he/she has a cold,ih-vh,FullEventful
+1570,he/she has a cold,stative,StativeNoImp
+1570,he/she has a cold,apl-active-a,ImpInfEventful
+1570,he/she has a cold,ih-vh,ImpInfEventful
+1570,he/she has a cold,vnh-ih-a,ImpInfEventful
+1571,he/she is choking on it,stative,StativeNoImp
 1572,he/she is getting drunk,e-aka,FullEventful
+1572,he/she is getting drunk,stative,StativeNoImp
+1572,he/she is getting drunk,sk-s-hst,ImpInfEventful
+1572,he/she is getting drunk,sk-h,ImpInfEventful
+1572,he/she is getting drunk,sk-h[imp2],ImpInfEventful
+1572,he/she is getting drunk,e-aka,ImpInfEventful
+1572,he/she is getting drunk,hih-lh,ImpInfEventful
+1572,he/she is getting drunk,oh-al,ImpInfEventful
+1572,he/she is getting drunk,oh-al[imp2],ImpInfEventful
 1576,he/she is inside it,stative-a',FullStative
 1576,he/she is inside it,stative,FullStative
+1580,he/she is grinning,stative,StativeNoImp
+1580,he/she is grinning,apl-active-a,ImpInfEventful
+1580,he/she is grinning,cause,ImpInfEventful
+1580,he/she is grinning,ih-vh,ImpInfEventful
+1580,he/she is grinning,vnh-ih-a,ImpInfEventful
+1585,it’s rattling,stative-h,StativeNoImp
+1585,it’s rattling,stative,StativeNoImp
+1585,it’s rattling,hvsk-han,ImpInfEventful
+1585,it’s rattling,apl-active-a,ImpInfEventful
+1585,it’s rattling,ih-vh,ImpInfEventful
+1585,it’s rattling,vnh-ih-a,ImpInfEventful
 1592,it’s sticking out,stative-h,FullStative
 1592,it’s sticking out,stative,FullStative
 1592,it’s sticking out,hvsk-han,InfEventful
@@ -1454,26 +1589,62 @@ corpus_id,definition,class,prediction
 1597,it’s foggy,stative,FullStative
 1599,he/she is not having luck at hunting,go,FullEventful
 1599,he/she is not having luck at hunting,go[pres2],FullEventful
+1599,he/she is not having luck at hunting,stative,StativeNoImp
+1599,he/she is not having luck at hunting,sk-s-hst,ImpInfEventful
+1599,he/she is not having luck at hunting,sk-h,ImpInfEventful
+1599,he/she is not having luck at hunting,sk-h[imp2],ImpInfEventful
+1599,he/she is not having luck at hunting,go,ImpInfEventful
+1599,he/she is not having luck at hunting,hih-lh,ImpInfEventful
+1599,he/she is not having luck at hunting,oh-al,ImpInfEventful
 1602,he/she is losing his/her way,hih-lh,FullEventful
+1602,he/she is losing his/her way,stative-h,StativeNoImp
+1602,he/she is losing his/her way,stative,StativeNoImp
+1602,he/she is losing his/her way,a,ImpInfEventful
+1602,he/she is losing his/her way,sk-s-hst,ImpInfEventful
+1602,he/she is losing his/her way,sk-h,ImpInfEventful
+1602,he/she is losing his/her way,sk-h[imp2],ImpInfEventful
+1602,he/she is losing his/her way,hih-lh,ImpInfEventful
+1602,he/she is losing his/her way,be-at,ImpInfEventful
+1602,he/she is losing his/her way,oh-al,ImpInfEventful
+1602,he/she is losing his/her way,oh-al[imp2],ImpInfEventful
+1602,he/she is losing his/her way,oh-ol[inf3],ImpInfEventful
 1604,he/she is making a mistake,cause,FullEventful
 1604,he/she is making a mistake,cause[perf3],FullEventful
 1604,he/she is making a mistake,cause[pres2],FullEventful
 1604,he/she is making a mistake,cause[pres2-perf3],FullEventful
+1604,he/she is making a mistake,stative,StativeNoImp
+1604,he/she is making a mistake,apl-active-a,ImpInfEventful
+1604,he/she is making a mistake,cause,ImpInfEventful
+1604,he/she is making a mistake,ih-vh,ImpInfEventful
+1604,he/she is making a mistake,vnh-ih-a,ImpInfEventful
 1612,he/she is whining,cause,FullEventful
 1612,he/she is whining,cause[perf3],FullEventful
 1612,he/she is whining,cause[pres2],FullEventful
 1612,he/she is whining,cause[pres2-perf3],FullEventful
+1612,he/she is whining,stative,StativeNoImp
+1612,he/she is whining,apl-active-a,ImpInfEventful
+1612,he/she is whining,cause,ImpInfEventful
+1612,he/she is whining,ih-vh,ImpInfEventful
+1612,he/she is whining,vnh-ih-a,ImpInfEventful
 1613,he/she is wearing a ring,stative-k,FullStative
 1613,he/she is wearing a ring,stative,FullStative
 1614,it’s cloudy,stative,FullStative
 1616,it’s happening to him,apl,FullEventful
 1616,it’s happening to him,apl[imp2],FullEventful
+1616,it’s happening to him,stative,StativeNoImp
+1616,it’s happening to him,apl,ImpInfEventful
+1616,it’s happening to him,apl[imp2],ImpInfEventful
 1618,he/she is wearing a cap,stative,FullStative
 1621,he/she is sticking his/her head out,stative,FullStative
 1622,he/she is wearing a hat,stative-k,FullStative
 1622,he/she is wearing a hat,stative,FullStative
 1623,it’s dark,stative-k,FullStative
 1623,it’s dark,stative,FullStative
+1627,he/she likes him/her,stative,StativeNoImp
+1627,he/she likes him/her,apl-active-a,ImpInfEventful
+1627,he/she likes him/her,cause,ImpInfEventful
+1627,he/she likes him/her,ih-vh,ImpInfEventful
+1627,he/she likes him/her,vnh-ih-a,ImpInfEventful
 1629,he/she has an object (refers to a flexible object),stative-a',FullStative
 1629,he/she has an object (refers to a flexible object),stative,FullStative
 1632,they are together,stative-s,FullStative
@@ -1492,14 +1663,46 @@ corpus_id,definition,class,prediction
 1642,he/she has a liquid,vnh-ih-a,InfEventful
 1646,he/she knows it,stative-h,FullStative
 1646,he/she knows it,stative,FullStative
+1649,it is making a sound,stative,StativeNoImp
+1649,it is making a sound,sk-s-a,ImpInfEventful
+1649,it is making a sound,sk-s-la,ImpInfEventful
+1649,it is making a sound,sk-s-hst,ImpInfEventful
+1649,it is making a sound,sk-h,ImpInfEventful
+1649,it is making a sound,sk-h[imp2],ImpInfEventful
+1649,it is making a sound,i-a-i,ImpInfEventful
 1664,he/she is receiving punishment,i-a-i,FullEventful
+1664,he/she is receiving punishment,stative,StativeNoImp
+1664,he/she is receiving punishment,sk-s-hst,ImpInfEventful
+1664,he/she is receiving punishment,sk-h,ImpInfEventful
+1664,he/she is receiving punishment,sk-h[imp2],ImpInfEventful
+1664,he/she is receiving punishment,i-a-i,ImpInfEventful
 1671,he/she is coughing,sk-h[imp2],FullEventful
+1671,he/she is coughing,stative,StativeNoImp
+1671,he/she is coughing,sk-s-hi-hihst,ImpInfEventful
+1671,he/she is coughing,sk-s-hst[imp2],ImpInfEventful
+1671,he/she is coughing,sk-s-hst,ImpInfEventful
+1671,he/she is coughing,sk-h[imp2],ImpInfEventful
+1671,he/she is coughing,rev-i,ImpInfEventful
 1677,he/she is wearing pants,stative,FullStative
 1681,he/she is going to bed,hih-lh[imp2],FullEventful
+1681,he/she is going to bed,stative-h,StativeNoImp
+1681,he/she is going to bed,stative,StativeNoImp
+1681,he/she is going to bed,sk-s-hst,ImpInfEventful
+1681,he/she is going to bed,sk-h,ImpInfEventful
+1681,he/she is going to bed,sk-h[imp2],ImpInfEventful
+1681,he/she is going to bed,hih-lh[imp2],ImpInfEventful
 1683,he/she is thirsty,i-vka,FullEventful
+1683,he/she is thirsty,stative,StativeNoImp
+1683,he/she is thirsty,i-vka,ImpInfEventful
 1684,he/she is becoming enraged,sk-s-hi-hihst,FullEventful
 1684,he/she is becoming enraged,sk-s-hst[imp2],FullEventful
 1684,he/she is becoming enraged,sk-s-hst,FullEventful
+1684,he/she is becoming enraged,stative,StativeNoImp
+1684,he/she is becoming enraged,sk-s-hi-hihst,ImpInfEventful
+1684,he/she is becoming enraged,sk-s-hst[imp2],ImpInfEventful
+1684,he/she is becoming enraged,sk-s-hst,ImpInfEventful
+1684,he/she is becoming enraged,sk-h[imp2],ImpInfEventful
+1684,he/she is becoming enraged,rev-i,ImpInfEventful
 1693,he/she is listening to him/her,stative,FullStative
 1693,he/she is listening to him/her,hvsk-nh,InfEventful
 1693,he/she is listening to him/her,hvsk-nh[inf2],InfEventful
@@ -1510,14 +1713,51 @@ corpus_id,definition,class,prediction
 1693,he/she is listening to him/her,ih-vh,InfEventful
 1693,he/she is listening to him/her,vnh-ih-a,InfEventful
 1698,he/she is forgetting it,sk-s-a,FullEventful
+1698,he/she is forgetting it,stative,StativeNoImp
+1698,he/she is forgetting it,sk-s-a,ImpInfEventful
+1698,he/she is forgetting it,sk-s-hst,ImpInfEventful
+1698,he/she is forgetting it,sk-h,ImpInfEventful
+1698,he/she is forgetting it,sk-h[imp2],ImpInfEventful
+1698,he/she is forgetting it,i-a-i,ImpInfEventful
 1699,he/she is belching,become,FullEventful
 1699,he/she is belching,become[inf2],FullEventful
 1699,he/she is belching,become[inf4],FullEventful
+1699,he/she is belching,stative,StativeNoImp
+1699,he/she is belching,become,ImpInfEventful
+1699,he/she is belching,become[inf2],ImpInfEventful
+1699,he/she is belching,become[inf4],ImpInfEventful
+1699,he/she is belching,sk-s-hst,ImpInfEventful
+1699,he/she is belching,sk-h[imp2],ImpInfEventful
+1699,he/she is belching,rev-i,ImpInfEventful
 1700,he/she is shivering,i-a-i,FullEventful
+1700,he/she is shivering,stative,StativeNoImp
+1700,he/she is shivering,sk-s-hst,ImpInfEventful
+1700,he/she is shivering,sk-h,ImpInfEventful
+1700,he/she is shivering,sk-h[imp2],ImpInfEventful
+1700,he/she is shivering,i-a-i,ImpInfEventful
+1704,he/she is in a hurry,stative-k,StativeNoImp
+1704,he/she is in a hurry,stative,StativeNoImp
+1704,he/she is in a hurry,become,ImpInfEventful
+1704,he/she is in a hurry,sk-s-hst,ImpInfEventful
+1704,he/she is in a hurry,sk-h[imp2],ImpInfEventful
 1708,he/she smells it,become,FullEventful
+1708,he/she smells it,stative,StativeNoImp
+1708,he/she smells it,become,ImpInfEventful
+1708,he/she smells it,sk-s-hst,ImpInfEventful
+1708,he/she smells it,sk-h[imp2],ImpInfEventful
 1709,he/she has an object (refers to a long object),stative,FullStative
 1710,he/she is aching,apl,FullEventful
 1710,he/she is aching,apl[imp2],FullEventful
+1710,he/she is aching,stative,StativeNoImp
+1710,he/she is aching,apl,ImpInfEventful
+1710,he/she is aching,apl[imp2],ImpInfEventful
+1711,he/she is yelling,stative,StativeNoImp
+1711,he/she is yelling,sk-s-hst,ImpInfEventful
+1711,he/she is yelling,sk-h,ImpInfEventful
+1711,he/she is yelling,sk-h[imp2],ImpInfEventful
+1711,he/she is yelling,hvsk-nh[inf3],ImpInfEventful
+1711,he/she is yelling,hih-lh,ImpInfEventful
+1711,he/she is yelling,oh-al,ImpInfEventful
 1719,he/she has it,stative-h,FullStative
 1719,he/she has it,stative,FullStative
 1721,he/she is worried,stative,FullStative
@@ -1536,8 +1776,25 @@ corpus_id,definition,class,prediction
 1729,he/she is confident,stative,FullStative
 1730,he/she is sitting,stative-h,FullStative
 1730,he/she is sitting,stative,FullStative
+1739,he/she is laughing,stative,StativeNoImp
+1740,he/she is itching,stative,StativeNoImp
+1740,he/she is itching,sk-s-hst,ImpInfEventful
+1740,he/she is itching,sk-h,ImpInfEventful
+1740,he/she is itching,sk-h[imp2],ImpInfEventful
+1740,he/she is itching,e-aka,ImpInfEventful
+1740,he/she is itching,hih-lh,ImpInfEventful
+1740,he/she is itching,oh-al,ImpInfEventful
+1740,he/she is itching,oh-al[imp2],ImpInfEventful
 1741,he/she is losing it,apl,FullEventful
 1741,he/she is losing it,apl[imp2],FullEventful
+1741,he/she is losing it,stative,StativeNoImp
+1741,he/she is losing it,apl,ImpInfEventful
+1741,he/she is losing it,apl[imp2],ImpInfEventful
+1745,he/she is hungry,stative,StativeNoImp
+1745,he/she is hungry,apl-active-a,ImpInfEventful
+1745,he/she is hungry,cause,ImpInfEventful
+1745,he/she is hungry,ih-vh,ImpInfEventful
+1745,he/she is hungry,vnh-ih-a,ImpInfEventful
 1754,he/she is sending on object (refers to a long object),i-a-i,FullEventful
 1761,he/she is sending it,hvsk-nh,FullEventful
 1761,he/she is sending it,hvsk-nh[inf2],FullEventful

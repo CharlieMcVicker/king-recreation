@@ -218,6 +218,12 @@ class Prediction(str, Enum):
     """A prediction made for _only_ the infinitive form of a verb. Used together
     with a FULL_STATIVE to predict all forms of a row"""
 
+    STATIVE_NO_IMP = "StativeNoImp"
+    """Stative verb with no imperative form"""
+
+    IMP_INF_EVENTFUL = "ImpInfEventful"
+    """Eventful verb with only imperative and infinitive forms"""
+
 
 @dataclass
 class RowPredictionsSpec:
@@ -251,12 +257,36 @@ ROW_PREDICTION_SPECS = [
             (Prediction.INF_EVENTFUL, form_exists("infinitive")),
         ],
     ),
+    RowPredictionsSpec(
+        name="StativeNoImp",
+        row_test=lambda forms: bool(forms["imperative"])
+        and not forms["imperative"].endswith("ehsti")
+        and (
+            forms["present"].startswith("u")
+            or forms["present"].startswith("uni")
+            or forms["present"].startswith("uw")
+            or forms["perfective"].endswith("o'i")
+            or forms["perfective"] == forms["imperfective"]
+        ),
+        predictions=[
+            (
+                Prediction.STATIVE_NO_IMP,
+                lambda _: True,
+            ),
+            (
+                Prediction.IMP_INF_EVENTFUL,
+                lambda forms: bool(forms["imperative"]) or bool(forms["infinitive"]),
+            ),
+        ],
+    ),
 ]
 
 PREDICTION_IS_STATIVE: dict[Prediction, bool] = {
     Prediction.FULL_EVENTFUL: False,
     Prediction.FULL_STATIVE: True,
     Prediction.INF_EVENTFUL: False,
+    Prediction.STATIVE_NO_IMP: True,
+    Prediction.IMP_INF_EVENTFUL: False,
 }
 
 # Dictionary column name -> morphological Aspect
@@ -277,6 +307,16 @@ FORM_NAME_TO_ASPECT_FOR_PREDICTION: dict[Prediction, dict[str, Aspect]] = {
         "imperative": Aspect.IMPERFECTIVE,
     },
     Prediction.INF_EVENTFUL: {
+        "infinitive": Aspect.INFINITIVE,
+    },
+    Prediction.STATIVE_NO_IMP: {
+        "present": Aspect.PRESENT,
+        "present_1sg": Aspect.PRESENT,
+        "imperfective": Aspect.IMPERFECTIVE,
+        "perfective": Aspect.IMPERFECTIVE,
+    },
+    Prediction.IMP_INF_EVENTFUL: {
+        "imperative": Aspect.IMPERATIVE,
         "infinitive": Aspect.INFINITIVE,
     },
 }
@@ -311,6 +351,16 @@ FORM_NAMES_FOR_PREDICTION = {
     Prediction.INF_EVENTFUL: [
         "infinitive",
     ],
+    Prediction.STATIVE_NO_IMP: [
+        "present",
+        "present_1sg",
+        "imperfective",
+        "perfective",
+    ],
+    Prediction.IMP_INF_EVENTFUL: [
+        "imperative",
+        "infinitive",
+    ],
 }
 
 # All dictionary form columns (for iterating over dictionary rows)
@@ -328,7 +378,10 @@ def get_form_spec(prediction: Prediction, form_name: str) -> FormSpec:
     )
 
     # Maintain current behavior: PERFECTIVE and INFINITIVE force Set B
-    allow_set_a = aspect not in (Aspect.PERFECTIVE, Aspect.INFINITIVE)
+    if prediction == Prediction.STATIVE_NO_IMP and form_name == "perfective":
+        allow_set_a = False
+    else:
+        allow_set_a = aspect not in (Aspect.PERFECTIVE, Aspect.INFINITIVE)
 
     # Predict tense ending morphologically inside the function!
     if form_name == "imperative" and prediction == Prediction.FULL_STATIVE:

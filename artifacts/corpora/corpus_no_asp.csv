@@ -676,6 +676,9 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 517,524,he/she is taking a break,FullEventful,cause[pres2],,ayohihstih,tsi'yohihstih,ayohihst,uyohihst,hiyohihst,uyohihst
 517,524,he/she is taking a break,FullEventful,cause[pres2-perf3],,ayohihstih,tsi'yohihstih,ayohihst,uyohihsth,hiyohihst,uyohihst
 519,526,he/she is whittling it,FullEventful,hvsk-han[inf2],,ayol,tsiyol,ayol,uyol,hiyol,uyol
+521,528,he/she is dying (refers to a human),FullEventful,sk-s-hi-hihst,,ayohu,tsiyo'u,ayohu,uyohu,hiyohu,uyohu
+521,528,he/she is dying (refers to a human),FullEventful,sk-s-hst[imp2],,ayohu,tsiyo'u,ayohu,uyohu,hiyohu,uyohuhi
+521,528,he/she is dying (refers to a human),FullEventful,sk-s-hst,,ayohu,tsiyo'u,ayohu,uyohu,hiyohuhi,uyohuhi
 522,529,he/she is breaking it up,FullEventful,cause,,ayol,tsiyol,ayo'ihst,uyo'ihst,hiyo'ihst,uyo'ihst
 522,529,he/she is breaking it up,FullEventful,cause[perf3],,ayol,tsiyol,ayo'ihst,uyo'ihsth,hiyo'ihst,uyo'ihst
 522,529,he/she is breaking it up,FullEventful,cause[pres2],,ayolih,tsiyolih,ayo'ihst,uyo'ihst,hiyo'ihst,uyo'ihst
@@ -1352,9 +1355,20 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1470,1536,it’s in view,InfEventful,ih-vh,,,,,,,utayvlat
 1470,1536,it’s in view,InfEventful,vnh-ih-a,,,,,,,utayvlat
 1471,1537,he/she is throwing it,FullEventful,go-in,,ut,akwat,ut,ut,tsat,ut
+1471,1537,he/she is throwing it,StativeNoImp,stative,,utek,akwatek,utek,utinvhs,,
+1471,1537,he/she is throwing it,ImpInfEventful,go-in,,,,,,tsat,ut
 1476,1542,he/she is having a birthday,FullEventful,ih-vh,,utethiy,akwatethiy,utethiy,utethiy,tsatethiy,utethiy
+1476,1542,he/she is having a birthday,StativeNoImp,stative,,utethiyih,akwatethiyih,utethiyihsk,utethiyvh,,
+1476,1542,he/she is having a birthday,ImpInfEventful,apl-active-a,,,,,,tsatethiy,utethiy
+1476,1542,he/she is having a birthday,ImpInfEventful,ih-vh,,,,,,tsatethiy,utethiy
+1476,1542,he/she is having a birthday,ImpInfEventful,vnh-ih-a,,,,,,tsatethiy,utethiy
 1478,1544,it’s hot,FullStative,stative-k,,utilheh,,utilheh,utilheh,tsatilheh,
 1478,1544,it’s hot,FullStative,stative,,utilhehk,,utilhehk,utilhehk,tsatilhehk,
+1479,1545,he/she has a fever,StativeNoImp,stative-k,,utilhehvhs,akwatilhehvhs,utilhehvhs,utilhehvhs,,
+1479,1545,he/she has a fever,StativeNoImp,stative,,utilhehvhsk,akwatilhehvhsk,utilhehvhsk,utilhehvhsk,,
+1479,1545,he/she has a fever,ImpInfEventful,sk-s-hst[imp2],,,,,,tsatilhehv,utilhehv
+1479,1545,he/she has a fever,ImpInfEventful,sk-s-hst,,,,,,tsatilhehvhi,utilhehv
+1479,1545,he/she has a fever,ImpInfEventful,sk-h[imp2],,,,,,tsatilhehvhi,utilhehv
 1480,1546,he/she is in hiding,FullStative,stative-h,,utihskal,akwatihskal,utihskal,utihskal,tsatihskal,
 1480,1546,he/she is in hiding,FullStative,stative,,utihskalh,akwatihskalh,utihskalh,utihskalh,tsatihskalh,
 1480,1546,he/she is in hiding,InfEventful,hvsk-han,,,,,,,utihskal
@@ -1364,16 +1378,43 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1480,1546,he/she is in hiding,InfEventful,ih-vh,,,,,,,utihskal
 1480,1546,he/she is in hiding,InfEventful,vnh-ih-a,,,,,,,utihskal
 1481,1547,he/she is getting well,FullEventful,sk-s-hi-hihst,,utiw,akwatiw,utiw,utiw,tsatiw,utiw
+1481,1547,he/she is getting well,StativeNoImp,stative,,utiwhsk,akwatiwhsk,utiwhsk,utiwhs,,
+1481,1547,he/she is getting well,ImpInfEventful,sk-s-hi-hihst,,,,,,tsatiw,utiw
+1481,1547,he/she is getting well,ImpInfEventful,sk-s-hst,,,,,,tsatiwhi,utiwhi
+1481,1547,he/she is getting well,ImpInfEventful,sk-h[imp2],,,,,,tsatiwhi,utiwhi
+1481,1547,he/she is getting well,ImpInfEventful,rev-i,,,,,,tsatiwh,utiwh
 1483,1549,there’s an opening,FullStative,stative,,utlanvt,,utlanvt,utlanvt,,
 1484,1550,he/she has time,FullEventful,apl,,utlanvta't,akwatlanvta't,utlanvta't,utlanvta't,tsatlanvtati,utlanvta't
 1484,1550,he/she has time,FullEventful,apl[imp2],,utlanvta't,akwatlanvta't,utlanvta't,utlanvta't,tsatlanvtati,utlanvta't
 1484,1550,he/she has time,FullEventful,apl[imp3],,utlanvta't,akwatlanvta't,utlanvta't,utlanvta't,tsatlanvtat,utlanvta't
+1484,1550,he/she has time,StativeNoImp,stative,,utlanvta'teh,akwatlanvta'teh,utlanvta'teh,utlanvta'tel,,
+1484,1550,he/she has time,ImpInfEventful,apl,,,,,,tsatlanvtati,utlanvta't
+1484,1550,he/she has time,ImpInfEventful,apl[imp2],,,,,,tsatlanvtati,utlanvta't
+1484,1550,he/she has time,ImpInfEventful,apl[imp3],,,,,,tsatlanvtat,utlanvta't
 1485,1551,he/she is disbelieving,FullEventful,apl,,utlahsithv',akwatlahsithv',utlahsithv',utlahsithv',tsatlahsithv,utlahsithv'
 1485,1551,he/she is disbelieving,FullEventful,apl[imp2],,utlahsithv',akwatlahsithv',utlahsithv',utlahsithv',tsatlahsithv,utlahsithv'
+1485,1551,he/she is disbelieving,StativeNoImp,stative,,utlahsithv'eh,akwatlahsithv'eh,utlahsithv'eh,utlahsithv'el,,
+1485,1551,he/she is disbelieving,ImpInfEventful,apl,,,,,,tsatlahsithv,utlahsithv'
+1485,1551,he/she is disbelieving,ImpInfEventful,apl[imp2],,,,,,tsatlahsithv,utlahsithv'
 1487,1553,he/she is taking revenge,FullEventful,become,,utle,akwatle,utle,utle,tsatle,utle'i
 1487,1553,he/she is taking revenge,FullEventful,become[inf2],,utle,akwatle,utle,utle,tsatle,utle
 1487,1553,he/she is taking revenge,FullEventful,become[inf4],,utle,akwatle,utle,utle,tsatle,utle'
+1487,1553,he/she is taking revenge,StativeNoImp,stative,,utlek,akwatlek,utlek,utlets,,
+1487,1553,he/she is taking revenge,ImpInfEventful,become,,,,,,tsatle,utle'i
+1487,1553,he/she is taking revenge,ImpInfEventful,become[inf2],,,,,,tsatle,utle
+1487,1553,he/she is taking revenge,ImpInfEventful,become[inf4],,,,,,tsatle,utle'
+1487,1553,he/she is taking revenge,ImpInfEventful,sk-s-hst,,,,,,tsatleki,utle'i
+1487,1553,he/she is taking revenge,ImpInfEventful,sk-h[imp2],,,,,,tsatleki,utle'i
+1487,1553,he/she is taking revenge,ImpInfEventful,rev-i,,,,,,tsatlek,utle'
 1489,1555,he/she is wearing an earring,FullStative,stative,,utli'at,akwatli'at,utli'at,utli'at,tsatli'at,
+1493,1559,he/she is sick,StativeNoImp,stative-k,,utlv,akhtlv,utlv,utlv,,
+1493,1559,he/she is sick,StativeNoImp,stative,,utlvk,akhtlvk,utlvk,utlvk,,
+1493,1559,he/she is sick,ImpInfEventful,become,,,,,,tstlv,utlv'i
+1493,1559,he/she is sick,ImpInfEventful,become[inf2],,,,,,tstlv,utlv
+1493,1559,he/she is sick,ImpInfEventful,become[inf4],,,,,,tstlv,utlv'
+1493,1559,he/she is sick,ImpInfEventful,sk-s-hst,,,,,,tstlvki,utlv'i
+1493,1559,he/she is sick,ImpInfEventful,sk-h[imp2],,,,,,tstlvki,utlv'i
+1493,1559,he/she is sick,ImpInfEventful,rev-i,,,,,,tstlvk,utlv'
 1505,1571,he/she is standing in liquid,FullStative,stative-s,,utu,akwatu,utu,utu,tsatu,
 1505,1571,he/she is standing in liquid,FullStative,stative,,utuh,akwatuh,utuhs,utuhs,tsatuhs,
 1505,1571,he/she is standing in liquid,InfEventful,hvsk-nh,,,,,,,utu
@@ -1383,10 +1424,20 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1505,1571,he/she is standing in liquid,InfEventful,ih-vh,,,,,,,utu
 1505,1571,he/she is standing in liquid,InfEventful,vnh-ih-a,,,,,,,utu
 1507,1573,he/she wants it,FullEventful,ih-vh,,utul,akwatul,utul,utul,tsatul,utul
+1507,1573,he/she wants it,StativeNoImp,stative,,utulih,akwatulih,utulihsk,utulvh,,
+1507,1573,he/she wants it,ImpInfEventful,apl-active-a,,,,,,tsatul,utul
+1507,1573,he/she wants it,ImpInfEventful,ih-vh,,,,,,tsatul,utul
+1507,1573,he/she wants it,ImpInfEventful,vnh-ih-a,,,,,,tsatul,utul
 1508,1574,he/she is willing,FullStative,stative,,utvnv'ihst,akwatvnv'ihst,utvnv'ihst,utvnv'ihst,tsatvnv'ihst,
 1514,1580,he/she is becoming warm,FullEventful,sk-s-hi-hihst,,ukanawo,akikanawo,ukanawo,ukanawo,tsakanawo,ukanawo
 1514,1580,he/she is becoming warm,FullEventful,sk-s-hst[imp2],,ukanawo,akikanawo,ukanawo,ukanawo,tsakanawo,ukanawohi
 1514,1580,he/she is becoming warm,FullEventful,sk-s-hst,,ukanawo,akikanawo,ukanawo,ukanawo,tsakanawohi,ukanawohi
+1514,1580,he/she is becoming warm,StativeNoImp,stative,,ukanawohsk,akikanawohsk,ukanawohsk,ukanawohs,,
+1514,1580,he/she is becoming warm,ImpInfEventful,sk-s-hi-hihst,,,,,,tsakanawo,ukanawo
+1514,1580,he/she is becoming warm,ImpInfEventful,sk-s-hst[imp2],,,,,,tsakanawo,ukanawohi
+1514,1580,he/she is becoming warm,ImpInfEventful,sk-s-hst,,,,,,tsakanawohi,ukanawohi
+1514,1580,he/she is becoming warm,ImpInfEventful,sk-h[imp2],,,,,,tsakanawohi,ukanawohi
+1514,1580,he/she is becoming warm,ImpInfEventful,rev-i,,,,,,tsakanawoh,ukanawoh
 1516,1582,he/she is possessive of him/her,FullStative,stative-s,,ukeyu,tsikeyu,ukeyu,ukeyu,hikeyu,
 1516,1582,he/she is possessive of him/her,FullStative,stative,,ukeyuh,tsikeyu',ukeyuhs,ukeyuhs,hikeyuhs,
 1516,1582,he/she is possessive of him/her,InfEventful,hvsk-han,,,,,,,ukey
@@ -1396,44 +1447,128 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1516,1582,he/she is possessive of him/her,InfEventful,ih-vh,,,,,,,ukey
 1516,1582,he/she is possessive of him/her,InfEventful,vnh-ih-a,,,,,,,ukey
 1523,1589,he/she is late,FullEventful,become,,ukonhiyo,akikonhiyo,ukonhiyo,ukonhiyo,tsakonhiyo,ukonhiyo
+1523,1589,he/she is late,StativeNoImp,stative,,ukonhiyok,akikonhiyok,ukonhiyok,ukonhiyots,,
+1523,1589,he/she is late,ImpInfEventful,become,,,,,,tsakonhiyo,ukonhiyo
+1523,1589,he/she is late,ImpInfEventful,sk-s-hst,,,,,,tsakonhiyoki,ukonhiyo
+1523,1589,he/she is late,ImpInfEventful,sk-h[imp2],,,,,,tsakonhiyoki,ukonhiyo
 1524,1590,it’s decaying,FullEventful,sk-s-hi-hihst,,uko,akiko,uko,uko,tsako,uko
 1524,1590,it’s decaying,FullEventful,sk-s-hst[imp2],,uko,akiko,uko,uko,tsako,ukohi
 1524,1590,it’s decaying,FullEventful,sk-s-hst,,uko,akiko,uko,uko,tsakohi,ukohi
+1524,1590,it’s decaying,StativeNoImp,stative,,ukohsk,akikohsk,ukohsk,ukohs,,
+1524,1590,it’s decaying,ImpInfEventful,sk-s-hi-hihst,,,,,,tsako,uko
+1524,1590,it’s decaying,ImpInfEventful,sk-s-hst[imp2],,,,,,tsako,ukohi
+1524,1590,it’s decaying,ImpInfEventful,sk-s-hst,,,,,,tsakohi,ukohi
+1524,1590,it’s decaying,ImpInfEventful,sk-h[imp2],,,,,,tsakohi,ukohi
+1524,1590,it’s decaying,ImpInfEventful,rev-i,,,,,,tsakoh,ukoh
 1530,1596,he/she has an object (refers to a solid object),FullStative,stative-h,,u,aki,u,u,tsa,
 1530,1596,he/she has an object (refers to a solid object),FullStative,stative,,uh,akih,uh,uh,tsah,
 1531,1597,he/she is yawning,FullEventful,apl-active,,uhalhok,akhalhok,uhalhok,uhalhok,tsahalhok,uhalhok
 1531,1597,he/she is yawning,FullEventful,apl-active-a,,uhalhok,akhalhok,uhalhok,uhalhok,tsahalhokvl,uhalhoke
+1531,1597,he/she is yawning,StativeNoImp,stative,,uhalhokeh,akhalhokeh,uhalhokehsk,uhalhokeh,,
+1531,1597,he/she is yawning,ImpInfEventful,apl-active,,,,,,tsahalhok,uhalhok
+1531,1597,he/she is yawning,ImpInfEventful,apl-active-a,,,,,,tsahalhokvl,uhalhoke
+1531,1597,he/she is yawning,ImpInfEventful,apl[imp4],,,,,,tsahalhok,uhalhok
+1531,1597,he/she is yawning,ImpInfEventful,ih-vh,,,,,,tsahalhokvl,uhalhoke
+1531,1597,he/she is yawning,ImpInfEventful,vnh-ih-a,,,,,,tsahalhokvl,uhalhoke
 1534,1600,he/she is having trouble breathing,FullEventful,cause,,uhawohst,akihawohst,uhawohst,uhawohst,tsahawohst,uhawohst
 1534,1600,he/she is having trouble breathing,FullEventful,cause[perf3],,uhawohst,akihawohst,uhawohst,uhawohsth,tsahawohst,uhawohst
 1534,1600,he/she is having trouble breathing,FullEventful,cause[pres2],,uhawohstih,akihawohstih,uhawohst,uhawohst,tsahawohst,uhawohst
 1534,1600,he/she is having trouble breathing,FullEventful,cause[pres2-perf3],,uhawohstih,akihawohstih,uhawohst,uhawohsth,tsahawohst,uhawohst
+1534,1600,he/she is having trouble breathing,StativeNoImp,stative,,uhawohstih,akihawohstih,uhawohstihsk,uhawohsthan,,
+1534,1600,he/she is having trouble breathing,ImpInfEventful,apl-active-a,,,,,,tsahawohst,uhawohsto
+1534,1600,he/she is having trouble breathing,ImpInfEventful,cause,,,,,,tsahawohst,uhawohst
+1534,1600,he/she is having trouble breathing,ImpInfEventful,ih-vh,,,,,,tsahawohst,uhawohsto
+1534,1600,he/she is having trouble breathing,ImpInfEventful,vnh-ih-a,,,,,,tsahawohst,uhawohsto
 1535,1601,there is dew,FullStative,stative-h,,uhihsat,akihihsat,uhihsat,uhihsat,tsahihsat,
 1535,1601,there is dew,FullStative,stative,,uhihsath,akihihsath,uhihsath,uhihsath,tsahihsath,
 1536,1602,he/she is lonesome,FullEventful,apl,,uhihsohtan,akihihsohtan,uhihsohtan,uhihsohtan,tsahihsohta,uhihsohtan
 1536,1602,he/she is lonesome,FullEventful,apl[imp2],,uhihsohtan,akihihsohtan,uhihsohtan,uhihsohtan,tsahihsohta,uhihsohtan
+1536,1602,he/she is lonesome,StativeNoImp,stative,,uhihsohtaneh,akihihsohtaneh,uhihsohtaneh,uhihsohtanel,,
+1536,1602,he/she is lonesome,ImpInfEventful,apl,,,,,,tsahihsohta,uhihsohtan
+1536,1602,he/she is lonesome,ImpInfEventful,apl[imp2],,,,,,tsahihsohta,uhihsohtan
 1537,1603,it’s lonesome,FullStative,stative,,uhihsoht,,uhihsoht,uhihsoht,,
 1544,1610,he/she is becoming angry,FullEventful,become,,unhalv,akhinalv,unhalv,unhalv,tshanalv,unhalv'i
 1544,1610,he/she is becoming angry,FullEventful,become[inf2],,unhalv,akhinalv,unhalv,unhalv,tshanalv,unhalv
 1544,1610,he/she is becoming angry,FullEventful,become[inf4],,unhalv,akhinalv,unhalv,unhalv,tshanalv,unhalv'
+1544,1610,he/she is becoming angry,StativeNoImp,stative,,unhalvk,akhinalvk,unhalvk,unhalvts,,
+1544,1610,he/she is becoming angry,ImpInfEventful,become,,,,,,tshanalv,unhalv'i
+1544,1610,he/she is becoming angry,ImpInfEventful,become[inf2],,,,,,tshanalv,unhalv
+1544,1610,he/she is becoming angry,ImpInfEventful,become[inf4],,,,,,tshanalv,unhalv'
+1544,1610,he/she is becoming angry,ImpInfEventful,sk-s-hst,,,,,,tshanalvki,unhalv'i
+1544,1610,he/she is becoming angry,ImpInfEventful,sk-h[imp2],,,,,,tshanalvki,unhalv'i
+1544,1610,he/she is becoming angry,ImpInfEventful,rev-i,,,,,,tshanalvk,unhalv'
 1545,1611,he/she is angry,FullStative,stative-s,,unhalv,akhinalv,unhalv,unhalv,tshanalv,
 1545,1611,he/she is angry,FullStative,stative,,unhalvh,akhinalvh,unhalvhs,unhalvhs,tshanalvhs,
 1548,1614,he/she is stubbing his/her toe,FullEventful,o,,unhahskwal,akhinahskwal,unhahskwal,unhahskwal,tshanahskwal,unhahskwal
+1548,1614,he/she is stubbing his/her toe,StativeNoImp,stative,,unhahskwalo',akhinahskwalo',unhahskwalohsk,unhahskwalo',,
+1548,1614,he/she is stubbing his/her toe,ImpInfEventful,sk-s-hst,,,,,,tshanahskwalotsa,unhahskwalo
+1548,1614,he/she is stubbing his/her toe,ImpInfEventful,sk-h,,,,,,tshanahskwalots,unhahskwalo
+1548,1614,he/she is stubbing his/her toe,ImpInfEventful,sk-h[imp2],,,,,,tshanahskwalotsa,unhahskwalo
+1548,1614,he/she is stubbing his/her toe,ImpInfEventful,o,,,,,,tshanahskwal,unhahskwal
 1551,1617,he/she has a chill,FullEventful,cause,,unhawahst,akhinawahst,unhawahst,unhawahst,tshanawahst,unhawahst
 1551,1617,he/she has a chill,FullEventful,cause[perf3],,unhawahst,akhinawahst,unhawahst,unhawahsth,tshanawahst,unhawahst
 1551,1617,he/she has a chill,FullEventful,cause[pres2],,unhawahstih,akhinawahstih,unhawahst,unhawahst,tshanawahst,unhawahst
 1551,1617,he/she has a chill,FullEventful,cause[pres2-perf3],,unhawahstih,akhinawahstih,unhawahst,unhawahsth,tshanawahst,unhawahst
+1551,1617,he/she has a chill,StativeNoImp,stative,,unhawahstih,akhinawahstih,unhawahstihsk,unhawahsthan,,
+1551,1617,he/she has a chill,ImpInfEventful,apl-active-a,,,,,,tshanawahst,unhawahsto
+1551,1617,he/she has a chill,ImpInfEventful,cause,,,,,,tshanawahst,unhawahst
+1551,1617,he/she has a chill,ImpInfEventful,ih-vh,,,,,,tshanawahst,unhawahsto
+1551,1617,he/she has a chill,ImpInfEventful,vnh-ih-a,,,,,,tshanawahst,unhawahsto
 1554,1620,he/she is in bed,FullStative,stative-h,,unhi,akwanhi,unhi,unhi,tsanhi,
 1554,1620,he/she is in bed,FullStative,stative,,unhih,akwanhih,unhih,unhih,tsanhih,
 1557,1623,he/she is wearing a shirt,FullStative,stative,,unhuw,akwanhuw,unhuw,unhuw,tsanhuw,
 1561,1627,he/she is buying it,FullEventful,sk-s-hi-hihst,,uwha,akhiwa,uwha,uwha,tshawa,uwha
 1561,1627,he/she is buying it,FullEventful,sk-s-hst[imp2],,uwha,akhiwa,uwha,uwha,tshawa,uwhahi
 1561,1627,he/she is buying it,FullEventful,sk-s-hst,,uwha,akhiwa,uwha,uwha,tshawahi,uwhahi
+1561,1627,he/she is buying it,StativeNoImp,stative,,uwhahsk,akhiwahsk,uwhahsk,uwhahs,,
+1561,1627,he/she is buying it,ImpInfEventful,sk-s-hi-hihst,,,,,,tshawa,uwha
+1561,1627,he/she is buying it,ImpInfEventful,sk-s-hst[imp2],,,,,,tshawa,uwhahi
+1561,1627,he/she is buying it,ImpInfEventful,sk-s-hst,,,,,,tshawahi,uwhahi
+1561,1627,he/she is buying it,ImpInfEventful,sk-h[imp2],,,,,,tshawahi,uwhahi
+1561,1627,he/she is buying it,ImpInfEventful,rev-i,,,,,,tshawah,uwhah
 1563,1629,he/she is looking for it,FullEventful,oh-al,,uy,akiy,uy,uy,tsay,uy
+1563,1629,he/she is looking for it,StativeNoImp,stative,,uyhoh,akiyhoh,uyhoh,uyhal,,
+1563,1629,he/she is looking for it,ImpInfEventful,sk-s-a[inf2],,,,,,tsayhk,uy
+1563,1629,he/she is looking for it,ImpInfEventful,sk-h,,,,,,tsayhk,uy
+1563,1629,he/she is looking for it,ImpInfEventful,sk-h[imp2],,,,,,tsayhka,uy
+1563,1629,he/she is looking for it,ImpInfEventful,hih-hil,,,,,,tsay,uy
+1563,1629,he/she is looking for it,ImpInfEventful,oh-al,,,,,,tsay,uy
+1564,1630,he/she is afloat,StativeNoImp,stative-s,,uyholu,akhiyolu,uyholu,uyholu,,
+1564,1630,he/she is afloat,StativeNoImp,stative,,uyholuh,akhiyoluh,uyholuhs,uyholuhs,,
+1564,1630,he/she is afloat,ImpInfEventful,hvsk-nh,,,,,,hiyholu,uyholu
+1564,1630,he/she is afloat,ImpInfEventful,hvsk-nh[inf2],,,,,,hiyholu,uyholu
+1564,1630,he/she is afloat,ImpInfEventful,apl-active-a,,,,,,hiyholuhvk,uyholu
+1564,1630,he/she is afloat,ImpInfEventful,ih-vh,,,,,,hiyholuhvk,uyholu
+1564,1630,he/she is afloat,ImpInfEventful,vnh-ih-a,,,,,,hiyholuhvk,uyholu
 1569,1635,it is cold (refers to weather),FullStative,stative,,uyhvtl,,uyhvtl,uyhvtl,,
 1570,1636,he/she has a cold,FullEventful,ih-vh,,uyhvtla uniy,uyhvtla aki'niy,uyhvtla uniy,uyhvtla uniy,uyhvtla witsa'niy,uyhvtla uniy
+1570,1636,he/she has a cold,StativeNoImp,stative,,uyhvtla uniyih,uyhvtla aki'niyih,uyhvtla uniyihsk,uyhvtla uniyvh,,
+1570,1636,he/she has a cold,ImpInfEventful,apl-active-a,,,,,,uyhvtla witsa'niy,uyhvtla uniy
+1570,1636,he/she has a cold,ImpInfEventful,ih-vh,,,,,,uyhvtla witsa'niy,uyhvtla uniy
+1570,1636,he/she has a cold,ImpInfEventful,vnh-ih-a,,,,,,uyhvtla witsa'niy,uyhvtla uniy
+1571,1637,he/she is choking on it,StativeNoImp,stative,,uyhvhtsinvthk,akhiyvhtsinvthk,uyhvhtsinvthk,uyhvhtsinvts,,
 1572,1638,he/she is getting drunk,FullEventful,e-aka,,uyhvhst,akhiyvhst,uyhvhst,uyhvhst,tshayvhst,uyhvhst
+1572,1638,he/she is getting drunk,StativeNoImp,stative,,uyhvhste',akhiyvhste',uyhvhstehsk,uyhvhsta',,
+1572,1638,he/she is getting drunk,ImpInfEventful,sk-s-hst,,,,,,tshayvhstaka,uyhvhste
+1572,1638,he/she is getting drunk,ImpInfEventful,sk-h,,,,,,tshayvhstak,uyhvhste
+1572,1638,he/she is getting drunk,ImpInfEventful,sk-h[imp2],,,,,,tshayvhstaka,uyhvhste
+1572,1638,he/she is getting drunk,ImpInfEventful,e-aka,,,,,,tshayvhst,uyhvhst
+1572,1638,he/she is getting drunk,ImpInfEventful,hih-lh,,,,,,tshayvhsta,uyhvhste
+1572,1638,he/she is getting drunk,ImpInfEventful,oh-al,,,,,,tshayvhsta,uyhvhste
+1572,1638,he/she is getting drunk,ImpInfEventful,oh-al[imp2],,,,,,tshayvhst,uyhvhste
 1576,1642,he/she is inside it,FullStative,stative-a',,uts,akwats,uts,uts,tsats,
 1576,1642,he/she is inside it,FullStative,stative,,utsa',akwatsa',utsa',utsa',tsatsa',
+1580,1646,he/she is grinning,StativeNoImp,stative,,utsetst,akwatsetst,utsetst,utsetst,,
+1580,1646,he/she is grinning,ImpInfEventful,apl-active-a,,,,,,hatsetst,utsetsto
+1580,1646,he/she is grinning,ImpInfEventful,cause,,,,,,hatsetst,utsetst
+1580,1646,he/she is grinning,ImpInfEventful,ih-vh,,,,,,hatsetst,utsetsto
+1580,1646,he/she is grinning,ImpInfEventful,vnh-ih-a,,,,,,hatsetst,utsetsto
+1585,1651,it’s rattling,StativeNoImp,stative-h,,utsonat,akwatsonat,utsonat,utsonat,,
+1585,1651,it’s rattling,StativeNoImp,stative,,utsonath,akwatsonath,utsonath,utsonath,,
+1585,1651,it’s rattling,ImpInfEventful,hvsk-han,,,,,,hatsonat,utsonat
+1585,1651,it’s rattling,ImpInfEventful,apl-active-a,,,,,,hatsonathvk,utsonat
+1585,1651,it’s rattling,ImpInfEventful,ih-vh,,,,,,hatsonathvk,utsonat
+1585,1651,it’s rattling,ImpInfEventful,vnh-ih-a,,,,,,hatsonathvk,utsonat
 1592,1658,it’s sticking out,FullStative,stative-h,,ukhsat,akwakhsat,ukhsat,ukhsat,tsakhsat,
 1592,1658,it’s sticking out,FullStative,stative,,ukhsath,akwakhsath,ukhsath,ukhsath,tsakhsath,
 1592,1658,it’s sticking out,InfEventful,hvsk-han,,,,,,,ukhsat
@@ -1454,26 +1589,62 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1597,1663,it’s foggy,FullStative,stative,,ukhvhat,akikhvhat,ukhvhat,ukhvhat,tsakhvhat,
 1599,1665,he/she is not having luck at hunting,FullEventful,go,,ukwhol,akikwhol,ukwhol,ukwhol,tsakwhol,ukwhol
 1599,1665,he/she is not having luck at hunting,FullEventful,go[pres2],,ukwholek,akikwholek,ukwhol,ukwhol,tsakwhol,ukwhol
+1599,1665,he/she is not having luck at hunting,StativeNoImp,stative,,ukwholek,akikwholek,ukwholek,ukwholvhs,,
+1599,1665,he/she is not having luck at hunting,ImpInfEventful,sk-s-hst,,,,,,tsakwholuka,ukwholv
+1599,1665,he/she is not having luck at hunting,ImpInfEventful,sk-h,,,,,,tsakwholuk,ukwholv
+1599,1665,he/she is not having luck at hunting,ImpInfEventful,sk-h[imp2],,,,,,tsakwholuka,ukwholv
+1599,1665,he/she is not having luck at hunting,ImpInfEventful,go,,,,,,tsakwhol,ukwhol
+1599,1665,he/she is not having luck at hunting,ImpInfEventful,hih-lh,,,,,,tsakwholu,ukwholv
+1599,1665,he/she is not having luck at hunting,ImpInfEventful,oh-al,,,,,,tsakwholu,ukwholv
 1602,1668,he/she is losing his/her way,FullEventful,hih-lh,,ulena,akwalena,ulena,ulena,tsalena,ulena
+1602,1668,he/she is losing his/her way,StativeNoImp,stative-h,,ulenahi,akwalenahi,ulenahi,ulenal,,
+1602,1668,he/she is losing his/her way,StativeNoImp,stative,,ulenahih,akwalenahih,ulenahih,ulenalh,,
+1602,1668,he/she is losing his/her way,ImpInfEventful,a,,,,,,tsalenak,ulen
+1602,1668,he/she is losing his/her way,ImpInfEventful,sk-s-hst,,,,,,tsalenaka,ulena
+1602,1668,he/she is losing his/her way,ImpInfEventful,sk-h,,,,,,tsalenak,ulena
+1602,1668,he/she is losing his/her way,ImpInfEventful,sk-h[imp2],,,,,,tsalenaka,ulena
+1602,1668,he/she is losing his/her way,ImpInfEventful,hih-lh,,,,,,tsalena,ulena
+1602,1668,he/she is losing his/her way,ImpInfEventful,be-at,,,,,,tsalenak,ulen
+1602,1668,he/she is losing his/her way,ImpInfEventful,oh-al,,,,,,tsalena,ulena
+1602,1668,he/she is losing his/her way,ImpInfEventful,oh-al[imp2],,,,,,tsalen,ulena
+1602,1668,he/she is losing his/her way,ImpInfEventful,oh-ol[inf3],,,,,,tsalen,ulen
 1604,1670,he/she is making a mistake,FullEventful,cause,,ulitahst,akilitahst,ulitahst,ulitahst,tsalitahst,ulitahst
 1604,1670,he/she is making a mistake,FullEventful,cause[perf3],,ulitahst,akilitahst,ulitahst,ulitahsth,tsalitahst,ulitahst
 1604,1670,he/she is making a mistake,FullEventful,cause[pres2],,ulitahstih,akilitahstih,ulitahst,ulitahst,tsalitahst,ulitahst
 1604,1670,he/she is making a mistake,FullEventful,cause[pres2-perf3],,ulitahstih,akilitahstih,ulitahst,ulitahsth,tsalitahst,ulitahst
+1604,1670,he/she is making a mistake,StativeNoImp,stative,,ulitahstih,akilitahstih,ulitahstihsk,ulitahsthan,,
+1604,1670,he/she is making a mistake,ImpInfEventful,apl-active-a,,,,,,tsalitahst,ulitahsto
+1604,1670,he/she is making a mistake,ImpInfEventful,cause,,,,,,tsalitahst,ulitahst
+1604,1670,he/she is making a mistake,ImpInfEventful,ih-vh,,,,,,tsalitahst,ulitahsto
+1604,1670,he/she is making a mistake,ImpInfEventful,vnh-ih-a,,,,,,tsalitahst,ulitahsto
 1612,1678,he/she is whining,FullEventful,cause,,uliyet,akiliyet,uliyet,uliyet,tsaliyet,uliyet
 1612,1678,he/she is whining,FullEventful,cause[perf3],,uliyet,akiliyet,uliyet,uliyeth,tsaliyet,uliyet
 1612,1678,he/she is whining,FullEventful,cause[pres2],,uliyetih,akiliyetih,uliyet,uliyet,tsaliyet,uliyet
 1612,1678,he/she is whining,FullEventful,cause[pres2-perf3],,uliyetih,akiliyetih,uliyet,uliyeth,tsaliyet,uliyet
+1612,1678,he/she is whining,StativeNoImp,stative,,uliyetih,akiliyetih,uliyetihsk,uliyethan,,
+1612,1678,he/she is whining,ImpInfEventful,apl-active-a,,,,,,tsaliyet,uliyeto
+1612,1678,he/she is whining,ImpInfEventful,cause,,,,,,tsaliyet,uliyet
+1612,1678,he/she is whining,ImpInfEventful,ih-vh,,,,,,tsaliyet,uliyeto
+1612,1678,he/she is whining,ImpInfEventful,vnh-ih-a,,,,,,tsaliyet,uliyeto
 1613,1679,he/she is wearing a ring,FullStative,stative-k,,uliyehsuhsth,akwaliyehsuhsth,uliyehsuhsth,uliyehsuhsth,tsaliyehsuhsth,
 1613,1679,he/she is wearing a ring,FullStative,stative,,uliyehsuhsthk,akwaliyehsuhsthk,uliyehsuhsthk,uliyehsuhsthk,tsaliyehsuhsthk,
 1614,1680,it’s cloudy,FullStative,stative,,ulokil,,ulokil,ulokil,,
 1616,1682,it’s happening to him,FullEventful,apl,,ulhstanh,akwalhstanh,ulhstanh,ulhstanh,tsalhsta,ulhstanh
 1616,1682,it’s happening to him,FullEventful,apl[imp2],,ulhstanh,akwalhstanh,ulhstanh,ulhstanh,tsalhsta,ulhstanh
+1616,1682,it’s happening to him,StativeNoImp,stative,,ulhstanheh,akwalhstanheh,ulhstanheh,ulhstanhel,,
+1616,1682,it’s happening to him,ImpInfEventful,apl,,,,,,tsalhsta,ulhstanh
+1616,1682,it’s happening to him,ImpInfEventful,apl[imp2],,,,,,tsalhsta,ulhstanh
 1618,1684,he/she is wearing a cap,FullStative,stative,,ulhstul,akwalhstul,ulhstul,ulhstul,tsalhstul,
 1621,1687,he/she is sticking his/her head out,FullStative,stative,,ulhskwalut,akwalhskwalut,ulhskwalut,ulhskwalut,tsalhskwalut,
 1622,1688,he/she is wearing a hat,FullStative,stative-k,,ulhskwethuh,akwalhskwethuh,ulhskwethuh,ulhskwethuh,tsalhskwethuh,
 1622,1688,he/she is wearing a hat,FullStative,stative,,ulhskwethuhk,akwalhskwethuhk,ulhskwethuhk,ulhskwethuhk,tsalhskwethuhk,
 1623,1689,it’s dark,FullStative,stative-k,,ulhsih,,ulhsih,ulhsih,tsalhsih,
 1623,1689,it’s dark,FullStative,stative,,ulhsihk,,ulhsihk,ulhsihk,tsalhsihk,
+1627,1693,he/she likes him/her,StativeNoImp,stative,,ulvkwht,tsilvkwot,ulvkwht,ulvkwht,,
+1627,1693,he/she likes him/her,ImpInfEventful,apl-active-a,,,,,,hilvkwot,ulvkwhto
+1627,1693,he/she likes him/her,ImpInfEventful,cause,,,,,,hilvkwot,ulvkwht
+1627,1693,he/she likes him/her,ImpInfEventful,ih-vh,,,,,,hilvkwot,ulvkwhto
+1627,1693,he/she likes him/her,ImpInfEventful,vnh-ih-a,,,,,,hilvkwot,ulvkwhto
 1629,1695,he/she has an object (refers to a flexible object),FullStative,stative-a',,un,akin,un,un,tsan,
 1629,1695,he/she has an object (refers to a flexible object),FullStative,stative,,una',akina',una',una',tsana',
 1632,1698,they are together,FullStative,stative-s,,unaliko,okaliko,unaliko,unaliko,itsaliko,
@@ -1492,14 +1663,46 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1642,1708,he/she has a liquid,InfEventful,vnh-ih-a,,,,,,,une
 1646,1712,he/she knows it,FullStative,stative-h,,unht,akwanht,unht,unht,tsanht,
 1646,1712,he/she knows it,FullStative,stative,,unhth,akwanhth,unhth,unhth,tsanhth,
+1649,1715,it is making a sound,StativeNoImp,stative,,unoyhvhk,akinoyhvhk,unoyhvhk,unoyhvlhs,,
+1649,1715,it is making a sound,ImpInfEventful,sk-s-a,,,,,,tsanoyhvl,unoyhvl
+1649,1715,it is making a sound,ImpInfEventful,sk-s-la,,,,,,tsanoyhv,unoyhvlhi
+1649,1715,it is making a sound,ImpInfEventful,sk-s-hst,,,,,,tsanoyhvla,unoyhvlhi
+1649,1715,it is making a sound,ImpInfEventful,sk-h,,,,,,tsanoyhvl,unoyhvlhi
+1649,1715,it is making a sound,ImpInfEventful,sk-h[imp2],,,,,,tsanoyhvla,unoyhvlhi
+1649,1715,it is making a sound,ImpInfEventful,i-a-i,,,,,,tsanoyhvl,unoyhvlh
 1664,1730,he/she is receiving punishment,FullEventful,i-a-i,,uhstvt,akhstvt,uhstvt,uhstvt,tstvt,uhstvt
+1664,1730,he/she is receiving punishment,StativeNoImp,stative,,uhstvti',akhstvti',uhstvtihsk,uhstvt,,
+1664,1730,he/she is receiving punishment,ImpInfEventful,sk-s-hst,,,,,,tstvta,uhstvti
+1664,1730,he/she is receiving punishment,ImpInfEventful,sk-h,,,,,,tstvt,uhstvti
+1664,1730,he/she is receiving punishment,ImpInfEventful,sk-h[imp2],,,,,,tstvta,uhstvti
+1664,1730,he/she is receiving punishment,ImpInfEventful,i-a-i,,,,,,tstvt,uhstvt
 1671,1737,he/she is coughing,FullEventful,sk-h[imp2],,uhsiwha,akhsiwha,uhsiwha,uhsiwha,tsiwhahi,uhsiwhahi
+1671,1737,he/she is coughing,StativeNoImp,stative,,uhsiwhahsk,akhsiwhahsk,uhsiwhahsk,uhsiwhah,,
+1671,1737,he/she is coughing,ImpInfEventful,sk-s-hi-hihst,,,,,,tsiwha,uhsiwha
+1671,1737,he/she is coughing,ImpInfEventful,sk-s-hst[imp2],,,,,,tsiwha,uhsiwhahi
+1671,1737,he/she is coughing,ImpInfEventful,sk-s-hst,,,,,,tsiwhahi,uhsiwhahi
+1671,1737,he/she is coughing,ImpInfEventful,sk-h[imp2],,,,,,tsiwhahi,uhsiwhahi
+1671,1737,he/she is coughing,ImpInfEventful,rev-i,,,,,,tsiwhah,uhsiwhah
 1677,1743,he/she is wearing pants,FullStative,stative,,uhsul,akwahsul,uhsul,uhsul,tsahsul,
 1681,1747,he/she is going to bed,FullEventful,hih-lh[imp2],,uhsv,akhsv,uhsv,uhsv,tsv,uhsv
+1681,1747,he/she is going to bed,StativeNoImp,stative-h,,uhsvhi,akhsvhi,uhsvhi,uhsvl,,
+1681,1747,he/she is going to bed,StativeNoImp,stative,,uhsvhih,akhsvhih,uhsvhih,uhsvlh,,
+1681,1747,he/she is going to bed,ImpInfEventful,sk-s-hst,,,,,,tsvha,uhsv
+1681,1747,he/she is going to bed,ImpInfEventful,sk-h,,,,,,tsv,uhsv
+1681,1747,he/she is going to bed,ImpInfEventful,sk-h[imp2],,,,,,tsvha,uhsv
+1681,1747,he/she is going to bed,ImpInfEventful,hih-lh[imp2],,,,,,tsv,uhsv
 1683,1749,he/she is thirsty,FullEventful,i-vka,,uthatek,akhthatek,uthatek,uthatek,tsthatek,uthatek
+1683,1749,he/she is thirsty,StativeNoImp,stative,,uthateki',akhthateki',uthatekihsk,uthatekan,,
+1683,1749,he/she is thirsty,ImpInfEventful,i-vka,,,,,,tsthatek,uthatek
 1684,1750,he/she is becoming enraged,FullEventful,sk-s-hi-hihst,,uthalhawo,akhthalhawo,uthalhawo,uthalhawo,tsthalhawo,uthalhawo
 1684,1750,he/she is becoming enraged,FullEventful,sk-s-hst[imp2],,uthalhawo,akhthalhawo,uthalhawo,uthalhawo,tsthalhawo,uthalhawohi
 1684,1750,he/she is becoming enraged,FullEventful,sk-s-hst,,uthalhawo,akhthalhawo,uthalhawo,uthalhawo,tsthalhawohi,uthalhawohi
+1684,1750,he/she is becoming enraged,StativeNoImp,stative,,uthalhawohsk,akhthalhawohsk,uthalhawohsk,uthalhawohs,,
+1684,1750,he/she is becoming enraged,ImpInfEventful,sk-s-hi-hihst,,,,,,tsthalhawo,uthalhawo
+1684,1750,he/she is becoming enraged,ImpInfEventful,sk-s-hst[imp2],,,,,,tsthalhawo,uthalhawohi
+1684,1750,he/she is becoming enraged,ImpInfEventful,sk-s-hst,,,,,,tsthalhawohi,uthalhawohi
+1684,1750,he/she is becoming enraged,ImpInfEventful,sk-h[imp2],,,,,,tsthalhawohi,uthalhawohi
+1684,1750,he/she is becoming enraged,ImpInfEventful,rev-i,,,,,,tsthalhawoh,uthalhawoh
 1693,1759,he/she is listening to him/her,FullStative,stative,,uthvtahst,tsiyathvtahst,uthvtahst,uthvtahst,hiyathvtahst,
 1693,1759,he/she is listening to him/her,InfEventful,hvsk-nh,,,,,,,uthvtahsto
 1693,1759,he/she is listening to him/her,InfEventful,hvsk-nh[inf2],,,,,,,uthvtahsto
@@ -1510,14 +1713,51 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1693,1759,he/she is listening to him/her,InfEventful,ih-vh,,,,,,,uthvtahsto
 1693,1759,he/she is listening to him/her,InfEventful,vnh-ih-a,,,,,,,uthvtahsto
 1698,1764,he/she is forgetting it,FullEventful,sk-s-a,,uwakhew,akwvkhew,uwakhew,uwakhew,witsvkhew,uwakhew
+1698,1764,he/she is forgetting it,StativeNoImp,stative,,uwakhewhsk,akwvkhewhsk,uwakhewhsk,uwakhewhs,,
+1698,1764,he/she is forgetting it,ImpInfEventful,sk-s-a,,,,,,witsvkhew,uwakhew
+1698,1764,he/she is forgetting it,ImpInfEventful,sk-s-hst,,,,,,witsvkhewa,uwakhewhi
+1698,1764,he/she is forgetting it,ImpInfEventful,sk-h,,,,,,witsvkhew,uwakhewhi
+1698,1764,he/she is forgetting it,ImpInfEventful,sk-h[imp2],,,,,,witsvkhewa,uwakhewhi
+1698,1764,he/she is forgetting it,ImpInfEventful,i-a-i,,,,,,witsvkhew,uwakhewh
 1699,1765,he/she is belching,FullEventful,become,,uwakhule,akikhule,uwakhule,uwakhule,tsakhule,uwakhule'i
 1699,1765,he/she is belching,FullEventful,become[inf2],,uwakhule,akikhule,uwakhule,uwakhule,tsakhule,uwakhule
 1699,1765,he/she is belching,FullEventful,become[inf4],,uwakhule,akikhule,uwakhule,uwakhule,tsakhule,uwakhule'
+1699,1765,he/she is belching,StativeNoImp,stative,,uwakhulek,akikhulek,uwakhulek,uwakhulets,,
+1699,1765,he/she is belching,ImpInfEventful,become,,,,,,tsakhule,uwakhule'i
+1699,1765,he/she is belching,ImpInfEventful,become[inf2],,,,,,tsakhule,uwakhule
+1699,1765,he/she is belching,ImpInfEventful,become[inf4],,,,,,tsakhule,uwakhule'
+1699,1765,he/she is belching,ImpInfEventful,sk-s-hst,,,,,,tsakhuleki,uwakhule'i
+1699,1765,he/she is belching,ImpInfEventful,sk-h[imp2],,,,,,tsakhuleki,uwakhule'i
+1699,1765,he/she is belching,ImpInfEventful,rev-i,,,,,,tsakhulek,uwakhule'
 1700,1766,he/she is shivering,FullEventful,i-a-i,,uwanaw,akinaw,uwanaw,uwanaw,tsanaw,uwanaw
+1700,1766,he/she is shivering,StativeNoImp,stative,,uwanawi',akinawi',uwanawihsk,uwanaw,,
+1700,1766,he/she is shivering,ImpInfEventful,sk-s-hst,,,,,,tsanawa,uwanawi
+1700,1766,he/she is shivering,ImpInfEventful,sk-h,,,,,,tsanaw,uwanawi
+1700,1766,he/she is shivering,ImpInfEventful,sk-h[imp2],,,,,,tsanawa,uwanawi
+1700,1766,he/she is shivering,ImpInfEventful,i-a-i,,,,,,tsanaw,uwanaw
+1704,1770,he/she is in a hurry,StativeNoImp,stative-k,,uwanv,akwvnv,uwanv,uwanv,,
+1704,1770,he/she is in a hurry,StativeNoImp,stative,,uwanvk,akwvnvk,uwanvk,uwanvk,,
+1704,1770,he/she is in a hurry,ImpInfEventful,become,,,,,,tsvnv,uwanv
+1704,1770,he/she is in a hurry,ImpInfEventful,sk-s-hst,,,,,,tsvnvki,uwanv
+1704,1770,he/she is in a hurry,ImpInfEventful,sk-h[imp2],,,,,,tsvnvki,uwanv
 1708,1774,he/she smells it,FullEventful,become,,uwawhsv,akiwhsv,uwawhsv,uwawhsv,tsawhsv,uwawhsv
+1708,1774,he/she smells it,StativeNoImp,stative,,uwawhsvk,akiwhsvk,uwawhsvk,uwawhsvts,,
+1708,1774,he/she smells it,ImpInfEventful,become,,,,,,tsawhsv,uwawhsv
+1708,1774,he/she smells it,ImpInfEventful,sk-s-hst,,,,,,tsawhsvki,uwawhsv
+1708,1774,he/she smells it,ImpInfEventful,sk-h[imp2],,,,,,tsawhsvki,uwawhsv
 1709,1775,he/she has an object (refers to a long object),FullStative,stative,,uway,akwvy,uway,uway,tsvy,
 1710,1776,he/she is aching,FullEventful,apl,,uwehihstan,akwehihstan,uwehihstan,uwehihstan,tsehihsta,uwehihstan
 1710,1776,he/she is aching,FullEventful,apl[imp2],,uwehihstan,akwehihstan,uwehihstan,uwehihstan,tsehihsta,uwehihstan
+1710,1776,he/she is aching,StativeNoImp,stative,,uwehihstaneh,akwehihstaneh,uwehihstaneh,uwehihstanel,,
+1710,1776,he/she is aching,ImpInfEventful,apl,,,,,,tsehihsta,uwehihstan
+1710,1776,he/she is aching,ImpInfEventful,apl[imp2],,,,,,tsehihsta,uwehihstan
+1711,1777,he/she is yelling,StativeNoImp,stative,,uwelhuhk,akwelhuhk,uwelhuhk,uwelhunh,,
+1711,1777,he/she is yelling,ImpInfEventful,sk-s-hst,,,,,,helhuhvka,uwelhuhv
+1711,1777,he/she is yelling,ImpInfEventful,sk-h,,,,,,helhuhvk,uwelhuhv
+1711,1777,he/she is yelling,ImpInfEventful,sk-h[imp2],,,,,,helhuhvka,uwelhuhv
+1711,1777,he/she is yelling,ImpInfEventful,hvsk-nh[inf3],,,,,,helhu,uwelhu
+1711,1777,he/she is yelling,ImpInfEventful,hih-lh,,,,,,helhuhv,uwelhuhv
+1711,1777,he/she is yelling,ImpInfEventful,oh-al,,,,,,helhuhv,uwelhuhv
 1719,1785,he/she has it,FullStative,stative-h,,uwekha,akikha,uwekha,uwekha,tsekha,
 1719,1785,he/she has it,FullStative,stative,,uwekhah,akikhah,uwekhah,uwekhah,tsekhah,
 1721,1787,he/she is worried,FullStative,stative,,uwelihi',akwelihi',uwelihihsk,uwelihihsk,tselihihsk,
@@ -1536,8 +1776,25 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1729,1795,he/she is confident,FullStative,stative,,uwohiyuh,akwohiyuh,uwohiyuhs,uwohiyuhs,tsohiyuhs,
 1730,1796,he/she is sitting,FullStative,stative-h,,uwol,akwol,uwol,uwol,tsol,
 1730,1796,he/she is sitting,FullStative,stative,,uwolh,akwolh,uwolh,uwolh,tsolh,
+1739,1805,he/she is laughing,StativeNoImp,stative,,uyetsk,akiyetsk,uyetsk,uyets,,
+1740,1806,he/she is itching,StativeNoImp,stative,,uyote',akiyote',uyotehsk,uyotehsk,,
+1740,1806,he/she is itching,ImpInfEventful,sk-s-hst,,,,,,tsayotaka,uyote
+1740,1806,he/she is itching,ImpInfEventful,sk-h,,,,,,tsayotak,uyote
+1740,1806,he/she is itching,ImpInfEventful,sk-h[imp2],,,,,,tsayotaka,uyote
+1740,1806,he/she is itching,ImpInfEventful,e-aka,,,,,,tsayot,uyot
+1740,1806,he/she is itching,ImpInfEventful,hih-lh,,,,,,tsayota,uyote
+1740,1806,he/she is itching,ImpInfEventful,oh-al,,,,,,tsayota,uyote
+1740,1806,he/she is itching,ImpInfEventful,oh-al[imp2],,,,,,tsayot,uyote
 1741,1807,he/she is losing it,FullEventful,apl,,uyohuhs,akiyohuhs,uyohuhs,uyohuhs,tsayohu,uyohuhs
 1741,1807,he/she is losing it,FullEventful,apl[imp2],,uyohuhs,akiyohuhs,uyohuhs,uyohuhs,tsayohu,uyohuhs
+1741,1807,he/she is losing it,StativeNoImp,stative,,uyohuhseh,akiyohuhseh,uyohuhseh,uyohuhsel,,
+1741,1807,he/she is losing it,ImpInfEventful,apl,,,,,,tsayohu,uyohuhs
+1741,1807,he/she is losing it,ImpInfEventful,apl[imp2],,,,,,tsayohu,uyohuhs
+1745,1811,he/she is hungry,StativeNoImp,stative,,uyohsih,akiyohsih,uyohsihsk,uyohsihsk,,
+1745,1811,he/she is hungry,ImpInfEventful,apl-active-a,,,,,,tsayohsihs,uyohsihso
+1745,1811,he/she is hungry,ImpInfEventful,cause,,,,,,tsayohsihs,uyohsihs
+1745,1811,he/she is hungry,ImpInfEventful,ih-vh,,,,,,tsayohsihs,uyohsihso
+1745,1811,he/she is hungry,ImpInfEventful,vnh-ih-a,,,,,,tsayohsihs,uyohsihso
 1754,1823,he/she is sending on object (refers to a long object),FullEventful,i-a-i,,wat,witsit,wat,wut,whit,wut
 1761,1830,he/she is sending it,FullEventful,hvsk-nh,,wa,witsi,wa,wu,whi,wu
 1761,1830,he/she is sending it,FullEventful,hvsk-nh[inf2],,wa,witsi,wa,wu,whi,wu

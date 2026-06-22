@@ -35,6 +35,7 @@ corpus_id,prediction,definition,furthest_corpus
 1564,FullEventful,he/she is afloat,0.corpus
 1569,FullEventful,it is cold (refers to weather),0.corpus
 1571,FullEventful,he/she is choking on it,0.corpus
+1571,ImpInfEventful,he/she is choking on it,0.corpus
 1576,FullEventful,he/she is inside it,0.corpus
 1580,FullEventful,he/she is grinning,0.corpus
 1585,FullEventful,it’s rattling,0.corpus
@@ -66,6 +67,7 @@ corpus_id,prediction,definition,furthest_corpus
 1729,FullEventful,he/she is confident,0.corpus
 1730,FullEventful,he/she is sitting,0.corpus
 1739,FullEventful,he/she is laughing,0.corpus
+1739,ImpInfEventful,he/she is laughing,0.corpus
 1740,FullEventful,he/she is itching,0.corpus
 1745,FullEventful,he/she is hungry,0.corpus
 194,FullEventful,he/she is frolicking,0.corpus
@@ -87,7 +89,6 @@ corpus_id,prediction,definition,furthest_corpus
 502,FullEventful,he/she is inside,0.corpus
 504,FullEventful,he/she is distributing it,0.corpus
 512,FullEventful,it’s crowing (refers to a rooster),0.corpus
-521,FullEventful,he/she is dying (refers to a human),0.corpus
 624,FullEventful,he/she is enduring it (idiom),0.corpus
 69,FullEventful,he/she is diving,0.corpus
 723,FullEventful,he/she is called,0.corpus
@@ -127,13 +128,22 @@ corpus_id,prediction,definition,furthest_corpus
 1285,FullStative,it is hanging (refers to a long object),1.asp_stripped
 1286,FullEventful,he/she is hanging it up (refers to a long object),1.asp_stripped
 1301,FullStative,there are (a number of three or more must be specified),1.asp_stripped
+1471,StativeNoImp,he/she is throwing it,1.asp_stripped
+1493,ImpInfEventful,he/she is sick,1.asp_stripped
+1493,StativeNoImp,he/she is sick,1.asp_stripped
+1563,StativeNoImp,he/she is looking for it,1.asp_stripped
 1570,FullEventful,he/she has a cold,1.asp_stripped
+1570,ImpInfEventful,he/she has a cold,1.asp_stripped
+1570,StativeNoImp,he/she has a cold,1.asp_stripped
 162,FullStative,he/she has possession of a vehicle,1.asp_stripped
 163,FullStative,he/she is driving it (refers to a vehicle in motion or animal),1.asp_stripped
 1632,FullStative,they are together,1.asp_stripped
 1664,FullEventful,he/she is receiving punishment,1.asp_stripped
+1664,ImpInfEventful,he/she is receiving punishment,1.asp_stripped
 1671,FullEventful,he/she is coughing,1.asp_stripped
+1671,ImpInfEventful,he/she is coughing,1.asp_stripped
 1681,FullEventful,he/she is going to bed,1.asp_stripped
+1681,ImpInfEventful,he/she is going to bed,1.asp_stripped
 1719,FullStative,he/she has it,1.asp_stripped
 172,FullStative,it’s taking time,1.asp_stripped
 175,FullStative,it’s bending,1.asp_stripped
@@ -185,9 +195,50 @@ corpus_id,prediction,definition,furthest_corpus
 100,FullEventful,he/she is bragging,2.pre_stripped
 1227,FullEventful,he/she is rooting it out,2.pre_stripped
 1253,FullEventful,it’s misting,2.pre_stripped
+1476,StativeNoImp,he/she is having a birthday,2.pre_stripped
+1481,StativeNoImp,he/she is getting well,2.pre_stripped
 1484,FullEventful,he/she has time,2.pre_stripped
+1484,ImpInfEventful,he/she has time,2.pre_stripped
+1484,StativeNoImp,he/she has time,2.pre_stripped
+1485,StativeNoImp,he/she is disbelieving,2.pre_stripped
+1487,StativeNoImp,he/she is taking revenge,2.pre_stripped
+1507,StativeNoImp,he/she wants it,2.pre_stripped
+1514,StativeNoImp,he/she is becoming warm,2.pre_stripped
+1523,StativeNoImp,he/she is late,2.pre_stripped
+1524,StativeNoImp,it’s decaying,2.pre_stripped
+1531,StativeNoImp,he/she is yawning,2.pre_stripped
+1534,StativeNoImp,he/she is having trouble breathing,2.pre_stripped
+1536,StativeNoImp,he/she is lonesome,2.pre_stripped
+1544,StativeNoImp,he/she is becoming angry,2.pre_stripped
+1548,StativeNoImp,he/she is stubbing his/her toe,2.pre_stripped
+1551,StativeNoImp,he/she has a chill,2.pre_stripped
+1561,StativeNoImp,he/she is buying it,2.pre_stripped
+1571,StativeNoImp,he/she is choking on it,2.pre_stripped
+1572,StativeNoImp,he/she is getting drunk,2.pre_stripped
+1599,StativeNoImp,he/she is not having luck at hunting,2.pre_stripped
+1602,StativeNoImp,he/she is losing his/her way,2.pre_stripped
+1604,StativeNoImp,he/she is making a mistake,2.pre_stripped
 161,FullEventful,he/she is killing him/her,2.pre_stripped
+1612,StativeNoImp,he/she is whining,2.pre_stripped
+1616,StativeNoImp,it’s happening to him,2.pre_stripped
+1627,ImpInfEventful,he/she likes him/her,2.pre_stripped
+1649,StativeNoImp,it is making a sound,2.pre_stripped
+1664,StativeNoImp,he/she is receiving punishment,2.pre_stripped
+1671,StativeNoImp,he/she is coughing,2.pre_stripped
+1681,StativeNoImp,he/she is going to bed,2.pre_stripped
+1683,StativeNoImp,he/she is thirsty,2.pre_stripped
+1684,StativeNoImp,he/she is becoming enraged,2.pre_stripped
+1698,StativeNoImp,he/she is forgetting it,2.pre_stripped
+1699,StativeNoImp,he/she is belching,2.pre_stripped
+1700,StativeNoImp,he/she is shivering,2.pre_stripped
+1708,StativeNoImp,he/she smells it,2.pre_stripped
+1710,StativeNoImp,he/she is aching,2.pre_stripped
+1711,StativeNoImp,he/she is yelling,2.pre_stripped
 1721,FullStative,he/she is worried,2.pre_stripped
+1739,StativeNoImp,he/she is laughing,2.pre_stripped
+1740,StativeNoImp,he/she is itching,2.pre_stripped
+1741,StativeNoImp,he/she is losing it,2.pre_stripped
+1745,StativeNoImp,he/she is hungry,2.pre_stripped
 214,FullEventful,it’s becoming frosty (refers to the ground),2.pre_stripped
 235,FullStative,he/she is walking,2.pre_stripped
 240,FullEventful,he/she is getting in (in a car‚ box‚ etc),2.pre_stripped
@@ -302,95 +353,141 @@ corpus_id,prediction,definition,furthest_corpus
 1470,FullStative,it’s in view,3.validated
 1470,InfEventful,it’s in view,3.validated
 1471,FullEventful,he/she is throwing it,3.validated
+1471,ImpInfEventful,he/she is throwing it,3.validated
 1476,FullEventful,he/she is having a birthday,3.validated
+1476,ImpInfEventful,he/she is having a birthday,3.validated
 1478,FullStative,it’s hot,3.validated
+1479,ImpInfEventful,he/she has a fever,3.validated
+1479,StativeNoImp,he/she has a fever,3.validated
 148,FullEventful,he/she is cutting it,3.validated
 1480,FullStative,he/she is in hiding,3.validated
 1480,InfEventful,he/she is in hiding,3.validated
 1481,FullEventful,he/she is getting well,3.validated
+1481,ImpInfEventful,he/she is getting well,3.validated
 1483,FullStative,there’s an opening,3.validated
 1485,FullEventful,he/she is disbelieving,3.validated
+1485,ImpInfEventful,he/she is disbelieving,3.validated
 1487,FullEventful,he/she is taking revenge,3.validated
+1487,ImpInfEventful,he/she is taking revenge,3.validated
 1489,FullStative,he/she is wearing an earring,3.validated
 149,FullEventful,he/she is chopping it up,3.validated
 1505,FullStative,he/she is standing in liquid,3.validated
 1505,InfEventful,he/she is standing in liquid,3.validated
 1507,FullEventful,he/she wants it,3.validated
+1507,ImpInfEventful,he/she wants it,3.validated
 1508,FullStative,he/she is willing,3.validated
 1514,FullEventful,he/she is becoming warm,3.validated
+1514,ImpInfEventful,he/she is becoming warm,3.validated
 1516,FullStative,he/she is possessive of him/her,3.validated
 1516,InfEventful,he/she is possessive of him/her,3.validated
 152,FullEventful,he/she is scolding him/her,3.validated
 1523,FullEventful,he/she is late,3.validated
+1523,ImpInfEventful,he/she is late,3.validated
 1524,FullEventful,it’s decaying,3.validated
+1524,ImpInfEventful,it’s decaying,3.validated
 153,FullEventful,he/she is washing his face,3.validated
 1530,FullStative,he/she has an object (refers to a solid object),3.validated
 1531,FullEventful,he/she is yawning,3.validated
+1531,ImpInfEventful,he/she is yawning,3.validated
 1534,FullEventful,he/she is having trouble breathing,3.validated
+1534,ImpInfEventful,he/she is having trouble breathing,3.validated
 1535,FullStative,there is dew,3.validated
 1536,FullEventful,he/she is lonesome,3.validated
+1536,ImpInfEventful,he/she is lonesome,3.validated
 1537,FullStative,it’s lonesome,3.validated
 1544,FullEventful,he/she is becoming angry,3.validated
+1544,ImpInfEventful,he/she is becoming angry,3.validated
 1545,FullStative,he/she is angry,3.validated
 1548,FullEventful,he/she is stubbing his/her toe,3.validated
+1548,ImpInfEventful,he/she is stubbing his/her toe,3.validated
 155,FullEventful,he/she is diverting him/her,3.validated
 1551,FullEventful,he/she has a chill,3.validated
+1551,ImpInfEventful,he/she has a chill,3.validated
 1554,FullStative,he/she is in bed,3.validated
 1557,FullStative,he/she is wearing a shirt,3.validated
 1561,FullEventful,he/she is buying it,3.validated
+1561,ImpInfEventful,he/she is buying it,3.validated
 1563,FullEventful,he/she is looking for it,3.validated
+1563,ImpInfEventful,he/she is looking for it,3.validated
+1564,ImpInfEventful,he/she is afloat,3.validated
+1564,StativeNoImp,he/she is afloat,3.validated
 1569,FullStative,it is cold (refers to weather),3.validated
 1572,FullEventful,he/she is getting drunk,3.validated
+1572,ImpInfEventful,he/she is getting drunk,3.validated
 1576,FullStative,he/she is inside it,3.validated
 158,FullEventful,he/she is smothering him/her,3.validated
+1580,ImpInfEventful,he/she is grinning,3.validated
+1580,StativeNoImp,he/she is grinning,3.validated
+1585,ImpInfEventful,it’s rattling,3.validated
+1585,StativeNoImp,it’s rattling,3.validated
 1592,FullStative,it’s sticking out,3.validated
 1592,InfEventful,it’s sticking out,3.validated
 1593,FullStative,he/she is watching him/her,3.validated
 1593,InfEventful,he/she is watching him/her,3.validated
 1597,FullStative,it’s foggy,3.validated
 1599,FullEventful,he/she is not having luck at hunting,3.validated
+1599,ImpInfEventful,he/she is not having luck at hunting,3.validated
 16,FullEventful,he/she is fanning himself/herself,3.validated
 160,FullEventful,he/she is handling it,3.validated
 1602,FullEventful,he/she is losing his/her way,3.validated
+1602,ImpInfEventful,he/she is losing his/her way,3.validated
 1604,FullEventful,he/she is making a mistake,3.validated
+1604,ImpInfEventful,he/she is making a mistake,3.validated
 1612,FullEventful,he/she is whining,3.validated
+1612,ImpInfEventful,he/she is whining,3.validated
 1613,FullStative,he/she is wearing a ring,3.validated
 1614,FullStative,it’s cloudy,3.validated
 1616,FullEventful,it’s happening to him,3.validated
+1616,ImpInfEventful,it’s happening to him,3.validated
 1618,FullStative,he/she is wearing a cap,3.validated
 162,InfEventful,he/she has possession of a vehicle,3.validated
 1621,FullStative,he/she is sticking his/her head out,3.validated
 1622,FullStative,he/she is wearing a hat,3.validated
 1623,FullStative,it’s dark,3.validated
+1627,StativeNoImp,he/she likes him/her,3.validated
 1629,FullStative,he/she has an object (refers to a flexible object),3.validated
 163,InfEventful,he/she is driving it (refers to a vehicle in motion or animal),3.validated
 1639,FullStative,he/she is being mean,3.validated
 1642,FullStative,he/she has a liquid,3.validated
 1642,InfEventful,he/she has a liquid,3.validated
 1646,FullStative,he/she knows it,3.validated
+1649,ImpInfEventful,it is making a sound,3.validated
 165,FullEventful,he/she is leaving it behind,3.validated
 166,FullEventful,he/she is placing it on something,3.validated
 167,FullEventful,he/she is taking off flying,3.validated
 1677,FullStative,he/she is wearing pants,3.validated
 1683,FullEventful,he/she is thirsty,3.validated
+1683,ImpInfEventful,he/she is thirsty,3.validated
 1684,FullEventful,he/she is becoming enraged,3.validated
+1684,ImpInfEventful,he/she is becoming enraged,3.validated
 169,FullEventful,he/she is making him/her fly,3.validated
 1693,FullStative,he/she is listening to him/her,3.validated
 1693,InfEventful,he/she is listening to him/her,3.validated
 1698,FullEventful,he/she is forgetting it,3.validated
+1698,ImpInfEventful,he/she is forgetting it,3.validated
 1699,FullEventful,he/she is belching,3.validated
+1699,ImpInfEventful,he/she is belching,3.validated
 1700,FullEventful,he/she is shivering,3.validated
+1700,ImpInfEventful,he/she is shivering,3.validated
+1704,ImpInfEventful,he/she is in a hurry,3.validated
+1704,StativeNoImp,he/she is in a hurry,3.validated
 1708,FullEventful,he/she smells it,3.validated
+1708,ImpInfEventful,he/she smells it,3.validated
 1709,FullStative,he/she has an object (refers to a long object),3.validated
 171,FullEventful,he/she is having a nightmare,3.validated
 1710,FullEventful,he/she is aching,3.validated
+1710,ImpInfEventful,he/she is aching,3.validated
+1711,ImpInfEventful,he/she is yelling,3.validated
 172,FullEventful,it’s taking time,3.validated
 172,InfEventful,it’s taking time,3.validated
 1721,InfEventful,he/she is worried,3.validated
 1729,FullStative,he/she is confident,3.validated
 173,FullEventful,he/she is measuring it,3.validated
 1730,FullStative,he/she is sitting,3.validated
+1740,ImpInfEventful,he/she is itching,3.validated
 1741,FullEventful,he/she is losing it,3.validated
+1741,ImpInfEventful,he/she is losing it,3.validated
+1745,ImpInfEventful,he/she is hungry,3.validated
 175,FullEventful,it’s bending,3.validated
 175,InfEventful,it’s bending,3.validated
 1754,FullEventful,he/she is sending on object (refers to a long object),3.validated
@@ -608,6 +705,7 @@ corpus_id,prediction,definition,furthest_corpus
 515,FullEventful,it’s breaking,3.validated
 516,FullEventful,he/she is shooting him/her,3.validated
 519,FullEventful,he/she is whittling it,3.validated
+521,FullEventful,he/she is dying (refers to a human),3.validated
 523,FullEventful,he/she is greeting him/her,3.validated
 524,FullEventful,he/she is breaking it,3.validated
 526,FullEventful,he/she is destroying it,3.validated

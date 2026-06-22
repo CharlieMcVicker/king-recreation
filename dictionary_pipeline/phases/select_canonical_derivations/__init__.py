@@ -185,18 +185,21 @@ def save_stative_shims(
     """
     from dictionary_pipeline.paths import STATIVE_SHIMS_PATH
 
-    # Build lookups: h_grade_root -> list of INF_EVENTFUL verbs,
-    # and corpus_id -> FULL_STATIVE verb object (for compatibility checks).
+    # Build lookups: h_grade_root -> list of INF_EVENTFUL/IMP_INF_EVENTFUL verbs,
+    # and corpus_id -> FULL_STATIVE/STATIVE_NO_IMP verb object (for compatibility checks).
     inf_eventful_by_h_grade: dict[str, list[DictionaryVerb]] = defaultdict(list)
     for verb in validated_verbs:
-        if verb.meta.prediction == Prediction.INF_EVENTFUL:
+        if verb.meta.prediction in (
+            Prediction.INF_EVENTFUL,
+            Prediction.IMP_INF_EVENTFUL,
+        ):
             inf_eventful_by_h_grade[verb.morphology.h_grade_root].append(verb)
 
     stative_h_grade: dict[str, str] = {}
     stative_verbs: dict[str, DictionaryVerb] = {}
     source_verbs = deduped_verbs if deduped_verbs is not None else validated_verbs
     for verb in source_verbs:
-        if verb.meta.prediction == Prediction.FULL_STATIVE:
+        if verb.meta.prediction in (Prediction.FULL_STATIVE, Prediction.STATIVE_NO_IMP):
             c_id = str(verb.meta.corpus_id)
             if c_id in stative_corpus_ids:
                 is_selected = (
@@ -349,7 +352,11 @@ def dedupe_roots(
                 c
                 for c in candidates
                 if c.meta.prediction
-                in [Prediction.FULL_EVENTFUL, Prediction.FULL_STATIVE]
+                in [
+                    Prediction.FULL_EVENTFUL,
+                    Prediction.FULL_STATIVE,
+                    Prediction.STATIVE_NO_IMP,
+                ]
             ),
             None,
         )
@@ -478,15 +485,21 @@ def select_canonical_derivations() -> None:
     # Resolve and attach stative shims
     stative_shims_map = load_stative_shims()
 
-    # Group InfEventful shims by h_grade_root across all validated verbs
+    # Group InfEventful and ImpInfEventful shims by h_grade_root across all validated verbs
     inf_eventful_by_h_grade = defaultdict(list)
     for verb in validated_verbs:
-        if verb.meta.prediction == Prediction.INF_EVENTFUL:
+        if verb.meta.prediction in (
+            Prediction.INF_EVENTFUL,
+            Prediction.IMP_INF_EVENTFUL,
+        ):
             inf_eventful_by_h_grade[verb.morphology.h_grade_root].append(verb)
 
     stative_corpus_ids: set[str] = set()
     for canonical_verb in deduped_roots:
-        if canonical_verb.meta.prediction == Prediction.FULL_STATIVE:
+        if canonical_verb.meta.prediction in (
+            Prediction.FULL_STATIVE,
+            Prediction.STATIVE_NO_IMP,
+        ):
             c_id = canonical_verb.meta.corpus_id
             if not c_id:
                 continue

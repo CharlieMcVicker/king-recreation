@@ -233,7 +233,7 @@ def stems_are_consistent(
 
     h_candidate = (
         derived_stems.get("infinitive")
-        if prediction in [Prediction.INF_EVENTFUL]
+        if prediction in [Prediction.INF_EVENTFUL, Prediction.IMP_INF_EVENTFUL]
         else derived_stems.get("present")
     )
 
@@ -324,12 +324,19 @@ class PrefixDeriver:
 
         for pre_config, intermediate in iter_pre_configs(prediction, forms):
             present_form = intermediate.get("present", "")
-            set_type = (
-                PronominalSet.SET_B
-                if present_form.startswith("u")
-                else PronominalSet.SET_A
-            )
-            ka = present_form.startswith("k")
+            if present_form:
+                set_types = [
+                    (
+                        PronominalSet.SET_B
+                        if present_form.startswith("u")
+                        else PronominalSet.SET_A
+                    )
+                ]
+                ka = present_form.startswith("k")
+            else:
+                set_types = [PronominalSet.SET_A, PronominalSet.SET_B]
+                ka = any(intermediate.get(fn, "").startswith("k") for fn in forms)
+
             aki = intermediate.get("present_1sg", "").startswith(
                 "aki"
             ) or intermediate.get("present_1sg", "").startswith("akhi")
@@ -341,38 +348,39 @@ class PrefixDeriver:
                 ),
                 None,
             )
-            for plural in [False, True]:
-                for use_3rd in [False, True]:
-                    for s_type in StemType:
-                        for allow_h_metathesis in [False, True]:
-                            uwa_opts = [False]
-                            if s_type == StemType.VOWEL_V:
-                                uwa_opts = (
-                                    [b3sg_starts_uwa]
-                                    if b3sg_starts_uwa is None
-                                    else [False, True]
-                                )
-                            for uwa in uwa_opts:
-                                pron_config = PronominalConfig(
-                                    set_type=set_type,
-                                    stem_type=s_type,
-                                    allow_h_metathesis=allow_h_metathesis,
-                                    plural_pronouns=plural,
-                                    use_ka_variant=ka,
-                                    uwa_replaces_v=bool(uwa),
-                                    use_aki_for_1st_set_b=aki,
-                                    use_3rd_person_object=use_3rd,
-                                )
-                                res = derive_pronominals(
-                                    prediction,
-                                    intermediate,
-                                    pron_config,
-                                    log=log,
-                                    # log="calling" in row["definition"],
-                                )
-                                if res:
-                                    res.config.pre = pre_config
-                                    valid_derivations.extend(derive_middle(res))
+            for set_type in set_types:
+                for plural in [False, True]:
+                    for use_3rd in [False, True]:
+                        for s_type in StemType:
+                            for allow_h_metathesis in [False, True]:
+                                uwa_opts = [False]
+                                if s_type == StemType.VOWEL_V:
+                                    uwa_opts = (
+                                        [b3sg_starts_uwa]
+                                        if b3sg_starts_uwa is None
+                                        else [False, True]
+                                    )
+                                for uwa in uwa_opts:
+                                    pron_config = PronominalConfig(
+                                        set_type=set_type,
+                                        stem_type=s_type,
+                                        allow_h_metathesis=allow_h_metathesis,
+                                        plural_pronouns=plural,
+                                        use_ka_variant=ka,
+                                        uwa_replaces_v=bool(uwa),
+                                        use_aki_for_1st_set_b=aki,
+                                        use_3rd_person_object=use_3rd,
+                                    )
+                                    res = derive_pronominals(
+                                        prediction,
+                                        intermediate,
+                                        pron_config,
+                                        log=log,
+                                        # log="calling" in row["definition"],
+                                    )
+                                    if res:
+                                        res.config.pre = pre_config
+                                        valid_derivations.extend(derive_middle(res))
         if not valid_derivations:
             return []
 
