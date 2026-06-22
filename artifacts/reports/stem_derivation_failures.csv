@@ -68,6 +68,7 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 613,623,he/she is ironing,FullEventful,sk-s-la,,tathe,tetsithe,tathe,tuthe,thithv,tsuthe
 613,623,he/she is ironing,FullEventful,sk-s-hst,,tathe,tetsithe,tathe,tuthe,thithvla,tsuthe
 634,645,he/she is washing (refers to flexible objects including clothes),FullEventful,o,,tekhkil,tekvkil,tekhkil,tuhkil,thvhkil,tsuhkil
+746,769,he/she lives,FullStative,stative-eh,,,k,,,h,
 788,818,he/she is hanging up it (refers to a flexible object),FullEventful,vsk,,katv',tsiyatv',katv',ut,hatv',ut
 788,818,he/she is hanging up it (refers to a flexible object),FullEventful,vsk[imp2],,katv',tsiyatv',katv',ut,hat,ut
 788,818,he/she is hanging up it (refers to a flexible object),FullEventful,vsk-long,,kat,tsiyat,kat,ut,hatv',ut
@@ -118,11 +119,38 @@ corpus_id,entry_no,definition,prediction,class,post_root_morpheme,present,presen
 1285,1337,it is hanging (refers to a long object),FullStative,stative,,khtho',,khtho',,hatho',
 1286,1338,he/she is hanging it up (refers to a long object),FullEventful,i-a-i,,khthohsat,kathohsat,khthohsat,uwhthohsat,hathohsat,uwhthohsat
 1301,1356,there are (a number of three or more must be specified),FullStative,stative,,nani',notsi',nani',,nitsi',
+1471,1537,he/she is throwing it,StativeNoImp,stative,,utek,akwatek,utek,utinvhs,,
+1493,1559,he/she is sick,StativeNoImp,stative-k,,utlv,akhtlv,utlv,utlv,,
+1493,1559,he/she is sick,StativeNoImp,stative,,utlvk,akhtlvk,utlvk,utlvk,,
+1493,1559,he/she is sick,ImpInfEventful,become,,,,,,tstlv,utlv'i
+1493,1559,he/she is sick,ImpInfEventful,become[inf2],,,,,,tstlv,utlv
+1493,1559,he/she is sick,ImpInfEventful,become[inf4],,,,,,tstlv,utlv'
+1493,1559,he/she is sick,ImpInfEventful,sk-s-hst,,,,,,tstlvki,utlv'i
+1493,1559,he/she is sick,ImpInfEventful,sk-h[imp2],,,,,,tstlvki,utlv'i
+1493,1559,he/she is sick,ImpInfEventful,rev-i,,,,,,tstlvk,utlv'
+1563,1629,he/she is looking for it,StativeNoImp,stative,,uyhoh,akiyhoh,uyhoh,uyhal,,
 1570,1636,he/she has a cold,FullEventful,ih-vh,,uyhvtla uniy,uyhvtla aki'niy,uyhvtla uniy,uyhvtla uniy,uyhvtla witsa'niy,uyhvtla uniy
+1570,1636,he/she has a cold,StativeNoImp,stative,,uyhvtla uniyih,uyhvtla aki'niyih,uyhvtla uniyihsk,uyhvtla uniyvh,,
+1570,1636,he/she has a cold,ImpInfEventful,apl-active-a,,,,,,uyhvtla witsa'niy,uyhvtla uniy
+1570,1636,he/she has a cold,ImpInfEventful,ih-vh,,,,,,uyhvtla witsa'niy,uyhvtla uniy
+1570,1636,he/she has a cold,ImpInfEventful,vnh-ih-a,,,,,,uyhvtla witsa'niy,uyhvtla uniy
 1632,1698,they are together,FullStative,stative-s,,unaliko,okaliko,unaliko,unaliko,itsaliko,
 1632,1698,they are together,FullStative,stative,,unalikoh,okalikoh,unalikohs,unalikohs,itsalikohs,
 1664,1730,he/she is receiving punishment,FullEventful,i-a-i,,uhstvt,akhstvt,uhstvt,uhstvt,tstvt,uhstvt
+1664,1730,he/she is receiving punishment,ImpInfEventful,sk-s-hst,,,,,,tstvta,uhstvti
+1664,1730,he/she is receiving punishment,ImpInfEventful,sk-h,,,,,,tstvt,uhstvti
+1664,1730,he/she is receiving punishment,ImpInfEventful,sk-h[imp2],,,,,,tstvta,uhstvti
+1664,1730,he/she is receiving punishment,ImpInfEventful,i-a-i,,,,,,tstvt,uhstvt
 1671,1737,he/she is coughing,FullEventful,sk-h[imp2],,uhsiwha,akhsiwha,uhsiwha,uhsiwha,tsiwhahi,uhsiwhahi
+1671,1737,he/she is coughing,ImpInfEventful,sk-s-hi-hihst,,,,,,tsiwha,uhsiwha
+1671,1737,he/she is coughing,ImpInfEventful,sk-s-hst[imp2],,,,,,tsiwha,uhsiwhahi
+1671,1737,he/she is coughing,ImpInfEventful,sk-s-hst,,,,,,tsiwhahi,uhsiwhahi
+1671,1737,he/she is coughing,ImpInfEventful,sk-h[imp2],,,,,,tsiwhahi,uhsiwhahi
+1671,1737,he/she is coughing,ImpInfEventful,rev-i,,,,,,tsiwhah,uhsiwhah
 1681,1747,he/she is going to bed,FullEventful,hih-lh[imp2],,uhsv,akhsv,uhsv,uhsv,tsv,uhsv
+1681,1747,he/she is going to bed,ImpInfEventful,sk-s-hst,,,,,,tsvha,uhsv
+1681,1747,he/she is going to bed,ImpInfEventful,sk-h,,,,,,tsv,uhsv
+1681,1747,he/she is going to bed,ImpInfEventful,sk-h[imp2],,,,,,tsvha,uhsv
+1681,1747,he/she is going to bed,ImpInfEventful,hih-lh[imp2],,,,,,tsv,uhsv
 1719,1785,he/she has it,FullStative,stative-h,,uwekha,akikha,uwekha,uwekha,tsekha,
 1719,1785,he/she has it,FullStative,stative,,uwekhah,akikhah,uwekhah,uwekhah,tsekhah,

@@ -731,3 +731,99 @@ def test_prayer_roots_compatibility() -> None:
 
     is_compatible, mismatches = validate_shim_compatibility(base_verb, shim_candidate)
     assert is_compatible, f"Expected compatibility, but got mismatches: {mismatches}"
+
+
+def test_stative_no_imp_row_spec() -> None:
+    from dictionary_pipeline.dictionary_forms import ROW_PREDICTION_SPECS
+
+    # Find StativeNoImp spec
+    spec = next(s for s in ROW_PREDICTION_SPECS if s.name == "StativeNoImp")
+
+    # Matching row: non-ehsti imperative and perfective ending in o'i
+    matching_row = {
+        "present": "ayohuhsk",
+        "present_1sg": "tsiyo'uhsk",
+        "imperfective": "ayohuhsko'i",
+        "perfective": "ayohuhsko'i",
+        "imperative": "uyohuhihsti",
+        "infinitive": "",
+    }
+    assert spec.row_test(matching_row)
+
+    # Non-matching row: has ehsti imperative
+    non_matching_row = {
+        "present": "ayohuhsk",
+        "present_1sg": "tsiyo'uhsk",
+        "imperfective": "ayohuhsko'i",
+        "perfective": "ayohuhsko'i",
+        "imperative": "uyohuhihstehsti",
+        "infinitive": "",
+    }
+    assert not spec.row_test(non_matching_row)
+
+    expected_parses = [
+        ("1564", "stative-s", "hvsk-nh"),
+        # You can add more pairings here!
+    ]
+
+    if not expected_parses:
+        pytest.skip("No expected parses provided by user.")
+
+    # Load actual validated roots
+    from dictionary_pipeline.phases.reconstruct_and_validate.artifacts import (
+        load_validated_roots,
+    )
+
+    rows = load_validated_roots()
+    if not rows:
+        pytest.skip("No validated roots found in the workspace.")
+
+    verbs = [DictionaryVerb.from_row(row) for row in rows]
+
+    for corpus_id, stative_class, eventful_class in expected_parses:
+        corpus_id_str = str(corpus_id)
+        # Find stative base candidates
+        stative_candidates = [
+            v
+            for v in verbs
+            if str(v.meta.corpus_id) == corpus_id_str
+            and v.meta.prediction
+            in (Prediction.FULL_STATIVE, Prediction.STATIVE_NO_IMP)
+            and v.morphology.class_name == stative_class
+        ]
+        # Find eventful shim candidates
+        eventful_candidates = [
+            v
+            for v in verbs
+            if str(v.meta.corpus_id) == corpus_id_str
+            and v.meta.prediction
+            in (Prediction.INF_EVENTFUL, Prediction.IMP_INF_EVENTFUL)
+            and v.morphology.class_name == eventful_class
+        ]
+
+        assert (
+            stative_candidates
+        ), f"No stative candidate found for corpus_id={corpus_id_str}, class={stative_class}"
+        assert (
+            eventful_candidates
+        ), f"No eventful candidate found for corpus_id={corpus_id_str}, class={eventful_class}"
+
+        # Test compatibility
+        compatible = False
+        all_mismatches = []
+        for base in stative_candidates:
+            for shim in eventful_candidates:
+                ok, mismatches = validate_shim_compatibility(base, shim)
+                if ok:
+                    compatible = True
+                    break
+                else:
+                    all_mismatches.append((base, shim, mismatches))
+            if compatible:
+                break
+
+        assert compatible, (
+            f"No compatible pairing found for corpus_id={corpus_id_str}, "
+            f"stative={stative_class}, eventful={eventful_class}. "
+            f"Mismatches checked: {all_mismatches}"
+        )
