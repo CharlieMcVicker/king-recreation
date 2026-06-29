@@ -39,4 +39,3 @@ def clean_string(s: str) -> str:
     # README says tone markings /[1234\.]/ and glottal stops /\?/
     s = re.sub(r"[1234\.]", "", s)
     return respell_consonants(s)
-
