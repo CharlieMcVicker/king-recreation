@@ -150,58 +150,28 @@ class ReconstructionEngine:
             return [root + "-" + literal_ending]
 
     def reconstruct_spec(self, verb: MorphologicalVerb, spec: WordSpec) -> list[str]:
-        # 1. Get the base stems (stem + aspect suffix or root directly)
-        if spec.noun_structure is not None:
-            glottal_grade = False
-            if (
-                spec.person is not None
-                and spec.number is not None
-                and spec.pronominal_set is not None
-            ):
-                glottal_grade = use_glottal_grade(
-                    spec.person, spec.number, spec.pronominal_set
-                )
+        aspect = spec.aspect
+        glottal_grade = False
+        if (
+            aspect is not None
+            and spec.person is not None
+            and spec.number is not None
+            and spec.pronominal_set is not None
+        ):
+            glottal_grade = use_glottal_grade(
+                spec.person, spec.number, spec.pronominal_set
+            )
 
-            aspect = spec.noun_aspect
-            if aspect is None:
-                # ROOT noun structure
-                root = self.root_for_form(verb, glottal_grade)
-                stems = [root] if root is not None else []
-            else:
-                stems = self.get_base_stems_for_form(
-                    verb,
-                    aspect=aspect,
-                    glottal_grade=glottal_grade,
-                )
-
-            # Apply noun suffix
-            suffix = spec.noun_suffix
-            if suffix and stems:
-                stems = [
-                    (stem + "-" + suffix) if not stem.endswith("-") else (stem + suffix)
-                    for stem in stems
-                ]
+        if aspect is not None:
+            stems = self.get_base_stems_for_form(
+                verb,
+                aspect=aspect,
+                glottal_grade=glottal_grade,
+            )
         else:
-            aspect = spec.aspect
-            glottal_grade = False
-            if (
-                aspect is not None
-                and spec.person is not None
-                and spec.number is not None
-                and spec.pronominal_set is not None
-            ):
-                glottal_grade = use_glottal_grade(
-                    spec.person, spec.number, spec.pronominal_set
-                )
-
-            if aspect is not None:
-                stems = self.get_base_stems_for_form(
-                    verb,
-                    aspect=aspect,
-                    glottal_grade=glottal_grade,
-                )
-            else:
-                stems = []
+            # If no aspect is specified, reconstruct using the bare root (this handles the former ROOT noun structure)
+            root = self.root_for_form(verb, glottal_grade)
+            stems = [root] if root is not None else []
 
         if not stems:
             return []

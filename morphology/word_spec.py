@@ -25,22 +25,8 @@ __all__ = [
     "NounStructure",
     "WordSpec",
     "SyntacticCategory",
+    "get_noun_wordspec",
 ]
-
-NOUN_SUFFIX_RULES = {
-    NounStructure.ROOT: "",
-    NounStructure.AGENTIVE: "i",
-    NounStructure.COMPLETIVE: "v'i",
-    NounStructure.INCOMPLETIVE: "o'i",
-}
-
-NOUN_ASPECT_MAPPING = {
-    NounStructure.ROOT: None,
-    NounStructure.AGENTIVE: Aspect.IMPERFECTIVE,
-    NounStructure.COMPLETIVE: Aspect.PERFECTIVE,
-    NounStructure.INCOMPLETIVE: Aspect.IMPERFECTIVE,
-}
-
 
 @dataclass(frozen=True)
 class WordSpec:
@@ -50,17 +36,54 @@ class WordSpec:
     pronominal_set: PronominalSet | None = None
     stative: bool = False
     tense_ending: str = ""
-    noun_structure: NounStructure | None = None
     syntactic_category: SyntacticCategory = SyntacticCategory.VERBY
 
-    @property
-    def noun_suffix(self) -> str:
-        if self.noun_structure is None:
-            return ""
-        return NOUN_SUFFIX_RULES.get(self.noun_structure, "")
 
-    @property
-    def noun_aspect(self) -> Aspect | None:
-        if self.noun_structure is None:
-            return None
-        return NOUN_ASPECT_MAPPING.get(self.noun_structure)
+def get_noun_wordspec(
+    structure: NounStructure,
+    person: Person | None = None,
+    number: Number | None = None,
+    pronominal_set: PronominalSet | None = None,
+) -> WordSpec:
+    """
+    Constructs a WordSpec from a NounStructure enum based on grammatical mapping rules.
+    """
+    if structure == NounStructure.ROOT:
+        return WordSpec(
+            syntactic_category=SyntacticCategory.NOMINAL,
+            aspect=None,
+            tense_ending="",
+            person=person,
+            number=number,
+            pronominal_set=pronominal_set,
+        )
+    elif structure == NounStructure.AGENTIVE:
+        return WordSpec(
+            syntactic_category=SyntacticCategory.NOMINAL,
+            aspect=Aspect.IMPERFECTIVE,
+            tense_ending="i",
+            person=person,
+            number=number,
+            pronominal_set=pronominal_set,
+        )
+    elif structure == NounStructure.COMPLETIVE:
+        return WordSpec(
+            syntactic_category=SyntacticCategory.VERBY,
+            aspect=Aspect.PERFECTIVE,
+            tense_ending="v'i",
+            person=person,
+            number=number,
+            pronominal_set=pronominal_set,
+        )
+    elif structure == NounStructure.INCOMPLETIVE:
+        return WordSpec(
+            syntactic_category=SyntacticCategory.VERBY,
+            aspect=Aspect.IMPERFECTIVE,
+            tense_ending="o'i",
+            person=person,
+            number=number,
+            pronominal_set=pronominal_set,
+        )
+    raise ValueError(f"Unknown noun structure: {structure}")
+
+
