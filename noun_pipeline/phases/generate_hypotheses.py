@@ -17,9 +17,11 @@ class NounHypothesis:
     original_word: str
     word_spec: WordSpec
     stem: str
+    noun_template: str
+    plural_word: str | None = None
 
 
-def generate_hypotheses(noun: str) -> List[NounHypothesis]:
+def generate_hypotheses(noun: str, plural_word: str | None = None) -> List[NounHypothesis]:
     hypotheses = []
 
     # Define possible suffixes and their structural mappings
@@ -44,7 +46,7 @@ def generate_hypotheses(noun: str) -> List[NounHypothesis]:
 
             # Hypothesis 1: No pronominal stripped
             word_spec_no_pron = get_noun_wordspec(structure)
-            h_no_pron = NounHypothesis(noun, word_spec_no_pron, base_word)
+            h_no_pron = NounHypothesis(noun, word_spec_no_pron, base_word, structure.value, plural_word=plural_word)
             if h_no_pron not in hypotheses:
                 hypotheses.append(h_no_pron)
 
@@ -69,7 +71,7 @@ def generate_hypotheses(noun: str) -> List[NounHypothesis]:
                                     number=number,
                                     pronominal_set=p_set,
                                 )
-                                hypothesis = NounHypothesis(noun, word_spec, stem)
+                                hypothesis = NounHypothesis(noun, word_spec, stem, structure.value, plural_word=plural_word)
                                 if hypothesis not in hypotheses:
                                     hypotheses.append(hypothesis)
                         except Exception:
@@ -92,15 +94,16 @@ def phase_2_generate_hypotheses():
         reader = csv.DictReader(f)
         for row in reader:
             word = row.get("singular", "")
+            plural = row.get("plural", "")
             if word:
-                hyps = generate_hypotheses(word)
+                hyps = generate_hypotheses(word, plural_word=plural if plural else None)
                 for h in hyps:
                     all_hypotheses.append(
                         {
                             "corpus_id": row["corpus_id"],
                             "original_word": h.original_word,
                             "stem": h.stem,
-                            "structure": h.word_spec.syntactic_category.value,
+                            "structure": h.noun_template,
                             "aspect": (
                                 h.word_spec.aspect.value if h.word_spec.aspect else ""
                             ),
@@ -115,6 +118,7 @@ def phase_2_generate_hypotheses():
                                 if h.word_spec.pronominal_set
                                 else ""
                             ),
+                            "plural_word": h.plural_word or "",
                         }
                     )
 
@@ -128,6 +132,7 @@ def phase_2_generate_hypotheses():
         "person",
         "number",
         "pronominal_set",
+        "plural_word",
     ]
     with open(output_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -135,3 +140,6 @@ def phase_2_generate_hypotheses():
         writer.writerows(all_hypotheses)
 
     print(f"Generated {len(all_hypotheses)} hypotheses and saved to {output_path}")
+
+if __name__ == "__main__":
+    phase_2_generate_hypotheses()

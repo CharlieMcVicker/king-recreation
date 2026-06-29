@@ -71,3 +71,9 @@ def test_generate_hypotheses_ani_prefix():
 
     assert len(ani_stripped) > 0
     assert any(h.stem == "gili" or h.stem == "gil" for h in ani_stripped)
+
+
+def test_generate_hypotheses_with_plural():
+    hypotheses = generate_hypotheses("uwayeli", plural_word="uniyeli")
+    assert len(hypotheses) > 0
+    assert all(h.plural_word == "uniyeli" for h in hypotheses)
