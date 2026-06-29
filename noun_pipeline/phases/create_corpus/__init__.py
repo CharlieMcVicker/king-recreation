@@ -1,3 +1,4 @@
+from dictionary_pipeline.utils import clean_string, respell_consonants, read_original_cnd
 import csv
 import os
 import re
@@ -6,56 +7,6 @@ from typing import Any, Dict, List
 # Define paths relative to the repository root
 CHEROKEE_NATION_DICTIONARY_PATH = os.path.join("data", "cherokee_nation_dictionary.csv")
 NOUNS_CORPUS_PATH = os.path.join("artifacts", "corpora", "nouns_corpus.csv")
-
-
-def respell_consonants(s: str) -> str:
-    # Rewrite rules for aspiration marking
-    # Order matters: t->th before d->t, k->kh before g->k
-    # Exception: ts should stay ts (not become ths)
-    s = re.sub(r"t(?!s)", "th", s)
-
-    rules = [
-        ("d", "t"),
-        ("k", "kh"),
-        ("g", "k"),
-        ("j", "ts"),
-        ("ch", "tsh"),
-        ("hn", "nh"),
-        ("hl", "lh"),
-        ("hy", "yh"),
-        ("hw", "wh"),
-        ("?", "'"),
-        ("’", "'"),
-    ]
-    for old, new in rules:
-        s = s.replace(old, new)
-
-    s = re.sub(r"sl(?=[aeiouv])", "slh", s)
-    s = re.sub(r"([^ht])s", r"\1hs", s)
-    return s
-
-
-def clean_string(s: str) -> str:
-    if not s or s == "-----":
-        return ""
-    # Remove tones [1234], glottal stops [?], periods [.], and apostrophes ['’]
-    s = re.sub(r"[1234\.]", "", s)
-    return respell_consonants(s)
-
-
-def read_original_cnd() -> List[Dict[str, Any]]:
-    if not os.path.exists(CHEROKEE_NATION_DICTIONARY_PATH):
-        raise FileNotFoundError(
-            f"Input file not found at {CHEROKEE_NATION_DICTIONARY_PATH}"
-        )
-
-    with open(CHEROKEE_NATION_DICTIONARY_PATH, mode="r", encoding="utf-8") as f:
-        content = f.read()
-        if content.startswith("\ufeff"):
-            content = content[1:]
-        import io
-
-        return list(csv.DictReader(io.StringIO(content)))
 
 
 def is_plural(row: Dict[str, str]) -> bool:

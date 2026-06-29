@@ -17,21 +17,6 @@ def ensure_output_dir():
         os.makedirs(output_data_dir)
 
 
-def read_original_cnd() -> list[dict[str, Any]]:
-    if not os.path.exists(CHEROKEE_NATION_DICTIONARY_PATH):
-        raise FileNotFoundError(
-            f"Input file not found at {CHEROKEE_NATION_DICTIONARY_PATH}"
-        )
-
-    with open(CHEROKEE_NATION_DICTIONARY_PATH, mode="r", encoding="utf-8") as f:
-        content = f.read()
-        if content.startswith("\ufeff"):
-            content = content[1:]
-        import io
-
-        return list(csv.DictReader(io.StringIO(content)))
-
-
 from dictionary_pipeline.row_models import PatchRow, ProcessedRow
 
 
