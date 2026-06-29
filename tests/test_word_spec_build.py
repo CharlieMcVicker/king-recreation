@@ -65,3 +65,26 @@ def test_build_wordspec_imperfective():
     assert spec.person == Person.THIRD
     assert spec.number == Number.SINGULAR
     assert spec.pronominal_set == PronominalSet.SET_A
+
+
+def test_syntactic_category():
+    from morphology.word_spec import SyntacticCategory
+
+    config = PronominalConfig(
+        set_type=PronominalSet.SET_A, stem_type=StemType.CONSONANT
+    )
+    # Present form should be VERBY
+    spec_present = build_wordspec(Prediction.FULL_EVENTFUL, config, "present")
+    assert spec_present.syntactic_category == SyntacticCategory.VERBY
+
+    # Infinitive form should be NOMINAL
+    spec_inf = build_wordspec(Prediction.FULL_EVENTFUL, config, "infinitive")
+    assert spec_inf.syntactic_category == SyntacticCategory.NOMINAL
+
+    # Imperative form (eventful) should be IMPERATIVE
+    spec_imp = build_wordspec(Prediction.FULL_EVENTFUL, config, "imperative")
+    assert spec_imp.syntactic_category == SyntacticCategory.IMPERATIVE
+
+    # Imperative form (stative) should be IMPERATIVE too
+    spec_stative_imp = build_wordspec(Prediction.FULL_STATIVE, config, "imperative")
+    assert spec_stative_imp.syntactic_category == SyntacticCategory.IMPERATIVE

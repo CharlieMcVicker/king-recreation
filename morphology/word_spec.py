@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from enum import Enum
 
 from morphology.morphology_types import (
     Aspect,
@@ -8,6 +9,13 @@ from morphology.morphology_types import (
     PronominalSet,
 )
 
+
+class SyntacticCategory(Enum):
+    NOMINAL = "nominal"
+    IMPERATIVE = "imperative"
+    VERBY = "verby"
+
+
 # Re-export morphology types for backward compatibility
 __all__ = [
     "Aspect",
@@ -16,6 +24,7 @@ __all__ = [
     "PronominalSet",
     "NounStructure",
     "WordSpec",
+    "SyntacticCategory",
 ]
 
 NOUN_SUFFIX_RULES = {
@@ -42,6 +51,7 @@ class WordSpec:
     stative: bool = False
     tense_ending: str = ""
     noun_structure: NounStructure | None = None
+    syntactic_category: SyntacticCategory = SyntacticCategory.VERBY
 
     @property
     def noun_suffix(self) -> str:

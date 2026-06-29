@@ -1,8 +1,7 @@
 from dataclasses import dataclass
 from typing import Any
 
-from morphology.morphology_types import Aspect
-from morphology.word_spec import WordSpec
+from morphology.word_spec import SyntacticCategory, WordSpec
 
 
 @dataclass(frozen=True)
@@ -55,35 +54,36 @@ def apply_prepronominal(
     if config.partitive:
         new_forms = []
         for w in current_forms:
-            for p in get_partitive_forms(spec.aspect):
+            for p in get_partitive_forms(spec.syntactic_category):
                 new_forms.append(p + "-" + w)
         current_forms = list(set(new_forms))
 
     if config.translocutive or (
-        spec.aspect == Aspect.IMPERATIVE and config.translocutiveImpOnly
+        spec.syntactic_category == SyntacticCategory.IMPERATIVE
+        and config.translocutiveImpOnly
     ):
         new_forms = []
         for w in current_forms:
-            for p in get_translocutive_forms(spec.aspect):
+            for p in get_translocutive_forms(spec.syntactic_category):
                 new_forms.append(p + "-" + w)
         current_forms = list(set(new_forms))
 
     return current_forms
 
 
-def get_translocutive_forms(aspect: Aspect) -> list[str]:
+def get_translocutive_forms(category: SyntacticCategory) -> list[str]:
     return ["wi", "w"]
 
 
-def get_partitive_forms(aspect: Aspect) -> list[str]:
-    if aspect == Aspect.INFINITIVE:
+def get_partitive_forms(category: SyntacticCategory) -> list[str]:
+    if category == SyntacticCategory.NOMINAL:
         return ["iy", "i", ">ø"]
     return ["ni", "n"]
 
 
 def get_distributive_forms(spec: WordSpec) -> list[str]:
-    if spec.aspect == Aspect.INFINITIVE or (
-        spec.aspect == Aspect.IMPERATIVE and not spec.stative
+    if spec.syntactic_category == SyntacticCategory.NOMINAL or (
+        spec.syntactic_category == SyntacticCategory.IMPERATIVE and not spec.stative
     ):
         return ["ts", "ti", "t"]
     return ["te", "t"]

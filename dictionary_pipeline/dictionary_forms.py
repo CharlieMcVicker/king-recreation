@@ -17,7 +17,14 @@ from typing import Any, Callable
 
 from morphology.morphemes.prefixes.pronominals import PronominalConfig
 from morphology.reconstruction import MorphologicalVerb
-from morphology.word_spec import Aspect, Number, Person, PronominalSet, WordSpec
+from morphology.word_spec import (
+    Aspect,
+    Number,
+    Person,
+    PronominalSet,
+    SyntacticCategory,
+    WordSpec,
+)
 
 
 @dataclass(frozen=True)
@@ -28,6 +35,7 @@ class FormSpec:
     allow_set_a: bool
     stative: bool
     tense_ending: str = ""
+    syntactic_category: SyntacticCategory = SyntacticCategory.VERBY
 
 
 @dataclass
@@ -397,6 +405,13 @@ def get_form_spec(prediction: Prediction, form_name: str) -> FormSpec:
     else:
         tense_ending = ""
 
+    if form_name == "imperative":
+        syntactic_category = SyntacticCategory.IMPERATIVE
+    elif aspect == Aspect.INFINITIVE:
+        syntactic_category = SyntacticCategory.NOMINAL
+    else:
+        syntactic_category = SyntacticCategory.VERBY
+
     return FormSpec(
         name=form_name,
         aspect=aspect,
@@ -404,6 +419,7 @@ def get_form_spec(prediction: Prediction, form_name: str) -> FormSpec:
         allow_set_a=allow_set_a,
         stative=PREDICTION_IS_STATIVE[prediction],
         tense_ending=tense_ending,
+        syntactic_category=syntactic_category,
     )
 
 
@@ -530,6 +546,7 @@ def _build_wordspec(form_spec: FormSpec, config: PronominalConfig) -> WordSpec:
         number=number,
         pronominal_set=p_set,
         tense_ending=form_spec.tense_ending,
+        syntactic_category=form_spec.syntactic_category,
     )
 
 
