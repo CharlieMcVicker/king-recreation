@@ -40,3 +40,10 @@ class PronominalSet(Enum):
     SET_A = "a"
     SET_B = "b"
     PERSON_TO_PERSON = "PersonToPerson"
+
+
+class NounStructure(Enum):
+    ROOT = "root"
+    AGENTIVE = "agentive"
+    COMPLETIVE = "completive"
+    INCOMPLETIVE = "incompletive"
