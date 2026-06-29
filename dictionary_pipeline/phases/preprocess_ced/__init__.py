@@ -1,6 +1,4 @@
-from dictionary_pipeline.utils import clean_string, respell_consonants, read_original_cnd
 import os
-import re
 from typing import Any
 
 from dictionary_pipeline.dictionary_forms import ROW_PREDICTION_SPECS
@@ -17,6 +15,7 @@ from dictionary_pipeline.row_models import (
     PredictionMeta,
     ProcessedRow,
 )
+from dictionary_pipeline.utils import clean_string, read_original_cnd
 
 
 def apply_patches(

@@ -3,7 +3,6 @@ import os
 from typing import Any
 
 from dictionary_pipeline.paths import (
-    CHEROKEE_NATION_DICTIONARY_PATH,
     CORPUS_PATH,
     CORPUS_RAW_PATH,
     CORPUS_TO_CND_PATH,

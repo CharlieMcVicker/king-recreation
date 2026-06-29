@@ -1,8 +1,8 @@
-from dictionary_pipeline.utils import clean_string, respell_consonants, read_original_cnd
 import csv
 import os
-import re
-from typing import Any, Dict, List
+from typing import Any, Dict
+
+from dictionary_pipeline.utils import clean_string, read_original_cnd
 
 # Define paths relative to the repository root
 CHEROKEE_NATION_DICTIONARY_PATH = os.path.join("data", "cherokee_nation_dictionary.csv")
