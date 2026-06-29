@@ -4,7 +4,7 @@ from enum import Enum
 from typing import Any
 
 from dictionary_pipeline.dictionary_forms import DictionaryVerb
-from dictionary_pipeline.phases.preprocess_ced import respell_consonants
+from dictionary_pipeline.utils import respell_consonants
 from morphology.phonology_data import VOWEL_SET
 from morphology.reconstruction import drop_dropped_phones
 
