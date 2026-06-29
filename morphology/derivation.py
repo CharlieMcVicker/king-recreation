@@ -34,7 +34,7 @@ def derive_pronouns(examples: list[tuple[str, WordSpec]]) -> list[tuple[PreProno
                         current = word
                         # translocutive check
                         if pre_config.translocutive or (
-                            spec.syntactic_category == SyntacticCategory.IMPERATIVE and pre_config.translocutiveImpOnly
+                            spec.aspect == Aspect.IMPERATIVE and pre_config.translocutiveImpOnly
                         ):
                             if current.startswith("wi"):
                                 current = current[2:]
@@ -69,7 +69,7 @@ def derive_pronouns(examples: list[tuple[str, WordSpec]]) -> list[tuple[PreProno
                         # distributive check
                         if pre_config.distributive:
                             if spec.syntactic_category == SyntacticCategory.NOMINAL or (
-                                spec.syntactic_category == SyntacticCategory.IMPERATIVE and not spec.stative
+                                spec.aspect == Aspect.IMPERATIVE and not spec.stative
                             ):
                                 if current.startswith("ts"):
                                     current = current[2:]
@@ -134,22 +134,20 @@ def derive_pronouns(examples: list[tuple[str, WordSpec]]) -> list[tuple[PreProno
                     else:
                         aki = False
                     
-                    # Find a '-allow_set_a / third person' form where spec.person == Person.THIRD,
-                    # spec.number == Number.SINGULAR, and spec.aspect in (Aspect.PERFECTIVE, Aspect.INFINITIVE).
-                    candidate_no_set_a_3rd = None
+                    b3sg_starts_uwa = None
                     for idx, (word, spec) in enumerate(examples):
                         if (
                             spec.person == Person.THIRD
                             and spec.number == Number.SINGULAR
-                            and spec.aspect in (Aspect.PERFECTIVE, Aspect.INFINITIVE)
+                            and (
+                                spec.aspect in (Aspect.PRESENT, Aspect.INFINITIVE)
+                                or (spec.aspect == Aspect.PERFECTIVE and spec.syntactic_category == SyntacticCategory.NOMINAL)
+                            )
                         ):
-                            candidate_no_set_a_3rd = intermediate[idx]
-                            break
-                    
-                    b3sg_starts_uwa = None
-                    if candidate_no_set_a_3rd is not None:
-                        if candidate_no_set_a_3rd.startswith("u"):
-                            b3sg_starts_uwa = candidate_no_set_a_3rd.startswith("uwa")
+                            w_val = intermediate[idx]
+                            if w_val.startswith("u"):
+                                b3sg_starts_uwa = w_val.startswith("uwa")
+                                break
                     
                     for set_type in set_types:
                         for plural in [False, True]:

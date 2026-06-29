@@ -341,7 +341,7 @@ class PrefixDeriver:
                 current = word
                 spec = build_wordspec(prediction, pron_config, fn)
                 if pre_config.translocutive or (
-                    spec.syntactic_category == SyntacticCategory.IMPERATIVE and pre_config.translocutiveImpOnly
+                    spec.aspect == Aspect.IMPERATIVE and pre_config.translocutiveImpOnly
                 ):
                     if current.startswith("wi"):
                         current = current[2:]
@@ -366,7 +366,7 @@ class PrefixDeriver:
                             pass
                 if pre_config.distributive:
                     if spec.syntactic_category == SyntacticCategory.NOMINAL or (
-                        spec.syntactic_category == SyntacticCategory.IMPERATIVE and not spec.stative
+                        spec.aspect == Aspect.IMPERATIVE and not spec.stative
                     ):
                         if current.startswith("ts"):
                             current = current[2:]
