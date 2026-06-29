@@ -20,6 +20,7 @@ class ValidatedNounStem:
     noun_template: str
     verb_root: str
     paradigm: str
+    plural_paradigm: str
     is_valid: bool
 
 
@@ -46,6 +47,7 @@ def extract_and_validate_stems(
                     noun_template=noun_template,
                     verb_root=h.stem,
                     paradigm="root",
+                    plural_paradigm="unknown",
                     is_valid=True,
                 )
             )
@@ -58,6 +60,7 @@ def extract_and_validate_stems(
         is_valid = False
         verb_root = ""
         paradigm = ""
+        plural_paradigm = "unknown"
 
         for cand in candidates:
             root = cand.strip_form(aspect, h.stem)
@@ -84,10 +87,32 @@ def extract_and_validate_stems(
                         ),
                     )
                     plural_spec = dataclasses.replace(h.word_spec, number=Number.PLURAL)
-                    expected_forms = engine.reconstruct_spec(verb, plural_spec)
-                    expected_desegmented = [desegment(f) for f in expected_forms]
-                    if h.plural_word not in expected_desegmented:
+                    animate_forms = engine.reconstruct_spec(verb, plural_spec)
+                    animate_desegmented = [desegment(f) for f in animate_forms]
+                    
+                    inanimate_verb = MorphologicalVerb(
+                        h_grade_root=verb_root,
+                        glottal_grade_root=verb_root,
+                        post_root_morpheme=None,
+                        class_name=paradigm,
+                        config=PrefixConfig(
+                            pre=PrePronominalConfig(distributive=True),
+                            pron=PronominalConfig(
+                                set_type=h.word_spec.pronominal_set or PronominalSet.SET_A,
+                                stem_type=StemType.CONSONANT
+                            )
+                        ),
+                    )
+                    inanimate_forms = engine.reconstruct_spec(inanimate_verb, h.word_spec)
+                    inanimate_desegmented = [desegment(f) for f in inanimate_forms]
+                    
+                    if h.plural_word in animate_desegmented:
+                        plural_paradigm = "animate"
+                    elif h.plural_word in inanimate_desegmented:
+                        plural_paradigm = "inanimate"
+                    else:
                         is_valid = False
+                        plural_paradigm = "unknown"
                 
                 if is_valid:
                     break
@@ -100,6 +125,7 @@ def extract_and_validate_stems(
                 noun_template=noun_template,
                 verb_root=verb_root,
                 paradigm=paradigm,
+                plural_paradigm=plural_paradigm,
                 is_valid=is_valid,
             )
         )
@@ -169,6 +195,7 @@ def phase_3_extract_stems():
         "noun_template",
         "verb_root",
         "paradigm",
+        "plural_paradigm",
         "is_valid",
     ]
 
@@ -205,6 +232,7 @@ def phase_3_extract_stems():
                     "noun_template": val.noun_template,
                     "verb_root": val.verb_root,
                     "paradigm": val.paradigm,
+                    "plural_paradigm": val.plural_paradigm,
                     "is_valid": str(val.is_valid),
                 }
             )

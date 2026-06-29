@@ -41,3 +41,26 @@ def test_extract_and_validate_reject_bad_plural():
     
     assert len(validated) == 1
     assert not validated[0].is_valid
+
+def test_extract_and_validate_inanimate_plural():
+    from morphology.morphology_types import Person, Number, PronominalSet
+    word_spec = get_noun_wordspec(NounStructure.AGENTIVE, Person.THIRD, Number.SINGULAR, PronominalSet.SET_A)
+    
+    h = NounHypothesis(
+        original_word="atana'nv'i",
+        word_spec=word_spec,
+        stem="tana'nv'",
+        noun_template=NounStructure.AGENTIVE.value,
+        plural_word="tatana'nv'i"
+    )
+    
+    validated = extract_and_validate_stems([h])
+    
+    assert len(validated) >= 1
+    
+    valid_results = [v for v in validated if v.is_valid]
+    assert len(valid_results) >= 1
+    val = valid_results[0]
+    
+    assert val.verb_root == "tana'nv'"
+    assert val.plural_paradigm == "inanimate"
