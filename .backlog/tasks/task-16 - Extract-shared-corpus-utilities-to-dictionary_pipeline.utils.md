@@ -1,7 +1,7 @@
 ---
 id: TASK-16
 title: Extract shared corpus utilities to dictionary_pipeline.utils
-status: In Progress
+status: Done
 assignee:
   - '@subagent'
 created_date: '2026-06-29 17:36'
