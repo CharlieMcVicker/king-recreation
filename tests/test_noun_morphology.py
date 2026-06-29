@@ -52,7 +52,7 @@ def test_noun_reconstruction():
     # 4. Incompletive Noun
     spec_incompletive = get_noun_wordspec(NounStructure.INCOMPLETIVE)
     forms_incompletive = engine.reconstruct_spec(verb, spec_incompletive)
-    assert "ni-ahsk-o'i" in forms_incompletive
+    assert "ni-ahsk-v'i" in forms_incompletive
 
 
 def test_get_noun_wordspec():
@@ -80,7 +80,7 @@ def test_get_noun_wordspec():
     spec_incompletive = get_noun_wordspec(NounStructure.INCOMPLETIVE)
     assert spec_incompletive.syntactic_category == SyntacticCategory.VERBY
     assert spec_incompletive.aspect == Aspect.IMPERFECTIVE
-    assert spec_incompletive.tense_ending == "o'i"
+    assert spec_incompletive.tense_ending == "v'i"
 
 
 

@@ -28,6 +28,7 @@ __all__ = [
     "get_noun_wordspec",
 ]
 
+
 @dataclass(frozen=True)
 class WordSpec:
     aspect: Aspect | None = None
@@ -79,11 +80,9 @@ def get_noun_wordspec(
         return WordSpec(
             syntactic_category=SyntacticCategory.VERBY,
             aspect=Aspect.IMPERFECTIVE,
-            tense_ending="o'i",
+            tense_ending="v'i",
             person=person,
             number=number,
             pronominal_set=pronominal_set,
         )
     raise ValueError(f"Unknown noun structure: {structure}")
-
-
