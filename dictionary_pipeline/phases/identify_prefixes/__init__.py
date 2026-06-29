@@ -26,6 +26,7 @@ from morphology.morphemes.prefixes.pronominals import (
     use_glottal_grade,
 )
 from morphology.morphology_types import Aspect, PronominalSet
+from morphology.word_spec import SyntacticCategory, WordSpec
 
 
 @dataclass
@@ -322,65 +323,73 @@ class PrefixDeriver:
 
         valid_derivations: list[PrefixDerivation] = []
 
-        for pre_config, intermediate in iter_pre_configs(prediction, forms):
-            present_form = intermediate.get("present", "")
-            if present_form:
-                set_types = [
-                    (
-                        PronominalSet.SET_B
-                        if present_form.startswith("u")
-                        else PronominalSet.SET_A
-                    )
-                ]
-                ka = present_form.startswith("k")
-            else:
-                set_types = [PronominalSet.SET_A, PronominalSet.SET_B]
-                ka = any(intermediate.get(fn, "").startswith("k") for fn in forms)
+        valid_derivations: list[PrefixDerivation] = []
 
-            aki = intermediate.get("present_1sg", "").startswith(
-                "aki"
-            ) or intermediate.get("present_1sg", "").startswith("akhi")
-            b3sg_starts_uwa = next(
-                (
-                    intermediate.get(fn, "").startswith("uwa")
-                    for fn in (["present", "completive", "infinitive"])
-                    if intermediate.get(fn, "").startswith("u")
-                ),
-                None,
+        # Convert the dictionary forms to WordSpecs for derive_pronouns
+        examples: list[tuple[str, WordSpec]] = []
+        for fn, word in forms.items():
+            spec = build_wordspec(prediction, PronominalConfig(set_type=PronominalSet.SET_A, stem_type=StemType.CONSONANT), fn)
+            examples.append((word, spec))
+
+        from morphology.derivation import derive_pronouns
+        configs = derive_pronouns(examples)
+
+        for pre_config, pron_config in configs:
+            # Recreate intermediate (prepronominal-stripped) forms
+            intermediate = {}
+            for fn, word in forms.items():
+                current = word
+                spec = build_wordspec(prediction, pron_config, fn)
+                if pre_config.translocutive or (
+                    spec.syntactic_category == SyntacticCategory.IMPERATIVE and pre_config.translocutiveImpOnly
+                ):
+                    if current.startswith("wi"):
+                        current = current[2:]
+                    elif current.startswith("w"):
+                        current = current[1:]
+                    elif current.startswith("hw"):
+                        current = "h" + current[2:]
+                if pre_config.partitive:
+                    if spec.syntactic_category == SyntacticCategory.NOMINAL:
+                        if current.startswith("iy"):
+                            current = current[2:]
+                        elif current.startswith("i"):
+                            current = current[1:]
+                    else:
+                        if current.startswith("ni"):
+                            current = current[2:]
+                        elif current.startswith("n"):
+                            current = current[1:]
+                        elif current.startswith("hn"):
+                            current = "h" + current[2:]
+                        elif current.startswith("i"):
+                            pass
+                if pre_config.distributive:
+                    if spec.syntactic_category == SyntacticCategory.NOMINAL or (
+                        spec.syntactic_category == SyntacticCategory.IMPERATIVE and not spec.stative
+                    ):
+                        if current.startswith("ts"):
+                            current = current[2:]
+                        elif current.startswith("ti"):
+                            current = current[2:]
+                        elif current.startswith("t"):
+                            current = current[1:]
+                    else:
+                        if current.startswith("te"):
+                            current = current[2:]
+                        elif current.startswith("t"):
+                            current = current[1:]
+                intermediate[fn] = current
+
+            res = derive_pronominals(
+                prediction,
+                intermediate,
+                pron_config,
+                log=log,
             )
-            for set_type in set_types:
-                for plural in [False, True]:
-                    for use_3rd in [False, True]:
-                        for s_type in StemType:
-                            for allow_h_metathesis in [False, True]:
-                                uwa_opts = [False]
-                                if s_type == StemType.VOWEL_V:
-                                    uwa_opts = (
-                                        [b3sg_starts_uwa]
-                                        if b3sg_starts_uwa is None
-                                        else [False, True]
-                                    )
-                                for uwa in uwa_opts:
-                                    pron_config = PronominalConfig(
-                                        set_type=set_type,
-                                        stem_type=s_type,
-                                        allow_h_metathesis=allow_h_metathesis,
-                                        plural_pronouns=plural,
-                                        use_ka_variant=ka,
-                                        uwa_replaces_v=bool(uwa),
-                                        use_aki_for_1st_set_b=aki,
-                                        use_3rd_person_object=use_3rd,
-                                    )
-                                    res = derive_pronominals(
-                                        prediction,
-                                        intermediate,
-                                        pron_config,
-                                        log=log,
-                                        # log="calling" in row["definition"],
-                                    )
-                                    if res:
-                                        res.config.pre = pre_config
-                                        valid_derivations.extend(derive_middle(res))
+            if res:
+                res.config.pre = pre_config
+                valid_derivations.extend(derive_middle(res))
         if not valid_derivations:
             return []
 
