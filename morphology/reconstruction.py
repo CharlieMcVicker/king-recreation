@@ -150,28 +150,87 @@ class ReconstructionEngine:
             return [root + "-" + literal_ending]
 
     def reconstruct_spec(self, verb: MorphologicalVerb, spec: WordSpec) -> list[str]:
-        # 1. Get the base stems (stem + aspect suffix)
-        stems = self.get_base_stems_for_form(
-            verb,
-            aspect=spec.aspect,
-            glottal_grade=use_glottal_grade(
-                spec.person, spec.number, spec.pronominal_set
-            ),
-        )
+        # 1. Get the base stems (stem + aspect suffix or root directly)
+        if spec.noun_structure is not None:
+            glottal_grade = False
+            if (
+                spec.person is not None
+                and spec.number is not None
+                and spec.pronominal_set is not None
+            ):
+                glottal_grade = use_glottal_grade(
+                    spec.person, spec.number, spec.pronominal_set
+                )
+
+            aspect = spec.noun_aspect
+            if aspect is None:
+                # ROOT noun structure
+                root = self.root_for_form(verb, glottal_grade)
+                stems = [root] if root is not None else []
+            else:
+                stems = self.get_base_stems_for_form(
+                    verb,
+                    aspect=aspect,
+                    glottal_grade=glottal_grade,
+                )
+
+            # Apply noun suffix
+            suffix = spec.noun_suffix
+            if suffix and stems:
+                stems = [
+                    (stem + "-" + suffix) if not stem.endswith("-") else (stem + suffix)
+                    for stem in stems
+                ]
+        else:
+            aspect = spec.aspect
+            glottal_grade = False
+            if (
+                aspect is not None
+                and spec.person is not None
+                and spec.number is not None
+                and spec.pronominal_set is not None
+            ):
+                glottal_grade = use_glottal_grade(
+                    spec.person, spec.number, spec.pronominal_set
+                )
+
+            if aspect is not None:
+                stems = self.get_base_stems_for_form(
+                    verb,
+                    aspect=aspect,
+                    glottal_grade=glottal_grade,
+                )
+            else:
+                stems = []
+
         if not stems:
             return []
 
         # 2. Attach pronominal prefixes
         final_forms = []
         for stem in stems:
-            # key = (person, number, p_set)
-            key = (spec.person, spec.number, spec.pronominal_set)
-            candidates = self.generate_pronominal_forms(stem, key, verb.config.pron)
+            if (
+                spec.person is None
+                or spec.number is None
+                or spec.pronominal_set is None
+            ):
+                candidates = [stem]
+            else:
+                # key = (person, number, p_set)
+                key = (spec.person, spec.number, spec.pronominal_set)
+                candidates = self.generate_pronominal_forms(stem, key, verb.config.pron)
 
             # 3. Attach pre-pronominal prefixes
             for c in candidates:
-                # verb.config.apply_prepronominals handles translocutive/partitive/distributive
-                final_forms.extend(verb.config.apply_prepronominals(c, spec))
+                if (
+                    spec.person is None
+                    or spec.number is None
+                    or spec.pronominal_set is None
+                ):
+                    final_forms.append(c)
+                else:
+                    # verb.config.apply_prepronominals handles translocutive/partitive/distributive
+                    final_forms.extend(verb.config.apply_prepronominals(c, spec))
 
         # 4. Attach tense ending if present
         if spec.tense_ending:
