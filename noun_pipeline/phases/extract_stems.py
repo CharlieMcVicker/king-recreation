@@ -106,10 +106,15 @@ def extract_and_validate_stems(
                     inanimate_forms = engine.reconstruct_spec(inanimate_verb, h.word_spec)
                     inanimate_desegmented = [desegment(f) for f in inanimate_forms]
                     
+                    both_forms = engine.reconstruct_spec(inanimate_verb, plural_spec)
+                    both_desegmented = [desegment(f) for f in both_forms]
+                    
                     if h.plural_word in animate_desegmented:
                         plural_paradigm = "animate"
                     elif h.plural_word in inanimate_desegmented:
                         plural_paradigm = "inanimate"
+                    elif h.plural_word in both_desegmented:
+                        plural_paradigm = "both"
                     else:
                         is_valid = False
                         plural_paradigm = "unknown"
