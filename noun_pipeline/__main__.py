@@ -3,6 +3,7 @@ import argparse
 from noun_pipeline.phases.create_corpus import create_corpus
 from noun_pipeline.phases.extract_stems import phase_3_extract_stems
 from noun_pipeline.phases.generate_hypotheses import phase_2_generate_hypotheses
+from noun_pipeline.phases.cross_reference import phase_4_cross_reference
 
 
 def main():
@@ -13,8 +14,11 @@ def main():
     phase_2_generate_hypotheses()
     print("[3/5] Extracting and validating stems...")
     phase_3_extract_stems()
+    print("[4/5] Cross-referencing verb roots...")
+    phase_4_cross_reference()
     print("Done!")
 
 
 if __name__ == "__main__":
     main()
+

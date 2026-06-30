@@ -1,9 +1,10 @@
 ---
 id: TASK-21.3
 title: 'Phase 4: Verb Root Cross-Reference'
-status: To Do
+status: Done
 assignee: []
 created_date: '2026-06-29 22:18'
+updated_date: '2026-06-30 18:39'
 labels: []
 dependencies: []
 parent_task_id: TASK-21
