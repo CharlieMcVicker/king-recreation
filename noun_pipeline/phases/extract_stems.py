@@ -20,7 +20,8 @@ class ValidatedNounStem:
     noun_template: str
     verb_root: str
     paradigm: str
-    plural_paradigm: str
+    is_animate_plural: bool
+    is_distributive_plural: bool
     is_valid: bool
 
 
@@ -47,7 +48,8 @@ def extract_and_validate_stems(
                     noun_template=noun_template,
                     verb_root=h.stem,
                     paradigm="root",
-                    plural_paradigm="unknown",
+                    is_animate_plural=False,
+                    is_distributive_plural=False,
                     is_valid=True,
                 )
             )
@@ -60,7 +62,8 @@ def extract_and_validate_stems(
         is_valid = False
         verb_root = ""
         paradigm = ""
-        plural_paradigm = "unknown"
+        is_animate_plural = False
+        is_distributive_plural = False
 
         for cand in candidates:
             root = cand.strip_form(aspect, h.stem)
@@ -110,14 +113,14 @@ def extract_and_validate_stems(
                     both_desegmented = [desegment(f) for f in both_forms]
                     
                     if h.plural_word in animate_desegmented:
-                        plural_paradigm = "animate"
+                        is_animate_plural = True
                     elif h.plural_word in inanimate_desegmented:
-                        plural_paradigm = "inanimate"
+                        is_distributive_plural = True
                     elif h.plural_word in both_desegmented:
-                        plural_paradigm = "both"
+                        is_animate_plural = True
+                        is_distributive_plural = True
                     else:
                         is_valid = False
-                        plural_paradigm = "unknown"
                 
                 if is_valid:
                     break
@@ -130,7 +133,8 @@ def extract_and_validate_stems(
                 noun_template=noun_template,
                 verb_root=verb_root,
                 paradigm=paradigm,
-                plural_paradigm=plural_paradigm,
+                is_animate_plural=is_animate_plural,
+                is_distributive_plural=is_distributive_plural,
                 is_valid=is_valid,
             )
         )
@@ -200,7 +204,8 @@ def phase_3_extract_stems():
         "noun_template",
         "verb_root",
         "paradigm",
-        "plural_paradigm",
+        "is_animate_plural",
+        "is_distributive_plural",
         "is_valid",
     ]
 
@@ -237,7 +242,8 @@ def phase_3_extract_stems():
                     "noun_template": val.noun_template,
                     "verb_root": val.verb_root,
                     "paradigm": val.paradigm,
-                    "plural_paradigm": val.plural_paradigm,
+                    "is_animate_plural": str(val.is_animate_plural),
+                    "is_distributive_plural": str(val.is_distributive_plural),
                     "is_valid": str(val.is_valid),
                 }
             )

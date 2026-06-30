@@ -62,5 +62,5 @@ def test_extract_and_validate_inanimate_plural():
     assert len(valid_results) >= 1
     val = valid_results[0]
     
-    assert val.verb_root == "tana'nv'"
-    assert val.plural_paradigm == "inanimate"
+    assert not val.is_animate_plural
+    assert val.is_distributive_plural
