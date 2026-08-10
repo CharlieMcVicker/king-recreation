@@ -100,7 +100,7 @@ def format_toneless_with_bold(
     ):
         num_pre += 1
 
-    aspect_idx = len(segments) - 2
+    aspect_idx = len(segments) - 1
 
     # Reconstruct the string with bolding
     # This is tricky because toneless_surface doesn't have hyphens.
