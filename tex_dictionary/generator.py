@@ -100,7 +100,7 @@ def format_toneless_with_bold(
     ):
         num_pre += 1
 
-    aspect_idx = len(segments) - 1
+    aspect_idx = len(segments) - 2
 
     # Reconstruct the string with bolding
     # This is tricky because toneless_surface doesn't have hyphens.
@@ -372,7 +372,7 @@ def generate_tex_files():
         r"\titleformat{\subsubsection}[hang]{\normalfont\normalsize\bfseries}{}{0pt}{}",
         r"\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{}{0pt}{}",
         r"\setcounter{tocdepth}{4}",
-        r"\setmainfont{Noto Sans Cherokee}[BoldFont={Noto Sans Cherokee}, BoldFeatures={FakeBold=3.5}, AutoFakeSlant=0.2]",
+        r"\setmainfont{NotoSansCherokee-Regular}[Path=../../Noto_Sans_Cherokee/static/, Extension=.ttf, BoldFont=NotoSansCherokee-Bold, AutoFakeSlant=0.2]",
         r"\title{Cherokee Root-based Dictionary\\[1ex]\large DRAFT DO NOT CIRCULATE}",
         r"\author{Charlie ᏣᎵ McVicker}",
         r"\pagestyle{fancy}",

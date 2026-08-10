@@ -268,7 +268,7 @@ def generate_companion_tex():
     doc.preamble.append(NoEscape(r"\setcounter{tocdepth}{4}"))
     doc.preamble.append(
         NoEscape(
-            r"\setmainfont{Noto Sans Cherokee}[BoldFont={Noto Sans Cherokee}, BoldFeatures={FakeBold=3.5}, AutoFakeSlant=0.2]"
+            r"\setmainfont{NotoSansCherokee-Regular}[Path=../../Noto_Sans_Cherokee/static/, Extension=.ttf, BoldFont=NotoSansCherokee-Bold, AutoFakeSlant=0.2]"
         )
     )
 
