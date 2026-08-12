@@ -29,3 +29,5 @@ king-recreation/ (Repo Root)
 - **Activation**: Always activate the virtual environment before running scripts (e.g., `source .venv/bin/activate`).
 - **Dependencies**: Manage dependencies via `requirements.txt`.
 - **Exclusion**: Do not commit `.venv` to version control.
+- **Local Virtual Environment**: Always use the project's local virtual environment at `./.venv` (e.g. `./.venv/bin/pytest` or `./.venv/bin/python`).
+- **Never Use System/Conda Pythons**: Do not invoke system binaries (`/usr/bin/pytest`), conda base binaries, or other conda environment binaries (`parC`, `cherokee-analyzer`, etc.).
