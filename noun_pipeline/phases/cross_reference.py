@@ -1,30 +1,42 @@
 import csv
 import os
-from typing import List, Dict
 
-from morphology.reconstruction import ReconstructionEngine, MorphologicalVerb, desegment
 from morphology.morphemes.prefixes import PrefixConfig
 from morphology.morphemes.prefixes.prepronominals import PrePronominalConfig
 from morphology.morphemes.prefixes.pronominals import PronominalConfig, StemType
-from morphology.morphology_types import NounStructure, Person, Number, PronominalSet
+from morphology.morphology_types import NounStructure, Number, Person, PronominalSet
+from morphology.reconstruction import MorphologicalVerb, ReconstructionEngine, desegment
 from morphology.word_spec import get_noun_wordspec
+
 
 def clean_for_overlap(s: str) -> str:
     if not s:
         return ""
-    return s.replace(":", "").replace("'", "").replace("|", "").replace("-", "").strip().lower()
+    return (
+        s.replace(":", "")
+        .replace("'", "")
+        .replace("|", "")
+        .replace("-", "")
+        .strip()
+        .lower()
+    )
+
 
 def phase_4_cross_reference(
-    noun_stems_path: str = None,
-    verb_roots_path: str = None,
-    output_path: str = None
+    noun_stems_path: str | None = None,
+    verb_roots_path: str | None = None,
+    output_path: str | None = None,
 ):
     if noun_stems_path is None:
-        noun_stems_path = os.path.join("artifacts", "corpora", "validated_noun_stems.csv")
+        noun_stems_path = os.path.join(
+            "artifacts", "corpora", "validated_noun_stems.csv"
+        )
     if verb_roots_path is None:
         verb_roots_path = os.path.join("artifacts", "data", "roots_by_class.csv")
     if output_path is None:
-        output_path = os.path.join("artifacts", "corpora", "noun_verb_cross_reference.csv")
+        output_path = os.path.join(
+            "artifacts", "corpora", "noun_verb_cross_reference.csv"
+        )
 
     if not os.path.exists(noun_stems_path):
         print(f"Noun stems file not found at {noun_stems_path}")
@@ -39,14 +51,16 @@ def phase_4_cross_reference(
     with open(verb_roots_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            verb_roots.append({
-                "root_id": row["root_id"].strip(),
-                "h_grade": row["h_grade"].strip(),
-                "g_grade": row["g_grade"].strip(),
-                "class": row["class"].strip(),
-                "stem_type": row["stem_type"].strip(),
-                "corpus_ids": row["corpus_ids"].strip(),
-            })
+            verb_roots.append(
+                {
+                    "root_id": row["root_id"].strip(),
+                    "h_grade": row["h_grade"].strip(),
+                    "g_grade": row["g_grade"].strip(),
+                    "class": row["class"].strip(),
+                    "stem_type": row["stem_type"].strip(),
+                    "corpus_ids": row["corpus_ids"].strip(),
+                }
+            )
 
     # Initialize Reconstruction Engine
     engine = ReconstructionEngine(None)
@@ -99,7 +113,9 @@ def phase_4_cross_reference(
                 # Note: Do NOT match against root_id as requested
                 is_direct = False
                 if noun_verb_root:
-                    if (h_grade and noun_verb_root == h_grade) or (g_grade and noun_verb_root == g_grade):
+                    if (h_grade and noun_verb_root == h_grade) or (
+                        g_grade and noun_verb_root == g_grade
+                    ):
                         is_direct = True
 
                 if is_direct:
@@ -110,19 +126,21 @@ def phase_4_cross_reference(
                         verb["root_id"],
                         verb["class"],
                         verb["corpus_ids"],
-                        "direct"
+                        "direct",
                     )
                     if match_key not in seen_matches:
                         seen_matches.add(match_key)
-                        matches.append({
-                            "noun_corpus_id": corpus_id,
-                            "noun_original_word": original_word,
-                            "noun_template": noun_template,
-                            "matched_verb_root_id": verb["root_id"],
-                            "matched_verb_class": verb["class"],
-                            "matched_verb_corpus_ids": verb["corpus_ids"],
-                            "match_type": "direct"
-                        })
+                        matches.append(
+                            {
+                                "noun_corpus_id": corpus_id,
+                                "noun_original_word": original_word,
+                                "noun_template": noun_template,
+                                "matched_verb_root_id": verb["root_id"],
+                                "matched_verb_class": verb["class"],
+                                "matched_verb_corpus_ids": verb["corpus_ids"],
+                                "match_type": "direct",
+                            }
+                        )
                     continue
 
                 # 2. Reconstruction fallback
@@ -131,10 +149,10 @@ def phase_4_cross_reference(
                 clean_g = clean_for_overlap(g_grade)
 
                 overlap = (
-                    (clean_h and clean_h in clean_noun_word) or
-                    (clean_g and clean_g in clean_noun_word) or
-                    (clean_noun_root and clean_h and clean_noun_root in clean_h) or
-                    (clean_noun_root and clean_g and clean_noun_root in clean_g)
+                    (clean_h and clean_h in clean_noun_word)
+                    or (clean_g and clean_g in clean_noun_word)
+                    or (clean_noun_root and clean_h and clean_noun_root in clean_h)
+                    or (clean_noun_root and clean_g and clean_noun_root in clean_g)
                 )
                 if not overlap:
                     continue
@@ -156,8 +174,8 @@ def phase_4_cross_reference(
                         pron=PronominalConfig(
                             set_type=pronominal_set or PronominalSet.SET_A,
                             stem_type=v_stem_type,
-                        )
-                    )
+                        ),
+                    ),
                 )
 
                 reconstructed_forms = engine.reconstruct_spec(morph_verb, word_spec)
@@ -171,19 +189,21 @@ def phase_4_cross_reference(
                         verb["root_id"],
                         verb["class"],
                         verb["corpus_ids"],
-                        "reconstruction"
+                        "reconstruction",
                     )
                     if match_key not in seen_matches:
                         seen_matches.add(match_key)
-                        matches.append({
-                            "noun_corpus_id": corpus_id,
-                            "noun_original_word": original_word,
-                            "noun_template": noun_template,
-                            "matched_verb_root_id": verb["root_id"],
-                            "matched_verb_class": verb["class"],
-                            "matched_verb_corpus_ids": verb["corpus_ids"],
-                            "match_type": "reconstruction"
-                        })
+                        matches.append(
+                            {
+                                "noun_corpus_id": corpus_id,
+                                "noun_original_word": original_word,
+                                "noun_template": noun_template,
+                                "matched_verb_root_id": verb["root_id"],
+                                "matched_verb_class": verb["class"],
+                                "matched_verb_corpus_ids": verb["corpus_ids"],
+                                "match_type": "reconstruction",
+                            }
+                        )
 
     # Write output to CSV
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
@@ -194,7 +214,7 @@ def phase_4_cross_reference(
         "matched_verb_root_id",
         "matched_verb_class",
         "matched_verb_corpus_ids",
-        "match_type"
+        "match_type",
     ]
     with open(output_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fieldnames)
@@ -203,6 +223,7 @@ def phase_4_cross_reference(
             writer.writerow(m)
 
     print(f"Cross-referenced {len(matches)} matches and saved to {output_path}")
+
 
 if __name__ == "__main__":
     phase_4_cross_reference()

@@ -1,10 +1,16 @@
 import csv
 import re
-from typing import Dict, List, Optional
+from typing import Any
 
-from pylatex import Command, Document, NoEscape, Package, Tabularx
-from pylatex.utils import bold, italic
-from pylatexenc.latexencode import unicode_to_latex
+from pylatex import (  # type: ignore[import-untyped]
+    Command,
+    Document,
+    NoEscape,
+    Package,
+    Tabularx,
+)
+from pylatex.utils import bold, italic  # type: ignore[import-untyped]
+from pylatexenc.latexencode import unicode_to_latex  # type: ignore[import-untyped]
 
 from dictionary_pipeline.dictionary_forms import DictionaryVerb, build_wordspec
 from dictionary_pipeline.paths import (
@@ -44,8 +50,8 @@ def clean_latex_text(text: str) -> str:
 
 
 def get_base_endings(
-    aspect_classes: List[AspectClass], class_name: str
-) -> Optional[Dict[str, str]]:
+    aspect_classes: list[AspectClass], class_name: str
+) -> dict[str, str] | None:
     """
     Finds the base endings for a class (where subclass is empty).
     """
@@ -74,8 +80,8 @@ def get_base_endings(
     return None
 
 
-def load_expanded_patterns() -> Dict[str, ExpandedClassPattern]:
-    patterns = {}
+def load_expanded_patterns() -> dict[str, ExpandedClassPattern]:
+    patterns: dict[str, ExpandedClassPattern] = {}
     with open(CLASSES_DATA_PATH, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -110,14 +116,10 @@ def format_segmented_verb(
     ):
         num_pre += 1
     pronoun_idx = num_pre
-    # Aspect is usually the segment after the root (which is after the pronoun)
-    # Root is segments[pronoun_idx + 1], Aspect is segments[pronoun_idx + 2]
-    # Fall back to last segment if it's shorter than expected
     aspect_idx = len(segments) - 1
 
     # 2. Build list of (char, formatting_role)
-    # Role: 0=normal, 1=pronoun, 2=aspect
-    chars_with_role = []
+    chars_with_role: list[dict[str, Any]] = []
     for i, seg in enumerate(segments):
         role = 0
         if i == pronoun_idx:
@@ -128,7 +130,6 @@ def format_segmented_verb(
             chars_with_role.append({"char": c, "role": role})
 
     # 3. Apply drop_dropped_phones logic safely
-    # >.
     i = 0
     while i < len(chars_with_role):
         if chars_with_role[i]["char"] == ">":
@@ -137,7 +138,6 @@ def format_segmented_verb(
                 chars_with_role.pop(i)
             continue
         i += 1
-    # ..@
     i = 0
     while i < len(chars_with_role):
         if chars_with_role[i]["char"] == "@":
@@ -150,7 +150,6 @@ def format_segmented_verb(
                 i -= 1
             continue
         i += 1
-    # .*
     i = 0
     while i < len(chars_with_role):
         if chars_with_role[i]["char"] == "*":
@@ -160,7 +159,6 @@ def format_segmented_verb(
                 i -= 1
             continue
         i += 1
-    # :
     i = 0
     while i < len(chars_with_role):
         if chars_with_role[i]["char"] == ":":
@@ -168,22 +166,14 @@ def format_segmented_verb(
             continue
         i += 1
 
-    # 4. Apply prevent_C_glottal_cluster logic (re-sub moves glottal stop)
-    # We do a simplified version that moves ' to the previous non-vowel segment if possible
-    # but to stay 100% faithful to the string logic, let's just use the string for cluster fixing
-    # and then re-align.
-    temp_str = "".join([c["char"] for c in chars_with_role])
+    # 4. Apply prevent_C_glottal_cluster logic
+    temp_str = "".join([str(c["char"]) for c in chars_with_role])
     fixed_str = prevent_C_glottal_cluster(temp_str)
 
     if fixed_str != temp_str:
-        # If it changed, the glottal stop moved.
-        # For simplicity in a pedagogical doc, we'll just use the roles from proximity.
-        # This is rare enough that a heuristic is fine.
-        new_chars = []
+        new_chars: list[dict[str, Any]] = []
         for c in fixed_str:
-            # Try to keep roles if possible, but honestly fixed_str and temp_str have same length usually
             new_chars.append({"char": c, "role": 0})
-        # Re-assign roles based on original distribution (heuristic)
         if len(new_chars) == len(chars_with_role):
             for i in range(len(new_chars)):
                 new_chars[i]["role"] = chars_with_role[i]["role"]
@@ -191,7 +181,7 @@ def format_segmented_verb(
 
     from dictionary_pipeline.dictionary_forms import Prediction
 
-    prediction = Prediction(verb.original_data.get("prediction") or "FullEventful")
+    prediction = Prediction(str(verb.original_data.get("prediction") or "FullEventful"))
     spec = build_wordspec(prediction, config.pron, form_name)
     color = "black"
     if spec.pronominal_set == PronominalSet.SET_A:
@@ -201,19 +191,15 @@ def format_segmented_verb(
     elif spec.pronominal_set == PronominalSet.PERSON_TO_PERSON:
         color = "Purple"
 
-    formatted_parts = []
+    formatted_parts: list[str] = []
     current_role = -1
     for item in chars_with_role:
-        c = unicode_to_latex(item["char"])
-        role = item["role"]
+        c = str(unicode_to_latex(str(item["char"])))
+        role = int(item["role"])
 
         if role != current_role:
-            # Close previous
-            if current_role == 1:
+            if current_role == 1 or current_role == 2:
                 formatted_parts.append("}")
-            elif current_role == 2:
-                formatted_parts.append("}")
-            # Open new
             if role == 1:
                 formatted_parts.append(r"\textcolor{" + color + "}{")
             elif role == 2:
@@ -222,16 +208,13 @@ def format_segmented_verb(
 
         formatted_parts.append(c)
 
-    # Close final if needed
-    if current_role == 1:
-        formatted_parts.append("}")
-    elif current_role == 2:
+    if current_role == 1 or current_role == 2:
         formatted_parts.append("}")
 
     return NoEscape("".join(formatted_parts))
 
 
-def generate_companion_tex():
+def generate_companion_tex() -> bool:
     print("Initializing Companion Document...")
     doc = Document(
         default_filepath=COMPANION_TEX_PATH.replace(".tex", ""),
@@ -298,17 +281,12 @@ def generate_companion_tex():
     known_class_names = [c.full_name for c in aspect_classes]
     toc_data = parse_main_toc(MAIN_TOC_PATH, known_class_names)
 
-    # Process only the base classes (where subclass is empty) as sections
-    # Subclasses will be subsections or variants?
-    # Actually, let's group by base class.
-    # Group by base class name (the 'class' column)
     from collections import defaultdict
 
-    groups = defaultdict(list)
+    groups: dict[str, list[AspectClass]] = defaultdict(list)
     for c in sorted_classes:
         groups[c.name].append(c)
 
-    # Sort groups by total frequency of all variants
     sorted_group_names = sorted(
         groups.keys(), key=lambda n: sum(c.frequency for c in groups[n]), reverse=True
     )
@@ -319,8 +297,6 @@ def generate_companion_tex():
         if total_freq == 0:
             continue
 
-        # Determine the "anchor" class for this section.
-        # Prefer the one with an empty subclass, otherwise pick the most frequent.
         anchor = next((c for c in group_members if not c.subclass), None)
         if not anchor:
             anchor = sorted(group_members, key=lambda c: c.frequency, reverse=True)[0]
@@ -329,32 +305,29 @@ def generate_companion_tex():
 
         doc.append(NoEscape(r"\needspace{3in}"))
         doc.append(
-            NoEscape(r"\section*{" + unicode_to_latex(f"Class: {group_name}") + "}")
+            NoEscape(
+                r"\section*{" + str(unicode_to_latex(f"Class: {group_name}")) + "}"
+            )
         )
         doc.append(
             NoEscape(
                 r"\addcontentsline{toc}{section}{"
-                + unicode_to_latex(f"Class: {group_name}")
+                + str(unicode_to_latex(f"Class: {group_name}"))
                 + "}"
             )
         )
 
-        # All subclasses and tag variants belonging to this group
         relevant_full_names = [c.full_name for c in group_members]
 
-        # Collect all verbs for this base class
-        all_verbs_for_class = []
+        all_verbs_for_class: list[DictionaryVerb] = []
         for fn in relevant_full_names:
             all_verbs_for_class.extend(resolver.get_verbs_for_class(fn))
 
         if not all_verbs_for_class:
             continue
 
-        # 1. Interleaved Summary Table for all variants of this base class
         doc.append(NoEscape(r"\needspace{3in}"))
 
-        # Weighted X columns: First column (Variant/Mascot) is 1.5x wider, others are 0.9x
-        # Sum = 1.5 + 5*0.9 = 6.0 (for 6 columns)
         col_spec = (
             r">{\hsize=1.5\hsize\RaggedRight}X "
             r">{\hsize=0.9\hsize}X "
@@ -366,8 +339,8 @@ def generate_companion_tex():
         summary_table = Tabularx(
             NoEscape(col_spec), width_argument=NoEscape(r"\textwidth")
         )
-        summary_table.append(NoEscape(r"\toprule"))
-        summary_table.add_row(
+        _ = summary_table.append(NoEscape(r"\toprule"))
+        _ = summary_table.add_row(
             (
                 bold("Variant / Mascot"),
                 bold("Present"),
@@ -377,24 +350,21 @@ def generate_companion_tex():
                 bold("Infin."),
             )
         )
-        summary_table.append(NoEscape(r"\midrule"))
+        _ = summary_table.append(NoEscape(r"\midrule"))
 
-        # Collect all class_names for this base class
-        class_groups = {}
+        class_groups: dict[str, list[DictionaryVerb]] = {}
         for fn in relevant_full_names:
             for v in resolver.get_verbs_for_class(fn):
                 class_groups.setdefault(v.morphology.class_name, []).append(v)
 
         sorted_class_names = sorted(class_groups.keys())
-        base_endings = get_base_endings(aspect_classes, base_cls.name)
 
-        # Pre-resolve mascots to put them in the table
         expanded_patterns = load_expanded_patterns()
-        class_mascots = {}
+        class_mascots: dict[str, tuple[DictionaryVerb, dict[str, Any]]] = {}
         for class_name in sorted_class_names:
             group_verbs = class_groups[class_name]
 
-            def get_mascot_score(verb: DictionaryVerb):
+            def get_mascot_score(verb: DictionaryVerb) -> tuple[int, str]:
                 label = resolver.get_variant_label(verb)
                 return (0 if label == "Plain" else 1, verb.definition.lower())
 
@@ -413,7 +383,6 @@ def generate_companion_tex():
         for i, class_name in enumerate(sorted_class_names):
             pattern = expanded_patterns.get(class_name)
             if not pattern:
-                # Fallback to base class if exact pattern not found (shouldn't happen with ClassMacro)
                 current_cls_full_name = class_name.split("[")[0]
                 current_cls = next(
                     (c for c in aspect_classes if c.full_name == current_cls_full_name),
@@ -422,48 +391,35 @@ def generate_companion_tex():
             else:
                 current_cls_full_name = pattern.name.split("[")[0]
 
-            # The base pattern for this entire section (Plain variant of the base class)
             section_base_pattern = expanded_patterns.get(base_cls.full_name)
-
-            # is_derived if it's not the base class itself (either has subclass or tags)
             is_derived = class_name != base_cls.full_name
 
-            rule_row = [italic(class_name)]
+            rule_row: list[Any] = [italic(class_name)]
             for f in forms:
                 if pattern:
                     ending = pattern.get(f)
                 else:
-                    # Legacy fallback logic (just in case)
-                    tags = {}
+                    tags: dict[str, int] = {}
                     tag_match = re.search(r"\[(.*)\]", class_name)
                     if tag_match:
                         for t in tag_match.group(1).split("-"):
                             m = re.match(r"([a-z]+)(\d+)", t)
                             if m:
-                                shorthands = {
-                                    "pres": "present",
-                                    "imperf": "imperfective",
-                                    "perf": "perfective",
-                                    "imp": "imperative",
-                                    "inf": "infinitive",
-                                }
-                                inv_shorthands = {v: k for k, v in shorthands.items()}
                                 tags[m.group(1)] = int(m.group(2)) - 1
 
                     def get_ending_legacy(form: str, idx: int = 0) -> str:
                         val = getattr(current_cls, form)
-                        opts = val.split(";")
+                        opts: list[str] = val.split(";")
                         return opts[idx] if idx < len(opts) else opts[0]
 
                     shorthands = {
-                        "pres": "present",
-                        "imperf": "imperfective",
-                        "perf": "perfective",
-                        "imp": "imperative",
-                        "inf": "infinitive",
+                        "present": "pres",
+                        "imperfective": "imperf",
+                        "perfective": "perf",
+                        "imperative": "imp",
+                        "infinitive": "inf",
                     }
-                    inv_shorthands = {v: k for k, v in shorthands.items()}
-                    idx = tags.get(inv_shorthands[f], 0)
+                    idx = tags.get(shorthands.get(f, ""), 0)
                     ending = get_ending_legacy(f, idx)
 
                 base_ending = (
@@ -474,12 +430,11 @@ def generate_companion_tex():
                     rule_row.append(NoEscape(""))
                 else:
                     rule_row.append(
-                        NoEscape(bold(unicode_to_latex(clean_latex_text(ending))))
+                        NoEscape(bold(str(unicode_to_latex(clean_latex_text(ending)))))
                     )
-            summary_table.add_row(rule_row)
-            summary_table.append(NoEscape(r"\midrule"))
+            _ = summary_table.add_row(rule_row)
+            _ = summary_table.append(NoEscape(r"\midrule"))
 
-            # Mascot Row
             mascot_verb, mascot_data = class_mascots[class_name]
             mascot_page = "???"
             if current_cls_full_name in toc_data:
@@ -489,26 +444,27 @@ def generate_companion_tex():
                         break
 
             mascot_label = mascot_data["definition"] + f" (p. {mascot_page})"
-            mascot_row = [NoEscape(unicode_to_latex(clean_latex_text(mascot_label)))]
+            mascot_row: list[Any] = [
+                NoEscape(str(unicode_to_latex(clean_latex_text(mascot_label))))
+            ]
             for fn in forms:
                 segmented = mascot_verb.segmented_forms.get(fn, "---")
                 mascot_row.append(format_segmented_verb(mascot_verb, fn, segmented))
-            summary_table.add_row(mascot_row)
+            _ = summary_table.add_row(mascot_row)
 
-            # Thick separator between variants
             if i < len(sorted_class_names) - 1:
-                summary_table.append(NoEscape(r"\specialrule{1.5pt}{2pt}{2pt}"))
+                _ = summary_table.append(NoEscape(r"\specialrule{1.5pt}{2pt}{2pt}"))
 
-        summary_table.append(NoEscape(r"\bottomrule"))
+        _ = summary_table.append(NoEscape(r"\bottomrule"))
         doc.append(summary_table)
         doc.append(NoEscape(r"\vspace{1em}"))
 
-        # 2. Detailed verb lists for each variant
         for class_name in sorted_class_names:
-            group_verbs: List[DictionaryVerb] = class_groups[class_name]
+            group_verbs: list[DictionaryVerb] = class_groups[class_name]
             doc.append(NoEscape(r"\needspace{1in}"))
-            doc.append(NoEscape(r"\subsection*{" + unicode_to_latex(class_name) + "}"))
-            # Verbs List directly below
+            doc.append(
+                NoEscape(r"\subsection*{" + str(unicode_to_latex(class_name)) + "}")
+            )
             sorted_group_verbs = sorted(
                 group_verbs,
                 key=lambda v: (
@@ -525,8 +481,6 @@ def generate_companion_tex():
                         if entry["definition"].strip() == v.definition.strip():
                             p = entry["page"]
 
-                            # Identify which form this entry represents
-                            # Search the .toc text for a match among the 5 forms
                             clean_toc = re.sub(
                                 r"\\textcolor\s*\{[^}]*\}\s*\{", "", entry["verb_tex"]
                             )
@@ -549,7 +503,6 @@ def generate_companion_tex():
                                 seg = v.segmented_forms.get(fn, "")
                                 if not seg:
                                     continue
-                                # Use basic desegmentation for matching
                                 clean_seg = (
                                     seg.replace("-", "").replace("->", "").strip()
                                 )
@@ -559,12 +512,7 @@ def generate_companion_tex():
                                     found_form = fn
                                     break
 
-                            # Regenerate the TeX for this verb with reductions applied
-                            reduced_tex = format_segmented_verb(
-                                v, found_form, v.segmented_forms.get(found_form, "")
-                            )
                             cleaned_def = clean_latex_text(entry["definition"])
-                            assert isinstance(v, DictionaryVerb)
                             root_str = f"{v.morphology.h_grade_root}"
                             if (
                                 v.morphology.glottal_grade_root

@@ -1,9 +1,9 @@
 import os
 import re
-from typing import Any, Dict, List
+from typing import Any
 
 
-def _extract_balanced(content: str, pos: int):
+def _extract_balanced(content: str, pos: int) -> tuple[str, int]:
     """Extracts a balanced { } block starting from pos."""
     while pos < len(content) and content[pos] != "{":
         pos += 1
@@ -22,9 +22,9 @@ def _extract_balanced(content: str, pos: int):
     return "", len(content)
 
 
-def _extract_tags(label: str) -> List[str]:
+def _extract_tags(label: str) -> list[str]:
     """Extracts tags inside square brackets, handling nested brackets."""
-    tags = []
+    tags: list[str] = []
     i = 0
     while i < len(label):
         if label[i] == "[":
@@ -47,8 +47,8 @@ def _extract_tags(label: str) -> List[str]:
 
 
 def parse_main_toc(
-    toc_path: str, known_class_names: List[str]
-) -> Dict[str, List[Dict[str, Any]]]:
+    toc_path: str, known_class_names: list[str]
+) -> dict[str, list[dict[str, Any]]]:
     """
     Parses the main.toc file to extract verb definitions, TeX representations,
     and their page numbers, grouped by aspect class.
@@ -59,7 +59,7 @@ def parse_main_toc(
     with open(toc_path, "r", encoding="utf-8") as f:
         content = f.read()
 
-    results = {}
+    results: dict[str, list[dict[str, Any]]] = {}
 
     pos = 0
     while True:
@@ -99,7 +99,7 @@ def parse_main_toc(
         # Clean up trailing dashes/punctuation
         verb_tex = re.sub(r"[- ]+$", "", verb_tex)
 
-        found_classes = []
+        found_classes: list[str] = []
         for tag in tags:
             # Check if tag is or starts with a known class
             for class_name in known_class_names:

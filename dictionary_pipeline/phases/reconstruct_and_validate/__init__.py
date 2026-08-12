@@ -77,7 +77,14 @@ def reconstruct_and_validate(
         prediction = Prediction(stem_row.get("prediction", "FullEventful"))
         glottal_root = None
         spec_1sg = build_wordspec(prediction, config.pron, "present_1sg")
-        if use_glottal_grade(spec_1sg.person, spec_1sg.number, spec_1sg.pronominal_set):
+        if (
+            spec_1sg.person is not None
+            and spec_1sg.number is not None
+            and spec_1sg.pronominal_set is not None
+            and use_glottal_grade(
+                spec_1sg.person, spec_1sg.number, spec_1sg.pronominal_set
+            )
+        ):
             glottal_root = stem_row["g_grade"]
 
             if glottal_root == "" and not h_root == "":

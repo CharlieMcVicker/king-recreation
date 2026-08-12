@@ -87,7 +87,7 @@ def create_corpus() -> None:
                     break
 
         def make_row(
-            s_row: Dict[str, str] = None, p_row: Dict[str, str] = None
+            s_row: Dict[str, str] | None = None, p_row: Dict[str, str] | None = None
         ) -> Dict[str, Any]:
             s_val = clean_string(s_row.get("Practical", "")) if s_row else ""
             p_val = clean_string(p_row.get("Practical", "")) if p_row else ""

@@ -1,7 +1,7 @@
 import csv
 import json
 import os
-from typing import Any, Dict, List, Optional, Tuple
+from typing import Any
 
 from dictionary_pipeline.dictionary_forms import DictionaryVerb
 from dictionary_pipeline.paths import (
@@ -17,32 +17,38 @@ from tex_dictionary.generator import (
 
 
 class MascotResolver:
-    def __init__(self):
+    all_verbs: list[DictionaryVerb]
+    corpus_to_cnd: dict[int, dict[str, str]]
+    cnd: dict[str, dict[str, str]]
+    manual_mascots: dict[tuple[str, str], int]
+
+    def __init__(self) -> None:
         self.all_verbs = self._load_all_verbs()
         self.corpus_to_cnd = load_corpus_to_cnd()
         self.cnd = load_cnd()
         self.manual_mascots = self._load_manual_mascots()
 
-    def _load_all_verbs(self) -> List[DictionaryVerb]:
+    def _load_all_verbs(self) -> list[DictionaryVerb]:
         if not os.path.exists(RECONSTRUCTABLE_VERBS_PATH):
             return []
         with open(RECONSTRUCTABLE_VERBS_PATH, "r", encoding="utf-8") as f:
             data = json.load(f)
 
-        verbs = []
+        verbs: list[DictionaryVerb] = []
 
-        def collect_verbs(v_list: List[Dict[str, Any]]):
+        def collect_verbs(v_list: list[dict[str, Any]]) -> None:
             for item in v_list:
                 verb = DictionaryVerb.from_dict(item)
                 verbs.append(verb)
-                if "derivations" in item:
+                if "derivations" in item and isinstance(item["derivations"], list):
                     collect_verbs(item["derivations"])
 
-        collect_verbs(data)
+        if isinstance(data, list):
+            collect_verbs(data)
         return verbs
 
-    def _load_manual_mascots(self) -> Dict[Tuple[str, str], int]:
-        mapping = {}
+    def _load_manual_mascots(self) -> dict[tuple[str, str], int]:
+        mapping: dict[tuple[str, str], int] = {}
         if not os.path.exists(ASPECT_CLASS_MASCOTS_PATH):
             return mapping
         with open(ASPECT_CLASS_MASCOTS_PATH, "r", encoding="utf-8") as f:
@@ -58,7 +64,7 @@ class MascotResolver:
         return mapping
 
     def get_variant_label(self, verb: DictionaryVerb) -> str:
-        parts = []
+        parts: list[str] = []
         config = verb.morphology.config
         if config.pre.translocutive:
             parts.append("Translocutive")
@@ -74,11 +80,11 @@ class MascotResolver:
             return "Plain"
         return " + ".join(parts)
 
-    def get_verbs_for_class(self, class_name: str) -> List[DictionaryVerb]:
+    def get_verbs_for_class(self, class_name: str) -> list[DictionaryVerb]:
         """
         Returns all verbs whose class_name matches the given class_name (ignoring [tags]).
         """
-        matching = []
+        matching: list[DictionaryVerb] = []
         for v in self.all_verbs:
             # Match 'cause' to 'cause' and 'cause[perf2]'
             v_base_class = v.morphology.class_name.split("[")[0]
@@ -86,7 +92,7 @@ class MascotResolver:
                 matching.append(v)
         return matching
 
-    def resolve_mascot(self, class_name: str, variant: str) -> Optional[DictionaryVerb]:
+    def resolve_mascot(self, class_name: str, variant: str) -> DictionaryVerb | None:
         # 1. Manual override
         manual_cid = self.manual_mascots.get((class_name, variant))
         if manual_cid:
@@ -105,17 +111,19 @@ class MascotResolver:
             return None
 
         # 3. Alphabetical sort by toneless Present form
-        def get_sort_key(verb: DictionaryVerb):
+        def get_sort_key(verb: DictionaryVerb) -> str:
+            if verb.corpus_id is None:
+                return "zzz"
             cnd_entry = get_cnd_entry(
                 verb.corpus_id, "present", self.corpus_to_cnd, self.cnd
             )
-            toneless = cnd_entry.get("no_tone", "zzz")
+            toneless = str(cnd_entry.get("no_tone", "zzz"))
             return strip_tone(toneless).lower()
 
         matching_verbs.sort(key=get_sort_key)
         return matching_verbs[0]
 
-    def get_mascot_data(self, verb: DictionaryVerb) -> Dict[str, Any]:
+    def get_mascot_data(self, verb: DictionaryVerb) -> dict[str, Any]:
         forms = [
             "present",
             "present_1sg",
@@ -124,14 +132,23 @@ class MascotResolver:
             "imperative",
             "infinitive",
         ]
-        form_data = {}
+        form_data: dict[str, dict[str, str]] = {}
         for fn in forms:
-            cnd_entry = get_cnd_entry(verb.corpus_id, fn, self.corpus_to_cnd, self.cnd)
-            form_data[fn] = {
-                "syllabary": cnd_entry.get("syllabary", "---"),
-                "tone": cnd_entry.get("tone", "---"),
-                "no_tone": cnd_entry.get("no_tone", "---"),
-            }
+            if verb.corpus_id is not None:
+                cnd_entry = get_cnd_entry(
+                    verb.corpus_id, fn, self.corpus_to_cnd, self.cnd
+                )
+                form_data[fn] = {
+                    "syllabary": str(cnd_entry.get("syllabary", "---")),
+                    "tone": str(cnd_entry.get("tone", "---")),
+                    "no_tone": str(cnd_entry.get("no_tone", "---")),
+                }
+            else:
+                form_data[fn] = {
+                    "syllabary": "---",
+                    "tone": "---",
+                    "no_tone": "---",
+                }
 
         return {
             "corpus_id": verb.corpus_id,
@@ -141,7 +158,7 @@ class MascotResolver:
         }
 
 
-def resolve_all_mascots() -> Dict[str, Dict[str, Dict[str, Any]]]:
+def resolve_all_mascots() -> dict[str, dict[str, dict[str, Any]]]:
     """
     Returns a mapping: class_name -> variant_label -> mascot_data
     """
@@ -150,7 +167,7 @@ def resolve_all_mascots() -> Dict[str, Dict[str, Dict[str, Any]]]:
     resolver = MascotResolver()
     classes = load_aspect_classes()
 
-    results = {}
+    results: dict[str, dict[str, dict[str, Any]]] = {}
     for cls in classes:
         full_name = cls.full_name
         verbs = resolver.get_verbs_for_class(full_name)

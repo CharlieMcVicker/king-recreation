@@ -1,6 +1,6 @@
 import csv
 from dataclasses import dataclass
-from typing import Any, Dict, List
+from typing import Any
 
 from dictionary_pipeline.paths import (
     ASPECT_CLASS_MASCOTS_PATH,
@@ -28,8 +28,8 @@ class AspectClass:
         return self.name
 
 
-def load_aspect_classes() -> List[AspectClass]:
-    classes = []
+def load_aspect_classes() -> list[AspectClass]:
+    classes: list[AspectClass] = []
     with open(CLASSES_DATA_PATH, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -48,12 +48,12 @@ def load_aspect_classes() -> List[AspectClass]:
     return classes
 
 
-def sort_classes_by_frequency(classes: List[AspectClass]) -> List[AspectClass]:
+def sort_classes_by_frequency(classes: list[AspectClass]) -> list[AspectClass]:
     """
     Sorts the list of aspect classes in descending order of empirical frequency
     based on the artifacts/reports/class_match_counts.csv report.
     """
-    match_counts = {}
+    match_counts: dict[str, int] = {}
     try:
         with open(CLASS_MATCH_COUNTS_PATH, "r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
@@ -82,12 +82,12 @@ def sort_classes_by_frequency(classes: List[AspectClass]) -> List[AspectClass]:
     )
 
 
-def load_mascot_map() -> Dict[str, str]:
+def load_mascot_map() -> dict[str, str]:
     """
     Loads the curated mascot mapping from curated/aspect_class_mascots.csv.
     Returns a dictionary mapping class full_name to mascot_corpus_id.
     """
-    mascot_map = {}
+    mascot_map: dict[str, str] = {}
     try:
         with open(ASPECT_CLASS_MASCOTS_PATH, "r", encoding="utf-8") as f:
             reader = csv.DictReader(f)
@@ -105,8 +105,8 @@ def load_mascot_map() -> Dict[str, str]:
 
 
 def select_deterministic_mascot(
-    candidate_verbs: List[Dict[str, Any]],
-) -> Dict[str, Any]:
+    candidate_verbs: list[dict[str, Any]],
+) -> dict[str, Any]:
     """
     Deterministic fallback for mascot selection: pick the alphabetically first occurring
     verb by its present form.
@@ -114,7 +114,7 @@ def select_deterministic_mascot(
     if not candidate_verbs:
         raise ValueError("No candidate verbs provided for mascot selection.")
     # Use 'present' field for alphabetical sort.
-    return sorted(candidate_verbs, key=lambda x: x.get("present", ""))[0]
+    return sorted(candidate_verbs, key=lambda x: str(x.get("present", "")))[0]
 
 
 if __name__ == "__main__":

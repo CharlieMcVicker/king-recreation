@@ -147,6 +147,11 @@ def derive_pronominals(
     metathesis_used = False
     for fn, word in intermediate_forms.items():
         spec = build_wordspec(prediction, pron_config, fn)
+        assert (
+            spec.person is not None
+            and spec.number is not None
+            and spec.pronominal_set is not None
+        )
         key = (spec.person, spec.number, spec.pronominal_set)
         stem, fn_metathesis_used = detach_prefix(word, key, pron_config)
         metathesis_used = metathesis_used or fn_metathesis_used
@@ -241,7 +246,10 @@ def stems_are_consistent(
     spec_1sg = build_wordspec(prediction, pron_config, "present_1sg")
     g_candidate = (
         derived_stems.get("present_1sg")
-        if use_glottal_grade(spec_1sg.person, spec_1sg.number, spec_1sg.pronominal_set)
+        if spec_1sg.person is not None
+        and spec_1sg.number is not None
+        and spec_1sg.pronominal_set is not None
+        and use_glottal_grade(spec_1sg.person, spec_1sg.number, spec_1sg.pronominal_set)
         else None
     )
 
@@ -254,7 +262,10 @@ def stems_are_consistent(
     for fn, s in derived_stems.items():
         spec = build_wordspec(prediction, pron_config, fn)
         if (
-            use_glottal_grade(spec.person, spec.number, spec.pronominal_set)
+            spec.person is not None
+            and spec.number is not None
+            and spec.pronominal_set is not None
+            and use_glottal_grade(spec.person, spec.number, spec.pronominal_set)
             and g_candidate is not None
         ):
             check = is_strict_compatible(s, g_candidate)
@@ -328,10 +339,17 @@ class PrefixDeriver:
         # Convert the dictionary forms to WordSpecs for derive_pronouns
         examples: list[tuple[str, WordSpec]] = []
         for fn, word in forms.items():
-            spec = build_wordspec(prediction, PronominalConfig(set_type=PronominalSet.SET_A, stem_type=StemType.CONSONANT), fn)
+            spec = build_wordspec(
+                prediction,
+                PronominalConfig(
+                    set_type=PronominalSet.SET_A, stem_type=StemType.CONSONANT
+                ),
+                fn,
+            )
             examples.append((word, spec))
 
         from morphology.derivation import derive_pronouns
+
         configs = derive_pronouns(examples)
 
         for pre_config, pron_config in configs:

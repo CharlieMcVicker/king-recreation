@@ -2,11 +2,11 @@ import csv
 import json
 import os
 import re
-from typing import Dict, List
+from typing import Any
 
-from pylatex import Tabularx
-from pylatex.utils import NoEscape, bold, italic
-from pylatexenc.latexencode import unicode_to_latex
+from pylatex import Tabularx  # type: ignore[import-untyped]
+from pylatex.utils import NoEscape, bold, italic  # type: ignore[import-untyped]
+from pylatexenc.latexencode import unicode_to_latex  # type: ignore[import-untyped]
 
 from dictionary_pipeline.dictionary_forms import DictionaryVerb
 from dictionary_pipeline.paths import (
@@ -21,27 +21,27 @@ from morphology.morphemes.post_root_morphemes import PostRootMorphemeRegistry
 from morphology.morphology_types import PronominalSet
 
 
-def strip_tone(s):
+def strip_tone(s: str) -> str:
     if not s:
         return ""
     # Strip all digits which represent tones in this transcription system
     return re.sub(r"\d", "", s)
 
 
-def load_corpus_to_cnd():
-    mapping = {}
+def load_corpus_to_cnd() -> dict[int, dict[str, str]]:
+    mapping: dict[int, dict[str, str]] = {}
     if not os.path.exists(CORPUS_TO_CND_PATH):
         return mapping
     with open(CORPUS_TO_CND_PATH, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
-            cid = row["corpus_id"]
+            cid = int(row["corpus_id"])
             mapping[cid] = row
     return mapping
 
 
-def load_cnd():
-    cnd = {}
+def load_cnd() -> dict[str, dict[str, str]]:
+    cnd: dict[str, dict[str, str]] = {}
     if not os.path.exists(CHEROKEE_NATION_DICTIONARY_PATH):
         return cnd
     with open(CHEROKEE_NATION_DICTIONARY_PATH, "r", encoding="utf-8-sig") as f:
@@ -56,18 +56,24 @@ def load_cnd():
     return cnd
 
 
-def get_cnd_entry(cid, form_name, corpus_to_cnd, cnd) -> Dict[str, str]:
-    if str(cid) not in corpus_to_cnd:
+def get_cnd_entry(
+    cid: int | str,
+    form_name: str,
+    corpus_to_cnd: dict[int, dict[str, str]],
+    cnd: dict[str, dict[str, str]],
+) -> dict[str, str]:
+    cid_int = int(cid)
+    if cid_int not in corpus_to_cnd:
         return {}
-    entry_ref = corpus_to_cnd[str(cid)].get(form_name)
+    entry_ref = corpus_to_cnd[cid_int].get(form_name)
     if not entry_ref:
         return {}
-    return cnd.get(entry_ref, {})
+    return cnd.get(str(entry_ref), {})
 
 
 def format_toneless_with_bold(
     verb: DictionaryVerb, form_name: str, toneless_surface: str
-) -> NoEscape:
+) -> Any:
     """
     Attempts to bold the aspect suffix in the toneless surface string
     by matching against the segmented form.
@@ -81,10 +87,6 @@ def format_toneless_with_bold(
     ):
         return NoEscape(unicode_to_latex(toneless_surface))
 
-    # Basic heuristic: if the segmented form has N segments, and the last is aspect
-    # we try to find the aspect in the toneless surface.
-    # But wait, toneless_surface already has phones dropped.
-    # It's better to just use a simplified version of format_segmented_verb here too.
     parts = re.split(r"(-|->)", segmented)
     segments = parts[0::2]
 
@@ -92,7 +94,6 @@ def format_toneless_with_bold(
     num_pre = sum(
         [config.pre.translocutive, config.pre.partitive, config.pre.distributive]
     )
-    # Heuristic for imperative
     if (
         form_name == "imperative"
         and config.pre.translocutiveImpOnly
@@ -100,26 +101,30 @@ def format_toneless_with_bold(
     ):
         num_pre += 1
 
-    aspect_idx = len(segments) - 1
+    if form_name == "imperative":
+        aspect_idx = len(segments) - 1
+    else:
+        aspect_idx = len(segments) - 2
 
-    # Reconstruct the string with bolding
-    # This is tricky because toneless_surface doesn't have hyphens.
-    # Let's just use the logic from companion_generator but simpler (no color)
     from morphology.reconstruction import drop_dropped_phones
 
-    formatted = []
+    formatted: list[str] = []
     for i, seg in enumerate(segments):
         clean_seg = drop_dropped_phones(seg).replace(":", "")
-        clean_seg = unicode_to_latex(clean_seg)
+        clean_seg_latex = str(unicode_to_latex(clean_seg))
         if i == aspect_idx:
-            formatted.append(r"\textbf{" + clean_seg + "}")
+            formatted.append(r"\textbf{" + clean_seg_latex + "}")
         else:
-            formatted.append(clean_seg)
+            formatted.append(clean_seg_latex)
 
     return NoEscape("".join(formatted))
 
 
-def generate_verb_table(verb: DictionaryVerb, corpus_to_cnd, cnd):
+def generate_verb_table(
+    verb: DictionaryVerb,
+    corpus_to_cnd: dict[int, dict[str, str]],
+    cnd: dict[str, dict[str, str]],
+) -> Any:
     forms = [
         "present",
         "present_1sg",
@@ -138,37 +143,41 @@ def generate_verb_table(verb: DictionaryVerb, corpus_to_cnd, cnd):
     }
 
     table = Tabularx("l X X X", width_argument=NoEscape(r"\textwidth"))
-    table.append(NoEscape(r"\toprule"))
-    table.add_row(
+    _ = table.append(NoEscape(r"\toprule"))
+    _ = table.add_row(
         (bold("Form"), bold("Syllabary"), bold("With Tone"), bold("Toneless"))
     )
-    table.append(NoEscape(r"\midrule"))
+    _ = table.append(NoEscape(r"\midrule"))
 
     cid = verb.corpus_id
 
     for fn in forms:
         label = form_labels[fn]
-        cnd_entry = get_cnd_entry(cid, fn, corpus_to_cnd, cnd)
+        cnd_entry = get_cnd_entry(
+            cid if cid is not None else -1, fn, corpus_to_cnd, cnd
+        )
 
         syllabary = cnd_entry.get("syllabary", "---")
         surface = cnd_entry.get("tone", "---")
-        toneless = cnd_entry.get("no_tone", "---")
+        toneless: Any = cnd_entry.get("no_tone", "---")
 
         # Apply bolding to toneless if possible
         if not toneless == "---":
             toneless = format_toneless_with_bold(verb, fn, toneless)
 
-        table.add_row((label, syllabary, surface, toneless))
+        _ = table.add_row((label, syllabary, surface, toneless))
 
-    table.append(NoEscape(r"\bottomrule"))
+    _ = table.append(NoEscape(r"\bottomrule"))
     return table
 
 
-def verb_config_to_tex(verb: DictionaryVerb, root_str: str, parent_classes: list[str]):
+def verb_config_to_tex(
+    verb: DictionaryVerb, root_str: str, parent_classes: list[str]
+) -> str:
     if not parent_classes:
         parent_classes = []
 
-    parts = []
+    parts: list[Any] = []
 
     config = verb.morphology.config
 
@@ -196,7 +205,6 @@ def verb_config_to_tex(verb: DictionaryVerb, root_str: str, parent_classes: list
         config.pron.plural_pronouns,
     ]
 
-    # parts.append(italic(set_flaire, escape=False))
     parts.append(NoEscape(set_flaire))
 
     if not config.pron.middle_voice.value == "none":
@@ -217,19 +225,19 @@ def verb_config_to_tex(verb: DictionaryVerb, root_str: str, parent_classes: list
     parts.append("[" + verb.morphology.class_name + "]")
 
     return "{-}".join(
-        p if isinstance(p, NoEscape) else unicode_to_latex(p) for p in parts
+        str(p) if isinstance(p, NoEscape) else str(unicode_to_latex(p)) for p in parts
     )
 
 
-def load_hierarchical_data(path: str) -> List[RootNode]:
+def load_hierarchical_data(path: str) -> list[RootNode]:
     with open(path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    roots = []
+    roots: list[RootNode] = []
     for root_data in data:
-        classes = []
+        classes: list[RootClassNode] = []
         for cls_data in root_data.get("classes", []):
-            verbs = []
+            verbs: list[DictionaryVerb] = []
             for v_data in cls_data.get("verbs", []):
                 verbs.append(DictionaryVerb.from_dict(v_data))
 
@@ -249,13 +257,17 @@ def load_hierarchical_data(path: str) -> List[RootNode]:
 
 
 def render_verb_entry(
-    verb: DictionaryVerb, root_str: str, corpus_to_cnd, cnd, parent_classes=None
-) -> List[str]:
+    verb: DictionaryVerb,
+    root_str: str,
+    corpus_to_cnd: dict[int, dict[str, str]],
+    cnd: dict[str, dict[str, str]],
+    parent_classes: list[str] | None = None,
+) -> list[str]:
     if parent_classes is None:
         parent_classes = []
 
     level = len(parent_classes)
-    content = []
+    content: list[str] = []
     verb_tex = verb_config_to_tex(verb, root_str, parent_classes)
 
     if level == 0:
@@ -274,15 +286,15 @@ def render_verb_entry(
     content.append(header_cmd + "{" + verb_tex + "}")
     content.append(r"\nopagebreak")
 
-    content.append(r"\textbf{Definition: } " + unicode_to_latex(verb.definition))
+    content.append(r"\textbf{Definition: } " + str(unicode_to_latex(verb.definition)))
 
-    label = verb_tex + italic(" " + verb.definition)
+    label = verb_tex + str(italic(" " + verb.definition))
 
     content.append(r"\addcontentsline{toc}{" + toc_level + "}{" + label + "}")
     content.append(r"\\[0.5em]")
 
     table = generate_verb_table(verb, corpus_to_cnd, cnd)
-    content.append(table.dumps())
+    content.append(str(table.dumps()))
     content.append(r"\\[1em]")
 
     if verb.derivations:
@@ -300,11 +312,11 @@ def render_verb_entry(
     return content
 
 
-def generate_tex_files():
+def generate_tex_files() -> bool:
     print("Loading data...")
     if not os.path.exists(HIERARCHICAL_DICT_PATH):
         print(f"Error: {HIERARCHICAL_DICT_PATH} not found.")
-        return
+        return False
 
     data = load_hierarchical_data(HIERARCHICAL_DICT_PATH)
     corpus_to_cnd = load_corpus_to_cnd()
@@ -312,7 +324,7 @@ def generate_tex_files():
 
     os.makedirs(TEX_ROOTS_DIR, exist_ok=True)
 
-    root_files = []
+    root_files: list[str] = []
 
     print(f"Generating TeX files for {len(data)} roots...")
     for root_node in data:
@@ -320,7 +332,7 @@ def generate_tex_files():
         h_grade = root_node.h_grade_root
         g_grade = root_node.glottal_grade_root
 
-        content = []
+        content: list[str] = []
         # Header with Root info
         root_str = f"{h_grade}"
         if g_grade and not g_grade == h_grade:
@@ -328,24 +340,26 @@ def generate_tex_files():
 
         header_text = "Root: " + root_str
         content.append(r"\needspace{4in}")
-        content.append(r"\section*{" + unicode_to_latex(header_text) + "}")
+        content.append(r"\section*{" + str(unicode_to_latex(header_text)) + "}")
         content.append(
             r"\markboth{"
-            + unicode_to_latex(root_str)
+            + str(unicode_to_latex(root_str))
             + "}{"
-            + unicode_to_latex(root_str)
+            + str(unicode_to_latex(root_str))
             + "}"
         )
         content.append(r"\nopagebreak")
         content.append(
-            r"\addcontentsline{toc}{section}{" + unicode_to_latex(root_str) + "}"
+            r"\addcontentsline{toc}{section}{" + str(unicode_to_latex(root_str)) + "}"
         )
 
         for cls in root_node.classes:
 
             content.append(r"\needspace{3in}")
             content.append(
-                r"\subsection*{" + unicode_to_latex("Class: " + cls.class_name) + "}"
+                r"\subsection*{"
+                + str(unicode_to_latex("Class: " + cls.class_name))
+                + "}"
             )
             content.append(r"\nopagebreak")
 
@@ -354,11 +368,11 @@ def generate_tex_files():
 
         tex_path = os.path.join(TEX_ROOTS_DIR, f"root_{slug}.tex")
         with open(tex_path, "w", encoding="utf-8") as f:
-            f.write("\n".join(content))
+            _ = f.write("\n".join(content))
         root_files.append(f"root_{slug}.tex")
 
     print(f"Generating main.tex and booklet.tex...")
-    main_tex_content = [
+    main_tex_content: list[str] = [
         r"\documentclass[oneside,openany]{book}",
         r"\usepackage{fontspec}",
         r"\usepackage[dvipsnames]{xcolor}",
@@ -393,11 +407,11 @@ def generate_tex_files():
     main_tex_content.append(r"\end{document}")
 
     with open(MAIN_TEX_PATH, "w", encoding="utf-8") as f:
-        f.write("\n".join(main_tex_content))
+        _ = f.write("\n".join(main_tex_content))
 
     # Generate booklet.tex
     booklet_tex_path = os.path.join(os.path.dirname(MAIN_TEX_PATH), "booklet.tex")
-    booklet_tex_content = [
+    booklet_tex_content: list[str] = [
         r"\documentclass[letterpaper]{article}",
         r"\usepackage[margin=0.25in]{geometry}",
         r"\usepackage{pdfpages}",
@@ -406,7 +420,7 @@ def generate_tex_files():
         r"\end{document}",
     ]
     with open(booklet_tex_path, "w", encoding="utf-8") as f:
-        f.write("\n".join(booklet_tex_content))
+        _ = f.write("\n".join(booklet_tex_content))
 
     print(
         f"Generated {len(root_files)} root files, {MAIN_TEX_PATH}, and {booklet_tex_path}"
