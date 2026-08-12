@@ -22,6 +22,32 @@ const ARTIFACTS_DATA_DIR = path.join(process.cwd(), "../artifacts/data");
 const CONNECTIONS_DATA_DIR = path.join(process.cwd(), "../curated");
 const REPORTS_DIR = path.join(process.cwd(), "../artifacts/reports");
 
+export function getAllVerbsFromRoots(roots: RootGroup[]): ReconstructableVerb[] {
+  const verbs: ReconstructableVerb[] = [];
+  function traverse(v: ReconstructableVerb) {
+    if (v.morphology && v.morphology.class_name) {
+      verbs.push(v);
+    }
+    if (v.derivations && Array.isArray(v.derivations)) {
+      for (const deriv of v.derivations) {
+        traverse(deriv);
+      }
+    }
+  }
+  for (const root of roots) {
+    if (root.classes && Array.isArray(root.classes)) {
+      for (const cls of root.classes) {
+        if (cls.verbs && Array.isArray(cls.verbs)) {
+          for (const verb of cls.verbs) {
+            traverse(verb);
+          }
+        }
+      }
+    }
+  }
+  return verbs;
+}
+
 export async function getVerbCoverage(): Promise<any> {
   const filePath = path.join(REPORTS_DIR, "verb_coverage.json");
   const fileContent = fs.readFileSync(filePath, "utf-8");
@@ -949,3 +975,96 @@ export async function updateStativeShim(
 
   fs.writeFileSync(filePath, csv);
 }
+
+export interface MascotRow {
+  class: string;
+  subclass: string;
+  variant?: string;
+  mascot_corpus_id: number | string | null;
+}
+
+export async function getAspectClassMascots(): Promise<MascotRow[]> {
+  const filePath = path.join(CONNECTIONS_DATA_DIR, "aspect_class_mascots.csv");
+  if (!fs.existsSync(filePath)) return [];
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const result = Papa.parse(fileContent, {
+    header: true,
+    skipEmptyLines: true,
+  });
+  return (result.data as any[]).map((row) => ({
+    class: row.class || "",
+    subclass: row.subclass || "",
+    variant: row.variant || "Plain",
+    mascot_corpus_id:
+      row.mascot_corpus_id !== undefined && row.mascot_corpus_id !== "" && row.mascot_corpus_id !== null
+        ? Number(row.mascot_corpus_id)
+        : null,
+  }));
+}
+
+export async function updateAspectClassMascot(
+  className: string,
+  subclass: string = "",
+  variant: string = "Plain",
+  mascotCorpusId: number | null = null,
+): Promise<void> {
+  const filePath = path.join(CONNECTIONS_DATA_DIR, "aspect_class_mascots.csv");
+  let rows: any[] = [];
+  if (fs.existsSync(filePath)) {
+    const fileContent = fs.readFileSync(filePath, "utf-8");
+    const parsed = Papa.parse(fileContent, {
+      header: true,
+      skipEmptyLines: true,
+    });
+    rows = parsed.data as any[];
+  }
+
+  const normClass = className.trim();
+  const normSubclass = subclass ? subclass.trim() : "";
+  const normVariant = variant ? variant.trim() : "Plain";
+
+  const rowIndex = rows.findIndex((row) => {
+    const rClass = (row.class || "").trim();
+    const rSubclass = (row.subclass || "").trim();
+    const rVariant = (row.variant || "Plain").trim();
+    const rFullKey = rSubclass ? `${rClass}-${rSubclass}` : rClass;
+    return (rFullKey === normClass || (rClass === normClass && rSubclass === normSubclass)) && rVariant === normVariant;
+  });
+
+  const valStr = mascotCorpusId !== null && mascotCorpusId !== undefined ? String(mascotCorpusId) : "";
+
+  if (rowIndex !== -1) {
+    rows[rowIndex].class = normClass;
+    rows[rowIndex].subclass = normSubclass;
+    rows[rowIndex].variant = normVariant;
+    rows[rowIndex].mascot_corpus_id = valStr;
+  } else {
+    rows.push({
+      class: normClass,
+      subclass: normSubclass,
+      variant: normVariant,
+      mascot_corpus_id: valStr,
+    });
+  }
+
+  // Ensure standard headers
+  const fieldnames = ["class", "subclass", "variant", "mascot_corpus_id"];
+
+  const csv = Papa.unparse(
+    {
+      fields: fieldnames,
+      data: rows.map((r) => [
+        r.class || "",
+        r.subclass || "",
+        r.variant || "Plain",
+        r.mascot_corpus_id !== undefined && r.mascot_corpus_id !== null ? String(r.mascot_corpus_id) : "",
+      ]),
+    },
+    {
+      newline: "\n",
+    },
+  );
+
+  fs.writeFileSync(filePath, csv + "\n");
+}
+

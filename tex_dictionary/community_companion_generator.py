@@ -90,6 +90,9 @@ def format_segmented_verb_community(
     else:
         aspect_idx = len(segments) - 2
 
+    if verb.morphology.class_name == "stative":
+        aspect_idx = None
+
     # 2. Build list of (char, formatting_role)
     chars_with_role: list[dict[str, Any]] = []
     for i, seg in enumerate(segments):
