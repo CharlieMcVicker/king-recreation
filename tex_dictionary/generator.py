@@ -106,6 +106,9 @@ def format_toneless_with_bold(
     else:
         aspect_idx = len(segments) - 2
 
+    if verb.morphology.class_name == "stative":
+        aspect_idx = None
+
     from morphology.reconstruction import drop_dropped_phones
 
     formatted: list[str] = []

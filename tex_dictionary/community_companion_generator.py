@@ -13,10 +13,7 @@ from pylatex.utils import bold, italic  # type: ignore[import-untyped]
 from pylatexenc.latexencode import unicode_to_latex  # type: ignore[import-untyped]
 
 from dictionary_pipeline.dictionary_forms import DictionaryVerb, build_wordspec
-from dictionary_pipeline.orthography import (
-    convert_segment_to_community_orthography,
-    convert_to_community_orthography,
-)
+from dictionary_pipeline.orthography import unrespell_consonants
 from dictionary_pipeline.paths import (
     CLASSES_DATA_PATH,
     COMMUNITY_COMPANION_TEX_PATH,
@@ -88,7 +85,10 @@ def format_segmented_verb_community(
     ):
         num_pre += 1
     pronoun_idx = num_pre
-    aspect_idx = len(segments) - 1
+    if form_name == "imperative":
+        aspect_idx = len(segments) - 1
+    else:
+        aspect_idx = len(segments) - 2
 
     # 2. Build list of (char, formatting_role)
     chars_with_role: list[dict[str, Any]] = []
@@ -180,7 +180,7 @@ def format_segmented_verb_community(
     formatted_parts: list[str] = []
     for grp in role_groups:
         role = grp["role"]
-        comm_text = convert_segment_to_community_orthography(grp["text"])
+        comm_text = unrespell_consonants(grp["text"])
         c = str(unicode_to_latex(str(comm_text)))
 
         if role == 1:
@@ -224,9 +224,7 @@ def render_verb_minipage_community(
     ):
         root_str += f" / {verb.morphology.glottal_grade_root}"
 
-    comm_root_str = convert_to_community_orthography(
-        root_str, preserve_boundaries=False
-    )
+    comm_root_str = unrespell_consonants(root_str)
     template_tex = verb_config_to_tex(
         verb, root_str=comm_root_str, parent_classes=[], ka_label="Set A (ga)"
     )
