@@ -1,5 +1,5 @@
 ---
-id: TASK-15
+id: TASK-24
 title: Extend WordSpec and Suffix Rules for nouns
 status: In Progress
 assignee:

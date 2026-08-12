@@ -57,6 +57,41 @@ def run_xelatex():
                 except Exception as ex:
                     print(f"Warning: Companion generation failed: {ex}")
                 finally:
+                    os.chdir(original_cwd)
+
+                from tex_dictionary.community_companion_generator import (
+                    generate_community_companion_tex,
+                )
+
+                try:
+                    if generate_community_companion_tex():
+                        print(
+                            "Community Companion TeX generated. Compiling community_companion.tex..."
+                        )
+                        os.chdir(abs_tex_dir)
+                        # Run twice for internal links and TOC
+                        for _ in range(2):
+                            subprocess.run(
+                                [
+                                    "xelatex",
+                                    "-interaction=batchmode",
+                                    "community_companion.tex",
+                                ],
+                                check=True,
+                                stdout=subprocess.DEVNULL,
+                                stderr=subprocess.DEVNULL,
+                            )
+                        if os.path.exists("community_companion.pdf"):
+                            print(
+                                f"Community Companion PDF generated at {os.path.abspath('community_companion.pdf')}"
+                            )
+                        else:
+                            print(
+                                "XeLaTeX finished but community_companion.pdf was not found."
+                            )
+                except Exception as ex:
+                    print(f"Warning: Community Companion generation failed: {ex}")
+                finally:
                     os.chdir(abs_tex_dir)
 
                 print("Compiling booklet.tex...")
