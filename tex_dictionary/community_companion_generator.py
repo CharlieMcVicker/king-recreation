@@ -13,7 +13,10 @@ from pylatex.utils import bold, italic  # type: ignore[import-untyped]
 from pylatexenc.latexencode import unicode_to_latex  # type: ignore[import-untyped]
 
 from dictionary_pipeline.dictionary_forms import DictionaryVerb, build_wordspec
-from dictionary_pipeline.orthography import convert_to_community_orthography
+from dictionary_pipeline.orthography import (
+    convert_segment_to_community_orthography,
+    convert_to_community_orthography,
+)
 from dictionary_pipeline.paths import (
     CLASSES_DATA_PATH,
     COMMUNITY_COMPANION_TEX_PATH,
@@ -28,6 +31,7 @@ from tex_dictionary.companion_data import (
     load_aspect_classes,
     sort_classes_by_frequency,
 )
+from tex_dictionary.generator import verb_config_to_tex
 from tex_dictionary.mascot_resolver import MascotResolver
 from tex_dictionary.toc_parser import parse_main_toc
 
@@ -176,10 +180,8 @@ def format_segmented_verb_community(
     formatted_parts: list[str] = []
     for grp in role_groups:
         role = grp["role"]
-        comm_text = convert_to_community_orthography(
-            grp["text"], preserve_boundaries=False
-        )
-        c = str(unicode_to_latex(comm_text))
+        comm_text = convert_segment_to_community_orthography(grp["text"])
+        c = str(unicode_to_latex(str(comm_text)))
 
         if role == 1:
             formatted_parts.append(r"\textcolor{" + color + "}{" + c + "}")
@@ -197,9 +199,9 @@ def render_verb_minipage_community(
     toc_data: dict[str, list[dict[str, str]]],
 ) -> str:
     """
-    Renders a verb as a 3-line minipage for 3-column multicol display with uniform font size:
+    Renders a verb as a 3-line minipage for 3-column multicol display:
     Line 1: Community Orthography Form (Bold aspect / colored pronoun)
-    Line 2: Syllabary Form
+    Line 2: Template String (Main dictionary format with Set A (ga), converted to community orthography)
     Line 3: Italic Gloss (with page reference)
     """
     p = "???"
@@ -214,12 +216,27 @@ def render_verb_minipage_community(
     seg_pres = verb.segmented_forms.get("present", "---")
     l1_tex = format_segmented_verb_community(verb, "present", seg_pres)
 
-    # Line 2: Syllabary form from CND if available
-    syl = "---"
-    if verb.corpus_id is not None:
-        cnd_entry = resolver.get_mascot_data(verb)["forms"].get("present", {})
-        syl = cnd_entry.get("syllabary", "---")
-    l2_tex = str(unicode_to_latex(clean_latex_text(syl)))
+    # Line 2: Template string from main dictionary generator with Set A (ga) & community orthography
+    root_str = f"{verb.morphology.h_grade_root}"
+    if (
+        verb.morphology.glottal_grade_root
+        and not verb.morphology.glottal_grade_root == verb.morphology.h_grade_root
+    ):
+        root_str += f" / {verb.morphology.glottal_grade_root}"
+
+    comm_root_str = convert_to_community_orthography(
+        root_str, preserve_boundaries=False
+    )
+    template_tex = verb_config_to_tex(
+        verb, root_str=comm_root_str, parent_classes=[], ka_label="Set A (ga)"
+    )
+    # Convert any raw 'kh' or 'hs' in the template LaTeX string without corrupting LaTeX macros
+    comm_template_tex = re.sub(
+        r"(?<!\\)(kh|Kh|hs)",
+        lambda m: "sh" if m.group(1) == "hs" else "k",
+        template_tex,
+    )
+    l2_tex = r"{\small \textsf{" + comm_template_tex + r"}}"
 
     # Line 3: Italic gloss with page ref
     cleaned_def = clean_latex_text(verb.definition)
@@ -228,8 +245,11 @@ def render_verb_minipage_community(
     minipage_tex = (
         r"\begin{minipage}[t]{\linewidth}"
         "\n"
+        r"\raggedright\noindent "
         f"{l1_tex}\\\\\n"
+        r"\noindent "
         f"{l2_tex}\\\\\n"
+        r"\noindent "
         f"{l3_tex}\n"
         r"\end{minipage}"
     )
@@ -361,34 +381,6 @@ def generate_community_companion_tex() -> bool:
         if not all_verbs_for_class:
             continue
 
-        doc.append(NoEscape(r"\needspace{3in}"))
-
-        col_spec = (
-            r">{\hsize=1.5\hsize\RaggedRight}X "
-            r">{\hsize=0.9\hsize}X "
-            r">{\hsize=0.9\hsize}X "
-            r">{\hsize=0.9\hsize}X "
-            r">{\hsize=0.9\hsize}X "
-            r">{\hsize=0.9\hsize}X "
-            r">{\hsize=0.9\hsize}X"
-        )
-        summary_table = Tabularx(
-            NoEscape(col_spec), width_argument=NoEscape(r"\textwidth")
-        )
-        _ = summary_table.append(NoEscape(r"\toprule"))
-        _ = summary_table.add_row(
-            (
-                bold("Variant / Mascot"),
-                bold("Present (3sg)"),
-                bold("Present (1sg)"),
-                bold("Imperf."),
-                bold("Perf."),
-                bold("Imper."),
-                bold("Infin."),
-            )
-        )
-        _ = summary_table.append(NoEscape(r"\midrule"))
-
         class_groups: dict[str, list[DictionaryVerb]] = {}
         for fn in relevant_full_names:
             for v in resolver.get_verbs_for_class(fn):
@@ -423,94 +415,49 @@ def generate_community_companion_tex() -> bool:
                 resolver.get_mascot_data(mascot_verb),
             )
 
-        for i, class_name in enumerate(sorted_class_names):
-            pattern = expanded_patterns.get(class_name)
-            if not pattern:
-                current_cls_full_name = class_name.split("[")[0]
-                current_cls = next(
-                    (c for c in aspect_classes if c.full_name == current_cls_full_name),
-                    base_cls,
-                )
-            else:
-                current_cls_full_name = pattern.name.split("[")[0]
-
-            section_base_pattern = expanded_patterns.get(base_cls.full_name)
-            is_derived = class_name != base_cls.full_name
-
-            rule_row: list[Any] = [italic(class_name)]
-            # Present 3sg rule
-            rule_row.append(
-                NoEscape(
-                    bold(
-                        str(
-                            unicode_to_latex(
-                                clean_latex_text(
-                                    convert_to_community_orthography(
-                                        pattern.get("present") if pattern else "",
-                                        preserve_boundaries=False,
-                                    )
-                                )
-                            )
-                        )
-                    )
-                )
+        # Render member verb listings in 3 columns per subclass, with subclass mascot table first
+        for class_name in sorted_class_names:
+            group_verbs: list[DictionaryVerb] = class_groups[class_name]
+            doc.append(NoEscape(r"\needspace{1.5in}"))
+            doc.append(
+                NoEscape(r"\subsection*{" + str(unicode_to_latex(class_name)) + "}")
             )
 
-            # Rule row for present_1sg is left empty or matches present rule
-            rule_row.append(NoEscape(""))
-
-            for f in ["imperfective", "perfective", "imperative", "infinitive"]:
-                if pattern:
-                    ending = pattern.get(f)
-                else:
-                    tags: dict[str, int] = {}
-                    tag_match = re.search(r"\[(.*)\]", class_name)
-                    if tag_match:
-                        for t in tag_match.group(1).split("-"):
-                            m = re.match(r"([a-z]+)(\d+)", t)
-                            if m:
-                                tags[m.group(1)] = int(m.group(2)) - 1
-
-                    def get_ending_legacy(form: str, idx: int = 0) -> str:
-                        val = getattr(current_cls, form)
-                        opts: list[str] = val.split(";")
-                        return opts[idx] if idx < len(opts) else opts[0]
-
-                    shorthands = {
-                        "imperfective": "imperf",
-                        "perfective": "perf",
-                        "imperative": "imp",
-                        "infinitive": "inf",
-                    }
-                    idx = tags.get(shorthands.get(f, ""), 0)
-                    ending = get_ending_legacy(f, idx)
-
-                base_ending = (
-                    section_base_pattern.get(f) if section_base_pattern else None
-                )
-
-                if is_derived and base_ending is not None and ending == base_ending:
-                    rule_row.append(NoEscape(""))
-                else:
-                    comm_ending = convert_to_community_orthography(
-                        ending, preserve_boundaries=False
-                    )
-                    rule_row.append(
-                        NoEscape(
-                            bold(str(unicode_to_latex(clean_latex_text(comm_ending))))
-                        )
-                    )
-            _ = summary_table.add_row(rule_row)
-            _ = summary_table.append(NoEscape(r"\midrule"))
-
+            # Mascot table for this subclass
             mascot_verb, mascot_data = class_mascots[class_name]
             mascot_page = "???"
-            if current_cls_full_name in toc_data:
-                for entry in toc_data[current_cls_full_name]:
+            cls_base = class_name.split("[")[0]
+            if cls_base in toc_data:
+                for entry in toc_data[cls_base]:
                     if entry["definition"].strip() == mascot_data["definition"].strip():
                         mascot_page = entry["page"]
                         break
 
+            col_spec_mascot = (
+                r">{\hsize=1.5\hsize\RaggedRight}X "
+                r">{\hsize=0.9\hsize}X "
+                r">{\hsize=0.9\hsize}X "
+                r">{\hsize=0.9\hsize}X "
+                r">{\hsize=0.9\hsize}X "
+                r">{\hsize=0.9\hsize}X "
+                r">{\hsize=0.9\hsize}X"
+            )
+            mascot_table = Tabularx(
+                NoEscape(col_spec_mascot), width_argument=NoEscape(r"\textwidth")
+            )
+            _ = mascot_table.append(NoEscape(r"\toprule"))
+            _ = mascot_table.add_row(
+                (
+                    bold("Mascot Verb / Gloss"),
+                    bold("Present (3sg)"),
+                    bold("Present (1sg)"),
+                    bold("Imperf."),
+                    bold("Perf."),
+                    bold("Imper."),
+                    bold("Infin."),
+                )
+            )
+            _ = mascot_table.append(NoEscape(r"\midrule"))
             mascot_label = mascot_data["definition"] + f" (p. {mascot_page})"
             mascot_row: list[Any] = [
                 NoEscape(str(unicode_to_latex(clean_latex_text(mascot_label))))
@@ -520,22 +467,10 @@ def generate_community_companion_tex() -> bool:
                 mascot_row.append(
                     format_segmented_verb_community(mascot_verb, fn, segmented)
                 )
-            _ = summary_table.add_row(mascot_row)
-
-            if i < len(sorted_class_names) - 1:
-                _ = summary_table.append(NoEscape(r"\specialrule{1.5pt}{2pt}{2pt}"))
-
-        _ = summary_table.append(NoEscape(r"\bottomrule"))
-        doc.append(summary_table)
-        doc.append(NoEscape(r"\vspace{1em}"))
-
-        # Render member verb listings in 3 columns
-        for class_name in sorted_class_names:
-            group_verbs: list[DictionaryVerb] = class_groups[class_name]
-            doc.append(NoEscape(r"\needspace{1in}"))
-            doc.append(
-                NoEscape(r"\subsection*{" + str(unicode_to_latex(class_name)) + "}")
-            )
+            _ = mascot_table.add_row(mascot_row)
+            _ = mascot_table.append(NoEscape(r"\bottomrule"))
+            doc.append(mascot_table)
+            doc.append(NoEscape(r"\vspace{0.8em}"))
 
             sorted_group_verbs = sorted(
                 group_verbs,
@@ -546,11 +481,11 @@ def generate_community_companion_tex() -> bool:
                 ),
             )
 
-            doc.append(NoEscape(r"\begin{multicol}{3}"))
+            doc.append(NoEscape(r"\noindent\begin{multicols}{3}"))
             for v in sorted_group_verbs:
                 mp_tex = render_verb_minipage_community(v, resolver, toc_data)
                 doc.append(NoEscape(mp_tex + r"\\[1em]"))
-            doc.append(NoEscape(r"\end{multicol}"))
+            doc.append(NoEscape(r"\end{multicols}"))
             doc.append(NoEscape(r"\vspace{1em}"))
 
     print(f"Saving community companion TeX to {COMMUNITY_COMPANION_TEX_PATH}...")

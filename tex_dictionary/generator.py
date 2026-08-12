@@ -172,7 +172,10 @@ def generate_verb_table(
 
 
 def verb_config_to_tex(
-    verb: DictionaryVerb, root_str: str, parent_classes: list[str]
+    verb: DictionaryVerb,
+    root_str: str,
+    parent_classes: list[str],
+    ka_label: str = "Set A (k)",
 ) -> str:
     if not parent_classes:
         parent_classes = []
@@ -192,7 +195,7 @@ def verb_config_to_tex(
 
     pronoun_map = {
         (PronominalSet.SET_A, False, False): r"\textcolor{Red}{Set A}",
-        (PronominalSet.SET_A, True, False): r"\textcolor{Red}{Set A (k)}",
+        (PronominalSet.SET_A, True, False): r"\textcolor{Red}{" + ka_label + r"}",
         (PronominalSet.SET_A, False, True): r"\textcolor{Red}{Set A (pl)}",
         (PronominalSet.SET_B, False, False): r"\textcolor{RoyalBlue}{Set B}",
         (PronominalSet.SET_B, True, False): r"\textcolor{RoyalBlue}{Set B}",

@@ -323,35 +323,6 @@ def generate_companion_tex() -> bool:
         for fn in relevant_full_names:
             all_verbs_for_class.extend(resolver.get_verbs_for_class(fn))
 
-        if not all_verbs_for_class:
-            continue
-
-        doc.append(NoEscape(r"\needspace{3in}"))
-
-        col_spec = (
-            r">{\hsize=1.5\hsize\RaggedRight}X "
-            r">{\hsize=0.9\hsize}X "
-            r">{\hsize=0.9\hsize}X "
-            r">{\hsize=0.9\hsize}X "
-            r">{\hsize=0.9\hsize}X "
-            r">{\hsize=0.9\hsize}X"
-        )
-        summary_table = Tabularx(
-            NoEscape(col_spec), width_argument=NoEscape(r"\textwidth")
-        )
-        _ = summary_table.append(NoEscape(r"\toprule"))
-        _ = summary_table.add_row(
-            (
-                bold("Variant / Mascot"),
-                bold("Present"),
-                bold("Imperf."),
-                bold("Perf."),
-                bold("Imper."),
-                bold("Infin."),
-            )
-        )
-        _ = summary_table.append(NoEscape(r"\midrule"))
-
         class_groups: dict[str, list[DictionaryVerb]] = {}
         for fn in relevant_full_names:
             for v in resolver.get_verbs_for_class(fn):
@@ -359,107 +330,9 @@ def generate_companion_tex() -> bool:
 
         sorted_class_names = sorted(class_groups.keys())
 
-        expanded_patterns = load_expanded_patterns()
-        class_mascots: dict[str, tuple[DictionaryVerb, dict[str, Any]]] = {}
-        for class_name in sorted_class_names:
-            group_verbs = class_groups[class_name]
-
-            def get_mascot_score(verb: DictionaryVerb) -> tuple[int, str]:
-                label = resolver.get_variant_label(verb)
-                return (0 if label == "Plain" else 1, verb.definition.lower())
-
-            group_verbs_with_cid = [v for v in group_verbs if v.corpus_id]
-            if not group_verbs_with_cid:
-                mascot_verb = sorted(group_verbs, key=lambda v: v.definition.lower())[0]
-            else:
-                mascot_verb = sorted(group_verbs_with_cid, key=get_mascot_score)[0]
-            class_mascots[class_name] = (
-                mascot_verb,
-                resolver.get_mascot_data(mascot_verb),
-            )
-
         forms = ["present", "imperfective", "perfective", "imperative", "infinitive"]
 
-        for i, class_name in enumerate(sorted_class_names):
-            pattern = expanded_patterns.get(class_name)
-            if not pattern:
-                current_cls_full_name = class_name.split("[")[0]
-                current_cls = next(
-                    (c for c in aspect_classes if c.full_name == current_cls_full_name),
-                    base_cls,
-                )
-            else:
-                current_cls_full_name = pattern.name.split("[")[0]
-
-            section_base_pattern = expanded_patterns.get(base_cls.full_name)
-            is_derived = class_name != base_cls.full_name
-
-            rule_row: list[Any] = [italic(class_name)]
-            for f in forms:
-                if pattern:
-                    ending = pattern.get(f)
-                else:
-                    tags: dict[str, int] = {}
-                    tag_match = re.search(r"\[(.*)\]", class_name)
-                    if tag_match:
-                        for t in tag_match.group(1).split("-"):
-                            m = re.match(r"([a-z]+)(\d+)", t)
-                            if m:
-                                tags[m.group(1)] = int(m.group(2)) - 1
-
-                    def get_ending_legacy(form: str, idx: int = 0) -> str:
-                        val = getattr(current_cls, form)
-                        opts: list[str] = val.split(";")
-                        return opts[idx] if idx < len(opts) else opts[0]
-
-                    shorthands = {
-                        "present": "pres",
-                        "imperfective": "imperf",
-                        "perfective": "perf",
-                        "imperative": "imp",
-                        "infinitive": "inf",
-                    }
-                    idx = tags.get(shorthands.get(f, ""), 0)
-                    ending = get_ending_legacy(f, idx)
-
-                base_ending = (
-                    section_base_pattern.get(f) if section_base_pattern else None
-                )
-
-                if is_derived and base_ending is not None and ending == base_ending:
-                    rule_row.append(NoEscape(""))
-                else:
-                    rule_row.append(
-                        NoEscape(bold(str(unicode_to_latex(clean_latex_text(ending)))))
-                    )
-            _ = summary_table.add_row(rule_row)
-            _ = summary_table.append(NoEscape(r"\midrule"))
-
-            mascot_verb, mascot_data = class_mascots[class_name]
-            mascot_page = "???"
-            if current_cls_full_name in toc_data:
-                for entry in toc_data[current_cls_full_name]:
-                    if entry["definition"].strip() == mascot_data["definition"].strip():
-                        mascot_page = entry["page"]
-                        break
-
-            mascot_label = mascot_data["definition"] + f" (p. {mascot_page})"
-            mascot_row: list[Any] = [
-                NoEscape(str(unicode_to_latex(clean_latex_text(mascot_label))))
-            ]
-            for fn in forms:
-                segmented = mascot_verb.segmented_forms.get(fn, "---")
-                mascot_row.append(format_segmented_verb(mascot_verb, fn, segmented))
-            _ = summary_table.add_row(mascot_row)
-
-            if i < len(sorted_class_names) - 1:
-                _ = summary_table.append(NoEscape(r"\specialrule{1.5pt}{2pt}{2pt}"))
-
-        _ = summary_table.append(NoEscape(r"\bottomrule"))
-        doc.append(summary_table)
-        doc.append(NoEscape(r"\vspace{1em}"))
-
-        for class_name in sorted_class_names:
+        for sub_idx, class_name in enumerate(sorted_class_names):
             group_verbs: list[DictionaryVerb] = class_groups[class_name]
             doc.append(NoEscape(r"\needspace{1in}"))
             doc.append(
@@ -473,59 +346,107 @@ def generate_companion_tex() -> bool:
                     not v.morphology.config.pron.middle_voice == MiddleVoice.NONE,
                 ),
             )
-            for v in sorted_group_verbs:
-                p = "???"
-                v_base_class = v.morphology.class_name.split("[")[0]
-                if v_base_class in toc_data:
-                    for entry in toc_data[v_base_class]:
-                        if entry["definition"].strip() == v.definition.strip():
-                            p = entry["page"]
 
-                            clean_toc = re.sub(
-                                r"\\textcolor\s*\{[^}]*\}\s*\{", "", entry["verb_tex"]
-                            )
-                            clean_toc = re.sub(r"\\textbf\s*\{", "", clean_toc)
-                            clean_toc = (
-                                clean_toc.replace("}", "")
-                                .replace("-", "")
-                                .replace(" ", "")
-                                .strip()
-                            )
+            if sub_idx == 0:
+                # 1st subclass: render a table of forms for member verbs
+                col_spec_sub = (
+                    r">{\hsize=1.5\hsize\RaggedRight}X "
+                    r">{\hsize=0.9\hsize}X "
+                    r">{\hsize=0.9\hsize}X "
+                    r">{\hsize=0.9\hsize}X "
+                    r">{\hsize=0.9\hsize}X "
+                    r">{\hsize=0.9\hsize}X"
+                )
+                sub_table = Tabularx(
+                    NoEscape(col_spec_sub), width_argument=NoEscape(r"\textwidth")
+                )
+                _ = sub_table.append(NoEscape(r"\toprule"))
+                _ = sub_table.add_row(
+                    (
+                        bold("Verb / Gloss"),
+                        bold("Present"),
+                        bold("Imperf."),
+                        bold("Perf."),
+                        bold("Imper."),
+                        bold("Infin."),
+                    )
+                )
+                _ = sub_table.append(NoEscape(r"\midrule"))
+                for v in sorted_group_verbs:
+                    p = "???"
+                    v_base_class = v.morphology.class_name.split("[")[0]
+                    if v_base_class in toc_data:
+                        for entry in toc_data[v_base_class]:
+                            if entry["definition"].strip() == v.definition.strip():
+                                p = entry["page"]
+                                break
+                    v_label = f"{v.definition} (p. {p})"
+                    v_row: list[Any] = [
+                        NoEscape(str(unicode_to_latex(clean_latex_text(v_label))))
+                    ]
+                    for fn in forms:
+                        segmented = v.segmented_forms.get(fn, "---")
+                        v_row.append(format_segmented_verb(v, fn, segmented))
+                    _ = sub_table.add_row(v_row)
+                _ = sub_table.append(NoEscape(r"\bottomrule"))
+                doc.append(sub_table)
+            else:
+                # 2nd+ subclass: list of matching words table
+                for v in sorted_group_verbs:
+                    p = "???"
+                    v_base_class = v.morphology.class_name.split("[")[0]
+                    if v_base_class in toc_data:
+                        for entry in toc_data[v_base_class]:
+                            if entry["definition"].strip() == v.definition.strip():
+                                p = entry["page"]
 
-                            found_form = "present"
-                            for fn in [
-                                "present",
-                                "imperfective",
-                                "perfective",
-                                "imperative",
-                                "infinitive",
-                            ]:
-                                seg = v.segmented_forms.get(fn, "")
-                                if not seg:
-                                    continue
-                                clean_seg = (
-                                    seg.replace("-", "").replace("->", "").strip()
+                                clean_toc = re.sub(
+                                    r"\\textcolor\s*\{[^}]*\}\s*\{",
+                                    "",
+                                    entry["verb_tex"],
                                 )
-                                clean_seg = drop_dropped_phones(clean_seg)
-                                clean_seg = clean_seg.replace(" ", "")
-                                if clean_seg == clean_toc:
-                                    found_form = fn
-                                    break
+                                clean_toc = re.sub(r"\\textbf\s*\{", "", clean_toc)
+                                clean_toc = (
+                                    clean_toc.replace("}", "")
+                                    .replace("-", "")
+                                    .replace(" ", "")
+                                    .strip()
+                                )
 
-                            cleaned_def = clean_latex_text(entry["definition"])
-                            root_str = f"{v.morphology.h_grade_root}"
-                            if (
-                                v.morphology.glottal_grade_root
-                                and not v.morphology.glottal_grade_root
-                                == v.morphology.h_grade_root
-                            ):
-                                root_str += f" / {v.morphology.glottal_grade_root}"
-                            tex_to_use = verb_config_to_tex(
-                                v, root_str=root_str, parent_classes=[]
-                            )
-                            line = f"{tex_to_use} \\textit{{{unicode_to_latex(cleaned_def)}}} \\dotfill {p}\\\\"
-                            doc.append(NoEscape(line))
-                            break
+                                found_form = "present"
+                                for fn in [
+                                    "present",
+                                    "imperfective",
+                                    "perfective",
+                                    "imperative",
+                                    "infinitive",
+                                ]:
+                                    seg = v.segmented_forms.get(fn, "")
+                                    if not seg:
+                                        continue
+                                    clean_seg = (
+                                        seg.replace("-", "").replace("->", "").strip()
+                                    )
+                                    clean_seg = drop_dropped_phones(clean_seg)
+                                    clean_seg = clean_seg.replace(" ", "")
+                                    if clean_seg == clean_toc:
+                                        found_form = fn
+                                        break
+
+                                cleaned_def = clean_latex_text(entry["definition"])
+                                root_str = f"{v.morphology.h_grade_root}"
+                                if (
+                                    v.morphology.glottal_grade_root
+                                    and not v.morphology.glottal_grade_root
+                                    == v.morphology.h_grade_root
+                                ):
+                                    root_str += f" / {v.morphology.glottal_grade_root}"
+                                tex_to_use = verb_config_to_tex(
+                                    v, root_str=root_str, parent_classes=[]
+                                )
+                                line = f"{tex_to_use} \\textit{{{unicode_to_latex(cleaned_def)}}} \\dotfill {p}\\\\"
+                                doc.append(NoEscape(line))
+                                break
             doc.append(NoEscape(r"\vspace{1em}"))
 
     print(f"Saving companion TeX to {COMPANION_TEX_PATH}...")
