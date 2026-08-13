@@ -293,66 +293,6 @@
             }
         ]
     },
-    "become": {
-        "available_options": {
-            "imp": 1,
-            "imperf": 1,
-            "inf": 4,
-            "perf": 1,
-            "pres": 1
-        },
-        "can_have_variants": true,
-        "combinations": {
-            "become": 14,
-            "become[inf2]": 8,
-            "become[inf3]": 7,
-            "become[inf4]": 4
-        },
-        "slots": {
-            "imp": {
-                "1": 33
-            },
-            "imperf": {
-                "1": 33
-            },
-            "inf": {
-                "1": 14,
-                "2": 8,
-                "3": 7,
-                "4": 4
-            },
-            "perf": {
-                "1": 33
-            },
-            "pres": {
-                "1": 33
-            }
-        },
-        "total_matches": 33,
-        "unused_options": [],
-        "variant_stats": [
-            {
-                "count": 7,
-                "percent": 21.21,
-                "variant": "become[inf3]"
-            },
-            {
-                "count": 14,
-                "percent": 42.42,
-                "variant": "become"
-            },
-            {
-                "count": 8,
-                "percent": 24.24,
-                "variant": "become[inf2]"
-            },
-            {
-                "count": 4,
-                "percent": 12.12,
-                "variant": "become[inf4]"
-            }
-        ]
-    },
     "cause": {
         "available_options": {
             "imp": 1,
@@ -544,6 +484,61 @@
             }
         ]
     },
+    "g-ts": {
+        "available_options": {
+            "imp": 1,
+            "imperf": 1,
+            "inf": 4,
+            "perf": 1,
+            "pres": 1
+        },
+        "can_have_variants": true,
+        "combinations": {
+            "g-ts": 14,
+            "g-ts[inf2]": 8,
+            "g-ts[inf3]": 7
+        },
+        "slots": {
+            "imp": {
+                "1": 29
+            },
+            "imperf": {
+                "1": 29
+            },
+            "inf": {
+                "1": 14,
+                "2": 8,
+                "3": 7
+            },
+            "perf": {
+                "1": 29
+            },
+            "pres": {
+                "1": 29
+            }
+        },
+        "total_matches": 29,
+        "unused_options": [
+            "inf4"
+        ],
+        "variant_stats": [
+            {
+                "count": 7,
+                "percent": 24.14,
+                "variant": "g-ts[inf3]"
+            },
+            {
+                "count": 14,
+                "percent": 48.28,
+                "variant": "g-ts"
+            },
+            {
+                "count": 8,
+                "percent": 27.59,
+                "variant": "g-ts[inf2]"
+            }
+        ]
+    },
     "go": {
         "available_options": {
             "imp": 1,
@@ -633,6 +628,45 @@
                 "count": 1,
                 "percent": 16.67,
                 "variant": "go-in[perf2]"
+            }
+        ]
+    },
+    "hg-hts": {
+        "available_options": {
+            "imp": 1,
+            "imperf": 1,
+            "inf": 1,
+            "perf": 1,
+            "pres": 1
+        },
+        "can_have_variants": false,
+        "combinations": {
+            "hg-hts": 4
+        },
+        "slots": {
+            "imp": {
+                "1": 4
+            },
+            "imperf": {
+                "1": 4
+            },
+            "inf": {
+                "1": 4
+            },
+            "perf": {
+                "1": 4
+            },
+            "pres": {
+                "1": 4
+            }
+        },
+        "total_matches": 4,
+        "unused_options": [],
+        "variant_stats": [
+            {
+                "count": 4,
+                "percent": 100.0,
+                "variant": "hg-hts"
             }
         ]
     },

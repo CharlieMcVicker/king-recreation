@@ -43,6 +43,7 @@ from dictionary_pipeline.phases.select_canonical_derivations.artifacts import (
 )
 from dictionary_pipeline.row_models import ProcessedRow
 from morphology.morphemes.aspect.pattern_registry import PatternRegistry
+from morphology.morphemes.post_root_morphemes import PostRootMorphemeRegistry
 
 
 def _prepare_filtered_matches(
@@ -429,6 +430,12 @@ def _analyze_roots_by_macro(registry: PatternRegistry) -> None:
             classes_to_parents[class_name],
             class_name,
         )
+
+        if entry.morphology.post_root_morpheme:
+            reg = PostRootMorphemeRegistry.get_instance()
+            h_grade_root += reg.morphemes_by_name[
+                entry.morphology.post_root_morpheme
+            ].form
 
         if class_name and h_grade_root:
             # Get the last character of the h_grade_root
