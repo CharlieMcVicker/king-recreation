@@ -449,13 +449,13 @@ def generate_community_companion_tex() -> bool:
             _ = mascot_table.append(NoEscape(r"\toprule"))
             _ = mascot_table.add_row(
                 (
-                    bold("Mascot Verb / Gloss"),
-                    bold("Present (3sg)"),
-                    bold("Present (1sg)"),
-                    bold("Imperf."),
-                    bold("Perf."),
-                    bold("Imper."),
-                    bold("Infin."),
+                    bold("ᎠᏅᏔᏗᏍᏙᏗ ᎧᏁᎢᏍᏗ"),
+                    bold("ᎾᏛᏁᎭ"),
+                    bold("ᏂᎦᏛᏁᎭ"),
+                    bold("ᎿᏛᎦ"),
+                    bold("ᏄᏛᏁᎸᎢ"),
+                    bold("ᎾᏛᏁᎰᎢ"),
+                    bold("ᏳᏛᏁᏗ"),
                 )
             )
             _ = mascot_table.append(NoEscape(r"\midrule"))
