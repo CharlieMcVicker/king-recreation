@@ -434,41 +434,67 @@ def generate_community_companion_tex() -> bool:
                         mascot_page = entry["page"]
                         break
 
-            col_spec_mascot = (
-                r">{\hsize=1.5\hsize\RaggedRight}X "
-                r">{\hsize=0.9\hsize}X "
-                r">{\hsize=0.9\hsize}X "
-                r">{\hsize=0.9\hsize}X "
-                r">{\hsize=0.9\hsize}X "
-                r">{\hsize=0.9\hsize}X "
-                r">{\hsize=0.9\hsize}X"
-            )
+            col_spec_mascot = r"@{} X X X @{}"
             mascot_table = Tabularx(
                 NoEscape(col_spec_mascot), width_argument=NoEscape(r"\textwidth")
             )
             _ = mascot_table.append(NoEscape(r"\toprule"))
-            _ = mascot_table.add_row(
-                (
-                    bold("ᎠᏅᏔᏗᏍᏙᏗ ᎧᏁᎢᏍᏗ"),
-                    bold("ᎾᏛᏁᎭ"),
-                    bold("ᏂᎦᏛᏁᎭ"),
-                    bold("ᎿᏛᎦ"),
-                    bold("ᏄᏛᏁᎸᎢ"),
-                    bold("ᎾᏛᏁᎰᎢ"),
-                    bold("ᏳᏛᏁᏗ"),
+            mascot_label = mascot_data["definition"] + f" (p. {mascot_page})"
+            _ = mascot_table.append(
+                NoEscape(
+                    r"\multicolumn{3}{@{}l}{\textbf{"
+                    + str(unicode_to_latex(clean_latex_text(mascot_label)))
+                    + r"}} \\"
                 )
             )
             _ = mascot_table.append(NoEscape(r"\midrule"))
-            mascot_label = mascot_data["definition"] + f" (p. {mascot_page})"
-            mascot_row: list[Any] = [
-                NoEscape(str(unicode_to_latex(clean_latex_text(mascot_label))))
-            ]
-            for fn in mascot_forms:
-                segmented = mascot_verb.segmented_forms.get(fn, "---")
-                mascot_row.append(
-                    format_segmented_verb_community(mascot_verb, fn, segmented)
+            _ = mascot_table.add_row(
+                (
+                    bold("ᎾᏛᏁᎭ"),
+                    bold("ᎾᏛᏁᎰᎢ"),
+                    bold("ᏄᏛᏁᎸᎢ"),
                 )
-            _ = mascot_table.add_row(mascot_row)
+            )
+            pres_form = format_segmented_verb_community(
+                mascot_verb,
+                "present",
+                mascot_verb.segmented_forms.get("present", "---"),
+            )
+            hab_form = format_segmented_verb_community(
+                mascot_verb,
+                "habitual",
+                mascot_verb.segmented_forms.get("imperfective", "---"),
+            )
+            comp_form = format_segmented_verb_community(
+                mascot_verb,
+                "completive",
+                mascot_verb.segmented_forms.get("perfective", "---"),
+            )
+            _ = mascot_table.add_row((pres_form, hab_form, comp_form))
+            _ = mascot_table.append(NoEscape(r"\\[0.4em]"))
+            _ = mascot_table.add_row(
+                (
+                    bold("ᏂᎦᏛᏁᎭ"),
+                    bold("ᎿᏛᎦ"),
+                    bold("ᏳᏛᏁᏗ"),
+                )
+            )
+            pres1_form = format_segmented_verb_community(
+                mascot_verb,
+                "present_1sg",
+                mascot_verb.segmented_forms.get("present_1sg", "---"),
+            )
+            imp_form = format_segmented_verb_community(
+                mascot_verb,
+                "imperative",
+                mascot_verb.segmented_forms.get("imperative", "---"),
+            )
+            inf_form = format_segmented_verb_community(
+                mascot_verb,
+                "infinitive",
+                mascot_verb.segmented_forms.get("infinitive", "---"),
+            )
+            _ = mascot_table.add_row((pres1_form, imp_form, inf_form))
             _ = mascot_table.append(NoEscape(r"\bottomrule"))
             doc.append(mascot_table)
             doc.append(NoEscape(r"\vspace{0.8em}"))
@@ -476,9 +502,11 @@ def generate_community_companion_tex() -> bool:
             sorted_group_verbs = sorted(
                 group_verbs,
                 key=lambda v: (
+                    v.corpus_id if v.corpus_id is not None else 999999,
                     v.morphology.h_grade_root,
-                    v.morphology.glottal_grade_root,
+                    v.morphology.glottal_grade_root or "",
                     not v.morphology.config.pron.middle_voice == MiddleVoice.NONE,
+                    v.definition,
                 ),
             )
 
