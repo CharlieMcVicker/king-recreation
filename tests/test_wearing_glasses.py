@@ -41,8 +41,8 @@ def test_wearing_glasses_matching():
     print(f"InfEventful matches: {inf_matches}")
     print(f"FullStative matches: {full_stative_matches}")
 
-    # For InfEventful predictions, it should match the aspect class hvsk-han
+    # For InfEventful predictions, it should match the aspect class hvsg-han
     inf_match_classes = [m["class"] for m in inf_matches]
     assert (
-        "hvsk-han" in inf_match_classes
-    ), f"Expected InfEventful to match 'hvsk-han', but got {inf_match_classes}"
+        "hvsg-han" in inf_match_classes
+    ), f"Expected InfEventful to match 'hvsg-han', but got {inf_match_classes}"

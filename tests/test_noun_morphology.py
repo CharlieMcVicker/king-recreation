@@ -81,6 +81,3 @@ def test_get_noun_wordspec():
     assert spec_incompletive.syntactic_category == SyntacticCategory.VERBY
     assert spec_incompletive.aspect == Aspect.IMPERFECTIVE
     assert spec_incompletive.tense_ending == "v'i"
-
-
-

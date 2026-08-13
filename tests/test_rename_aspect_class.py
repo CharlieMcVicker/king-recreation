@@ -1,79 +1,49 @@
+import json
 import os
 import tempfile
 import unittest
 
-from scripts.rename_aspect_class import (
-    build_replacement_patterns,
-    process_file,
-    replace_in_value,
-)
+from scripts.rename_aspect_class import ParentClassGroupRule, parse_mapping_file
 
 
 class TestRenameAspectClass(unittest.TestCase):
-    def test_pattern_matching_exact_and_subvariants(self):
-        renames = {"sk-s": "sk-s-new", "go-in": "go-in-new"}
-        patterns = build_replacement_patterns(renames)
+    def test_parent_class_group_rule(self):
+        # Rule renaming parent class 'hvsk' to 'hvsg' with specific subclass renames
+        rule = ParentClassGroupRule("hvsk", "hvsg", {"nh": "hn", "han": "han"})
 
-        # Exact match
-        val, changed = replace_in_value("sk-s", patterns)
-        self.assertTrue(changed)
-        self.assertEqual(val, "sk-s-new")
+        # Split matching & transformation
+        self.assertTrue(rule.matches_split("hvsk", "nh"))
+        self.assertTrue(rule.matches_split("hvsk", "han"))
+        self.assertTrue(rule.matches_split("hvsk", "other"))
+        self.assertFalse(rule.matches_split("sk-h", "nh"))
 
-        # Bracketed subvariant match
-        val, changed = replace_in_value("sk-s[hi-hihst]", patterns)
-        self.assertTrue(changed)
-        self.assertEqual(val, "sk-s-new[hi-hihst]")
+        self.assertEqual(rule.transform_split("hvsk", "nh"), ("hvsg", "hn"))
+        self.assertEqual(rule.transform_split("hvsk", "other"), ("hvsg", "other"))
 
-        # Hyphenated subclass match (e.g. sk-s-hi-hihst or sk-s-a[inf2])
-        val, changed = replace_in_value("sk-s-hi-hihst", patterns)
-        self.assertTrue(changed)
-        self.assertEqual(val, "sk-s-new-hi-hihst")
+        # Joined matching & transformation
+        self.assertTrue(rule.matches_joined("hvsk-nh"))
+        self.assertTrue(rule.matches_joined("hvsk-nh[perf2]"))
+        self.assertTrue(rule.matches_joined("hvsk-other"))
 
-        val, changed = replace_in_value("sk-s-a[inf2]", patterns)
-        self.assertTrue(changed)
-        self.assertEqual(val, "sk-s-new-a[inf2]")
+        self.assertEqual(rule.transform_joined("hvsk-nh"), "hvsg-hn")
+        self.assertEqual(rule.transform_joined("hvsk-nh[perf2]"), "hvsg-hn[perf2]")
+        self.assertEqual(rule.transform_joined("hvsk-other"), "hvsg-other")
 
-        # Non-matching prefix
-        val, changed = replace_in_value("sk-other", patterns)
-        self.assertFalse(changed)
-        self.assertEqual(val, "sk-other")
-
-    def test_process_file(self):
-        renames = {"cause": "cause-renamed"}
-        patterns = build_replacement_patterns(renames)
-
-        with tempfile.NamedTemporaryFile("w+", delete=False, suffix=".csv") as tmp:
-            tmp.write("corpus_id,class,from_class,to_class\n")
-            tmp.write("1,cause,cause[perf2],g-ts\n")
-            tmp.write("2,cause[perf3],g-ts,cause\n")
+    def test_parse_mapping_file_structured(self):
+        data = [
+            {"old": "hvsk", "new": "hvsg", "subclasses": {"nh": "hn", "han": "han"}}
+        ]
+        with tempfile.NamedTemporaryFile("w+", delete=False, suffix=".json") as tmp:
+            json.dump(data, tmp)
             tmp_path = tmp.name
 
         try:
-            # Dry run test
-            counts = process_file(
-                tmp_path, ["class", "from_class", "to_class"], patterns, dry_run=True
-            )
-            self.assertEqual(counts["class"], 2)
-            self.assertEqual(counts["from_class"], 1)
-            self.assertEqual(counts["to_class"], 1)
-
-            # Verify file wasn't changed on dry run
-            with open(tmp_path, "r") as f:
-                content = f.read()
-            self.assertIn("1,cause,cause[perf2],g-ts", content)
-
-            # Actual run
-            counts = process_file(
-                tmp_path, ["class", "from_class", "to_class"], patterns, dry_run=False
-            )
-            with open(tmp_path, "r") as f:
-                lines = f.readlines()
-            self.assertEqual(
-                lines[1].strip(), "1,cause-renamed,cause-renamed[perf2],g-ts"
-            )
-            self.assertEqual(
-                lines[2].strip(), "2,cause-renamed[perf3],g-ts,cause-renamed"
-            )
+            rules = parse_mapping_file(tmp_path)
+            self.assertEqual(len(rules), 1)
+            r = rules[0]
+            self.assertEqual(r.old_class, "hvsk")
+            self.assertEqual(r.new_class, "hvsg")
+            self.assertEqual(r.subclasses_map["nh"], "hn")
         finally:
             if os.path.exists(tmp_path):
                 os.remove(tmp_path)

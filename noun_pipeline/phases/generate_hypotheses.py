@@ -21,7 +21,9 @@ class NounHypothesis:
     plural_word: str | None = None
 
 
-def generate_hypotheses(noun: str, plural_word: str | None = None) -> List[NounHypothesis]:
+def generate_hypotheses(
+    noun: str, plural_word: str | None = None
+) -> List[NounHypothesis]:
     hypotheses = []
 
     # Define possible suffixes and their structural mappings
@@ -46,7 +48,13 @@ def generate_hypotheses(noun: str, plural_word: str | None = None) -> List[NounH
 
             # Hypothesis 1: No pronominal stripped
             word_spec_no_pron = get_noun_wordspec(structure)
-            h_no_pron = NounHypothesis(noun, word_spec_no_pron, base_word, structure.value, plural_word=plural_word)
+            h_no_pron = NounHypothesis(
+                noun,
+                word_spec_no_pron,
+                base_word,
+                structure.value,
+                plural_word=plural_word,
+            )
             if h_no_pron not in hypotheses:
                 hypotheses.append(h_no_pron)
 
@@ -71,7 +79,13 @@ def generate_hypotheses(noun: str, plural_word: str | None = None) -> List[NounH
                                     number=number,
                                     pronominal_set=p_set,
                                 )
-                                hypothesis = NounHypothesis(noun, word_spec, stem, structure.value, plural_word=plural_word)
+                                hypothesis = NounHypothesis(
+                                    noun,
+                                    word_spec,
+                                    stem,
+                                    structure.value,
+                                    plural_word=plural_word,
+                                )
                                 if hypothesis not in hypotheses:
                                     hypotheses.append(hypothesis)
                         except Exception:
@@ -140,6 +154,7 @@ def phase_2_generate_hypotheses():
         writer.writerows(all_hypotheses)
 
     print(f"Generated {len(all_hypotheses)} hypotheses and saved to {output_path}")
+
 
 if __name__ == "__main__":
     phase_2_generate_hypotheses()

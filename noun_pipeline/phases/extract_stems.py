@@ -1,13 +1,13 @@
 import csv
-import os
 import dataclasses
+import os
 from dataclasses import dataclass
 from typing import List
 
-from morphology.reconstruction import ReconstructionEngine, MorphologicalVerb, desegment
-from morphology.morphemes.prefixes import PrefixConfig
 from morphology.morphemes.aspect.pattern_registry import PatternRegistry
+from morphology.morphemes.prefixes import PrefixConfig
 from morphology.morphology_types import Number, Person, PronominalSet
+from morphology.reconstruction import MorphologicalVerb, ReconstructionEngine, desegment
 from morphology.word_spec import NounStructure, WordSpec, get_noun_wordspec
 from noun_pipeline.phases.generate_hypotheses import NounHypothesis
 
@@ -30,7 +30,7 @@ def extract_and_validate_stems(
 ) -> List[ValidatedNounStem]:
     registry = PatternRegistry.get_instance()
     registry.load_from_csv()
-    
+
     engine = ReconstructionEngine(None)
 
     validated = []
@@ -71,11 +71,16 @@ def extract_and_validate_stems(
                 is_valid = True
                 verb_root = root
                 paradigm = cand.name
-                
+
                 if h.plural_word:
-                    from morphology.morphemes.prefixes.pronominals import StemType, PronominalConfig
-                    from morphology.morphemes.prefixes.prepronominals import PrePronominalConfig
-                    
+                    from morphology.morphemes.prefixes.prepronominals import (
+                        PrePronominalConfig,
+                    )
+                    from morphology.morphemes.prefixes.pronominals import (
+                        PronominalConfig,
+                        StemType,
+                    )
+
                     verb = MorphologicalVerb(
                         h_grade_root=verb_root,
                         glottal_grade_root=verb_root,
@@ -84,15 +89,16 @@ def extract_and_validate_stems(
                         config=PrefixConfig(
                             pre=PrePronominalConfig(),
                             pron=PronominalConfig(
-                                set_type=h.word_spec.pronominal_set or PronominalSet.SET_A,
-                                stem_type=StemType.CONSONANT
-                            )
+                                set_type=h.word_spec.pronominal_set
+                                or PronominalSet.SET_A,
+                                stem_type=StemType.CONSONANT,
+                            ),
                         ),
                     )
                     plural_spec = dataclasses.replace(h.word_spec, number=Number.PLURAL)
                     animate_forms = engine.reconstruct_spec(verb, plural_spec)
                     animate_desegmented = [desegment(f) for f in animate_forms]
-                    
+
                     inanimate_verb = MorphologicalVerb(
                         h_grade_root=verb_root,
                         glottal_grade_root=verb_root,
@@ -101,17 +107,20 @@ def extract_and_validate_stems(
                         config=PrefixConfig(
                             pre=PrePronominalConfig(distributive=True),
                             pron=PronominalConfig(
-                                set_type=h.word_spec.pronominal_set or PronominalSet.SET_A,
-                                stem_type=StemType.CONSONANT
-                            )
+                                set_type=h.word_spec.pronominal_set
+                                or PronominalSet.SET_A,
+                                stem_type=StemType.CONSONANT,
+                            ),
                         ),
                     )
-                    inanimate_forms = engine.reconstruct_spec(inanimate_verb, h.word_spec)
+                    inanimate_forms = engine.reconstruct_spec(
+                        inanimate_verb, h.word_spec
+                    )
                     inanimate_desegmented = [desegment(f) for f in inanimate_forms]
-                    
+
                     both_forms = engine.reconstruct_spec(inanimate_verb, plural_spec)
                     both_desegmented = [desegment(f) for f in both_forms]
-                    
+
                     if h.plural_word in animate_desegmented:
                         is_animate_plural = True
                     elif h.plural_word in inanimate_desegmented:
@@ -121,7 +130,7 @@ def extract_and_validate_stems(
                         is_distributive_plural = True
                     else:
                         is_valid = False
-                
+
                 if is_valid:
                     break
 
@@ -152,7 +161,7 @@ def phase_3_extract_stems():
 
     hypotheses = []
     corpus_ids = []
-    
+
     with open(input_path, "r", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
@@ -253,6 +262,7 @@ def phase_3_extract_stems():
     print(
         f"Validated {valid_count}/{len(validated_stems)} stems and saved to {output_path}"
     )
+
 
 if __name__ == "__main__":
     phase_3_extract_stems()

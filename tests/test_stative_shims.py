@@ -762,7 +762,7 @@ def test_stative_no_imp_row_spec() -> None:
     assert not spec.row_test(non_matching_row)
 
     expected_parses = [
-        ("1564", "stative-s", "hvsk-nh"),
+        ("1564", "stative-s", "hvsg-hn"),
         # You can add more pairings here!
     ]
 

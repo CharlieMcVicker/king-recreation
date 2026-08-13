@@ -1,9 +1,9 @@
 import argparse
 
 from noun_pipeline.phases.create_corpus import create_corpus
+from noun_pipeline.phases.cross_reference import phase_4_cross_reference
 from noun_pipeline.phases.extract_stems import phase_3_extract_stems
 from noun_pipeline.phases.generate_hypotheses import phase_2_generate_hypotheses
-from noun_pipeline.phases.cross_reference import phase_4_cross_reference
 
 
 def main():
@@ -21,4 +21,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
