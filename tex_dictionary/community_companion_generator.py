@@ -462,12 +462,12 @@ def generate_community_companion_tex() -> bool:
             )
             hab_form = format_segmented_verb_community(
                 mascot_verb,
-                "habitual",
+                "imperfective",
                 mascot_verb.segmented_forms.get("imperfective", "---"),
             )
             comp_form = format_segmented_verb_community(
                 mascot_verb,
-                "completive",
+                "perfective",
                 mascot_verb.segmented_forms.get("perfective", "---"),
             )
             _ = mascot_table.add_row((pres_form, hab_form, comp_form))
