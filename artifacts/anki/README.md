@@ -57,4 +57,4 @@ If importing via CSV files (`.csv`), follow these steps in Anki:
      - Front Template: `card2_front.html`
      - Back Template: `card2_back.html`
    - **Styling**: `styling.css`
-6. Set **Deck**: Select `Cherokee::Roots & Mascots`.
+6. Set **Deck**: Select `Cherokee Roots::Roots & Mascots`.

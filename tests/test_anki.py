@@ -23,7 +23,7 @@ def test_anki_card_model():
     card = AnkiCard(
         card_id="test_1",
         card_type="mascot_tense",
-        deck="Cherokee::Roots & Mascots",
+        deck="Cherokee Roots::Roots & Mascots",
         sequence_order=1,
         class_name="ih-ohd",
         verb_id="361",
@@ -39,7 +39,7 @@ def test_anki_card_model():
     row = card.to_csv_row()
     assert row["Id"] == "test_1"
     assert row["CardType"] == "mascot_tense"
-    assert row["Deck"] == "Cherokee::Roots & Mascots"
+    assert row["Deck"] == "Cherokee Roots::Roots & Mascots"
     assert row["SequenceOrder"] == "1"
     assert row["Class"] == "ih-ohd"
     assert row["Tags"] == "cherokee class::ih-ohd"

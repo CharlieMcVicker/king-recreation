@@ -312,8 +312,8 @@ def generate_anki_cards(
     root_cards_by_verb_id: dict[str, AnkiCard] = {}
     practice_cards_by_verb_id: dict[str, list[AnkiCard]] = {}
 
-    deck_main = "Cherokee::Roots & Mascots"
-    deck_practice = "Cherokee::Practice"
+    deck_main = "Cherokee Roots::Roots & Mascots"
+    deck_practice = "Cherokee Roots::Practice"
 
     # Build Type 1: Mascot Tense Cards
     for c_name in ordered_class_names:
@@ -517,12 +517,12 @@ def generate_anki_cards(
     media_files = get_anki_media_files()
 
     export_targets = [
-        ("all_cards_interleaved", "Cherokee::All Interleaved", all_cards),
-        ("mascots_and_roots", "Cherokee::Roots & Mascots", mascots_and_roots),
-        ("mascots", "Cherokee::Mascots", mascots),
-        ("roots", "Cherokee::Roots", roots),
-        ("practice", "Cherokee::Practice", practice),
-        ("practice_sampled", "Cherokee::Practice (Sampled)", practice_sampled),
+        ("all_cards_interleaved", "Cherokee Roots::All Interleaved", all_cards),
+        ("mascots_and_roots", "Cherokee Roots::Roots & Mascots", mascots_and_roots),
+        ("mascots", "Cherokee Roots::Mascots", mascots),
+        ("roots", "Cherokee Roots::Roots", roots),
+        ("practice", "Cherokee Roots::Practice", practice),
+        ("practice_sampled", "Cherokee Roots::Practice (Sampled)", practice_sampled),
     ]
 
     for basename, deck_name, card_list in export_targets:
@@ -665,7 +665,7 @@ If importing via CSV files (`.csv`), follow these steps in Anki:
      - Front Template: `card2_front.html`
      - Back Template: `card2_back.html`
    - **Styling**: `styling.css`
-6. Set **Deck**: Select `Cherokee::Roots & Mascots`.
+6. Set **Deck**: Select `Cherokee Roots::Roots & Mascots`.
 """
     with open(os.path.join(output_dir, "README.md"), "w", encoding="utf-8") as f:
         f.write(readme_content)

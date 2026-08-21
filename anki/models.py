@@ -12,7 +12,7 @@ from typing import Any
 class AnkiCard:
     card_id: str
     card_type: str  # 'mascot_tense', 'verb_root', 'practice_test'
-    deck: str       # 'Cherokee::Roots & Mascots' or 'Cherokee::Practice'
+    deck: str       # 'Cherokee Roots::Roots & Mascots' or 'Cherokee Roots::Practice'
     sequence_order: int
     class_name: str
     verb_id: str
