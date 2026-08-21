@@ -15,6 +15,10 @@ from typing import Any
 
 import genanki
 
+from anki.english_inflector import (
+    clean_pronouns,
+    inflect_english_definition,
+)
 from anki.formatter import (
     FORM_LABELS,
     FORM_MAP,
@@ -329,9 +333,10 @@ def generate_anki_cards(
                 continue
 
             card_id = f"mascot_{c_name}_{fn}_{cid_str}"
+            m_def = inflect_english_definition(mascot_verb.definition, fn)
             front = build_card_front_html(
                 card_type="mascot_tense",
-                definition=mascot_verb.definition,
+                definition=m_def,
                 tense_name=eng_tense,
                 syllabary_header=syl_header,
                 class_name=c_name,
@@ -356,7 +361,7 @@ def generate_anki_cards(
                 sequence_order=0,
                 class_name=c_name,
                 verb_id=cid_str,
-                definition=mascot_verb.definition,
+                definition=m_def,
                 root=mascot_verb.morphology.h_grade_root,
                 tense=eng_tense,
                 front=front,
@@ -392,9 +397,10 @@ def generate_anki_cards(
 
             # Type 2: Verb Root Card
             root_card_id = f"root_{c_name}_{vid}"
+            r_def = clean_pronouns(v.definition, "3rd_she")
             r_front = build_card_front_html(
                 card_type="verb_root",
-                definition=v.definition,
+                definition=r_def,
                 class_name=c_name,
             )
             r_back = build_card_back_html(
@@ -413,7 +419,7 @@ def generate_anki_cards(
                 sequence_order=0,
                 class_name=c_name,
                 verb_id=vid,
-                definition=v.definition,
+                definition=r_def,
                 root=comm_root,
                 tense="",
                 front=r_front,
@@ -431,9 +437,10 @@ def generate_anki_cards(
                     continue
 
                 p_card_id = f"practice_{c_name}_{fn}_{vid}"
+                p_def = inflect_english_definition(v.definition, fn)
                 p_front = build_card_front_html(
                     card_type="practice_test",
-                    definition=v.definition,
+                    definition=p_def,
                     tense_name=eng_tense,
                     syllabary_header=syl_header,
                     class_name=c_name,
@@ -457,7 +464,7 @@ def generate_anki_cards(
                     sequence_order=0,
                     class_name=c_name,
                     verb_id=vid,
-                    definition=v.definition,
+                    definition=p_def,
                     root=comm_root,
                     tense=eng_tense,
                     front=p_front,

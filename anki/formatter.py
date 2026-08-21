@@ -16,8 +16,8 @@ from dictionary_pipeline.dictionary_forms import (
 from dictionary_pipeline.orthography import unrespell_consonants
 from morphology.h_alternation import prevent_C_glottal_cluster
 from morphology.morphology_types import PronominalSet
-from morphology.reconstruction import drop_dropped_phones
 from tex_dictionary.companion_data import AspectClass
+from anki.english_inflector import clean_pronouns
 
 FORM_LABELS: list[tuple[str, str, str]] = [
     ("present", "Present", "ᎾᏛᏁᎭ"),
@@ -254,7 +254,7 @@ def build_verb_table_html(
         seg = verb.segmented_forms.get(fn, "---")
         verb_forms[fn] = format_segmented_verb_html(verb, fn, seg)
 
-    verb_def = html.escape(verb.definition)
+    verb_def = html.escape(clean_pronouns(verb.definition, "3rd_she"))
     verb_root = unrespell_consonants(verb.morphology.h_grade_root)
     verb_template = format_template_html(verb)
     label = "Mascot:" if is_mascot else "Verb:"

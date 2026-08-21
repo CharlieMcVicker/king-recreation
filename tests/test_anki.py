@@ -182,3 +182,50 @@ def test_sequencer_invariants():
             r_seq = root_positions[vid]
             for p_seq in p_seqs:
                 assert r_seq < p_seq, f"Root card {vid} (order {r_seq}) must precede practice card (order {p_seq})"
+
+
+def test_english_semantic_inflections():
+    from anki.english_inflector import inflect_english_definition
+
+    # 1. Standard action verb
+    d1 = "he/she is attempting it"
+    assert inflect_english_definition(d1, "present") == "she is attempting it"
+    assert inflect_english_definition(d1, "imperfective") == "she attempts it"
+    assert inflect_english_definition(d1, "perfective") == "she attempted it"
+    assert inflect_english_definition(d1, "present_1sg") == "I am attempting it"
+    assert inflect_english_definition(d1, "imperative") == "attempt it!"
+    assert inflect_english_definition(d1, "infinitive") == "(for her) to attempt it"
+
+    # 2. Reflexive verb (person adaptation)
+    d2 = "he/she is fanning himself/herself"
+    assert inflect_english_definition(d2, "present") == "she is fanning herself"
+    assert inflect_english_definition(d2, "imperfective") == "she fans herself"
+    assert inflect_english_definition(d2, "perfective") == "she fanned herself"
+    assert inflect_english_definition(d2, "present_1sg") == "I am fanning myself"
+    assert inflect_english_definition(d2, "imperative") == "fan yourself!"
+    assert inflect_english_definition(d2, "infinitive") == "(for her) to fan herself"
+
+    # 3. Stative verb
+    d3 = "he/she wants it"
+    assert inflect_english_definition(d3, "present") == "she wants it"
+    assert inflect_english_definition(d3, "imperfective") == "she wants it (habitually)"
+    assert inflect_english_definition(d3, "perfective") == "she wanted it"
+    assert inflect_english_definition(d3, "present_1sg") == "I want it"
+    assert inflect_english_definition(d3, "imperative") == "want it!"
+    assert inflect_english_definition(d3, "infinitive") == "(for her) to want it"
+
+    # 4. Weather / Impersonal verb
+    d4 = "it\u2019s snowing"
+    assert inflect_english_definition(d4, "present") == "it is snowing"
+    assert inflect_english_definition(d4, "imperfective") == "it snows"
+    assert inflect_english_definition(d4, "perfective") == "it snowed"
+    assert inflect_english_definition(d4, "imperative") == "snow!"
+    assert inflect_english_definition(d4, "infinitive") == "(for it) to snow"
+
+    # 5. Plural verb
+    d5 = "they are gathering"
+    assert inflect_english_definition(d5, "present") == "they are gathering"
+    assert inflect_english_definition(d5, "imperfective") == "they gather"
+    assert inflect_english_definition(d5, "perfective") == "they gathered"
+    assert inflect_english_definition(d5, "imperative") == "gather!"
+    assert inflect_english_definition(d5, "infinitive") == "(for them) to gather"
