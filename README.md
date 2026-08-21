@@ -225,3 +225,35 @@ This command:
 4. Compiles the document using `xelatex` (if available) to produce `artifacts/tex/main.pdf`.
 
 > See [TeX Documentation](.backlog/docs/guides/tex-pipeline/doc-10%20-%20Modular-Dictionary-Print-Pipeline-Guide.md) for more details.
+
+### Anki Flashcard Generation
+
+Interactive Anki flashcards can be generated with Community Orthography, colored pronoun prefixes and aspect endings, spaced interleaving across verb paradigm classes, and reversible (double-sided) card templates. Decks are exported both as ready-to-use `.apkg` packages (for direct drag-and-drop into Anki) and as `.csv` files.
+
+**Usage:**
+
+```bash
+python -m anki [--initial-batch 5] [--interleave-batch 3] [--lag 25] [--sample-min 1] [--sample-max 2] [--filter-tag filtered]
+```
+
+**Card Types & Reversible Design:**
+- **Type 1 (Class Mascot Tenses)**: Learn the ~5-6 aspect endings for each class using its mascot verb as the anchor.
+- **Type 2 (Verb Roots)**: Learn root + aspect class for all member verbs.
+- **Type 3 (Practice Tests)**: Optional conjugation knowledge testing cards for member verbs, paced after their root cards.
+- **Double-Sided / Reversible**: Each note generates 2 cards:
+  - *Card 1*: English definition + tense -> Cherokee form/root + full paradigm table.
+  - *Card 2*: Cherokee form/root -> English definition + tense + full paradigm table.
+- **Explicit Card Ordering**: All notes and cards have explicit `due` sequence positions corresponding to the optimal spaced interleaving progression.
+
+**Generated Artifacts (`artifacts/anki/`):**
+- **APKG Packages (Drag & Drop into Anki)**:
+  - `mascots_and_roots.apkg`: Recommended main deck (Types 1 & 2) with interleaved progression.
+  - `practice.apkg`: Full practice testing deck (Type 3) with extra forms tagged `filtered`.
+  - `practice_sampled.apkg`: Curated 1-2 active practice cards per verb.
+  - `all_cards_interleaved.apkg`: Single unified deck with practice cards lagged behind roots.
+  - `mascots.apkg` & `roots.apkg`: Standalone exports.
+- **CSV Data Files**:
+  - `mascots_and_roots.csv`, `practice.csv`, `practice_sampled.csv`, `all_cards_interleaved.csv`, `mascots.csv`, `roots.csv`.
+- **Note Type Assets & Templates**:
+  - `styling.css`, `card1_front.html`, `card1_back.html`, `card2_front.html`, `card2_back.html`, `README.md`.
+

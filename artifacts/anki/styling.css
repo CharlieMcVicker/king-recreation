@@ -1,0 +1,64 @@
+/* Cherokee Anki Card Styles */
+@font-face {
+    font-family: 'Noto Sans Cherokee';
+    src: url('_NotoSansCherokee-Regular.ttf');
+}
+
+.card {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Cherokee", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    color: #1a202c;
+    background-color: #ffffff;
+    line-height: 1.5;
+    padding: 16px;
+}
+
+.card-front, .card-back {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cherokee-word {
+    font-size: 1.8em;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #ff8888;
+}
+
+.pron-set-a {
+    color: #c53030;
+    font-weight: 600;
+}
+
+.pron-set-b {
+    color: #8888ff;
+    font-weight: 600;
+}
+
+.pron-person-to-person {
+    color: #6b46c1;
+    font-weight: 600;
+}
+
+.aspect-suffix {
+    font-weight: bold;
+    border-bottom: 2px solid #888888;
+    color: #cc5555;
+}
+
+.class-card-header {
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    padding: 12px;
+    margin-top: 12px;
+    text-align: left;
+}
+
+hr#answer {
+    border: 0;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 20px 0;
+}
