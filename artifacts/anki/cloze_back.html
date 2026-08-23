@@ -1,0 +1,29 @@
+<div class="cloze-container">
+    <div class="cloze-sentence-syll">
+        {{BackSyllabary}}
+    </div>
+    
+    <div class="cloze-sentence-phon">
+        {{BackPhonetics}}
+    </div>
+    
+    <div class="cloze-english">
+        {{English}}
+    </div>
+    
+    <hr id="answer">
+    
+    <div class="cloze-answer-box">
+        <div class="cloze-answer-label">Missing Word</div>
+        <div class="cloze-answer-syll">{{TargetWordSyllabary}}</div>
+        {{#TargetWordPhonetics}}
+        <div class="cloze-answer-phon">{{TargetWordPhonetics}}</div>
+        {{/TargetWordPhonetics}}
+    </div>
+    
+    {{#Audio}}
+    <div class="cloze-audio-container">
+        {{Audio}}
+    </div>
+    {{/Audio}}
+</div>

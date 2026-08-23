@@ -1,0 +1,281 @@
+/* Cherokee Anki Card Styles */
+@font-face {
+    font-family: 'Noto Sans Cherokee';
+    src: url('_NotoSansCherokee-Regular.ttf');
+}
+
+.card {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans Cherokee", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    text-align: center;
+    color: #1a202c;
+    background-color: #ffffff;
+    line-height: 1.5;
+    padding: 16px;
+}
+
+.card-front, .card-back {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cherokee-word {
+    font-size: 1.8em;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #ff8888;
+}
+
+.pron-set-a {
+    color: #c53030;
+    font-weight: 600;
+}
+
+.pron-set-b {
+    color: #8888ff;
+    font-weight: 600;
+}
+
+.pron-person-to-person {
+    color: #6b46c1;
+    font-weight: 600;
+}
+
+.aspect-suffix {
+    font-weight: bold;
+    border-bottom: 2px solid #888888;
+    color: #cc5555;
+}
+
+.class-card-header {
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 5px;
+    padding: 12px;
+    margin-top: 12px;
+    text-align: left;
+}
+
+hr#answer {
+    border: 0;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 20px 0;
+}
+
+/* Cloze Fill-in-the-Blank Styles */
+.cloze-container {
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cloze-sentence-syll {
+    font-family: 'Noto Sans Cherokee', sans-serif;
+    font-size: 1.8em;
+    line-height: 1.6;
+    color: #1a202c;
+    margin-bottom: 12px;
+}
+
+.cloze-sentence-phon {
+    font-size: 1.25em;
+    color: #4a5568;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.cloze-blank {
+    display: inline-block;
+    background-color: #fef3c7;
+    border-bottom: 3px solid #d97706;
+    color: #92400e;
+    font-weight: bold;
+    padding: 0 8px;
+    border-radius: 4px;
+    min-width: 50px;
+}
+
+.cloze-target {
+    display: inline-block;
+    background-color: #d1fae5;
+    border-bottom: 3px solid #059669;
+    color: #065f46;
+    font-weight: bold;
+    padding: 0 6px;
+    border-radius: 4px;
+}
+
+.cloze-english {
+    font-size: 1.15em;
+    color: #2b6cb0;
+    font-weight: 500;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed #e2e8f0;
+}
+
+.cloze-answer-box {
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 12px 0 16px 0;
+    text-align: center;
+}
+
+.cloze-answer-label {
+    font-size: 0.8em;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.cloze-answer-syll {
+    font-family: 'Noto Sans Cherokee', sans-serif;
+    font-size: 2.1em;
+    font-weight: bold;
+    color: #2c5282;
+    margin-bottom: 2px;
+}
+
+.cloze-answer-phon {
+    font-size: 1.25em;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.cloze-audio-container {
+    margin-top: 14px;
+}
+
+/* ==========================================================================
+   Dark Mode / Night Mode Support for Anki
+   ========================================================================== */
+.nightMode.card,
+.night_mode .card,
+body.nightMode .card,
+body.night_mode .card {
+    background-color: #20262e;
+    color: #e2e8f0;
+}
+
+.nightMode .cloze-sentence-syll,
+.night_mode .cloze-sentence-syll,
+body.nightMode .cloze-sentence-syll,
+body.night_mode .cloze-sentence-syll {
+    color: #f7fafc;
+}
+
+.nightMode .cloze-sentence-phon,
+.night_mode .cloze-sentence-phon,
+body.nightMode .cloze-sentence-phon,
+body.night_mode .cloze-sentence-phon {
+    color: #cbd5e0;
+}
+
+.nightMode .cloze-blank,
+.night_mode .cloze-blank,
+body.nightMode .cloze-blank,
+body.night_mode .cloze-blank {
+    background-color: #78350f;
+    border-bottom: 3px solid #f59e0b;
+    color: #fef3c7;
+}
+
+.nightMode .cloze-target,
+.night_mode .cloze-target,
+body.nightMode .cloze-target,
+body.night_mode .cloze-target {
+    background-color: #064e3b;
+    border-bottom: 3px solid #34d399;
+    color: #a7f3d0;
+}
+
+.nightMode .cloze-english,
+.night_mode .cloze-english,
+body.nightMode .cloze-english,
+body.night_mode .cloze-english {
+    color: #90cdf4;
+    border-top: 1px dashed #4a5568;
+}
+
+.nightMode .cloze-answer-box,
+.night_mode .cloze-answer-box,
+body.nightMode .cloze-answer-box,
+body.night_mode .cloze-answer-box {
+    background: #2d3748;
+    border: 1px solid #4a5568;
+}
+
+.nightMode .cloze-answer-label,
+.night_mode .cloze-answer-label,
+body.nightMode .cloze-answer-label,
+body.night_mode .cloze-answer-label {
+    color: #a0aec0;
+}
+
+.nightMode .cloze-answer-syll,
+.night_mode .cloze-answer-syll,
+body.nightMode .cloze-answer-syll,
+body.night_mode .cloze-answer-syll {
+    color: #63b3ed;
+}
+
+.nightMode .cloze-answer-phon,
+.night_mode .cloze-answer-phon,
+body.nightMode .cloze-answer-phon,
+body.night_mode .cloze-answer-phon {
+    color: #e2e8f0;
+}
+
+.nightMode hr#answer,
+.night_mode hr#answer,
+body.nightMode hr#answer,
+body.night_mode hr#answer {
+    background: #4a5568;
+}
+
+@media (prefers-color-scheme: dark) {
+    .card {
+        background-color: #20262e;
+        color: #e2e8f0;
+    }
+    .cloze-sentence-syll {
+        color: #f7fafc;
+    }
+    .cloze-sentence-phon {
+        color: #cbd5e0;
+    }
+    .cloze-blank {
+        background-color: #78350f;
+        border-bottom: 3px solid #f59e0b;
+        color: #fef3c7;
+    }
+    .cloze-target {
+        background-color: #064e3b;
+        border-bottom: 3px solid #34d399;
+        color: #a7f3d0;
+    }
+    .cloze-english {
+        color: #90cdf4;
+        border-top: 1px dashed #4a5568;
+    }
+    .cloze-answer-box {
+        background: #2d3748;
+        border: 1px solid #4a5568;
+    }
+    .cloze-answer-label {
+        color: #a0aec0;
+    }
+    .cloze-answer-syll {
+        color: #63b3ed;
+    }
+    .cloze-answer-phon {
+        color: #e2e8f0;
+    }
+    hr#answer {
+        background: #4a5568;
+    }
+}
