@@ -9,6 +9,7 @@ import csv
 import hashlib
 import os
 import random
+import re
 import tempfile
 from collections import Counter
 from typing import Any
@@ -40,6 +41,132 @@ from tex_dictionary.mascot_resolver import MascotResolver
 ANKI_OUTPUT_DIR = os.path.join(ARTIFACTS_DIR, "anki")
 CHEROKEE_MODEL_ID = 1607392319
 CHEROKEE_MODEL_NAME = "Cherokee Aspect Card (Reversible)"
+
+DEFAULT_CONJUGATIONS_CSV = os.path.abspath(
+    os.path.join(
+        os.path.dirname(__file__), "..", "..", "audiodownload", "conjugations.csv"
+    )
+)
+DEFAULT_AUDIO_DIR = os.path.abspath(
+    os.path.join(
+        os.path.dirname(__file__), "..", "..", "audiodownload", "audio_files"
+    )
+)
+
+
+def load_audio_mapping(
+    csv_path: str = DEFAULT_CONJUGATIONS_CSV,
+    audio_dir: str = DEFAULT_AUDIO_DIR,
+) -> tuple[dict[tuple[str, str], str], dict[str, str]]:
+    """
+    Loads word audio mappings from conjugations.csv.
+    Returns:
+        audio_map: dict mapping (base_entry_no, form_name) -> audio_filename
+        audio_files_by_name: dict mapping audio_filename -> absolute filepath on disk
+    """
+    if not os.path.exists(csv_path) or not os.path.exists(audio_dir):
+        return {}, {}
+
+    audio_files_on_disk = {
+        fname: os.path.join(audio_dir, fname)
+        for fname in os.listdir(audio_dir)
+        if os.path.isfile(os.path.join(audio_dir, fname))
+    }
+
+    audio_map: dict[tuple[str, str], str] = {}
+
+    with open(csv_path, "r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            audio_file = (
+                row.get("cn-app-dictionary.csv_Word audio")
+                or row.get("Word audio")
+                or ""
+            ).strip()
+            form_name = (
+                row.get("hierarchical-dict.json_Segmented Form")
+                or row.get("Segmented Form")
+                or ""
+            ).strip()
+            entry_no = (
+                row.get("cn-app-dictionary.csv_\ufeffEntry No.")
+                or row.get("cn-app-dictionary.csv_Entry No.")
+                or row.get("Entry No.")
+                or ""
+            ).strip()
+
+            if audio_file and form_name and entry_no:
+                if audio_file in audio_files_on_disk:
+                    base_eno = entry_no.split(".")[0]
+                    audio_map[(base_eno, form_name)] = audio_file
+
+    return audio_map, audio_files_on_disk
+
+
+DEFAULT_OFFICIAL_DATA_CSV = os.path.abspath(
+    os.path.join(
+        os.path.dirname(__file__), "..", "..", "audiodownload", "officialdata.csv"
+    )
+)
+DEFAULT_SENTENCE_AUDIO_DIR = os.path.abspath(
+    os.path.join(
+        os.path.dirname(__file__), "..", "..", "audiodownload", "sentence_audio"
+    )
+)
+
+
+def load_sentence_mapping(
+    csv_path: str = DEFAULT_OFFICIAL_DATA_CSV,
+    audio_dir: str = DEFAULT_SENTENCE_AUDIO_DIR,
+) -> tuple[dict[str, dict[str, str]], dict[str, str]]:
+    """
+    Loads example sentences and sentence audio mappings from officialdata.csv.
+    Returns:
+        sentences_by_entry: dict mapping base_entry_no -> {"phon": ..., "syll": ..., "engl": ..., "audio": ...}
+        sentence_audio_files_by_name: dict mapping audio_filename -> absolute filepath on disk
+    """
+    if not os.path.exists(csv_path):
+        return {}, {}
+
+    audio_files_on_disk = {}
+    if os.path.exists(audio_dir):
+        for fname in os.listdir(audio_dir):
+            full_p = os.path.join(audio_dir, fname)
+            if os.path.isfile(full_p):
+                audio_files_on_disk[fname] = full_p
+
+    sentences_by_entry: dict[str, dict[str, str]] = {}
+
+    with open(csv_path, "r", encoding="utf-8", errors="ignore") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            eno = (
+                row.get("Entry No.")
+                or row.get("\ufeffEntry No.")
+                or row.get("No.")
+                or ""
+            ).strip()
+            if not eno:
+                continue
+            base_eno = eno.split(".")[0]
+            if base_eno in sentences_by_entry:
+                continue  # Keep the primary (first) example sentence
+
+            s_syll = row.get("Sentence-1 SYLL", "").strip()
+            s_phon = row.get("Sentence-1 PHON", "").strip()
+            s_engl = row.get("Sentence-1 ENGL", "").strip()
+            s_audio = row.get("Sentence 1 audio", "").strip()
+
+            if s_syll or s_phon or s_engl:
+                audio_valid = s_audio if s_audio in audio_files_on_disk else ""
+                sentences_by_entry[base_eno] = {
+                    "syll": s_syll,
+                    "phon": s_phon,
+                    "engl": s_engl,
+                    "audio": audio_valid,
+                }
+
+    return sentences_by_entry, audio_files_on_disk
 
 
 def make_anki_id(name: str) -> int:
@@ -112,6 +239,223 @@ hr#answer {
     height: 1px;
     background: #e2e8f0;
     margin: 20px 0;
+}
+
+/* Cloze Fill-in-the-Blank Styles */
+.cloze-container {
+    max-width: 620px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cloze-sentence-syll {
+    font-family: 'Noto Sans Cherokee', sans-serif;
+    font-size: 1.8em;
+    line-height: 1.6;
+    color: #1a202c;
+    margin-bottom: 12px;
+}
+
+.cloze-sentence-phon {
+    font-size: 1.25em;
+    color: #4a5568;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.cloze-blank {
+    display: inline-block;
+    background-color: #fef3c7;
+    border-bottom: 3px solid #d97706;
+    color: #92400e;
+    font-weight: bold;
+    padding: 0 8px;
+    border-radius: 4px;
+    min-width: 50px;
+}
+
+.cloze-target {
+    display: inline-block;
+    background-color: #d1fae5;
+    border-bottom: 3px solid #059669;
+    color: #065f46;
+    font-weight: bold;
+    padding: 0 6px;
+    border-radius: 4px;
+}
+
+.cloze-english {
+    font-size: 1.15em;
+    color: #2b6cb0;
+    font-weight: 500;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px dashed #e2e8f0;
+}
+
+.cloze-answer-box {
+    background: #f7fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin: 12px 0 16px 0;
+    text-align: center;
+}
+
+.cloze-answer-label {
+    font-size: 0.8em;
+    color: #718096;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.cloze-answer-syll {
+    font-family: 'Noto Sans Cherokee', sans-serif;
+    font-size: 2.1em;
+    font-weight: bold;
+    color: #2c5282;
+    margin-bottom: 2px;
+}
+
+.cloze-answer-phon {
+    font-size: 1.25em;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.cloze-audio-container {
+    margin-top: 14px;
+}
+
+/* ==========================================================================
+   Dark Mode / Night Mode Support for Anki
+   ========================================================================== */
+.nightMode.card,
+.night_mode .card,
+body.nightMode .card,
+body.night_mode .card {
+    background-color: #20262e;
+    color: #e2e8f0;
+}
+
+.nightMode .cloze-sentence-syll,
+.night_mode .cloze-sentence-syll,
+body.nightMode .cloze-sentence-syll,
+body.night_mode .cloze-sentence-syll {
+    color: #f7fafc;
+}
+
+.nightMode .cloze-sentence-phon,
+.night_mode .cloze-sentence-phon,
+body.nightMode .cloze-sentence-phon,
+body.night_mode .cloze-sentence-phon {
+    color: #cbd5e0;
+}
+
+.nightMode .cloze-blank,
+.night_mode .cloze-blank,
+body.nightMode .cloze-blank,
+body.night_mode .cloze-blank {
+    background-color: #78350f;
+    border-bottom: 3px solid #f59e0b;
+    color: #fef3c7;
+}
+
+.nightMode .cloze-target,
+.night_mode .cloze-target,
+body.nightMode .cloze-target,
+body.night_mode .cloze-target {
+    background-color: #064e3b;
+    border-bottom: 3px solid #34d399;
+    color: #a7f3d0;
+}
+
+.nightMode .cloze-english,
+.night_mode .cloze-english,
+body.nightMode .cloze-english,
+body.night_mode .cloze-english {
+    color: #90cdf4;
+    border-top: 1px dashed #4a5568;
+}
+
+.nightMode .cloze-answer-box,
+.night_mode .cloze-answer-box,
+body.nightMode .cloze-answer-box,
+body.night_mode .cloze-answer-box {
+    background: #2d3748;
+    border: 1px solid #4a5568;
+}
+
+.nightMode .cloze-answer-label,
+.night_mode .cloze-answer-label,
+body.nightMode .cloze-answer-label,
+body.night_mode .cloze-answer-label {
+    color: #a0aec0;
+}
+
+.nightMode .cloze-answer-syll,
+.night_mode .cloze-answer-syll,
+body.nightMode .cloze-answer-syll,
+body.night_mode .cloze-answer-syll {
+    color: #63b3ed;
+}
+
+.nightMode .cloze-answer-phon,
+.night_mode .cloze-answer-phon,
+body.nightMode .cloze-answer-phon,
+body.night_mode .cloze-answer-phon {
+    color: #e2e8f0;
+}
+
+.nightMode hr#answer,
+.night_mode hr#answer,
+body.nightMode hr#answer,
+body.night_mode hr#answer {
+    background: #4a5568;
+}
+
+@media (prefers-color-scheme: dark) {
+    .card {
+        background-color: #20262e;
+        color: #e2e8f0;
+    }
+    .cloze-sentence-syll {
+        color: #f7fafc;
+    }
+    .cloze-sentence-phon {
+        color: #cbd5e0;
+    }
+    .cloze-blank {
+        background-color: #78350f;
+        border-bottom: 3px solid #f59e0b;
+        color: #fef3c7;
+    }
+    .cloze-target {
+        background-color: #064e3b;
+        border-bottom: 3px solid #34d399;
+        color: #a7f3d0;
+    }
+    .cloze-english {
+        color: #90cdf4;
+        border-top: 1px dashed #4a5568;
+    }
+    .cloze-answer-box {
+        background: #2d3748;
+        border: 1px solid #4a5568;
+    }
+    .cloze-answer-label {
+        color: #a0aec0;
+    }
+    .cloze-answer-syll {
+        color: #63b3ed;
+    }
+    .cloze-answer-phon {
+        color: #e2e8f0;
+    }
+    hr#answer {
+        background: #4a5568;
+    }
 }
 """
 
@@ -217,11 +561,17 @@ def generate_anki_cards(
     sample_practice_max: int = 2,
     filter_tag: str = "filtered",
     seed: int = 42,
+    conjugations_csv: str = DEFAULT_CONJUGATIONS_CSV,
+    audio_dir: str = DEFAULT_AUDIO_DIR,
+    official_data_csv: str = DEFAULT_OFFICIAL_DATA_CSV,
+    sentence_audio_dir: str = DEFAULT_SENTENCE_AUDIO_DIR,
 ) -> dict[str, list[AnkiCard]]:
     """
     Generates all 3 types of cards and exports CSVs and HTML templates.
     Classes are ordered by their total verb count (main class + [~~~] subclasses),
     with all subclasses placed immediately after their main class.
+    Word audio is mapped onto the Cherokee side of cards, and example sentences with
+    audio are included in the ExtraInfo section.
     """
     print("Initializing MascotResolver and loading aspect classes...")
     resolver = MascotResolver()
@@ -229,6 +579,19 @@ def generate_anki_cards(
     class_lookup: dict[str, AspectClass] = {
         c.full_name: c for c in aspect_classes
     }
+
+    # Load word audio and sentence audio mappings
+    audio_map, audio_files_by_name = load_audio_mapping(
+        csv_path=conjugations_csv, audio_dir=audio_dir
+    )
+    if audio_map:
+        print(f"Loaded {len(audio_map)} word audio mappings ({len(audio_files_by_name)} audio files available)")
+
+    sentence_map, sentence_audio_files_by_name = load_sentence_mapping(
+        csv_path=official_data_csv, audio_dir=sentence_audio_dir
+    )
+    if sentence_map:
+        print(f"Loaded {len(sentence_map)} example sentences ({len(sentence_audio_files_by_name)} sentence audio files available)")
 
     # Group all verbs by their exact class_name (e.g. 'ih-ohd', 'ih-ohd[perf2]')
     class_groups: dict[str, list[DictionaryVerb]] = {}
@@ -322,8 +685,14 @@ def generate_anki_cards(
         cls_meta = class_lookup.get(c_name) or class_lookup.get(
             c_name.split("[")[0]
         )
+        v_eno = str(getattr(mascot_verb.meta, "entry_no", None) or "")
+        mascot_sentence = sentence_map.get(v_eno)
         mascot_extra_table = build_verb_table_html(
-            c_name, mascot_verb, is_mascot=True, aspect_class=cls_meta
+            c_name,
+            mascot_verb,
+            is_mascot=True,
+            aspect_class=cls_meta,
+            sentence_data=mascot_sentence,
         )
         cid_str = str(mascot_verb.corpus_id or mascot_verb.definition)
 
@@ -334,6 +703,7 @@ def generate_anki_cards(
 
             card_id = f"mascot_{c_name}_{fn}_{cid_str}"
             m_def = inflect_english_definition(mascot_verb.definition, fn)
+            audio_file = audio_map.get((v_eno, fn))
             front = build_card_front_html(
                 card_type="mascot_tense",
                 definition=m_def,
@@ -346,6 +716,7 @@ def generate_anki_cards(
                 verb=mascot_verb,
                 form_name=fn,
                 segmented_form=seg,
+                audio_filename=audio_file,
             )
             tags = [
                 "cherokee",
@@ -382,6 +753,8 @@ def generate_anki_cards(
 
         for v in member_verbs:
             vid = str(v.corpus_id or v.definition)
+            v_eno = str(getattr(v.meta, "entry_no", None) or "")
+            verb_sentence = sentence_map.get(v_eno)
             root_str = v.morphology.h_grade_root
             if (
                 v.morphology.glottal_grade_root
@@ -392,7 +765,11 @@ def generate_anki_cards(
 
             # Extra info for this specific member verb
             verb_extra_table = build_verb_table_html(
-                c_name, v, is_mascot=False, aspect_class=cls_meta
+                c_name,
+                v,
+                is_mascot=False,
+                aspect_class=cls_meta,
+                sentence_data=verb_sentence,
             )
 
             # Type 2: Verb Root Card
@@ -438,6 +815,7 @@ def generate_anki_cards(
 
                 p_card_id = f"practice_{c_name}_{fn}_{vid}"
                 p_def = inflect_english_definition(v.definition, fn)
+                audio_file = audio_map.get((v_eno, fn))
                 p_front = build_card_front_html(
                     card_type="practice_test",
                     definition=p_def,
@@ -450,6 +828,7 @@ def generate_anki_cards(
                     verb=v,
                     form_name=fn,
                     segmented_form=seg,
+                    audio_filename=audio_file,
                 )
                 p_tags = [
                     "cherokee",
@@ -514,7 +893,23 @@ def generate_anki_cards(
     # 4. Export CSV & APKG Files
     os.makedirs(ANKI_OUTPUT_DIR, exist_ok=True)
     cherokee_model = get_cherokee_model()
-    media_files = get_anki_media_files()
+    font_media_files = get_anki_media_files()
+
+    def _get_deck_media(cards: list[AnkiCard]) -> list[str]:
+        deck_media = list(font_media_files)
+        for c in cards:
+            card_text = c.back + " " + c.extra_info
+            for sound_name in re.findall(r"\[sound:(.*?)\]", card_text):
+                if sound_name in audio_files_by_name:
+                    deck_media.append(audio_files_by_name[sound_name])
+                elif sound_name in sentence_audio_files_by_name:
+                    deck_media.append(sentence_audio_files_by_name[sound_name])
+            for sound_name in re.findall(r"Audio\(['\"](.*?)['\"]\)", card_text):
+                if sound_name in sentence_audio_files_by_name:
+                    deck_media.append(sentence_audio_files_by_name[sound_name])
+                elif sound_name in audio_files_by_name:
+                    deck_media.append(audio_files_by_name[sound_name])
+        return list(dict.fromkeys(deck_media))
 
     export_targets = [
         ("all_cards_interleaved", "Cherokee Roots::All Interleaved", all_cards),
@@ -529,12 +924,13 @@ def generate_anki_cards(
         csv_path = os.path.join(ANKI_OUTPUT_DIR, f"{basename}.csv")
         apkg_path = os.path.join(ANKI_OUTPUT_DIR, f"{basename}.apkg")
         write_csv(csv_path, card_list)
+        deck_media = _get_deck_media(card_list)
         write_apkg(
             apkg_path,
             deck_name,
             card_list,
             model=cherokee_model,
-            media_files=media_files,
+            media_files=deck_media,
         )
 
     # 5. Export Templates & Documentation
@@ -613,17 +1009,22 @@ Generated from Duane King's 1975 Cherokee Aspect Classification and the Cherokee
 ## Quick Start (Drag & Drop .apkg Packages)
 
 The generated `.apkg` files are ready-to-use packages that can be directly opened or dragged into Anki.
-They automatically configure the **Cherokee Aspect Card (Reversible)** note type, styling, fonts, card templates, and explicit card sequencing.
+They automatically configure the note types, styling, fonts, card templates, media audio, and sequencing.
 
+### Verb Aspect Inflection & Root Decks (`Cherokee Aspect Card (Reversible)`)
 - **`mascots_and_roots.apkg` (Recommended Main Deck)**: Contains Type 1 (Mascots) and Type 2 (Roots) in interleaved order.
 - **`practice.apkg` (Full Practice Testing Deck)**: Contains all Type 3 conjugation practice cards for member verbs.
 - **`practice_sampled.apkg` (Sampled Practice Deck)**: Contains 1-2 curated active practice cards per verb.
 - **`all_cards_interleaved.apkg` (Single Unified Deck)**: Single unified deck containing mascots, roots, and practice cards spaced with a lag buffer.
 - **`mascots.apkg` & `roots.apkg`**: Standalone deck packages for mascot tenses or verb roots only.
 
-## Reversible (Double-Sided) Card Design
+### Cherokee Sentence Cloze Deck (`Cherokee Sentence Cloze`)
+- **`cloze_sentences.apkg` (Sentence Cloze Deck)**: 7,200+ fill-in-the-blank cards generated from all 1,862 dictionary example sentences in `audiodownload/officialdata.csv`. Deck name is **`Cherokee Cloze Sentences`**. Each card blanks out one word of the Cherokee sentence (in both Syllabary and clean Phonetics), displays the full English translation on the front for meaning context, and reveals the target word answer below the sentence along with natural sentence audio on the back!
+- **`cloze_sentences.csv`**: Raw CSV data with all 15 fields for manual Anki import or external analysis.
 
-All decks use a **reversible note model** that generates two cards per note:
+## Reversible Aspect Card Design
+
+Aspect decks use a **reversible note model** that generates two cards per note:
 1. **Card 1: English -> Cherokee (Recognition)**:
    - **Front**: English definition + tense/root indicator.
    - **Back**: Full colored Cherokee surface form / root + full paradigm table.
@@ -636,37 +1037,62 @@ Each note has its `due` queue position explicitly assigned to match the optimal 
 - When "Bury new siblings until next day" is active in Anki deck options (default), you learn the forward card on Day 1 and its reverse sibling on Day 2.
 - When "Bury new siblings" is disabled, sibling cards appear in sequence order.
 
+## Sentence Cloze Card Design
+
+The Sentence Cloze deck uses the **`Cherokee Sentence Cloze`** note model with deck name **`Cherokee Cloze Sentences`**:
+1. **Card Front**:
+   - **Syllabary**: Sentence with target word replaced by a highlighted blank (`[ ______ ]`)
+   - **Clean Phonetics**: Sentence with target word replaced by a highlighted blank (`[ ______ ]`) (tones and length colons removed for clean reading)
+   - **English Translation**: Complete English sentence for semantic context
+2. **Card Back**:
+   - **Full Syllabary**: Sentence with target word highlighted in green
+   - **Full Clean Phonetics**: Sentence with target word highlighted in green
+   - **English Translation**: Complete English sentence
+   - **Divider & Answer Box**: Target missing word shown prominently below the sentence in Syllabary and Phonetics
+   - **Sentence Audio**: Natural sentence pronunciation recording played automatically
+
+
+## Audio & Example Sentences
+
+### 1. Cherokee Word Pronunciations
+Word audio recordings from the Cherokee Nation App Dictionary have been integrated onto the Cherokee side of aspect cards where recordings are available:
+- **Card 1: English -> Cherokee (Recognition)**: Word audio plays automatically when revealing the Cherokee back side / answer.
+- **Card 2: Cherokee -> English (Production / Recall)**: Word audio plays automatically when the Cherokee front side / prompt is displayed.
+
+### 2. Natural Example Sentences with Audio Listen Buttons
+Each verb's **Extra Info** section includes natural example sentences from the Cherokee Nation Dictionary:
+- **Phonetics & Tone**: Formatted first with full tone markers.
+- **Cherokee Syllabary**: Bolded target verb with an **inline audio play button** `[sound:Sentence_for_entry_XXXX.m4a]`.
+- **English Translation**: Complete contextual translation.
+- Available for **594 out of 595 verbs** (99.8% coverage).
+- All referenced word audio and sentence audio files are packaged directly into the `.apkg` files.
+
 ## CSV Import Instructions (Manual Setup)
 
-If importing via CSV files (`.csv`), follow these steps in Anki:
-
+### Importing Aspect Cards
+If importing `mascots_and_roots.csv` (or any aspect `.csv`):
 1. Open Anki and click **Import File**.
-2. Select `mascots_and_roots.csv` (or any other `.csv`).
+2. Select `mascots_and_roots.csv`.
 3. Set **Type**: Create a Note Type named `Cherokee Aspect Card (Reversible)` with these 12 fields:
-   - `Id`
-   - `CardType`
-   - `Deck`
-   - `SequenceOrder`
-   - `Class`
-   - `VerbId`
-   - `Definition`
-   - `Root`
-   - `Tense`
-   - `Front`
-   - `Back`
-   - `ExtraInfo`
-   *(Map CSV column `Tags` to the note's Tags)*
-4. Ensure **Allow HTML in fields** is checked.
-5. In Note Type **Cards...** settings:
-   - **Card 1 (English -> Cherokee)**:
-     - Front Template: `card1_front.html` (or `front_template.html`)
-     - Back Template: `card1_back.html` (or `back_template.html`)
-   - **Card 2 (Cherokee -> English)**:
-     - Front Template: `card2_front.html`
-     - Back Template: `card2_back.html`
+   - `Id`, `CardType`, `Deck`, `SequenceOrder`, `Class`, `VerbId`, `Definition`, `Root`, `Tense`, `Front`, `Back`, `ExtraInfo` *(Map `Tags` to note tags)*
+4. In Note Type **Cards...** settings:
+   - **Card 1 (English -> Cherokee)**: Front: `card1_front.html`, Back: `card1_back.html`
+   - **Card 2 (Cherokee -> English)**: Front: `card2_front.html`, Back: `card2_back.html`
    - **Styling**: `styling.css`
-6. Set **Deck**: Select `Cherokee Roots::Roots & Mascots`.
+
+### Importing Sentence Cloze Cards
+If importing `cloze_sentences.csv`:
+1. Open Anki and click **Import File**.
+2. Select `cloze_sentences.csv`.
+3. Set **Type**: Create a Note Type named `Cherokee Sentence Cloze` with these 15 fields:
+   - `Id`, `Deck`, `SequenceOrder`, `EntryNo`, `WordIndex`, `TotalWords`, `English`, `FrontSyllabary`, `FrontPhonetics`, `TargetWordSyllabary`, `TargetWordPhonetics`, `BackSyllabary`, `BackPhonetics`, `Audio`, `Tags`
+4. In Note Type **Cards...** settings:
+   - **Front Template**: `cloze_front.html`
+   - **Back Template**: `cloze_back.html`
+   - **Styling**: `styling.css`
+5. Ensure **Allow HTML in fields** is checked.
 """
     with open(os.path.join(output_dir, "README.md"), "w", encoding="utf-8") as f:
         f.write(readme_content)
     print(f"Exported Anki documentation and templates to {output_dir}")
+

@@ -240,14 +240,77 @@ def format_template_html(verb: DictionaryVerb) -> str:
     return "-".join(parts)
 
 
+def format_sentence_html(sentence_data: dict[str, str] | None) -> str:
+    """
+    Formats an example sentence in ExtraInfo with:
+    1. Phonetics first
+    2. Cherokee Syllabary second (with inline audio button)
+    3. English translation third
+    """
+    if not sentence_data:
+        return ""
+
+    phon = sentence_data.get("phon", "").strip()
+    syll = sentence_data.get("syll", "").strip()
+    engl = sentence_data.get("engl", "").strip()
+    audio = sentence_data.get("audio", "").strip()
+
+    if not (phon or syll or engl):
+        return ""
+
+    def _format_text(t: str) -> str:
+        if not t:
+            return ""
+        escaped = html.escape(t)
+        return re.sub(r"\*([^*]+)\*", r"<strong>\1</strong>", escaped)
+
+    phon_html = _format_text(phon)
+    syll_html = _format_text(syll)
+    engl_html = _format_text(engl)
+    audio_tag = f" [sound:{audio}]" if audio else ""
+
+    phon_div = (
+        f'<div style="font-size: 0.95em; color: #2d3748; line-height: 1.4;'
+        f' margin-bottom: 3px;">{phon_html}</div>'
+        if phon_html
+        else ""
+    )
+    syll_div = (
+        f'<div style="font-size: 1.15em; font-weight: 600; color: #1a202c;'
+        f' font-family: \'Noto Sans Cherokee\', sans-serif; line-height: 1.4;'
+        f' margin-bottom: 4px;">{syll_html}{audio_tag}</div>'
+        if syll_html
+        else ""
+    )
+    engl_div = (
+        f'<div style="font-size: 0.9em; color: #4a5568; font-style: italic;'
+        f' line-height: 1.3;">{engl_html}</div>'
+        if engl_html
+        else ""
+    )
+
+    return f"""
+<div class="example-sentence" style="margin-top: 10px; padding: 10px 12px; background: #ffffff; border: 1px solid #cbd5e0; border-radius: 5px; text-align: left;">
+    <div style="font-size: 0.78em; font-weight: bold; text-transform: uppercase; letter-spacing: 0.05em; color: #718096; margin-bottom: 4px;">
+        Example Sentence
+    </div>
+    {phon_div}
+    {syll_div}
+    {engl_div}
+</div>
+""".strip()
+
+
 def build_verb_table_html(
     class_name: str,
     verb: DictionaryVerb,
     is_mascot: bool = False,
     aspect_class: AspectClass | None = None,
+    sentence_data: dict[str, str] | None = None,
 ) -> str:
     """
-    Generates the complete HTML paradigm table for a verb (mascot or member verb).
+    Generates the complete HTML paradigm table for a verb (mascot or member verb),
+    including example sentence and sentence audio when available.
     """
     verb_forms: dict[str, str] = {}
     for fn, _, _ in FORM_LABELS:
@@ -258,6 +321,8 @@ def build_verb_table_html(
     verb_root = unrespell_consonants(verb.morphology.h_grade_root)
     verb_template = format_template_html(verb)
     label = "Mascot:" if is_mascot else "Verb:"
+    sentence_html = format_sentence_html(sentence_data)
+    sentence_block = f"\n    {sentence_html}" if sentence_html else ""
 
     table_html = f"""
 <div class="class-card-header" style="background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 5px; padding: 12px; margin-top: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: left;">
@@ -292,7 +357,7 @@ def build_verb_table_html(
                 <td style="padding: 6px; border: 1px solid #cbd5e0;">{verb_forms['infinitive']}</td>
             </tr>
         </tbody>
-    </table>
+    </table>{sentence_block}
 </div>
 """
     return table_html.strip()
@@ -302,10 +367,15 @@ def build_class_table_html(
     class_name: str,
     mascot_verb: DictionaryVerb,
     aspect_class: AspectClass | None = None,
+    sentence_data: dict[str, str] | None = None,
 ) -> str:
     """Alias for backwards compatibility."""
     return build_verb_table_html(
-        class_name, mascot_verb, is_mascot=True, aspect_class=aspect_class
+        class_name,
+        mascot_verb,
+        is_mascot=True,
+        aspect_class=aspect_class,
+        sentence_data=sentence_data,
     )
 
 
@@ -365,12 +435,14 @@ def build_card_back_html(
     verb: DictionaryVerb,
     form_name: str | None = None,
     segmented_form: str | None = None,
+    audio_filename: str | None = None,
 ) -> str:
     """
     Builds the Back HTML matching user test card format:
     - Mascot words: color #ff8888
     - Non-mascot root cards: -{root}- with color #ff8888
     - Non-mascot practice cards: color #ff8888
+    - Appends [sound:audio_filename] when word audio is available.
     """
     root_str = verb.morphology.h_grade_root
     if (
@@ -379,6 +451,7 @@ def build_card_back_html(
     ):
         root_str += f" / {verb.morphology.glottal_grade_root}"
     comm_root = unrespell_consonants(root_str)
+    audio_tag = f"\n    [sound:{audio_filename}]" if audio_filename else ""
 
     if card_type == "mascot_tense":
         fn = form_name or "present"
@@ -389,7 +462,7 @@ def build_card_back_html(
 <div class="card-back form-back" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; padding: 16px;">
     <div class="cherokee-word" style="font-size: 1.8em; font-weight: 500; margin-bottom: 8px; color: #ff8888;">
         {surface_html}
-    </div>
+    </div>{audio_tag}
 </div>
 """.strip()
 
@@ -411,7 +484,7 @@ def build_card_back_html(
 <div class="card-back form-back" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; padding: 16px;">
     <div class="cherokee-word" style="font-size: 1.8em; font-weight: 500; margin-bottom: 8px; color: #ff8888;">
         {surface_html}
-    </div>
+    </div>{audio_tag}
 </div>
 """.strip()
 

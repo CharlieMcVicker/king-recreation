@@ -229,3 +229,157 @@ def test_english_semantic_inflections():
     assert inflect_english_definition(d5, "perfective") == "they gathered"
     assert inflect_english_definition(d5, "imperative") == "gather!"
     assert inflect_english_definition(d5, "infinitive") == "(for them) to gather"
+
+
+def test_audio_mapping_and_card_integration():
+    from anki.generator import load_audio_mapping
+
+    audio_map, audio_files_by_name = load_audio_mapping()
+    assert len(audio_map) > 0
+    assert len(audio_files_by_name) > 0
+
+    # Verify specific known audio mapping: Entry 10 (bouncing it), Present -> Word_0010.1.m4a
+    assert ("10", "present") in audio_map
+    assert audio_map[("10", "present")] == "Word_0010.1.m4a"
+
+    # Verify generate_anki_cards attaches audio
+    results = generate_anki_cards()
+    all_cards = results["all_cards"]
+    cards_with_audio = [c for c in all_cards if "[sound:" in c.back]
+    assert len(cards_with_audio) == 170
+
+    # Verify mascot cards have audio when available
+    mascot_audio = [c for c in results["mascots"] if "[sound:" in c.back]
+    assert len(mascot_audio) > 0
+
+    # Verify practice cards have audio when available
+    practice_audio = [c for c in results["practice"] if "[sound:" in c.back]
+    assert len(practice_audio) > 0
+
+    # Verify root cards do not have sound tags
+    root_audio = [c for c in results["roots"] if "[sound:" in c.back]
+    assert len(root_audio) == 0
+
+    # Verify APKG package includes audio media files
+    import json
+    import tempfile
+    import zipfile
+    anki_dir = os.path.join(ARTIFACTS_DIR, "anki")
+    apkg_path = os.path.join(anki_dir, "all_cards_interleaved.apkg")
+    assert os.path.exists(apkg_path)
+
+    tmpdir = tempfile.mkdtemp()
+    with zipfile.ZipFile(apkg_path, "r") as z:
+        z.extractall(tmpdir)
+        assert "media" in z.namelist()
+        with open(os.path.join(tmpdir, "media"), "r", encoding="utf-8") as f:
+            media_map = json.load(f)
+            media_values = set(media_map.values())
+            # Check font is present
+            assert "_NotoSansCherokee-Regular.ttf" in media_values
+    # Verify sentence examples and sentence audio
+    from anki.generator import load_sentence_mapping
+
+    sent_map, sent_audio_files = load_sentence_mapping()
+    assert len(sent_map) > 0
+    assert len(sent_audio_files) > 0
+
+    # Verify Entry 8 has sentence and sentence audio
+    assert "8" in sent_map
+    assert sent_map["8"]["audio"] == "Sentence_for_entry_0008.m4a"
+
+    # Verify cards have example sentence and sentence audio in extra_info
+    cards_with_sentence_audio = [c for c in all_cards if "Sentence_for_entry_" in c.extra_info]
+    assert len(cards_with_sentence_audio) > 3000
+
+    # Verify sentence order: phonetics first, then syllabary, then english
+    sample_card = [c for c in all_cards if "Sentence_for_entry_0008.m4a" in c.extra_info][0]
+    extra = sample_card.extra_info
+    assert "Example Sentence" in extra
+    phon_pos = extra.find("e:ladí")
+    syll_pos = extra.find("ᎡᎳᏗ")
+    engl_pos = extra.find("When he threw")
+    assert phon_pos != -1 and syll_pos != -1 and engl_pos != -1
+    assert phon_pos < syll_pos < engl_pos
+
+    # Check sentence audio file is in the APKG package media
+    assert "Sentence_for_entry_0008.m4a" in media_values
+
+
+def test_cloze_card_model():
+    from anki.models import ClozeCard
+    from anki.cloze_generator import get_cloze_model
+
+    card = ClozeCard(
+        card_id="cloze_4.1_s1_w2",
+        deck="Cherokee Cloze Sentences",
+        sequence_order=2,
+        entry_no="4.1",
+        word_index=2,
+        total_words=4,
+        english="The boys are playing ball.",
+        front_syllabary="Ꮎ <span class='cloze-blank'>______</span> ᏍᏆᏞᏍᏗ ᏓᎾᏁᎶᎲᏍᎦ.",
+        front_phonetics="ná <span class='cloze-blank'>______</span> sgwà:hle̋:sdi dà:ná:ne:lo:hv́sga",
+        target_word_syllabary="ᎠᏂᏧᏣ",
+        target_word_phonetics="ani:chű:ja",
+        back_syllabary="Ꮎ <span class='cloze-target'>ᎠᏂᏧᏣ</span> ᏍᏆᏞᏍᏗ ᏓᎾᏁᎶᎲᏍᎦ.",
+        back_phonetics="ná <span class='cloze-target'>ani:chű:ja</span> sgwà:hle̋:sdi dà:ná:ne:lo:hv́sga",
+        audio="[sound:Sentence_for_entry_0004.m4a]",
+        tags=["cloze", "sentence", "entry_4"],
+    )
+
+    row = card.to_csv_row()
+    assert row["Id"] == "cloze_4.1_s1_w2"
+    assert row["TargetWordSyllabary"] == "ᎠᏂᏧᏣ"
+    assert row["WordIndex"] == "2"
+    assert row["TotalWords"] == "4"
+    assert row["Tags"] == "cloze sentence entry_4"
+
+    fields = ClozeCard.get_csv_fieldnames()
+    assert set(fields) == set(row.keys())
+
+    model = get_cloze_model()
+    note = card.to_genanki_note(model)
+    assert note.guid is not None
+    assert len(note.fields) == 14
+
+
+def test_cloze_card_generation_and_exports():
+    import json
+    import tempfile
+    import zipfile
+    from anki.cloze_generator import generate_cloze_cards
+    from anki.generator import DEFAULT_OFFICIAL_DATA_CSV, DEFAULT_SENTENCE_AUDIO_DIR
+
+    anki_dir = os.path.join(ARTIFACTS_DIR, "anki")
+    cloze_cards = generate_cloze_cards(
+        official_data_csv=DEFAULT_OFFICIAL_DATA_CSV,
+        sentence_audio_dir=DEFAULT_SENTENCE_AUDIO_DIR,
+        output_dir=anki_dir,
+    )
+
+    assert len(cloze_cards) > 7000
+
+    csv_path = os.path.join(anki_dir, "cloze_sentences.csv")
+    apkg_path = os.path.join(anki_dir, "cloze_sentences.apkg")
+    front_template = os.path.join(anki_dir, "cloze_front.html")
+    back_template = os.path.join(anki_dir, "cloze_back.html")
+
+    assert os.path.exists(csv_path)
+    assert os.path.exists(apkg_path)
+    assert os.path.exists(front_template)
+    assert os.path.exists(back_template)
+
+    # Verify APKG package contents
+    tmpdir = tempfile.mkdtemp()
+    with zipfile.ZipFile(apkg_path, "r") as z:
+        z.extractall(tmpdir)
+        assert "collection.anki2" in z.namelist()
+        assert "media" in z.namelist()
+        with open(os.path.join(tmpdir, "media"), "r", encoding="utf-8") as f:
+            media_map = json.load(f)
+            media_values = set(media_map.values())
+            assert "Sentence_for_entry_0004.m4a" in media_values
+            assert len(media_values) > 1800
+
+
