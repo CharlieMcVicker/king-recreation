@@ -449,4 +449,64 @@ def test_mascot_header_on_member_verb_cards():
         assert "Mascot:" in card.extra_info
 
 
+def test_root_cards_have_full_template():
+    """Verify that root cards display the whole verb template rather than just -root-."""
+    from anki.formatter import format_template_html, format_template_plain
+    from tex_dictionary.mascot_resolver import MascotResolver
+
+    resolver = MascotResolver()
+    sample_verb = next(v for v in resolver.all_verbs if v.morphology.class_name == "eg-invs" and str(v.corpus_id) == "4")
+    
+    html_template = format_template_html(sample_verb)
+    plain_template = format_template_plain(sample_verb)
+
+    # Must contain pronoun set, middle voice if any, bold root, and class
+    assert "Set A" in html_template
+    assert "ad" in html_template
+    assert "[eg-invs]" in html_template
+    assert "strong" in html_template
+    assert "Set A-at-ad-[eg-invs]" == plain_template
+
+    # Check back of root card
+    back_html = build_card_back_html("verb_root", sample_verb)
+    assert "cherokee-template" in back_html
+    assert "Set A" in back_html
+    assert "[eg-invs]" in back_html
+    # Should not be just "-ad-"
+    assert "-ad-" not in back_html
+
+
+def test_kirk_importance_ordering_within_class():
+    """Verify that within a class, higher importance Kirk verbs come before lower ones after mascot."""
+    from anki.verb_priority import compute_verb_priority, load_kirk_verbs
+    from tex_dictionary.mascot_resolver import MascotResolver
+
+    kirk_verbs = load_kirk_verbs()
+    assert len(kirk_verbs) == 455
+
+    resolver = MascotResolver()
+    priority_map = compute_verb_priority(resolver.all_verbs)
+
+    # Class ih-ohd member verbs: check that watching (cid=1593, Tier 2) precedes bouncing it (cid=6, Tier 6)
+    v_watching = next((v for v in resolver.all_verbs if v.corpus_id == "1593"), None)
+    v_bouncing = next((v for v in resolver.all_verbs if v.corpus_id == "6"), None)
+
+    if v_watching and v_bouncing:
+        assert priority_map[id(v_watching)][0] < priority_map[id(v_bouncing)][0]
+
+    # Verify generate_anki_cards respects this ordering
+    results = generate_anki_cards(initial_batch_size=5, interleave_batch_size=3)
+    roots = results["roots"]
+
+    # Filter roots for class ih-ohd
+    ih_ohd_roots = [c for c in roots if c.class_name == "ih-ohd"]
+    assert len(ih_ohd_roots) >= 2
+
+    # Verify that in ih-ohd roots, watching appears before bouncing it
+    watching_idx = next(i for i, c in enumerate(ih_ohd_roots) if c.verb_id == "1593")
+    bouncing_idx = next(i for i, c in enumerate(ih_ohd_roots) if c.verb_id == "6")
+    assert watching_idx < bouncing_idx
+
+
+
 

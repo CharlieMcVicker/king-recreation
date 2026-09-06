@@ -26,6 +26,32 @@
     color: #ff8888;
 }
 
+.cherokee-template {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #1a202c;
+    word-break: break-word;
+}
+
+.template-root {
+    font-weight: bold;
+}
+
+.template-mv {
+    font-style: italic;
+    color: #718096;
+}
+
+.template-prm {
+    font-weight: 500;
+}
+
+.template-class {
+    font-weight: bold;
+    color: #4a5568;
+}
+
 .pron-set-a {
     color: #c53030;
     font-weight: 600;
@@ -235,6 +261,27 @@ body.night_mode .cloze-answer-phon {
 body.nightMode hr#answer,
 body.night_mode hr#answer {
     background: #4a5568;
+}
+
+.nightMode .cherokee-template,
+.night_mode .cherokee-template,
+body.nightMode .cherokee-template,
+body.night_mode .cherokee-template {
+    color: #e2e8f0;
+}
+
+.nightMode .template-mv,
+.night_mode .template-mv,
+body.nightMode .template-mv,
+body.night_mode .template-mv {
+    color: #a0aec0;
+}
+
+.nightMode .template-class,
+.night_mode .template-class,
+body.nightMode .template-class,
+body.night_mode .template-class {
+    color: #cbd5e0;
 }
 
 @media (prefers-color-scheme: dark) {

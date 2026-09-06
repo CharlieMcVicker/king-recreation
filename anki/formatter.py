@@ -15,6 +15,7 @@ from dictionary_pipeline.dictionary_forms import (
 )
 from dictionary_pipeline.orthography import unrespell_consonants
 from morphology.h_alternation import prevent_C_glottal_cluster
+from morphology.morphemes.post_root_morphemes import PostRootMorphemeRegistry
 from morphology.morphology_types import PronominalSet
 from tex_dictionary.companion_data import AspectClass
 from anki.english_inflector import clean_pronouns
@@ -189,7 +190,8 @@ def format_segmented_verb_html(
 
 def format_template_html(verb: DictionaryVerb) -> str:
     """
-    Renders the morphological template breakdown in HTML with colored Set A/Set B spans.
+    Renders the morphological template breakdown in HTML with colored Set A/Set B spans,
+    matching the community companion generator logic.
     """
     config = verb.morphology.config
     parts: list[str] = []
@@ -207,35 +209,119 @@ def format_template_html(verb: DictionaryVerb) -> str:
 
     if config.pron.set_type == PronominalSet.SET_A:
         parts.append(
-            f'<span style="color: #c53030; font-weight: 600;">{ka_label}</span>'
+            f'<span class="pronoun pron-set-a" style="color: #c53030; font-weight: 600;">{ka_label}</span>'
         )
     elif config.pron.set_type == PronominalSet.SET_B:
         set_b_lbl = "Set B (pl)" if config.pron.plural_pronouns else "Set B"
         parts.append(
-            f'<span style="color: #8888ff; font-weight: 600;">{set_b_lbl}</span>'
+            f'<span class="pronoun pron-set-b" style="color: #8888ff; font-weight: 600;">{set_b_lbl}</span>'
+        )
+    elif config.pron.set_type == PronominalSet.PERSON_TO_PERSON:
+        parts.append(
+            '<span class="pronoun pron-person-to-person" style="color: #6b46c1; font-weight: 600;">Person-to-person</span>'
         )
 
     if config.pron.middle_voice.value != "none":
         mv = config.pron.middle_voice.value.replace("_", "/").lower()
-        parts.append(f'<span style="color: #4a5568; font-style: italic;">{mv}</span>')
+        parts.append(f'<span class="template-mv" style="color: #718096; font-style: italic;">{mv}</span>')
 
-    root_str = verb.morphology.h_grade_root
+    root_str = f"{verb.morphology.h_grade_root}"
     if (
         verb.morphology.glottal_grade_root
-        and verb.morphology.glottal_grade_root != verb.morphology.h_grade_root
+        and not verb.morphology.glottal_grade_root == verb.morphology.h_grade_root
     ):
         root_str += f" / {verb.morphology.glottal_grade_root}"
 
-    comm_root = unrespell_consonants(root_str)
-    parts.append(f"<strong>{html.escape(comm_root)}</strong>")
+    comm_root_str = unrespell_consonants(root_str)
+    comm_root_str = re.sub(
+        r"(?<!\\)(kh|Kh|hs)",
+        lambda m: "sh" if m.group(1).lower() == "hs" else "k",
+        comm_root_str,
+    )
+    root_formatted = comm_root_str.replace(" ", "")
+    parts.append(f'<strong class="template-root">{html.escape(root_formatted)}</strong>')
 
     if verb.morphology.post_root_morpheme:
-        parts.append(html.escape(verb.morphology.post_root_morpheme))
+        prm = PostRootMorphemeRegistry.get_instance().morphemes_by_name.get(
+            verb.morphology.post_root_morpheme
+        )
+        if prm:
+            prm_comm = unrespell_consonants(prm.form)
+            prm_comm = re.sub(
+                r"(?<!\\)(kh|Kh|hs)",
+                lambda m: "sh" if m.group(1).lower() == "hs" else "k",
+                prm_comm,
+            )
+            parts.append(f'<span class="template-prm">{html.escape(prm_comm)}</span>')
 
     parts.append(
-        f'<span style="color: #2d3748; font-weight:'
+        f'<span class="template-class" style="color: #4a5568; font-weight:'
         f' bold;">[{html.escape(verb.morphology.class_name)}]</span>'
     )
+
+    return "-".join(parts)
+
+
+def format_template_plain(verb: DictionaryVerb) -> str:
+    """
+    Renders the morphological template breakdown in plain text without HTML tags.
+    """
+    config = verb.morphology.config
+    parts: list[str] = []
+
+    if config.pre.translocutive:
+        parts.append("wi")
+    if config.pre.partitive:
+        parts.append("ni")
+    if config.pre.distributive:
+        parts.append("te")
+
+    ka_label = "Set A (ga)" if config.pron.use_ka_variant else "Set A"
+    if config.pron.plural_pronouns:
+        ka_label += " (pl)"
+
+    if config.pron.set_type == PronominalSet.SET_A:
+        parts.append(ka_label)
+    elif config.pron.set_type == PronominalSet.SET_B:
+        set_b_lbl = "Set B (pl)" if config.pron.plural_pronouns else "Set B"
+        parts.append(set_b_lbl)
+    elif config.pron.set_type == PronominalSet.PERSON_TO_PERSON:
+        parts.append("Person-to-person")
+
+    if config.pron.middle_voice.value != "none":
+        mv = config.pron.middle_voice.value.replace("_", "/").lower()
+        parts.append(mv)
+
+    root_str = f"{verb.morphology.h_grade_root}"
+    if (
+        verb.morphology.glottal_grade_root
+        and not verb.morphology.glottal_grade_root == verb.morphology.h_grade_root
+    ):
+        root_str += f" / {verb.morphology.glottal_grade_root}"
+
+    comm_root_str = unrespell_consonants(root_str)
+    comm_root_str = re.sub(
+        r"(?<!\\)(kh|Kh|hs)",
+        lambda m: "sh" if m.group(1).lower() == "hs" else "k",
+        comm_root_str,
+    )
+    root_formatted = comm_root_str.replace(" ", "")
+    parts.append(root_formatted)
+
+    if verb.morphology.post_root_morpheme:
+        prm = PostRootMorphemeRegistry.get_instance().morphemes_by_name.get(
+            verb.morphology.post_root_morpheme
+        )
+        if prm:
+            prm_comm = unrespell_consonants(prm.form)
+            prm_comm = re.sub(
+                r"(?<!\\)(kh|Kh|hs)",
+                lambda m: "sh" if m.group(1).lower() == "hs" else "k",
+                prm_comm,
+            )
+            parts.append(prm_comm)
+
+    parts.append(f"[{verb.morphology.class_name}]")
 
     return "-".join(parts)
 
@@ -489,10 +575,11 @@ def build_card_back_html(
 """.strip()
 
     elif card_type == "verb_root":
+        template_html = format_template_html(verb)
         return f"""
 <div class="card-back form-back" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; padding: 16px;">
-    <div class="cherokee-word" style="font-size: 1.8em; font-weight: 500; margin-bottom: 8px; color: #ff8888;">
-        -{html.escape(comm_root)}-
+    <div class="cherokee-template" style="font-size: 1.5em; font-weight: 500; margin-bottom: 8px;">
+        {template_html}
     </div>
 </div>
 """.strip()

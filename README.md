@@ -233,16 +233,17 @@ Interactive Anki flashcards can be generated with Community Orthography, colored
 **Usage:**
 
 ```bash
-python -m anki [--initial-batch 5] [--interleave-batch 3] [--lag 25] [--sample-min 1] [--sample-max 2] [--filter-tag filtered]
+python -m anki [--kirk-csv anki/kirkcsv.csv] [--initial-batch 5] [--interleave-batch 3] [--lag 25] [--sample-min 1] [--sample-max 2] [--filter-tag filtered]
 ```
 
 **Card Types & Reversible Design:**
 - **Type 1 (Class Mascot Tenses)**: Learn the ~5-6 aspect endings for each class using its mascot verb as the anchor.
-- **Type 2 (Verb Roots)**: Learn root + aspect class for all member verbs.
+- **Type 2 (Verb Roots)**: Learn complete morphological verb templates (Set A/B pronouns, middle voice, bold root, PRM, and aspect class) adapted from the Community Companion dictionary generator.
 - **Type 3 (Practice Tests)**: Optional conjugation knowledge testing cards for member verbs, paced after their root cards.
+- **Kirk Frequency Prioritization**: Within each aspect class, member verbs are ordered by importance via fuzzy comparison with Kirk's verb dataset (`kirkcsv.csv` tags `first5`, `first25`, `first100`, `first200`), introducing high-frequency verbs first after the class mascot.
 - **Double-Sided / Reversible**: Each note generates 2 cards:
-  - *Card 1*: English definition + tense -> Cherokee form/root + full paradigm table.
-  - *Card 2*: Cherokee form/root -> English definition + tense + full paradigm table.
+  - *Card 1*: English definition + tense -> Cherokee form / verb template + full paradigm table.
+  - *Card 2*: Cherokee form / verb template -> English definition + tense + full paradigm table.
 - **Explicit Card Ordering**: All notes and cards have explicit `due` sequence positions corresponding to the optimal spaced interleaving progression.
 
 **Generated Artifacts (`artifacts/anki/`):**

@@ -23,10 +23,25 @@ They automatically configure the note types, styling, fonts, card templates, med
 Aspect decks use a **reversible note model** that generates two cards per note:
 1. **Card 1: English -> Cherokee (Recognition)**:
    - **Front**: English definition + tense/root indicator.
-   - **Back**: Full colored Cherokee surface form / root + full paradigm table.
+   - **Back**: Full colored Cherokee surface form (or complete morphological verb template for root cards) + full paradigm table.
 2. **Card 2: Cherokee -> English (Production / Recall)**:
-   - **Front**: Cherokee surface form / root (with color-coded pronoun prefix and aspect ending).
+   - **Front**: Cherokee surface form (or complete morphological verb template for root cards, with color-coded pronoun prefix, middle voice, bold root, PRM, and aspect class).
    - **Back**: English definition + tense/root indicator + full paradigm table.
+
+### Verb Root Templates
+For verb root cards (Type 2), the Cherokee prompt/answer side displays the entire morphological verb template (e.g. `Set A-at-ad-[eg-invs]`) rather than just `-root-`. This format is adapted from the Community Companion dictionary generator, capturing the full lexical meaning including pronominal set selection, middle voice prefixes, bold root consonants in community orthography, post-root morphemes, and aspect class classification.
+
+### Verb Priority Ordering Within Classes (`kirkcsv.csv`)
+Within each aspect class, member verbs are prioritized using fuzzy comparison against Duane Kirk's verb frequency dataset (`kirkcsv.csv`):
+- **Class Mascot**: Always introduced first as the anchor for the class.
+- **Top Verbs First**: Member verbs are prioritized by Kirk's tags:
+  1. `first5` ("Top 5" verbs, e.g. *speaking*, *want*, *happy*)
+  2. `first25` ("Top 25" verbs, e.g. *reading*, *watching*, *eating*, *drinking*)
+  3. `first100` ("Top 100" verbs, e.g. *doing*, *resting*, *buying*)
+  4. `first200` ("Top 200" verbs, e.g. *playing*, *praying*)
+  5. Other verbs present in Kirk's list
+  6. Remaining dictionary verbs
+- The global sequencing of classes relative to each other remains strictly preserved; only the roots within each class are reordered so high-frequency verbs appear earlier in study progression.
 
 ### Explicit Card Ordering (`due` sequence)
 Each note has its `due` queue position explicitly assigned to match the optimal spaced-interleaving sequence (`SequenceOrder`):
@@ -88,3 +103,22 @@ If importing `cloze_sentences.csv`:
    - **Back Template**: `cloze_back.html`
    - **Styling**: `styling.css`
 5. Ensure **Allow HTML in fields** is checked.
+
+## CLI Generator Usage
+
+To generate or re-export flashcards:
+
+```bash
+python -m anki [OPTIONS]
+```
+
+### Options
+- `--kirk-csv PATH`: Path to Kirk verb dataset for frequency prioritization (default: `anki/kirkcsv.csv`).
+- `--initial-batch N`: Number of root cards per class introduced initially (default: 5).
+- `--interleave-batch N`: Batch size for round-robin interleaving (default: 3).
+- `--lag N`: Offset lag for scheduling practice cards behind root cards (default: 25).
+- `--sample-min N`, `--sample-max N`: Range of active practice cards sampled per verb (default: 1-2).
+- `--filter-tag TAG`: Tag applied to extra practice cards (default: `filtered`).
+- `--seed N`: Random seed for reproducible generation (default: 42).
+- `--cloze-only`: Generate only the Cherokee Sentence Cloze deck.
+- `--skip-cloze`: Generate only the Aspect card decks.

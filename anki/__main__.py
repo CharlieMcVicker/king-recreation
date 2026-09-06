@@ -19,6 +19,7 @@ from anki.generator import (
     DEFAULT_SENTENCE_AUDIO_DIR,
     generate_anki_cards,
 )
+from anki.verb_priority import DEFAULT_KIRK_CSV
 
 
 def main() -> None:
@@ -101,6 +102,12 @@ def main() -> None:
         help="Directory containing sentence audio files (default: auto-detected in audiodownload/sentence_audio/)",
     )
     parser.add_argument(
+        "--kirk-csv",
+        type=str,
+        default=None,
+        help="Path to kirkcsv.csv for verb importance ranking (default: auto-detected in anki/)",
+    )
+    parser.add_argument(
         "--cloze-only",
         action="store_true",
         help="Generate only the sentence cloze cards deck",
@@ -158,6 +165,8 @@ def main() -> None:
             kwargs["official_data_csv"] = args.officialdata_csv
         if args.sentence_audio_dir:
             kwargs["sentence_audio_dir"] = args.sentence_audio_dir
+        if args.kirk_csv:
+            kwargs["kirk_csv"] = args.kirk_csv
 
         results = generate_anki_cards(**kwargs)
 

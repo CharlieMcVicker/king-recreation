@@ -26,9 +26,14 @@ from anki.formatter import (
     build_card_back_html,
     build_card_front_html,
     build_verb_table_html,
+    format_template_plain,
 )
 from anki.models import AnkiCard
 from anki.sequencer import AnkiSequencer
+from anki.verb_priority import (
+    DEFAULT_KIRK_CSV,
+    compute_verb_priority,
+)
 from dictionary_pipeline.dictionary_forms import DictionaryVerb
 from dictionary_pipeline.orthography import unrespell_consonants
 from dictionary_pipeline.paths import ARTIFACTS_DIR
@@ -202,6 +207,32 @@ def get_anki_css_content() -> str:
     font-weight: 500;
     margin-bottom: 8px;
     color: #ff8888;
+}
+
+.cherokee-template {
+    font-size: 1.5em;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #1a202c;
+    word-break: break-word;
+}
+
+.template-root {
+    font-weight: bold;
+}
+
+.template-mv {
+    font-style: italic;
+    color: #718096;
+}
+
+.template-prm {
+    font-weight: 500;
+}
+
+.template-class {
+    font-weight: bold;
+    color: #4a5568;
 }
 
 .pron-set-a {
@@ -415,6 +446,27 @@ body.night_mode hr#answer {
     background: #4a5568;
 }
 
+.nightMode .cherokee-template,
+.night_mode .cherokee-template,
+body.nightMode .cherokee-template,
+body.night_mode .cherokee-template {
+    color: #e2e8f0;
+}
+
+.nightMode .template-mv,
+.night_mode .template-mv,
+body.nightMode .template-mv,
+body.night_mode .template-mv {
+    color: #a0aec0;
+}
+
+.nightMode .template-class,
+.night_mode .template-class,
+body.nightMode .template-class,
+body.night_mode .template-class {
+    color: #cbd5e0;
+}
+
 @media (prefers-color-scheme: dark) {
     .card {
         background-color: #20262e;
@@ -565,6 +617,7 @@ def generate_anki_cards(
     audio_dir: str = DEFAULT_AUDIO_DIR,
     official_data_csv: str = DEFAULT_OFFICIAL_DATA_CSV,
     sentence_audio_dir: str = DEFAULT_SENTENCE_AUDIO_DIR,
+    kirk_csv: str = DEFAULT_KIRK_CSV,
 ) -> dict[str, list[AnkiCard]]:
     """
     Generates all 3 types of cards and exports CSVs and HTML templates.
@@ -590,8 +643,9 @@ def generate_anki_cards(
     sentence_map, sentence_audio_files_by_name = load_sentence_mapping(
         csv_path=official_data_csv, audio_dir=sentence_audio_dir
     )
-    if sentence_map:
-        print(f"Loaded {len(sentence_map)} example sentences ({len(sentence_audio_files_by_name)} sentence audio files available)")
+    # Load and compute verb priority from kirkcsv.csv
+    priority_map = compute_verb_priority(resolver.all_verbs, kirk_csv_path=kirk_csv)
+    print(f"Computed priority ranking for {len(resolver.all_verbs)} verbs using Kirk's list")
 
     # Group all verbs by their exact class_name (e.g. 'ih-ohd', 'ih-ohd[perf2]')
     class_groups: dict[str, list[DictionaryVerb]] = {}
@@ -659,9 +713,10 @@ def generate_anki_cards(
                     and v.definition == mascot_verb.definition
                 )
             ]
-            # Sort member verbs deterministically
+            # Sort member verbs by Kirk importance tier, then Kirk verb number, then deterministic tie-breakers
             member_verbs.sort(
                 key=lambda v: (
+                    priority_map.get(id(v), (6, 9999, 0.0)),
                     v.corpus_id if v.corpus_id is not None else 999999,
                     v.morphology.h_grade_root,
                     v.definition,
@@ -790,6 +845,7 @@ def generate_anki_cards(
                 f"class::{c_name}",
                 "type::verb_root",
             ]
+            template_plain = format_template_plain(v)
             root_card = AnkiCard(
                 card_id=root_card_id,
                 card_type="verb_root",
@@ -798,7 +854,7 @@ def generate_anki_cards(
                 class_name=c_name,
                 verb_id=vid,
                 definition=r_def,
-                root=comm_root,
+                root=template_plain,
                 tense="",
                 front=r_front,
                 back=r_back,
@@ -1028,10 +1084,25 @@ They automatically configure the note types, styling, fonts, card templates, med
 Aspect decks use a **reversible note model** that generates two cards per note:
 1. **Card 1: English -> Cherokee (Recognition)**:
    - **Front**: English definition + tense/root indicator.
-   - **Back**: Full colored Cherokee surface form / root + full paradigm table.
+   - **Back**: Full colored Cherokee surface form (or complete morphological verb template for root cards) + full paradigm table.
 2. **Card 2: Cherokee -> English (Production / Recall)**:
-   - **Front**: Cherokee surface form / root (with color-coded pronoun prefix and aspect ending).
+   - **Front**: Cherokee surface form (or complete morphological verb template for root cards, with color-coded pronoun prefix, middle voice, bold root, PRM, and aspect class).
    - **Back**: English definition + tense/root indicator + full paradigm table.
+
+### Verb Root Templates
+For verb root cards (Type 2), the Cherokee prompt/answer side displays the entire morphological verb template (e.g. `Set A-at-ad-[eg-invs]`) rather than just `-root-`. This format is adapted from the Community Companion dictionary generator, capturing the full lexical meaning including pronominal set selection, middle voice prefixes, bold root consonants in community orthography, post-root morphemes, and aspect class classification.
+
+### Verb Priority Ordering Within Classes (`kirkcsv.csv`)
+Within each aspect class, member verbs are prioritized using fuzzy comparison against Duane Kirk's verb frequency dataset (`kirkcsv.csv`):
+- **Class Mascot**: Always introduced first as the anchor for the class.
+- **Top Verbs First**: Member verbs are prioritized by Kirk's tags:
+  1. `first5` ("Top 5" verbs, e.g. *speaking*, *want*, *happy*)
+  2. `first25` ("Top 25" verbs, e.g. *reading*, *watching*, *eating*, *drinking*)
+  3. `first100` ("Top 100" verbs, e.g. *doing*, *resting*, *buying*)
+  4. `first200` ("Top 200" verbs, e.g. *playing*, *praying*)
+  5. Other verbs present in Kirk's list
+  6. Remaining dictionary verbs
+- The global sequencing of classes relative to each other remains strictly preserved; only the roots within each class are reordered so high-frequency verbs appear earlier in study progression.
 
 ### Explicit Card Ordering (`due` sequence)
 Each note has its `due` queue position explicitly assigned to match the optimal spaced-interleaving sequence (`SequenceOrder`):
@@ -1093,6 +1164,25 @@ If importing `cloze_sentences.csv`:
    - **Back Template**: `cloze_back.html`
    - **Styling**: `styling.css`
 5. Ensure **Allow HTML in fields** is checked.
+
+## CLI Generator Usage
+
+To generate or re-export flashcards:
+
+```bash
+python -m anki [OPTIONS]
+```
+
+### Options
+- `--kirk-csv PATH`: Path to Kirk verb dataset for frequency prioritization (default: `anki/kirkcsv.csv`).
+- `--initial-batch N`: Number of root cards per class introduced initially (default: 5).
+- `--interleave-batch N`: Batch size for round-robin interleaving (default: 3).
+- `--lag N`: Offset lag for scheduling practice cards behind root cards (default: 25).
+- `--sample-min N`, `--sample-max N`: Range of active practice cards sampled per verb (default: 1-2).
+- `--filter-tag TAG`: Tag applied to extra practice cards (default: `filtered`).
+- `--seed N`: Random seed for reproducible generation (default: 42).
+- `--cloze-only`: Generate only the Cherokee Sentence Cloze deck.
+- `--skip-cloze`: Generate only the Aspect card decks.
 """
     with open(os.path.join(output_dir, "README.md"), "w", encoding="utf-8") as f:
         f.write(readme_content)
