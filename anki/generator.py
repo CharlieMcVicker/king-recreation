@@ -770,6 +770,7 @@ def generate_anki_cards(
                 is_mascot=False,
                 aspect_class=cls_meta,
                 sentence_data=verb_sentence,
+                mascot_verb=class_mascots[c_name],
             )
 
             # Type 2: Verb Root Card
@@ -1059,11 +1060,12 @@ Word audio recordings from the Cherokee Nation App Dictionary have been integrat
 - **Card 1: English -> Cherokee (Recognition)**: Word audio plays automatically when revealing the Cherokee back side / answer.
 - **Card 2: Cherokee -> English (Production / Recall)**: Word audio plays automatically when the Cherokee front side / prompt is displayed.
 
-### 2. Natural Example Sentences with Audio Listen Buttons
+### 2. Natural Example Sentences with Audio Listen Buttons & Class Mascot Anchors
 Each verb's **Extra Info** section includes natural example sentences from the Cherokee Nation Dictionary:
 - **Phonetics & Tone**: Formatted first with full tone markers.
 - **Cherokee Syllabary**: Bolded target verb with an **inline audio play button** `[sound:Sentence_for_entry_XXXX.m4a]`.
 - **English Translation**: Complete contextual translation.
+- **Class Mascot Anchors**: For member verbs (roots and practice cards), the header displays the Class Mascot root, 3rd person present form, and English definition.
 - Available for **594 out of 595 verbs** (99.8% coverage).
 - All referenced word audio and sentence audio files are packaged directly into the `.apkg` files.
 

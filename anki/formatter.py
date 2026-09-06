@@ -307,10 +307,13 @@ def build_verb_table_html(
     is_mascot: bool = False,
     aspect_class: AspectClass | None = None,
     sentence_data: dict[str, str] | None = None,
+    mascot_verb: DictionaryVerb | None = None,
 ) -> str:
     """
     Generates the complete HTML paradigm table for a verb (mascot or member verb),
     including example sentence and sentence audio when available.
+    For member verbs (non-mascots), includes the class mascot root,
+    third person present form, and English definition in the header.
     """
     verb_forms: dict[str, str] = {}
     for fn, _, _ in FORM_LABELS:
@@ -324,10 +327,29 @@ def build_verb_table_html(
     sentence_html = format_sentence_html(sentence_data)
     sentence_block = f"\n    {sentence_html}" if sentence_html else ""
 
+    mascot_header_line = ""
+    if not is_mascot and mascot_verb is not None:
+        m_root_str = mascot_verb.morphology.h_grade_root
+        if (
+            mascot_verb.morphology.glottal_grade_root
+            and mascot_verb.morphology.glottal_grade_root != mascot_verb.morphology.h_grade_root
+        ):
+            m_root_str += f" / {mascot_verb.morphology.glottal_grade_root}"
+        m_comm_root = unrespell_consonants(m_root_str)
+        m_pres_seg = mascot_verb.segmented_forms.get("present", "---")
+        m_pres_html = format_segmented_verb_html(mascot_verb, "present", m_pres_seg)
+        m_def = html.escape(clean_pronouns(mascot_verb.definition, "3rd_she"))
+        mascot_header_line = (
+            f'\n        <div style="font-size: 0.85em; color: #4a5568; margin-top: 3px;">'
+            f'<span style="font-weight: 600; color: #718096;">Class Mascot:</span>'
+            f' <strong>-{html.escape(m_comm_root)}-</strong> | {m_pres_html} | <em>{m_def}</em>'
+            f'</div>'
+        )
+
     table_html = f"""
 <div class="class-card-header" style="background: #f7fafc; border: 1px solid #e2e8f0; border-radius: 5px; padding: 12px; margin-top: 12px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: left;">
-    <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #cbd5e0; padding-bottom: 6px; margin-bottom: 8px;">
-        <span style="font-size: 1.05em; font-weight: bold; color: #2d3748;">Class: <span style="color: #2b6cb0;">{html.escape(class_name)}</span></span>
+    <div style="border-bottom: 2px solid #cbd5e0; padding-bottom: 6px; margin-bottom: 8px;">
+        <div style="font-size: 1.05em; font-weight: bold; color: #2d3748;">Class: <span style="color: #2b6cb0;">{html.escape(class_name)}</span></div>{mascot_header_line}
     </div>
     <div style="font-size: 0.8em; margin-bottom: 8px; color: #4a5568;">
       <span style="font-size: 1.2em;">{label}</span> <span style="font-size: 1.2em; font-weight: 700;">{html.escape(verb_root)}</span> | <em>{verb_def}</em> | <code>{verb_template}</code>

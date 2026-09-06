@@ -383,3 +383,70 @@ def test_cloze_card_generation_and_exports():
             assert len(media_values) > 1800
 
 
+def test_mascot_header_on_member_verb_cards():
+    """Verify that root and practice cards contain class mascot info in ExtraInfo."""
+    from anki.formatter import build_verb_table_html
+    from tex_dictionary.mascot_resolver import MascotResolver
+
+    resolver = MascotResolver()
+    # Find a class with mascot and member verbs
+    c_name = "ih-ohd"
+    mascot_verb = resolver.resolve_mascot(c_name, "Plain")
+    assert mascot_verb is not None
+
+    member_verbs = [
+        v for v in resolver.all_verbs
+        if v.morphology.class_name == c_name
+        and v.corpus_id != mascot_verb.corpus_id
+    ]
+    assert len(member_verbs) > 0
+    sample_member = member_verbs[0]
+
+    from dictionary_pipeline.orthography import unrespell_consonants
+
+    # 1. Non-mascot verb table with mascot_verb passed
+    member_html = build_verb_table_html(
+        class_name=c_name,
+        verb=sample_member,
+        is_mascot=False,
+        mascot_verb=mascot_verb,
+    )
+    assert "Class Mascot:" in member_html
+    m_comm_root = unrespell_consonants(mascot_verb.morphology.h_grade_root)
+    assert f"-{m_comm_root}-" in member_html
+    assert "Verb:" in member_html
+
+    # 2. Mascot verb table with is_mascot=True
+    mascot_html = build_verb_table_html(
+        class_name=c_name,
+        verb=mascot_verb,
+        is_mascot=True,
+    )
+    assert "Class Mascot:" not in mascot_html
+    assert "Mascot:" in mascot_html
+
+    # 3. Test generated cards via generate_anki_cards
+    results = generate_anki_cards(initial_batch_size=2, interleave_batch_size=2)
+    root_cards = results["roots"]
+    practice_cards = results["practice"]
+    mascot_cards = results["mascots"]
+
+    # All root cards for member verbs must have Class Mascot in extra_info
+    for card in root_cards:
+        assert "Class Mascot:" in card.extra_info
+        assert "Class:" in card.extra_info
+        assert "Verb:" in card.extra_info
+
+    # All practice cards must have Class Mascot in extra_info
+    for card in practice_cards:
+        assert "Class Mascot:" in card.extra_info
+        assert "Class:" in card.extra_info
+        assert "Verb:" in card.extra_info
+
+    # Mascot cards must NOT have a redundant Class Mascot subline
+    for card in mascot_cards:
+        assert "Class Mascot:" not in card.extra_info
+        assert "Mascot:" in card.extra_info
+
+
+
