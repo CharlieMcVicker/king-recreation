@@ -52,6 +52,22 @@
     color: #4a5568;
 }
 
+.template-class-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    line-height: 1.1;
+}
+
+.template-mascot {
+    font-size: 0.58em;
+    font-style: italic;
+    font-weight: normal;
+    color: #718096;
+    margin-top: 2px;
+}
+
 .pron-set-a {
     color: #c53030;
     font-weight: 600;
@@ -284,10 +300,20 @@ body.night_mode .template-class {
     color: #cbd5e0;
 }
 
+.nightMode .template-mascot,
+.night_mode .template-mascot,
+body.nightMode .template-mascot,
+body.night_mode .template-mascot {
+    color: #a0aec0;
+}
+
 @media (prefers-color-scheme: dark) {
     .card {
         background-color: #20262e;
         color: #e2e8f0;
+    }
+    .template-mascot {
+        color: #a0aec0;
     }
     .cloze-sentence-syll {
         color: #f7fafc;

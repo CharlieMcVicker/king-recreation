@@ -29,7 +29,7 @@ Aspect decks use a **reversible note model** that generates two cards per note:
    - **Back**: English definition + tense/root indicator + full paradigm table.
 
 ### Verb Root Templates
-For verb root cards (Type 2), the Cherokee prompt/answer side displays the entire morphological verb template (e.g. `Set A-at-ad-[eg-invs]`) rather than just `-root-`. This format is adapted from the Community Companion dictionary generator, capturing the full lexical meaning including pronominal set selection, middle voice prefixes, bold root consonants in community orthography, post-root morphemes, and aspect class classification.
+For verb root cards (Type 2), the Cherokee prompt/answer side displays the entire morphological verb template (e.g. `Set A-at-ad-[eg-invs]`) rather than just `-root-`. Underneath the aspect class name (e.g. `[ih-ohd]`), the 3rd person present form of the class mascot verb is displayed in small italic text (e.g. *anehldiha*) to provide an immediate mnemonic anchor for the class conjugation paradigm. This format is adapted from the Community Companion dictionary generator, capturing the full lexical meaning including pronominal set selection, middle voice prefixes, bold root consonants in community orthography, post-root morphemes, and aspect class classification.
 
 ### Verb Priority Ordering Within Classes (`kirkcsv.csv`)
 Within each aspect class, member verbs are prioritized using fuzzy comparison against Duane Kirk's verb frequency dataset (`kirkcsv.csv`):

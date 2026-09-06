@@ -475,6 +475,22 @@ def test_root_cards_have_full_template():
     # Should not be just "-ad-"
     assert "-ad-" not in back_html
 
+    # Mascot verb 3rd person present must be displayed under class name in small italic font
+    assert "udega" in html_template
+    assert "template-mascot" in html_template
+    assert "udega" in back_html
+    assert "template-mascot" in back_html
+
+    # Check ih-ohd class verb specifically (mascot anehldiha)
+    sample_ih_ohd = next(
+        v for v in resolver.all_verbs
+        if v.morphology.class_name == "ih-ohd" and str(v.corpus_id) != "361"
+    )
+    back_ih_ohd = build_card_back_html("verb_root", sample_ih_ohd)
+    assert "[ih-ohd]" in back_ih_ohd
+    assert "anehldiha" in back_ih_ohd
+    assert "template-mascot" in back_ih_ohd
+
 
 def test_kirk_importance_ordering_within_class():
     """Verify that within a class, higher importance Kirk verbs come before lower ones after mascot."""

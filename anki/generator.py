@@ -235,6 +235,22 @@ def get_anki_css_content() -> str:
     color: #4a5568;
 }
 
+.template-class-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: middle;
+    line-height: 1.1;
+}
+
+.template-mascot {
+    font-size: 0.58em;
+    font-style: italic;
+    font-weight: normal;
+    color: #718096;
+    margin-top: 2px;
+}
+
 .pron-set-a {
     color: #c53030;
     font-weight: 600;
@@ -467,10 +483,20 @@ body.night_mode .template-class {
     color: #cbd5e0;
 }
 
+.nightMode .template-mascot,
+.night_mode .template-mascot,
+body.nightMode .template-mascot,
+body.night_mode .template-mascot {
+    color: #a0aec0;
+}
+
 @media (prefers-color-scheme: dark) {
     .card {
         background-color: #20262e;
         color: #e2e8f0;
+    }
+    .template-mascot {
+        color: #a0aec0;
     }
     .cloze-sentence-syll {
         color: #f7fafc;
@@ -839,6 +865,7 @@ def generate_anki_cards(
             r_back = build_card_back_html(
                 card_type="verb_root",
                 verb=v,
+                mascot_verb=class_mascots.get(c_name),
             )
             r_tags = [
                 "cherokee",
@@ -1090,7 +1117,7 @@ Aspect decks use a **reversible note model** that generates two cards per note:
    - **Back**: English definition + tense/root indicator + full paradigm table.
 
 ### Verb Root Templates
-For verb root cards (Type 2), the Cherokee prompt/answer side displays the entire morphological verb template (e.g. `Set A-at-ad-[eg-invs]`) rather than just `-root-`. This format is adapted from the Community Companion dictionary generator, capturing the full lexical meaning including pronominal set selection, middle voice prefixes, bold root consonants in community orthography, post-root morphemes, and aspect class classification.
+For verb root cards (Type 2), the Cherokee prompt/answer side displays the entire morphological verb template (e.g. `Set A-at-ad-[eg-invs]`) rather than just `-root-`. Underneath the aspect class name (e.g. `[ih-ohd]`), the 3rd person present form of the class mascot verb is displayed in small italic text (e.g. *anehldiha*) to provide an immediate mnemonic anchor for the class conjugation paradigm. This format is adapted from the Community Companion dictionary generator, capturing the full lexical meaning including pronominal set selection, middle voice prefixes, bold root consonants in community orthography, post-root morphemes, and aspect class classification.
 
 ### Verb Priority Ordering Within Classes (`kirkcsv.csv`)
 Within each aspect class, member verbs are prioritized using fuzzy comparison against Duane Kirk's verb frequency dataset (`kirkcsv.csv`):

@@ -17,6 +17,7 @@ from dictionary_pipeline.orthography import unrespell_consonants
 from morphology.h_alternation import prevent_C_glottal_cluster
 from morphology.morphemes.post_root_morphemes import PostRootMorphemeRegistry
 from morphology.morphology_types import PronominalSet
+from morphology.reconstruction import desegment
 from tex_dictionary.companion_data import AspectClass
 from anki.english_inflector import clean_pronouns
 
@@ -188,10 +189,51 @@ def format_segmented_verb_html(
     return "".join(formatted_parts)
 
 
-def format_template_html(verb: DictionaryVerb) -> str:
+_DEFAULT_MASCOT_RESOLVER: Any | None = None
+
+
+def get_mascot_present_surface(mascot_verb: DictionaryVerb) -> str:
+    """
+    Extracts the clean 3rd person present surface form for a mascot verb
+    in community orthography.
+    """
+    seg = mascot_verb.segmented_forms.get("present")
+    if not seg or seg == "---":
+        return ""
+    return unrespell_consonants(desegment(seg))
+
+
+def resolve_mascot_for_verb(verb: DictionaryVerb) -> DictionaryVerb | None:
+    """
+    Resolves the mascot verb for the given verb's aspect class.
+    """
+    global _DEFAULT_MASCOT_RESOLVER
+    try:
+        if _DEFAULT_MASCOT_RESOLVER is None:
+            from tex_dictionary.mascot_resolver import MascotResolver
+
+            _DEFAULT_MASCOT_RESOLVER = MascotResolver()
+        c_name = verb.morphology.class_name
+        mascot = _DEFAULT_MASCOT_RESOLVER.resolve_mascot(c_name, "Plain")
+        if not mascot and "[" in c_name:
+            mascot = _DEFAULT_MASCOT_RESOLVER.resolve_mascot(
+                c_name.split("[")[0], "Plain"
+            )
+        return mascot
+    except Exception:
+        return None
+
+
+def format_template_html(
+    verb: DictionaryVerb,
+    mascot_verb: DictionaryVerb | None = None,
+    include_mascot: bool = True,
+) -> str:
     """
     Renders the morphological template breakdown in HTML with colored Set A/Set B spans,
     matching the community companion generator logic.
+    If include_mascot is True, renders the 3rd person present form of the mascot verb
+    under the class name in small italic text.
     """
     config = verb.morphology.config
     parts: list[str] = []
@@ -254,10 +296,29 @@ def format_template_html(verb: DictionaryVerb) -> str:
             )
             parts.append(f'<span class="template-prm">{html.escape(prm_comm)}</span>')
 
-    parts.append(
+    class_html = (
         f'<span class="template-class" style="color: #4a5568; font-weight:'
         f' bold;">[{html.escape(verb.morphology.class_name)}]</span>'
     )
+
+    if include_mascot:
+        if mascot_verb is None:
+            mascot_verb = resolve_mascot_for_verb(verb)
+        if mascot_verb:
+            mascot_pres = get_mascot_present_surface(mascot_verb)
+            if mascot_pres:
+                class_html = (
+                    f'<span class="template-class-wrap" style="display: inline-flex;'
+                    f' flex-direction: column; align-items: center; vertical-align: middle;'
+                    f' line-height: 1.1;">'
+                    f'{class_html}'
+                    f'<span class="template-mascot" style="font-size: 0.58em;'
+                    f' font-style: italic; font-weight: normal; color: #718096;'
+                    f' margin-top: 2px;">{html.escape(mascot_pres)}</span>'
+                    f'</span>'
+                )
+
+    parts.append(class_html)
 
     return "-".join(parts)
 
@@ -408,7 +469,7 @@ def build_verb_table_html(
 
     verb_def = html.escape(clean_pronouns(verb.definition, "3rd_she"))
     verb_root = unrespell_consonants(verb.morphology.h_grade_root)
-    verb_template = format_template_html(verb)
+    verb_template = format_template_html(verb, include_mascot=False)
     label = "Mascot:" if is_mascot else "Verb:"
     sentence_html = format_sentence_html(sentence_data)
     sentence_block = f"\n    {sentence_html}" if sentence_html else ""
@@ -544,11 +605,12 @@ def build_card_back_html(
     form_name: str | None = None,
     segmented_form: str | None = None,
     audio_filename: str | None = None,
+    mascot_verb: DictionaryVerb | None = None,
 ) -> str:
     """
     Builds the Back HTML matching user test card format:
     - Mascot words: color #ff8888
-    - Non-mascot root cards: -{root}- with color #ff8888
+    - Non-mascot root cards: template with class name and mascot verb under it
     - Non-mascot practice cards: color #ff8888
     - Appends [sound:audio_filename] when word audio is available.
     """
@@ -575,7 +637,9 @@ def build_card_back_html(
 """.strip()
 
     elif card_type == "verb_root":
-        template_html = format_template_html(verb)
+        template_html = format_template_html(
+            verb, mascot_verb=mascot_verb, include_mascot=True
+        )
         return f"""
 <div class="card-back form-back" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; text-align: center; padding: 16px;">
     <div class="cherokee-template" style="font-size: 1.5em; font-weight: 500; margin-bottom: 8px;">
